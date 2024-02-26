@@ -238,15 +238,15 @@ connection.onCompletion(
 		// info and always provide the same completion items.
 		return [
 			{
-				label: 'TypeScript',
+				label: 'ObjectCreationList',
 				kind: CompletionItemKind.Text,
 				data: 1
 			},
 			{
-				label: 'JavaScript',
+				label: 'W3DModelDraw',
 				kind: CompletionItemKind.Text,
 				data: 2
-			}
+			},
 		];
 	}
 );
