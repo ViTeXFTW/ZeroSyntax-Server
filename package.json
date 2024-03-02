@@ -1,7 +1,7 @@
 {
-	"name": "lsp-sample",
+	"name": "ZeroSyntax Server",
 	"description": "A language server example",
-	"author": "Microsoft Corporation",
+	"author": "ViTeXFTW",
 	"license": "MIT",
 	"version": "1.0.0",
 	"repository": {
