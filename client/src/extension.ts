@@ -6,6 +6,7 @@
 import { getVSCodeDownloadUrl } from '@vscode/test-electron/out/util';
 import { time } from 'console';
 import * as path from 'path';
+import { config } from 'process';
 import * as vscode from 'vscode';
 
 import {
@@ -71,7 +72,9 @@ export function activate(context: vscode.ExtensionContext) {
 function formatDocument(document: vscode.TextDocument): vscode.TextEdit[] {
 	const edits: vscode.TextEdit[] = [];
 	let indentlevel = 0;
-	const indentSize = 2;
+
+	const config = vscode.workspace.getConfiguration('ZS-Server');
+	const indentSize = config.get<number>('indentNumber', 2); // Default to 2 if not set
 
 	let ObjectsRegex = ["^\\b([Oo]bject)\\s+[a-zA-Z0-9_]", "^\\b([Oo]bject[Rr]eskin)\\s+[a-zA-Z0-9_]", "^\\b([Aa]dd[Mm]odule)$", "^\\b([Rr]eplace[Mm]odule)$", "^\\b([Dd]efault[Cc]ondition[Ss]tate)$", "^\\b([Uu]nit[Ss]pecific[Ss]ounds)$", "^\\b([Pp]rerequisites)$", "^\\b([Aa]rmor[Ss]et)$", "^\\b([Ww]eapon[Ss]et)$", "^\\b([Dd]raw)\\s*=", "^\\b([Cc]ondition[Ss]tate)\\s*=", "^\\b([Tt]ransition[Ss]tate)\\s*=", "^\\b([Bb]ody)\\s*=", "^\\b([Bb]ehavior)\\s*=", "^\\b([Cc]lient[Uu]pdate)\\s*=", "^\\b(Turret)$"];
 	let SimpleClassesRegex = ["^\\b([Mm]apped[Ii]mage)\\s+[a-zA-Z0-9_]", "^\\b([Pp]article[Ss]ystem)\\s+[a-zA-Z0-9_]", "^\\b([Ll]ocomotor)\\s+[a-zA-Z0-9_]", "^\\b([Aa]udio[Ee]vent)\\s+[a-zA-Z0-9_]", "^\\b([Dd]ialog[Ee]vent)\\s+[a-zA-Z0-9_]", "^\\b([Aa]rmor)\\s+[a-zA-Z0-9_]", "^\\b([Cc]ommand[Ss]et)\\s+[a-zA-Z0-9_]", "^\\b([Cc]ommand[Bb]utton)\\s+[a-zA-Z0-9_]", "^\\b([Ww]eapon)\\s+[a-zA-Z0-9_]", "^\\b([Dd]amage[Ff][Xx])\\s+[A-Za-z0-9_]", "^\\b([Uu]pgrade)\\s+[a-zA-Z0-9_]", "^\\b([Pp]layer[Tt]emplate)\\s+[a-zA-Z0-9_]", "^\\b(Rank)\\s+[1-8]$", "^\\b([Ii]n[Gg]ame[Uu][Ii])$", "^\\b(A10StrikeRadiusCursor)$", "^\\b(AmbushRadiusCursor)$", "^\\b(ClusterMinesRadiusCursor)$", "^\\b(AnthraxBombRadiusCursor)$"];

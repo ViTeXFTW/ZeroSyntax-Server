@@ -1,16 +1,21 @@
 {
-	"name": "lsp-sample-client",
-	"description": "VSCode part of a language server",
-	"author": "Microsoft Corporation",
-	"license": "MIT",
-	"version": "0.0.1",
-	"publisher": "vscode",
+	"name": "ZS-Server",
+	"displayName": "ZeroSyntax-Highlight",
+	"description": "Syntax highlighting for Zero Hour map.ini",
+	"icon": "./images/icon.png",
+	"version": "0.1.0",
+	"publisher": "ViTeXFTW",
+	"author": {
+		"name": "ViTeXFTW",
+		"email": "vitexftw@gmail.com"
+	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Microsoft/vscode-extension-samples"
+		"url": "https://github.com/ViTeXFTW/ZeroSyntax-Highlight"
 	},
+	"license": "MIT",
 	"engines": {
-		"vscode": "^1.75.0"
+		"vscode": "^1.85.0"
 	},
 	"dependencies": {
 		"vscode-languageclient": "^8.1.0"
