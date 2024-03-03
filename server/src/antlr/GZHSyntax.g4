@@ -1,33 +1,16 @@
 grammar GZHSyntax;
 
 // Parser
-file: EOF;
 
-classes: object*;
+file: property* EOF;
 
-object: 'Object' OBJECT_NAME (property)* end;
+property: ID '=' value+;
 
-property: PROPERTY_ID '=' (value)*;
-
-end: 'End' | 'END' | 'end';
-
-value: INT | FLOAT | PROCENTAGE | STRING | BOOL;
+value: ID;
 
 // Lexer
 
-// Names
-PROPERTY_ID: [a-zA-Z][a-zA-Z0-9%]*;
-OBJECT_NAME: [a-zA-Z][a-zA-Z0-9]*;
+ID: [a-zA-Z]+;
 
-// Values
-INT: '-'? [0-9]+;
-FLOAT: '-'? [0-9]+ '.' [0-9]+;
-PROCENTAGE: '-'? [0-9]+ '%';
-STRING: '"' ~'"'* '"' 
-      | '\'' ~'\''* '\'';
-BOOL: 'yes' | 'no' | 'YES' | 'NO' | 'Yes' | 'No';
-
-// Ignore
-WS: [ \t\r\n]+ -> skip; // skip whitespaces
-
-COMMENT: ';' ~[\r\n]* -> skip; // skip comments
+WS: [ \t\r\n]+ -> skip;
+COMMENT: ('//'|';') ~[\r\n]* -> skip;

@@ -29,6 +29,24 @@
 	],
 	"main": "./client/out/extension",
 	"contributes": {
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "zerosyntax",
+					"title": "ZeroSyntax",
+					"icon": "images/ZeroSyntaxLogo_bw.png"
+				}
+			]
+		},
+		"views": {
+			"explorer": [
+				{
+					"id": "package-dependencies",
+					"name": "Dependencies",
+					"type": "tree"
+				}
+			]
+		},
 		"configuration": {
 			"type": "object",
 			"title": "ZeroSyntax Settings",
@@ -64,7 +82,8 @@
 		"watch": "tsc -b -w",
 		"lint": "eslint ./client/src ./server/src --ext .ts,.tsx",
 		"postinstall": "cd client && npm install && cd ../server && npm install && cd ..",
-		"test": "sh ./scripts/e2e.sh"
+		"test": " tsc -b && npm run antlr4ts",
+		"antlr4ts": "antlr4ts -visitor ./server/src/antlr/GZHSyntax.g4 -o ./server/src/antlr/"
 	},
 	"devDependencies": {
 		"@types/mocha": "^9.1.0",
@@ -76,6 +95,7 @@
 		"typescript": "^5.3.2"
 	},
 	"dependencies": {
-		"antlr4ts": "^0.5.0-alpha.4"
+		"antlr4ts": "^0.5.0-alpha.4",
+		"antlr4ts-cli": "^0.5.0-alpha.4"
 	}
 }

@@ -21,12 +21,25 @@ import {
 	TextDocument
 } from 'vscode-languageserver-textdocument';
 
+import { SyntaxBuilder, CustomErrorListener } from './SynaxBuilder';
+import { CharStreams, CommonTokenStream } from 'antlr4ts';
+import { GZHSyntaxLexer } from './antlr/GZHSyntaxLexer';
+import { GZHSyntaxParser } from './antlr/GZHSyntaxParser';
+import { ParseTreeWalker } from 'antlr4ts/tree/ParseTreeWalker';
+
 // Create a connection for the server, using Node's IPC as a transport.
 // Also include all preview / proposed LSP features.
 const connection = createConnection(ProposedFeatures.all);
 
 // Create a simple text document manager.
 const documents: TextDocuments<TextDocument> = new TextDocuments(TextDocument);
+
+// Syntax Builder
+const syntaxBuilder = new SyntaxBuilder(connection);
+
+// Timer used to delay parsing
+let parseTimer: NodeJS.Timeout | null = null;
+const parseDelay = 1000;
 
 let hasConfigurationCapability = false;
 let hasWorkspaceFolderCapability = false;
@@ -131,66 +144,54 @@ documents.onDidClose(e => {
 // The content of a text document has changed. This event is emitted
 // when the text document first opened or when its content has changed.
 documents.onDidChangeContent(async change => {
-	let textDocument = change.document;
-	// In this simple example we get the settings for every validate run.
-	let settings = await getDocumentSettings(textDocument.uri);
+	if (parseTimer) {
+		clearTimeout(parseTimer);
+	}
 
-	// The validator creates diagnostics for all uppercase words length 2 and more
-	let text = textDocument.getText();
+	parseTimer = setTimeout(async () => {
+		let textDocument = change.document;
 
-	let problems = 0;
-	let diagnostics: Diagnostic[] = [];
+		// Parse the document to compute diagnostics
+		const diagnostics = await validateTextDocument(textDocument);
 
+		// Send the updated diagnostics to the client
+		connection.sendDiagnostics({ uri: textDocument.uri, diagnostics });
 
+		// Reset the tree listener diagnostics for the next run
+		syntaxBuilder.clearDiagnostics();
 
-	// diagnostics.push(diagnostic);
-
-	// Send the computed diagnostics to VS Code.
-	connection.sendDiagnostics({ uri: textDocument.uri, diagnostics });
+		// Send the computed diagnostics to VS Code.
+		connection.sendDiagnostics({ uri: textDocument.uri, diagnostics });
+	}, parseDelay);
 });
 
-async function validateTextDocument(textDocument: TextDocument): Promise<void> {
+async function validateTextDocument(textDocument: TextDocument): Promise<Diagnostic[]> {
 	// In this simple example we get the settings for every validate run.
 	const settings = await getDocumentSettings(textDocument.uri);
 
 	// The validator creates diagnostics for all uppercase words length 2 and more
 	const text = textDocument.getText();
-	const pattern = /\b[A-Z]{2,}\b/g;
-	let m: RegExpExecArray | null;
 
-	let problems = 0;
-	const diagnostics: Diagnostic[] = [];
-	while ((m = pattern.exec(text)) && problems < settings.maxNumberOfProblems) {
-		problems++;
-		const diagnostic: Diagnostic = {
-			severity: DiagnosticSeverity.Warning,
-			range: {
-				start: textDocument.positionAt(m.index),
-				end: textDocument.positionAt(m.index + m[0].length)
-			},
-			message: `${m[0]} is all uppercase.`,
-			source: 'ex'
-		};
-		if (hasDiagnosticRelatedInformationCapability) {
-			diagnostic.relatedInformation = [
-				{
-					location: {
-						uri: textDocument.uri,
-						range: Object.assign({}, diagnostic.range)
-					},
-					message: 'Spelling matters'
-				},
-				{
-					location: {
-						uri: textDocument.uri,
-						range: Object.assign({}, diagnostic.range)
-					},
-					message: 'Particularly for names'
-				}
-			];
-		}
-		diagnostics.push(diagnostic);
-	}
+	try {
+		const inputStream = CharStreams.fromString(text);
+		const lexer = new GZHSyntaxLexer(inputStream);
+		const tokenStream = new CommonTokenStream(lexer);
+		const parser = new GZHSyntaxParser(tokenStream);
+		parser.removeErrorListeners();
+		parser.addErrorListener(new CustomErrorListener(textDocument, syntaxBuilder));
+		
+		const walker = new ParseTreeWalker();
+		const root = parser.file();
+		walker.walk(syntaxBuilder, root);
+
+		return syntaxBuilder.getDiagnostics();
+	} catch (error) {
+        // Handle any parsing errors here
+        connection.console.error(`Error computing diagnostics: ${error}`);
+		return [];
+    }
+
+	let diagnostics = syntaxBuilder.build(text);
 
 	// Send the computed diagnostics to VSCode.
 	connection.sendDiagnostics({ uri: textDocument.uri, diagnostics });
