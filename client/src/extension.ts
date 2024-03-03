@@ -73,7 +73,7 @@ function formatDocument(document: vscode.TextDocument): vscode.TextEdit[] {
 	const edits: vscode.TextEdit[] = [];
 	let indentlevel = 0;
 
-	const config = vscode.workspace.getConfiguration('ZS-Server');
+	const config = vscode.workspace.getConfiguration('ZeroSyntax');
 	const indentSize = config.get<number>('indentNumber', 2); // Default to 2 if not set
 
 	let ObjectsRegex = ["^\\b([Oo]bject)\\s+[a-zA-Z0-9_]", "^\\b([Oo]bject[Rr]eskin)\\s+[a-zA-Z0-9_]", "^\\b([Aa]dd[Mm]odule)$", "^\\b([Rr]eplace[Mm]odule)$", "^\\b([Dd]efault[Cc]ondition[Ss]tate)$", "^\\b([Uu]nit[Ss]pecific[Ss]ounds)$", "^\\b([Pp]rerequisites)$", "^\\b([Aa]rmor[Ss]et)$", "^\\b([Ww]eapon[Ss]et)$", "^\\b([Dd]raw)\\s*=", "^\\b([Cc]ondition[Ss]tate)\\s*=", "^\\b([Tt]ransition[Ss]tate)\\s*=", "^\\b([Bb]ody)\\s*=", "^\\b([Bb]ehavior)\\s*=", "^\\b([Cc]lient[Uu]pdate)\\s*=", "^\\b(Turret)$"];
