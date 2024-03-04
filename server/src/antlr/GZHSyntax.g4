@@ -2,15 +2,31 @@ grammar GZHSyntax;
 
 // Parser
 
-file: property* EOF;
+file: object_class EOF;
+
+object_class: ('Object'|'objcet') ID property* end;
 
 property: ID '=' value+;
 
-value: ID;
+end: 'end'|'End'|'END';
+
+value: fileString
+     | BOOL
+     | PROCENTAGE
+     | INT
+     | FLOAT
+     | STRING
+     | ID;
+
+fileString: ID '.' ID;
 
 // Lexer
-
-ID: [a-zA-Z]+;
+BOOL: 'yes' | 'no' | 'Yes' | 'No' | 'YES' | 'NO';
+PROCENTAGE: (INT|FLOAT) '%';
+FLOAT: '-'? ([0-9]+)? '.' [0-9]+;
+INT: '-'? [0-9]+;
+STRING: '"' ~'"'* '"' | '\'' ~'\''* '\'';
+ID: [a-zA-Z_][a-zA-Z0-9_]*;
 
 WS: [ \t\r\n]+ -> skip;
 COMMENT: ('//'|';') ~[\r\n]* -> skip;

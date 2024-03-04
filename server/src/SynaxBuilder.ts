@@ -41,29 +41,29 @@ export class SyntaxBuilder implements GZHSyntaxListener {
 
     enterProperty(ctx: PropertyContext) {
         let propertyName = ctx.ID().text;
-
+    
         const propertyValue = ctx.value();
-        let seenValues: any[] = [];
-
+        let seenValues: Set<any> = new Set();
+    
         if (propertyValue) {
             propertyValue.forEach((value) => {
                 let valueText = value.text;
                 if((valueText.startsWith("\"") && valueText.endsWith("\"")) || (valueText.startsWith("'") && valueText.endsWith("'"))) {
                     valueText = valueText.substring(1, valueText.length - 1);
                 }
-
-                if (seenValues.includes(valueText)) {
+    
+                if (seenValues.has(valueText)) {
                     this.addDiagnostic({
                         severity: DiagnosticSeverity.Warning,
                         range: {
-                            start: { line: value.start.line, character: value.start.charPositionInLine },
-                            end: { line: value.stop!.line, character: value.stop!.charPositionInLine }
+                            start: { line: value.start.line - 1, character: value.start.charPositionInLine },
+                            end: { line: value.stop!.line - 1, character: value.stop!.charPositionInLine }
                         },
-                        message: `Duplicate value ${valueText}`,
+                        message: `Duplicate value '${valueText}'`,
                         source: 'ZeroSyntax-Server'
                     });
                 } else {
-                    seenValues.push(valueText);
+                    seenValues.add(valueText);
                 }
             });
         }

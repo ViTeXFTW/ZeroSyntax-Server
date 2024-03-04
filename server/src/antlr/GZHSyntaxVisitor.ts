@@ -4,8 +4,11 @@
 import { ParseTreeVisitor } from "antlr4ts/tree/ParseTreeVisitor";
 
 import { FileContext } from "./GZHSyntaxParser";
+import { Object_classContext } from "./GZHSyntaxParser";
 import { PropertyContext } from "./GZHSyntaxParser";
+import { EndContext } from "./GZHSyntaxParser";
 import { ValueContext } from "./GZHSyntaxParser";
+import { FileStringContext } from "./GZHSyntaxParser";
 
 
 /**
@@ -24,6 +27,13 @@ export interface GZHSyntaxVisitor<Result> extends ParseTreeVisitor<Result> {
 	visitFile?: (ctx: FileContext) => Result;
 
 	/**
+	 * Visit a parse tree produced by `GZHSyntaxParser.object_class`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitObject_class?: (ctx: Object_classContext) => Result;
+
+	/**
 	 * Visit a parse tree produced by `GZHSyntaxParser.property`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -31,10 +41,24 @@ export interface GZHSyntaxVisitor<Result> extends ParseTreeVisitor<Result> {
 	visitProperty?: (ctx: PropertyContext) => Result;
 
 	/**
+	 * Visit a parse tree produced by `GZHSyntaxParser.end`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitEnd?: (ctx: EndContext) => Result;
+
+	/**
 	 * Visit a parse tree produced by `GZHSyntaxParser.value`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	visitValue?: (ctx: ValueContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `GZHSyntaxParser.fileString`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitFileString?: (ctx: FileStringContext) => Result;
 }
 
