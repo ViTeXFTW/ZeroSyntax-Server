@@ -17,6 +17,8 @@ import {
 } from 'vscode-languageclient/node';
 
 let client: LanguageClient;
+let languageServerRunning = false;
+const ZSconfig = vscode.workspace.getConfiguration('ZeroSyntax');
 
 export function activate(context: vscode.ExtensionContext) {
 
@@ -24,9 +26,24 @@ export function activate(context: vscode.ExtensionContext) {
 	
 	// context.subscriptions.push(vscode.commands.registerCommand(command, formatDocument));
 
+	let languageServerRunning = ZSconfig.get<boolean>('serverStartupSetting', false); // Default to 2 if not set
+
 	context.subscriptions.push(vscode.languages.registerDocumentFormattingEditProvider('ini', {
 		provideDocumentFormattingEdits: (document: vscode.TextDocument): vscode.TextEdit[] => {
 			return formatDocument(document);
+		}
+	}));
+
+	context.subscriptions.push(vscode.commands.registerCommand('ZeroSyntax.stopLanguageServer', () => {
+		if(languageServerRunning) {
+			client.stop();
+			languageServerRunning = false;
+		}
+	}));
+	context.subscriptions.push(vscode.commands.registerCommand('ZeroSyntax.startLanguageServer', () => {
+		if(!languageServerRunning) {
+			client.start();
+			languageServerRunning = true;
 		}
 	}));
 
@@ -66,15 +83,16 @@ export function activate(context: vscode.ExtensionContext) {
 	);
 
 	// Start the client. This will also launch the server
-	client.start();
+	if(languageServerRunning) {
+		client.start();
+	}
 }
 
 function formatDocument(document: vscode.TextDocument): vscode.TextEdit[] {
 	const edits: vscode.TextEdit[] = [];
 	let indentlevel = 0;
 
-	const config = vscode.workspace.getConfiguration('ZeroSyntax');
-	const indentSize = config.get<number>('indentNumber', 2); // Default to 2 if not set
+	const indentSize = ZSconfig.get<number>('indentNumber', 2); // Default to 2 if not set
 
 	let ObjectsRegex = ["^\\b([Oo]bject)\\s+[a-zA-Z0-9_]", "^\\b([Oo]bject[Rr]eskin)\\s+[a-zA-Z0-9_]", "^\\b([Aa]dd[Mm]odule)$", "^\\b([Rr]eplace[Mm]odule)$", "^\\b([Dd]efault[Cc]ondition[Ss]tate)$", "^\\b([Uu]nit[Ss]pecific[Ss]ounds)$", "^\\b([Pp]rerequisites)$", "^\\b([Aa]rmor[Ss]et)$", "^\\b([Ww]eapon[Ss]et)$", "^\\b([Dd]raw)\\s*=", "^\\b([Cc]ondition[Ss]tate)\\s*=", "^\\b([Tt]ransition[Ss]tate)\\s*=", "^\\b([Bb]ody)\\s*=", "^\\b([Bb]ehavior)\\s*=", "^\\b([Cc]lient[Uu]pdate)\\s*=", "^\\b(Turret)$"];
 	let SimpleClassesRegex = ["^\\b([Mm]apped[Ii]mage)\\s+[a-zA-Z0-9_]", "^\\b([Pp]article[Ss]ystem)\\s+[a-zA-Z0-9_]", "^\\b([Ll]ocomotor)\\s+[a-zA-Z0-9_]", "^\\b([Aa]udio[Ee]vent)\\s+[a-zA-Z0-9_]", "^\\b([Dd]ialog[Ee]vent)\\s+[a-zA-Z0-9_]", "^\\b([Aa]rmor)\\s+[a-zA-Z0-9_]", "^\\b([Cc]ommand[Ss]et)\\s+[a-zA-Z0-9_]", "^\\b([Cc]ommand[Bb]utton)\\s+[a-zA-Z0-9_]", "^\\b([Ww]eapon)\\s+[a-zA-Z0-9_]", "^\\b([Dd]amage[Ff][Xx])\\s+[A-Za-z0-9_]", "^\\b([Uu]pgrade)\\s+[a-zA-Z0-9_]", "^\\b([Pp]layer[Tt]emplate)\\s+[a-zA-Z0-9_]", "^\\b(Rank)\\s+[1-8]$", "^\\b([Ii]n[Gg]ame[Uu][Ii])$", "^\\b(A10StrikeRadiusCursor)$", "^\\b(AmbushRadiusCursor)$", "^\\b(ClusterMinesRadiusCursor)$", "^\\b(AnthraxBombRadiusCursor)$"];
@@ -126,6 +144,23 @@ function formatDocument(document: vscode.TextDocument): vscode.TextEdit[] {
 function checkLineWithRegex(line: string, regex: string) {
 	let Regex = new RegExp(regex, "g");
 	return Regex.test(line);
+}
+
+vscode.workspace.onDidChangeConfiguration((e) => {
+	if(e.affectsConfiguration('ZeroSyntax.serverStartupSetting')) {
+		languageServerRunning = ZSconfig.get<boolean>('serverStartupSetting', false);
+		toggleLanguageServer();
+	}
+});
+
+function toggleLanguageServer() {
+	if(languageServerRunning) {
+		client.stop();
+		languageServerRunning = false;
+	} else {
+		client.start();
+		languageServerRunning = true;
+	}
 }
 
 export function deactivate(): Thenable<void> | undefined {
