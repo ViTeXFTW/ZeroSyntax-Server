@@ -61,6 +61,11 @@
 			"type": "object",
 			"title": "ZeroSyntax Settings",
 			"properties": {
+				"ZeroSyntax.forceAddModule": {
+					"type": "boolean",
+					"default": true,
+					"description": "Controls if modules is required to be inside AddModule & ReplaceModule blocks"
+				},
 				"ZeroSyntax.indentNumber": {
 					"type": "number",
 					"default": 2,
@@ -98,7 +103,7 @@
 		"lint": "eslint ./client/src ./server/src --ext .ts,.tsx",
 		"postinstall": "cd client && npm install && cd ../server && npm install && cd ..",
 		"test": " tsc -b && npm run antlr4ts",
-		"antlr4ts": "antlr4ts -visitor ./server/src/antlr/GZHSyntax.g4 -o ./server/src/antlr/"
+		"antlr4ts": "antlr4ts -visitor ./server/src/antlr/MapIni.g4 -o ./server/src/antlr/.antlr"
 	},
 	"devDependencies": {
 		"@types/mocha": "^9.1.0",

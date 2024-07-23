@@ -20,6 +20,14 @@ import {
 import {
 	TextDocument
 } from 'vscode-languageserver-textdocument';
+import {
+	CustomErrorListener,
+	TreeListener
+} from './AntlrListener';
+import { CharStreams, CommonTokenStream } from 'antlr4ts';
+import { MapIniLexer } from './antlr/MapIniLexer';
+import { MapIniParser } from './antlr/MapIniParser';
+import { ParseTreeWalker } from 'antlr4ts/tree/ParseTreeWalker';
 
 // Create a connection for the server, using Node's IPC as a transport.
 // Also include all preview / proposed LSP features.
@@ -27,6 +35,15 @@ const connection = createConnection(ProposedFeatures.all);
 
 // Create a simple text document manager.
 const documents: TextDocuments<TextDocument> = new TextDocuments(TextDocument);
+// Create a listener for tree traversal
+const treeListener = new TreeListener();
+
+// Timer used to delay parsing
+let parseTimer: NodeJS.Timeout | null = null;
+const parseDelay = 1000;
+
+// Extension settings
+let forceAddModule = false
 
 let hasConfigurationCapability = false;
 let hasWorkspaceFolderCapability = false;
@@ -34,6 +51,7 @@ let hasDiagnosticRelatedInformationCapability = false;
 
 connection.onInitialize((params: InitializeParams) => {
 	const capabilities = params.capabilities;
+	const options = params.initializationOptions
 
 	// Does the client support the `workspace/configuration` request?
 	// If not, we fall back using global settings.
@@ -65,6 +83,7 @@ connection.onInitialize((params: InitializeParams) => {
 			}
 		};
 	}
+	forceAddModule = options.forceAddmodule
 	return result;
 });
 
@@ -130,70 +149,54 @@ documents.onDidClose(e => {
 
 // The content of a text document has changed. This event is emitted
 // when the text document first opened or when its content has changed.
-documents.onDidChangeContent(async change => {
-	let textDocument = change.document;
-	// In this simple example we get the settings for every validate run.
-	let settings = await getDocumentSettings(textDocument.uri);
+documents.onDidChangeContent(change => {
+    if (parseTimer) {
+        clearTimeout(parseTimer);
+    }
 
-	// The validator creates diagnostics for all uppercase words length 2 and more
-	let text = textDocument.getText();
+    parseTimer = setTimeout(async () => {
+        const textDocument = change.document;
+        // Get the settings for every validate run.
+        const settings = await getDocumentSettings(textDocument.uri);
 
-	let problems = 0;
-	let diagnostics: Diagnostic[] = [];
+        // Parse the document to compute diagnostics
+        const diagnostics = await computeDiagnostics(textDocument);
 
+        // Send the updated diagnostics to the client
+        connection.sendDiagnostics({ uri: textDocument.uri, diagnostics });
 
-
-	// diagnostics.push(diagnostic);
-
-	// Send the computed diagnostics to VS Code.
-	connection.sendDiagnostics({ uri: textDocument.uri, diagnostics });
+        // Reset the tree listener diagnostics for the next run
+        treeListener.resetDiagnostics();
+    }, parseDelay);
 });
 
-async function validateTextDocument(textDocument: TextDocument): Promise<void> {
-	// In this simple example we get the settings for every validate run.
-	const settings = await getDocumentSettings(textDocument.uri);
-
-	// The validator creates diagnostics for all uppercase words length 2 and more
-	const text = textDocument.getText();
-	const pattern = /\b[A-Z]{2,}\b/g;
-	let m: RegExpExecArray | null;
-
-	let problems = 0;
-	const diagnostics: Diagnostic[] = [];
-	while ((m = pattern.exec(text)) && problems < settings.maxNumberOfProblems) {
-		problems++;
-		const diagnostic: Diagnostic = {
-			severity: DiagnosticSeverity.Warning,
-			range: {
-				start: textDocument.positionAt(m.index),
-				end: textDocument.positionAt(m.index + m[0].length)
-			},
-			message: `${m[0]} is all uppercase.`,
-			source: 'ex'
-		};
-		if (hasDiagnosticRelatedInformationCapability) {
-			diagnostic.relatedInformation = [
-				{
-					location: {
-						uri: textDocument.uri,
-						range: Object.assign({}, diagnostic.range)
-					},
-					message: 'Spelling matters'
-				},
-				{
-					location: {
-						uri: textDocument.uri,
-						range: Object.assign({}, diagnostic.range)
-					},
-					message: 'Particularly for names'
-				}
-			];
+async function computeDiagnostics(textDocument: TextDocument): Promise<Diagnostic[]> {
+    try {
+		if(forceAddModule) {
+			connection.console.log("Parsing with enforced addmule/replacemodule")
 		}
-		diagnostics.push(diagnostic);
-	}
 
-	// Send the computed diagnostics to VSCode.
-	connection.sendDiagnostics({ uri: textDocument.uri, diagnostics });
+        const inputStream = CharStreams.fromString(textDocument.getText());
+        const lexer = new MapIniLexer(inputStream);
+        const tokenStream = new CommonTokenStream(lexer);
+        const parser = new MapIniParser(tokenStream);
+		parser.removeErrorListeners();
+		parser.addErrorListener(new CustomErrorListener(textDocument, treeListener));
+
+        const walker = new ParseTreeWalker();
+        const root = parser.program();
+        walker.walk(treeListener, root);
+
+        return treeListener.getDiagnostics();
+    } catch (error) {
+        // Handle any parsing errors here
+        connection.console.error(`Error computing diagnostics: ${error}`);
+        return [];
+    }
+}
+
+async function validateTextDocument(textDocument: TextDocument): Promise<void> {
+	
 }
 
 connection.onDidChangeWatchedFiles(_change => {
@@ -204,38 +207,82 @@ connection.onDidChangeWatchedFiles(_change => {
 // This handler provides the initial list of the completion items.
 connection.onCompletion(
 	(_textDocumentPosition: TextDocumentPositionParams): CompletionItem[] => {
-		// The pass parameter contains the position of the text document in
-		// which code complete got requested. For the example we ignore this
-		// info and always provide the same completion items.
-		return [
-			{
-				label: 'ObjectCreationList',
-				kind: CompletionItemKind.Text,
-				data: 1
-			},
-			{
-				label: 'W3DModelDraw',
-				kind: CompletionItemKind.Text,
-				data: 2
-			},
-		];
-	}
-);
-
-// This handler resolves additional information for the item selected in
-// the completion list.
-connection.onCompletionResolve(
-	(item: CompletionItem): CompletionItem => {
-		if (item.data === 1) {
-			item.detail = 'TypeScript details';
-			item.documentation = 'TypeScript documentation';
-		} else if (item.data === 2) {
-			item.detail = 'JavaScript details';
-			item.documentation = 'JavaScript documentation';
+	  // The pass parameter contains the position of the text document in
+	  // which code complete got requested. For the example we ignore this
+	  // info and always provide the same completion items.
+	  return [
+		{
+			label: 'RadarPriority',
+			kind: CompletionItemKind.Text,
+			data: 1
+		},
+		{
+			label: 'KindOf',
+			kind: CompletionItemKind.Text,
+			data: 2
+		},
+		{
+			label: 'Locomotor',
+			kind: CompletionItemKind.Text,
+		},
+		{
+			label: 'RemoveModule',
+			kind: CompletionItemKind.Text,
+		},
+		{
+			label: 'End',
+			kind: CompletionItemKind.Text,
+		},
+		{
+			label: 'NONE',
+			kind: CompletionItemKind.Text,
+		},
+		{
+			label: 'DAMAGED',
+			kind: CompletionItemKind.Text,
+		},
+		{
+			label: 'REALLYDAMAGED',
+			kind: CompletionItemKind.Text,
+		},
+		{
+			label: 'RUBBLE',
+			kind: CompletionItemKind.Text,
+		},
+		{
+			label: 'AliasConditionState',
+			kind: CompletionItemKind.Text,
+		},
+		{
+			label: 'IgnoreConditionStates',
+			kind: CompletionItemKind.Text,
+		},
+		{
+			label: 'TransitionState',
+			kind: CompletionItemKind.Text,
 		}
-		return item;
+	  ];
 	}
-);
+  );
+  
+  // This handler resolves additional information for the item selected in
+  // the completion list.
+  connection.onCompletionResolve(
+	(item: CompletionItem): CompletionItem => {
+	  if (item.data === 1) {
+		item.detail = 'TypeScript details';
+		item.documentation = 'TypeScript documentation';
+	  } else if (item.data === 2) {
+		item.detail = 'JavaScript details';
+		item.documentation = 'JavaScript documentation';
+	  }
+	  return item;
+	}
+  );
+
+
+
+
 
 // Make the text document manager listen on the connection
 // for open, change and close text document events
@@ -243,3 +290,4 @@ documents.listen(connection);
 
 // Listen on the connection
 connection.listen();
+
