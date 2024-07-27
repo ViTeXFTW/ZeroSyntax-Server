@@ -76,13 +76,13 @@
 					"default": false,
 					"description": "Controls whether the server is started automatically after the extension is activated."
 				},
-				"languageServerExample.maxNumberOfProblems": {
+				"ZeroSyntax.maxNumberOfProblems": {
 					"scope": "resource",
 					"type": "number",
 					"default": 100,
 					"description": "Controls the maximum number of problems produced by the server."
 				},
-				"languageServerExample.trace.server": {
+				"ZeroSyntax.trace.server": {
 					"scope": "window",
 					"type": "string",
 					"enum": [
@@ -90,7 +90,7 @@
 						"messages",
 						"verbose"
 					],
-					"default": "off",
+					"default": "verbose",
 					"description": "Traces the communication between VS Code and the language server."
 				}
 			}
@@ -102,8 +102,8 @@
 		"watch": "tsc -b -w",
 		"lint": "eslint ./client/src ./server/src --ext .ts,.tsx",
 		"postinstall": "cd client && npm install && cd ../server && npm install && cd ..",
-		"test": " tsc -b && npm run antlr4ts",
-		"antlr4ts": "antlr4ts -visitor ./server/src/antlr/MapIni.g4 -o ./server/src/antlr/.antlr"
+		"test": "npm run antlr4ts && tsc -b",
+		"antlr4ts": "antlr4ts -visitor ./server/src/utils/antlr/MapIni.g4 -o ./server/src/utils/antlr/"
 	},
 	"devDependencies": {
 		"@types/mocha": "^9.1.0",

@@ -1,19 +1,8 @@
-// Generated from ./server/src/antlr/MapIni.g4 by ANTLR 4.9.0-SNAPSHOT
+// Generated from ./server/src/utils/antlr/MapIni.g4 by ANTLR 4.9.0-SNAPSHOT
 
 
 import { ParseTreeVisitor } from "antlr4ts/tree/ParseTreeVisitor";
 
-import { ConditionStateContext } from "./MapIniParser";
-import { DefaultConditionStateContext } from "./MapIniParser";
-import { TransitionStateContext } from "./MapIniParser";
-import { AliasConditionStateContext } from "./MapIniParser";
-import { IgnoreConditionStatesContext } from "./MapIniParser";
-import { DrawModuleContext } from "./MapIniParser";
-import { BodyModuleContext } from "./MapIniParser";
-import { BehaviorModuleContext } from "./MapIniParser";
-import { AddModuleContext } from "./MapIniParser";
-import { ReplaceModuleContext } from "./MapIniParser";
-import { RemoveModuleContext } from "./MapIniParser";
 import { StringContext } from "./MapIniParser";
 import { FiletypeContext } from "./MapIniParser";
 import { IdContext } from "./MapIniParser";
@@ -26,10 +15,21 @@ import { ModuleBlocksContext } from "./MapIniParser";
 import { AddModuleBlockContext } from "./MapIniParser";
 import { ReplaceModuleBlockContext } from "./MapIniParser";
 import { ModulesContext } from "./MapIniParser";
+import { ObjectBlocksContext } from "./MapIniParser";
+import { ObjectPrerequisitesContext } from "./MapIniParser";
+import { ObjectPropertyContext } from "./MapIniParser";
+import { ObjectWeaponSetContext } from "./MapIniParser";
+import { ObjectArmorSetContext } from "./MapIniParser";
+import { ObjectUnitSpecificSoundsContext } from "./MapIniParser";
 import { BehaviormoduleBlockContext } from "./MapIniParser";
 import { BodyModuleBlockContext } from "./MapIniParser";
 import { DrawModuleBlockContext } from "./MapIniParser";
 import { ConditionStateBlocksContext } from "./MapIniParser";
+import { ConditionStateBlockContext } from "./MapIniParser";
+import { DefaultConditionStateBlockContext } from "./MapIniParser";
+import { TransitionStateBlockContext } from "./MapIniParser";
+import { AliasConditionStateBlockContext } from "./MapIniParser";
+import { IgnoreConditionStateBlockContext } from "./MapIniParser";
 import { RemoveModuleBlockContext } from "./MapIniParser";
 import { PropertyContext } from "./MapIniParser";
 import { EndContext } from "./MapIniParser";
@@ -50,94 +50,6 @@ import { QuoutedIDContext } from "./MapIniParser";
  * operations with no return type.
  */
 export interface MapIniVisitor<Result> extends ParseTreeVisitor<Result> {
-	/**
-	 * Visit a parse tree produced by the `ConditionState`
-	 * labeled alternative in `MapIniParser.conditionStateBlocks`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitConditionState?: (ctx: ConditionStateContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by the `DefaultConditionState`
-	 * labeled alternative in `MapIniParser.conditionStateBlocks`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitDefaultConditionState?: (ctx: DefaultConditionStateContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by the `TransitionState`
-	 * labeled alternative in `MapIniParser.conditionStateBlocks`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitTransitionState?: (ctx: TransitionStateContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by the `AliasConditionState`
-	 * labeled alternative in `MapIniParser.conditionStateBlocks`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitAliasConditionState?: (ctx: AliasConditionStateContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by the `IgnoreConditionStates`
-	 * labeled alternative in `MapIniParser.conditionStateBlocks`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitIgnoreConditionStates?: (ctx: IgnoreConditionStatesContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by the `DrawModule`
-	 * labeled alternative in `MapIniParser.modules`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitDrawModule?: (ctx: DrawModuleContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by the `BodyModule`
-	 * labeled alternative in `MapIniParser.modules`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitBodyModule?: (ctx: BodyModuleContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by the `BehaviorModule`
-	 * labeled alternative in `MapIniParser.modules`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitBehaviorModule?: (ctx: BehaviorModuleContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by the `AddModule`
-	 * labeled alternative in `MapIniParser.moduleBlocks`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitAddModule?: (ctx: AddModuleContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by the `ReplaceModule`
-	 * labeled alternative in `MapIniParser.moduleBlocks`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitReplaceModule?: (ctx: ReplaceModuleContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by the `RemoveModule`
-	 * labeled alternative in `MapIniParser.moduleBlocks`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitRemoveModule?: (ctx: RemoveModuleContext) => Result;
-
 	/**
 	 * Visit a parse tree produced by the `string`
 	 * labeled alternative in `MapIniParser.value`.
@@ -229,6 +141,48 @@ export interface MapIniVisitor<Result> extends ParseTreeVisitor<Result> {
 	visitModules?: (ctx: ModulesContext) => Result;
 
 	/**
+	 * Visit a parse tree produced by `MapIniParser.objectBlocks`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitObjectBlocks?: (ctx: ObjectBlocksContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `MapIniParser.objectPrerequisites`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitObjectPrerequisites?: (ctx: ObjectPrerequisitesContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `MapIniParser.objectProperty`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitObjectProperty?: (ctx: ObjectPropertyContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `MapIniParser.objectWeaponSet`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitObjectWeaponSet?: (ctx: ObjectWeaponSetContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `MapIniParser.objectArmorSet`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitObjectArmorSet?: (ctx: ObjectArmorSetContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `MapIniParser.objectUnitSpecificSounds`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitObjectUnitSpecificSounds?: (ctx: ObjectUnitSpecificSoundsContext) => Result;
+
+	/**
 	 * Visit a parse tree produced by `MapIniParser.behaviormoduleBlock`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -255,6 +209,41 @@ export interface MapIniVisitor<Result> extends ParseTreeVisitor<Result> {
 	 * @return the visitor result
 	 */
 	visitConditionStateBlocks?: (ctx: ConditionStateBlocksContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `MapIniParser.conditionStateBlock`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitConditionStateBlock?: (ctx: ConditionStateBlockContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `MapIniParser.defaultConditionStateBlock`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitDefaultConditionStateBlock?: (ctx: DefaultConditionStateBlockContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `MapIniParser.transitionStateBlock`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitTransitionStateBlock?: (ctx: TransitionStateBlockContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `MapIniParser.aliasConditionStateBlock`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitAliasConditionStateBlock?: (ctx: AliasConditionStateBlockContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `MapIniParser.ignoreConditionStateBlock`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitIgnoreConditionStateBlock?: (ctx: IgnoreConditionStateBlockContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `MapIniParser.removeModuleBlock`.

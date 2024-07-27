@@ -1,57 +1,20 @@
 import { Diagnostic, DiagnosticSeverity, _Connection } from 'vscode-languageserver';
-import { MapIniListener } from './antlr/MapIniListener';
-import { AddModuleTagContext, AliasconditionstateContext, ConditionstateContext, DefaultconditionstateContext, DrawmoduleContext, IgnoreconditionstatesContext, ObjectContext, PropertyContext, RemoveModuleTagContext, ReplaceModuleContext, ReplaceModuletagContext, TransitionstateContext } from './antlr/MapIniParser';
+import { MapIniListener } from './utils/antlr/MapIniListener';
+import { AddModuleBlockContext, AliasConditionStateBlockContext, ConditionStateBlockContext, DefaultConditionStateBlockContext, DrawModuleBlockContext, IgnoreConditionStateBlockContext, ObjectContext, PropertyContext, RemoveModuleBlockContext, ReplaceModuleBlockContext, TransitionStateBlockContext } from './utils/antlr/MapIniParser';
 import { ANTLRErrorListener, RecognitionException, Recognizer, Token } from 'antlr4ts';
 import { ReservedKeywords } from './lists';
 import { TextDocument } from 'vscode-languageserver-textdocument';
+import { Stack } from 'stack-typescript';
 
 enum contexts {
 	PROGRAM,
 	OBJECT,
 	PROPERTY,
 	ADDMODULETAG,
+	REPLACEMODULETAG,
 	MODELDRAW,
 	CONDITIONSTATE,
 	REMOVEMODULETAG
-}
-
-class TreeContext {
-	
-	private _context: contexts;
-	private storedContext: contexts | null;
-
-	constructor(context: contexts) {
-		this._context = context;
-		this.storedContext = context;
-	}
-	
-	currentState(): contexts {
-		return this._context;
-	}
-
-	setContext(context: contexts): void {
-		this._context = context;
-	}
-
-	toString(): string {
-		return contexts[this._context];
-	}
-
-	getStoredContext(): contexts {
-		return this.storedContext!;
-	}
-
-	setStoredContext(context: contexts): void {
-		this.storedContext = context;
-	}
-
-	resetStoredContext(): void {
-		this.storedContext = null;
-	}
-
-	storedContextToString(): string {
-		return contexts[this.storedContext!];
-	}
 }
 
 enum drawmodules {
@@ -127,8 +90,7 @@ class DrawModelContext {
 }
 
 export class TreeListener implements MapIniListener {
-
-	private _treeContext: TreeContext = new TreeContext(contexts.PROGRAM);
+	private _treeContext = new Stack<contexts>()
 	private _drawModelContext: DrawModelContext = new DrawModelContext(drawmodules.W3DDEFAULTDRAW);
 
 	private diagnostics: Diagnostic[] = [];
@@ -143,41 +105,56 @@ export class TreeListener implements MapIniListener {
 	private _drawProperties: Set<string> = new Set();
 	private _conditionStateProperties: Set<string> = new Set();
 
+	private _forceAddModule: boolean = true
+
+	constructor(forceAddmodule: boolean) {
+		this._forceAddModule = forceAddmodule
+	}
+
 	enterObject(ctx: ObjectContext): void {
-		this._treeContext.setContext(contexts.OBJECT);
+		this._treeContext.push(contexts.OBJECT);
 
 		//Reset seenProperties to be used for this specific object
 		this.removedModules.clear();
 	}
 
 	exitObject(ctx: ObjectContext): void {
-		this._treeContext.setContext(contexts.PROGRAM);
+		this._treeContext.pop();
 		this._objectProperties.clear();
 		this.removedModules.clear();
 		this.seenModuletags.clear();
 	}
 
-	enterAddModuleTag(ctx: AddModuleTagContext): void {
-		this._treeContext.setContext(contexts.ADDMODULETAG);
+	enterAddModuleBlock(ctx: AddModuleBlockContext): void {
+		if(!this._forceAddModule) return
+
+		this._treeContext.push(contexts.ADDMODULETAG);
 	}
 
-	exitAddModuleTag(ctx: AddModuleTagContext): void {
-		this._treeContext.setContext(contexts.OBJECT);
+	exitAddModuleBlock(ctx: AddModuleBlockContext): void {
+		this._treeContext.pop();
 		this._addModuleTagProperties.clear();
 	}
 
-	enterReplaceModuletag(ctx: ReplaceModuletagContext): void {
+	enterReplaceModuleBlock(ctx: ReplaceModuleBlockContext): void {
+		if(!this._forceAddModule) return
+		
+		this._treeContext.push(contexts.REPLACEMODULETAG)
 		const severity = DiagnosticSeverity.Error;
 		const line = ctx.start.line - 1;
 		const startchar = ctx.start.charPositionInLine
 		const endchar = ctx.stop!.charPositionInLine + ctx.getChild(0).text.length
 		const message = `ReplaceModule IS FORBIDDEN TO USE!!!!!!!!!`;
 		this.diagnostics.push(this.createDiagnostic(severity, line, startchar, line, endchar, message));
-	}	
+	}
+
+	exitReplaceModuleBlock(ctx: ReplaceModuleBlockContext): void {
+		this._treeContext.pop();
+	}
 
 	// Change back to generic 'Draw =' ID ID ... 'end' and allow different properties depending on the read drawmodule
-	enterDrawmodule(ctx: DrawmoduleContext): void {
-		this._treeContext.setContext(contexts.MODELDRAW);
+	enterDrawModuleBlock(ctx: DrawModuleBlockContext): void {
+		this._treeContext.push(contexts.MODELDRAW);
 		// Check if second child is in ReservedKeywords.modelDraws
 		// 'Draw' '=' 'W3DModelDraw' 'ModuleTag' (conditionstate | property)* 'End'
 		const drawModuleID = ctx.getChild(2).text;
@@ -219,15 +196,15 @@ export class TreeListener implements MapIniListener {
 		}
 	}
 
-	exitDrawmodule(ctx: DrawmoduleContext): void {
-		this._treeContext.setContext(contexts.ADDMODULETAG);
+	exitDrawModuleBlock(ctx: DrawModuleBlockContext): void {
+		this._treeContext.pop();
 
 		this._drawProperties.clear();
 	}
 
 
-	enterConditionstate(ctx: ConditionstateContext): void {
-		this._treeContext.setContext(contexts.CONDITIONSTATE);
+	enterConditionStateBlock(ctx: ConditionStateBlockContext): void {
+		this._treeContext.push(contexts.CONDITIONSTATE);
 
 		if(!this._drawModelContext.doesDrawModuleHaveConditionStates()) {
 			let length = 0;
@@ -260,13 +237,13 @@ export class TreeListener implements MapIniListener {
 		});
 	}
 
-	exitConditionstate(ctx: ConditionstateContext): void {
-		this._treeContext.setContext(contexts.MODELDRAW);
+	exitConditionStateBlock(ctx: ConditionStateBlockContext): void {
+		this._treeContext.pop();
 		this._conditionStateProperties.clear();
 	}
 
-	enterDefaultconditionstate(ctx: DefaultconditionstateContext): void {
-		this._treeContext.setContext(contexts.CONDITIONSTATE);
+	enterDefaultConditionStateBlock(ctx: DefaultConditionStateBlockContext): void {
+		this._treeContext.push(contexts.CONDITIONSTATE);
 
 		if(!this._drawModelContext.doesDrawModuleHaveConditionStates()) {
 			const severity = DiagnosticSeverity.Error;
@@ -279,13 +256,13 @@ export class TreeListener implements MapIniListener {
 		}
 	}
 
-	exitDefaultconditionstate(ctx: DefaultconditionstateContext): void {
-		this._treeContext.setContext(contexts.MODELDRAW);
+	exitDefaultConditionStateBlock(ctx: DefaultConditionStateBlockContext): void {
+		this._treeContext.pop();
 		this._conditionStateProperties.clear();
 	}
 
-	enterTransitionstate(ctx: TransitionstateContext): void {
-		this._treeContext.setContext(contexts.CONDITIONSTATE);
+	enterTransitionStateBlock(ctx: TransitionStateBlockContext): void {
+		this._treeContext.push(contexts.CONDITIONSTATE);
 
 		if(!this._drawModelContext.doesDrawModuleHaveConditionStates()) {
 			let length = 0;
@@ -305,7 +282,7 @@ export class TreeListener implements MapIniListener {
 		const transitionstateID = ctx.ID();
 
 		transitionstateID.forEach((id) => {
-			const allowedDamageStates = this.ReservedKeywords.getAllowedConditionStates();
+			const allowedDamageStates = this.ReservedKeywords.getAllowedConditionStates(); // Update to use symbol table in do time
 
 			if(!allowedDamageStates.includes(id.text)) {
 				const severity = DiagnosticSeverity.Error;
@@ -319,12 +296,12 @@ export class TreeListener implements MapIniListener {
 		});
 	}
 
-	exitTransitionstate(ctx: TransitionstateContext): void {
-		this._treeContext.setContext(contexts.MODELDRAW);
+	exitTransitionStateBlock(ctx: TransitionStateBlockContext): void {
+		this._treeContext.pop();
 		this._conditionStateProperties.clear();
 	}
 
-	enterAliasconditionstate(ctx: AliasconditionstateContext): void {
+	enterAliasConditionStateBlock(ctx: AliasConditionStateBlockContext): void {
 
 		if(!this._drawModelContext.doesDrawModuleHaveConditionStates()) {
 			let length = 0;
@@ -359,7 +336,7 @@ export class TreeListener implements MapIniListener {
 		});
 	}
 
-	enterIgnoreconditionstates(ctx: IgnoreconditionstatesContext): void {
+	enterIgnoreConditionStateBlock(ctx: IgnoreConditionStateBlockContext): void {
 
 		if(!this._drawModelContext.doesDrawModuleHaveConditionStates()) {
 			let length = 0;
@@ -394,8 +371,8 @@ export class TreeListener implements MapIniListener {
 		});
 	}
 
-	enterRemoveModuleTag(ctx: RemoveModuleTagContext): void {
-		this._treeContext.setContext(contexts.REMOVEMODULETAG);
+	enterRemoveModuleBlock(ctx: RemoveModuleBlockContext): void {
+		this._treeContext.push(contexts.REMOVEMODULETAG);
 
 		const moduleID = ctx.ID().text;
 
@@ -413,8 +390,8 @@ export class TreeListener implements MapIniListener {
 		}
 	}
 
-	exitRemoveModuleTag(ctx: RemoveModuleTagContext): void {
-		this._treeContext.setContext(contexts.OBJECT);
+	exitRemoveModuleTag(ctx: RemoveModuleBlockContext): void {
+		this._treeContext.pop();
 	}
 
 	enterProperty(ctx: PropertyContext): void {
@@ -428,7 +405,7 @@ export class TreeListener implements MapIniListener {
 		const startchar = ctx.start.charPositionInLine;
 		const endchar = ctx.start.charPositionInLine + propertyID.length;
 
-		switch(this._treeContext.currentState()) {
+		switch(this._treeContext.top) {
 			case contexts.OBJECT:
 				const allowedObjectProperties = this.ReservedKeywords.getAllowedObjectProperties();
 				if (!allowedObjectProperties.includes(propertyID)) {
@@ -617,6 +594,10 @@ export class TreeListener implements MapIniListener {
 		//console.log("exitEveryRule");
 	}
 
+	public updateForceAddModule(updateValue: boolean): void {
+		this._forceAddModule = updateValue
+	}
+
 	public getDiagnostics(): Diagnostic[] {
 		return this.diagnostics;
 	}
@@ -669,12 +650,11 @@ export class CustomErrorListener implements ANTLRErrorListener<Token> {
 				end: { line: line - 1, character: endchar }
 			},
 			message,
-			source: 'ZHParser'
+			source: 'ZHParser-ErrorListener'
 		};
 
 		// Push the diagnostic to the array
 		this.treeListener.addDiagnostic(diagnostic);
 	}
-
 }
 

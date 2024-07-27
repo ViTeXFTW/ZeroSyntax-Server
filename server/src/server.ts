@@ -14,7 +14,11 @@ import {
 	CompletionItemKind,
 	TextDocumentPositionParams,
 	TextDocumentSyncKind,
-	InitializeResult
+	InitializeResult,
+	ParameterInformation,
+	integer,
+	DidChangeConfigurationParams,
+	DocumentFormattingRequest
 } from 'vscode-languageserver/node';
 
 import {
@@ -25,9 +29,11 @@ import {
 	TreeListener
 } from './AntlrListener';
 import { CharStreams, CommonTokenStream } from 'antlr4ts';
-import { MapIniLexer } from './antlr/MapIniLexer';
-import { MapIniParser } from './antlr/MapIniParser';
+import { MapIniLexer } from './utils/antlr/MapIniLexer';
+import { MapIniParser } from './utils/antlr/MapIniParser';
 import { ParseTreeWalker } from 'antlr4ts/tree/ParseTreeWalker';
+
+import * as formatter from './utils/formatter'
 
 // Create a connection for the server, using Node's IPC as a transport.
 // Also include all preview / proposed LSP features.
@@ -35,21 +41,22 @@ const connection = createConnection(ProposedFeatures.all);
 
 // Create a simple text document manager.
 const documents: TextDocuments<TextDocument> = new TextDocuments(TextDocument);
-// Create a listener for tree traversal
-const treeListener = new TreeListener();
 
 // Timer used to delay parsing
 let parseTimer: NodeJS.Timeout | null = null;
 const parseDelay = 1000;
 
-// Extension settings
-let forceAddModule = false
-
 let hasConfigurationCapability = false;
 let hasWorkspaceFolderCapability = false;
 let hasDiagnosticRelatedInformationCapability = false;
 
+let forceAddModule: boolean = true
+
 connection.onInitialize((params: InitializeParams) => {
+
+	connection.console.log(`From server +connection`)
+	console.log(`From server -connection`)
+
 	const capabilities = params.capabilities;
 	const options = params.initializationOptions
 
@@ -83,84 +90,63 @@ connection.onInitialize((params: InitializeParams) => {
 			}
 		};
 	}
-	forceAddModule = options.forceAddmodule
 	return result;
 });
 
 connection.onInitialized(() => {
-	if (hasConfigurationCapability) {
-		// Register for all configuration changes.
-		connection.client.register(DidChangeConfigurationNotification.type, undefined);
-	}
 	if (hasWorkspaceFolderCapability) {
 		connection.workspace.onDidChangeWorkspaceFolders(_event => {
 			connection.console.log('Workspace folder change event received.');
+
+			// Rerun symbol table
 		});
 	}
-});
+	
+	connection.client.register(DocumentFormattingRequest.type)
 
-// The example settings
-interface ExampleSettings {
-	maxNumberOfProblems: number;
-}
+	connection.onDocumentFormatting((_edits) => {
+		const document = documents.get(_edits.textDocument.uri)
+		if (!document) {
+			connection.console.log(`Document not found.`)
+			return null
+		}
 
-// The global settings, used when the `workspace/configuration` request is not supported by the client.
-// Please note that this is not the case when using this server with the client provided in this example
-// but could happen with other clients.
-const defaultSettings: ExampleSettings = { maxNumberOfProblems: 1000 };
-let globalSettings: ExampleSettings = defaultSettings;
+		return formatter.formatDocument(document, _edits.options.tabSize)
+	})
 
-// Cache the settings of all open documents
-const documentSettings: Map<string, Thenable<ExampleSettings>> = new Map();
+	connection.client.register(DidChangeConfigurationNotification.type)
 
-connection.onDidChangeConfiguration(change => {
 	if (hasConfigurationCapability) {
-		// Reset all cached document settings
-		documentSettings.clear();
-	} else {
-		globalSettings = <ExampleSettings>(
-			(change.settings.languageServerExample || defaultSettings)
-		);
-	}
+		connection.onDidChangeConfiguration(async (change: DidChangeConfigurationParams) => {
+			const settings = await connection.workspace.getConfiguration('ZeroSyntax')
 
-	// Revalidate all open text documents
-	documents.all().forEach(validateTextDocument);
-});
-
-function getDocumentSettings(resource: string): Thenable<ExampleSettings> {
-	if (!hasConfigurationCapability) {
-		return Promise.resolve(globalSettings);
+			if(settings.forceAddModule !== null) {
+				forceAddModule = settings.forceAddModule
+				connection.console.log(`Updated forceAddmodule to: ${forceAddModule}`)
+			} else {
+				// If setting is not null set forceAddmoule to setting else set forceAddmodule to true
+				change.settings.forceAddModule !== null ? forceAddModule = change.settings.forceAddModule : forceAddModule = true
+			}
+		})
 	}
-	let result = documentSettings.get(resource);
-	if (!result) {
-		result = connection.workspace.getConfiguration({
-			scopeUri: resource,
-			section: 'languageServerExample'
-		});
-		documentSettings.set(resource, result);
-	}
-	return result;
-}
-
-// Only keep settings for open documents
-documents.onDidClose(e => {
-	documentSettings.delete(e.document.uri);
 });
 
 // The content of a text document has changed. This event is emitted
 // when the text document first opened or when its content has changed.
 documents.onDidChangeContent(change => {
+
+
     if (parseTimer) {
         clearTimeout(parseTimer);
     }
 
     parseTimer = setTimeout(async () => {
         const textDocument = change.document;
-        // Get the settings for every validate run.
-        const settings = await getDocumentSettings(textDocument.uri);
+		// Create a listener for tree traversal
+		const treeListener = new TreeListener(forceAddModule);
 
         // Parse the document to compute diagnostics
-        const diagnostics = await computeDiagnostics(textDocument);
+        const diagnostics = await computeDiagnostics(treeListener, textDocument);
 
         // Send the updated diagnostics to the client
         connection.sendDiagnostics({ uri: textDocument.uri, diagnostics });
@@ -170,24 +156,21 @@ documents.onDidChangeContent(change => {
     }, parseDelay);
 });
 
-async function computeDiagnostics(textDocument: TextDocument): Promise<Diagnostic[]> {
+async function computeDiagnostics(listener: TreeListener, textDocument: TextDocument): Promise<Diagnostic[]> {
     try {
-		if(forceAddModule) {
-			connection.console.log("Parsing with enforced addmule/replacemodule")
-		}
 
         const inputStream = CharStreams.fromString(textDocument.getText());
         const lexer = new MapIniLexer(inputStream);
         const tokenStream = new CommonTokenStream(lexer);
         const parser = new MapIniParser(tokenStream);
 		parser.removeErrorListeners();
-		parser.addErrorListener(new CustomErrorListener(textDocument, treeListener));
+		parser.addErrorListener(new CustomErrorListener(textDocument, listener));
 
         const walker = new ParseTreeWalker();
         const root = parser.program();
-        walker.walk(treeListener, root);
+        walker.walk(listener, root);
 
-        return treeListener.getDiagnostics();
+        return listener.getDiagnostics();
     } catch (error) {
         // Handle any parsing errors here
         connection.console.error(`Error computing diagnostics: ${error}`);
@@ -195,9 +178,9 @@ async function computeDiagnostics(textDocument: TextDocument): Promise<Diagnosti
     }
 }
 
-async function validateTextDocument(textDocument: TextDocument): Promise<void> {
-	
-}
+connection.onDidCloseTextDocument(e => {
+	connection.console.log(`Closed document`)
+});
 
 connection.onDidChangeWatchedFiles(_change => {
 	// Monitored files have change in VSCode
