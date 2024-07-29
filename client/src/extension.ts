@@ -9,6 +9,8 @@ import * as vscode from 'vscode';
 import {
 	LanguageClient,
 	LanguageClientOptions,
+	SemanticTokenModifiers,
+	SemanticTokenTypes,
 	ServerOptions,
 	TransportKind
 } from 'vscode-languageclient/node';
@@ -24,13 +26,13 @@ let forceAddModule = ZSconfig.get<boolean>('forceAddModule', false)
 export function activate(context: vscode.ExtensionContext) {
 
 	// const command = "extension.formatDocument";
-	
+
 	// context.subscriptions.push(vscode.commands.registerCommand(command, formatDocument));
 
 	let languageServerRunning = ZSconfig.get<boolean>('serverStartupSetting', false); // Default to 2 if not set
 
 	context.subscriptions.push(vscode.commands.registerCommand('ZeroSyntax.stopLanguageServer', () => {
-		if(languageServerRunning) {
+		if (languageServerRunning) {
 			console.log(`Stopping LS...`)
 			client.stop();
 			languageServerRunning = false;
@@ -38,7 +40,7 @@ export function activate(context: vscode.ExtensionContext) {
 	}));
 
 	context.subscriptions.push(vscode.commands.registerCommand('ZeroSyntax.startLanguageServer', () => {
-		if(!languageServerRunning) {
+		if (!languageServerRunning) {
 			console.log(`Starting LS...`)
 			client.start();
 			languageServerRunning = true;
@@ -69,6 +71,10 @@ export function activate(context: vscode.ExtensionContext) {
 		synchronize: {
 			// Notify the server about file changes to '.clientrc files contained in the workspace
 			fileEvents: vscode.workspace.createFileSystemWatcher('**/.clientrc')
+		},
+		initializationOptions: {
+			SemanticTokenTypes,
+			SemanticTokenModifiers
 		}
 	};
 
@@ -81,20 +87,20 @@ export function activate(context: vscode.ExtensionContext) {
 	);
 
 	// Start the client. This will also launch the server
-	if(languageServerRunning) {
+	if (languageServerRunning) {
 		client.start();
 	}
 }
 
 vscode.workspace.onDidChangeConfiguration((e) => {
-	if(e.affectsConfiguration('ZeroSyntax.serverStartupSetting')) {
+	if (e.affectsConfiguration('ZeroSyntax.serverStartupSetting')) {
 		languageServerRunning = ZSconfig.get<boolean>('serverStartupSetting', false);
 		toggleLanguageServer();
 	}
 });
 
 function toggleLanguageServer() {
-	if(languageServerRunning) {
+	if (languageServerRunning) {
 		client.stop();
 		languageServerRunning = false;
 	} else {

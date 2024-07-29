@@ -87,4 +87,4 @@ ID: [a-zA-Z_+-][a-zA-Z_0-9]*;
 
 SKIp: [ \t\r\n]+ -> skip; // skip whitespaces
 
-COMMENT: ';' ~[\r\n]* -> skip; // skip comments
+COMMENT: (';' | '//') ~[\r\n]* -> skip; // skip comments

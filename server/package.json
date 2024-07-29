@@ -13,7 +13,6 @@
 	},
 	"dependencies": {
 		"stack-typescript": "^1.0.4",
-		"vscode": "^1.1.37",
 		"vscode-languageserver": "^8.1.0",
 		"vscode-languageserver-textdocument": "^1.0.8"
 	},
