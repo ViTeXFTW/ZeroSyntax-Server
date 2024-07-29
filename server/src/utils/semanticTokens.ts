@@ -1,10 +1,10 @@
-import { SemanticTokensBuilder, SemanticTokensParams, TextDocuments } from 'vscode-languageserver';
+import { SemanticTokens, SemanticTokensBuilder, SemanticTokensParams, TextDocuments } from 'vscode-languageserver';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { SymbolTable } from './symbols/SymbolTable';
 import { tokenTypes } from './tokenTypes';
 
 
-export function getSemanticTokens(documents: TextDocuments<TextDocument>, params: SemanticTokensParams, symbolTable: SymbolTable) {
+export function getSemanticTokens(documents: TextDocuments<TextDocument>, params: SemanticTokensParams, symbolTable: SymbolTable): SemanticTokens {
 	const document = documents.get(params.textDocument.uri);
 	if (!document) return { data: [] };
 
