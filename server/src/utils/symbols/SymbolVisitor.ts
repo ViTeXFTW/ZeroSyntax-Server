@@ -55,10 +55,14 @@ export class SymbolVisitor extends AbstractParseTreeVisitor<void> implements Map
 	}
 
 	visitObjectProperty(ctx: ObjectPropertyContext): void {
-		const variableName = ctx.ID().text
-		const variableLocation = new Location(ctx.start.line, ctx.start.charPositionInLine)
-		const variableSymbol = new Symbol(variableName, SymbolType.OBJECT, variableLocation)
-		this.symbolTable.addSymbol(variableSymbol)
+		const variableNameArray = ctx.ID()
+
+		variableNameArray.forEach(name => {
+			const variableName = name.text
+			const variableLocation = new Location(ctx.start.line, ctx.start.charPositionInLine)
+			const variableSymbol = new Symbol(variableName, SymbolType.OBJECT, variableLocation)
+			this.symbolTable.addSymbol(variableSymbol)	
+		})
 	}
 
 	visitDrawModuleBlock(ctx: DrawModuleBlockContext): void {

@@ -6,7 +6,6 @@ import {
 	createConnection,
 	TextDocuments,
 	Diagnostic,
-	DiagnosticSeverity,
 	ProposedFeatures,
 	InitializeParams,
 	DidChangeConfigurationNotification,
@@ -15,23 +14,16 @@ import {
 	TextDocumentPositionParams,
 	TextDocumentSyncKind,
 	InitializeResult,
-	ParameterInformation,
-	integer,
 	DidChangeConfigurationParams,
 	DocumentFormattingRequest,
 	DefinitionParams,
 	Definition,
-	Position,
-	Location,
 	HoverParams,
-	MarkupContent,
-	MarkupKind,
 	Hover,
 	SemanticTokensParams,
-	SemanticTokensRequest,
 	SemanticTokens,
-	SemanticTokensBuilder,
-	Range
+	DidOpenTextDocumentParams,
+	SemanticTokensBuilder
 } from 'vscode-languageserver/node';
 
 import {
@@ -46,13 +38,13 @@ import { MapIniLexer } from './utils/antlr/MapIniLexer';
 import { MapIniParser } from './utils/antlr/MapIniParser';
 import { ParseTreeWalker } from 'antlr4ts/tree/ParseTreeWalker';
 
-import * as formatter from './utils/formatter'
-import { SymbolVisitor } from './utils/symbols/SymbolVisitor';
+import { formatDocument } from './utils/formatter';
 import { computeSymbolTable, SymbolTable } from './utils/symbols/SymbolTable';
-import { findDefinition, getWordAtPosition } from './utils/definitions';
+import { findDefinition } from './utils/definitions';
 import { getHoverInformation } from './utils/hover';
 import { tokenModifiers, tokenTypes } from './utils/tokenTypes'
 import { getSemanticTokens } from './utils/semanticTokens';
+import { computeDiagnostics } from './utils/diagnostics';
 
 // Create a connection for the server, using Node's IPC as a transport.
 // Also include all preview / proposed LSP features.
@@ -71,7 +63,7 @@ let hasDiagnosticRelatedInformationCapability = false;
 
 let forceAddModule: boolean = true
 
-let symbolTable = new SymbolTable()
+let symbolTable: Map<string, SymbolTable> = new Map<string, SymbolTable>();
 
 connection.onInitialize((params: InitializeParams) => {
 
@@ -144,7 +136,7 @@ connection.onInitialized(() => {
 			return null
 		}
 
-		return formatter.formatDocument(document, _edits.options.tabSize)
+		return formatDocument(document, _edits.options.tabSize)
 	})
 
 	connection.client.register(DidChangeConfigurationNotification.type)
@@ -157,33 +149,49 @@ connection.onInitialized(() => {
 				forceAddModule = settings.forceAddModule
 				connection.console.log(`Updated forceAddmodule to: ${forceAddModule}`)
 			} else {
-				// If setting is not null set forceAddmoule to setting else set forceAddmodule to true
+				// If setting is not null set forceAddmoule to setting else default to true
 				change.settings.forceAddModule !== null ? forceAddModule = change.settings.forceAddModule : forceAddModule = true
 			}
 		})
 	}
 });
 
+connection.onDidOpenTextDocument((params: DidOpenTextDocumentParams) => {
+	const textDocument = documents.get(params.textDocument.uri)
+	symbolTable.set(textDocument!.uri, computeSymbolTable(textDocument!))
+});
+
 connection.onHover((params: HoverParams): Hover | null => {
-	return getHoverInformation(params, documents, symbolTable)
+	return getHoverInformation(params, documents, symbolTable.get(params.textDocument.uri)!)
 });
 
 connection.onDefinition((params: DefinitionParams): Definition | null => {
-	return findDefinition(params, documents, symbolTable)
+	return findDefinition(params, documents, symbolTable.get(params.textDocument.uri)!)
 });
 
 connection.onRequest("textDocument/semanticTokens/full", (params: SemanticTokensParams): SemanticTokens => {
-	return getSemanticTokens(documents, params, symbolTable)
+	try {
+		return getSemanticTokens(documents, params, symbolTable.get(params.textDocument.uri)!)
+	} catch {
+		console.log('Failed to generate SemanticTokens, rerun on next change.')
+		let tokenBuilder = new SemanticTokensBuilder()
+		return tokenBuilder.build()
+	}
 });
 
 connection.onRequest("textDocument/semanticTokens/range", (params: SemanticTokensParams): SemanticTokens => {
-	return getSemanticTokens(documents, params, symbolTable)
+	try {
+		return getSemanticTokens(documents, params, symbolTable.get(params.textDocument.uri)!)
+	} catch {
+		console.log('Failed to generate SemanticTokens, rerun on next change.')
+		let tokenBuilder = new SemanticTokensBuilder()
+		return tokenBuilder.build()
+	}
 });
 
 // The content of a text document has changed. This event is emitted
 // when the text document first opened or when its content has changed.
 documents.onDidChangeContent(change => {
-
 
 	if (parseTimer) {
 		clearTimeout(parseTimer);
@@ -191,47 +199,19 @@ documents.onDidChangeContent(change => {
 
 	parseTimer = setTimeout(async () => {
 		const textDocument = change.document;
+		// Update SymbolTable
+		symbolTable.set(textDocument.uri, computeSymbolTable(textDocument))
+
 		// Create a listener for tree traversal
 		const treeListener = new TreeListener(forceAddModule);
-
 		// Parse the document to compute diagnostics
 		const diagnostics = await computeDiagnostics(treeListener, textDocument);
+		treeListener.resetDiagnostics();
 
 		// Send the updated diagnostics to the client
 		connection.sendDiagnostics({ uri: textDocument.uri, diagnostics });
-
-		// Reset the tree listener diagnostics for the next run
-		treeListener.resetDiagnostics();
-
-
-		// Update SymbolTable
-		symbolTable = computeSymbolTable(textDocument)
-		// connection.console.log(`All Symbols: ${symbolTable.getAllSymbols()}`)
-
 	}, parseDelay);
 });
-
-async function computeDiagnostics(listener: TreeListener, textDocument: TextDocument): Promise<Diagnostic[]> {
-	try {
-
-		const inputStream = CharStreams.fromString(textDocument.getText());
-		const lexer = new MapIniLexer(inputStream);
-		const tokenStream = new CommonTokenStream(lexer);
-		const parser = new MapIniParser(tokenStream);
-		parser.removeErrorListeners();
-		parser.addErrorListener(new CustomErrorListener(textDocument, listener));
-
-		const walker = new ParseTreeWalker();
-		const root = parser.program();
-		walker.walk(listener, root);
-
-		return listener.getDiagnostics();
-	} catch (error) {
-		// Handle any parsing errors here
-		connection.console.error(`Error computing diagnostics: ${error}`);
-		return [];
-	}
-}
 
 connection.onDidCloseTextDocument(e => {
 	connection.console.log(`Closed document`)
@@ -317,10 +297,6 @@ connection.onCompletionResolve(
 		return item;
 	}
 );
-
-
-
-
 
 // Make the text document manager listen on the connection
 // for open, change and close text document events

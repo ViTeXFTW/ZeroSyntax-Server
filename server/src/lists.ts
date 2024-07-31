@@ -3,6 +3,7 @@
 export class ReservedKeywords {
 
 	private static readonly allowedObjectProperties: string[] = [
+		"Buildable",
 		"RadarPriority",
 		"KindOf",
 		"SelectPortrait",
@@ -16,19 +17,42 @@ export class ReservedKeywords {
 		"Side",
 		"EditorSorting",
 		"TransportSlotCount",
+		"PlacementViewAngle",
+		"EnergyProduction",
+		"EnergyBonus",
 		"BuildCost",
 		"BuildTime",
 		"VisionRange",
 		"ShroudClearingRange",
+		"ShroudRevealToAllRange",
+		"MaxSimultaneousOfType",
+		"MaxSimultaneousLinkKey",
+		"RefundValue",
 		"CrusherLevel",
 		"CrushableLevel",
+		"ExperienceValue",
+		"ExperienceRequired",
+		"IsTrainable",
 		"CommandSet",
 		"VoiceSelect",
+		"VoiceGroupSelect",
 		"VoiceMove",
 		"VoiceEnter",
+		"VoiceGuard",
+		"VoiceAttack",
+		"VoiceAttackAir",
 		"VoiceTaskComplete",
+		"VoiceFear",
+		"SoundStealthOn",
+		"SoundStealthOff",
 		"SoundMoveStart",
 		"SoundMoveStartDamaged",
+		"SoundOnDamaged",
+		"SoundOnReallyDamaged",
+		"SoundEnter",
+		"SoundExit",
+		"SoundAmbient",
+		"SoundAmbientRubble",
 		"Locomotor",
 		"Geometry",
 		"GeometryMajorRadius",
@@ -110,7 +134,8 @@ export class ReservedKeywords {
 		"InitialRecoilSpeed",
 		"MaxRecoilDistance",
 		"RecoilSettleSpeed",
-		"RecoilDamping"
+		"RecoilDamping",
+		"AnimationsRequirePower"
 	];
 
 	public getAllowedSingleModelDrawProperties(): string[] {
@@ -169,6 +194,15 @@ export class ReservedKeywords {
 		return ReservedKeywords.allowedTruckDrawProperties.concat(this.getAllowedTankDrawProperties());
 	}
 
+	private static readonly allowedDependencyDrawProperties: string[] = [
+		"AttachToBoneInContainer",
+		"OkToChangeModelColor"
+	]
+
+	public getAllowedDependencyDrawProperties(): string[] {
+		return this.getAllowedDependencyDrawProperties()
+	}
+
 	private static readonly allowedTreeDrawProperties: string[] = [
 		"ModelName",
 		"TextureName",
@@ -215,7 +249,8 @@ export class ReservedKeywords {
 		"Segments",
 		"SegmentOverlapRatio",
 		"ArcHeight",
-		"TilingScalar"
+		"TilingScalar",
+		"ScrollRate"
 	];
 
 	public getAllowedLaserDrawProperties(): string[] {
@@ -378,7 +413,14 @@ export class ReservedKeywords {
 		"RIGHT_TO_CENTER",
 		"CENTER_TO_RIGHT",
 		"LEFT_TO_CENTER",
-		"CENTER_TO_LEFT"
+		"CENTER_TO_LEFT",
+		"DOWN_DEFAULT",
+		"UP_DAY",
+		"UP_NIGHT",
+		"UP_SNOW",
+		"UP_SNOWNIGHT",
+		"RADAR_EXTENDING",
+		"GARRISONED"
 	];
 
 	public getAllowedConditionStates(): string[] {

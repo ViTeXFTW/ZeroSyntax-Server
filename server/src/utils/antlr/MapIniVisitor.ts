@@ -5,10 +5,13 @@ import { ParseTreeVisitor } from "antlr4ts/tree/ParseTreeVisitor";
 
 import { StringContext } from "./MapIniParser";
 import { FiletypeContext } from "./MapIniParser";
+import { ProcentageContext } from "./MapIniParser";
 import { IdContext } from "./MapIniParser";
 import { IntContext } from "./MapIniParser";
 import { FloatContext } from "./MapIniParser";
 import { BoolContext } from "./MapIniParser";
+import { TurretValueContext } from "./MapIniParser";
+import { AltTurretValueContext } from "./MapIniParser";
 import { ProgramContext } from "./MapIniParser";
 import { ObjectContext } from "./MapIniParser";
 import { ModuleBlocksContext } from "./MapIniParser";
@@ -18,10 +21,13 @@ import { ModulesContext } from "./MapIniParser";
 import { ObjectBlocksContext } from "./MapIniParser";
 import { ObjectPrerequisitesContext } from "./MapIniParser";
 import { ObjectPropertyContext } from "./MapIniParser";
+import { SciencePropetyContext } from "./MapIniParser";
 import { ObjectWeaponSetContext } from "./MapIniParser";
 import { ObjectArmorSetContext } from "./MapIniParser";
 import { ObjectUnitSpecificSoundsContext } from "./MapIniParser";
+import { ObjectUnitSpecificFXContext } from "./MapIniParser";
 import { BehaviormoduleBlockContext } from "./MapIniParser";
+import { BehaviorTurretContext } from "./MapIniParser";
 import { BodyModuleBlockContext } from "./MapIniParser";
 import { DrawModuleBlockContext } from "./MapIniParser";
 import { ConditionStateBlocksContext } from "./MapIniParser";
@@ -32,6 +38,9 @@ import { AliasConditionStateBlockContext } from "./MapIniParser";
 import { IgnoreConditionStateBlockContext } from "./MapIniParser";
 import { RemoveModuleBlockContext } from "./MapIniParser";
 import { PropertyContext } from "./MapIniParser";
+import { GenericPropertyContext } from "./MapIniParser";
+import { TurretPropertyContext } from "./MapIniParser";
+import { AltTurretPropertyContext } from "./MapIniParser";
 import { EndContext } from "./MapIniParser";
 import { ValueContext } from "./MapIniParser";
 import { FtypeContext } from "./MapIniParser";
@@ -67,6 +76,14 @@ export interface MapIniVisitor<Result> extends ParseTreeVisitor<Result> {
 	visitFiletype?: (ctx: FiletypeContext) => Result;
 
 	/**
+	 * Visit a parse tree produced by the `procentage`
+	 * labeled alternative in `MapIniParser.value`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitProcentage?: (ctx: ProcentageContext) => Result;
+
+	/**
 	 * Visit a parse tree produced by the `id`
 	 * labeled alternative in `MapIniParser.value`.
 	 * @param ctx the parse tree
@@ -97,6 +114,22 @@ export interface MapIniVisitor<Result> extends ParseTreeVisitor<Result> {
 	 * @return the visitor result
 	 */
 	visitBool?: (ctx: BoolContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by the `turretValue`
+	 * labeled alternative in `MapIniParser.value`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitTurretValue?: (ctx: TurretValueContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by the `altTurretValue`
+	 * labeled alternative in `MapIniParser.value`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitAltTurretValue?: (ctx: AltTurretValueContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `MapIniParser.program`.
@@ -162,6 +195,13 @@ export interface MapIniVisitor<Result> extends ParseTreeVisitor<Result> {
 	visitObjectProperty?: (ctx: ObjectPropertyContext) => Result;
 
 	/**
+	 * Visit a parse tree produced by `MapIniParser.sciencePropety`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitSciencePropety?: (ctx: SciencePropetyContext) => Result;
+
+	/**
 	 * Visit a parse tree produced by `MapIniParser.objectWeaponSet`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -183,11 +223,25 @@ export interface MapIniVisitor<Result> extends ParseTreeVisitor<Result> {
 	visitObjectUnitSpecificSounds?: (ctx: ObjectUnitSpecificSoundsContext) => Result;
 
 	/**
+	 * Visit a parse tree produced by `MapIniParser.objectUnitSpecificFX`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitObjectUnitSpecificFX?: (ctx: ObjectUnitSpecificFXContext) => Result;
+
+	/**
 	 * Visit a parse tree produced by `MapIniParser.behaviormoduleBlock`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	visitBehaviormoduleBlock?: (ctx: BehaviormoduleBlockContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `MapIniParser.behaviorTurret`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitBehaviorTurret?: (ctx: BehaviorTurretContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `MapIniParser.bodyModuleBlock`.
@@ -258,6 +312,27 @@ export interface MapIniVisitor<Result> extends ParseTreeVisitor<Result> {
 	 * @return the visitor result
 	 */
 	visitProperty?: (ctx: PropertyContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `MapIniParser.genericProperty`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitGenericProperty?: (ctx: GenericPropertyContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `MapIniParser.turretProperty`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitTurretProperty?: (ctx: TurretPropertyContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `MapIniParser.altTurretProperty`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitAltTurretProperty?: (ctx: AltTurretPropertyContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `MapIniParser.end`.

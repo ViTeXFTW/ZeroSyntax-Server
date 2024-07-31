@@ -3,7 +3,7 @@ grammar MapIni;
 // Parser rules
 program: object* EOF;
 
-object: 'Object' ID ((moduleBlocks | property)* | (modules | property)*) end;
+object: 'Object' ID ((modules | property)* | (moduleBlocks | property)*) end;
 
 moduleBlocks: addModuleBlock
             | replaceModuleBlock
@@ -24,16 +24,21 @@ objectBlocks: objectPrerequisites
             | objectWeaponSet
             | objectArmorSet
             | objectUnitSpecificSounds
+            | objectUnitSpecificFX
             ;
 
-objectPrerequisites: 'Prerequisites' objectProperty+ end;
-objectProperty: 'Object' '=' ID;
+objectPrerequisites: 'Prerequisites' (objectProperty | sciencePropety)* end;
+objectProperty: 'Object' '=' ID+;
+sciencePropety: 'Science' '=' ID+;
 
 objectWeaponSet: 'WeaponSet' property* end;
 objectArmorSet: 'ArmorSet' property* end;
 objectUnitSpecificSounds: 'UnitSpecificSounds' property* end;
+objectUnitSpecificFX: 'UnitSpecificFX' property* end;
 
-behaviormoduleBlock: 'Behavior' '=' ID ID property* end;
+behaviormoduleBlock: 'Behavior' '=' ID ID (property | behaviorTurret)* end;
+
+behaviorTurret: ('Turret' | 'AltTurret') genericProperty* end;
 
 bodyModuleBlock: 'Body' '=' ID ID property* end ;
 
@@ -48,13 +53,20 @@ conditionStateBlocks: conditionStateBlock
 
 conditionStateBlock: 'ConditionState' '=' ID+ property* end;
 defaultConditionStateBlock: 'DefaultConditionState' property* end;
-transitionStateBlock: 'TransitionState' '=' ID ID property* end;
+transitionStateBlock: 'TransitionState' '=' ID ID+ property* end;
 aliasConditionStateBlock: 'AliasConditionState' '=' ID+;
 ignoreConditionStateBlock: 'IgnoreConditionStates' '=' ID+;
 
 removeModuleBlock: 'RemoveModule' ID;
 
-property: ID '=' value+;
+property: genericProperty
+        | turretProperty
+        | altTurretProperty;
+
+genericProperty: ID '=' value+;
+turretProperty: ('Turret' | 'turret' | 'TURRET') '=' value+;
+altTurretProperty: ('AltTurret' | 'altturret' | 'ALTTURRET') '=' value+;
+
 
 end: 'End'
    | 'end'
@@ -63,15 +75,18 @@ end: 'End'
 
 value: quoutedID              #string
      | ftype                  #filetype
+     | procent                #procentage
      | ID                     #id
      | INT                    #int
      | FLOAT                  #float
      | BOOL                   #bool
+     | ('Turret' | 'turret' | 'TURRET') #turretValue
+     | ('AltTurret' | 'altturret' | 'ALTTURRET') #altTurretValue
      ;
 
 ftype: ID '.' ID;
 rgb: INT256 INT256 INT256 INT256;
-procent: INT '%';
+procent: (FLOAT | INT) '%';
 intRang: INT INT;
 floatRang: FLOAT FLOAT;
 
@@ -82,8 +97,8 @@ INT: '-'? [0-9]+;
 INT256: '-'? ('0' [0-9][0-9] | '1' [0-9][0-9] | '2' [0-4][0-9] | '25' [0-5] | [0-9][0-9] | [0-9] );
 FLOAT: '-'? [0-9]+ '.' [0-9]+;
 
-BOOL: 'Yes' | 'No';
-ID: [a-zA-Z_+-][a-zA-Z_0-9]*;
+BOOL: 'Yes' | 'yes' | 'YES' | 'No' | 'no' | 'NO';
+ID: [a-zA-Z_+-][a-zA-Z_0-9%]*;
 
 SKIp: [ \t\r\n]+ -> skip; // skip whitespaces
 
