@@ -3,32 +3,43 @@ import { Location } from '../location'
 
 /**
  * Enum for assigning Symbols a type for keeping track of Symbol in a SymbolTable
+ * @enum $ Corresponds to actual ini descriptor.
  */
-
-export enum SymbolType {
+export enum IniType {
 	FILE = 'File',
-	OBJECT = 'class',
+	OBJECT = 'Object',
 	MODULEMODIFIER = 'ModuleModifier',
 	OBJECTPREREQUISITE = 'ObjectPrerequisite',
 	DRAWMODULE = 'DrawModule',
-	BODYMODUKLE = 'BodyModule',
+	DEFAULTCONDITIONSTATEBLOCK = 'DefaultConditionStateBlock',
+	CONDITIONSTATEBLOCK = 'ConditionStateBlock',
+	CONDITIONSTATE = 'ConditionStateValue',
+	TRANSITIONKEY = 'TransitionKey',
+	BODYMODULE = 'BodyModule',
 	BEHAVIORMODULE = 'BehaviorModule',
 	PROPERTY = 'Property'
 }
 
+/**
+ * Entry in SymbolTable
+ * @param name string. Name for symbol entry.
+ * @param iniType IniType. Type from map.ini.
+ * @param location Location. Where in document Symbol is located.
+ * @param tokenType string. SemanticToken type.
+ * @param tokenModifier string[]. SemanticToken modifiers.
+ */
 export class Symbol {
 	name: string
-	type: SymbolType
+	iniType: IniType
 	location: Location
-	children: Symbol[] = []
+	tokenType: number
+	tokenModifiers: string[]
 
-	constructor(name: string, type: SymbolType, location: Location) {
+	constructor(name: string, type: IniType, location: Location, tokenType: number = -1, tokenModifiers: string[] = []) {
 		this.name = name	
-		this.type = type
+		this.iniType = type
+		this.tokenType = tokenType
+		this.tokenModifiers = tokenModifiers
 		this.location = location
-	}
-
-	public addChild(symbol: Symbol): void {
-		this.children.push(symbol)
 	}
 }

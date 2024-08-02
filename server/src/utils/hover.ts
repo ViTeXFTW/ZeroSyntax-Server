@@ -17,7 +17,7 @@ export function getHoverInformation(params: HoverParams, documents: TextDocument
 
 	const hoverContent: MarkupContent = {
 		kind: MarkupKind.Markdown,
-		value: `(${symbol.type}) - ${symbol.name}`
+		value: `(${symbol.iniType}) - ${symbol.name}`
 	};
 
 	return {

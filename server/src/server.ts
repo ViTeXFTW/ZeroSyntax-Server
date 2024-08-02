@@ -5,7 +5,6 @@
 import {
 	createConnection,
 	TextDocuments,
-	Diagnostic,
 	ProposedFeatures,
 	InitializeParams,
 	DidChangeConfigurationNotification,
@@ -30,21 +29,17 @@ import {
 	TextDocument
 } from 'vscode-languageserver-textdocument';
 import {
-	CustomErrorListener,
 	TreeListener
 } from './AntlrListener';
-import { CharStreams, CommonTokenStream } from 'antlr4ts';
-import { MapIniLexer } from './utils/antlr/MapIniLexer';
-import { MapIniParser } from './utils/antlr/MapIniParser';
-import { ParseTreeWalker } from 'antlr4ts/tree/ParseTreeWalker';
 
 import { formatDocument } from './utils/formatter';
-import { computeSymbolTable, SymbolTable } from './utils/symbols/SymbolTable';
+import { SymbolTable } from './utils/symbols/SymbolTable';
+import { computeSymbolTable } from './utils/symbols/SymbolVisitor';
+import { computeDiagnostics } from './utils/diagnosticsVisitor';
 import { findDefinition } from './utils/definitions';
 import { getHoverInformation } from './utils/hover';
 import { tokenModifiers, tokenTypes } from './utils/tokenTypes'
 import { getSemanticTokens } from './utils/semanticTokens';
-import { computeDiagnostics } from './utils/diagnostics';
 
 // Create a connection for the server, using Node's IPC as a transport.
 // Also include all preview / proposed LSP features.
@@ -170,6 +165,10 @@ connection.onDefinition((params: DefinitionParams): Definition | null => {
 });
 
 connection.onRequest("textDocument/semanticTokens/full", (params: SemanticTokensParams): SemanticTokens => {
+	//TODO: Create symbol table before running
+	const textDocument = documents.get(params.textDocument.uri)
+	symbolTable.set(textDocument!.uri, computeSymbolTable(textDocument!))
+
 	try {
 		return getSemanticTokens(documents, params, symbolTable.get(params.textDocument.uri)!)
 	} catch {
@@ -180,6 +179,10 @@ connection.onRequest("textDocument/semanticTokens/full", (params: SemanticTokens
 });
 
 connection.onRequest("textDocument/semanticTokens/range", (params: SemanticTokensParams): SemanticTokens => {
+	//TODO: Create symbol table before running
+	const textDocument = documents.get(params.textDocument.uri)
+	symbolTable.set(textDocument!.uri, computeSymbolTable(textDocument!))
+	
 	try {
 		return getSemanticTokens(documents, params, symbolTable.get(params.textDocument.uri)!)
 	} catch {
@@ -201,12 +204,15 @@ documents.onDidChangeContent(change => {
 		const textDocument = change.document;
 		// Update SymbolTable
 		symbolTable.set(textDocument.uri, computeSymbolTable(textDocument))
+		const diagnostics = computeDiagnostics(textDocument, symbolTable.get(textDocument.uri)!)
+
+		console.log(`Server: ${diagnostics}`)
 
 		// Create a listener for tree traversal
-		const treeListener = new TreeListener(forceAddModule);
+		// const treeListener = new TreeListener(forceAddModule);
 		// Parse the document to compute diagnostics
-		const diagnostics = await computeDiagnostics(treeListener, textDocument);
-		treeListener.resetDiagnostics();
+		// const diagnostics = await computeDiagnostics(treeListener, textDocument);
+		// treeListener.resetDiagnostics();
 
 		// Send the updated diagnostics to the client
 		connection.sendDiagnostics({ uri: textDocument.uri, diagnostics });

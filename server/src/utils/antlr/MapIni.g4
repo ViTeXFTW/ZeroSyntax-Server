@@ -3,16 +3,22 @@ grammar MapIni;
 // Parser rules
 program: object* EOF;
 
-object: 'Object' ID ((modules | property)* | (moduleBlocks | property)*) end;
+object: 'Object' ID ((modules | objectProperty)* | (moduleBlocks | objectProperty)*) end;
+
+objectProperty: ID '=' value+;
 
 moduleBlocks: addModuleBlock
             | replaceModuleBlock
             | removeModuleBlock
             ;
 
-addModuleBlock: 'AddModule'  (modules | property)* end;
+addModuleBlock: 'AddModule'  (modules | addModuleProperty)* end;
 
-replaceModuleBlock: 'ReplaceModule' ID (modules | property)* end;
+addModuleProperty: ID '=' value+;
+
+replaceModuleBlock: 'ReplaceModule' ID (modules | replaceModuleProperty)* end;
+
+replaceModuleProperty: ID '=' value+;
 
 modules: drawModuleBlock
        | bodyModuleBlock
@@ -27,14 +33,21 @@ objectBlocks: objectPrerequisites
             | objectUnitSpecificFX
             ;
 
-objectPrerequisites: 'Prerequisites' (objectProperty | sciencePropety)* end;
-objectProperty: 'Object' '=' ID+;
-sciencePropety: 'Science' '=' ID+;
+objectPrerequisites: 'Prerequisites' (objectPrerequisitesobjectProperty | objectPrerequisitessciencePropety)* end;
+objectPrerequisitesobjectProperty: 'Object' '=' ID+;
+objectPrerequisitessciencePropety: 'Science' '=' ID+;
 
-objectWeaponSet: 'WeaponSet' property* end;
-objectArmorSet: 'ArmorSet' property* end;
-objectUnitSpecificSounds: 'UnitSpecificSounds' property* end;
-objectUnitSpecificFX: 'UnitSpecificFX' property* end;
+objectWeaponSet: 'WeaponSet' objectWeaponSetPropety* end;
+objectWeaponSetPropety: ID '=' value+;
+
+objectArmorSet: 'ArmorSet' objectArmorSetPropety* end;
+objectArmorSetPropety: ID '=' value+;
+
+objectUnitSpecificSounds: 'UnitSpecificSounds' objectUnitSpecificSoundsPropety* end;
+objectUnitSpecificSoundsPropety: ID '=' value+;
+
+objectUnitSpecificFX: 'UnitSpecificFX' objectUnitSpecificFXPropety* end;
+objectUnitSpecificFXPropety: ID '=' value+;
 
 behaviormoduleBlock: 'Behavior' '=' ID ID (property | behaviorTurret)* end;
 
@@ -42,7 +55,8 @@ behaviorTurret: ('Turret' | 'AltTurret') genericProperty* end;
 
 bodyModuleBlock: 'Body' '=' ID ID property* end ;
 
-drawModuleBlock: 'Draw' '=' ID ID (conditionStateBlocks+ | property)* end ;
+drawModuleBlock: 'Draw' '=' ID ID (conditionStateBlocks+ | drawModuleProperty)* end ;
+drawModuleProperty: ID '=' value+;
 
 conditionStateBlocks: conditionStateBlock
                     | defaultConditionStateBlock
@@ -51,9 +65,14 @@ conditionStateBlocks: conditionStateBlock
                     | ignoreConditionStateBlock
                     ;
 
-conditionStateBlock: 'ConditionState' '=' ID+ property* end;
-defaultConditionStateBlock: 'DefaultConditionState' property* end;
-transitionStateBlock: 'TransitionState' '=' ID ID+ property* end;
+conditionStateBlock: 'ConditionState' '=' ID+ (conditionStateProperty | transitionKeyProperty)* end;
+defaultConditionStateBlock: 'DefaultConditionState' (conditionStateProperty | transitionKeyProperty)* end;
+conditionStateProperty: ID '=' value+;
+transitionKeyProperty: 'TransitionKey' '=' ID;
+
+transitionStateBlock: 'TransitionState' '=' ID ID+ transitionStateProperty* end;
+transitionStateProperty: ID '=' value+;
+
 aliasConditionStateBlock: 'AliasConditionState' '=' ID+;
 ignoreConditionStateBlock: 'IgnoreConditionStates' '=' ID+;
 

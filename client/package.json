@@ -1,7 +1,7 @@
 {
-	"name": "ZS-Server",
-	"displayName": "ZeroSyntax-Highlight",
-	"description": "Syntax highlighting for Zero Hour map.ini",
+	"name": "zs-server",
+	"displayName": "ZeroSyntax-Server",
+	"description": "Language server for Generals Zero Hour INI files",
 	"icon": "./images/icon.png",
 	"version": "0.1.0",
 	"publisher": "ViTeXFTW",
@@ -22,6 +22,7 @@
 		"vscode": "^1.1.37"
 	},
 	"dependencies": {
+		"glob": "^11.0.0",
 		"vscode-languageclient": "^9.0.1"
 	}
 }

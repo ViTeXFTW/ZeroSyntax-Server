@@ -2,7 +2,7 @@ import { Diagnostic, DiagnosticSeverity, _Connection } from 'vscode-languageserv
 import { MapIniListener } from './utils/antlr/MapIniListener';
 import { AddModuleBlockContext, AliasConditionStateBlockContext, BehaviormoduleBlockContext, BodyModuleBlockContext, ConditionStateBlockContext, DefaultConditionStateBlockContext, DrawModuleBlockContext, GenericPropertyContext, IgnoreConditionStateBlockContext, ObjectArmorSetContext, ObjectContext, ObjectUnitSpecificFXContext, ObjectUnitSpecificSoundsContext, ObjectWeaponSetContext, PropertyContext, RemoveModuleBlockContext, ReplaceModuleBlockContext, TransitionStateBlockContext } from './utils/antlr/MapIniParser';
 import { ANTLRErrorListener, RecognitionException, Recognizer, Token } from 'antlr4ts';
-import { ReservedKeywords } from './lists';
+import * as list from './utils/lists'
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { Stack } from 'stack-typescript';
 
@@ -109,8 +109,6 @@ export class TreeListener implements MapIniListener {
 	private seenModuletags: Set<string> = new Set();
 	private removedModules: Set<string> = new Set();
 
-	private ReservedKeywords: ReservedKeywords = new ReservedKeywords();
-
 	private _objectProperties: Set<string> = new Set();
 	private _addModuleTagProperties: Set<string> = new Set();
 	private _drawProperties: Set<string> = new Set();
@@ -182,7 +180,7 @@ export class TreeListener implements MapIniListener {
 		// 'Draw' '=' 'W3DModelDraw' 'ModuleTag' (conditionstate | property)* 'End'
 		const drawModuleID = ctx.getChild(2).text;
 		const moduletag = ctx.getChild(3).text;
-		const modelDraws = this.ReservedKeywords.getAllowedModelDraws();
+		const modelDraws = list.allowedModelDraws
 
 		
 		for(let i = 0; i < modelDraws.length; i++) {
@@ -245,7 +243,7 @@ export class TreeListener implements MapIniListener {
 		}
 
 		const damagestateIDs = ctx.ID();
-		const allowedDamageStates = this.ReservedKeywords.getAllowedConditionStates();
+		const allowedDamageStates = list.allowedConditionStates;
 
 		damagestateIDs.forEach((id) => {
 			if(!allowedDamageStates.includes(id.text)) {
@@ -305,7 +303,7 @@ export class TreeListener implements MapIniListener {
 		const transitionstateID = ctx.ID();
 
 		transitionstateID.forEach((id) => {
-			const allowedDamageStates = this.ReservedKeywords.getAllowedConditionStates(); // Update to use symbol table in do time
+			const allowedDamageStates = list.allowedConditionStates; // Update to use symbol table in do time
 
 			if(!allowedDamageStates.includes(id.text)) {
 				const severity = DiagnosticSeverity.Error;
@@ -345,7 +343,7 @@ export class TreeListener implements MapIniListener {
 		const aliasconditionstateID = ctx.ID();
 
 		aliasconditionstateID.forEach((id) => {
-			const allowedDamageStates = this.ReservedKeywords.getAllowedConditionStates();
+			const allowedDamageStates = list.allowedConditionStates;
 			const offset = "AliasConditionState".length
 
 			if(!allowedDamageStates.includes(id.text)) {
@@ -385,7 +383,7 @@ export class TreeListener implements MapIniListener {
 		const ignoreconditionstatesID = ctx.ID();
 
 		ignoreconditionstatesID.forEach((id) => {
-			const allowedDamageStates = this.ReservedKeywords.getAllowedConditionStates();
+			const allowedDamageStates = list.allowedConditionStates;
 			const offset = "IgnoreConditionStates".length
 
 			if(!allowedDamageStates.includes(id.text)) {
@@ -472,9 +470,9 @@ export class TreeListener implements MapIniListener {
 
 		switch(this._treeContext.top) {
 			case contexts.OBJECT:
-				const allowedObjectProperties = this.ReservedKeywords.getAllowedObjectProperties();
+				const allowedObjectProperties = list.allowedObjectProperties;
 				if (!allowedObjectProperties.includes(propertyID)) {
-					const message = `Property "${propertyID}" is not a valid property for an object. Allowed properties are: ${this.ReservedKeywords.getAllowedObjectProperties().join(", ")}.`;
+					const message = `Property "${propertyID}" is not a valid property for an object. Allowed properties are: ${list.allowedObjectProperties.join(", ")}.`;
 					this.diagnostics.push(this.createDiagnostic(DiagnosticSeverity.Error, line, startchar, line, endchar, message, contexts.PROPERTY.toString()));
 				} else if (this._objectProperties.has(propertyID)) {
 					const message = `Property "${propertyID}" is already defined.`;
@@ -484,9 +482,9 @@ export class TreeListener implements MapIniListener {
 				}
 				break;
 			case contexts.ADDMODULETAG:
-				const allowedAddModuleProperties = this.ReservedKeywords.getAllowedAddModuleProperties();
+				const allowedAddModuleProperties = list.allowedAddModuleProperties;
 				if (!allowedAddModuleProperties.includes(propertyID)) {
-					const message = `Property "${propertyID}" is not a valid property for an addmoduletag. Allowed properties are: ${this.ReservedKeywords.getAllowedAddModuleProperties().join(", ")}.`;
+					const message = `Property "${propertyID}" is not a valid property for an addmoduletag. Allowed properties are: ${list.allowedAddModuleProperties.join(", ")}.`;
 					this.diagnostics.push(this.createDiagnostic(DiagnosticSeverity.Error, line, startchar, line, endchar, message, contexts.PROPERTY.toString()));
 				} else if (this._addModuleTagProperties.has(propertyID)) {
 					const message = `Property "${propertyID}" is already defined.`;
@@ -497,7 +495,7 @@ export class TreeListener implements MapIniListener {
 				break;
 			case contexts.DRAWMODULE:
 				const allowedSingleDrawProperties = this.getAllowedDrawProperties();
-				const allowedMultiDrawProperties = this.ReservedKeywords.getAllowedMultiModelDrawProperties();
+				const allowedMultiDrawProperties = list.allowedMultiModelDrawProperties;
 
 				if (!allowedSingleDrawProperties.includes(propertyID) && !allowedMultiDrawProperties.includes(propertyID)) {
 					const message = `Property "${propertyID}" is not a valid property for a ${this._drawModelContext.toString()}. Allowed properties are: ${allowedSingleDrawProperties.join(", ")}.`;
@@ -510,11 +508,11 @@ export class TreeListener implements MapIniListener {
 				}
 				break;
 			case contexts.CONDITIONSTATE:
-				const allowedSingleConditionProperties = this.ReservedKeywords.getAllowedSingleConditionProperties();
-				const allowedMultiConditionProperties = this.ReservedKeywords.getAllowedMultiConditionProperties();
+				const allowedSingleConditionProperties = list.allowedSingleConditionProperties;
+				const allowedMultiConditionProperties = list.allowedMultiConditionProperties;
 
 				if(!allowedSingleConditionProperties.includes(propertyID) && !allowedMultiConditionProperties.includes(propertyID)) {
-					const message = `Property "${propertyID}" is not a valid property for a conditionstate. Allowed properties are: ${this.ReservedKeywords.getAllowedSingleConditionProperties().join(", ")}.`;
+					const message = `Property "${propertyID}" is not a valid property for a conditionstate. Allowed properties are: ${list.allowedSingleConditionProperties.join(", ")}.`;
 					this.diagnostics.push(this.createDiagnostic(DiagnosticSeverity.Error, line, startchar, line, endchar, message, contexts.PROPERTY.toString()));
 				} else if (this._conditionStateProperties.has(propertyID) && !allowedMultiConditionProperties.includes(propertyID)) {
 					const message = `Property "${propertyID}" is already defined.`;
@@ -530,7 +528,7 @@ export class TreeListener implements MapIniListener {
 		switch(propertyID) {
 			case "Locomotor":
 				const locomotorID = propertyValue[0].text;
-				const allowedLocomotors = this.ReservedKeywords.getAllowedLocomotorProperties();
+				const allowedLocomotors = list.allowedLocomotorProperties;
 				if(!allowedLocomotors.includes(locomotorID)) {
 					const severity = DiagnosticSeverity.Error;
 					const line = propertyValue[0].start.line - 1;
@@ -580,60 +578,60 @@ export class TreeListener implements MapIniListener {
 				return [];
 
 			case drawmodules.W3DDEPENDENCYMODELDRAW:
-				return ["AttachToBoneInContainer", "OkToChangeModelColor"]
-				return this.ReservedKeywords.getAllowedDependencyDrawProperties()
+				// return ["AttachToBoneInContainer", "OkToChangeModelColor"]
+				return list.allowedDependencyDrawProperties
 
 			case drawmodules.W3DMODELDRAW:
-				return this.ReservedKeywords.getAllowedSingleModelDrawProperties();
+				return list.allowedSingleModelDrawProperties;
 
 			case drawmodules.W3DOVERLORDTANKDRAW:
-				return this.ReservedKeywords.getAllowedTankDrawProperties();
+				return list.allowedTankDrawProperties;
 
 			case drawmodules.W3DOVERLORDAIRCRAFTDRAW:
-				return this.ReservedKeywords.getAllowedSingleModelDrawProperties();
+				return list.allowedSingleModelDrawProperties;
 
 			case drawmodules.W3DOVERLORDTRUCKDRAW:
-				return this.ReservedKeywords.getAllowedTankTruckDrawProperties();
+				return list.allowedTankTruckDrawProperties;
 
 			case drawmodules.W3DLASERDRAW:
-				return this.ReservedKeywords.getAllowedLaserDrawProperties();
+				return list.allowedLaserDrawProperties;
 
 			case drawmodules.W3DPOLICECARDRAW:
-				return this.ReservedKeywords.getAllowedSingleModelDrawProperties();
+				return list.allowedSingleModelDrawProperties;
 			
 			case drawmodules.W3DTREEDRAW:
-				return this.ReservedKeywords.getAllowedTreesDrawProperties();
+				return list.allowedTreeDrawProperties;
 
 			case drawmodules.W3DPROPDRAW:
 				return ["ModelName"];
 
 			case drawmodules.W3DPROJECTILESTREAMDRAW:
-				return this.ReservedKeywords.getAllowedProjectileStreamDrawProperties();
+				return list.allowedProjectileStreamDrawProperties;
 
 			case drawmodules.W3DROPEDRAW:
 				return [];
 
 			case drawmodules.W3DSCIENCEMODELDRAW:
-				result = this.ReservedKeywords.getAllowedSingleModelDrawProperties();
+				result = list.allowedSingleModelDrawProperties;
 				result.concat("RequiredScience");
 				return result;
 
 			case drawmodules.W3DSUPPLYDRAW:
-				result = this.ReservedKeywords.getAllowedSingleModelDrawProperties();
+				result = list.allowedSingleModelDrawProperties;
 				result.concat("SupplyBonePrefix");
 				return result;
 
 			case drawmodules.W3DTANKDRAW:
-				return this.ReservedKeywords.getAllowedTankDrawProperties();
+				return list.allowedTankDrawProperties;
 
 			case drawmodules.W3DTANKTRUCKDRAW:
-				return this.ReservedKeywords.getAllowedTankTruckDrawProperties();
+				return list.allowedTankTruckDrawProperties;
 
 			case drawmodules.W3DTRACERDRAW:
 				return [];
 
 			case drawmodules.W3DTRUCKDRAW:
-				return this.ReservedKeywords.getAllowedTruckDrawProperties();
+				return list.allowedTruckDrawProperties;
 
 			default:
 				return ["Error"];
@@ -686,11 +684,11 @@ export class TreeListener implements MapIniListener {
 
 export class CustomErrorListener implements ANTLRErrorListener<Token> {
 	textDocument: TextDocument;
-	treeListener: TreeListener;
+	diagnostics: Diagnostic[]
 
-	constructor(textDocument: TextDocument, treeListener: TreeListener) {
+	constructor(textDocument: TextDocument, diagnostics: Diagnostic[]) {
 		this.textDocument = textDocument;
-		this.treeListener = treeListener;
+		this.diagnostics = diagnostics
 	}
 
     syntaxError(
@@ -712,15 +710,14 @@ export class CustomErrorListener implements ANTLRErrorListener<Token> {
 		const diagnostic: Diagnostic = {
 			severity,
 			range: {
-				start: { line: line - 1, character: startchar },
-				end: { line: line - 1, character: endchar }
+				start: { line: line - 2, character: startchar },
+				end: { line: line - 2, character: endchar }
 			},
 			message,
 			source: 'ZHParser-ErrorListener'
 		};
 
-		// Push the diagnostic to the array
-		this.treeListener.addDiagnostic(diagnostic);
+		this.diagnostics.push(diagnostic)
 	}
 }
 

@@ -1,7 +1,7 @@
 import { SemanticTokens, SemanticTokensBuilder, SemanticTokensParams, TextDocuments } from 'vscode-languageserver';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { SymbolTable } from './symbols/SymbolTable';
-import { tokenTypes } from './tokenTypes';
+import { tokenModifierEnum, tokenModifiers, tokenTypes } from './tokenTypes';
 
 
 export function getSemanticTokens(documents: TextDocuments<TextDocument>, params: SemanticTokensParams, symbolTable: SymbolTable): SemanticTokens {
@@ -19,7 +19,10 @@ export function getSemanticTokens(documents: TextDocuments<TextDocument>, params
 
 		for (let wordIndex = 0; wordIndex < words.length; wordIndex++) {
 			const word = words[wordIndex];
-			const symbol = symbolTable.getAllSymbols().find(s => s.name === word);
+			const symbol = symbolTable.getAllSymbols().find(s =>
+				s.name.toLowerCase() === word.toLowerCase() &&
+				s.tokenModifiers.includes(tokenModifierEnum.DEFINITION)
+			);
 
 			if (symbol) {
 				const startCharacter = line.indexOf(word);
@@ -29,12 +32,23 @@ export function getSemanticTokens(documents: TextDocuments<TextDocument>, params
 					lineIndex,
 					startCharacter,
 					length,
-					tokenTypes.indexOf(symbol.type),
-					0 // tokenModifiers index
+					symbol.tokenType,
+					getTokenModifiersBitmask(symbol.tokenModifiers)
 				);
 			}
 		}
 	}
 
 	return tokensBuilder.build();
+}
+
+function getTokenModifiersBitmask(modifiers: string[]): number {
+    let bitmask = 0;
+    for (const modifier of modifiers) {
+        const index = tokenModifiers.indexOf(modifier);
+        if (index !== -1) {
+            bitmask |= (1 << index);
+        }
+    }
+    return bitmask;
 }

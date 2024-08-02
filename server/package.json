@@ -1,8 +1,14 @@
 {
-	"name": "lsp-sample-server",
-	"description": "Example implementation of a language server in node.",
-	"version": "1.0.0",
-	"author": "Microsoft Corporation",
+	"name": "zs-server",
+	"displayName": "ZeroSyntax-Server",
+	"description": "Language server for Generals Zero Hour INI files",
+	"icon": "./images/icon.png",
+	"version": "0.1.0",
+	"publisher": "ViTeXFTW",
+	"author": {
+		"name": "ViTeXFTW",
+		"email": "vitexftw@gmail.com"
+	},
 	"license": "MIT",
 	"engines": {
 		"node": "*"
