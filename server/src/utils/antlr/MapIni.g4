@@ -1,7 +1,11 @@
 grammar MapIni;
 
 // Parser rules
-program: object* EOF;
+program: classes* EOF;
+
+classes: (object | objectReskin);
+
+objectReskin: 'ObjectReskin' ID ID ((modules | objectProperty | objectKindOfProperty)* | (moduleBlocks | objectProperty | objectKindOfProperty)*) end;
 
 object: 'Object' ID ((modules | objectProperty | objectKindOfProperty)* | (moduleBlocks | objectProperty | objectKindOfProperty)*) end;
 
@@ -73,7 +77,7 @@ conditionStateBlocks: conditionStateBlock
                     | ignoreConditionStateBlock
                     ;
 
-conditionStateBlock: 'ConditionState' '=' ID+ (conditionStateProperty | turretProperty | transitionKeyProperty)* end;
+conditionStateBlock: 'ConditionState' ('=' ID+)? (conditionStateProperty | turretProperty | transitionKeyProperty)* end;
 defaultConditionStateBlock: 'DefaultConditionState' (conditionStateProperty | turretProperty | transitionKeyProperty)* end;
 conditionStateProperty: ID '=' value+;
 transitionKeyProperty: 'TransitionKey' '=' ID;

@@ -63,6 +63,8 @@ export const allowedObjectProperties: string[] = [
 	"GeometryHeight",
 	"GeometryIsSmall",
 	"Shadow",
+	"FenceWidth",
+	"FenceXOffset",
 	"ShadowSizeX",
 	"BuildCompletion",
 	"FactoryExitWidth",

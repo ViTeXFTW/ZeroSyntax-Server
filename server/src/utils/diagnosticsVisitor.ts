@@ -1,12 +1,11 @@
 import { AbstractParseTreeVisitor } from "antlr4ts/tree/AbstractParseTreeVisitor";
 import { MapIniVisitor } from "./antlr/MapIniVisitor";
 import { Diagnostic, DiagnosticSeverity } from "vscode-languageserver";
-import { SymbolTable } from "./symbols/SymbolTable";
 import { AddModuleBlockContext, AddModulePropertyContext, AliasConditionStateBlockContext, ConditionStateBlockContext, ConditionStatePropertyContext, DefaultConditionStateBlockContext, DrawModuleBlockContext, DrawModulePropertyContext, EndContext, MapIniParser, ObjectContext, ObjectPropertyContext, ProgramContext, PropertyContext, TransitionStateBlockContext, TransitionStatePropertyContext } from "./antlr/MapIniParser";
 import { IniType } from "./symbols/Symbol";
 import * as list from './lists'
 import { Location } from "./location";
-import { Range, TextDocument } from "vscode-languageserver-textdocument";
+import { TextDocument } from "vscode-languageserver-textdocument";
 import { CharStreams, CommonTokenStream } from "antlr4ts";
 import { MapIniLexer } from "./antlr/MapIniLexer";
 import { CustomErrorListener } from "../AntlrListener";

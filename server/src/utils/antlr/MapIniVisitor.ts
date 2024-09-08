@@ -13,6 +13,8 @@ import { BoolContext } from "./MapIniParser";
 import { TurretValueContext } from "./MapIniParser";
 import { AltTurretValueContext } from "./MapIniParser";
 import { ProgramContext } from "./MapIniParser";
+import { ClassesContext } from "./MapIniParser";
+import { ObjectReskinContext } from "./MapIniParser";
 import { ObjectContext } from "./MapIniParser";
 import { ObjectPropertyContext } from "./MapIniParser";
 import { ModuleBlocksContext } from "./MapIniParser";
@@ -151,6 +153,20 @@ export interface MapIniVisitor<Result> extends ParseTreeVisitor<Result> {
 	 * @return the visitor result
 	 */
 	visitProgram?: (ctx: ProgramContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `MapIniParser.classes`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitClasses?: (ctx: ClassesContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `MapIniParser.objectReskin`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitObjectReskin?: (ctx: ObjectReskinContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `MapIniParser.object`.

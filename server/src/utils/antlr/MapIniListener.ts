@@ -13,6 +13,8 @@ import { BoolContext } from "./MapIniParser";
 import { TurretValueContext } from "./MapIniParser";
 import { AltTurretValueContext } from "./MapIniParser";
 import { ProgramContext } from "./MapIniParser";
+import { ClassesContext } from "./MapIniParser";
+import { ObjectReskinContext } from "./MapIniParser";
 import { ObjectContext } from "./MapIniParser";
 import { ObjectPropertyContext } from "./MapIniParser";
 import { ModuleBlocksContext } from "./MapIniParser";
@@ -197,6 +199,28 @@ export interface MapIniListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitProgram?: (ctx: ProgramContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `MapIniParser.classes`.
+	 * @param ctx the parse tree
+	 */
+	enterClasses?: (ctx: ClassesContext) => void;
+	/**
+	 * Exit a parse tree produced by `MapIniParser.classes`.
+	 * @param ctx the parse tree
+	 */
+	exitClasses?: (ctx: ClassesContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `MapIniParser.objectReskin`.
+	 * @param ctx the parse tree
+	 */
+	enterObjectReskin?: (ctx: ObjectReskinContext) => void;
+	/**
+	 * Exit a parse tree produced by `MapIniParser.objectReskin`.
+	 * @param ctx the parse tree
+	 */
+	exitObjectReskin?: (ctx: ObjectReskinContext) => void;
 
 	/**
 	 * Enter a parse tree produced by `MapIniParser.object`.

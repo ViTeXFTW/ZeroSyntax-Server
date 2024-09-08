@@ -1,9 +1,0 @@
-{
-	"extends": "./tsconfig",
-	"include": [
-		"test/**/*"
-	],
-	"exclude": [
-		"node_modules"
-	]
-}
