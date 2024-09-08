@@ -18,6 +18,7 @@ import { ObjectPropertyContext } from "./MapIniParser";
 import { ModuleBlocksContext } from "./MapIniParser";
 import { AddModuleBlockContext } from "./MapIniParser";
 import { AddModulePropertyContext } from "./MapIniParser";
+import { ObjectKindOfPropertyContext } from "./MapIniParser";
 import { ReplaceModuleBlockContext } from "./MapIniParser";
 import { ReplaceModulePropertyContext } from "./MapIniParser";
 import { ModulesContext } from "./MapIniParser";
@@ -33,7 +34,9 @@ import { ObjectUnitSpecificSoundsContext } from "./MapIniParser";
 import { ObjectUnitSpecificSoundsPropetyContext } from "./MapIniParser";
 import { ObjectUnitSpecificFXContext } from "./MapIniParser";
 import { ObjectUnitSpecificFXPropetyContext } from "./MapIniParser";
+import { ClientModuleBlockContext } from "./MapIniParser";
 import { BehaviormoduleBlockContext } from "./MapIniParser";
+import { BehaviorDecalsContext } from "./MapIniParser";
 import { BehaviorTurretContext } from "./MapIniParser";
 import { BodyModuleBlockContext } from "./MapIniParser";
 import { DrawModuleBlockContext } from "./MapIniParser";
@@ -48,9 +51,9 @@ import { TransitionStatePropertyContext } from "./MapIniParser";
 import { AliasConditionStateBlockContext } from "./MapIniParser";
 import { IgnoreConditionStateBlockContext } from "./MapIniParser";
 import { RemoveModuleBlockContext } from "./MapIniParser";
-import { PropertyContext } from "./MapIniParser";
-import { GenericPropertyContext } from "./MapIniParser";
 import { TurretPropertyContext } from "./MapIniParser";
+import { PropertyContext } from "./MapIniParser";
+import { TturretPropertyContext } from "./MapIniParser";
 import { AltTurretPropertyContext } from "./MapIniParser";
 import { EndContext } from "./MapIniParser";
 import { ValueContext } from "./MapIniParser";
@@ -251,6 +254,17 @@ export interface MapIniListener extends ParseTreeListener {
 	exitAddModuleProperty?: (ctx: AddModulePropertyContext) => void;
 
 	/**
+	 * Enter a parse tree produced by `MapIniParser.objectKindOfProperty`.
+	 * @param ctx the parse tree
+	 */
+	enterObjectKindOfProperty?: (ctx: ObjectKindOfPropertyContext) => void;
+	/**
+	 * Exit a parse tree produced by `MapIniParser.objectKindOfProperty`.
+	 * @param ctx the parse tree
+	 */
+	exitObjectKindOfProperty?: (ctx: ObjectKindOfPropertyContext) => void;
+
+	/**
 	 * Enter a parse tree produced by `MapIniParser.replaceModuleBlock`.
 	 * @param ctx the parse tree
 	 */
@@ -416,6 +430,17 @@ export interface MapIniListener extends ParseTreeListener {
 	exitObjectUnitSpecificFXPropety?: (ctx: ObjectUnitSpecificFXPropetyContext) => void;
 
 	/**
+	 * Enter a parse tree produced by `MapIniParser.clientModuleBlock`.
+	 * @param ctx the parse tree
+	 */
+	enterClientModuleBlock?: (ctx: ClientModuleBlockContext) => void;
+	/**
+	 * Exit a parse tree produced by `MapIniParser.clientModuleBlock`.
+	 * @param ctx the parse tree
+	 */
+	exitClientModuleBlock?: (ctx: ClientModuleBlockContext) => void;
+
+	/**
 	 * Enter a parse tree produced by `MapIniParser.behaviormoduleBlock`.
 	 * @param ctx the parse tree
 	 */
@@ -425,6 +450,17 @@ export interface MapIniListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitBehaviormoduleBlock?: (ctx: BehaviormoduleBlockContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `MapIniParser.behaviorDecals`.
+	 * @param ctx the parse tree
+	 */
+	enterBehaviorDecals?: (ctx: BehaviorDecalsContext) => void;
+	/**
+	 * Exit a parse tree produced by `MapIniParser.behaviorDecals`.
+	 * @param ctx the parse tree
+	 */
+	exitBehaviorDecals?: (ctx: BehaviorDecalsContext) => void;
 
 	/**
 	 * Enter a parse tree produced by `MapIniParser.behaviorTurret`.
@@ -581,6 +617,17 @@ export interface MapIniListener extends ParseTreeListener {
 	exitRemoveModuleBlock?: (ctx: RemoveModuleBlockContext) => void;
 
 	/**
+	 * Enter a parse tree produced by `MapIniParser.turretProperty`.
+	 * @param ctx the parse tree
+	 */
+	enterTurretProperty?: (ctx: TurretPropertyContext) => void;
+	/**
+	 * Exit a parse tree produced by `MapIniParser.turretProperty`.
+	 * @param ctx the parse tree
+	 */
+	exitTurretProperty?: (ctx: TurretPropertyContext) => void;
+
+	/**
 	 * Enter a parse tree produced by `MapIniParser.property`.
 	 * @param ctx the parse tree
 	 */
@@ -592,26 +639,15 @@ export interface MapIniListener extends ParseTreeListener {
 	exitProperty?: (ctx: PropertyContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `MapIniParser.genericProperty`.
+	 * Enter a parse tree produced by `MapIniParser.tturretProperty`.
 	 * @param ctx the parse tree
 	 */
-	enterGenericProperty?: (ctx: GenericPropertyContext) => void;
+	enterTturretProperty?: (ctx: TturretPropertyContext) => void;
 	/**
-	 * Exit a parse tree produced by `MapIniParser.genericProperty`.
+	 * Exit a parse tree produced by `MapIniParser.tturretProperty`.
 	 * @param ctx the parse tree
 	 */
-	exitGenericProperty?: (ctx: GenericPropertyContext) => void;
-
-	/**
-	 * Enter a parse tree produced by `MapIniParser.turretProperty`.
-	 * @param ctx the parse tree
-	 */
-	enterTurretProperty?: (ctx: TurretPropertyContext) => void;
-	/**
-	 * Exit a parse tree produced by `MapIniParser.turretProperty`.
-	 * @param ctx the parse tree
-	 */
-	exitTurretProperty?: (ctx: TurretPropertyContext) => void;
+	exitTturretProperty?: (ctx: TturretPropertyContext) => void;
 
 	/**
 	 * Enter a parse tree produced by `MapIniParser.altTurretProperty`.

@@ -18,6 +18,7 @@ import { ObjectPropertyContext } from "./MapIniParser";
 import { ModuleBlocksContext } from "./MapIniParser";
 import { AddModuleBlockContext } from "./MapIniParser";
 import { AddModulePropertyContext } from "./MapIniParser";
+import { ObjectKindOfPropertyContext } from "./MapIniParser";
 import { ReplaceModuleBlockContext } from "./MapIniParser";
 import { ReplaceModulePropertyContext } from "./MapIniParser";
 import { ModulesContext } from "./MapIniParser";
@@ -33,7 +34,9 @@ import { ObjectUnitSpecificSoundsContext } from "./MapIniParser";
 import { ObjectUnitSpecificSoundsPropetyContext } from "./MapIniParser";
 import { ObjectUnitSpecificFXContext } from "./MapIniParser";
 import { ObjectUnitSpecificFXPropetyContext } from "./MapIniParser";
+import { ClientModuleBlockContext } from "./MapIniParser";
 import { BehaviormoduleBlockContext } from "./MapIniParser";
+import { BehaviorDecalsContext } from "./MapIniParser";
 import { BehaviorTurretContext } from "./MapIniParser";
 import { BodyModuleBlockContext } from "./MapIniParser";
 import { DrawModuleBlockContext } from "./MapIniParser";
@@ -48,9 +51,9 @@ import { TransitionStatePropertyContext } from "./MapIniParser";
 import { AliasConditionStateBlockContext } from "./MapIniParser";
 import { IgnoreConditionStateBlockContext } from "./MapIniParser";
 import { RemoveModuleBlockContext } from "./MapIniParser";
-import { PropertyContext } from "./MapIniParser";
-import { GenericPropertyContext } from "./MapIniParser";
 import { TurretPropertyContext } from "./MapIniParser";
+import { PropertyContext } from "./MapIniParser";
+import { TturretPropertyContext } from "./MapIniParser";
 import { AltTurretPropertyContext } from "./MapIniParser";
 import { EndContext } from "./MapIniParser";
 import { ValueContext } from "./MapIniParser";
@@ -185,6 +188,13 @@ export interface MapIniVisitor<Result> extends ParseTreeVisitor<Result> {
 	visitAddModuleProperty?: (ctx: AddModulePropertyContext) => Result;
 
 	/**
+	 * Visit a parse tree produced by `MapIniParser.objectKindOfProperty`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitObjectKindOfProperty?: (ctx: ObjectKindOfPropertyContext) => Result;
+
+	/**
 	 * Visit a parse tree produced by `MapIniParser.replaceModuleBlock`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -290,11 +300,25 @@ export interface MapIniVisitor<Result> extends ParseTreeVisitor<Result> {
 	visitObjectUnitSpecificFXPropety?: (ctx: ObjectUnitSpecificFXPropetyContext) => Result;
 
 	/**
+	 * Visit a parse tree produced by `MapIniParser.clientModuleBlock`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitClientModuleBlock?: (ctx: ClientModuleBlockContext) => Result;
+
+	/**
 	 * Visit a parse tree produced by `MapIniParser.behaviormoduleBlock`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	visitBehaviormoduleBlock?: (ctx: BehaviormoduleBlockContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `MapIniParser.behaviorDecals`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitBehaviorDecals?: (ctx: BehaviorDecalsContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `MapIniParser.behaviorTurret`.
@@ -395,6 +419,13 @@ export interface MapIniVisitor<Result> extends ParseTreeVisitor<Result> {
 	visitRemoveModuleBlock?: (ctx: RemoveModuleBlockContext) => Result;
 
 	/**
+	 * Visit a parse tree produced by `MapIniParser.turretProperty`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitTurretProperty?: (ctx: TurretPropertyContext) => Result;
+
+	/**
 	 * Visit a parse tree produced by `MapIniParser.property`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -402,18 +433,11 @@ export interface MapIniVisitor<Result> extends ParseTreeVisitor<Result> {
 	visitProperty?: (ctx: PropertyContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `MapIniParser.genericProperty`.
+	 * Visit a parse tree produced by `MapIniParser.tturretProperty`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitGenericProperty?: (ctx: GenericPropertyContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by `MapIniParser.turretProperty`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitTurretProperty?: (ctx: TurretPropertyContext) => Result;
+	visitTturretProperty?: (ctx: TturretPropertyContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `MapIniParser.altTurretProperty`.

@@ -4,8 +4,9 @@
 		"target": "es2020",
 		"lib": ["es2020"],
 		"outDir": "out",
-		"rootDir": "src",
-		"sourceMap": true
+		"rootDir": "./",
+		"sourceMap": true,
+		"removeComments": true
 	},
 	"include": [
 		"src"

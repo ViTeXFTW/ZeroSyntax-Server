@@ -22,11 +22,19 @@ import {
 	SemanticTokensParams,
 	SemanticTokens,
 	DidOpenTextDocumentParams,
-	SemanticTokensBuilder
-} from 'vscode-languageserver/node';
+	SemanticTokensBuilder,
+	TextDocumentChangeEvent,
+	DidOpenTextDocumentNotification,
+	DidChangeTextDocumentParams,
+	Diagnostic,
+	DiagnosticSeverity,
+	NotificationHandler,
+	TextDocumentContentChangeEvent,
+	DidCloseTextDocumentParams
+} from 'vscode-languageserver/node'
 
 import {
-	TextDocument
+	TextDocument,
 } from 'vscode-languageserver-textdocument';
 import {
 	TreeListener
@@ -46,7 +54,7 @@ import { getSemanticTokens } from './utils/semanticTokens';
 const connection = createConnection(ProposedFeatures.all);
 
 // Create a simple text document manager.
-const documents: TextDocuments<TextDocument> = new TextDocuments(TextDocument);
+// const documents: TextDocuments<TextDocument> = new TextDocuments(TextDocument);
 
 // Timer used to delay parsing
 let parseTimer: NodeJS.Timeout | null = null;
@@ -56,15 +64,13 @@ let hasConfigurationCapability = false;
 let hasWorkspaceFolderCapability = false;
 let hasDiagnosticRelatedInformationCapability = false;
 
+const documents: TextDocuments<TextDocument> = new TextDocuments(TextDocument);
+
 let forceAddModule: boolean = true
 
 let symbolTable: Map<string, SymbolTable> = new Map<string, SymbolTable>();
 
 connection.onInitialize((params: InitializeParams) => {
-
-	connection.console.log(`From server +connection`)
-	console.log(`From server -connection`)
-
 	const capabilities = params.capabilities;
 	const options = params.initializationOptions
 
@@ -84,23 +90,23 @@ connection.onInitialize((params: InitializeParams) => {
 
 	const result: InitializeResult = {
 		capabilities: {
-			textDocumentSync: TextDocumentSyncKind.Incremental,
+			textDocumentSync: TextDocumentSyncKind.Full,
 			// Tell the client that this server supports code completion.
-			definitionProvider: true,
-			hoverProvider: true,
-			completionProvider: {
-				resolveProvider: true
-			},
-			semanticTokensProvider: {
-				legend: {
-					tokenTypes,
-					tokenModifiers
-				},
-				range: true,
-				full: {
-					delta: false
-				}
-			}
+			// definitionProvider: false, //true
+			// hoverProvider: false, //true
+			// completionProvider: {
+			// 	resolveProvider: false //true
+			// },
+			// semanticTokensProvider: {
+			// 	legend: {
+			// 		tokenTypes,
+			// 		tokenModifiers
+			// 	},
+			// 	range: true,
+			// 	full: {
+			// 		delta: false
+			// 	}
+			// }
 		}
 	};
 	if (hasWorkspaceFolderCapability) {
@@ -116,7 +122,7 @@ connection.onInitialize((params: InitializeParams) => {
 connection.onInitialized(() => {
 	if (hasWorkspaceFolderCapability) {
 		connection.workspace.onDidChangeWorkspaceFolders(_event => {
-			connection.console.log('Workspace folder change event received.');
+			console.log('Workspace folder change event received.');
 
 			// Rerun symbol table
 		});
@@ -127,7 +133,7 @@ connection.onInitialized(() => {
 	connection.onDocumentFormatting((_edits) => {
 		const document = documents.get(_edits.textDocument.uri)
 		if (!document) {
-			connection.console.log(`Document not found.`)
+			console.log(`Document not found.`)
 			return null
 		}
 
@@ -142,7 +148,7 @@ connection.onInitialized(() => {
 
 			if (settings.forceAddModule !== null) {
 				forceAddModule = settings.forceAddModule
-				connection.console.log(`Updated forceAddmodule to: ${forceAddModule}`)
+				console.log(`Updated forceAddmodule to: ${forceAddModule}`)
 			} else {
 				// If setting is not null set forceAddmoule to setting else default to true
 				change.settings.forceAddModule !== null ? forceAddModule = change.settings.forceAddModule : forceAddModule = true
@@ -151,9 +157,37 @@ connection.onInitialized(() => {
 	}
 });
 
-connection.onDidOpenTextDocument((params: DidOpenTextDocumentParams) => {
+// connection.onDidOpenTextDocument((params: DidOpenTextDocumentParams) => {
+// 	const document = params.textDocument.text
+// 	documents.set(params.textDocument.uri, params.textDocument.text)
+// })
+
+// connection.onDidChangeTextDocument((params: DidChangeTextDocumentParams) => {
+	
+// 	console.log('Content Change!')
+// 	const changes: TextDocumentContentChangeEvent[] = params.contentChanges
+
+// 	// changes.forEach((change: TextDocumentContentChangeEvent) => {
+// 	// 	if(TextDocumentContentChangeEvent.isIncremental(change)) {
+// 	// 	}
+// 	// })
+
+// 	changes.forEach((change: TextDocumentContentChangeEvent) => {
+// 		if(TextDocumentContentChangeEvent.isFull(change)) {
+// 			computeDiagnostics(documents.get(params.textDocument.uri)!)
+// 		}
+// 	})
+
+// })
+
+// connection.onDidCloseTextDocument((params: DidCloseTextDocumentParams) => {
+// 	console.log('Closed document')
+// 	documents.delete(params.textDocument.uri)
+// })
+
+connection.onDidOpenTextDocument(async (params: DidOpenTextDocumentParams) => {
 	const textDocument = documents.get(params.textDocument.uri)
-	symbolTable.set(textDocument!.uri, computeSymbolTable(textDocument!))
+	symbolTable.set(textDocument!.uri, await computeSymbolTable(textDocument!))
 });
 
 connection.onHover((params: HoverParams): Hover | null => {
@@ -164,145 +198,73 @@ connection.onDefinition((params: DefinitionParams): Definition | null => {
 	return findDefinition(params, documents, symbolTable.get(params.textDocument.uri)!)
 });
 
-connection.onRequest("textDocument/semanticTokens/full", (params: SemanticTokensParams): SemanticTokens => {
-	//TODO: Create symbol table before running
-	const textDocument = documents.get(params.textDocument.uri)
-	symbolTable.set(textDocument!.uri, computeSymbolTable(textDocument!))
-
-	try {
-		return getSemanticTokens(documents, params, symbolTable.get(params.textDocument.uri)!)
-	} catch {
-		console.log('Failed to generate SemanticTokens, rerun on next change.')
-		let tokenBuilder = new SemanticTokensBuilder()
-		return tokenBuilder.build()
-	}
-});
-
-connection.onRequest("textDocument/semanticTokens/range", (params: SemanticTokensParams): SemanticTokens => {
-	//TODO: Create symbol table before running
-	const textDocument = documents.get(params.textDocument.uri)
-	symbolTable.set(textDocument!.uri, computeSymbolTable(textDocument!))
-	
-	try {
-		return getSemanticTokens(documents, params, symbolTable.get(params.textDocument.uri)!)
-	} catch {
-		console.log('Failed to generate SemanticTokens, rerun on next change.')
-		let tokenBuilder = new SemanticTokensBuilder()
-		return tokenBuilder.build()
-	}
-});
-
-// The content of a text document has changed. This event is emitted
-// when the text document first opened or when its content has changed.
-documents.onDidChangeContent(change => {
-
-	if (parseTimer) {
-		clearTimeout(parseTimer);
+documents.onDidChangeContent(async (change) => {
+	if(parseTimer) {
+		clearTimeout(parseTimer)
 	}
 
 	parseTimer = setTimeout(async () => {
-		const textDocument = change.document;
-		// Update SymbolTable
-		symbolTable.set(textDocument.uri, computeSymbolTable(textDocument))
-		const diagnostics = computeDiagnostics(textDocument, symbolTable.get(textDocument.uri)!)
 
-		console.log(`Server: ${diagnostics}`)
+		/**
+		 * Handles updating SymbolTables for a document
+		 * if that document has been changed.
+		 */
+		if(!symbolTable.has(change.document.uri)) {
+			console.log(`SymbolTable doesn't exists`)
+			let table = await computeSymbolTable(change.document) 						// Compute Symbols from document, if table hasn't been created.
+			table.setVersion(change.document.version)									// Store document version for table.
+			symbolTable.set(change.document.uri, table)									// Update SymboTable Map
+			console.log(`Added SymbolTable to map with key: ${change.document.uri}`)
+		} else {
+			console.log(`SymbolTable exists`)
+			if(symbolTable.get(change.document.uri)?.getVersion() !== change.document.version) {
+				console.log(`Document version is wrong. Recomputing SymbolTable`)
+				symbolTable.delete(change.document.uri)
+				symbolTable.set(change.document.uri, await computeSymbolTable(change.document))
+			}
+		}
 
-		// Create a listener for tree traversal
-		// const treeListener = new TreeListener(forceAddModule);
-		// Parse the document to compute diagnostics
-		// const diagnostics = await computeDiagnostics(treeListener, textDocument);
-		// treeListener.resetDiagnostics();
-
-		// Send the updated diagnostics to the client
-		connection.sendDiagnostics({ uri: textDocument.uri, diagnostics });
-	}, parseDelay);
+		console.log(`Computing diagnostics...`)
+		const diagnostics = await computeDiagnostics(change.document)
+		connection.sendDiagnostics({uri: change.document.uri, diagnostics})
+		console.log(`Diagnostics sent!`)
+	}, parseDelay)
 });
 
-connection.onDidCloseTextDocument(e => {
-	connection.console.log(`Closed document`)
+connection.onRequest("textDocument/semanticTokens/full", async (params: SemanticTokensParams): Promise<SemanticTokens> => {
+	// let temp = new SemanticTokensBuilder()
+	// return temp.build()
+
+	let uri = params.textDocument.uri;
+	if (!symbolTable.has(uri)) {
+		let document = documents.get(uri);
+		if (document) {
+			let table = await computeSymbolTable(document);
+			symbolTable.set(uri, table);
+		}
+	}
+	return await getSemanticTokens(documents, params, symbolTable.get(uri)!);
+});
+
+connection.onRequest("textDocument/semanticTokens/range", async (params: SemanticTokensParams): Promise<SemanticTokens> => {
+	// let temp = new SemanticTokensBuilder()
+	// return temp.build()
+
+	let uri = params.textDocument.uri;
+	if (!symbolTable.has(uri)) {
+		let document = documents.get(uri);
+		if (document) {
+			let table = await computeSymbolTable(document);
+			symbolTable.set(uri, table);
+		}
+	}
+	return await getSemanticTokens(documents, params, symbolTable.get(uri)!);
 });
 
 connection.onDidChangeWatchedFiles(_change => {
 	// Monitored files have change in VSCode
-	connection.console.log('We received a file change event');
+	console.log('We received a file change event');
 });
-
-// This handler provides the initial list of the completion items.
-connection.onCompletion(
-	(_textDocumentPosition: TextDocumentPositionParams): CompletionItem[] => {
-		// The pass parameter contains the position of the text document in
-		// which code complete got requested. For the example we ignore this
-		// info and always provide the same completion items.
-		return [
-			{
-				label: 'RadarPriority',
-				kind: CompletionItemKind.Text,
-				data: 1
-			},
-			{
-				label: 'KindOf',
-				kind: CompletionItemKind.Text,
-				data: 2
-			},
-			{
-				label: 'Locomotor',
-				kind: CompletionItemKind.Text,
-			},
-			{
-				label: 'RemoveModule',
-				kind: CompletionItemKind.Text,
-			},
-			{
-				label: 'End',
-				kind: CompletionItemKind.Text,
-			},
-			{
-				label: 'NONE',
-				kind: CompletionItemKind.Text,
-			},
-			{
-				label: 'DAMAGED',
-				kind: CompletionItemKind.Text,
-			},
-			{
-				label: 'REALLYDAMAGED',
-				kind: CompletionItemKind.Text,
-			},
-			{
-				label: 'RUBBLE',
-				kind: CompletionItemKind.Text,
-			},
-			{
-				label: 'AliasConditionState',
-				kind: CompletionItemKind.Text,
-			},
-			{
-				label: 'IgnoreConditionStates',
-				kind: CompletionItemKind.Text,
-			},
-			{
-				label: 'TransitionState',
-				kind: CompletionItemKind.Text,
-			}
-		];
-	}
-);
-
-// This handler resolves additional information for the item selected in
-// the completion list.
-connection.onCompletionResolve(
-	(item: CompletionItem): CompletionItem => {
-		if (item.data === 1) {
-			item.detail = 'TypeScript details';
-			item.documentation = 'TypeScript documentation';
-		} else if (item.data === 2) {
-			item.detail = 'JavaScript details';
-			item.documentation = 'JavaScript documentation';
-		}
-		return item;
-	}
-);
 
 // Make the text document manager listen on the connection
 // for open, change and close text document events

@@ -7,11 +7,13 @@ import * as path from 'path';
 import * as vscode from 'vscode';
 
 import {
+	DidChangeTextDocumentParams,
 	LanguageClient,
 	LanguageClientOptions,
 	SemanticTokenModifiers,
 	SemanticTokenTypes,
 	ServerOptions,
+	TextDocumentContentChangeEvent,
 	TransportKind
 } from 'vscode-languageclient/node';
 
@@ -52,8 +54,6 @@ export function activate(context: vscode.ExtensionContext) {
 		path.join('server', 'out', 'server.js')
 	);
 
-	console.log("ZeroSyntax Client Active");
-
 	// If the extension is launched in debug mode then the debug server options are used
 	// Otherwise the run options are used
 	const serverOptions: ServerOptions = {
@@ -72,10 +72,23 @@ export function activate(context: vscode.ExtensionContext) {
 			// Notify the server about file changes to '.clientrc files contained in the workspace
 			fileEvents: vscode.workspace.createFileSystemWatcher('**/.clientrc')
 		},
-		initializationOptions: {
-			SemanticTokenTypes,
-			SemanticTokenModifiers
-		}
+		// initializationOptions: {
+		// 	SemanticTokenTypes,
+		// 	SemanticTokenModifiers
+		// },
+		// middleware: {
+        //     didChange: (event, next) => {
+        //         const { contentChanges, document } = event;
+        //         contentChanges.forEach(change => {
+
+        //             client.sendNotification('custom/didChangeTextDocument', (params: DidChangeTextDocumentParams) => { 
+		// 				params.textDocument = {uri: document.uri.toString(), version: document.version}
+		// 				params.contentChanges = contentChanges
+		// 			});
+        //         });
+        //         return next(event);
+        //     }
+        // }
 	};
 
 	// Create the language client and start the client.

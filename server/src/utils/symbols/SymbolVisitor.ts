@@ -1,14 +1,14 @@
-import { ConditionStateBlockContext, DefaultConditionStateBlockContext, DrawModuleBlockContext, EndContext, MapIniParser, ObjectContext, ObjectPrerequisitesContext, ObjectPrerequisitesobjectPropertyContext, ProgramContext, TransitionKeyPropertyContext } from '../antlr/MapIniParser';
+import { AddModuleBlockContext, AliasConditionStateBlockContext, ConditionStateBlockContext, ConditionStatePropertyContext, DefaultConditionStateBlockContext, DrawModuleBlockContext, EndContext, MapIniParser, ObjectContext, ObjectKindOfPropertyContext, ObjectPrerequisitesContext, ObjectPrerequisitesobjectPropertyContext, ObjectPropertyContext, ProgramContext, TransitionKeyPropertyContext, TransitionStateBlockContext, TransitionStatePropertyContext } from '../antlr/MapIniParser';
 import { MapIniVisitor } from '../antlr/MapIniVisitor';
 import { AbstractParseTreeVisitor} from '../../../../node_modules/antlr4ts/tree/AbstractParseTreeVisitor'
 import { SymbolTable } from './SymbolTable';
 import { Symbol, IniType } from './Symbol';
-import { Location } from '../location';
 import { tokenModifierEnum, tokenTypeEnum } from '../tokenTypes';
 import * as list from '../lists'
 import { TextDocument } from 'vscode-languageserver-textdocument';
-import { CharStreams, CommonTokenStream } from 'antlr4ts';
+import { CharStreams, CommonTokenStream, ParserRuleContext } from 'antlr4ts';
 import { MapIniLexer } from '../antlr/MapIniLexer';
+import { Position, Range } from 'vscode-languageserver';
 
 
 /**
@@ -21,11 +21,17 @@ export class SymbolVisitor extends AbstractParseTreeVisitor<void> implements Map
 		
 	}
 
+	// 
 	symbolTable: SymbolTable
+
+
+	// Lists
+	objectConditionStates: string[]
 
 	constructor(symbolTable: SymbolTable) {
 		super()
 		this.symbolTable = symbolTable
+		this.objectConditionStates = list.allowedConditionStates
 	}
 
 	visitProgram(ctx: ProgramContext): void {
@@ -40,19 +46,24 @@ export class SymbolVisitor extends AbstractParseTreeVisitor<void> implements Map
 	visitObject(ctx: ObjectContext): void {
 		// Create Symbol
 		const objectName = ctx.ID().text
-		const objectLocation = new Location(ctx.start.line, ctx.start.charPositionInLine)
-		const objectSymbol = new Symbol(objectName, IniType.OBJECT, objectLocation, tokenTypeEnum.class, [tokenModifierEnum.DEFINITION])
+		const objectSymbol = new Symbol(objectName, IniType.OBJECT, this.createRange(ctx), tokenTypeEnum.class, [tokenModifierEnum.DEFINITION])
 		this.symbolTable.addSymbol(objectSymbol)
 
 		this.symbolTable.enterScope(objectName, IniType.OBJECT)
 		this.visitChildren(ctx)
 		this.symbolTable.exitScope()
+		
+		// Reset Added ConditionStates for this object
+		this.objectConditionStates = list.allowedConditionStates
+	}
+
+	visitObjectProperty(ctx: ObjectPropertyContext): void {
+
 	}
 
 	visitObjectPrerequisites(ctx: ObjectPrerequisitesContext): void {
 		const name = 'Prerequisite'
-		const location = new Location(ctx.start.line, ctx.start.charPositionInLine)
-		const symbol = new Symbol(name, IniType.OBJECTPREREQUISITE, location)
+		const symbol = new Symbol(name, IniType.OBJECTPREREQUISITE, this.createRange(ctx))
 		this.symbolTable.addSymbol(symbol)
 
 		this.symbolTable.enterScope(name, IniType.OBJECTPREREQUISITE)
@@ -65,17 +76,39 @@ export class SymbolVisitor extends AbstractParseTreeVisitor<void> implements Map
 
 		variableNameArray.forEach(name => {
 			const variableName = name.text
-			const variableLocation = new Location(ctx.start.line, ctx.start.charPositionInLine)
-			const variableSymbol = new Symbol(variableName, IniType.OBJECT, variableLocation, tokenTypeEnum.class, [])
-			this.symbolTable.addSymbol(variableSymbol)	
+			const variableSymbol = new Symbol(variableName, IniType.OBJECT, this.createRange(ctx), tokenTypeEnum.class, [])
+			this.symbolTable.addSymbol(variableSymbol)
 		})
+	}
+
+	visitAddModuleBlock(ctx: AddModuleBlockContext): void {
+		const addModule = ctx.getChild(0).text
+		const symbol = new Symbol(addModule, IniType.ADDMODULE, this.createRange(ctx))
+		this.symbolTable.addSymbol(symbol)
+
+		this.symbolTable.enterScope(addModule, IniType.ADDMODULE)
+		this.visitChildren(ctx)
+		this.symbolTable.exitScope()
+	}
+
+	visitObjectKindOfProperty(ctx: ObjectKindOfPropertyContext): void {
+		const kindOfs = ctx.ID()
+		kindOfs.forEach(kindOf => {
+			if(!list.kindOfs.includes(kindOf.text.toLocaleUpperCase())) {
+				return;
+			}
+
+			const symbol = new Symbol(kindOf.text, IniType.PROPERTY, this.createRange(ctx), tokenTypeEnum.variable, [tokenModifierEnum.DEFINITION, tokenModifierEnum.READONLY])
+			this.symbolTable.addSymbol(symbol)
+		})
+		
+		this.visitChildren(ctx)
 	}
 
 	visitDrawModuleBlock(ctx: DrawModuleBlockContext): void {
 		const moduelType = ctx.getChild(0).text
 		const drawModuleName = ctx.getChild(3).text
-		const location = new Location(ctx.start.line, ctx.start.charPositionInLine)
-		const methodSymbol = new Symbol(drawModuleName, IniType.DRAWMODULE, location);
+		const methodSymbol = new Symbol(drawModuleName, IniType.DRAWMODULE, this.createRange(ctx));
 		this.symbolTable.addSymbol(methodSymbol);
 
 		this.symbolTable.enterScope(moduelType, IniType.DRAWMODULE)
@@ -88,21 +121,19 @@ export class SymbolVisitor extends AbstractParseTreeVisitor<void> implements Map
 	// End
 	visitConditionStateBlock(ctx: ConditionStateBlockContext): void {
 		const conditionStateName = 'ConditionStateBlock'
-		const location = new Location(ctx.start.line, ctx.start.charPositionInLine)
-		const conditionStateSymbol = new Symbol(conditionStateName, IniType.CONDITIONSTATEBLOCK, location)
+		const states = ctx.ID()
+		const conditionStateSymbol = new Symbol(conditionStateName, IniType.CONDITIONSTATEBLOCK, this.createRange(ctx))
 		this.symbolTable.addSymbol(conditionStateSymbol)
 
 		this.symbolTable.enterScope(conditionStateName, IniType.CONDITIONSTATEBLOCK)
 
 		// Creates a symbol for each condition state
-		ctx.ID().forEach((idCtx) => {
-			const conditionStateName = idCtx.text;
-
-			if (list.allowedConditionStates.includes(conditionStateName.toUpperCase())) {
-				const location = new Location(idCtx.symbol.line, idCtx.symbol.charPositionInLine)
-				const conditionStateSymbol = new Symbol(conditionStateName, IniType.CONDITIONSTATE, location, tokenTypeEnum.variable, [tokenModifierEnum.DEFINITION, tokenModifierEnum.READONLY])
-				this.symbolTable.addSymbol(conditionStateSymbol)
+		states.forEach((state) => {
+			if (!this.objectConditionStates.includes(state.text.toUpperCase())) {
+				return;
 			}
+			const conditionStateSymbol = new Symbol(state.text, IniType.CONDITIONSTATE, this.createRange(ctx), tokenTypeEnum.variable, [tokenModifierEnum.DEFINITION, tokenModifierEnum.READONLY])
+			this.symbolTable.addSymbol(conditionStateSymbol)
 		});
 
 		this.visitChildren(ctx)
@@ -111,8 +142,7 @@ export class SymbolVisitor extends AbstractParseTreeVisitor<void> implements Map
 
 	visitDefaultConditionStateBlock(ctx: DefaultConditionStateBlockContext): void {
 		const conditionStateName = 'DefaultConditionStateBlock'
-		const location = new Location(ctx.start.line, ctx.start.charPositionInLine)
-		const conditionStateSymbol = new Symbol(conditionStateName, IniType.DEFAULTCONDITIONSTATEBLOCK, location)
+		const conditionStateSymbol = new Symbol(conditionStateName, IniType.DEFAULTCONDITIONSTATEBLOCK, this.createRange(ctx))
 		this.symbolTable.addSymbol(conditionStateSymbol)
 
 		this.symbolTable.enterScope(conditionStateName, IniType.DEFAULTCONDITIONSTATEBLOCK)
@@ -120,22 +150,79 @@ export class SymbolVisitor extends AbstractParseTreeVisitor<void> implements Map
 		this.symbolTable.exitScope()
 	}
 
+	visitConditionStateProperty(ctx: ConditionStatePropertyContext): void {
+		const propertyName = ctx.ID().text
+		const propertySymbol = new Symbol(propertyName, IniType.PROPERTY, this.createRange(ctx))
+		this.symbolTable.addSymbol(propertySymbol)
+	}
+
 	visitTransitionKeyProperty(ctx: TransitionKeyPropertyContext): void {
 		const transitionKeyName = ctx.ID().text
-		const transitionKeyLocation = new Location(ctx.start.line, ctx.start.charPositionInLine)
-		const transitionKeySymbol = new Symbol(transitionKeyName, IniType.TRANSITIONKEY, transitionKeyLocation, tokenTypeEnum.variable, [tokenModifierEnum.DEFINITION, tokenModifierEnum.READONLY])
+		const transitionKeySymbol = new Symbol(transitionKeyName, IniType.TRANSITIONKEY, this.createRange(ctx), tokenTypeEnum.variable, [tokenModifierEnum.DEFINITION, tokenModifierEnum.READONLY])
 		this.symbolTable.addSymbol(transitionKeySymbol)
 
 		// Add to allowed conditionStates
-		list.allowedConditionStates.push(transitionKeyName.toUpperCase())
+		this.objectConditionStates.push(transitionKeyName.toUpperCase())
+		this.visitChildren(ctx)
 	}
+
+	visitTransitionStateBlock(ctx: TransitionStateBlockContext): void {
+		const states = ctx.ID()
+		const transitionStateName = 'TransitionStateBlock'
+		const conditionStateSymbol = new Symbol(transitionStateName, IniType.CONDITIONSTATEBLOCK, this.createRange(ctx))
+		this.symbolTable.addSymbol(conditionStateSymbol)
+		this.symbolTable.enterScope(transitionStateName, IniType.TRANSITIONKEY)
+
+		states.forEach(state => {
+			if(!this.objectConditionStates.includes(state.text)) {
+				return
+			}
+			const conditionStateSymbol = new Symbol(state.text, IniType.CONDITIONSTATE, this.createRange(ctx), tokenTypeEnum.variable, [tokenModifierEnum.READONLY])
+			this.symbolTable.addSymbol(conditionStateSymbol)
+		})
+		this.visitChildren(ctx)
+		this.symbolTable.exitScope()
+	}
+
+	visitTransitionStateProperty(ctx: TransitionStatePropertyContext): void {
+		const propertyName = ctx.ID().text
+		const propertySymbol = new Symbol(propertyName, IniType.PROPERTY, this.createRange(ctx))
+		this.symbolTable.addSymbol(propertySymbol)
+	}
+
+	visitAliasConditionStateBlock(ctx: AliasConditionStateBlockContext): void {
+		const states = ctx.ID()
+		const transitionStateName = 'AliasConditionState'
+		const conditionStateSymbol = new Symbol(transitionStateName, IniType.ALIASCONDITIONSTATEBLCOK, this.createRange(ctx))
+		this.symbolTable.addSymbol(conditionStateSymbol)
+
+		states.forEach(state => {
+			const stateName = state.text
+			const stateSymbol = new Symbol(stateName, IniType.CONDITIONSTATE, this.createRange(ctx), tokenTypeEnum.variable, [tokenModifierEnum.READONLY])
+			this.symbolTable.addSymbol(stateSymbol)
+		})
+		this.visitChildren(ctx)
+	}
+
+	private createRange(ctx: ParserRuleContext): Range {
+        const start: Position = {
+            line: ctx.start.line - 1,
+            character: ctx.start.charPositionInLine
+        };
+
+		const end: Position = {
+			line: ctx.stop ? ctx.stop.line - 1 : 0,
+			character: ctx.stop && ctx.stop.text ? ctx.stop.charPositionInLine + ctx.stop.text.length : 0
+		};
+        return { start, end };
+    }
 
 	public getSymbolTable(): SymbolTable {
 		return this.symbolTable
 	}
 }
 
-export function computeSymbolTable(document: TextDocument): SymbolTable {
+export async function computeSymbolTable(document: TextDocument): Promise<SymbolTable> {
 
 	const inputStream = CharStreams.fromString(document.getText());
 	const lexer = new MapIniLexer(inputStream);

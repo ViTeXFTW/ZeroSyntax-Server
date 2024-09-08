@@ -23,8 +23,8 @@ export function getHoverInformation(params: HoverParams, documents: TextDocument
 	return {
 		contents: hoverContent,
 		range: {
-			start: Position.create(symbol.location.line - 1, symbol.location.column),
-			end: Position.create(symbol.location.line - 1, symbol.location.column + word.length)
+			start: symbol.range.start,
+			end: Position.create(symbol.range.end.line - 1, symbol.range.end.character + word.length)
 		}
 	};
 }

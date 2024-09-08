@@ -1,5 +1,4 @@
+// .vscode-test.js
 import { defineConfig } from '@vscode/test-cli';
 
-export default defineConfig({
-	files: 'client/out/test/**/*.test.js',
-});
+export default defineConfig({ files: 'server/out/test/**/*.test.js' });

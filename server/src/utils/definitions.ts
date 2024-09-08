@@ -2,6 +2,8 @@ import { Definition, DefinitionParams, Location, Position, TextDocuments } from 
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { SymbolTable } from './symbols/SymbolTable';
 
+
+//TODO: Fix issue where ctrl + click goes to another object if it is defined somewhere else but not in its own object
 export function findDefinition(params: DefinitionParams, documents: TextDocuments<TextDocument>, symbolTable: SymbolTable): Definition | null {
 	const document = documents.get(params.textDocument.uri)
 	if (!document) {
@@ -30,8 +32,8 @@ export function findDefinition(params: DefinitionParams, documents: TextDocument
 	const location: Location = {
 		uri: params.textDocument.uri,
 		range: {
-			start: Position.create(symbol.location.line - 1, symbol.location.column),
-			end: Position.create(symbol.location.line - 1, symbol.location.column + word.length)
+			start: symbol.range.start,
+			end: Position.create(symbol.range.end.line - 1, symbol.range.end.character + word.length)
 		}
 	};
 

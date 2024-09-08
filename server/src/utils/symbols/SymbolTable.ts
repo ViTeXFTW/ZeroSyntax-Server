@@ -5,18 +5,36 @@ import { CharStreams, CommonTokenStream } from 'antlr4ts';
 import { MapIniLexer } from '../antlr/MapIniLexer';
 import { MapIniParser } from '../antlr/MapIniParser';
 import { SymbolVisitor } from './SymbolVisitor';
+import { Range } from 'vscode-languageserver';
 
 /**
  * Table of Symbols 
  */
 export class SymbolTable {
-	private symbols: Map<string, Symbol> = new Map()
 	private globalScope: Scope;
 	private currentScope: Scope;
+	private textDocumentVersion: number
 
-	constructor() {
+	constructor(version: number = 0) {
 		this.globalScope = new Scope("global");
 		this.currentScope = this.globalScope;
+		this.textDocumentVersion = version
+	}
+
+	/**
+	 * Updates textDocumentVersion for the SymbolTable
+	 * @param newVersion New version number
+	 */
+	setVersion(newVersion: number): void {
+		this.textDocumentVersion = newVersion
+	}
+
+	/**
+	 * Retrieve SymbolTables version document.
+	 * @returns textDocumentVersion for this SymbolTable
+	 */
+	getVersion(): number {
+		return this.textDocumentVersion
 	}
 
 	/**
