@@ -68,95 +68,261 @@ export class MapIniParser extends Parser {
 	public static readonly T__37 = 38;
 	public static readonly T__38 = 39;
 	public static readonly T__39 = 40;
-	public static readonly INT = 41;
-	public static readonly INT256 = 42;
-	public static readonly FLOAT = 43;
-	public static readonly BOOL = 44;
-	public static readonly ID = 45;
-	public static readonly SKIp = 46;
-	public static readonly COMMENT = 47;
-	public static readonly WS = 48;
+	public static readonly T__40 = 41;
+	public static readonly T__41 = 42;
+	public static readonly T__42 = 43;
+	public static readonly T__43 = 44;
+	public static readonly T__44 = 45;
+	public static readonly T__45 = 46;
+	public static readonly T__46 = 47;
+	public static readonly T__47 = 48;
+	public static readonly T__48 = 49;
+	public static readonly T__49 = 50;
+	public static readonly T__50 = 51;
+	public static readonly T__51 = 52;
+	public static readonly T__52 = 53;
+	public static readonly T__53 = 54;
+	public static readonly T__54 = 55;
+	public static readonly T__55 = 56;
+	public static readonly T__56 = 57;
+	public static readonly T__57 = 58;
+	public static readonly T__58 = 59;
+	public static readonly T__59 = 60;
+	public static readonly T__60 = 61;
+	public static readonly T__61 = 62;
+	public static readonly T__62 = 63;
+	public static readonly T__63 = 64;
+	public static readonly T__64 = 65;
+	public static readonly T__65 = 66;
+	public static readonly T__66 = 67;
+	public static readonly T__67 = 68;
+	public static readonly T__68 = 69;
+	public static readonly T__69 = 70;
+	public static readonly T__70 = 71;
+	public static readonly T__71 = 72;
+	public static readonly T__72 = 73;
+	public static readonly T__73 = 74;
+	public static readonly T__74 = 75;
+	public static readonly T__75 = 76;
+	public static readonly T__76 = 77;
+	public static readonly T__77 = 78;
+	public static readonly T__78 = 79;
+	public static readonly T__79 = 80;
+	public static readonly T__80 = 81;
+	public static readonly T__81 = 82;
+	public static readonly T__82 = 83;
+	public static readonly T__83 = 84;
+	public static readonly T__84 = 85;
+	public static readonly T__85 = 86;
+	public static readonly T__86 = 87;
+	public static readonly T__87 = 88;
+	public static readonly T__88 = 89;
+	public static readonly T__89 = 90;
+	public static readonly T__90 = 91;
+	public static readonly T__91 = 92;
+	public static readonly T__92 = 93;
+	public static readonly T__93 = 94;
+	public static readonly T__94 = 95;
+	public static readonly T__95 = 96;
+	public static readonly T__96 = 97;
+	public static readonly T__97 = 98;
+	public static readonly T__98 = 99;
+	public static readonly T__99 = 100;
+	public static readonly T__100 = 101;
+	public static readonly T__101 = 102;
+	public static readonly T__102 = 103;
+	public static readonly T__103 = 104;
+	public static readonly T__104 = 105;
+	public static readonly T__105 = 106;
+	public static readonly T__106 = 107;
+	public static readonly T__107 = 108;
+	public static readonly T__108 = 109;
+	public static readonly T__109 = 110;
+	public static readonly T__110 = 111;
+	public static readonly T__111 = 112;
+	public static readonly T__112 = 113;
+	public static readonly T__113 = 114;
+	public static readonly T__114 = 115;
+	public static readonly T__115 = 116;
+	public static readonly T__116 = 117;
+	public static readonly T__117 = 118;
+	public static readonly T__118 = 119;
+	public static readonly T__119 = 120;
+	public static readonly T__120 = 121;
+	public static readonly T__121 = 122;
+	public static readonly T__122 = 123;
+	public static readonly T__123 = 124;
+	public static readonly T__124 = 125;
+	public static readonly T__125 = 126;
+	public static readonly T__126 = 127;
+	public static readonly T__127 = 128;
+	public static readonly T__128 = 129;
+	public static readonly T__129 = 130;
+	public static readonly T__130 = 131;
+	public static readonly T__131 = 132;
+	public static readonly T__132 = 133;
+	public static readonly T__133 = 134;
+	public static readonly T__134 = 135;
+	public static readonly T__135 = 136;
+	public static readonly T__136 = 137;
+	public static readonly T__137 = 138;
+	public static readonly T__138 = 139;
+	public static readonly T__139 = 140;
+	public static readonly T__140 = 141;
+	public static readonly T__141 = 142;
+	public static readonly T__142 = 143;
+	public static readonly T__143 = 144;
+	public static readonly T__144 = 145;
+	public static readonly T__145 = 146;
+	public static readonly T__146 = 147;
+	public static readonly T__147 = 148;
+	public static readonly T__148 = 149;
+	public static readonly T__149 = 150;
+	public static readonly T__150 = 151;
+	public static readonly T__151 = 152;
+	public static readonly T__152 = 153;
+	public static readonly T__153 = 154;
+	public static readonly T__154 = 155;
+	public static readonly T__155 = 156;
+	public static readonly T__156 = 157;
+	public static readonly T__157 = 158;
+	public static readonly T__158 = 159;
+	public static readonly T__159 = 160;
+	public static readonly INT = 161;
+	public static readonly FLOAT = 162;
+	public static readonly PROCENT = 163;
+	public static readonly EQ = 164;
+	public static readonly WEAPONSLOT = 165;
+	public static readonly XCOORD = 166;
+	public static readonly YCOORD = 167;
+	public static readonly COORDLEFT = 168;
+	public static readonly COORDTOP = 169;
+	public static readonly COORDRIGHT = 170;
+	public static readonly COORDBOTTOM = 171;
+	public static readonly A2D_ANIMATION_MODE = 172;
+	public static readonly ARMOR_TYPE = 173;
+	public static readonly MANUAL = 174;
+	public static readonly BOOLEAN = 175;
+	public static readonly NVALUE = 176;
+	public static readonly ID = 177;
+	public static readonly SKIp = 178;
+	public static readonly COMMENT = 179;
+	public static readonly WS = 180;
 	public static readonly RULE_program = 0;
 	public static readonly RULE_classes = 1;
-	public static readonly RULE_objectReskin = 2;
-	public static readonly RULE_object = 3;
-	public static readonly RULE_objectProperty = 4;
-	public static readonly RULE_moduleBlocks = 5;
-	public static readonly RULE_addModuleBlock = 6;
-	public static readonly RULE_addModuleProperty = 7;
-	public static readonly RULE_objectKindOfProperty = 8;
-	public static readonly RULE_replaceModuleBlock = 9;
-	public static readonly RULE_replaceModuleProperty = 10;
-	public static readonly RULE_modules = 11;
-	public static readonly RULE_objectBlocks = 12;
-	public static readonly RULE_objectPrerequisites = 13;
-	public static readonly RULE_objectPrerequisitesobjectProperty = 14;
-	public static readonly RULE_objectPrerequisitessciencePropety = 15;
-	public static readonly RULE_objectWeaponSet = 16;
-	public static readonly RULE_objectWeaponSetPropety = 17;
-	public static readonly RULE_objectArmorSet = 18;
-	public static readonly RULE_objectArmorSetPropety = 19;
-	public static readonly RULE_objectUnitSpecificSounds = 20;
-	public static readonly RULE_objectUnitSpecificSoundsPropety = 21;
-	public static readonly RULE_objectUnitSpecificFX = 22;
-	public static readonly RULE_objectUnitSpecificFXPropety = 23;
-	public static readonly RULE_clientModuleBlock = 24;
-	public static readonly RULE_behaviormoduleBlock = 25;
-	public static readonly RULE_behaviorDecals = 26;
-	public static readonly RULE_behaviorTurret = 27;
-	public static readonly RULE_bodyModuleBlock = 28;
-	public static readonly RULE_drawModuleBlock = 29;
-	public static readonly RULE_drawModuleProperty = 30;
-	public static readonly RULE_conditionStateBlocks = 31;
-	public static readonly RULE_conditionStateBlock = 32;
-	public static readonly RULE_defaultConditionStateBlock = 33;
-	public static readonly RULE_conditionStateProperty = 34;
-	public static readonly RULE_transitionKeyProperty = 35;
-	public static readonly RULE_transitionStateBlock = 36;
-	public static readonly RULE_transitionStateProperty = 37;
-	public static readonly RULE_aliasConditionStateBlock = 38;
-	public static readonly RULE_ignoreConditionStateBlock = 39;
-	public static readonly RULE_removeModuleBlock = 40;
-	public static readonly RULE_turretProperty = 41;
-	public static readonly RULE_property = 42;
-	public static readonly RULE_tturretProperty = 43;
-	public static readonly RULE_altTurretProperty = 44;
-	public static readonly RULE_end = 45;
-	public static readonly RULE_value = 46;
-	public static readonly RULE_ftype = 47;
-	public static readonly RULE_rgb = 48;
-	public static readonly RULE_procent = 49;
-	public static readonly RULE_intRang = 50;
-	public static readonly RULE_floatRang = 51;
-	public static readonly RULE_quoutedID = 52;
+	public static readonly RULE_aiDataClass = 2;
+	public static readonly RULE_aidataClassProperties_single = 3;
+	public static readonly RULE_aidataClassproperties_BlockSkirmishBuildList = 4;
+	public static readonly RULE_skirmishBuildListBlock = 5;
+	public static readonly RULE_skirmishBuildListBlock_structure_properties = 6;
+	public static readonly RULE_aidataClassProperties_blockSideinfo = 7;
+	public static readonly RULE_sideinfoproperties = 8;
+	public static readonly RULE_sideinfo_skillset_blocks = 9;
+	public static readonly RULE_mappedImageClass = 10;
+	public static readonly RULE_mappedImageClassProperties = 11;
+	public static readonly RULE_animation2DClass = 12;
+	public static readonly RULE_animation2DClassProperties = 13;
+	public static readonly RULE_armorClass = 14;
+	public static readonly RULE_armorClassProperties = 15;
+	public static readonly RULE_commandButtonClass = 16;
+	public static readonly RULE_commandButtonClassProperties = 17;
+	public static readonly RULE_commandSetClass = 18;
+	public static readonly RULE_commandSetClassProperty = 19;
+	public static readonly RULE_end = 20;
+	public static readonly RULE_file = 21;
+	public static readonly RULE_cb_command_property = 22;
+	public static readonly RULE_cb_command_value = 23;
+	public static readonly RULE_cb_options_property = 24;
+	public static readonly RULE_cb_options_value = 25;
+	public static readonly RULE_cb_buttonimage_property = 26;
+	public static readonly RULE_cb_buttonbordertype_property = 27;
+	public static readonly RULE_cb_buttonbordertype_value = 28;
+	public static readonly RULE_cb_textlabel_property = 29;
+	public static readonly RULE_cb_descriptionlabel_property = 30;
+	public static readonly RULE_cb_conflictinglabel_property = 31;
+	public static readonly RULE_cb_cursorname_propery = 32;
+	public static readonly RULE_cb_radius_cursorname_value = 33;
+	public static readonly RULE_cb_invalid_cursorname_propery = 34;
+	public static readonly RULE_cb_unitspecificsound_property = 35;
+	public static readonly RULE_commandbutton_value = 36;
+	public static readonly RULE_cursorname_value = 37;
+	public static readonly RULE_radius_cursorname_value = 38;
+	public static readonly RULE_invalid_cursorname_value = 39;
+	public static readonly RULE_mappedimage_value = 40;
+	public static readonly RULE_object_property = 41;
+	public static readonly RULE_object_value = 42;
+	public static readonly RULE_science_property = 43;
+	public static readonly RULE_science_value = 44;
+	public static readonly RULE_specialpower_property = 45;
+	public static readonly RULE_specialpower_value = 46;
+	public static readonly RULE_audioevent_value = 47;
+	public static readonly RULE_upgrade_property = 48;
+	public static readonly RULE_upgrade_value = 49;
+	public static readonly RULE_weaponslot_property = 50;
+	public static readonly RULE_faction = 51;
 	// tslint:disable:no-trailing-whitespace
 	public static readonly ruleNames: string[] = [
-		"program", "classes", "objectReskin", "object", "objectProperty", "moduleBlocks", 
-		"addModuleBlock", "addModuleProperty", "objectKindOfProperty", "replaceModuleBlock", 
-		"replaceModuleProperty", "modules", "objectBlocks", "objectPrerequisites", 
-		"objectPrerequisitesobjectProperty", "objectPrerequisitessciencePropety", 
-		"objectWeaponSet", "objectWeaponSetPropety", "objectArmorSet", "objectArmorSetPropety", 
-		"objectUnitSpecificSounds", "objectUnitSpecificSoundsPropety", "objectUnitSpecificFX", 
-		"objectUnitSpecificFXPropety", "clientModuleBlock", "behaviormoduleBlock", 
-		"behaviorDecals", "behaviorTurret", "bodyModuleBlock", "drawModuleBlock", 
-		"drawModuleProperty", "conditionStateBlocks", "conditionStateBlock", "defaultConditionStateBlock", 
-		"conditionStateProperty", "transitionKeyProperty", "transitionStateBlock", 
-		"transitionStateProperty", "aliasConditionStateBlock", "ignoreConditionStateBlock", 
-		"removeModuleBlock", "turretProperty", "property", "tturretProperty", 
-		"altTurretProperty", "end", "value", "ftype", "rgb", "procent", "intRang", 
-		"floatRang", "quoutedID",
+		"program", "classes", "aiDataClass", "aidataClassProperties_single", "aidataClassproperties_BlockSkirmishBuildList", 
+		"skirmishBuildListBlock", "skirmishBuildListBlock_structure_properties", 
+		"aidataClassProperties_blockSideinfo", "sideinfoproperties", "sideinfo_skillset_blocks", 
+		"mappedImageClass", "mappedImageClassProperties", "animation2DClass", 
+		"animation2DClassProperties", "armorClass", "armorClassProperties", "commandButtonClass", 
+		"commandButtonClassProperties", "commandSetClass", "commandSetClassProperty", 
+		"end", "file", "cb_command_property", "cb_command_value", "cb_options_property", 
+		"cb_options_value", "cb_buttonimage_property", "cb_buttonbordertype_property", 
+		"cb_buttonbordertype_value", "cb_textlabel_property", "cb_descriptionlabel_property", 
+		"cb_conflictinglabel_property", "cb_cursorname_propery", "cb_radius_cursorname_value", 
+		"cb_invalid_cursorname_propery", "cb_unitspecificsound_property", "commandbutton_value", 
+		"cursorname_value", "radius_cursorname_value", "invalid_cursorname_value", 
+		"mappedimage_value", "object_property", "object_value", "science_property", 
+		"science_value", "specialpower_property", "specialpower_value", "audioevent_value", 
+		"upgrade_property", "upgrade_value", "weaponslot_property", "faction",
 	];
 
 	private static readonly _LITERAL_NAMES: Array<string | undefined> = [
-		undefined, "'ObjectReskin'", "'Object'", "'='", "'AddModule'", "'KindOf'", 
-		"'kindof'", "'KINDOF'", "'ReplaceModule'", "'Prerequisites'", "'Science'", 
-		"'WeaponSet'", "'ArmorSet'", "'UnitSpecificSounds'", "'UnitSpecificFX'", 
-		"'ClientUpdate'", "'Behavior'", "'AttackAreaDecal'", "'TargetingReticleDecal'", 
-		"'GridDecalTemplate'", "'Turret'", "'AltTurret'", "'Body'", "'Draw'", 
-		"'ConditionState'", "'DefaultConditionState'", "'TransitionKey'", "'TransitionState'", 
-		"'AliasConditionState'", "'IgnoreConditionStates'", "'RemoveModule'", 
-		"'turret'", "'TURRET'", "'altturret'", "'ALTTURRET'", "'End'", "'end'", 
-		"'END'", "'.'", "'%'", "'\"'",
+		undefined, "'AIData'", "'StructureSeconds'", "'TeamSeconds'", "'Wealthy'", 
+		"'Poor'", "'StructuresWealthyRate'", "'StructuresPoorRate'", "'TeamsWealthyRate'", 
+		"'TeamsPoorRate'", "'TeamResourcesToStart'", "'GuardInnerModifierAI'", 
+		"'GuardOuterModifierAI'", "'GuardInnerModifierHuman'", "'GuardOuterModifierHuman'", 
+		"'GuardChaseUnitsDuration'", "'GuardEnemyScanRate'", "'GuardEnemyReturnScanRate'", 
+		"'AlertRangeModifier'", "'AggressiveRangeModifier'", "'AttackPriorityDistanceModifier'", 
+		"'MaxRecruitRadius'", "'SkirmishBaseDefenseExtraDistance'", "'ForceIdleMSEC'", 
+		"'ForceSkirmishAI'", "'RotateSkirmishBases'", "'AttackUsesLineOfSight'", 
+		"'EnableRepulsors'", "'RepulsedDistance'", "'WallHeight'", "'AttackIgnoreInsignificantBuildings'", 
+		"'SkirmishGroupFudgeDistance'", "'MinInfantryForGroup'", "'MinVehiclesForGroup'", 
+		"'MinDistanceForGroup'", "'DistanceRequiresGroup'", "'InfantryPathfindDiameter'", 
+		"'VehiclePathfindDiameter'", "'SupplyCenterSafeRadius'", "'RebuildDelayTimeSeconds'", 
+		"'AIDozerBoredRadiusModifier'", "'AICrushesInfantry'", "'MaxRetaliationDistance'", 
+		"'RetaliationFriendsRadius'", "'SkirmishBuildList'", "'Structure'", "'Location'", 
+		"'Rebuilds'", "'Angle'", "'InitiallyBuilt'", "'AutomaticallyBuild'", "'SideInfo'", 
+		"'ResourceGatherersEasy'", "'ResourceGatherersNormal'", "'ResourceGatherersHard'", 
+		"'BaseDefenseStructure1'", "'SkillSet1'", "'SkillSet2'", "'SkillSet3'", 
+		"'SkillSet4'", "'SkillSet5'", "'MappedImage'", "'Texture'", "'TextureWidth'", 
+		"'TextureHeight'", "'Coords'", "'Status'", "'ROTATED_90_CLOCKWISE'", "'Animation'", 
+		"'AnimationMode'", "'AnimationDelay'", "'RandomizeStartFrame'", "'NumberImages'", 
+		"'Image'", "'Armor'", "'CommandButton'", "'CommandSet'", "'end'", "'End'", 
+		"'END'", "'.'", "'tga'", "'dds'", "'Command'", "'PLACE_BEACON'", "'SPECIAL_POWER'", 
+		"'SPECIAL_POWER_FROM_SHORTCUT'", "'PURCHASE_SCIENCE'", "'FIRE_WEAPON'", 
+		"'OBJECT_UPGRADE'", "'SWITCH_WEAPON'", "'SET_RALLY_POINT'", "'SELL'", 
+		"'TOGGLE_OVERCHARGE'", "'CANCEL_UPGRADE'", "'PLAYER_UPGRADE'", "'EXIT_CONTAINER'", 
+		"'EVACUATE'", "'EXECUTE_RAILED_TRANSPORT'", "'COMBATDROP'", "'GUARD'", 
+		"'GUARD_WITHOUT_PURSUIT'", "'GUARD_FLYING_UNITS_ONLY'", "'ATTACK_MOVE'", 
+		"'STOP'", "'CONVERT_TO_CARBOMB'", "'SABOTAGE_BUILDING'", "'HIJACK_VEHICLE'", 
+		"'HACK_INTERNET'", "'DOZER_CONSTRUCT_CANCEL'", "'DOZER_CONSTRUCT'", "'UNIT_BUILD'", 
+		"'Options'", "'NEED_TARGET_POS'", "'NEED_SPECIAL_POWER_SCIENCE'", "'CONTEXTMODE_COMMAND'", 
+		"'SCRIPT_ONLY'", "'CAN_USE_WAYPOINTS'", "'NEED_TARGET_NEUTRAL_OBJECT'", 
+		"'NEED_TARGET_ENEMY_OBJECT'", "'OK_FOR_MULTI_SELECT'", "'NEED_UPGRADE'", 
+		"'CHECK_LIKE'", "'OPTION_ONE'", "'OPTION_TWO'", "'OPTION_THREE'", "'NOT_QUEUEABLE'", 
+		"'IGNORES_UNDERPOWERED'", "'MUST_BE_STOPPED'", "'USES_MINE_CLEARING_WEAPONSET'", 
+		"'NEED_TARGET_ALLY_OBJECT'", "'ButtonImage'", "'ButtonBorderType'", "'ACTION'", 
+		"'UPGRADE'", "'SYSTEM'", "'BUILD'", "'TextLabel'", "'DescriptLabel'", 
+		"'ConflictingLabel'", "'CursorName'", "'RadiusCursorType'", "'InvalidCursorName'", 
+		"'UnitSpecificSound'", "'Object'", "'Science'", "'SpecialPower'", "'Upgrade'", 
+		"'WeaponSlot'", "'America'", "'China'", "'GLA'", "'AmericaAirForceGeneral'", 
+		"'AmericaLaserGeneral'", "'AmericaSuperWeaponGeneral'", "'ChinaTankGeneral'", 
+		"'ChinaInfantryGeneral'", "'ChinaNukeGeneral'", "'GLADemolitionGeneral'", 
+		"'GLAStealthGeneral'", "'GLAToxinGeneral'", undefined, undefined, undefined, 
+		"'='",
 	];
 	private static readonly _SYMBOLIC_NAMES: Array<string | undefined> = [
 		undefined, undefined, undefined, undefined, undefined, undefined, undefined, 
@@ -164,8 +330,27 @@ export class MapIniParser extends Parser {
 		undefined, undefined, undefined, undefined, undefined, undefined, undefined, 
 		undefined, undefined, undefined, undefined, undefined, undefined, undefined, 
 		undefined, undefined, undefined, undefined, undefined, undefined, undefined, 
-		undefined, undefined, undefined, undefined, undefined, undefined, "INT", 
-		"INT256", "FLOAT", "BOOL", "ID", "SKIp", "COMMENT", "WS",
+		undefined, undefined, undefined, undefined, undefined, undefined, undefined, 
+		undefined, undefined, undefined, undefined, undefined, undefined, undefined, 
+		undefined, undefined, undefined, undefined, undefined, undefined, undefined, 
+		undefined, undefined, undefined, undefined, undefined, undefined, undefined, 
+		undefined, undefined, undefined, undefined, undefined, undefined, undefined, 
+		undefined, undefined, undefined, undefined, undefined, undefined, undefined, 
+		undefined, undefined, undefined, undefined, undefined, undefined, undefined, 
+		undefined, undefined, undefined, undefined, undefined, undefined, undefined, 
+		undefined, undefined, undefined, undefined, undefined, undefined, undefined, 
+		undefined, undefined, undefined, undefined, undefined, undefined, undefined, 
+		undefined, undefined, undefined, undefined, undefined, undefined, undefined, 
+		undefined, undefined, undefined, undefined, undefined, undefined, undefined, 
+		undefined, undefined, undefined, undefined, undefined, undefined, undefined, 
+		undefined, undefined, undefined, undefined, undefined, undefined, undefined, 
+		undefined, undefined, undefined, undefined, undefined, undefined, undefined, 
+		undefined, undefined, undefined, undefined, undefined, undefined, undefined, 
+		undefined, undefined, undefined, undefined, undefined, undefined, undefined, 
+		undefined, undefined, undefined, undefined, undefined, undefined, undefined, 
+		"INT", "FLOAT", "PROCENT", "EQ", "WEAPONSLOT", "XCOORD", "YCOORD", "COORDLEFT", 
+		"COORDTOP", "COORDRIGHT", "COORDBOTTOM", "A2D_ANIMATION_MODE", "ARMOR_TYPE", 
+		"MANUAL", "BOOLEAN", "NVALUE", "ID", "SKIp", "COMMENT", "WS",
 	];
 	public static readonly VOCABULARY: Vocabulary = new VocabularyImpl(MapIniParser._LITERAL_NAMES, MapIniParser._SYMBOLIC_NAMES, []);
 
@@ -201,21 +386,21 @@ export class MapIniParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 109;
+			this.state = 107;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			while (_la === MapIniParser.T__0 || _la === MapIniParser.T__1) {
+			while (_la === MapIniParser.T__0 || ((((_la - 61)) & ~0x1F) === 0 && ((1 << (_la - 61)) & ((1 << (MapIniParser.T__60 - 61)) | (1 << (MapIniParser.T__67 - 61)) | (1 << (MapIniParser.T__73 - 61)) | (1 << (MapIniParser.T__74 - 61)) | (1 << (MapIniParser.T__75 - 61)))) !== 0)) {
 				{
 				{
-				this.state = 106;
+				this.state = 104;
 				this.classes();
 				}
 				}
-				this.state = 111;
+				this.state = 109;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 			}
-			this.state = 112;
+			this.state = 110;
 			this.match(MapIniParser.EOF);
 			}
 		}
@@ -238,26 +423,53 @@ export class MapIniParser extends Parser {
 		let _localctx: ClassesContext = new ClassesContext(this._ctx, this.state);
 		this.enterRule(_localctx, 2, MapIniParser.RULE_classes);
 		try {
-			this.enterOuterAlt(_localctx, 1);
-			{
-			this.state = 116;
+			this.state = 118;
 			this._errHandler.sync(this);
 			switch (this._input.LA(1)) {
-			case MapIniParser.T__1:
+			case MapIniParser.T__60:
+				this.enterOuterAlt(_localctx, 1);
 				{
-				this.state = 114;
-				this.object();
+				this.state = 112;
+				this.mappedImageClass();
 				}
 				break;
 			case MapIniParser.T__0:
+				this.enterOuterAlt(_localctx, 2);
+				{
+				this.state = 113;
+				this.aiDataClass();
+				}
+				break;
+			case MapIniParser.T__67:
+				this.enterOuterAlt(_localctx, 3);
+				{
+				this.state = 114;
+				this.animation2DClass();
+				}
+				break;
+			case MapIniParser.T__73:
+				this.enterOuterAlt(_localctx, 4);
 				{
 				this.state = 115;
-				this.objectReskin();
+				this.armorClass();
+				}
+				break;
+			case MapIniParser.T__74:
+				this.enterOuterAlt(_localctx, 5);
+				{
+				this.state = 116;
+				this.commandButtonClass();
+				}
+				break;
+			case MapIniParser.T__75:
+				this.enterOuterAlt(_localctx, 6);
+				{
+				this.state = 117;
+				this.commandSetClass();
 				}
 				break;
 			default:
 				throw new NoViableAltException(this);
-			}
 			}
 		}
 		catch (re) {
@@ -275,1639 +487,91 @@ export class MapIniParser extends Parser {
 		return _localctx;
 	}
 	// @RuleVersion(0)
-	public objectReskin(): ObjectReskinContext {
-		let _localctx: ObjectReskinContext = new ObjectReskinContext(this._ctx, this.state);
-		this.enterRule(_localctx, 4, MapIniParser.RULE_objectReskin);
+	public aiDataClass(): AiDataClassContext {
+		let _localctx: AiDataClassContext = new AiDataClassContext(this._ctx, this.state);
+		this.enterRule(_localctx, 4, MapIniParser.RULE_aiDataClass);
 		let _la: number;
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 118;
-			this.match(MapIniParser.T__0);
-			this.state = 119;
-			this.match(MapIniParser.ID);
 			this.state = 120;
-			this.match(MapIniParser.ID);
-			this.state = 137;
-			this._errHandler.sync(this);
-			switch ( this.interpreter.adaptivePredict(this._input, 6, this._ctx) ) {
-			case 1:
-				{
-				this.state = 126;
-				this._errHandler.sync(this);
-				_la = this._input.LA(1);
-				while ((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << MapIniParser.T__4) | (1 << MapIniParser.T__5) | (1 << MapIniParser.T__6) | (1 << MapIniParser.T__8) | (1 << MapIniParser.T__10) | (1 << MapIniParser.T__11) | (1 << MapIniParser.T__12) | (1 << MapIniParser.T__13) | (1 << MapIniParser.T__14) | (1 << MapIniParser.T__15) | (1 << MapIniParser.T__21) | (1 << MapIniParser.T__22))) !== 0) || _la === MapIniParser.ID) {
-					{
-					this.state = 124;
-					this._errHandler.sync(this);
-					switch (this._input.LA(1)) {
-					case MapIniParser.T__8:
-					case MapIniParser.T__10:
-					case MapIniParser.T__11:
-					case MapIniParser.T__12:
-					case MapIniParser.T__13:
-					case MapIniParser.T__14:
-					case MapIniParser.T__15:
-					case MapIniParser.T__21:
-					case MapIniParser.T__22:
-						{
-						this.state = 121;
-						this.modules();
-						}
-						break;
-					case MapIniParser.ID:
-						{
-						this.state = 122;
-						this.objectProperty();
-						}
-						break;
-					case MapIniParser.T__4:
-					case MapIniParser.T__5:
-					case MapIniParser.T__6:
-						{
-						this.state = 123;
-						this.objectKindOfProperty();
-						}
-						break;
-					default:
-						throw new NoViableAltException(this);
-					}
-					}
-					this.state = 128;
-					this._errHandler.sync(this);
-					_la = this._input.LA(1);
-				}
-				}
-				break;
-
-			case 2:
-				{
-				this.state = 134;
-				this._errHandler.sync(this);
-				_la = this._input.LA(1);
-				while ((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << MapIniParser.T__3) | (1 << MapIniParser.T__4) | (1 << MapIniParser.T__5) | (1 << MapIniParser.T__6) | (1 << MapIniParser.T__7) | (1 << MapIniParser.T__8) | (1 << MapIniParser.T__10) | (1 << MapIniParser.T__11) | (1 << MapIniParser.T__12) | (1 << MapIniParser.T__13) | (1 << MapIniParser.T__29))) !== 0) || _la === MapIniParser.ID) {
-					{
-					this.state = 132;
-					this._errHandler.sync(this);
-					switch (this._input.LA(1)) {
-					case MapIniParser.T__3:
-					case MapIniParser.T__7:
-					case MapIniParser.T__8:
-					case MapIniParser.T__10:
-					case MapIniParser.T__11:
-					case MapIniParser.T__12:
-					case MapIniParser.T__13:
-					case MapIniParser.T__29:
-						{
-						this.state = 129;
-						this.moduleBlocks();
-						}
-						break;
-					case MapIniParser.ID:
-						{
-						this.state = 130;
-						this.objectProperty();
-						}
-						break;
-					case MapIniParser.T__4:
-					case MapIniParser.T__5:
-					case MapIniParser.T__6:
-						{
-						this.state = 131;
-						this.objectKindOfProperty();
-						}
-						break;
-					default:
-						throw new NoViableAltException(this);
-					}
-					}
-					this.state = 136;
-					this._errHandler.sync(this);
-					_la = this._input.LA(1);
-				}
-				}
-				break;
-			}
-			this.state = 139;
-			this.end();
-			}
-		}
-		catch (re) {
-			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
-				this._errHandler.reportError(this, re);
-				this._errHandler.recover(this, re);
-			} else {
-				throw re;
-			}
-		}
-		finally {
-			this.exitRule();
-		}
-		return _localctx;
-	}
-	// @RuleVersion(0)
-	public object(): ObjectContext {
-		let _localctx: ObjectContext = new ObjectContext(this._ctx, this.state);
-		this.enterRule(_localctx, 6, MapIniParser.RULE_object);
-		let _la: number;
-		try {
-			this.enterOuterAlt(_localctx, 1);
-			{
-			this.state = 141;
-			this.match(MapIniParser.T__1);
-			this.state = 142;
-			this.match(MapIniParser.ID);
-			this.state = 159;
-			this._errHandler.sync(this);
-			switch ( this.interpreter.adaptivePredict(this._input, 11, this._ctx) ) {
-			case 1:
-				{
-				this.state = 148;
-				this._errHandler.sync(this);
-				_la = this._input.LA(1);
-				while ((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << MapIniParser.T__4) | (1 << MapIniParser.T__5) | (1 << MapIniParser.T__6) | (1 << MapIniParser.T__8) | (1 << MapIniParser.T__10) | (1 << MapIniParser.T__11) | (1 << MapIniParser.T__12) | (1 << MapIniParser.T__13) | (1 << MapIniParser.T__14) | (1 << MapIniParser.T__15) | (1 << MapIniParser.T__21) | (1 << MapIniParser.T__22))) !== 0) || _la === MapIniParser.ID) {
-					{
-					this.state = 146;
-					this._errHandler.sync(this);
-					switch (this._input.LA(1)) {
-					case MapIniParser.T__8:
-					case MapIniParser.T__10:
-					case MapIniParser.T__11:
-					case MapIniParser.T__12:
-					case MapIniParser.T__13:
-					case MapIniParser.T__14:
-					case MapIniParser.T__15:
-					case MapIniParser.T__21:
-					case MapIniParser.T__22:
-						{
-						this.state = 143;
-						this.modules();
-						}
-						break;
-					case MapIniParser.ID:
-						{
-						this.state = 144;
-						this.objectProperty();
-						}
-						break;
-					case MapIniParser.T__4:
-					case MapIniParser.T__5:
-					case MapIniParser.T__6:
-						{
-						this.state = 145;
-						this.objectKindOfProperty();
-						}
-						break;
-					default:
-						throw new NoViableAltException(this);
-					}
-					}
-					this.state = 150;
-					this._errHandler.sync(this);
-					_la = this._input.LA(1);
-				}
-				}
-				break;
-
-			case 2:
-				{
-				this.state = 156;
-				this._errHandler.sync(this);
-				_la = this._input.LA(1);
-				while ((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << MapIniParser.T__3) | (1 << MapIniParser.T__4) | (1 << MapIniParser.T__5) | (1 << MapIniParser.T__6) | (1 << MapIniParser.T__7) | (1 << MapIniParser.T__8) | (1 << MapIniParser.T__10) | (1 << MapIniParser.T__11) | (1 << MapIniParser.T__12) | (1 << MapIniParser.T__13) | (1 << MapIniParser.T__29))) !== 0) || _la === MapIniParser.ID) {
-					{
-					this.state = 154;
-					this._errHandler.sync(this);
-					switch (this._input.LA(1)) {
-					case MapIniParser.T__3:
-					case MapIniParser.T__7:
-					case MapIniParser.T__8:
-					case MapIniParser.T__10:
-					case MapIniParser.T__11:
-					case MapIniParser.T__12:
-					case MapIniParser.T__13:
-					case MapIniParser.T__29:
-						{
-						this.state = 151;
-						this.moduleBlocks();
-						}
-						break;
-					case MapIniParser.ID:
-						{
-						this.state = 152;
-						this.objectProperty();
-						}
-						break;
-					case MapIniParser.T__4:
-					case MapIniParser.T__5:
-					case MapIniParser.T__6:
-						{
-						this.state = 153;
-						this.objectKindOfProperty();
-						}
-						break;
-					default:
-						throw new NoViableAltException(this);
-					}
-					}
-					this.state = 158;
-					this._errHandler.sync(this);
-					_la = this._input.LA(1);
-				}
-				}
-				break;
-			}
-			this.state = 161;
-			this.end();
-			}
-		}
-		catch (re) {
-			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
-				this._errHandler.reportError(this, re);
-				this._errHandler.recover(this, re);
-			} else {
-				throw re;
-			}
-		}
-		finally {
-			this.exitRule();
-		}
-		return _localctx;
-	}
-	// @RuleVersion(0)
-	public objectProperty(): ObjectPropertyContext {
-		let _localctx: ObjectPropertyContext = new ObjectPropertyContext(this._ctx, this.state);
-		this.enterRule(_localctx, 8, MapIniParser.RULE_objectProperty);
-		try {
-			let _alt: number;
-			this.enterOuterAlt(_localctx, 1);
-			{
-			this.state = 163;
-			this.match(MapIniParser.ID);
-			this.state = 164;
-			this.match(MapIniParser.T__2);
-			this.state = 166;
-			this._errHandler.sync(this);
-			_alt = 1;
-			do {
-				switch (_alt) {
-				case 1:
-					{
-					{
-					this.state = 165;
-					this.value();
-					}
-					}
-					break;
-				default:
-					throw new NoViableAltException(this);
-				}
-				this.state = 168;
-				this._errHandler.sync(this);
-				_alt = this.interpreter.adaptivePredict(this._input, 12, this._ctx);
-			} while (_alt !== 2 && _alt !== ATN.INVALID_ALT_NUMBER);
-			}
-		}
-		catch (re) {
-			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
-				this._errHandler.reportError(this, re);
-				this._errHandler.recover(this, re);
-			} else {
-				throw re;
-			}
-		}
-		finally {
-			this.exitRule();
-		}
-		return _localctx;
-	}
-	// @RuleVersion(0)
-	public moduleBlocks(): ModuleBlocksContext {
-		let _localctx: ModuleBlocksContext = new ModuleBlocksContext(this._ctx, this.state);
-		this.enterRule(_localctx, 10, MapIniParser.RULE_moduleBlocks);
-		try {
-			this.state = 174;
-			this._errHandler.sync(this);
-			switch (this._input.LA(1)) {
-			case MapIniParser.T__3:
-				this.enterOuterAlt(_localctx, 1);
-				{
-				this.state = 170;
-				this.addModuleBlock();
-				}
-				break;
-			case MapIniParser.T__7:
-				this.enterOuterAlt(_localctx, 2);
-				{
-				this.state = 171;
-				this.replaceModuleBlock();
-				}
-				break;
-			case MapIniParser.T__29:
-				this.enterOuterAlt(_localctx, 3);
-				{
-				this.state = 172;
-				this.removeModuleBlock();
-				}
-				break;
-			case MapIniParser.T__8:
-			case MapIniParser.T__10:
-			case MapIniParser.T__11:
-			case MapIniParser.T__12:
-			case MapIniParser.T__13:
-				this.enterOuterAlt(_localctx, 4);
-				{
-				this.state = 173;
-				this.objectBlocks();
-				}
-				break;
-			default:
-				throw new NoViableAltException(this);
-			}
-		}
-		catch (re) {
-			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
-				this._errHandler.reportError(this, re);
-				this._errHandler.recover(this, re);
-			} else {
-				throw re;
-			}
-		}
-		finally {
-			this.exitRule();
-		}
-		return _localctx;
-	}
-	// @RuleVersion(0)
-	public addModuleBlock(): AddModuleBlockContext {
-		let _localctx: AddModuleBlockContext = new AddModuleBlockContext(this._ctx, this.state);
-		this.enterRule(_localctx, 12, MapIniParser.RULE_addModuleBlock);
-		let _la: number;
-		try {
-			this.enterOuterAlt(_localctx, 1);
-			{
-			this.state = 176;
-			this.match(MapIniParser.T__3);
-			this.state = 182;
+			this.match(MapIniParser.T__0);
+			this.state = 126;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			while ((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << MapIniParser.T__4) | (1 << MapIniParser.T__5) | (1 << MapIniParser.T__6) | (1 << MapIniParser.T__8) | (1 << MapIniParser.T__10) | (1 << MapIniParser.T__11) | (1 << MapIniParser.T__12) | (1 << MapIniParser.T__13) | (1 << MapIniParser.T__14) | (1 << MapIniParser.T__15) | (1 << MapIniParser.T__21) | (1 << MapIniParser.T__22))) !== 0) || _la === MapIniParser.ID) {
+			while ((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << MapIniParser.T__1) | (1 << MapIniParser.T__2) | (1 << MapIniParser.T__3) | (1 << MapIniParser.T__4) | (1 << MapIniParser.T__5) | (1 << MapIniParser.T__6) | (1 << MapIniParser.T__7) | (1 << MapIniParser.T__8) | (1 << MapIniParser.T__9) | (1 << MapIniParser.T__10) | (1 << MapIniParser.T__11) | (1 << MapIniParser.T__12) | (1 << MapIniParser.T__13) | (1 << MapIniParser.T__14) | (1 << MapIniParser.T__15) | (1 << MapIniParser.T__16) | (1 << MapIniParser.T__17) | (1 << MapIniParser.T__18) | (1 << MapIniParser.T__19) | (1 << MapIniParser.T__20) | (1 << MapIniParser.T__21) | (1 << MapIniParser.T__22) | (1 << MapIniParser.T__23) | (1 << MapIniParser.T__24) | (1 << MapIniParser.T__25) | (1 << MapIniParser.T__26) | (1 << MapIniParser.T__27) | (1 << MapIniParser.T__28) | (1 << MapIniParser.T__29) | (1 << MapIniParser.T__30))) !== 0) || ((((_la - 32)) & ~0x1F) === 0 && ((1 << (_la - 32)) & ((1 << (MapIniParser.T__31 - 32)) | (1 << (MapIniParser.T__32 - 32)) | (1 << (MapIniParser.T__33 - 32)) | (1 << (MapIniParser.T__34 - 32)) | (1 << (MapIniParser.T__35 - 32)) | (1 << (MapIniParser.T__36 - 32)) | (1 << (MapIniParser.T__37 - 32)) | (1 << (MapIniParser.T__38 - 32)) | (1 << (MapIniParser.T__39 - 32)) | (1 << (MapIniParser.T__40 - 32)) | (1 << (MapIniParser.T__41 - 32)) | (1 << (MapIniParser.T__42 - 32)) | (1 << (MapIniParser.T__43 - 32)) | (1 << (MapIniParser.T__50 - 32)))) !== 0)) {
 				{
-				this.state = 180;
-				this._errHandler.sync(this);
-				switch (this._input.LA(1)) {
-				case MapIniParser.T__8:
-				case MapIniParser.T__10:
-				case MapIniParser.T__11:
-				case MapIniParser.T__12:
-				case MapIniParser.T__13:
-				case MapIniParser.T__14:
-				case MapIniParser.T__15:
-				case MapIniParser.T__21:
-				case MapIniParser.T__22:
-					{
-					this.state = 177;
-					this.modules();
-					}
-					break;
-				case MapIniParser.ID:
-					{
-					this.state = 178;
-					this.addModuleProperty();
-					}
-					break;
-				case MapIniParser.T__4:
-				case MapIniParser.T__5:
-				case MapIniParser.T__6:
-					{
-					this.state = 179;
-					this.objectKindOfProperty();
-					}
-					break;
-				default:
-					throw new NoViableAltException(this);
-				}
-				}
-				this.state = 184;
-				this._errHandler.sync(this);
-				_la = this._input.LA(1);
-			}
-			this.state = 185;
-			this.end();
-			}
-		}
-		catch (re) {
-			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
-				this._errHandler.reportError(this, re);
-				this._errHandler.recover(this, re);
-			} else {
-				throw re;
-			}
-		}
-		finally {
-			this.exitRule();
-		}
-		return _localctx;
-	}
-	// @RuleVersion(0)
-	public addModuleProperty(): AddModulePropertyContext {
-		let _localctx: AddModulePropertyContext = new AddModulePropertyContext(this._ctx, this.state);
-		this.enterRule(_localctx, 14, MapIniParser.RULE_addModuleProperty);
-		try {
-			let _alt: number;
-			this.enterOuterAlt(_localctx, 1);
-			{
-			this.state = 187;
-			this.match(MapIniParser.ID);
-			this.state = 188;
-			this.match(MapIniParser.T__2);
-			this.state = 190;
-			this._errHandler.sync(this);
-			_alt = 1;
-			do {
-				switch (_alt) {
-				case 1:
-					{
-					{
-					this.state = 189;
-					this.value();
-					}
-					}
-					break;
-				default:
-					throw new NoViableAltException(this);
-				}
-				this.state = 192;
-				this._errHandler.sync(this);
-				_alt = this.interpreter.adaptivePredict(this._input, 16, this._ctx);
-			} while (_alt !== 2 && _alt !== ATN.INVALID_ALT_NUMBER);
-			}
-		}
-		catch (re) {
-			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
-				this._errHandler.reportError(this, re);
-				this._errHandler.recover(this, re);
-			} else {
-				throw re;
-			}
-		}
-		finally {
-			this.exitRule();
-		}
-		return _localctx;
-	}
-	// @RuleVersion(0)
-	public objectKindOfProperty(): ObjectKindOfPropertyContext {
-		let _localctx: ObjectKindOfPropertyContext = new ObjectKindOfPropertyContext(this._ctx, this.state);
-		this.enterRule(_localctx, 16, MapIniParser.RULE_objectKindOfProperty);
-		let _la: number;
-		try {
-			let _alt: number;
-			this.enterOuterAlt(_localctx, 1);
-			{
-			this.state = 194;
-			_la = this._input.LA(1);
-			if (!((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << MapIniParser.T__4) | (1 << MapIniParser.T__5) | (1 << MapIniParser.T__6))) !== 0))) {
-			this._errHandler.recoverInline(this);
-			} else {
-				if (this._input.LA(1) === Token.EOF) {
-					this.matchedEOF = true;
-				}
-
-				this._errHandler.reportMatch(this);
-				this.consume();
-			}
-			this.state = 195;
-			this.match(MapIniParser.T__2);
-			this.state = 197;
-			this._errHandler.sync(this);
-			_alt = 1;
-			do {
-				switch (_alt) {
-				case 1:
-					{
-					{
-					this.state = 196;
-					this.match(MapIniParser.ID);
-					}
-					}
-					break;
-				default:
-					throw new NoViableAltException(this);
-				}
-				this.state = 199;
-				this._errHandler.sync(this);
-				_alt = this.interpreter.adaptivePredict(this._input, 17, this._ctx);
-			} while (_alt !== 2 && _alt !== ATN.INVALID_ALT_NUMBER);
-			}
-		}
-		catch (re) {
-			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
-				this._errHandler.reportError(this, re);
-				this._errHandler.recover(this, re);
-			} else {
-				throw re;
-			}
-		}
-		finally {
-			this.exitRule();
-		}
-		return _localctx;
-	}
-	// @RuleVersion(0)
-	public replaceModuleBlock(): ReplaceModuleBlockContext {
-		let _localctx: ReplaceModuleBlockContext = new ReplaceModuleBlockContext(this._ctx, this.state);
-		this.enterRule(_localctx, 18, MapIniParser.RULE_replaceModuleBlock);
-		let _la: number;
-		try {
-			this.enterOuterAlt(_localctx, 1);
-			{
-			this.state = 201;
-			this.match(MapIniParser.T__7);
-			this.state = 202;
-			this.match(MapIniParser.ID);
-			this.state = 207;
-			this._errHandler.sync(this);
-			_la = this._input.LA(1);
-			while ((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << MapIniParser.T__8) | (1 << MapIniParser.T__10) | (1 << MapIniParser.T__11) | (1 << MapIniParser.T__12) | (1 << MapIniParser.T__13) | (1 << MapIniParser.T__14) | (1 << MapIniParser.T__15) | (1 << MapIniParser.T__21) | (1 << MapIniParser.T__22))) !== 0) || _la === MapIniParser.ID) {
-				{
-				this.state = 205;
-				this._errHandler.sync(this);
-				switch (this._input.LA(1)) {
-				case MapIniParser.T__8:
-				case MapIniParser.T__10:
-				case MapIniParser.T__11:
-				case MapIniParser.T__12:
-				case MapIniParser.T__13:
-				case MapIniParser.T__14:
-				case MapIniParser.T__15:
-				case MapIniParser.T__21:
-				case MapIniParser.T__22:
-					{
-					this.state = 203;
-					this.modules();
-					}
-					break;
-				case MapIniParser.ID:
-					{
-					this.state = 204;
-					this.replaceModuleProperty();
-					}
-					break;
-				default:
-					throw new NoViableAltException(this);
-				}
-				}
-				this.state = 209;
-				this._errHandler.sync(this);
-				_la = this._input.LA(1);
-			}
-			this.state = 210;
-			this.end();
-			}
-		}
-		catch (re) {
-			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
-				this._errHandler.reportError(this, re);
-				this._errHandler.recover(this, re);
-			} else {
-				throw re;
-			}
-		}
-		finally {
-			this.exitRule();
-		}
-		return _localctx;
-	}
-	// @RuleVersion(0)
-	public replaceModuleProperty(): ReplaceModulePropertyContext {
-		let _localctx: ReplaceModulePropertyContext = new ReplaceModulePropertyContext(this._ctx, this.state);
-		this.enterRule(_localctx, 20, MapIniParser.RULE_replaceModuleProperty);
-		try {
-			let _alt: number;
-			this.enterOuterAlt(_localctx, 1);
-			{
-			this.state = 212;
-			this.match(MapIniParser.ID);
-			this.state = 213;
-			this.match(MapIniParser.T__2);
-			this.state = 215;
-			this._errHandler.sync(this);
-			_alt = 1;
-			do {
-				switch (_alt) {
-				case 1:
-					{
-					{
-					this.state = 214;
-					this.value();
-					}
-					}
-					break;
-				default:
-					throw new NoViableAltException(this);
-				}
-				this.state = 217;
-				this._errHandler.sync(this);
-				_alt = this.interpreter.adaptivePredict(this._input, 20, this._ctx);
-			} while (_alt !== 2 && _alt !== ATN.INVALID_ALT_NUMBER);
-			}
-		}
-		catch (re) {
-			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
-				this._errHandler.reportError(this, re);
-				this._errHandler.recover(this, re);
-			} else {
-				throw re;
-			}
-		}
-		finally {
-			this.exitRule();
-		}
-		return _localctx;
-	}
-	// @RuleVersion(0)
-	public modules(): ModulesContext {
-		let _localctx: ModulesContext = new ModulesContext(this._ctx, this.state);
-		this.enterRule(_localctx, 22, MapIniParser.RULE_modules);
-		try {
-			this.state = 224;
-			this._errHandler.sync(this);
-			switch (this._input.LA(1)) {
-			case MapIniParser.T__22:
-				this.enterOuterAlt(_localctx, 1);
-				{
-				this.state = 219;
-				this.drawModuleBlock();
-				}
-				break;
-			case MapIniParser.T__21:
-				this.enterOuterAlt(_localctx, 2);
-				{
-				this.state = 220;
-				this.bodyModuleBlock();
-				}
-				break;
-			case MapIniParser.T__15:
-				this.enterOuterAlt(_localctx, 3);
-				{
-				this.state = 221;
-				this.behaviormoduleBlock();
-				}
-				break;
-			case MapIniParser.T__14:
-				this.enterOuterAlt(_localctx, 4);
-				{
-				this.state = 222;
-				this.clientModuleBlock();
-				}
-				break;
-			case MapIniParser.T__8:
-			case MapIniParser.T__10:
-			case MapIniParser.T__11:
-			case MapIniParser.T__12:
-			case MapIniParser.T__13:
-				this.enterOuterAlt(_localctx, 5);
-				{
-				this.state = 223;
-				this.objectBlocks();
-				}
-				break;
-			default:
-				throw new NoViableAltException(this);
-			}
-		}
-		catch (re) {
-			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
-				this._errHandler.reportError(this, re);
-				this._errHandler.recover(this, re);
-			} else {
-				throw re;
-			}
-		}
-		finally {
-			this.exitRule();
-		}
-		return _localctx;
-	}
-	// @RuleVersion(0)
-	public objectBlocks(): ObjectBlocksContext {
-		let _localctx: ObjectBlocksContext = new ObjectBlocksContext(this._ctx, this.state);
-		this.enterRule(_localctx, 24, MapIniParser.RULE_objectBlocks);
-		try {
-			this.state = 231;
-			this._errHandler.sync(this);
-			switch (this._input.LA(1)) {
-			case MapIniParser.T__8:
-				this.enterOuterAlt(_localctx, 1);
-				{
-				this.state = 226;
-				this.objectPrerequisites();
-				}
-				break;
-			case MapIniParser.T__10:
-				this.enterOuterAlt(_localctx, 2);
-				{
-				this.state = 227;
-				this.objectWeaponSet();
-				}
-				break;
-			case MapIniParser.T__11:
-				this.enterOuterAlt(_localctx, 3);
-				{
-				this.state = 228;
-				this.objectArmorSet();
-				}
-				break;
-			case MapIniParser.T__12:
-				this.enterOuterAlt(_localctx, 4);
-				{
-				this.state = 229;
-				this.objectUnitSpecificSounds();
-				}
-				break;
-			case MapIniParser.T__13:
-				this.enterOuterAlt(_localctx, 5);
-				{
-				this.state = 230;
-				this.objectUnitSpecificFX();
-				}
-				break;
-			default:
-				throw new NoViableAltException(this);
-			}
-		}
-		catch (re) {
-			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
-				this._errHandler.reportError(this, re);
-				this._errHandler.recover(this, re);
-			} else {
-				throw re;
-			}
-		}
-		finally {
-			this.exitRule();
-		}
-		return _localctx;
-	}
-	// @RuleVersion(0)
-	public objectPrerequisites(): ObjectPrerequisitesContext {
-		let _localctx: ObjectPrerequisitesContext = new ObjectPrerequisitesContext(this._ctx, this.state);
-		this.enterRule(_localctx, 26, MapIniParser.RULE_objectPrerequisites);
-		let _la: number;
-		try {
-			this.enterOuterAlt(_localctx, 1);
-			{
-			this.state = 233;
-			this.match(MapIniParser.T__8);
-			this.state = 238;
-			this._errHandler.sync(this);
-			_la = this._input.LA(1);
-			while (_la === MapIniParser.T__1 || _la === MapIniParser.T__9) {
-				{
-				this.state = 236;
+				this.state = 124;
 				this._errHandler.sync(this);
 				switch (this._input.LA(1)) {
 				case MapIniParser.T__1:
-					{
-					this.state = 234;
-					this.objectPrerequisitesobjectProperty();
-					}
-					break;
-				case MapIniParser.T__9:
-					{
-					this.state = 235;
-					this.objectPrerequisitessciencePropety();
-					}
-					break;
-				default:
-					throw new NoViableAltException(this);
-				}
-				}
-				this.state = 240;
-				this._errHandler.sync(this);
-				_la = this._input.LA(1);
-			}
-			this.state = 241;
-			this.end();
-			}
-		}
-		catch (re) {
-			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
-				this._errHandler.reportError(this, re);
-				this._errHandler.recover(this, re);
-			} else {
-				throw re;
-			}
-		}
-		finally {
-			this.exitRule();
-		}
-		return _localctx;
-	}
-	// @RuleVersion(0)
-	public objectPrerequisitesobjectProperty(): ObjectPrerequisitesobjectPropertyContext {
-		let _localctx: ObjectPrerequisitesobjectPropertyContext = new ObjectPrerequisitesobjectPropertyContext(this._ctx, this.state);
-		this.enterRule(_localctx, 28, MapIniParser.RULE_objectPrerequisitesobjectProperty);
-		let _la: number;
-		try {
-			this.enterOuterAlt(_localctx, 1);
-			{
-			this.state = 243;
-			this.match(MapIniParser.T__1);
-			this.state = 244;
-			this.match(MapIniParser.T__2);
-			this.state = 246;
-			this._errHandler.sync(this);
-			_la = this._input.LA(1);
-			do {
-				{
-				{
-				this.state = 245;
-				this.match(MapIniParser.ID);
-				}
-				}
-				this.state = 248;
-				this._errHandler.sync(this);
-				_la = this._input.LA(1);
-			} while (_la === MapIniParser.ID);
-			}
-		}
-		catch (re) {
-			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
-				this._errHandler.reportError(this, re);
-				this._errHandler.recover(this, re);
-			} else {
-				throw re;
-			}
-		}
-		finally {
-			this.exitRule();
-		}
-		return _localctx;
-	}
-	// @RuleVersion(0)
-	public objectPrerequisitessciencePropety(): ObjectPrerequisitessciencePropetyContext {
-		let _localctx: ObjectPrerequisitessciencePropetyContext = new ObjectPrerequisitessciencePropetyContext(this._ctx, this.state);
-		this.enterRule(_localctx, 30, MapIniParser.RULE_objectPrerequisitessciencePropety);
-		let _la: number;
-		try {
-			this.enterOuterAlt(_localctx, 1);
-			{
-			this.state = 250;
-			this.match(MapIniParser.T__9);
-			this.state = 251;
-			this.match(MapIniParser.T__2);
-			this.state = 253;
-			this._errHandler.sync(this);
-			_la = this._input.LA(1);
-			do {
-				{
-				{
-				this.state = 252;
-				this.match(MapIniParser.ID);
-				}
-				}
-				this.state = 255;
-				this._errHandler.sync(this);
-				_la = this._input.LA(1);
-			} while (_la === MapIniParser.ID);
-			}
-		}
-		catch (re) {
-			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
-				this._errHandler.reportError(this, re);
-				this._errHandler.recover(this, re);
-			} else {
-				throw re;
-			}
-		}
-		finally {
-			this.exitRule();
-		}
-		return _localctx;
-	}
-	// @RuleVersion(0)
-	public objectWeaponSet(): ObjectWeaponSetContext {
-		let _localctx: ObjectWeaponSetContext = new ObjectWeaponSetContext(this._ctx, this.state);
-		this.enterRule(_localctx, 32, MapIniParser.RULE_objectWeaponSet);
-		let _la: number;
-		try {
-			this.enterOuterAlt(_localctx, 1);
-			{
-			this.state = 257;
-			this.match(MapIniParser.T__10);
-			this.state = 261;
-			this._errHandler.sync(this);
-			_la = this._input.LA(1);
-			while (_la === MapIniParser.ID) {
-				{
-				{
-				this.state = 258;
-				this.objectWeaponSetPropety();
-				}
-				}
-				this.state = 263;
-				this._errHandler.sync(this);
-				_la = this._input.LA(1);
-			}
-			this.state = 264;
-			this.end();
-			}
-		}
-		catch (re) {
-			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
-				this._errHandler.reportError(this, re);
-				this._errHandler.recover(this, re);
-			} else {
-				throw re;
-			}
-		}
-		finally {
-			this.exitRule();
-		}
-		return _localctx;
-	}
-	// @RuleVersion(0)
-	public objectWeaponSetPropety(): ObjectWeaponSetPropetyContext {
-		let _localctx: ObjectWeaponSetPropetyContext = new ObjectWeaponSetPropetyContext(this._ctx, this.state);
-		this.enterRule(_localctx, 34, MapIniParser.RULE_objectWeaponSetPropety);
-		try {
-			let _alt: number;
-			this.enterOuterAlt(_localctx, 1);
-			{
-			this.state = 266;
-			this.match(MapIniParser.ID);
-			this.state = 267;
-			this.match(MapIniParser.T__2);
-			this.state = 269;
-			this._errHandler.sync(this);
-			_alt = 1;
-			do {
-				switch (_alt) {
-				case 1:
-					{
-					{
-					this.state = 268;
-					this.value();
-					}
-					}
-					break;
-				default:
-					throw new NoViableAltException(this);
-				}
-				this.state = 271;
-				this._errHandler.sync(this);
-				_alt = this.interpreter.adaptivePredict(this._input, 28, this._ctx);
-			} while (_alt !== 2 && _alt !== ATN.INVALID_ALT_NUMBER);
-			}
-		}
-		catch (re) {
-			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
-				this._errHandler.reportError(this, re);
-				this._errHandler.recover(this, re);
-			} else {
-				throw re;
-			}
-		}
-		finally {
-			this.exitRule();
-		}
-		return _localctx;
-	}
-	// @RuleVersion(0)
-	public objectArmorSet(): ObjectArmorSetContext {
-		let _localctx: ObjectArmorSetContext = new ObjectArmorSetContext(this._ctx, this.state);
-		this.enterRule(_localctx, 36, MapIniParser.RULE_objectArmorSet);
-		let _la: number;
-		try {
-			this.enterOuterAlt(_localctx, 1);
-			{
-			this.state = 273;
-			this.match(MapIniParser.T__11);
-			this.state = 277;
-			this._errHandler.sync(this);
-			_la = this._input.LA(1);
-			while (_la === MapIniParser.ID) {
-				{
-				{
-				this.state = 274;
-				this.objectArmorSetPropety();
-				}
-				}
-				this.state = 279;
-				this._errHandler.sync(this);
-				_la = this._input.LA(1);
-			}
-			this.state = 280;
-			this.end();
-			}
-		}
-		catch (re) {
-			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
-				this._errHandler.reportError(this, re);
-				this._errHandler.recover(this, re);
-			} else {
-				throw re;
-			}
-		}
-		finally {
-			this.exitRule();
-		}
-		return _localctx;
-	}
-	// @RuleVersion(0)
-	public objectArmorSetPropety(): ObjectArmorSetPropetyContext {
-		let _localctx: ObjectArmorSetPropetyContext = new ObjectArmorSetPropetyContext(this._ctx, this.state);
-		this.enterRule(_localctx, 38, MapIniParser.RULE_objectArmorSetPropety);
-		try {
-			let _alt: number;
-			this.enterOuterAlt(_localctx, 1);
-			{
-			this.state = 282;
-			this.match(MapIniParser.ID);
-			this.state = 283;
-			this.match(MapIniParser.T__2);
-			this.state = 285;
-			this._errHandler.sync(this);
-			_alt = 1;
-			do {
-				switch (_alt) {
-				case 1:
-					{
-					{
-					this.state = 284;
-					this.value();
-					}
-					}
-					break;
-				default:
-					throw new NoViableAltException(this);
-				}
-				this.state = 287;
-				this._errHandler.sync(this);
-				_alt = this.interpreter.adaptivePredict(this._input, 30, this._ctx);
-			} while (_alt !== 2 && _alt !== ATN.INVALID_ALT_NUMBER);
-			}
-		}
-		catch (re) {
-			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
-				this._errHandler.reportError(this, re);
-				this._errHandler.recover(this, re);
-			} else {
-				throw re;
-			}
-		}
-		finally {
-			this.exitRule();
-		}
-		return _localctx;
-	}
-	// @RuleVersion(0)
-	public objectUnitSpecificSounds(): ObjectUnitSpecificSoundsContext {
-		let _localctx: ObjectUnitSpecificSoundsContext = new ObjectUnitSpecificSoundsContext(this._ctx, this.state);
-		this.enterRule(_localctx, 40, MapIniParser.RULE_objectUnitSpecificSounds);
-		let _la: number;
-		try {
-			this.enterOuterAlt(_localctx, 1);
-			{
-			this.state = 289;
-			this.match(MapIniParser.T__12);
-			this.state = 293;
-			this._errHandler.sync(this);
-			_la = this._input.LA(1);
-			while (_la === MapIniParser.ID) {
-				{
-				{
-				this.state = 290;
-				this.objectUnitSpecificSoundsPropety();
-				}
-				}
-				this.state = 295;
-				this._errHandler.sync(this);
-				_la = this._input.LA(1);
-			}
-			this.state = 296;
-			this.end();
-			}
-		}
-		catch (re) {
-			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
-				this._errHandler.reportError(this, re);
-				this._errHandler.recover(this, re);
-			} else {
-				throw re;
-			}
-		}
-		finally {
-			this.exitRule();
-		}
-		return _localctx;
-	}
-	// @RuleVersion(0)
-	public objectUnitSpecificSoundsPropety(): ObjectUnitSpecificSoundsPropetyContext {
-		let _localctx: ObjectUnitSpecificSoundsPropetyContext = new ObjectUnitSpecificSoundsPropetyContext(this._ctx, this.state);
-		this.enterRule(_localctx, 42, MapIniParser.RULE_objectUnitSpecificSoundsPropety);
-		try {
-			let _alt: number;
-			this.enterOuterAlt(_localctx, 1);
-			{
-			this.state = 298;
-			this.match(MapIniParser.ID);
-			this.state = 299;
-			this.match(MapIniParser.T__2);
-			this.state = 301;
-			this._errHandler.sync(this);
-			_alt = 1;
-			do {
-				switch (_alt) {
-				case 1:
-					{
-					{
-					this.state = 300;
-					this.value();
-					}
-					}
-					break;
-				default:
-					throw new NoViableAltException(this);
-				}
-				this.state = 303;
-				this._errHandler.sync(this);
-				_alt = this.interpreter.adaptivePredict(this._input, 32, this._ctx);
-			} while (_alt !== 2 && _alt !== ATN.INVALID_ALT_NUMBER);
-			}
-		}
-		catch (re) {
-			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
-				this._errHandler.reportError(this, re);
-				this._errHandler.recover(this, re);
-			} else {
-				throw re;
-			}
-		}
-		finally {
-			this.exitRule();
-		}
-		return _localctx;
-	}
-	// @RuleVersion(0)
-	public objectUnitSpecificFX(): ObjectUnitSpecificFXContext {
-		let _localctx: ObjectUnitSpecificFXContext = new ObjectUnitSpecificFXContext(this._ctx, this.state);
-		this.enterRule(_localctx, 44, MapIniParser.RULE_objectUnitSpecificFX);
-		let _la: number;
-		try {
-			this.enterOuterAlt(_localctx, 1);
-			{
-			this.state = 305;
-			this.match(MapIniParser.T__13);
-			this.state = 309;
-			this._errHandler.sync(this);
-			_la = this._input.LA(1);
-			while (_la === MapIniParser.ID) {
-				{
-				{
-				this.state = 306;
-				this.objectUnitSpecificFXPropety();
-				}
-				}
-				this.state = 311;
-				this._errHandler.sync(this);
-				_la = this._input.LA(1);
-			}
-			this.state = 312;
-			this.end();
-			}
-		}
-		catch (re) {
-			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
-				this._errHandler.reportError(this, re);
-				this._errHandler.recover(this, re);
-			} else {
-				throw re;
-			}
-		}
-		finally {
-			this.exitRule();
-		}
-		return _localctx;
-	}
-	// @RuleVersion(0)
-	public objectUnitSpecificFXPropety(): ObjectUnitSpecificFXPropetyContext {
-		let _localctx: ObjectUnitSpecificFXPropetyContext = new ObjectUnitSpecificFXPropetyContext(this._ctx, this.state);
-		this.enterRule(_localctx, 46, MapIniParser.RULE_objectUnitSpecificFXPropety);
-		try {
-			let _alt: number;
-			this.enterOuterAlt(_localctx, 1);
-			{
-			this.state = 314;
-			this.match(MapIniParser.ID);
-			this.state = 315;
-			this.match(MapIniParser.T__2);
-			this.state = 317;
-			this._errHandler.sync(this);
-			_alt = 1;
-			do {
-				switch (_alt) {
-				case 1:
-					{
-					{
-					this.state = 316;
-					this.value();
-					}
-					}
-					break;
-				default:
-					throw new NoViableAltException(this);
-				}
-				this.state = 319;
-				this._errHandler.sync(this);
-				_alt = this.interpreter.adaptivePredict(this._input, 34, this._ctx);
-			} while (_alt !== 2 && _alt !== ATN.INVALID_ALT_NUMBER);
-			}
-		}
-		catch (re) {
-			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
-				this._errHandler.reportError(this, re);
-				this._errHandler.recover(this, re);
-			} else {
-				throw re;
-			}
-		}
-		finally {
-			this.exitRule();
-		}
-		return _localctx;
-	}
-	// @RuleVersion(0)
-	public clientModuleBlock(): ClientModuleBlockContext {
-		let _localctx: ClientModuleBlockContext = new ClientModuleBlockContext(this._ctx, this.state);
-		this.enterRule(_localctx, 48, MapIniParser.RULE_clientModuleBlock);
-		let _la: number;
-		try {
-			this.enterOuterAlt(_localctx, 1);
-			{
-			this.state = 321;
-			this.match(MapIniParser.T__14);
-			this.state = 322;
-			this.match(MapIniParser.T__2);
-			this.state = 323;
-			this.match(MapIniParser.ID);
-			this.state = 324;
-			this.match(MapIniParser.ID);
-			this.state = 328;
-			this._errHandler.sync(this);
-			_la = this._input.LA(1);
-			while (_la === MapIniParser.ID) {
-				{
-				{
-				this.state = 325;
-				this.property();
-				}
-				}
-				this.state = 330;
-				this._errHandler.sync(this);
-				_la = this._input.LA(1);
-			}
-			this.state = 331;
-			this.end();
-			}
-		}
-		catch (re) {
-			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
-				this._errHandler.reportError(this, re);
-				this._errHandler.recover(this, re);
-			} else {
-				throw re;
-			}
-		}
-		finally {
-			this.exitRule();
-		}
-		return _localctx;
-	}
-	// @RuleVersion(0)
-	public behaviormoduleBlock(): BehaviormoduleBlockContext {
-		let _localctx: BehaviormoduleBlockContext = new BehaviormoduleBlockContext(this._ctx, this.state);
-		this.enterRule(_localctx, 50, MapIniParser.RULE_behaviormoduleBlock);
-		let _la: number;
-		try {
-			this.enterOuterAlt(_localctx, 1);
-			{
-			this.state = 333;
-			this.match(MapIniParser.T__15);
-			this.state = 334;
-			this.match(MapIniParser.T__2);
-			this.state = 335;
-			this.match(MapIniParser.ID);
-			this.state = 336;
-			this.match(MapIniParser.ID);
-			this.state = 343;
-			this._errHandler.sync(this);
-			_la = this._input.LA(1);
-			while ((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << MapIniParser.T__4) | (1 << MapIniParser.T__5) | (1 << MapIniParser.T__6) | (1 << MapIniParser.T__16) | (1 << MapIniParser.T__17) | (1 << MapIniParser.T__18) | (1 << MapIniParser.T__19) | (1 << MapIniParser.T__20))) !== 0) || _la === MapIniParser.ID) {
-				{
-				this.state = 341;
-				this._errHandler.sync(this);
-				switch (this._input.LA(1)) {
-				case MapIniParser.ID:
-					{
-					this.state = 337;
-					this.property();
-					}
-					break;
-				case MapIniParser.T__19:
-				case MapIniParser.T__20:
-					{
-					this.state = 338;
-					this.behaviorTurret();
-					}
-					break;
+				case MapIniParser.T__2:
+				case MapIniParser.T__3:
 				case MapIniParser.T__4:
 				case MapIniParser.T__5:
 				case MapIniParser.T__6:
-					{
-					this.state = 339;
-					this.objectKindOfProperty();
-					}
-					break;
+				case MapIniParser.T__7:
+				case MapIniParser.T__8:
+				case MapIniParser.T__9:
+				case MapIniParser.T__10:
+				case MapIniParser.T__11:
+				case MapIniParser.T__12:
+				case MapIniParser.T__13:
+				case MapIniParser.T__14:
+				case MapIniParser.T__15:
 				case MapIniParser.T__16:
 				case MapIniParser.T__17:
 				case MapIniParser.T__18:
-					{
-					this.state = 340;
-					this.behaviorDecals();
-					}
-					break;
-				default:
-					throw new NoViableAltException(this);
-				}
-				}
-				this.state = 345;
-				this._errHandler.sync(this);
-				_la = this._input.LA(1);
-			}
-			this.state = 346;
-			this.end();
-			}
-		}
-		catch (re) {
-			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
-				this._errHandler.reportError(this, re);
-				this._errHandler.recover(this, re);
-			} else {
-				throw re;
-			}
-		}
-		finally {
-			this.exitRule();
-		}
-		return _localctx;
-	}
-	// @RuleVersion(0)
-	public behaviorDecals(): BehaviorDecalsContext {
-		let _localctx: BehaviorDecalsContext = new BehaviorDecalsContext(this._ctx, this.state);
-		this.enterRule(_localctx, 52, MapIniParser.RULE_behaviorDecals);
-		let _la: number;
-		try {
-			this.enterOuterAlt(_localctx, 1);
-			{
-			this.state = 348;
-			_la = this._input.LA(1);
-			if (!((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << MapIniParser.T__16) | (1 << MapIniParser.T__17) | (1 << MapIniParser.T__18))) !== 0))) {
-			this._errHandler.recoverInline(this);
-			} else {
-				if (this._input.LA(1) === Token.EOF) {
-					this.matchedEOF = true;
-				}
-
-				this._errHandler.reportMatch(this);
-				this.consume();
-			}
-			this.state = 352;
-			this._errHandler.sync(this);
-			_la = this._input.LA(1);
-			while (_la === MapIniParser.ID) {
-				{
-				{
-				this.state = 349;
-				this.property();
-				}
-				}
-				this.state = 354;
-				this._errHandler.sync(this);
-				_la = this._input.LA(1);
-			}
-			this.state = 355;
-			this.end();
-			}
-		}
-		catch (re) {
-			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
-				this._errHandler.reportError(this, re);
-				this._errHandler.recover(this, re);
-			} else {
-				throw re;
-			}
-		}
-		finally {
-			this.exitRule();
-		}
-		return _localctx;
-	}
-	// @RuleVersion(0)
-	public behaviorTurret(): BehaviorTurretContext {
-		let _localctx: BehaviorTurretContext = new BehaviorTurretContext(this._ctx, this.state);
-		this.enterRule(_localctx, 54, MapIniParser.RULE_behaviorTurret);
-		let _la: number;
-		try {
-			this.enterOuterAlt(_localctx, 1);
-			{
-			this.state = 357;
-			_la = this._input.LA(1);
-			if (!(_la === MapIniParser.T__19 || _la === MapIniParser.T__20)) {
-			this._errHandler.recoverInline(this);
-			} else {
-				if (this._input.LA(1) === Token.EOF) {
-					this.matchedEOF = true;
-				}
-
-				this._errHandler.reportMatch(this);
-				this.consume();
-			}
-			this.state = 361;
-			this._errHandler.sync(this);
-			_la = this._input.LA(1);
-			while (_la === MapIniParser.ID) {
-				{
-				{
-				this.state = 358;
-				this.property();
-				}
-				}
-				this.state = 363;
-				this._errHandler.sync(this);
-				_la = this._input.LA(1);
-			}
-			this.state = 364;
-			this.end();
-			}
-		}
-		catch (re) {
-			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
-				this._errHandler.reportError(this, re);
-				this._errHandler.recover(this, re);
-			} else {
-				throw re;
-			}
-		}
-		finally {
-			this.exitRule();
-		}
-		return _localctx;
-	}
-	// @RuleVersion(0)
-	public bodyModuleBlock(): BodyModuleBlockContext {
-		let _localctx: BodyModuleBlockContext = new BodyModuleBlockContext(this._ctx, this.state);
-		this.enterRule(_localctx, 56, MapIniParser.RULE_bodyModuleBlock);
-		let _la: number;
-		try {
-			this.enterOuterAlt(_localctx, 1);
-			{
-			this.state = 366;
-			this.match(MapIniParser.T__21);
-			this.state = 367;
-			this.match(MapIniParser.T__2);
-			this.state = 368;
-			this.match(MapIniParser.ID);
-			this.state = 369;
-			this.match(MapIniParser.ID);
-			this.state = 373;
-			this._errHandler.sync(this);
-			_la = this._input.LA(1);
-			while (_la === MapIniParser.ID) {
-				{
-				{
-				this.state = 370;
-				this.property();
-				}
-				}
-				this.state = 375;
-				this._errHandler.sync(this);
-				_la = this._input.LA(1);
-			}
-			this.state = 376;
-			this.end();
-			}
-		}
-		catch (re) {
-			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
-				this._errHandler.reportError(this, re);
-				this._errHandler.recover(this, re);
-			} else {
-				throw re;
-			}
-		}
-		finally {
-			this.exitRule();
-		}
-		return _localctx;
-	}
-	// @RuleVersion(0)
-	public drawModuleBlock(): DrawModuleBlockContext {
-		let _localctx: DrawModuleBlockContext = new DrawModuleBlockContext(this._ctx, this.state);
-		this.enterRule(_localctx, 58, MapIniParser.RULE_drawModuleBlock);
-		let _la: number;
-		try {
-			let _alt: number;
-			this.enterOuterAlt(_localctx, 1);
-			{
-			this.state = 378;
-			this.match(MapIniParser.T__22);
-			this.state = 379;
-			this.match(MapIniParser.T__2);
-			this.state = 380;
-			this.match(MapIniParser.ID);
-			this.state = 381;
-			this.match(MapIniParser.ID);
-			this.state = 390;
-			this._errHandler.sync(this);
-			_la = this._input.LA(1);
-			while (((((_la - 24)) & ~0x1F) === 0 && ((1 << (_la - 24)) & ((1 << (MapIniParser.T__23 - 24)) | (1 << (MapIniParser.T__24 - 24)) | (1 << (MapIniParser.T__26 - 24)) | (1 << (MapIniParser.T__27 - 24)) | (1 << (MapIniParser.T__28 - 24)) | (1 << (MapIniParser.ID - 24)))) !== 0)) {
-				{
-				this.state = 388;
-				this._errHandler.sync(this);
-				switch (this._input.LA(1)) {
+				case MapIniParser.T__19:
+				case MapIniParser.T__20:
+				case MapIniParser.T__21:
+				case MapIniParser.T__22:
 				case MapIniParser.T__23:
 				case MapIniParser.T__24:
+				case MapIniParser.T__25:
 				case MapIniParser.T__26:
 				case MapIniParser.T__27:
 				case MapIniParser.T__28:
+				case MapIniParser.T__29:
+				case MapIniParser.T__30:
+				case MapIniParser.T__31:
+				case MapIniParser.T__32:
+				case MapIniParser.T__33:
+				case MapIniParser.T__34:
+				case MapIniParser.T__35:
+				case MapIniParser.T__36:
+				case MapIniParser.T__37:
+				case MapIniParser.T__38:
+				case MapIniParser.T__39:
+				case MapIniParser.T__40:
+				case MapIniParser.T__41:
+				case MapIniParser.T__42:
 					{
-					this.state = 383;
-					this._errHandler.sync(this);
-					_alt = 1;
-					do {
-						switch (_alt) {
-						case 1:
-							{
-							{
-							this.state = 382;
-							this.conditionStateBlocks();
-							}
-							}
-							break;
-						default:
-							throw new NoViableAltException(this);
-						}
-						this.state = 385;
-						this._errHandler.sync(this);
-						_alt = this.interpreter.adaptivePredict(this._input, 41, this._ctx);
-					} while (_alt !== 2 && _alt !== ATN.INVALID_ALT_NUMBER);
+					this.state = 121;
+					this.aidataClassProperties_single();
 					}
 					break;
-				case MapIniParser.ID:
+				case MapIniParser.T__50:
 					{
-					this.state = 387;
-					this.drawModuleProperty();
+					this.state = 122;
+					this.aidataClassProperties_blockSideinfo();
+					}
+					break;
+				case MapIniParser.T__43:
+					{
+					this.state = 123;
+					this.aidataClassproperties_BlockSkirmishBuildList();
 					}
 					break;
 				default:
 					throw new NoViableAltException(this);
 				}
 				}
-				this.state = 392;
+				this.state = 128;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 			}
-			this.state = 393;
+			this.state = 129;
 			this.end();
 			}
 		}
@@ -1926,94 +590,473 @@ export class MapIniParser extends Parser {
 		return _localctx;
 	}
 	// @RuleVersion(0)
-	public drawModuleProperty(): DrawModulePropertyContext {
-		let _localctx: DrawModulePropertyContext = new DrawModulePropertyContext(this._ctx, this.state);
-		this.enterRule(_localctx, 60, MapIniParser.RULE_drawModuleProperty);
+	public aidataClassProperties_single(): AidataClassProperties_singleContext {
+		let _localctx: AidataClassProperties_singleContext = new AidataClassProperties_singleContext(this._ctx, this.state);
+		this.enterRule(_localctx, 6, MapIniParser.RULE_aidataClassProperties_single);
 		try {
-			let _alt: number;
-			this.enterOuterAlt(_localctx, 1);
-			{
-			this.state = 395;
-			this.match(MapIniParser.ID);
-			this.state = 396;
-			this.match(MapIniParser.T__2);
-			this.state = 398;
-			this._errHandler.sync(this);
-			_alt = 1;
-			do {
-				switch (_alt) {
-				case 1:
-					{
-					{
-					this.state = 397;
-					this.value();
-					}
-					}
-					break;
-				default:
-					throw new NoViableAltException(this);
-				}
-				this.state = 400;
-				this._errHandler.sync(this);
-				_alt = this.interpreter.adaptivePredict(this._input, 44, this._ctx);
-			} while (_alt !== 2 && _alt !== ATN.INVALID_ALT_NUMBER);
-			}
-		}
-		catch (re) {
-			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
-				this._errHandler.reportError(this, re);
-				this._errHandler.recover(this, re);
-			} else {
-				throw re;
-			}
-		}
-		finally {
-			this.exitRule();
-		}
-		return _localctx;
-	}
-	// @RuleVersion(0)
-	public conditionStateBlocks(): ConditionStateBlocksContext {
-		let _localctx: ConditionStateBlocksContext = new ConditionStateBlocksContext(this._ctx, this.state);
-		this.enterRule(_localctx, 62, MapIniParser.RULE_conditionStateBlocks);
-		try {
-			this.state = 407;
+			this.state = 257;
 			this._errHandler.sync(this);
 			switch (this._input.LA(1)) {
-			case MapIniParser.T__23:
+			case MapIniParser.T__1:
 				this.enterOuterAlt(_localctx, 1);
 				{
-				this.state = 402;
-				this.conditionStateBlock();
+				this.state = 131;
+				this.match(MapIniParser.T__1);
+				this.state = 132;
+				this.match(MapIniParser.EQ);
+				this.state = 133;
+				this.match(MapIniParser.FLOAT);
+				}
+				break;
+			case MapIniParser.T__2:
+				this.enterOuterAlt(_localctx, 2);
+				{
+				this.state = 134;
+				this.match(MapIniParser.T__2);
+				this.state = 135;
+				this.match(MapIniParser.EQ);
+				this.state = 136;
+				this.match(MapIniParser.INT);
+				}
+				break;
+			case MapIniParser.T__3:
+				this.enterOuterAlt(_localctx, 3);
+				{
+				this.state = 137;
+				this.match(MapIniParser.T__3);
+				this.state = 138;
+				this.match(MapIniParser.EQ);
+				this.state = 139;
+				this.match(MapIniParser.INT);
+				}
+				break;
+			case MapIniParser.T__4:
+				this.enterOuterAlt(_localctx, 4);
+				{
+				this.state = 140;
+				this.match(MapIniParser.T__4);
+				this.state = 141;
+				this.match(MapIniParser.EQ);
+				this.state = 142;
+				this.match(MapIniParser.INT);
+				}
+				break;
+			case MapIniParser.T__5:
+				this.enterOuterAlt(_localctx, 5);
+				{
+				this.state = 143;
+				this.match(MapIniParser.T__5);
+				this.state = 144;
+				this.match(MapIniParser.EQ);
+				this.state = 145;
+				this.match(MapIniParser.FLOAT);
+				}
+				break;
+			case MapIniParser.T__6:
+				this.enterOuterAlt(_localctx, 6);
+				{
+				this.state = 146;
+				this.match(MapIniParser.T__6);
+				this.state = 147;
+				this.match(MapIniParser.EQ);
+				this.state = 148;
+				this.match(MapIniParser.FLOAT);
+				}
+				break;
+			case MapIniParser.T__7:
+				this.enterOuterAlt(_localctx, 7);
+				{
+				this.state = 149;
+				this.match(MapIniParser.T__7);
+				this.state = 150;
+				this.match(MapIniParser.EQ);
+				this.state = 151;
+				this.match(MapIniParser.FLOAT);
+				}
+				break;
+			case MapIniParser.T__8:
+				this.enterOuterAlt(_localctx, 8);
+				{
+				this.state = 152;
+				this.match(MapIniParser.T__8);
+				this.state = 153;
+				this.match(MapIniParser.EQ);
+				this.state = 154;
+				this.match(MapIniParser.FLOAT);
+				}
+				break;
+			case MapIniParser.T__9:
+				this.enterOuterAlt(_localctx, 9);
+				{
+				this.state = 155;
+				this.match(MapIniParser.T__9);
+				this.state = 156;
+				this.match(MapIniParser.EQ);
+				this.state = 157;
+				this.match(MapIniParser.FLOAT);
+				}
+				break;
+			case MapIniParser.T__10:
+				this.enterOuterAlt(_localctx, 10);
+				{
+				this.state = 158;
+				this.match(MapIniParser.T__10);
+				this.state = 159;
+				this.match(MapIniParser.EQ);
+				this.state = 160;
+				this.match(MapIniParser.FLOAT);
+				}
+				break;
+			case MapIniParser.T__11:
+				this.enterOuterAlt(_localctx, 11);
+				{
+				this.state = 161;
+				this.match(MapIniParser.T__11);
+				this.state = 162;
+				this.match(MapIniParser.EQ);
+				this.state = 163;
+				this.match(MapIniParser.FLOAT);
+				}
+				break;
+			case MapIniParser.T__12:
+				this.enterOuterAlt(_localctx, 12);
+				{
+				this.state = 164;
+				this.match(MapIniParser.T__12);
+				this.state = 165;
+				this.match(MapIniParser.EQ);
+				this.state = 166;
+				this.match(MapIniParser.FLOAT);
+				}
+				break;
+			case MapIniParser.T__13:
+				this.enterOuterAlt(_localctx, 13);
+				{
+				this.state = 167;
+				this.match(MapIniParser.T__13);
+				this.state = 168;
+				this.match(MapIniParser.EQ);
+				this.state = 169;
+				this.match(MapIniParser.FLOAT);
+				}
+				break;
+			case MapIniParser.T__14:
+				this.enterOuterAlt(_localctx, 14);
+				{
+				this.state = 170;
+				this.match(MapIniParser.T__14);
+				this.state = 171;
+				this.match(MapIniParser.EQ);
+				this.state = 172;
+				this.match(MapIniParser.INT);
+				}
+				break;
+			case MapIniParser.T__15:
+				this.enterOuterAlt(_localctx, 15);
+				{
+				this.state = 173;
+				this.match(MapIniParser.T__15);
+				this.state = 174;
+				this.match(MapIniParser.EQ);
+				this.state = 175;
+				this.match(MapIniParser.INT);
+				}
+				break;
+			case MapIniParser.T__16:
+				this.enterOuterAlt(_localctx, 16);
+				{
+				this.state = 176;
+				this.match(MapIniParser.T__16);
+				this.state = 177;
+				this.match(MapIniParser.EQ);
+				this.state = 178;
+				this.match(MapIniParser.INT);
+				}
+				break;
+			case MapIniParser.T__17:
+				this.enterOuterAlt(_localctx, 17);
+				{
+				this.state = 179;
+				this.match(MapIniParser.T__17);
+				this.state = 180;
+				this.match(MapIniParser.EQ);
+				this.state = 181;
+				this.match(MapIniParser.FLOAT);
+				}
+				break;
+			case MapIniParser.T__18:
+				this.enterOuterAlt(_localctx, 18);
+				{
+				this.state = 182;
+				this.match(MapIniParser.T__18);
+				this.state = 183;
+				this.match(MapIniParser.EQ);
+				this.state = 184;
+				this.match(MapIniParser.FLOAT);
+				}
+				break;
+			case MapIniParser.T__19:
+				this.enterOuterAlt(_localctx, 19);
+				{
+				this.state = 185;
+				this.match(MapIniParser.T__19);
+				this.state = 186;
+				this.match(MapIniParser.EQ);
+				this.state = 187;
+				this.match(MapIniParser.FLOAT);
+				}
+				break;
+			case MapIniParser.T__20:
+				this.enterOuterAlt(_localctx, 20);
+				{
+				this.state = 188;
+				this.match(MapIniParser.T__20);
+				this.state = 189;
+				this.match(MapIniParser.EQ);
+				this.state = 190;
+				this.match(MapIniParser.FLOAT);
+				}
+				break;
+			case MapIniParser.T__21:
+				this.enterOuterAlt(_localctx, 21);
+				{
+				this.state = 191;
+				this.match(MapIniParser.T__21);
+				this.state = 192;
+				this.match(MapIniParser.EQ);
+				this.state = 193;
+				this.match(MapIniParser.FLOAT);
+				}
+				break;
+			case MapIniParser.T__22:
+				this.enterOuterAlt(_localctx, 22);
+				{
+				this.state = 194;
+				this.match(MapIniParser.T__22);
+				this.state = 195;
+				this.match(MapIniParser.EQ);
+				this.state = 196;
+				this.match(MapIniParser.INT);
+				}
+				break;
+			case MapIniParser.T__23:
+				this.enterOuterAlt(_localctx, 23);
+				{
+				this.state = 197;
+				this.match(MapIniParser.T__23);
+				this.state = 198;
+				this.match(MapIniParser.EQ);
+				this.state = 199;
+				this.match(MapIniParser.BOOLEAN);
 				}
 				break;
 			case MapIniParser.T__24:
-				this.enterOuterAlt(_localctx, 2);
+				this.enterOuterAlt(_localctx, 24);
 				{
-				this.state = 403;
-				this.defaultConditionStateBlock();
+				this.state = 200;
+				this.match(MapIniParser.T__24);
+				this.state = 201;
+				this.match(MapIniParser.EQ);
+				this.state = 202;
+				this.match(MapIniParser.BOOLEAN);
+				}
+				break;
+			case MapIniParser.T__25:
+				this.enterOuterAlt(_localctx, 25);
+				{
+				this.state = 203;
+				this.match(MapIniParser.T__25);
+				this.state = 204;
+				this.match(MapIniParser.EQ);
+				this.state = 205;
+				this.match(MapIniParser.BOOLEAN);
 				}
 				break;
 			case MapIniParser.T__26:
-				this.enterOuterAlt(_localctx, 3);
+				this.enterOuterAlt(_localctx, 26);
 				{
-				this.state = 404;
-				this.transitionStateBlock();
+				this.state = 206;
+				this.match(MapIniParser.T__26);
+				this.state = 207;
+				this.match(MapIniParser.EQ);
+				this.state = 208;
+				this.match(MapIniParser.BOOLEAN);
 				}
 				break;
 			case MapIniParser.T__27:
-				this.enterOuterAlt(_localctx, 4);
+				this.enterOuterAlt(_localctx, 27);
 				{
-				this.state = 405;
-				this.aliasConditionStateBlock();
+				this.state = 209;
+				this.match(MapIniParser.T__27);
+				this.state = 210;
+				this.match(MapIniParser.EQ);
+				this.state = 211;
+				this.match(MapIniParser.FLOAT);
 				}
 				break;
 			case MapIniParser.T__28:
-				this.enterOuterAlt(_localctx, 5);
+				this.enterOuterAlt(_localctx, 28);
 				{
-				this.state = 406;
-				this.ignoreConditionStateBlock();
+				this.state = 212;
+				this.match(MapIniParser.T__28);
+				this.state = 213;
+				this.match(MapIniParser.EQ);
+				this.state = 214;
+				this.match(MapIniParser.INT);
+				}
+				break;
+			case MapIniParser.T__29:
+				this.enterOuterAlt(_localctx, 29);
+				{
+				this.state = 215;
+				this.match(MapIniParser.T__29);
+				this.state = 216;
+				this.match(MapIniParser.EQ);
+				this.state = 217;
+				this.match(MapIniParser.BOOLEAN);
+				}
+				break;
+			case MapIniParser.T__30:
+				this.enterOuterAlt(_localctx, 30);
+				{
+				this.state = 218;
+				this.match(MapIniParser.T__30);
+				this.state = 219;
+				this.match(MapIniParser.EQ);
+				this.state = 220;
+				this.match(MapIniParser.FLOAT);
+				}
+				break;
+			case MapIniParser.T__31:
+				this.enterOuterAlt(_localctx, 31);
+				{
+				this.state = 221;
+				this.match(MapIniParser.T__31);
+				this.state = 222;
+				this.match(MapIniParser.EQ);
+				this.state = 223;
+				this.match(MapIniParser.INT);
+				}
+				break;
+			case MapIniParser.T__32:
+				this.enterOuterAlt(_localctx, 32);
+				{
+				this.state = 224;
+				this.match(MapIniParser.T__32);
+				this.state = 225;
+				this.match(MapIniParser.EQ);
+				this.state = 226;
+				this.match(MapIniParser.INT);
+				}
+				break;
+			case MapIniParser.T__33:
+				this.enterOuterAlt(_localctx, 33);
+				{
+				this.state = 227;
+				this.match(MapIniParser.T__33);
+				this.state = 228;
+				this.match(MapIniParser.EQ);
+				this.state = 229;
+				this.match(MapIniParser.FLOAT);
+				}
+				break;
+			case MapIniParser.T__34:
+				this.enterOuterAlt(_localctx, 34);
+				{
+				this.state = 230;
+				this.match(MapIniParser.T__34);
+				this.state = 231;
+				this.match(MapIniParser.EQ);
+				this.state = 232;
+				this.match(MapIniParser.FLOAT);
+				}
+				break;
+			case MapIniParser.T__35:
+				this.enterOuterAlt(_localctx, 35);
+				{
+				this.state = 233;
+				this.match(MapIniParser.T__35);
+				this.state = 234;
+				this.match(MapIniParser.EQ);
+				this.state = 235;
+				this.match(MapIniParser.INT);
+				}
+				break;
+			case MapIniParser.T__36:
+				this.enterOuterAlt(_localctx, 36);
+				{
+				this.state = 236;
+				this.match(MapIniParser.T__36);
+				this.state = 237;
+				this.match(MapIniParser.EQ);
+				this.state = 238;
+				this.match(MapIniParser.INT);
+				}
+				break;
+			case MapIniParser.T__37:
+				this.enterOuterAlt(_localctx, 37);
+				{
+				this.state = 239;
+				this.match(MapIniParser.T__37);
+				this.state = 240;
+				this.match(MapIniParser.EQ);
+				this.state = 241;
+				this.match(MapIniParser.FLOAT);
+				}
+				break;
+			case MapIniParser.T__38:
+				this.enterOuterAlt(_localctx, 38);
+				{
+				this.state = 242;
+				this.match(MapIniParser.T__38);
+				this.state = 243;
+				this.match(MapIniParser.EQ);
+				this.state = 244;
+				this.match(MapIniParser.INT);
+				}
+				break;
+			case MapIniParser.T__39:
+				this.enterOuterAlt(_localctx, 39);
+				{
+				this.state = 245;
+				this.match(MapIniParser.T__39);
+				this.state = 246;
+				this.match(MapIniParser.EQ);
+				this.state = 247;
+				this.match(MapIniParser.FLOAT);
+				}
+				break;
+			case MapIniParser.T__40:
+				this.enterOuterAlt(_localctx, 40);
+				{
+				this.state = 248;
+				this.match(MapIniParser.T__40);
+				this.state = 249;
+				this.match(MapIniParser.EQ);
+				this.state = 250;
+				this.match(MapIniParser.BOOLEAN);
+				}
+				break;
+			case MapIniParser.T__41:
+				this.enterOuterAlt(_localctx, 41);
+				{
+				this.state = 251;
+				this.match(MapIniParser.T__41);
+				this.state = 252;
+				this.match(MapIniParser.EQ);
+				this.state = 253;
+				this.match(MapIniParser.FLOAT);
+				}
+				break;
+			case MapIniParser.T__42:
+				this.enterOuterAlt(_localctx, 42);
+				{
+				this.state = 254;
+				this.match(MapIniParser.T__42);
+				this.state = 255;
+				this.match(MapIniParser.EQ);
+				this.state = 256;
+				this.match(MapIniParser.FLOAT);
 				}
 				break;
 			default:
@@ -2035,86 +1078,32 @@ export class MapIniParser extends Parser {
 		return _localctx;
 	}
 	// @RuleVersion(0)
-	public conditionStateBlock(): ConditionStateBlockContext {
-		let _localctx: ConditionStateBlockContext = new ConditionStateBlockContext(this._ctx, this.state);
-		this.enterRule(_localctx, 64, MapIniParser.RULE_conditionStateBlock);
+	public aidataClassproperties_BlockSkirmishBuildList(): AidataClassproperties_BlockSkirmishBuildListContext {
+		let _localctx: AidataClassproperties_BlockSkirmishBuildListContext = new AidataClassproperties_BlockSkirmishBuildListContext(this._ctx, this.state);
+		this.enterRule(_localctx, 8, MapIniParser.RULE_aidataClassproperties_BlockSkirmishBuildList);
 		let _la: number;
 		try {
-			let _alt: number;
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 409;
-			this.match(MapIniParser.T__23);
-			this.state = 416;
+			this.state = 259;
+			this.match(MapIniParser.T__43);
+			this.state = 260;
+			this.faction();
+			this.state = 264;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			if (_la === MapIniParser.T__2) {
+			while (_la === MapIniParser.T__44) {
 				{
-				this.state = 410;
-				this.match(MapIniParser.T__2);
-				this.state = 412;
-				this._errHandler.sync(this);
-				_alt = 1;
-				do {
-					switch (_alt) {
-					case 1:
-						{
-						{
-						this.state = 411;
-						this.match(MapIniParser.ID);
-						}
-						}
-						break;
-					default:
-						throw new NoViableAltException(this);
-					}
-					this.state = 414;
-					this._errHandler.sync(this);
-					_alt = this.interpreter.adaptivePredict(this._input, 46, this._ctx);
-				} while (_alt !== 2 && _alt !== ATN.INVALID_ALT_NUMBER);
-				}
-			}
-
-			this.state = 423;
-			this._errHandler.sync(this);
-			_la = this._input.LA(1);
-			while (((((_la - 20)) & ~0x1F) === 0 && ((1 << (_la - 20)) & ((1 << (MapIniParser.T__19 - 20)) | (1 << (MapIniParser.T__20 - 20)) | (1 << (MapIniParser.T__25 - 20)) | (1 << (MapIniParser.T__30 - 20)) | (1 << (MapIniParser.T__31 - 20)) | (1 << (MapIniParser.T__32 - 20)) | (1 << (MapIniParser.T__33 - 20)) | (1 << (MapIniParser.ID - 20)))) !== 0)) {
 				{
-				this.state = 421;
-				this._errHandler.sync(this);
-				switch (this._input.LA(1)) {
-				case MapIniParser.ID:
-					{
-					this.state = 418;
-					this.conditionStateProperty();
-					}
-					break;
-				case MapIniParser.T__19:
-				case MapIniParser.T__20:
-				case MapIniParser.T__30:
-				case MapIniParser.T__31:
-				case MapIniParser.T__32:
-				case MapIniParser.T__33:
-					{
-					this.state = 419;
-					this.turretProperty();
-					}
-					break;
-				case MapIniParser.T__25:
-					{
-					this.state = 420;
-					this.transitionKeyProperty();
-					}
-					break;
-				default:
-					throw new NoViableAltException(this);
+				this.state = 261;
+				this.skirmishBuildListBlock();
 				}
 				}
-				this.state = 425;
+				this.state = 266;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 			}
-			this.state = 426;
+			this.state = 267;
 			this.end();
 			}
 		}
@@ -2133,55 +1122,32 @@ export class MapIniParser extends Parser {
 		return _localctx;
 	}
 	// @RuleVersion(0)
-	public defaultConditionStateBlock(): DefaultConditionStateBlockContext {
-		let _localctx: DefaultConditionStateBlockContext = new DefaultConditionStateBlockContext(this._ctx, this.state);
-		this.enterRule(_localctx, 66, MapIniParser.RULE_defaultConditionStateBlock);
+	public skirmishBuildListBlock(): SkirmishBuildListBlockContext {
+		let _localctx: SkirmishBuildListBlockContext = new SkirmishBuildListBlockContext(this._ctx, this.state);
+		this.enterRule(_localctx, 10, MapIniParser.RULE_skirmishBuildListBlock);
 		let _la: number;
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 428;
-			this.match(MapIniParser.T__24);
-			this.state = 434;
+			this.state = 269;
+			this.match(MapIniParser.T__44);
+			this.state = 270;
+			this.object_value();
+			this.state = 274;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			while (((((_la - 20)) & ~0x1F) === 0 && ((1 << (_la - 20)) & ((1 << (MapIniParser.T__19 - 20)) | (1 << (MapIniParser.T__20 - 20)) | (1 << (MapIniParser.T__25 - 20)) | (1 << (MapIniParser.T__30 - 20)) | (1 << (MapIniParser.T__31 - 20)) | (1 << (MapIniParser.T__32 - 20)) | (1 << (MapIniParser.T__33 - 20)) | (1 << (MapIniParser.ID - 20)))) !== 0)) {
+			while (((((_la - 46)) & ~0x1F) === 0 && ((1 << (_la - 46)) & ((1 << (MapIniParser.T__45 - 46)) | (1 << (MapIniParser.T__46 - 46)) | (1 << (MapIniParser.T__47 - 46)) | (1 << (MapIniParser.T__48 - 46)) | (1 << (MapIniParser.T__49 - 46)))) !== 0)) {
 				{
-				this.state = 432;
-				this._errHandler.sync(this);
-				switch (this._input.LA(1)) {
-				case MapIniParser.ID:
-					{
-					this.state = 429;
-					this.conditionStateProperty();
-					}
-					break;
-				case MapIniParser.T__19:
-				case MapIniParser.T__20:
-				case MapIniParser.T__30:
-				case MapIniParser.T__31:
-				case MapIniParser.T__32:
-				case MapIniParser.T__33:
-					{
-					this.state = 430;
-					this.turretProperty();
-					}
-					break;
-				case MapIniParser.T__25:
-					{
-					this.state = 431;
-					this.transitionKeyProperty();
-					}
-					break;
-				default:
-					throw new NoViableAltException(this);
+				{
+				this.state = 271;
+				this.skirmishBuildListBlock_structure_properties();
 				}
 				}
-				this.state = 436;
+				this.state = 276;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 			}
-			this.state = 437;
+			this.state = 277;
 			this.end();
 			}
 		}
@@ -2200,344 +1166,68 @@ export class MapIniParser extends Parser {
 		return _localctx;
 	}
 	// @RuleVersion(0)
-	public conditionStateProperty(): ConditionStatePropertyContext {
-		let _localctx: ConditionStatePropertyContext = new ConditionStatePropertyContext(this._ctx, this.state);
-		this.enterRule(_localctx, 68, MapIniParser.RULE_conditionStateProperty);
+	public skirmishBuildListBlock_structure_properties(): SkirmishBuildListBlock_structure_propertiesContext {
+		let _localctx: SkirmishBuildListBlock_structure_propertiesContext = new SkirmishBuildListBlock_structure_propertiesContext(this._ctx, this.state);
+		this.enterRule(_localctx, 12, MapIniParser.RULE_skirmishBuildListBlock_structure_properties);
 		try {
-			let _alt: number;
-			this.enterOuterAlt(_localctx, 1);
-			{
-			this.state = 439;
-			this.match(MapIniParser.ID);
-			this.state = 440;
-			this.match(MapIniParser.T__2);
-			this.state = 442;
-			this._errHandler.sync(this);
-			_alt = 1;
-			do {
-				switch (_alt) {
-				case 1:
-					{
-					{
-					this.state = 441;
-					this.value();
-					}
-					}
-					break;
-				default:
-					throw new NoViableAltException(this);
-				}
-				this.state = 444;
-				this._errHandler.sync(this);
-				_alt = this.interpreter.adaptivePredict(this._input, 52, this._ctx);
-			} while (_alt !== 2 && _alt !== ATN.INVALID_ALT_NUMBER);
-			}
-		}
-		catch (re) {
-			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
-				this._errHandler.reportError(this, re);
-				this._errHandler.recover(this, re);
-			} else {
-				throw re;
-			}
-		}
-		finally {
-			this.exitRule();
-		}
-		return _localctx;
-	}
-	// @RuleVersion(0)
-	public transitionKeyProperty(): TransitionKeyPropertyContext {
-		let _localctx: TransitionKeyPropertyContext = new TransitionKeyPropertyContext(this._ctx, this.state);
-		this.enterRule(_localctx, 70, MapIniParser.RULE_transitionKeyProperty);
-		try {
-			this.enterOuterAlt(_localctx, 1);
-			{
-			this.state = 446;
-			this.match(MapIniParser.T__25);
-			this.state = 447;
-			this.match(MapIniParser.T__2);
-			this.state = 448;
-			this.match(MapIniParser.ID);
-			}
-		}
-		catch (re) {
-			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
-				this._errHandler.reportError(this, re);
-				this._errHandler.recover(this, re);
-			} else {
-				throw re;
-			}
-		}
-		finally {
-			this.exitRule();
-		}
-		return _localctx;
-	}
-	// @RuleVersion(0)
-	public transitionStateBlock(): TransitionStateBlockContext {
-		let _localctx: TransitionStateBlockContext = new TransitionStateBlockContext(this._ctx, this.state);
-		this.enterRule(_localctx, 72, MapIniParser.RULE_transitionStateBlock);
-		let _la: number;
-		try {
-			let _alt: number;
-			this.enterOuterAlt(_localctx, 1);
-			{
-			this.state = 450;
-			this.match(MapIniParser.T__26);
-			this.state = 451;
-			this.match(MapIniParser.T__2);
-			this.state = 452;
-			this.match(MapIniParser.ID);
-			this.state = 454;
-			this._errHandler.sync(this);
-			_alt = 1;
-			do {
-				switch (_alt) {
-				case 1:
-					{
-					{
-					this.state = 453;
-					this.match(MapIniParser.ID);
-					}
-					}
-					break;
-				default:
-					throw new NoViableAltException(this);
-				}
-				this.state = 456;
-				this._errHandler.sync(this);
-				_alt = this.interpreter.adaptivePredict(this._input, 53, this._ctx);
-			} while (_alt !== 2 && _alt !== ATN.INVALID_ALT_NUMBER);
-			this.state = 461;
-			this._errHandler.sync(this);
-			_la = this._input.LA(1);
-			while (_la === MapIniParser.ID) {
-				{
-				{
-				this.state = 458;
-				this.transitionStateProperty();
-				}
-				}
-				this.state = 463;
-				this._errHandler.sync(this);
-				_la = this._input.LA(1);
-			}
-			this.state = 464;
-			this.end();
-			}
-		}
-		catch (re) {
-			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
-				this._errHandler.reportError(this, re);
-				this._errHandler.recover(this, re);
-			} else {
-				throw re;
-			}
-		}
-		finally {
-			this.exitRule();
-		}
-		return _localctx;
-	}
-	// @RuleVersion(0)
-	public transitionStateProperty(): TransitionStatePropertyContext {
-		let _localctx: TransitionStatePropertyContext = new TransitionStatePropertyContext(this._ctx, this.state);
-		this.enterRule(_localctx, 74, MapIniParser.RULE_transitionStateProperty);
-		try {
-			let _alt: number;
-			this.enterOuterAlt(_localctx, 1);
-			{
-			this.state = 466;
-			this.match(MapIniParser.ID);
-			this.state = 467;
-			this.match(MapIniParser.T__2);
-			this.state = 469;
-			this._errHandler.sync(this);
-			_alt = 1;
-			do {
-				switch (_alt) {
-				case 1:
-					{
-					{
-					this.state = 468;
-					this.value();
-					}
-					}
-					break;
-				default:
-					throw new NoViableAltException(this);
-				}
-				this.state = 471;
-				this._errHandler.sync(this);
-				_alt = this.interpreter.adaptivePredict(this._input, 55, this._ctx);
-			} while (_alt !== 2 && _alt !== ATN.INVALID_ALT_NUMBER);
-			}
-		}
-		catch (re) {
-			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
-				this._errHandler.reportError(this, re);
-				this._errHandler.recover(this, re);
-			} else {
-				throw re;
-			}
-		}
-		finally {
-			this.exitRule();
-		}
-		return _localctx;
-	}
-	// @RuleVersion(0)
-	public aliasConditionStateBlock(): AliasConditionStateBlockContext {
-		let _localctx: AliasConditionStateBlockContext = new AliasConditionStateBlockContext(this._ctx, this.state);
-		this.enterRule(_localctx, 76, MapIniParser.RULE_aliasConditionStateBlock);
-		try {
-			let _alt: number;
-			this.enterOuterAlt(_localctx, 1);
-			{
-			this.state = 473;
-			this.match(MapIniParser.T__27);
-			this.state = 474;
-			this.match(MapIniParser.T__2);
-			this.state = 476;
-			this._errHandler.sync(this);
-			_alt = 1;
-			do {
-				switch (_alt) {
-				case 1:
-					{
-					{
-					this.state = 475;
-					this.match(MapIniParser.ID);
-					}
-					}
-					break;
-				default:
-					throw new NoViableAltException(this);
-				}
-				this.state = 478;
-				this._errHandler.sync(this);
-				_alt = this.interpreter.adaptivePredict(this._input, 56, this._ctx);
-			} while (_alt !== 2 && _alt !== ATN.INVALID_ALT_NUMBER);
-			}
-		}
-		catch (re) {
-			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
-				this._errHandler.reportError(this, re);
-				this._errHandler.recover(this, re);
-			} else {
-				throw re;
-			}
-		}
-		finally {
-			this.exitRule();
-		}
-		return _localctx;
-	}
-	// @RuleVersion(0)
-	public ignoreConditionStateBlock(): IgnoreConditionStateBlockContext {
-		let _localctx: IgnoreConditionStateBlockContext = new IgnoreConditionStateBlockContext(this._ctx, this.state);
-		this.enterRule(_localctx, 78, MapIniParser.RULE_ignoreConditionStateBlock);
-		try {
-			let _alt: number;
-			this.enterOuterAlt(_localctx, 1);
-			{
-			this.state = 480;
-			this.match(MapIniParser.T__28);
-			this.state = 481;
-			this.match(MapIniParser.T__2);
-			this.state = 483;
-			this._errHandler.sync(this);
-			_alt = 1;
-			do {
-				switch (_alt) {
-				case 1:
-					{
-					{
-					this.state = 482;
-					this.match(MapIniParser.ID);
-					}
-					}
-					break;
-				default:
-					throw new NoViableAltException(this);
-				}
-				this.state = 485;
-				this._errHandler.sync(this);
-				_alt = this.interpreter.adaptivePredict(this._input, 57, this._ctx);
-			} while (_alt !== 2 && _alt !== ATN.INVALID_ALT_NUMBER);
-			}
-		}
-		catch (re) {
-			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
-				this._errHandler.reportError(this, re);
-				this._errHandler.recover(this, re);
-			} else {
-				throw re;
-			}
-		}
-		finally {
-			this.exitRule();
-		}
-		return _localctx;
-	}
-	// @RuleVersion(0)
-	public removeModuleBlock(): RemoveModuleBlockContext {
-		let _localctx: RemoveModuleBlockContext = new RemoveModuleBlockContext(this._ctx, this.state);
-		this.enterRule(_localctx, 80, MapIniParser.RULE_removeModuleBlock);
-		try {
-			this.enterOuterAlt(_localctx, 1);
-			{
-			this.state = 487;
-			this.match(MapIniParser.T__29);
-			this.state = 488;
-			this.match(MapIniParser.ID);
-			}
-		}
-		catch (re) {
-			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
-				this._errHandler.reportError(this, re);
-				this._errHandler.recover(this, re);
-			} else {
-				throw re;
-			}
-		}
-		finally {
-			this.exitRule();
-		}
-		return _localctx;
-	}
-	// @RuleVersion(0)
-	public turretProperty(): TurretPropertyContext {
-		let _localctx: TurretPropertyContext = new TurretPropertyContext(this._ctx, this.state);
-		this.enterRule(_localctx, 82, MapIniParser.RULE_turretProperty);
-		try {
-			this.state = 492;
+			this.state = 295;
 			this._errHandler.sync(this);
 			switch (this._input.LA(1)) {
-			case MapIniParser.T__19:
-			case MapIniParser.T__30:
-			case MapIniParser.T__31:
+			case MapIniParser.T__45:
 				this.enterOuterAlt(_localctx, 1);
 				{
-				this.state = 490;
-				this.tturretProperty();
+				this.state = 279;
+				this.match(MapIniParser.T__45);
+				this.state = 280;
+				this.match(MapIniParser.EQ);
+				this.state = 281;
+				this.match(MapIniParser.XCOORD);
+				this.state = 282;
+				this.match(MapIniParser.YCOORD);
 				}
 				break;
-			case MapIniParser.T__20:
-			case MapIniParser.T__32:
-			case MapIniParser.T__33:
+			case MapIniParser.T__46:
 				this.enterOuterAlt(_localctx, 2);
 				{
-				this.state = 491;
-				this.altTurretProperty();
+				this.state = 283;
+				this.match(MapIniParser.T__46);
+				this.state = 284;
+				this.match(MapIniParser.EQ);
+				this.state = 285;
+				this.match(MapIniParser.INT);
+				}
+				break;
+			case MapIniParser.T__47:
+				this.enterOuterAlt(_localctx, 3);
+				{
+				this.state = 286;
+				this.match(MapIniParser.T__47);
+				this.state = 287;
+				this.match(MapIniParser.EQ);
+				this.state = 288;
+				this.match(MapIniParser.FLOAT);
+				}
+				break;
+			case MapIniParser.T__48:
+				this.enterOuterAlt(_localctx, 4);
+				{
+				this.state = 289;
+				this.match(MapIniParser.T__48);
+				this.state = 290;
+				this.match(MapIniParser.EQ);
+				this.state = 291;
+				this.match(MapIniParser.BOOLEAN);
+				}
+				break;
+			case MapIniParser.T__49:
+				this.enterOuterAlt(_localctx, 5);
+				{
+				this.state = 292;
+				this.match(MapIniParser.T__49);
+				this.state = 293;
+				this.match(MapIniParser.EQ);
+				this.state = 294;
+				this.match(MapIniParser.BOOLEAN);
 				}
 				break;
 			default:
@@ -2559,77 +1249,368 @@ export class MapIniParser extends Parser {
 		return _localctx;
 	}
 	// @RuleVersion(0)
-	public property(): PropertyContext {
-		let _localctx: PropertyContext = new PropertyContext(this._ctx, this.state);
-		this.enterRule(_localctx, 84, MapIniParser.RULE_property);
+	public aidataClassProperties_blockSideinfo(): AidataClassProperties_blockSideinfoContext {
+		let _localctx: AidataClassProperties_blockSideinfoContext = new AidataClassProperties_blockSideinfoContext(this._ctx, this.state);
+		this.enterRule(_localctx, 14, MapIniParser.RULE_aidataClassProperties_blockSideinfo);
 		let _la: number;
 		try {
-			let _alt: number;
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 494;
-			this.match(MapIniParser.ID);
-			this.state = 502;
+			this.state = 297;
+			this.match(MapIniParser.T__50);
+			this.state = 298;
+			this.faction();
+			this.state = 302;
 			this._errHandler.sync(this);
-			switch (this._input.LA(1)) {
-			case MapIniParser.T__2:
+			_la = this._input.LA(1);
+			while (((((_la - 52)) & ~0x1F) === 0 && ((1 << (_la - 52)) & ((1 << (MapIniParser.T__51 - 52)) | (1 << (MapIniParser.T__52 - 52)) | (1 << (MapIniParser.T__53 - 52)) | (1 << (MapIniParser.T__54 - 52)) | (1 << (MapIniParser.T__55 - 52)) | (1 << (MapIniParser.T__56 - 52)) | (1 << (MapIniParser.T__57 - 52)) | (1 << (MapIniParser.T__58 - 52)) | (1 << (MapIniParser.T__59 - 52)))) !== 0)) {
 				{
-				this.state = 495;
-				this.match(MapIniParser.T__2);
+				{
+				this.state = 299;
+				this.sideinfoproperties();
 				}
-				break;
-			case MapIniParser.T__19:
-			case MapIniParser.T__20:
-			case MapIniParser.T__30:
-			case MapIniParser.T__31:
-			case MapIniParser.T__32:
-			case MapIniParser.T__33:
-			case MapIniParser.T__39:
-			case MapIniParser.INT:
-			case MapIniParser.FLOAT:
-			case MapIniParser.BOOL:
-			case MapIniParser.ID:
-			case MapIniParser.WS:
-				{
-				this.state = 499;
+				}
+				this.state = 304;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
-				while (_la === MapIniParser.WS) {
+			}
+			this.state = 305;
+			this.end();
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public sideinfoproperties(): SideinfopropertiesContext {
+		let _localctx: SideinfopropertiesContext = new SideinfopropertiesContext(this._ctx, this.state);
+		this.enterRule(_localctx, 16, MapIniParser.RULE_sideinfoproperties);
+		try {
+			this.state = 320;
+			this._errHandler.sync(this);
+			switch (this._input.LA(1)) {
+			case MapIniParser.T__51:
+				this.enterOuterAlt(_localctx, 1);
+				{
+				this.state = 307;
+				this.match(MapIniParser.T__51);
+				this.state = 308;
+				this.match(MapIniParser.EQ);
+				this.state = 309;
+				this.match(MapIniParser.INT);
+				}
+				break;
+			case MapIniParser.T__52:
+				this.enterOuterAlt(_localctx, 2);
+				{
+				this.state = 310;
+				this.match(MapIniParser.T__52);
+				this.state = 311;
+				this.match(MapIniParser.EQ);
+				this.state = 312;
+				this.match(MapIniParser.INT);
+				}
+				break;
+			case MapIniParser.T__53:
+				this.enterOuterAlt(_localctx, 3);
+				{
+				this.state = 313;
+				this.match(MapIniParser.T__53);
+				this.state = 314;
+				this.match(MapIniParser.EQ);
+				this.state = 315;
+				this.match(MapIniParser.INT);
+				}
+				break;
+			case MapIniParser.T__54:
+				this.enterOuterAlt(_localctx, 4);
+				{
+				this.state = 316;
+				this.match(MapIniParser.T__54);
+				this.state = 317;
+				this.match(MapIniParser.EQ);
+				this.state = 318;
+				this.object_value();
+				}
+				break;
+			case MapIniParser.T__55:
+			case MapIniParser.T__56:
+			case MapIniParser.T__57:
+			case MapIniParser.T__58:
+			case MapIniParser.T__59:
+				this.enterOuterAlt(_localctx, 5);
+				{
+				this.state = 319;
+				this.sideinfo_skillset_blocks();
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public sideinfo_skillset_blocks(): Sideinfo_skillset_blocksContext {
+		let _localctx: Sideinfo_skillset_blocksContext = new Sideinfo_skillset_blocksContext(this._ctx, this.state);
+		this.enterRule(_localctx, 18, MapIniParser.RULE_sideinfo_skillset_blocks);
+		let _la: number;
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 322;
+			_la = this._input.LA(1);
+			if (!(((((_la - 56)) & ~0x1F) === 0 && ((1 << (_la - 56)) & ((1 << (MapIniParser.T__55 - 56)) | (1 << (MapIniParser.T__56 - 56)) | (1 << (MapIniParser.T__57 - 56)) | (1 << (MapIniParser.T__58 - 56)) | (1 << (MapIniParser.T__59 - 56)))) !== 0))) {
+			this._errHandler.recoverInline(this);
+			} else {
+				if (this._input.LA(1) === Token.EOF) {
+					this.matchedEOF = true;
+				}
+
+				this._errHandler.reportMatch(this);
+				this.consume();
+			}
+			this.state = 326;
+			this._errHandler.sync(this);
+			_la = this._input.LA(1);
+			while (_la === MapIniParser.T__144) {
+				{
+				{
+				this.state = 323;
+				this.science_property();
+				}
+				}
+				this.state = 328;
+				this._errHandler.sync(this);
+				_la = this._input.LA(1);
+			}
+			this.state = 329;
+			this.end();
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public mappedImageClass(): MappedImageClassContext {
+		let _localctx: MappedImageClassContext = new MappedImageClassContext(this._ctx, this.state);
+		this.enterRule(_localctx, 20, MapIniParser.RULE_mappedImageClass);
+		let _la: number;
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 331;
+			this.match(MapIniParser.T__60);
+			this.state = 332;
+			this.match(MapIniParser.ID);
+			this.state = 336;
+			this._errHandler.sync(this);
+			_la = this._input.LA(1);
+			while (((((_la - 62)) & ~0x1F) === 0 && ((1 << (_la - 62)) & ((1 << (MapIniParser.T__61 - 62)) | (1 << (MapIniParser.T__62 - 62)) | (1 << (MapIniParser.T__63 - 62)) | (1 << (MapIniParser.T__64 - 62)) | (1 << (MapIniParser.T__65 - 62)))) !== 0)) {
+				{
+				{
+				this.state = 333;
+				this.mappedImageClassProperties();
+				}
+				}
+				this.state = 338;
+				this._errHandler.sync(this);
+				_la = this._input.LA(1);
+			}
+			this.state = 339;
+			this.end();
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public mappedImageClassProperties(): MappedImageClassPropertiesContext {
+		let _localctx: MappedImageClassPropertiesContext = new MappedImageClassPropertiesContext(this._ctx, this.state);
+		this.enterRule(_localctx, 22, MapIniParser.RULE_mappedImageClassProperties);
+		let _la: number;
+		try {
+			this.state = 362;
+			this._errHandler.sync(this);
+			switch (this._input.LA(1)) {
+			case MapIniParser.T__61:
+				this.enterOuterAlt(_localctx, 1);
+				{
+				this.state = 341;
+				this.match(MapIniParser.T__61);
+				this.state = 342;
+				this.match(MapIniParser.EQ);
+				this.state = 345;
+				this._errHandler.sync(this);
+				switch (this._input.LA(1)) {
+				case MapIniParser.NVALUE:
 					{
+					this.state = 343;
+					this.match(MapIniParser.NVALUE);
+					}
+					break;
+				case MapIniParser.ID:
 					{
-					this.state = 496;
-					this.match(MapIniParser.WS);
+					this.state = 344;
+					this.file();
 					}
+					break;
+				default:
+					throw new NoViableAltException(this);
+				}
+				}
+				break;
+			case MapIniParser.T__62:
+				this.enterOuterAlt(_localctx, 2);
+				{
+				this.state = 347;
+				this.match(MapIniParser.T__62);
+				this.state = 348;
+				this.match(MapIniParser.EQ);
+				this.state = 349;
+				this.match(MapIniParser.INT);
+				}
+				break;
+			case MapIniParser.T__63:
+				this.enterOuterAlt(_localctx, 3);
+				{
+				this.state = 350;
+				this.match(MapIniParser.T__63);
+				this.state = 351;
+				this.match(MapIniParser.EQ);
+				this.state = 352;
+				this.match(MapIniParser.INT);
+				}
+				break;
+			case MapIniParser.T__64:
+				this.enterOuterAlt(_localctx, 4);
+				{
+				this.state = 353;
+				this.match(MapIniParser.T__64);
+				this.state = 354;
+				this.match(MapIniParser.EQ);
+				this.state = 355;
+				this.match(MapIniParser.COORDLEFT);
+				this.state = 356;
+				this.match(MapIniParser.COORDTOP);
+				this.state = 357;
+				this.match(MapIniParser.COORDRIGHT);
+				this.state = 358;
+				this.match(MapIniParser.COORDBOTTOM);
+				}
+				break;
+			case MapIniParser.T__65:
+				this.enterOuterAlt(_localctx, 5);
+				{
+				this.state = 359;
+				this.match(MapIniParser.T__65);
+				this.state = 360;
+				this.match(MapIniParser.EQ);
+				this.state = 361;
+				_la = this._input.LA(1);
+				if (!(_la === MapIniParser.T__66 || _la === MapIniParser.NVALUE)) {
+				this._errHandler.recoverInline(this);
+				} else {
+					if (this._input.LA(1) === Token.EOF) {
+						this.matchedEOF = true;
 					}
-					this.state = 501;
-					this._errHandler.sync(this);
-					_la = this._input.LA(1);
+
+					this._errHandler.reportMatch(this);
+					this.consume();
 				}
 				}
 				break;
 			default:
 				throw new NoViableAltException(this);
 			}
-			this.state = 505;
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public animation2DClass(): Animation2DClassContext {
+		let _localctx: Animation2DClassContext = new Animation2DClassContext(this._ctx, this.state);
+		this.enterRule(_localctx, 24, MapIniParser.RULE_animation2DClass);
+		let _la: number;
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 364;
+			this.match(MapIniParser.T__67);
+			this.state = 365;
+			this.match(MapIniParser.ID);
+			this.state = 369;
 			this._errHandler.sync(this);
-			_alt = 1;
-			do {
-				switch (_alt) {
-				case 1:
-					{
-					{
-					this.state = 504;
-					this.value();
-					}
-					}
-					break;
-				default:
-					throw new NoViableAltException(this);
+			_la = this._input.LA(1);
+			while (((((_la - 69)) & ~0x1F) === 0 && ((1 << (_la - 69)) & ((1 << (MapIniParser.T__68 - 69)) | (1 << (MapIniParser.T__69 - 69)) | (1 << (MapIniParser.T__70 - 69)) | (1 << (MapIniParser.T__71 - 69)) | (1 << (MapIniParser.T__72 - 69)))) !== 0)) {
+				{
+				{
+				this.state = 366;
+				this.animation2DClassProperties();
 				}
-				this.state = 507;
+				}
+				this.state = 371;
 				this._errHandler.sync(this);
-				_alt = this.interpreter.adaptivePredict(this._input, 61, this._ctx);
-			} while (_alt !== 2 && _alt !== ATN.INVALID_ALT_NUMBER);
+				_la = this._input.LA(1);
+			}
+			this.state = 372;
+			this.end();
 			}
 		}
 		catch (re) {
@@ -2647,48 +1628,70 @@ export class MapIniParser extends Parser {
 		return _localctx;
 	}
 	// @RuleVersion(0)
-	public tturretProperty(): TturretPropertyContext {
-		let _localctx: TturretPropertyContext = new TturretPropertyContext(this._ctx, this.state);
-		this.enterRule(_localctx, 86, MapIniParser.RULE_tturretProperty);
-		let _la: number;
+	public animation2DClassProperties(): Animation2DClassPropertiesContext {
+		let _localctx: Animation2DClassPropertiesContext = new Animation2DClassPropertiesContext(this._ctx, this.state);
+		this.enterRule(_localctx, 26, MapIniParser.RULE_animation2DClassProperties);
 		try {
-			let _alt: number;
-			this.enterOuterAlt(_localctx, 1);
-			{
-			this.state = 509;
-			_la = this._input.LA(1);
-			if (!(((((_la - 20)) & ~0x1F) === 0 && ((1 << (_la - 20)) & ((1 << (MapIniParser.T__19 - 20)) | (1 << (MapIniParser.T__30 - 20)) | (1 << (MapIniParser.T__31 - 20)))) !== 0))) {
-			this._errHandler.recoverInline(this);
-			} else {
-				if (this._input.LA(1) === Token.EOF) {
-					this.matchedEOF = true;
-				}
-
-				this._errHandler.reportMatch(this);
-				this.consume();
-			}
-			this.state = 510;
-			this.match(MapIniParser.T__2);
-			this.state = 512;
+			this.state = 389;
 			this._errHandler.sync(this);
-			_alt = 1;
-			do {
-				switch (_alt) {
-				case 1:
-					{
-					{
-					this.state = 511;
-					this.value();
-					}
-					}
-					break;
-				default:
-					throw new NoViableAltException(this);
+			switch (this._input.LA(1)) {
+			case MapIniParser.T__68:
+				this.enterOuterAlt(_localctx, 1);
+				{
+				this.state = 374;
+				this.match(MapIniParser.T__68);
+				this.state = 375;
+				this.match(MapIniParser.EQ);
+				this.state = 376;
+				this.match(MapIniParser.A2D_ANIMATION_MODE);
 				}
-				this.state = 514;
-				this._errHandler.sync(this);
-				_alt = this.interpreter.adaptivePredict(this._input, 62, this._ctx);
-			} while (_alt !== 2 && _alt !== ATN.INVALID_ALT_NUMBER);
+				break;
+			case MapIniParser.T__69:
+				this.enterOuterAlt(_localctx, 2);
+				{
+				this.state = 377;
+				this.match(MapIniParser.T__69);
+				this.state = 378;
+				this.match(MapIniParser.EQ);
+				this.state = 379;
+				this.match(MapIniParser.INT);
+				}
+				break;
+			case MapIniParser.T__70:
+				this.enterOuterAlt(_localctx, 3);
+				{
+				this.state = 380;
+				this.match(MapIniParser.T__70);
+				this.state = 381;
+				this.match(MapIniParser.EQ);
+				this.state = 382;
+				this.match(MapIniParser.BOOLEAN);
+				}
+				break;
+			case MapIniParser.T__71:
+				this.enterOuterAlt(_localctx, 4);
+				{
+				this.state = 383;
+				this.match(MapIniParser.T__71);
+				this.state = 384;
+				this.match(MapIniParser.EQ);
+				this.state = 385;
+				this.match(MapIniParser.INT);
+				}
+				break;
+			case MapIniParser.T__72:
+				this.enterOuterAlt(_localctx, 5);
+				{
+				this.state = 386;
+				this.match(MapIniParser.T__72);
+				this.state = 387;
+				this.match(MapIniParser.EQ);
+				this.state = 388;
+				this.match(MapIniParser.ID);
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 		}
 		catch (re) {
@@ -2706,48 +1709,319 @@ export class MapIniParser extends Parser {
 		return _localctx;
 	}
 	// @RuleVersion(0)
-	public altTurretProperty(): AltTurretPropertyContext {
-		let _localctx: AltTurretPropertyContext = new AltTurretPropertyContext(this._ctx, this.state);
-		this.enterRule(_localctx, 88, MapIniParser.RULE_altTurretProperty);
+	public armorClass(): ArmorClassContext {
+		let _localctx: ArmorClassContext = new ArmorClassContext(this._ctx, this.state);
+		this.enterRule(_localctx, 28, MapIniParser.RULE_armorClass);
 		let _la: number;
 		try {
-			let _alt: number;
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 516;
-			_la = this._input.LA(1);
-			if (!(((((_la - 21)) & ~0x1F) === 0 && ((1 << (_la - 21)) & ((1 << (MapIniParser.T__20 - 21)) | (1 << (MapIniParser.T__32 - 21)) | (1 << (MapIniParser.T__33 - 21)))) !== 0))) {
-			this._errHandler.recoverInline(this);
-			} else {
-				if (this._input.LA(1) === Token.EOF) {
-					this.matchedEOF = true;
-				}
-
-				this._errHandler.reportMatch(this);
-				this.consume();
-			}
-			this.state = 517;
-			this.match(MapIniParser.T__2);
-			this.state = 519;
+			this.state = 391;
+			this.match(MapIniParser.T__73);
+			this.state = 392;
+			this.match(MapIniParser.ID);
+			this.state = 396;
 			this._errHandler.sync(this);
-			_alt = 1;
-			do {
-				switch (_alt) {
-				case 1:
-					{
-					{
-					this.state = 518;
-					this.value();
-					}
-					}
-					break;
-				default:
-					throw new NoViableAltException(this);
+			_la = this._input.LA(1);
+			while (_la === MapIniParser.T__73) {
+				{
+				{
+				this.state = 393;
+				this.armorClassProperties();
 				}
-				this.state = 521;
+				}
+				this.state = 398;
 				this._errHandler.sync(this);
-				_alt = this.interpreter.adaptivePredict(this._input, 63, this._ctx);
-			} while (_alt !== 2 && _alt !== ATN.INVALID_ALT_NUMBER);
+				_la = this._input.LA(1);
+			}
+			this.state = 399;
+			this.end();
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public armorClassProperties(): ArmorClassPropertiesContext {
+		let _localctx: ArmorClassPropertiesContext = new ArmorClassPropertiesContext(this._ctx, this.state);
+		this.enterRule(_localctx, 30, MapIniParser.RULE_armorClassProperties);
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 401;
+			this.match(MapIniParser.T__73);
+			this.state = 402;
+			this.match(MapIniParser.EQ);
+			this.state = 403;
+			this.match(MapIniParser.ARMOR_TYPE);
+			this.state = 404;
+			this.match(MapIniParser.PROCENT);
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public commandButtonClass(): CommandButtonClassContext {
+		let _localctx: CommandButtonClassContext = new CommandButtonClassContext(this._ctx, this.state);
+		this.enterRule(_localctx, 32, MapIniParser.RULE_commandButtonClass);
+		let _la: number;
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 406;
+			this.match(MapIniParser.T__74);
+			this.state = 407;
+			this.match(MapIniParser.ID);
+			this.state = 411;
+			this._errHandler.sync(this);
+			_la = this._input.LA(1);
+			while (_la === MapIniParser.T__82 || _la === MapIniParser.T__111 || ((((_la - 131)) & ~0x1F) === 0 && ((1 << (_la - 131)) & ((1 << (MapIniParser.T__130 - 131)) | (1 << (MapIniParser.T__131 - 131)) | (1 << (MapIniParser.T__136 - 131)) | (1 << (MapIniParser.T__137 - 131)) | (1 << (MapIniParser.T__138 - 131)) | (1 << (MapIniParser.T__139 - 131)) | (1 << (MapIniParser.T__140 - 131)) | (1 << (MapIniParser.T__141 - 131)) | (1 << (MapIniParser.T__142 - 131)) | (1 << (MapIniParser.T__143 - 131)) | (1 << (MapIniParser.T__144 - 131)) | (1 << (MapIniParser.T__145 - 131)) | (1 << (MapIniParser.T__146 - 131)) | (1 << (MapIniParser.T__147 - 131)))) !== 0)) {
+				{
+				{
+				this.state = 408;
+				this.commandButtonClassProperties();
+				}
+				}
+				this.state = 413;
+				this._errHandler.sync(this);
+				_la = this._input.LA(1);
+			}
+			this.state = 414;
+			this.end();
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public commandButtonClassProperties(): CommandButtonClassPropertiesContext {
+		let _localctx: CommandButtonClassPropertiesContext = new CommandButtonClassPropertiesContext(this._ctx, this.state);
+		this.enterRule(_localctx, 34, MapIniParser.RULE_commandButtonClassProperties);
+		try {
+			this.state = 432;
+			this._errHandler.sync(this);
+			switch (this._input.LA(1)) {
+			case MapIniParser.T__82:
+				this.enterOuterAlt(_localctx, 1);
+				{
+				this.state = 416;
+				this.cb_command_property();
+				}
+				break;
+			case MapIniParser.T__111:
+				this.enterOuterAlt(_localctx, 2);
+				{
+				this.state = 417;
+				this.cb_options_property();
+				}
+				break;
+			case MapIniParser.T__130:
+				this.enterOuterAlt(_localctx, 3);
+				{
+				this.state = 418;
+				this.cb_buttonimage_property();
+				}
+				break;
+			case MapIniParser.T__131:
+				this.enterOuterAlt(_localctx, 4);
+				{
+				this.state = 419;
+				this.cb_buttonbordertype_property();
+				}
+				break;
+			case MapIniParser.T__136:
+				this.enterOuterAlt(_localctx, 5);
+				{
+				this.state = 420;
+				this.cb_textlabel_property();
+				}
+				break;
+			case MapIniParser.T__137:
+				this.enterOuterAlt(_localctx, 6);
+				{
+				this.state = 421;
+				this.cb_descriptionlabel_property();
+				}
+				break;
+			case MapIniParser.T__138:
+				this.enterOuterAlt(_localctx, 7);
+				{
+				this.state = 422;
+				this.cb_conflictinglabel_property();
+				}
+				break;
+			case MapIniParser.T__139:
+				this.enterOuterAlt(_localctx, 8);
+				{
+				this.state = 423;
+				this.cb_cursorname_propery();
+				}
+				break;
+			case MapIniParser.T__140:
+				this.enterOuterAlt(_localctx, 9);
+				{
+				this.state = 424;
+				this.cb_radius_cursorname_value();
+				}
+				break;
+			case MapIniParser.T__141:
+				this.enterOuterAlt(_localctx, 10);
+				{
+				this.state = 425;
+				this.cb_invalid_cursorname_propery();
+				}
+				break;
+			case MapIniParser.T__142:
+				this.enterOuterAlt(_localctx, 11);
+				{
+				this.state = 426;
+				this.cb_unitspecificsound_property();
+				}
+				break;
+			case MapIniParser.T__143:
+				this.enterOuterAlt(_localctx, 12);
+				{
+				this.state = 427;
+				this.object_property();
+				}
+				break;
+			case MapIniParser.T__144:
+				this.enterOuterAlt(_localctx, 13);
+				{
+				this.state = 428;
+				this.science_property();
+				}
+				break;
+			case MapIniParser.T__145:
+				this.enterOuterAlt(_localctx, 14);
+				{
+				this.state = 429;
+				this.specialpower_property();
+				}
+				break;
+			case MapIniParser.T__146:
+				this.enterOuterAlt(_localctx, 15);
+				{
+				this.state = 430;
+				this.upgrade_property();
+				}
+				break;
+			case MapIniParser.T__147:
+				this.enterOuterAlt(_localctx, 16);
+				{
+				this.state = 431;
+				this.weaponslot_property();
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public commandSetClass(): CommandSetClassContext {
+		let _localctx: CommandSetClassContext = new CommandSetClassContext(this._ctx, this.state);
+		this.enterRule(_localctx, 36, MapIniParser.RULE_commandSetClass);
+		let _la: number;
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 434;
+			this.match(MapIniParser.T__75);
+			this.state = 435;
+			this.match(MapIniParser.ID);
+			this.state = 439;
+			this._errHandler.sync(this);
+			_la = this._input.LA(1);
+			while (_la === MapIniParser.INT) {
+				{
+				{
+				this.state = 436;
+				this.commandSetClassProperty();
+				}
+				}
+				this.state = 441;
+				this._errHandler.sync(this);
+				_la = this._input.LA(1);
+			}
+			this.state = 442;
+			this.end();
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public commandSetClassProperty(): CommandSetClassPropertyContext {
+		let _localctx: CommandSetClassPropertyContext = new CommandSetClassPropertyContext(this._ctx, this.state);
+		this.enterRule(_localctx, 38, MapIniParser.RULE_commandSetClassProperty);
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 444;
+			this.match(MapIniParser.INT);
+			this.state = 445;
+			this.match(MapIniParser.EQ);
+			this.state = 446;
+			this.commandbutton_value();
 			}
 		}
 		catch (re) {
@@ -2767,14 +2041,839 @@ export class MapIniParser extends Parser {
 	// @RuleVersion(0)
 	public end(): EndContext {
 		let _localctx: EndContext = new EndContext(this._ctx, this.state);
-		this.enterRule(_localctx, 90, MapIniParser.RULE_end);
+		this.enterRule(_localctx, 40, MapIniParser.RULE_end);
+		let _la: number;
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 448;
+			_la = this._input.LA(1);
+			if (!(((((_la - 77)) & ~0x1F) === 0 && ((1 << (_la - 77)) & ((1 << (MapIniParser.T__76 - 77)) | (1 << (MapIniParser.T__77 - 77)) | (1 << (MapIniParser.T__78 - 77)))) !== 0))) {
+			this._errHandler.recoverInline(this);
+			} else {
+				if (this._input.LA(1) === Token.EOF) {
+					this.matchedEOF = true;
+				}
+
+				this._errHandler.reportMatch(this);
+				this.consume();
+			}
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public file(): FileContext {
+		let _localctx: FileContext = new FileContext(this._ctx, this.state);
+		this.enterRule(_localctx, 42, MapIniParser.RULE_file);
+		let _la: number;
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 450;
+			this.match(MapIniParser.ID);
+			this.state = 451;
+			this.match(MapIniParser.T__79);
+			this.state = 452;
+			_la = this._input.LA(1);
+			if (!(_la === MapIniParser.T__80 || _la === MapIniParser.T__81)) {
+			this._errHandler.recoverInline(this);
+			} else {
+				if (this._input.LA(1) === Token.EOF) {
+					this.matchedEOF = true;
+				}
+
+				this._errHandler.reportMatch(this);
+				this.consume();
+			}
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public cb_command_property(): Cb_command_propertyContext {
+		let _localctx: Cb_command_propertyContext = new Cb_command_propertyContext(this._ctx, this.state);
+		this.enterRule(_localctx, 44, MapIniParser.RULE_cb_command_property);
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 454;
+			this.match(MapIniParser.T__82);
+			this.state = 455;
+			this.match(MapIniParser.EQ);
+			this.state = 456;
+			this.cb_command_value();
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public cb_command_value(): Cb_command_valueContext {
+		let _localctx: Cb_command_valueContext = new Cb_command_valueContext(this._ctx, this.state);
+		this.enterRule(_localctx, 46, MapIniParser.RULE_cb_command_value);
+		let _la: number;
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 458;
+			_la = this._input.LA(1);
+			if (!(((((_la - 84)) & ~0x1F) === 0 && ((1 << (_la - 84)) & ((1 << (MapIniParser.T__83 - 84)) | (1 << (MapIniParser.T__84 - 84)) | (1 << (MapIniParser.T__85 - 84)) | (1 << (MapIniParser.T__86 - 84)) | (1 << (MapIniParser.T__87 - 84)) | (1 << (MapIniParser.T__88 - 84)) | (1 << (MapIniParser.T__89 - 84)) | (1 << (MapIniParser.T__90 - 84)) | (1 << (MapIniParser.T__91 - 84)) | (1 << (MapIniParser.T__92 - 84)) | (1 << (MapIniParser.T__93 - 84)) | (1 << (MapIniParser.T__94 - 84)) | (1 << (MapIniParser.T__95 - 84)) | (1 << (MapIniParser.T__96 - 84)) | (1 << (MapIniParser.T__97 - 84)) | (1 << (MapIniParser.T__98 - 84)) | (1 << (MapIniParser.T__99 - 84)) | (1 << (MapIniParser.T__100 - 84)) | (1 << (MapIniParser.T__101 - 84)) | (1 << (MapIniParser.T__102 - 84)) | (1 << (MapIniParser.T__103 - 84)) | (1 << (MapIniParser.T__104 - 84)) | (1 << (MapIniParser.T__105 - 84)) | (1 << (MapIniParser.T__106 - 84)) | (1 << (MapIniParser.T__107 - 84)) | (1 << (MapIniParser.T__108 - 84)) | (1 << (MapIniParser.T__109 - 84)) | (1 << (MapIniParser.T__110 - 84)))) !== 0) || _la === MapIniParser.NVALUE)) {
+			this._errHandler.recoverInline(this);
+			} else {
+				if (this._input.LA(1) === Token.EOF) {
+					this.matchedEOF = true;
+				}
+
+				this._errHandler.reportMatch(this);
+				this.consume();
+			}
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public cb_options_property(): Cb_options_propertyContext {
+		let _localctx: Cb_options_propertyContext = new Cb_options_propertyContext(this._ctx, this.state);
+		this.enterRule(_localctx, 48, MapIniParser.RULE_cb_options_property);
+		let _la: number;
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 460;
+			this.match(MapIniParser.T__111);
+			this.state = 461;
+			this.match(MapIniParser.EQ);
+			this.state = 463;
+			this._errHandler.sync(this);
+			_la = this._input.LA(1);
+			do {
+				{
+				{
+				this.state = 462;
+				this.cb_options_value();
+				}
+				}
+				this.state = 465;
+				this._errHandler.sync(this);
+				_la = this._input.LA(1);
+			} while (((((_la - 113)) & ~0x1F) === 0 && ((1 << (_la - 113)) & ((1 << (MapIniParser.T__112 - 113)) | (1 << (MapIniParser.T__113 - 113)) | (1 << (MapIniParser.T__114 - 113)) | (1 << (MapIniParser.T__115 - 113)) | (1 << (MapIniParser.T__116 - 113)) | (1 << (MapIniParser.T__117 - 113)) | (1 << (MapIniParser.T__118 - 113)) | (1 << (MapIniParser.T__119 - 113)) | (1 << (MapIniParser.T__120 - 113)) | (1 << (MapIniParser.T__121 - 113)) | (1 << (MapIniParser.T__122 - 113)) | (1 << (MapIniParser.T__123 - 113)) | (1 << (MapIniParser.T__124 - 113)) | (1 << (MapIniParser.T__125 - 113)) | (1 << (MapIniParser.T__126 - 113)) | (1 << (MapIniParser.T__127 - 113)) | (1 << (MapIniParser.T__128 - 113)) | (1 << (MapIniParser.T__129 - 113)))) !== 0) || _la === MapIniParser.NVALUE);
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public cb_options_value(): Cb_options_valueContext {
+		let _localctx: Cb_options_valueContext = new Cb_options_valueContext(this._ctx, this.state);
+		this.enterRule(_localctx, 50, MapIniParser.RULE_cb_options_value);
+		let _la: number;
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 467;
+			_la = this._input.LA(1);
+			if (!(((((_la - 113)) & ~0x1F) === 0 && ((1 << (_la - 113)) & ((1 << (MapIniParser.T__112 - 113)) | (1 << (MapIniParser.T__113 - 113)) | (1 << (MapIniParser.T__114 - 113)) | (1 << (MapIniParser.T__115 - 113)) | (1 << (MapIniParser.T__116 - 113)) | (1 << (MapIniParser.T__117 - 113)) | (1 << (MapIniParser.T__118 - 113)) | (1 << (MapIniParser.T__119 - 113)) | (1 << (MapIniParser.T__120 - 113)) | (1 << (MapIniParser.T__121 - 113)) | (1 << (MapIniParser.T__122 - 113)) | (1 << (MapIniParser.T__123 - 113)) | (1 << (MapIniParser.T__124 - 113)) | (1 << (MapIniParser.T__125 - 113)) | (1 << (MapIniParser.T__126 - 113)) | (1 << (MapIniParser.T__127 - 113)) | (1 << (MapIniParser.T__128 - 113)) | (1 << (MapIniParser.T__129 - 113)))) !== 0) || _la === MapIniParser.NVALUE)) {
+			this._errHandler.recoverInline(this);
+			} else {
+				if (this._input.LA(1) === Token.EOF) {
+					this.matchedEOF = true;
+				}
+
+				this._errHandler.reportMatch(this);
+				this.consume();
+			}
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public cb_buttonimage_property(): Cb_buttonimage_propertyContext {
+		let _localctx: Cb_buttonimage_propertyContext = new Cb_buttonimage_propertyContext(this._ctx, this.state);
+		this.enterRule(_localctx, 52, MapIniParser.RULE_cb_buttonimage_property);
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 469;
+			this.match(MapIniParser.T__130);
+			this.state = 470;
+			this.match(MapIniParser.EQ);
+			this.state = 471;
+			this.mappedimage_value();
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public cb_buttonbordertype_property(): Cb_buttonbordertype_propertyContext {
+		let _localctx: Cb_buttonbordertype_propertyContext = new Cb_buttonbordertype_propertyContext(this._ctx, this.state);
+		this.enterRule(_localctx, 54, MapIniParser.RULE_cb_buttonbordertype_property);
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 473;
+			this.match(MapIniParser.T__131);
+			this.state = 474;
+			this.match(MapIniParser.EQ);
+			this.state = 475;
+			this.cb_buttonbordertype_value();
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public cb_buttonbordertype_value(): Cb_buttonbordertype_valueContext {
+		let _localctx: Cb_buttonbordertype_valueContext = new Cb_buttonbordertype_valueContext(this._ctx, this.state);
+		this.enterRule(_localctx, 56, MapIniParser.RULE_cb_buttonbordertype_value);
+		let _la: number;
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 477;
+			_la = this._input.LA(1);
+			if (!(((((_la - 133)) & ~0x1F) === 0 && ((1 << (_la - 133)) & ((1 << (MapIniParser.T__132 - 133)) | (1 << (MapIniParser.T__133 - 133)) | (1 << (MapIniParser.T__134 - 133)) | (1 << (MapIniParser.T__135 - 133)))) !== 0) || _la === MapIniParser.NVALUE)) {
+			this._errHandler.recoverInline(this);
+			} else {
+				if (this._input.LA(1) === Token.EOF) {
+					this.matchedEOF = true;
+				}
+
+				this._errHandler.reportMatch(this);
+				this.consume();
+			}
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public cb_textlabel_property(): Cb_textlabel_propertyContext {
+		let _localctx: Cb_textlabel_propertyContext = new Cb_textlabel_propertyContext(this._ctx, this.state);
+		this.enterRule(_localctx, 58, MapIniParser.RULE_cb_textlabel_property);
+		let _la: number;
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 479;
+			this.match(MapIniParser.T__136);
+			this.state = 480;
+			this.match(MapIniParser.EQ);
+			this.state = 481;
+			_la = this._input.LA(1);
+			if (!(_la === MapIniParser.NVALUE || _la === MapIniParser.ID)) {
+			this._errHandler.recoverInline(this);
+			} else {
+				if (this._input.LA(1) === Token.EOF) {
+					this.matchedEOF = true;
+				}
+
+				this._errHandler.reportMatch(this);
+				this.consume();
+			}
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public cb_descriptionlabel_property(): Cb_descriptionlabel_propertyContext {
+		let _localctx: Cb_descriptionlabel_propertyContext = new Cb_descriptionlabel_propertyContext(this._ctx, this.state);
+		this.enterRule(_localctx, 60, MapIniParser.RULE_cb_descriptionlabel_property);
+		let _la: number;
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 483;
+			this.match(MapIniParser.T__137);
+			this.state = 484;
+			this.match(MapIniParser.EQ);
+			this.state = 485;
+			_la = this._input.LA(1);
+			if (!(_la === MapIniParser.NVALUE || _la === MapIniParser.ID)) {
+			this._errHandler.recoverInline(this);
+			} else {
+				if (this._input.LA(1) === Token.EOF) {
+					this.matchedEOF = true;
+				}
+
+				this._errHandler.reportMatch(this);
+				this.consume();
+			}
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public cb_conflictinglabel_property(): Cb_conflictinglabel_propertyContext {
+		let _localctx: Cb_conflictinglabel_propertyContext = new Cb_conflictinglabel_propertyContext(this._ctx, this.state);
+		this.enterRule(_localctx, 62, MapIniParser.RULE_cb_conflictinglabel_property);
+		let _la: number;
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 487;
+			this.match(MapIniParser.T__138);
+			this.state = 488;
+			this.match(MapIniParser.EQ);
+			this.state = 489;
+			_la = this._input.LA(1);
+			if (!(_la === MapIniParser.NVALUE || _la === MapIniParser.ID)) {
+			this._errHandler.recoverInline(this);
+			} else {
+				if (this._input.LA(1) === Token.EOF) {
+					this.matchedEOF = true;
+				}
+
+				this._errHandler.reportMatch(this);
+				this.consume();
+			}
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public cb_cursorname_propery(): Cb_cursorname_properyContext {
+		let _localctx: Cb_cursorname_properyContext = new Cb_cursorname_properyContext(this._ctx, this.state);
+		this.enterRule(_localctx, 64, MapIniParser.RULE_cb_cursorname_propery);
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 491;
+			this.match(MapIniParser.T__139);
+			this.state = 492;
+			this.match(MapIniParser.EQ);
+			this.state = 493;
+			this.cursorname_value();
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public cb_radius_cursorname_value(): Cb_radius_cursorname_valueContext {
+		let _localctx: Cb_radius_cursorname_valueContext = new Cb_radius_cursorname_valueContext(this._ctx, this.state);
+		this.enterRule(_localctx, 66, MapIniParser.RULE_cb_radius_cursorname_value);
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 495;
+			this.match(MapIniParser.T__140);
+			this.state = 496;
+			this.match(MapIniParser.EQ);
+			this.state = 497;
+			this.radius_cursorname_value();
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public cb_invalid_cursorname_propery(): Cb_invalid_cursorname_properyContext {
+		let _localctx: Cb_invalid_cursorname_properyContext = new Cb_invalid_cursorname_properyContext(this._ctx, this.state);
+		this.enterRule(_localctx, 68, MapIniParser.RULE_cb_invalid_cursorname_propery);
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 499;
+			this.match(MapIniParser.T__141);
+			this.state = 500;
+			this.match(MapIniParser.EQ);
+			this.state = 501;
+			this.invalid_cursorname_value();
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public cb_unitspecificsound_property(): Cb_unitspecificsound_propertyContext {
+		let _localctx: Cb_unitspecificsound_propertyContext = new Cb_unitspecificsound_propertyContext(this._ctx, this.state);
+		this.enterRule(_localctx, 70, MapIniParser.RULE_cb_unitspecificsound_property);
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 503;
+			this.match(MapIniParser.T__142);
+			this.state = 504;
+			this.match(MapIniParser.EQ);
+			this.state = 505;
+			this.audioevent_value();
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public commandbutton_value(): Commandbutton_valueContext {
+		let _localctx: Commandbutton_valueContext = new Commandbutton_valueContext(this._ctx, this.state);
+		this.enterRule(_localctx, 72, MapIniParser.RULE_commandbutton_value);
+		let _la: number;
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 507;
+			_la = this._input.LA(1);
+			if (!(_la === MapIniParser.NVALUE || _la === MapIniParser.ID)) {
+			this._errHandler.recoverInline(this);
+			} else {
+				if (this._input.LA(1) === Token.EOF) {
+					this.matchedEOF = true;
+				}
+
+				this._errHandler.reportMatch(this);
+				this.consume();
+			}
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public cursorname_value(): Cursorname_valueContext {
+		let _localctx: Cursorname_valueContext = new Cursorname_valueContext(this._ctx, this.state);
+		this.enterRule(_localctx, 74, MapIniParser.RULE_cursorname_value);
+		let _la: number;
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 509;
+			_la = this._input.LA(1);
+			if (!(_la === MapIniParser.NVALUE || _la === MapIniParser.ID)) {
+			this._errHandler.recoverInline(this);
+			} else {
+				if (this._input.LA(1) === Token.EOF) {
+					this.matchedEOF = true;
+				}
+
+				this._errHandler.reportMatch(this);
+				this.consume();
+			}
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public radius_cursorname_value(): Radius_cursorname_valueContext {
+		let _localctx: Radius_cursorname_valueContext = new Radius_cursorname_valueContext(this._ctx, this.state);
+		this.enterRule(_localctx, 76, MapIniParser.RULE_radius_cursorname_value);
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 511;
+			this.match(MapIniParser.ID);
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public invalid_cursorname_value(): Invalid_cursorname_valueContext {
+		let _localctx: Invalid_cursorname_valueContext = new Invalid_cursorname_valueContext(this._ctx, this.state);
+		this.enterRule(_localctx, 78, MapIniParser.RULE_invalid_cursorname_value);
+		let _la: number;
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 513;
+			_la = this._input.LA(1);
+			if (!(_la === MapIniParser.NVALUE || _la === MapIniParser.ID)) {
+			this._errHandler.recoverInline(this);
+			} else {
+				if (this._input.LA(1) === Token.EOF) {
+					this.matchedEOF = true;
+				}
+
+				this._errHandler.reportMatch(this);
+				this.consume();
+			}
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public mappedimage_value(): Mappedimage_valueContext {
+		let _localctx: Mappedimage_valueContext = new Mappedimage_valueContext(this._ctx, this.state);
+		this.enterRule(_localctx, 80, MapIniParser.RULE_mappedimage_value);
+		let _la: number;
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 515;
+			_la = this._input.LA(1);
+			if (!(_la === MapIniParser.NVALUE || _la === MapIniParser.ID)) {
+			this._errHandler.recoverInline(this);
+			} else {
+				if (this._input.LA(1) === Token.EOF) {
+					this.matchedEOF = true;
+				}
+
+				this._errHandler.reportMatch(this);
+				this.consume();
+			}
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public object_property(): Object_propertyContext {
+		let _localctx: Object_propertyContext = new Object_propertyContext(this._ctx, this.state);
+		this.enterRule(_localctx, 82, MapIniParser.RULE_object_property);
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 517;
+			this.match(MapIniParser.T__143);
+			this.state = 518;
+			this.match(MapIniParser.EQ);
+			this.state = 519;
+			this.object_value();
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public object_value(): Object_valueContext {
+		let _localctx: Object_valueContext = new Object_valueContext(this._ctx, this.state);
+		this.enterRule(_localctx, 84, MapIniParser.RULE_object_value);
+		let _la: number;
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 521;
+			_la = this._input.LA(1);
+			if (!(_la === MapIniParser.NVALUE || _la === MapIniParser.ID)) {
+			this._errHandler.recoverInline(this);
+			} else {
+				if (this._input.LA(1) === Token.EOF) {
+					this.matchedEOF = true;
+				}
+
+				this._errHandler.reportMatch(this);
+				this.consume();
+			}
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public science_property(): Science_propertyContext {
+		let _localctx: Science_propertyContext = new Science_propertyContext(this._ctx, this.state);
+		this.enterRule(_localctx, 86, MapIniParser.RULE_science_property);
 		let _la: number;
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
 			this.state = 523;
+			this.match(MapIniParser.T__144);
+			this.state = 524;
+			this.match(MapIniParser.EQ);
+			this.state = 526;
+			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			if (!(((((_la - 35)) & ~0x1F) === 0 && ((1 << (_la - 35)) & ((1 << (MapIniParser.T__34 - 35)) | (1 << (MapIniParser.T__35 - 35)) | (1 << (MapIniParser.T__36 - 35)))) !== 0))) {
+			do {
+				{
+				{
+				this.state = 525;
+				this.science_value();
+				}
+				}
+				this.state = 528;
+				this._errHandler.sync(this);
+				_la = this._input.LA(1);
+			} while (_la === MapIniParser.NVALUE || _la === MapIniParser.ID);
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public science_value(): Science_valueContext {
+		let _localctx: Science_valueContext = new Science_valueContext(this._ctx, this.state);
+		this.enterRule(_localctx, 88, MapIniParser.RULE_science_value);
+		let _la: number;
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 530;
+			_la = this._input.LA(1);
+			if (!(_la === MapIniParser.NVALUE || _la === MapIniParser.ID)) {
 			this._errHandler.recoverInline(this);
 			} else {
 				if (this._input.LA(1) === Token.EOF) {
@@ -2801,114 +2900,18 @@ export class MapIniParser extends Parser {
 		return _localctx;
 	}
 	// @RuleVersion(0)
-	public value(): ValueContext {
-		let _localctx: ValueContext = new ValueContext(this._ctx, this.state);
-		this.enterRule(_localctx, 92, MapIniParser.RULE_value);
-		let _la: number;
+	public specialpower_property(): Specialpower_propertyContext {
+		let _localctx: Specialpower_propertyContext = new Specialpower_propertyContext(this._ctx, this.state);
+		this.enterRule(_localctx, 90, MapIniParser.RULE_specialpower_property);
 		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 532;
+			this.match(MapIniParser.T__145);
+			this.state = 533;
+			this.match(MapIniParser.EQ);
 			this.state = 534;
-			this._errHandler.sync(this);
-			switch ( this.interpreter.adaptivePredict(this._input, 64, this._ctx) ) {
-			case 1:
-				_localctx = new StringContext(_localctx);
-				this.enterOuterAlt(_localctx, 1);
-				{
-				this.state = 525;
-				this.quoutedID();
-				}
-				break;
-
-			case 2:
-				_localctx = new FiletypeContext(_localctx);
-				this.enterOuterAlt(_localctx, 2);
-				{
-				this.state = 526;
-				this.ftype();
-				}
-				break;
-
-			case 3:
-				_localctx = new ProcentageContext(_localctx);
-				this.enterOuterAlt(_localctx, 3);
-				{
-				this.state = 527;
-				this.procent();
-				}
-				break;
-
-			case 4:
-				_localctx = new IdContext(_localctx);
-				this.enterOuterAlt(_localctx, 4);
-				{
-				this.state = 528;
-				this.match(MapIniParser.ID);
-				}
-				break;
-
-			case 5:
-				_localctx = new IntContext(_localctx);
-				this.enterOuterAlt(_localctx, 5);
-				{
-				this.state = 529;
-				this.match(MapIniParser.INT);
-				}
-				break;
-
-			case 6:
-				_localctx = new FloatContext(_localctx);
-				this.enterOuterAlt(_localctx, 6);
-				{
-				this.state = 530;
-				this.match(MapIniParser.FLOAT);
-				}
-				break;
-
-			case 7:
-				_localctx = new BoolContext(_localctx);
-				this.enterOuterAlt(_localctx, 7);
-				{
-				this.state = 531;
-				this.match(MapIniParser.BOOL);
-				}
-				break;
-
-			case 8:
-				_localctx = new TurretValueContext(_localctx);
-				this.enterOuterAlt(_localctx, 8);
-				{
-				this.state = 532;
-				_la = this._input.LA(1);
-				if (!(((((_la - 20)) & ~0x1F) === 0 && ((1 << (_la - 20)) & ((1 << (MapIniParser.T__19 - 20)) | (1 << (MapIniParser.T__30 - 20)) | (1 << (MapIniParser.T__31 - 20)))) !== 0))) {
-				this._errHandler.recoverInline(this);
-				} else {
-					if (this._input.LA(1) === Token.EOF) {
-						this.matchedEOF = true;
-					}
-
-					this._errHandler.reportMatch(this);
-					this.consume();
-				}
-				}
-				break;
-
-			case 9:
-				_localctx = new AltTurretValueContext(_localctx);
-				this.enterOuterAlt(_localctx, 9);
-				{
-				this.state = 533;
-				_la = this._input.LA(1);
-				if (!(((((_la - 21)) & ~0x1F) === 0 && ((1 << (_la - 21)) & ((1 << (MapIniParser.T__20 - 21)) | (1 << (MapIniParser.T__32 - 21)) | (1 << (MapIniParser.T__33 - 21)))) !== 0))) {
-				this._errHandler.recoverInline(this);
-				} else {
-					if (this._input.LA(1) === Token.EOF) {
-						this.matchedEOF = true;
-					}
-
-					this._errHandler.reportMatch(this);
-					this.consume();
-				}
-				}
-				break;
+			this.specialpower_value();
 			}
 		}
 		catch (re) {
@@ -2926,76 +2929,16 @@ export class MapIniParser extends Parser {
 		return _localctx;
 	}
 	// @RuleVersion(0)
-	public ftype(): FtypeContext {
-		let _localctx: FtypeContext = new FtypeContext(this._ctx, this.state);
-		this.enterRule(_localctx, 94, MapIniParser.RULE_ftype);
+	public specialpower_value(): Specialpower_valueContext {
+		let _localctx: Specialpower_valueContext = new Specialpower_valueContext(this._ctx, this.state);
+		this.enterRule(_localctx, 92, MapIniParser.RULE_specialpower_value);
+		let _la: number;
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
 			this.state = 536;
-			this.match(MapIniParser.ID);
-			this.state = 537;
-			this.match(MapIniParser.T__37);
-			this.state = 538;
-			this.match(MapIniParser.ID);
-			}
-		}
-		catch (re) {
-			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
-				this._errHandler.reportError(this, re);
-				this._errHandler.recover(this, re);
-			} else {
-				throw re;
-			}
-		}
-		finally {
-			this.exitRule();
-		}
-		return _localctx;
-	}
-	// @RuleVersion(0)
-	public rgb(): RgbContext {
-		let _localctx: RgbContext = new RgbContext(this._ctx, this.state);
-		this.enterRule(_localctx, 96, MapIniParser.RULE_rgb);
-		try {
-			this.enterOuterAlt(_localctx, 1);
-			{
-			this.state = 540;
-			this.match(MapIniParser.INT256);
-			this.state = 541;
-			this.match(MapIniParser.INT256);
-			this.state = 542;
-			this.match(MapIniParser.INT256);
-			this.state = 543;
-			this.match(MapIniParser.INT256);
-			}
-		}
-		catch (re) {
-			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
-				this._errHandler.reportError(this, re);
-				this._errHandler.recover(this, re);
-			} else {
-				throw re;
-			}
-		}
-		finally {
-			this.exitRule();
-		}
-		return _localctx;
-	}
-	// @RuleVersion(0)
-	public procent(): ProcentContext {
-		let _localctx: ProcentContext = new ProcentContext(this._ctx, this.state);
-		this.enterRule(_localctx, 98, MapIniParser.RULE_procent);
-		let _la: number;
-		try {
-			this.enterOuterAlt(_localctx, 1);
-			{
-			this.state = 545;
 			_la = this._input.LA(1);
-			if (!(_la === MapIniParser.INT || _la === MapIniParser.FLOAT)) {
+			if (!(_la === MapIniParser.NVALUE || _la === MapIniParser.ID)) {
 			this._errHandler.recoverInline(this);
 			} else {
 				if (this._input.LA(1) === Token.EOF) {
@@ -3005,8 +2948,6 @@ export class MapIniParser extends Parser {
 				this._errHandler.reportMatch(this);
 				this.consume();
 			}
-			this.state = 546;
-			this.match(MapIniParser.T__38);
 			}
 		}
 		catch (re) {
@@ -3024,98 +2965,168 @@ export class MapIniParser extends Parser {
 		return _localctx;
 	}
 	// @RuleVersion(0)
-	public intRang(): IntRangContext {
-		let _localctx: IntRangContext = new IntRangContext(this._ctx, this.state);
-		this.enterRule(_localctx, 100, MapIniParser.RULE_intRang);
-		try {
-			this.enterOuterAlt(_localctx, 1);
-			{
-			this.state = 548;
-			this.match(MapIniParser.INT);
-			this.state = 549;
-			this.match(MapIniParser.INT);
-			}
-		}
-		catch (re) {
-			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
-				this._errHandler.reportError(this, re);
-				this._errHandler.recover(this, re);
-			} else {
-				throw re;
-			}
-		}
-		finally {
-			this.exitRule();
-		}
-		return _localctx;
-	}
-	// @RuleVersion(0)
-	public floatRang(): FloatRangContext {
-		let _localctx: FloatRangContext = new FloatRangContext(this._ctx, this.state);
-		this.enterRule(_localctx, 102, MapIniParser.RULE_floatRang);
-		try {
-			this.enterOuterAlt(_localctx, 1);
-			{
-			this.state = 551;
-			this.match(MapIniParser.FLOAT);
-			this.state = 552;
-			this.match(MapIniParser.FLOAT);
-			}
-		}
-		catch (re) {
-			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
-				this._errHandler.reportError(this, re);
-				this._errHandler.recover(this, re);
-			} else {
-				throw re;
-			}
-		}
-		finally {
-			this.exitRule();
-		}
-		return _localctx;
-	}
-	// @RuleVersion(0)
-	public quoutedID(): QuoutedIDContext {
-		let _localctx: QuoutedIDContext = new QuoutedIDContext(this._ctx, this.state);
-		this.enterRule(_localctx, 104, MapIniParser.RULE_quoutedID);
+	public audioevent_value(): Audioevent_valueContext {
+		let _localctx: Audioevent_valueContext = new Audioevent_valueContext(this._ctx, this.state);
+		this.enterRule(_localctx, 94, MapIniParser.RULE_audioevent_value);
 		let _la: number;
 		try {
-			let _alt: number;
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 554;
-			this.match(MapIniParser.T__39);
-			this.state = 558;
-			this._errHandler.sync(this);
-			_alt = this.interpreter.adaptivePredict(this._input, 65, this._ctx);
-			while (_alt !== 2 && _alt !== ATN.INVALID_ALT_NUMBER) {
-				if (_alt === 1) {
-					{
-					{
-					this.state = 555;
-					_la = this._input.LA(1);
-					if (_la <= 0 || (_la === MapIniParser.WS)) {
-					this._errHandler.recoverInline(this);
-					} else {
-						if (this._input.LA(1) === Token.EOF) {
-							this.matchedEOF = true;
-						}
-
-						this._errHandler.reportMatch(this);
-						this.consume();
-					}
-					}
-					}
+			this.state = 538;
+			_la = this._input.LA(1);
+			if (!(_la === MapIniParser.NVALUE || _la === MapIniParser.ID)) {
+			this._errHandler.recoverInline(this);
+			} else {
+				if (this._input.LA(1) === Token.EOF) {
+					this.matchedEOF = true;
 				}
-				this.state = 560;
-				this._errHandler.sync(this);
-				_alt = this.interpreter.adaptivePredict(this._input, 65, this._ctx);
+
+				this._errHandler.reportMatch(this);
+				this.consume();
 			}
-			this.state = 561;
-			this.match(MapIniParser.T__39);
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public upgrade_property(): Upgrade_propertyContext {
+		let _localctx: Upgrade_propertyContext = new Upgrade_propertyContext(this._ctx, this.state);
+		this.enterRule(_localctx, 96, MapIniParser.RULE_upgrade_property);
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 540;
+			this.match(MapIniParser.T__146);
+			this.state = 541;
+			this.match(MapIniParser.EQ);
+			this.state = 542;
+			this.upgrade_value();
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public upgrade_value(): Upgrade_valueContext {
+		let _localctx: Upgrade_valueContext = new Upgrade_valueContext(this._ctx, this.state);
+		this.enterRule(_localctx, 98, MapIniParser.RULE_upgrade_value);
+		let _la: number;
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 544;
+			_la = this._input.LA(1);
+			if (!(_la === MapIniParser.NVALUE || _la === MapIniParser.ID)) {
+			this._errHandler.recoverInline(this);
+			} else {
+				if (this._input.LA(1) === Token.EOF) {
+					this.matchedEOF = true;
+				}
+
+				this._errHandler.reportMatch(this);
+				this.consume();
+			}
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public weaponslot_property(): Weaponslot_propertyContext {
+		let _localctx: Weaponslot_propertyContext = new Weaponslot_propertyContext(this._ctx, this.state);
+		this.enterRule(_localctx, 100, MapIniParser.RULE_weaponslot_property);
+		let _la: number;
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 546;
+			this.match(MapIniParser.T__147);
+			this.state = 547;
+			this.match(MapIniParser.EQ);
+			this.state = 549;
+			this._errHandler.sync(this);
+			_la = this._input.LA(1);
+			do {
+				{
+				{
+				this.state = 548;
+				this.match(MapIniParser.WEAPONSLOT);
+				}
+				}
+				this.state = 551;
+				this._errHandler.sync(this);
+				_la = this._input.LA(1);
+			} while (_la === MapIniParser.WEAPONSLOT);
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public faction(): FactionContext {
+		let _localctx: FactionContext = new FactionContext(this._ctx, this.state);
+		this.enterRule(_localctx, 102, MapIniParser.RULE_faction);
+		let _la: number;
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 553;
+			_la = this._input.LA(1);
+			if (!(((((_la - 149)) & ~0x1F) === 0 && ((1 << (_la - 149)) & ((1 << (MapIniParser.T__148 - 149)) | (1 << (MapIniParser.T__149 - 149)) | (1 << (MapIniParser.T__150 - 149)) | (1 << (MapIniParser.T__151 - 149)) | (1 << (MapIniParser.T__152 - 149)) | (1 << (MapIniParser.T__153 - 149)) | (1 << (MapIniParser.T__154 - 149)) | (1 << (MapIniParser.T__155 - 149)) | (1 << (MapIniParser.T__156 - 149)) | (1 << (MapIniParser.T__157 - 149)) | (1 << (MapIniParser.T__158 - 149)) | (1 << (MapIniParser.T__159 - 149)))) !== 0))) {
+			this._errHandler.recoverInline(this);
+			} else {
+				if (this._input.LA(1) === Token.EOF) {
+					this.matchedEOF = true;
+				}
+
+				this._errHandler.reportMatch(this);
+				this.consume();
+			}
 			}
 		}
 		catch (re) {
@@ -3133,296 +3144,283 @@ export class MapIniParser extends Parser {
 		return _localctx;
 	}
 
-	private static readonly _serializedATNSegments: number = 2;
-	private static readonly _serializedATNSegment0: string =
-		"\x03\uC91D\uCABA\u058D\uAFBA\u4F53\u0607\uEA8B\uC241\x032\u0236\x04\x02" +
-		"\t\x02\x04\x03\t\x03\x04\x04\t\x04\x04\x05\t\x05\x04\x06\t\x06\x04\x07" +
-		"\t\x07\x04\b\t\b\x04\t\t\t\x04\n\t\n\x04\v\t\v\x04\f\t\f\x04\r\t\r\x04" +
-		"\x0E\t\x0E\x04\x0F\t\x0F\x04\x10\t\x10\x04\x11\t\x11\x04\x12\t\x12\x04" +
-		"\x13\t\x13\x04\x14\t\x14\x04\x15\t\x15\x04\x16\t\x16\x04\x17\t\x17\x04" +
-		"\x18\t\x18\x04\x19\t\x19\x04\x1A\t\x1A\x04\x1B\t\x1B\x04\x1C\t\x1C\x04" +
-		"\x1D\t\x1D\x04\x1E\t\x1E\x04\x1F\t\x1F\x04 \t \x04!\t!\x04\"\t\"\x04#" +
-		"\t#\x04$\t$\x04%\t%\x04&\t&\x04\'\t\'\x04(\t(\x04)\t)\x04*\t*\x04+\t+" +
-		"\x04,\t,\x04-\t-\x04.\t.\x04/\t/\x040\t0\x041\t1\x042\t2\x043\t3\x044" +
-		"\t4\x045\t5\x046\t6\x03\x02\x07\x02n\n\x02\f\x02\x0E\x02q\v\x02\x03\x02" +
-		"\x03\x02\x03\x03\x03\x03\x05\x03w\n\x03\x03\x04\x03\x04\x03\x04\x03\x04" +
-		"\x03\x04\x03\x04\x07\x04\x7F\n\x04\f\x04\x0E\x04\x82\v\x04\x03\x04\x03" +
-		"\x04\x03\x04\x07\x04\x87\n\x04\f\x04\x0E\x04\x8A\v\x04\x05\x04\x8C\n\x04" +
-		"\x03\x04\x03\x04\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x07\x05\x95\n" +
-		"\x05\f\x05\x0E\x05\x98\v\x05\x03\x05\x03\x05\x03\x05\x07\x05\x9D\n\x05" +
-		"\f\x05\x0E\x05\xA0\v\x05\x05\x05\xA2\n\x05\x03\x05\x03\x05\x03\x06\x03" +
-		"\x06\x03\x06\x06\x06\xA9\n\x06\r\x06\x0E\x06\xAA\x03\x07\x03\x07\x03\x07" +
-		"\x03\x07\x05\x07\xB1\n\x07\x03\b\x03\b\x03\b\x03\b\x07\b\xB7\n\b\f\b\x0E" +
-		"\b\xBA\v\b\x03\b\x03\b\x03\t\x03\t\x03\t\x06\t\xC1\n\t\r\t\x0E\t\xC2\x03" +
-		"\n\x03\n\x03\n\x06\n\xC8\n\n\r\n\x0E\n\xC9\x03\v\x03\v\x03\v\x03\v\x07" +
-		"\v\xD0\n\v\f\v\x0E\v\xD3\v\v\x03\v\x03\v\x03\f\x03\f\x03\f\x06\f\xDA\n" +
-		"\f\r\f\x0E\f\xDB\x03\r\x03\r\x03\r\x03\r\x03\r\x05\r\xE3\n\r\x03\x0E\x03" +
-		"\x0E\x03\x0E\x03\x0E\x03\x0E\x05\x0E\xEA\n\x0E\x03\x0F\x03\x0F\x03\x0F" +
-		"\x07\x0F\xEF\n\x0F\f\x0F\x0E\x0F\xF2\v\x0F\x03\x0F\x03\x0F\x03\x10\x03" +
-		"\x10\x03\x10\x06\x10\xF9\n\x10\r\x10\x0E\x10\xFA\x03\x11\x03\x11\x03\x11" +
-		"\x06\x11\u0100\n\x11\r\x11\x0E\x11\u0101\x03\x12\x03\x12\x07\x12\u0106" +
-		"\n\x12\f\x12\x0E\x12\u0109\v\x12\x03\x12\x03\x12\x03\x13\x03\x13\x03\x13" +
-		"\x06\x13\u0110\n\x13\r\x13\x0E\x13\u0111\x03\x14\x03\x14\x07\x14\u0116" +
-		"\n\x14\f\x14\x0E\x14\u0119\v\x14\x03\x14\x03\x14\x03\x15\x03\x15\x03\x15" +
-		"\x06\x15\u0120\n\x15\r\x15\x0E\x15\u0121\x03\x16\x03\x16\x07\x16\u0126" +
-		"\n\x16\f\x16\x0E\x16\u0129\v\x16\x03\x16\x03\x16\x03\x17\x03\x17\x03\x17" +
-		"\x06\x17\u0130\n\x17\r\x17\x0E\x17\u0131\x03\x18\x03\x18\x07\x18\u0136" +
-		"\n\x18\f\x18\x0E\x18\u0139\v\x18\x03\x18\x03\x18\x03\x19\x03\x19\x03\x19" +
-		"\x06\x19\u0140\n\x19\r\x19\x0E\x19\u0141\x03\x1A\x03\x1A\x03\x1A\x03\x1A" +
-		"\x03\x1A\x07\x1A\u0149\n\x1A\f\x1A\x0E\x1A\u014C\v\x1A\x03\x1A\x03\x1A" +
-		"\x03\x1B\x03\x1B\x03\x1B\x03\x1B\x03\x1B\x03\x1B\x03\x1B\x03\x1B\x07\x1B" +
-		"\u0158\n\x1B\f\x1B\x0E\x1B\u015B\v\x1B\x03\x1B\x03\x1B\x03\x1C\x03\x1C" +
-		"\x07\x1C\u0161\n\x1C\f\x1C\x0E\x1C\u0164\v\x1C\x03\x1C\x03\x1C\x03\x1D" +
-		"\x03\x1D\x07\x1D\u016A\n\x1D\f\x1D\x0E\x1D\u016D\v\x1D\x03\x1D\x03\x1D" +
-		"\x03\x1E\x03\x1E\x03\x1E\x03\x1E\x03\x1E\x07\x1E\u0176\n\x1E\f\x1E\x0E" +
-		"\x1E\u0179\v\x1E\x03\x1E\x03\x1E\x03\x1F\x03\x1F\x03\x1F\x03\x1F\x03\x1F" +
-		"\x06\x1F\u0182\n\x1F\r\x1F\x0E\x1F\u0183\x03\x1F\x07\x1F\u0187\n\x1F\f" +
-		"\x1F\x0E\x1F\u018A\v\x1F\x03\x1F\x03\x1F\x03 \x03 \x03 \x06 \u0191\n " +
-		"\r \x0E \u0192\x03!\x03!\x03!\x03!\x03!\x05!\u019A\n!\x03\"\x03\"\x03" +
-		"\"\x06\"\u019F\n\"\r\"\x0E\"\u01A0\x05\"\u01A3\n\"\x03\"\x03\"\x03\"\x07" +
-		"\"\u01A8\n\"\f\"\x0E\"\u01AB\v\"\x03\"\x03\"\x03#\x03#\x03#\x03#\x07#" +
-		"\u01B3\n#\f#\x0E#\u01B6\v#\x03#\x03#\x03$\x03$\x03$\x06$\u01BD\n$\r$\x0E" +
-		"$\u01BE\x03%\x03%\x03%\x03%\x03&\x03&\x03&\x03&\x06&\u01C9\n&\r&\x0E&" +
-		"\u01CA\x03&\x07&\u01CE\n&\f&\x0E&\u01D1\v&\x03&\x03&\x03\'\x03\'\x03\'" +
-		"\x06\'\u01D8\n\'\r\'\x0E\'\u01D9\x03(\x03(\x03(\x06(\u01DF\n(\r(\x0E(" +
-		"\u01E0\x03)\x03)\x03)\x06)\u01E6\n)\r)\x0E)\u01E7\x03*\x03*\x03*\x03+" +
-		"\x03+\x05+\u01EF\n+\x03,\x03,\x03,\x07,\u01F4\n,\f,\x0E,\u01F7\v,\x05" +
-		",\u01F9\n,\x03,\x06,\u01FC\n,\r,\x0E,\u01FD\x03-\x03-\x03-\x06-\u0203" +
-		"\n-\r-\x0E-\u0204\x03.\x03.\x03.\x06.\u020A\n.\r.\x0E.\u020B\x03/\x03" +
-		"/\x030\x030\x030\x030\x030\x030\x030\x030\x030\x050\u0219\n0\x031\x03" +
-		"1\x031\x031\x032\x032\x032\x032\x032\x033\x033\x033\x034\x034\x034\x03" +
-		"5\x035\x035\x036\x036\x076\u022F\n6\f6\x0E6\u0232\v6\x036\x036\x036\x02" +
-		"\x02\x027\x02\x02\x04\x02\x06\x02\b\x02\n\x02\f\x02\x0E\x02\x10\x02\x12" +
-		"\x02\x14\x02\x16\x02\x18\x02\x1A\x02\x1C\x02\x1E\x02 \x02\"\x02$\x02&" +
-		"\x02(\x02*\x02,\x02.\x020\x022\x024\x026\x028\x02:\x02<\x02>\x02@\x02" +
-		"B\x02D\x02F\x02H\x02J\x02L\x02N\x02P\x02R\x02T\x02V\x02X\x02Z\x02\\\x02" +
-		"^\x02`\x02b\x02d\x02f\x02h\x02j\x02\x02\n\x03\x02\x07\t\x03\x02\x13\x15" +
-		"\x03\x02\x16\x17\x04\x02\x16\x16!\"\x04\x02\x17\x17#$\x03\x02%\'\x04\x02" +
-		"++--\x03\x0222\x02\u025D\x02o\x03\x02\x02\x02\x04v\x03\x02\x02\x02\x06" +
-		"x\x03\x02\x02\x02\b\x8F\x03\x02\x02\x02\n\xA5\x03\x02\x02\x02\f\xB0\x03" +
-		"\x02\x02\x02\x0E\xB2\x03\x02\x02\x02\x10\xBD\x03\x02\x02\x02\x12\xC4\x03" +
-		"\x02\x02\x02\x14\xCB\x03\x02\x02\x02\x16\xD6\x03\x02\x02\x02\x18\xE2\x03" +
-		"\x02\x02\x02\x1A\xE9\x03\x02\x02\x02\x1C\xEB\x03\x02\x02\x02\x1E\xF5\x03" +
-		"\x02\x02\x02 \xFC\x03\x02\x02\x02\"\u0103\x03\x02\x02\x02$\u010C\x03\x02" +
-		"\x02\x02&\u0113\x03\x02\x02\x02(\u011C\x03\x02\x02\x02*\u0123\x03\x02" +
-		"\x02\x02,\u012C\x03\x02\x02\x02.\u0133\x03\x02\x02\x020\u013C\x03\x02" +
-		"\x02\x022\u0143\x03\x02\x02\x024\u014F\x03\x02\x02\x026\u015E\x03\x02" +
-		"\x02\x028\u0167\x03\x02\x02\x02:\u0170\x03\x02\x02\x02<\u017C\x03\x02" +
-		"\x02\x02>\u018D\x03\x02\x02\x02@\u0199\x03\x02\x02\x02B\u019B\x03\x02" +
-		"\x02\x02D\u01AE\x03\x02\x02\x02F\u01B9\x03\x02\x02\x02H\u01C0\x03\x02" +
-		"\x02\x02J\u01C4\x03\x02\x02\x02L\u01D4\x03\x02\x02\x02N\u01DB\x03\x02" +
-		"\x02\x02P\u01E2\x03\x02\x02\x02R\u01E9\x03\x02\x02\x02T\u01EE\x03\x02" +
-		"\x02\x02V\u01F0\x03\x02\x02\x02X\u01FF\x03\x02\x02\x02Z\u0206\x03\x02" +
-		"\x02\x02\\\u020D\x03\x02\x02\x02^\u0218\x03\x02\x02\x02`\u021A\x03\x02" +
-		"\x02\x02b\u021E\x03\x02\x02\x02d\u0223\x03\x02\x02\x02f\u0226\x03\x02" +
-		"\x02\x02h\u0229\x03\x02\x02\x02j\u022C\x03\x02\x02\x02ln\x05\x04\x03\x02" +
-		"ml\x03\x02\x02\x02nq\x03\x02\x02\x02om\x03\x02\x02\x02op\x03\x02\x02\x02" +
-		"pr\x03\x02\x02\x02qo\x03\x02\x02\x02rs\x07\x02\x02\x03s\x03\x03\x02\x02" +
-		"\x02tw\x05\b\x05\x02uw\x05\x06\x04\x02vt\x03\x02\x02\x02vu\x03\x02\x02" +
-		"\x02w\x05\x03\x02\x02\x02xy\x07\x03\x02\x02yz\x07/\x02\x02z\x8B\x07/\x02" +
-		"\x02{\x7F\x05\x18\r\x02|\x7F\x05\n\x06\x02}\x7F\x05\x12\n\x02~{\x03\x02" +
-		"\x02\x02~|\x03\x02\x02\x02~}\x03\x02\x02\x02\x7F\x82\x03\x02\x02\x02\x80" +
-		"~\x03\x02\x02\x02\x80\x81\x03\x02\x02\x02\x81\x8C\x03\x02\x02\x02\x82" +
-		"\x80\x03\x02\x02\x02\x83\x87\x05\f\x07\x02\x84\x87\x05\n\x06\x02\x85\x87" +
-		"\x05\x12\n\x02\x86\x83\x03\x02\x02\x02\x86\x84\x03\x02\x02\x02\x86\x85" +
-		"\x03\x02\x02\x02\x87\x8A\x03\x02\x02\x02\x88\x86\x03\x02\x02\x02\x88\x89" +
-		"\x03\x02\x02\x02\x89\x8C\x03\x02\x02\x02\x8A\x88\x03\x02\x02\x02\x8B\x80" +
-		"\x03\x02\x02\x02\x8B\x88\x03\x02\x02\x02\x8C\x8D\x03\x02\x02\x02\x8D\x8E" +
-		"\x05\\/\x02\x8E\x07\x03\x02\x02\x02\x8F\x90\x07\x04\x02\x02\x90\xA1\x07" +
-		"/\x02\x02\x91\x95\x05\x18\r\x02\x92\x95\x05\n\x06\x02\x93\x95\x05\x12" +
-		"\n\x02\x94\x91\x03\x02\x02\x02\x94\x92\x03\x02\x02\x02\x94\x93\x03\x02" +
-		"\x02\x02\x95\x98\x03\x02\x02\x02\x96\x94\x03\x02\x02\x02\x96\x97\x03\x02" +
-		"\x02\x02\x97\xA2\x03\x02\x02\x02\x98\x96\x03\x02\x02\x02\x99\x9D\x05\f" +
-		"\x07\x02\x9A\x9D\x05\n\x06\x02\x9B\x9D\x05\x12\n\x02\x9C\x99\x03\x02\x02" +
-		"\x02\x9C\x9A\x03\x02\x02\x02\x9C\x9B\x03\x02\x02\x02\x9D\xA0\x03\x02\x02" +
-		"\x02\x9E\x9C\x03\x02\x02\x02\x9E\x9F\x03\x02\x02\x02\x9F\xA2\x03\x02\x02" +
-		"\x02\xA0\x9E\x03\x02\x02\x02\xA1\x96\x03\x02\x02\x02\xA1\x9E\x03\x02\x02" +
-		"\x02\xA2\xA3\x03\x02\x02\x02\xA3\xA4\x05\\/\x02\xA4\t\x03\x02\x02\x02" +
-		"\xA5\xA6\x07/\x02\x02\xA6\xA8\x07\x05\x02\x02\xA7\xA9\x05^0\x02\xA8\xA7" +
-		"\x03\x02\x02\x02\xA9\xAA\x03\x02\x02\x02\xAA\xA8\x03\x02\x02\x02\xAA\xAB" +
-		"\x03\x02\x02\x02\xAB\v\x03\x02\x02\x02\xAC\xB1\x05\x0E\b\x02\xAD\xB1\x05" +
-		"\x14\v\x02\xAE\xB1\x05R*\x02\xAF\xB1\x05\x1A\x0E\x02\xB0\xAC\x03\x02\x02" +
-		"\x02\xB0\xAD\x03\x02\x02\x02\xB0\xAE\x03\x02\x02\x02\xB0\xAF\x03\x02\x02" +
-		"\x02\xB1\r\x03\x02\x02\x02\xB2\xB8\x07\x06\x02\x02\xB3\xB7\x05\x18\r\x02" +
-		"\xB4\xB7\x05\x10\t\x02\xB5\xB7\x05\x12\n\x02\xB6\xB3\x03\x02\x02\x02\xB6" +
-		"\xB4\x03\x02\x02\x02\xB6\xB5\x03\x02\x02\x02\xB7\xBA\x03\x02\x02\x02\xB8" +
-		"\xB6\x03\x02\x02\x02\xB8\xB9\x03\x02\x02\x02\xB9\xBB\x03\x02\x02\x02\xBA" +
-		"\xB8\x03\x02\x02\x02\xBB\xBC\x05\\/\x02\xBC\x0F\x03\x02\x02\x02\xBD\xBE" +
-		"\x07/\x02\x02\xBE\xC0\x07\x05\x02\x02\xBF\xC1\x05^0\x02\xC0\xBF\x03\x02" +
-		"\x02\x02\xC1\xC2\x03\x02\x02\x02\xC2\xC0\x03\x02\x02\x02\xC2\xC3\x03\x02" +
-		"\x02\x02\xC3\x11\x03\x02\x02\x02\xC4\xC5\t\x02\x02\x02\xC5\xC7\x07\x05" +
-		"\x02\x02\xC6\xC8\x07/\x02\x02\xC7\xC6\x03\x02\x02\x02\xC8\xC9\x03\x02" +
-		"\x02\x02\xC9\xC7\x03\x02\x02\x02\xC9\xCA\x03\x02\x02\x02\xCA\x13\x03\x02" +
-		"\x02\x02\xCB\xCC\x07\n\x02\x02\xCC\xD1\x07/\x02\x02\xCD\xD0\x05\x18\r" +
-		"\x02\xCE\xD0\x05\x16\f\x02\xCF\xCD\x03\x02\x02\x02\xCF\xCE\x03\x02\x02" +
-		"\x02\xD0\xD3\x03\x02\x02\x02\xD1\xCF\x03\x02\x02\x02\xD1\xD2\x03\x02\x02" +
-		"\x02\xD2\xD4\x03\x02\x02\x02\xD3\xD1\x03\x02\x02\x02\xD4\xD5\x05\\/\x02" +
-		"\xD5\x15\x03\x02\x02\x02\xD6\xD7\x07/\x02\x02\xD7\xD9\x07\x05\x02\x02" +
-		"\xD8\xDA\x05^0\x02\xD9\xD8\x03\x02\x02\x02\xDA\xDB\x03\x02\x02\x02\xDB" +
-		"\xD9\x03\x02\x02\x02\xDB\xDC\x03\x02\x02\x02\xDC\x17\x03\x02\x02\x02\xDD" +
-		"\xE3\x05<\x1F\x02\xDE\xE3\x05:\x1E\x02\xDF\xE3\x054\x1B\x02\xE0\xE3\x05" +
-		"2\x1A\x02\xE1\xE3\x05\x1A\x0E\x02\xE2\xDD\x03\x02\x02\x02\xE2\xDE\x03" +
-		"\x02\x02\x02\xE2\xDF\x03\x02\x02\x02\xE2\xE0\x03\x02\x02\x02\xE2\xE1\x03" +
-		"\x02\x02\x02\xE3\x19\x03\x02\x02\x02\xE4\xEA\x05\x1C\x0F\x02\xE5\xEA\x05" +
-		"\"\x12\x02\xE6\xEA\x05&\x14\x02\xE7\xEA\x05*\x16\x02\xE8\xEA\x05.\x18" +
-		"\x02\xE9\xE4\x03\x02\x02\x02\xE9\xE5\x03\x02\x02\x02\xE9\xE6\x03\x02\x02" +
-		"\x02\xE9\xE7\x03\x02\x02\x02\xE9\xE8\x03\x02\x02\x02\xEA\x1B\x03\x02\x02" +
-		"\x02\xEB\xF0\x07\v\x02\x02\xEC\xEF\x05\x1E\x10\x02\xED\xEF\x05 \x11\x02" +
-		"\xEE\xEC\x03\x02\x02\x02\xEE\xED\x03\x02\x02\x02\xEF\xF2\x03\x02\x02\x02" +
-		"\xF0\xEE\x03\x02\x02\x02\xF0\xF1\x03\x02\x02\x02\xF1\xF3\x03\x02\x02\x02" +
-		"\xF2\xF0\x03\x02\x02\x02\xF3\xF4\x05\\/\x02\xF4\x1D\x03\x02\x02\x02\xF5" +
-		"\xF6\x07\x04\x02\x02\xF6\xF8\x07\x05\x02\x02\xF7\xF9\x07/\x02\x02\xF8" +
-		"\xF7\x03\x02\x02\x02\xF9\xFA\x03\x02\x02\x02\xFA\xF8\x03\x02\x02\x02\xFA" +
-		"\xFB\x03\x02\x02\x02\xFB\x1F\x03\x02\x02\x02\xFC\xFD\x07\f\x02\x02\xFD" +
-		"\xFF\x07\x05\x02\x02\xFE\u0100\x07/\x02\x02\xFF\xFE\x03\x02\x02\x02\u0100" +
-		"\u0101\x03\x02\x02\x02\u0101\xFF\x03\x02\x02\x02\u0101\u0102\x03\x02\x02" +
-		"\x02\u0102!\x03\x02\x02\x02\u0103\u0107\x07\r\x02\x02\u0104\u0106\x05" +
-		"$\x13\x02\u0105\u0104\x03\x02\x02\x02\u0106\u0109\x03\x02\x02\x02\u0107" +
-		"\u0105\x03\x02\x02\x02\u0107\u0108\x03\x02\x02\x02\u0108\u010A\x03\x02" +
-		"\x02\x02\u0109\u0107\x03\x02\x02\x02\u010A\u010B\x05\\/\x02\u010B#\x03" +
-		"\x02\x02\x02\u010C\u010D\x07/\x02\x02\u010D\u010F\x07\x05\x02\x02\u010E" +
-		"\u0110\x05^0\x02\u010F\u010E\x03\x02\x02\x02\u0110\u0111\x03\x02\x02\x02" +
-		"\u0111\u010F\x03\x02\x02\x02\u0111\u0112\x03\x02\x02\x02\u0112%\x03\x02" +
-		"\x02\x02\u0113\u0117\x07\x0E\x02\x02\u0114\u0116\x05(\x15\x02\u0115\u0114" +
-		"\x03\x02\x02\x02\u0116\u0119\x03\x02\x02\x02\u0117\u0115\x03\x02\x02\x02" +
-		"\u0117\u0118\x03\x02\x02\x02\u0118\u011A\x03\x02\x02\x02\u0119\u0117\x03" +
-		"\x02\x02\x02\u011A\u011B\x05\\/\x02\u011B\'\x03\x02\x02\x02\u011C\u011D" +
-		"\x07/\x02\x02\u011D\u011F\x07\x05\x02\x02\u011E\u0120\x05^0\x02\u011F" +
-		"\u011E\x03\x02\x02\x02\u0120\u0121\x03\x02\x02\x02\u0121\u011F\x03\x02" +
-		"\x02\x02\u0121\u0122\x03\x02\x02\x02\u0122)\x03\x02\x02\x02\u0123\u0127" +
-		"\x07\x0F\x02\x02\u0124\u0126\x05,\x17\x02\u0125\u0124\x03\x02\x02\x02" +
-		"\u0126\u0129\x03\x02\x02\x02\u0127\u0125\x03\x02\x02\x02\u0127\u0128\x03" +
-		"\x02\x02\x02\u0128\u012A\x03\x02\x02\x02\u0129\u0127\x03\x02\x02\x02\u012A" +
-		"\u012B\x05\\/\x02\u012B+\x03\x02\x02\x02\u012C\u012D\x07/\x02\x02\u012D" +
-		"\u012F\x07\x05\x02\x02\u012E\u0130\x05^0\x02\u012F\u012E\x03\x02\x02\x02" +
-		"\u0130\u0131\x03\x02\x02\x02\u0131\u012F\x03\x02\x02\x02\u0131\u0132\x03" +
-		"\x02\x02\x02\u0132-\x03\x02\x02\x02\u0133\u0137\x07\x10\x02\x02\u0134" +
-		"\u0136\x050\x19\x02\u0135\u0134\x03\x02\x02\x02\u0136\u0139\x03\x02\x02" +
-		"\x02\u0137\u0135\x03\x02\x02\x02\u0137\u0138\x03\x02\x02\x02\u0138\u013A" +
-		"\x03\x02\x02\x02\u0139\u0137\x03\x02\x02\x02\u013A\u013B\x05\\/\x02\u013B" +
-		"/\x03\x02\x02\x02\u013C\u013D\x07/\x02\x02\u013D\u013F\x07\x05\x02\x02" +
-		"\u013E\u0140\x05^0\x02\u013F\u013E\x03\x02\x02\x02\u0140\u0141\x03\x02" +
-		"\x02\x02\u0141\u013F\x03\x02\x02\x02\u0141\u0142\x03\x02\x02\x02\u0142" +
-		"1\x03\x02\x02\x02\u0143\u0144\x07\x11\x02\x02\u0144\u0145\x07\x05\x02" +
-		"\x02\u0145\u0146\x07/\x02\x02\u0146\u014A\x07/\x02\x02\u0147\u0149\x05" +
-		"V,\x02\u0148\u0147\x03\x02\x02\x02\u0149\u014C\x03\x02\x02\x02\u014A\u0148" +
-		"\x03\x02\x02\x02\u014A\u014B\x03\x02\x02\x02\u014B\u014D\x03\x02\x02\x02" +
-		"\u014C\u014A\x03\x02\x02\x02\u014D\u014E\x05\\/\x02\u014E3\x03\x02\x02" +
-		"\x02\u014F\u0150\x07\x12\x02\x02\u0150\u0151\x07\x05\x02\x02\u0151\u0152" +
-		"\x07/\x02\x02\u0152\u0159\x07/\x02\x02\u0153\u0158\x05V,\x02\u0154\u0158" +
-		"\x058\x1D\x02\u0155\u0158\x05\x12\n\x02\u0156\u0158\x056\x1C\x02\u0157" +
-		"\u0153\x03\x02\x02\x02\u0157\u0154\x03\x02\x02\x02\u0157\u0155\x03\x02" +
-		"\x02\x02\u0157\u0156\x03\x02\x02\x02\u0158\u015B\x03\x02\x02\x02\u0159" +
-		"\u0157\x03\x02\x02\x02\u0159\u015A\x03\x02\x02\x02\u015A\u015C\x03\x02" +
-		"\x02\x02\u015B\u0159\x03\x02\x02\x02\u015C\u015D\x05\\/\x02\u015D5\x03" +
-		"\x02\x02\x02\u015E\u0162\t\x03\x02\x02\u015F\u0161\x05V,\x02\u0160\u015F" +
-		"\x03\x02\x02\x02\u0161\u0164\x03\x02\x02\x02\u0162\u0160\x03\x02\x02\x02" +
-		"\u0162\u0163\x03\x02\x02\x02\u0163\u0165\x03\x02\x02\x02\u0164\u0162\x03" +
-		"\x02\x02\x02\u0165\u0166\x05\\/\x02\u01667\x03\x02\x02\x02\u0167\u016B" +
-		"\t\x04\x02\x02\u0168\u016A\x05V,\x02\u0169\u0168\x03\x02\x02\x02\u016A" +
-		"\u016D\x03\x02\x02\x02\u016B\u0169\x03\x02\x02\x02\u016B\u016C\x03\x02" +
-		"\x02\x02\u016C\u016E\x03\x02\x02\x02\u016D\u016B\x03\x02\x02\x02\u016E" +
-		"\u016F\x05\\/\x02\u016F9\x03\x02\x02\x02\u0170\u0171\x07\x18\x02\x02\u0171" +
-		"\u0172\x07\x05\x02\x02\u0172\u0173\x07/\x02\x02\u0173\u0177\x07/\x02\x02" +
-		"\u0174\u0176\x05V,\x02\u0175\u0174\x03\x02\x02\x02\u0176\u0179\x03\x02" +
-		"\x02\x02\u0177\u0175\x03\x02\x02\x02\u0177\u0178\x03\x02\x02\x02\u0178" +
-		"\u017A\x03\x02\x02\x02\u0179\u0177\x03\x02\x02\x02\u017A\u017B\x05\\/" +
-		"\x02\u017B;\x03\x02\x02\x02\u017C\u017D\x07\x19\x02\x02\u017D\u017E\x07" +
-		"\x05\x02\x02\u017E\u017F\x07/\x02\x02\u017F\u0188\x07/\x02\x02\u0180\u0182" +
-		"\x05@!\x02\u0181\u0180\x03\x02\x02\x02\u0182\u0183\x03\x02\x02\x02\u0183" +
-		"\u0181\x03\x02\x02\x02\u0183\u0184\x03\x02\x02\x02\u0184\u0187\x03\x02" +
-		"\x02\x02\u0185\u0187\x05> \x02\u0186\u0181\x03\x02\x02\x02\u0186\u0185" +
-		"\x03\x02\x02\x02\u0187\u018A\x03\x02\x02\x02\u0188\u0186\x03\x02\x02\x02" +
-		"\u0188\u0189\x03\x02\x02\x02\u0189\u018B\x03\x02\x02\x02\u018A\u0188\x03" +
-		"\x02\x02\x02\u018B\u018C\x05\\/\x02\u018C=\x03\x02\x02\x02\u018D\u018E" +
-		"\x07/\x02\x02\u018E\u0190\x07\x05\x02\x02\u018F\u0191\x05^0\x02\u0190" +
-		"\u018F\x03\x02\x02\x02\u0191\u0192\x03\x02\x02\x02\u0192\u0190\x03\x02" +
-		"\x02\x02\u0192\u0193\x03\x02\x02\x02\u0193?\x03\x02\x02\x02\u0194\u019A" +
-		"\x05B\"\x02\u0195\u019A\x05D#\x02\u0196\u019A\x05J&\x02\u0197\u019A\x05" +
-		"N(\x02\u0198\u019A\x05P)\x02\u0199\u0194\x03\x02\x02\x02\u0199\u0195\x03" +
-		"\x02\x02\x02\u0199\u0196\x03\x02\x02\x02\u0199\u0197\x03\x02\x02\x02\u0199" +
-		"\u0198\x03\x02\x02\x02\u019AA\x03\x02\x02\x02\u019B\u01A2\x07\x1A\x02" +
-		"\x02\u019C\u019E\x07\x05\x02\x02\u019D\u019F\x07/\x02\x02\u019E\u019D" +
-		"\x03\x02\x02\x02\u019F\u01A0\x03\x02\x02\x02\u01A0\u019E\x03\x02\x02\x02" +
-		"\u01A0\u01A1\x03\x02\x02\x02\u01A1\u01A3\x03\x02\x02\x02\u01A2\u019C\x03" +
-		"\x02\x02\x02\u01A2\u01A3\x03\x02\x02\x02\u01A3\u01A9\x03\x02\x02\x02\u01A4" +
-		"\u01A8\x05F$\x02\u01A5\u01A8\x05T+\x02\u01A6\u01A8\x05H%\x02\u01A7\u01A4" +
-		"\x03\x02\x02\x02\u01A7\u01A5\x03\x02\x02\x02\u01A7\u01A6\x03\x02\x02\x02" +
-		"\u01A8\u01AB\x03\x02\x02\x02\u01A9\u01A7\x03\x02\x02\x02\u01A9\u01AA\x03" +
-		"\x02\x02\x02\u01AA\u01AC\x03\x02\x02\x02\u01AB\u01A9\x03\x02\x02\x02\u01AC" +
-		"\u01AD\x05\\/\x02\u01ADC\x03\x02\x02\x02\u01AE\u01B4\x07\x1B\x02\x02\u01AF" +
-		"\u01B3\x05F$\x02\u01B0\u01B3\x05T+\x02\u01B1\u01B3\x05H%\x02\u01B2\u01AF" +
-		"\x03\x02\x02\x02\u01B2\u01B0\x03\x02\x02\x02\u01B2\u01B1\x03\x02\x02\x02" +
-		"\u01B3\u01B6\x03\x02\x02\x02\u01B4\u01B2\x03\x02\x02\x02\u01B4\u01B5\x03" +
-		"\x02\x02\x02\u01B5\u01B7\x03\x02\x02\x02\u01B6\u01B4\x03\x02\x02\x02\u01B7" +
-		"\u01B8\x05\\/\x02\u01B8E\x03\x02\x02\x02\u01B9\u01BA\x07/\x02\x02\u01BA" +
-		"\u01BC\x07\x05\x02\x02\u01BB\u01BD\x05^0\x02\u01BC\u01BB\x03\x02\x02\x02" +
-		"\u01BD\u01BE\x03\x02\x02\x02\u01BE\u01BC\x03\x02\x02\x02\u01BE\u01BF\x03" +
-		"\x02\x02\x02\u01BFG\x03\x02\x02\x02\u01C0\u01C1\x07\x1C\x02\x02\u01C1" +
-		"\u01C2\x07\x05\x02\x02\u01C2\u01C3\x07/\x02\x02\u01C3I\x03\x02\x02\x02" +
-		"\u01C4\u01C5\x07\x1D\x02\x02\u01C5\u01C6\x07\x05\x02\x02\u01C6\u01C8\x07" +
-		"/\x02\x02\u01C7\u01C9\x07/\x02\x02\u01C8\u01C7\x03\x02\x02\x02\u01C9\u01CA" +
-		"\x03\x02\x02\x02\u01CA\u01C8\x03\x02\x02\x02\u01CA\u01CB\x03\x02\x02\x02" +
-		"\u01CB\u01CF\x03\x02\x02\x02\u01CC\u01CE\x05L\'\x02\u01CD\u01CC\x03\x02" +
-		"\x02\x02\u01CE\u01D1\x03\x02\x02\x02\u01CF\u01CD\x03\x02\x02\x02\u01CF" +
-		"\u01D0\x03\x02\x02\x02\u01D0\u01D2\x03\x02\x02\x02\u01D1\u01CF\x03\x02" +
-		"\x02\x02\u01D2\u01D3\x05\\/\x02\u01D3K\x03\x02\x02\x02\u01D4\u01D5\x07" +
-		"/\x02\x02\u01D5\u01D7\x07\x05\x02\x02\u01D6\u01D8\x05^0\x02\u01D7\u01D6" +
-		"\x03\x02\x02\x02\u01D8\u01D9\x03\x02\x02\x02\u01D9\u01D7\x03\x02\x02\x02" +
-		"\u01D9\u01DA\x03\x02\x02\x02\u01DAM\x03\x02\x02\x02\u01DB\u01DC\x07\x1E" +
-		"\x02\x02\u01DC\u01DE\x07\x05\x02\x02\u01DD\u01DF\x07/\x02\x02\u01DE\u01DD" +
-		"\x03\x02\x02\x02\u01DF\u01E0\x03\x02\x02\x02\u01E0\u01DE\x03\x02\x02\x02" +
-		"\u01E0\u01E1\x03\x02\x02\x02\u01E1O\x03\x02\x02\x02\u01E2\u01E3\x07\x1F" +
-		"\x02\x02\u01E3\u01E5\x07\x05\x02\x02\u01E4\u01E6\x07/\x02\x02\u01E5\u01E4" +
-		"\x03\x02\x02\x02\u01E6\u01E7\x03\x02\x02\x02\u01E7\u01E5\x03\x02\x02\x02" +
-		"\u01E7\u01E8\x03\x02\x02\x02\u01E8Q\x03\x02\x02\x02\u01E9\u01EA\x07 \x02" +
-		"\x02\u01EA\u01EB\x07/\x02\x02\u01EBS\x03\x02\x02\x02\u01EC\u01EF\x05X" +
-		"-\x02\u01ED\u01EF\x05Z.\x02\u01EE\u01EC\x03\x02\x02\x02\u01EE\u01ED\x03" +
-		"\x02\x02\x02\u01EFU\x03\x02\x02\x02\u01F0\u01F8\x07/\x02\x02\u01F1\u01F9" +
-		"\x07\x05\x02\x02\u01F2\u01F4\x072\x02\x02\u01F3\u01F2\x03\x02\x02\x02" +
-		"\u01F4\u01F7\x03\x02\x02\x02\u01F5\u01F3\x03\x02\x02\x02\u01F5\u01F6\x03" +
-		"\x02\x02\x02\u01F6\u01F9\x03\x02\x02\x02\u01F7\u01F5\x03\x02\x02\x02\u01F8" +
-		"\u01F1\x03\x02\x02\x02\u01F8\u01F5\x03\x02\x02\x02\u01F9\u01FB\x03\x02" +
-		"\x02\x02\u01FA\u01FC\x05^0\x02\u01FB\u01FA\x03\x02\x02\x02\u01FC\u01FD" +
-		"\x03\x02\x02\x02\u01FD\u01FB\x03\x02\x02\x02\u01FD\u01FE\x03\x02\x02\x02" +
-		"\u01FEW\x03\x02\x02\x02\u01FF\u0200\t\x05\x02\x02\u0200\u0202\x07\x05" +
-		"\x02\x02\u0201\u0203\x05^0\x02\u0202\u0201\x03\x02\x02\x02\u0203\u0204" +
-		"\x03\x02\x02\x02\u0204\u0202\x03\x02\x02\x02\u0204\u0205\x03\x02\x02\x02" +
-		"\u0205Y\x03\x02\x02\x02\u0206\u0207\t\x06\x02\x02\u0207\u0209\x07\x05" +
-		"\x02\x02\u0208\u020A\x05^0\x02\u0209\u0208\x03\x02\x02\x02\u020A\u020B" +
-		"\x03\x02\x02\x02\u020B\u0209\x03\x02\x02\x02\u020B\u020C\x03\x02\x02\x02" +
-		"\u020C[\x03\x02\x02\x02\u020D\u020E\t\x07\x02\x02\u020E]\x03\x02\x02\x02" +
-		"\u020F\u0219\x05j6\x02\u0210\u0219\x05`1\x02\u0211\u0219\x05d3\x02\u0212" +
-		"\u0219\x07/\x02\x02\u0213\u0219\x07+\x02\x02\u0214\u0219\x07-\x02\x02" +
-		"\u0215\u0219\x07.\x02\x02\u0216\u0219\t\x05\x02\x02\u0217\u0219\t\x06" +
-		"\x02\x02\u0218\u020F\x03\x02\x02\x02\u0218\u0210\x03\x02\x02\x02\u0218" +
-		"\u0211\x03\x02\x02\x02\u0218\u0212\x03\x02\x02\x02\u0218\u0213\x03\x02" +
-		"\x02\x02\u0218\u0214\x03\x02\x02\x02\u0218\u0215\x03\x02\x02\x02\u0218" +
-		"\u0216\x03\x02\x02\x02\u0218\u0217\x03\x02\x02\x02\u0219_\x03\x02\x02" +
-		"\x02\u021A\u021B\x07/\x02\x02\u021B\u021C\x07(\x02\x02\u021C\u021D\x07" +
-		"/\x02\x02\u021Da\x03\x02\x02\x02\u021E\u021F\x07,\x02\x02\u021F\u0220" +
-		"\x07,\x02\x02\u0220\u0221\x07,\x02\x02\u0221\u0222\x07,\x02\x02\u0222" +
-		"c\x03\x02\x02\x02\u0223\u0224\t\b\x02\x02\u0224\u0225\x07)\x02\x02\u0225" +
-		"e\x03\x02\x02\x02\u0226\u0227\x07+\x02\x02\u0227\u0228\x07+\x02\x02\u0228" +
-		"g\x03\x02\x02\x02\u0229\u022A\x07-\x02\x02\u022A\u022B\x07-\x02\x02\u022B" +
-		"i\x03\x02\x02\x02\u022C\u0230\x07*\x02\x02\u022D\u022F\n\t\x02\x02\u022E" +
-		"\u022D\x03\x02\x02\x02\u022F\u0232\x03\x02\x02\x02\u0230\u022E\x03\x02" +
-		"\x02\x02\u0230\u0231\x03\x02\x02\x02\u0231\u0233\x03\x02\x02\x02\u0232" +
-		"\u0230\x03\x02\x02\x02\u0233\u0234\x07";
-	private static readonly _serializedATNSegment1: string =
-		"*\x02\x02\u0234k\x03\x02\x02\x02Dov~\x80\x86\x88\x8B\x94\x96\x9C\x9E\xA1" +
-		"\xAA\xB0\xB6\xB8\xC2\xC9\xCF\xD1\xDB\xE2\xE9\xEE\xF0\xFA\u0101\u0107\u0111" +
-		"\u0117\u0121\u0127\u0131\u0137\u0141\u014A\u0157\u0159\u0162\u016B\u0177" +
-		"\u0183\u0186\u0188\u0192\u0199\u01A0\u01A2\u01A7\u01A9\u01B2\u01B4\u01BE" +
-		"\u01CA\u01CF\u01D9\u01E0\u01E7\u01EE\u01F5\u01F8\u01FD\u0204\u020B\u0218" +
-		"\u0230";
-	public static readonly _serializedATN: string = Utils.join(
-		[
-			MapIniParser._serializedATNSegment0,
-			MapIniParser._serializedATNSegment1,
-		],
-		"",
-	);
+	public static readonly _serializedATN: string =
+		"\x03\uC91D\uCABA\u058D\uAFBA\u4F53\u0607\uEA8B\uC241\x03\xB6\u022E\x04" +
+		"\x02\t\x02\x04\x03\t\x03\x04\x04\t\x04\x04\x05\t\x05\x04\x06\t\x06\x04" +
+		"\x07\t\x07\x04\b\t\b\x04\t\t\t\x04\n\t\n\x04\v\t\v\x04\f\t\f\x04\r\t\r" +
+		"\x04\x0E\t\x0E\x04\x0F\t\x0F\x04\x10\t\x10\x04\x11\t\x11\x04\x12\t\x12" +
+		"\x04\x13\t\x13\x04\x14\t\x14\x04\x15\t\x15\x04\x16\t\x16\x04\x17\t\x17" +
+		"\x04\x18\t\x18\x04\x19\t\x19\x04\x1A\t\x1A\x04\x1B\t\x1B\x04\x1C\t\x1C" +
+		"\x04\x1D\t\x1D\x04\x1E\t\x1E\x04\x1F\t\x1F\x04 \t \x04!\t!\x04\"\t\"\x04" +
+		"#\t#\x04$\t$\x04%\t%\x04&\t&\x04\'\t\'\x04(\t(\x04)\t)\x04*\t*\x04+\t" +
+		"+\x04,\t,\x04-\t-\x04.\t.\x04/\t/\x040\t0\x041\t1\x042\t2\x043\t3\x04" +
+		"4\t4\x045\t5\x03\x02\x07\x02l\n\x02\f\x02\x0E\x02o\v\x02\x03\x02\x03\x02" +
+		"\x03\x03\x03\x03\x03\x03\x03\x03\x03\x03\x03\x03\x05\x03y\n\x03\x03\x04" +
+		"\x03\x04\x03\x04\x03\x04\x07\x04\x7F\n\x04\f\x04\x0E\x04\x82\v\x04\x03" +
+		"\x04\x03\x04\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03" +
+		"\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03" +
+		"\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03" +
+		"\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03" +
+		"\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03" +
+		"\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03" +
+		"\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03" +
+		"\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03" +
+		"\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03" +
+		"\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03" +
+		"\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03" +
+		"\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03" +
+		"\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03" +
+		"\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03" +
+		"\x05\x03\x05\x05\x05\u0104\n\x05\x03\x06\x03\x06\x03\x06\x07\x06\u0109" +
+		"\n\x06\f\x06\x0E\x06\u010C\v\x06\x03\x06\x03\x06\x03\x07\x03\x07\x03\x07" +
+		"\x07\x07\u0113\n\x07\f\x07\x0E\x07\u0116\v\x07\x03\x07\x03\x07\x03\b\x03" +
+		"\b\x03\b\x03\b\x03\b\x03\b\x03\b\x03\b\x03\b\x03\b\x03\b\x03\b\x03\b\x03" +
+		"\b\x03\b\x03\b\x05\b\u012A\n\b\x03\t\x03\t\x03\t\x07\t\u012F\n\t\f\t\x0E" +
+		"\t\u0132\v\t\x03\t\x03\t\x03\n\x03\n\x03\n\x03\n\x03\n\x03\n\x03\n\x03" +
+		"\n\x03\n\x03\n\x03\n\x03\n\x03\n\x05\n\u0143\n\n\x03\v\x03\v\x07\v\u0147" +
+		"\n\v\f\v\x0E\v\u014A\v\v\x03\v\x03\v\x03\f\x03\f\x03\f\x07\f\u0151\n\f" +
+		"\f\f\x0E\f\u0154\v\f\x03\f\x03\f\x03\r\x03\r\x03\r\x03\r\x05\r\u015C\n" +
+		"\r\x03\r\x03\r\x03\r\x03\r\x03\r\x03\r\x03\r\x03\r\x03\r\x03\r\x03\r\x03" +
+		"\r\x03\r\x03\r\x03\r\x05\r\u016D\n\r\x03\x0E\x03\x0E\x03\x0E\x07\x0E\u0172" +
+		"\n\x0E\f\x0E\x0E\x0E\u0175\v\x0E\x03\x0E\x03\x0E\x03\x0F\x03\x0F\x03\x0F" +
+		"\x03\x0F\x03\x0F\x03\x0F\x03\x0F\x03\x0F\x03\x0F\x03\x0F\x03\x0F\x03\x0F" +
+		"\x03\x0F\x03\x0F\x03\x0F\x05\x0F\u0188\n\x0F\x03\x10\x03\x10\x03\x10\x07" +
+		"\x10\u018D\n\x10\f\x10\x0E\x10\u0190\v\x10\x03\x10\x03\x10\x03\x11\x03" +
+		"\x11\x03\x11\x03\x11\x03\x11\x03\x12\x03\x12\x03\x12\x07\x12\u019C\n\x12" +
+		"\f\x12\x0E\x12\u019F\v\x12\x03\x12\x03\x12\x03\x13\x03\x13\x03\x13\x03" +
+		"\x13\x03\x13\x03\x13\x03\x13\x03\x13\x03\x13\x03\x13\x03\x13\x03\x13\x03" +
+		"\x13\x03\x13\x03\x13\x03\x13\x05\x13\u01B3\n\x13\x03\x14\x03\x14\x03\x14" +
+		"\x07\x14\u01B8\n\x14\f\x14\x0E\x14\u01BB\v\x14\x03\x14\x03\x14\x03\x15" +
+		"\x03\x15\x03\x15\x03\x15\x03\x16\x03\x16\x03\x17\x03\x17\x03\x17\x03\x17" +
+		"\x03\x18\x03\x18\x03\x18\x03\x18\x03\x19\x03\x19\x03\x1A\x03\x1A\x03\x1A" +
+		"\x06\x1A\u01D2\n\x1A\r\x1A\x0E\x1A\u01D3\x03\x1B\x03\x1B\x03\x1C\x03\x1C" +
+		"\x03\x1C\x03\x1C\x03\x1D\x03\x1D\x03\x1D\x03\x1D\x03\x1E\x03\x1E\x03\x1F" +
+		"\x03\x1F\x03\x1F\x03\x1F\x03 \x03 \x03 \x03 \x03!\x03!\x03!\x03!\x03\"" +
+		"\x03\"\x03\"\x03\"\x03#\x03#\x03#\x03#\x03$\x03$\x03$\x03$\x03%\x03%\x03" +
+		"%\x03%\x03&\x03&\x03\'\x03\'\x03(\x03(\x03)\x03)\x03*\x03*\x03+\x03+\x03" +
+		"+\x03+\x03,\x03,\x03-\x03-\x03-\x06-\u0211\n-\r-\x0E-\u0212\x03.\x03." +
+		"\x03/\x03/\x03/\x03/\x030\x030\x031\x031\x032\x032\x032\x032\x033\x03" +
+		"3\x034\x034\x034\x064\u0228\n4\r4\x0E4\u0229\x035\x035\x035\x02\x02\x02" +
+		"6\x02\x02\x04\x02\x06\x02\b\x02\n\x02\f\x02\x0E\x02\x10\x02\x12\x02\x14" +
+		"\x02\x16\x02\x18\x02\x1A\x02\x1C\x02\x1E\x02 \x02\"\x02$\x02&\x02(\x02" +
+		"*\x02,\x02.\x020\x022\x024\x026\x028\x02:\x02<\x02>\x02@\x02B\x02D\x02" +
+		"F\x02H\x02J\x02L\x02N\x02P\x02R\x02T\x02V\x02X\x02Z\x02\\\x02^\x02`\x02" +
+		"b\x02d\x02f\x02h\x02\x02\v\x03\x02:>\x04\x02EE\xB2\xB2\x03\x02OQ\x03\x02" +
+		"ST\x04\x02Vq\xB2\xB2\x04\x02s\x84\xB2\xB2\x04\x02\x87\x8A\xB2\xB2\x03" +
+		"\x02\xB2\xB3\x03\x02\x97\xA2\x02\u0257\x02m\x03\x02\x02\x02\x04x\x03\x02" +
+		"\x02\x02\x06z\x03\x02\x02\x02\b\u0103\x03\x02\x02\x02\n\u0105\x03\x02" +
+		"\x02\x02\f\u010F\x03\x02\x02\x02\x0E\u0129\x03\x02\x02\x02\x10\u012B\x03" +
+		"\x02\x02\x02\x12\u0142\x03\x02\x02\x02\x14\u0144\x03\x02\x02\x02\x16\u014D" +
+		"\x03\x02\x02\x02\x18\u016C\x03\x02\x02\x02\x1A\u016E\x03\x02\x02\x02\x1C" +
+		"\u0187\x03\x02\x02\x02\x1E\u0189\x03\x02\x02\x02 \u0193\x03\x02\x02\x02" +
+		"\"\u0198\x03\x02\x02\x02$\u01B2\x03\x02\x02\x02&\u01B4\x03\x02\x02\x02" +
+		"(\u01BE\x03\x02\x02\x02*\u01C2\x03\x02\x02\x02,\u01C4\x03\x02\x02\x02" +
+		".\u01C8\x03\x02\x02\x020\u01CC\x03\x02\x02\x022\u01CE\x03\x02\x02\x02" +
+		"4\u01D5\x03\x02\x02\x026\u01D7\x03\x02\x02\x028\u01DB\x03\x02\x02\x02" +
+		":\u01DF\x03\x02\x02\x02<\u01E1\x03\x02\x02\x02>\u01E5\x03\x02\x02\x02" +
+		"@\u01E9\x03\x02\x02\x02B\u01ED\x03\x02\x02\x02D\u01F1\x03\x02\x02\x02" +
+		"F\u01F5\x03\x02\x02\x02H\u01F9\x03\x02\x02\x02J\u01FD\x03\x02\x02\x02" +
+		"L\u01FF\x03\x02\x02\x02N\u0201\x03\x02\x02\x02P\u0203\x03\x02\x02\x02" +
+		"R\u0205\x03\x02\x02\x02T\u0207\x03\x02\x02\x02V\u020B\x03\x02\x02\x02" +
+		"X\u020D\x03\x02\x02\x02Z\u0214\x03\x02\x02\x02\\\u0216\x03\x02\x02\x02" +
+		"^\u021A\x03\x02\x02\x02`\u021C\x03\x02\x02\x02b\u021E\x03\x02\x02\x02" +
+		"d\u0222\x03\x02\x02\x02f\u0224\x03\x02\x02\x02h\u022B\x03\x02\x02\x02" +
+		"jl\x05\x04\x03\x02kj\x03\x02\x02\x02lo\x03\x02\x02\x02mk\x03\x02\x02\x02" +
+		"mn\x03\x02\x02\x02np\x03\x02\x02\x02om\x03\x02\x02\x02pq\x07\x02\x02\x03" +
+		"q\x03\x03\x02\x02\x02ry\x05\x16\f\x02sy\x05\x06\x04\x02ty\x05\x1A\x0E" +
+		"\x02uy\x05\x1E\x10\x02vy\x05\"\x12\x02wy\x05&\x14\x02xr\x03\x02\x02\x02" +
+		"xs\x03\x02\x02\x02xt\x03\x02\x02\x02xu\x03\x02\x02\x02xv\x03\x02\x02\x02" +
+		"xw\x03\x02\x02\x02y\x05\x03\x02\x02\x02z\x80\x07\x03\x02\x02{\x7F\x05" +
+		"\b\x05\x02|\x7F\x05\x10\t\x02}\x7F\x05\n\x06\x02~{\x03\x02\x02\x02~|\x03" +
+		"\x02\x02\x02~}\x03\x02\x02\x02\x7F\x82\x03\x02\x02\x02\x80~\x03\x02\x02" +
+		"\x02\x80\x81\x03\x02\x02\x02\x81\x83\x03\x02\x02\x02\x82\x80\x03\x02\x02" +
+		"\x02\x83\x84\x05*\x16\x02\x84\x07\x03\x02\x02\x02\x85\x86\x07\x04\x02" +
+		"\x02\x86\x87\x07\xA6\x02\x02\x87\u0104\x07\xA4\x02\x02\x88\x89\x07\x05" +
+		"\x02\x02\x89\x8A\x07\xA6\x02\x02\x8A\u0104\x07\xA3\x02\x02\x8B\x8C\x07" +
+		"\x06\x02\x02\x8C\x8D\x07\xA6\x02\x02\x8D\u0104\x07\xA3\x02\x02\x8E\x8F" +
+		"\x07\x07\x02\x02\x8F\x90\x07\xA6\x02\x02\x90\u0104\x07\xA3\x02\x02\x91" +
+		"\x92\x07\b\x02\x02\x92\x93\x07\xA6\x02\x02\x93\u0104\x07\xA4\x02\x02\x94" +
+		"\x95\x07\t\x02\x02\x95\x96\x07\xA6\x02\x02\x96\u0104\x07\xA4\x02\x02\x97" +
+		"\x98\x07\n\x02\x02\x98\x99\x07\xA6\x02\x02\x99\u0104\x07\xA4\x02\x02\x9A" +
+		"\x9B\x07\v\x02\x02\x9B\x9C\x07\xA6\x02\x02\x9C\u0104\x07\xA4\x02\x02\x9D" +
+		"\x9E\x07\f\x02\x02\x9E\x9F\x07\xA6\x02\x02\x9F\u0104\x07\xA4\x02\x02\xA0" +
+		"\xA1\x07\r\x02\x02\xA1\xA2\x07\xA6\x02\x02\xA2\u0104\x07\xA4\x02\x02\xA3" +
+		"\xA4\x07\x0E\x02\x02\xA4\xA5\x07\xA6\x02\x02\xA5\u0104\x07\xA4\x02\x02" +
+		"\xA6\xA7\x07\x0F\x02\x02\xA7\xA8\x07\xA6\x02\x02\xA8\u0104\x07\xA4\x02" +
+		"\x02\xA9\xAA\x07\x10\x02\x02\xAA\xAB\x07\xA6\x02\x02\xAB\u0104\x07\xA4" +
+		"\x02\x02\xAC\xAD\x07\x11\x02\x02\xAD\xAE\x07\xA6\x02\x02\xAE\u0104\x07" +
+		"\xA3\x02\x02\xAF\xB0\x07\x12\x02\x02\xB0\xB1\x07\xA6\x02\x02\xB1\u0104" +
+		"\x07\xA3\x02\x02\xB2\xB3\x07\x13\x02\x02\xB3\xB4\x07\xA6\x02\x02\xB4\u0104" +
+		"\x07\xA3\x02\x02\xB5\xB6\x07\x14\x02\x02\xB6\xB7\x07\xA6\x02\x02\xB7\u0104" +
+		"\x07\xA4\x02\x02\xB8\xB9\x07\x15\x02\x02\xB9\xBA\x07\xA6\x02\x02\xBA\u0104" +
+		"\x07\xA4\x02\x02\xBB\xBC\x07\x16\x02\x02\xBC\xBD\x07\xA6\x02\x02\xBD\u0104" +
+		"\x07\xA4\x02\x02\xBE\xBF\x07\x17\x02\x02\xBF\xC0\x07\xA6\x02\x02\xC0\u0104" +
+		"\x07\xA4\x02\x02\xC1\xC2\x07\x18\x02\x02\xC2\xC3\x07\xA6\x02\x02\xC3\u0104" +
+		"\x07\xA4\x02\x02\xC4\xC5\x07\x19\x02\x02\xC5\xC6\x07\xA6\x02\x02\xC6\u0104" +
+		"\x07\xA3\x02\x02\xC7\xC8\x07\x1A\x02\x02\xC8\xC9\x07\xA6\x02\x02\xC9\u0104" +
+		"\x07\xB1\x02\x02\xCA\xCB\x07\x1B\x02\x02\xCB\xCC\x07\xA6\x02\x02\xCC\u0104" +
+		"\x07\xB1\x02\x02\xCD\xCE\x07\x1C\x02\x02\xCE\xCF\x07\xA6\x02\x02\xCF\u0104" +
+		"\x07\xB1\x02\x02\xD0\xD1\x07\x1D\x02\x02\xD1\xD2\x07\xA6\x02\x02\xD2\u0104" +
+		"\x07\xB1\x02\x02\xD3\xD4\x07\x1E\x02\x02\xD4\xD5\x07\xA6\x02\x02\xD5\u0104" +
+		"\x07\xA4\x02\x02\xD6\xD7\x07\x1F\x02\x02\xD7\xD8\x07\xA6\x02\x02\xD8\u0104" +
+		"\x07\xA3\x02\x02\xD9\xDA\x07 \x02\x02\xDA\xDB\x07\xA6\x02\x02\xDB\u0104" +
+		"\x07\xB1\x02\x02\xDC\xDD\x07!\x02\x02\xDD\xDE\x07\xA6\x02\x02\xDE\u0104" +
+		"\x07\xA4\x02\x02\xDF\xE0\x07\"\x02\x02\xE0\xE1\x07\xA6\x02\x02\xE1\u0104" +
+		"\x07\xA3\x02\x02\xE2\xE3\x07#\x02\x02\xE3\xE4\x07\xA6\x02\x02\xE4\u0104" +
+		"\x07\xA3\x02\x02\xE5\xE6\x07$\x02\x02\xE6\xE7\x07\xA6\x02\x02\xE7\u0104" +
+		"\x07\xA4\x02\x02\xE8\xE9\x07%\x02\x02\xE9\xEA\x07\xA6\x02\x02\xEA\u0104" +
+		"\x07\xA4\x02\x02\xEB\xEC\x07&\x02\x02\xEC\xED\x07\xA6\x02\x02\xED\u0104" +
+		"\x07\xA3\x02\x02\xEE\xEF\x07\'\x02\x02\xEF\xF0\x07\xA6\x02\x02\xF0\u0104" +
+		"\x07\xA3\x02\x02\xF1\xF2\x07(\x02\x02\xF2\xF3\x07\xA6\x02\x02\xF3\u0104" +
+		"\x07\xA4\x02\x02\xF4\xF5\x07)\x02\x02\xF5\xF6\x07\xA6\x02\x02\xF6\u0104" +
+		"\x07\xA3\x02\x02\xF7\xF8\x07*\x02\x02\xF8\xF9\x07\xA6\x02\x02\xF9\u0104" +
+		"\x07\xA4\x02\x02\xFA\xFB\x07+\x02\x02\xFB\xFC\x07\xA6\x02\x02\xFC\u0104" +
+		"\x07\xB1\x02\x02\xFD\xFE\x07,\x02\x02\xFE\xFF\x07\xA6\x02\x02\xFF\u0104" +
+		"\x07\xA4\x02\x02\u0100\u0101\x07-\x02\x02\u0101\u0102\x07\xA6\x02\x02" +
+		"\u0102\u0104\x07\xA4\x02\x02\u0103\x85\x03\x02\x02\x02\u0103\x88\x03\x02" +
+		"\x02\x02\u0103\x8B\x03\x02\x02\x02\u0103\x8E\x03\x02\x02\x02\u0103\x91" +
+		"\x03\x02\x02\x02\u0103\x94\x03\x02\x02\x02\u0103\x97\x03\x02\x02\x02\u0103" +
+		"\x9A\x03\x02\x02\x02\u0103\x9D\x03\x02\x02\x02\u0103\xA0\x03\x02\x02\x02" +
+		"\u0103\xA3\x03\x02\x02\x02\u0103\xA6\x03\x02\x02\x02\u0103\xA9\x03\x02" +
+		"\x02\x02\u0103\xAC\x03\x02\x02\x02\u0103\xAF\x03\x02\x02\x02\u0103\xB2" +
+		"\x03\x02\x02\x02\u0103\xB5\x03\x02\x02\x02\u0103\xB8\x03\x02\x02\x02\u0103" +
+		"\xBB\x03\x02\x02\x02\u0103\xBE\x03\x02\x02\x02\u0103\xC1\x03\x02\x02\x02" +
+		"\u0103\xC4\x03\x02\x02\x02\u0103\xC7\x03\x02\x02\x02\u0103\xCA\x03\x02" +
+		"\x02\x02\u0103\xCD\x03\x02\x02\x02\u0103\xD0\x03\x02\x02\x02\u0103\xD3" +
+		"\x03\x02\x02\x02\u0103\xD6\x03\x02\x02\x02\u0103\xD9\x03\x02\x02\x02\u0103" +
+		"\xDC\x03\x02\x02\x02\u0103\xDF\x03\x02\x02\x02\u0103\xE2\x03\x02\x02\x02" +
+		"\u0103\xE5\x03\x02\x02\x02\u0103\xE8\x03\x02\x02\x02\u0103\xEB\x03\x02" +
+		"\x02\x02\u0103\xEE\x03\x02\x02\x02\u0103\xF1\x03\x02\x02\x02\u0103\xF4" +
+		"\x03\x02\x02\x02\u0103\xF7\x03\x02\x02\x02\u0103\xFA\x03\x02\x02\x02\u0103" +
+		"\xFD\x03\x02\x02\x02\u0103\u0100\x03\x02\x02\x02\u0104\t\x03\x02\x02\x02" +
+		"\u0105\u0106\x07.\x02\x02\u0106\u010A\x05h5\x02\u0107\u0109\x05\f\x07" +
+		"\x02\u0108\u0107\x03\x02\x02\x02\u0109\u010C\x03\x02\x02\x02\u010A\u0108" +
+		"\x03\x02\x02\x02\u010A\u010B\x03\x02\x02\x02\u010B\u010D\x03\x02\x02\x02" +
+		"\u010C\u010A\x03\x02\x02\x02\u010D\u010E\x05*\x16\x02\u010E\v\x03\x02" +
+		"\x02\x02\u010F\u0110\x07/\x02\x02\u0110\u0114\x05V,\x02\u0111\u0113\x05" +
+		"\x0E\b\x02\u0112\u0111\x03\x02\x02\x02\u0113\u0116\x03\x02\x02\x02\u0114" +
+		"\u0112\x03\x02\x02\x02\u0114\u0115\x03\x02\x02\x02\u0115\u0117\x03\x02" +
+		"\x02\x02\u0116\u0114\x03\x02\x02\x02\u0117\u0118\x05*\x16\x02\u0118\r" +
+		"\x03\x02\x02\x02\u0119\u011A\x070\x02\x02\u011A\u011B\x07\xA6\x02\x02" +
+		"\u011B\u011C\x07\xA8\x02\x02\u011C\u012A\x07\xA9\x02\x02\u011D\u011E\x07" +
+		"1\x02\x02\u011E\u011F\x07\xA6\x02\x02\u011F\u012A\x07\xA3\x02\x02\u0120" +
+		"\u0121\x072\x02\x02\u0121\u0122\x07\xA6\x02\x02\u0122\u012A\x07\xA4\x02" +
+		"\x02\u0123\u0124\x073\x02\x02\u0124\u0125\x07\xA6\x02\x02\u0125\u012A" +
+		"\x07\xB1\x02\x02\u0126\u0127\x074\x02\x02\u0127\u0128\x07\xA6\x02\x02" +
+		"\u0128\u012A\x07\xB1\x02\x02\u0129\u0119\x03\x02\x02\x02\u0129\u011D\x03" +
+		"\x02\x02\x02\u0129\u0120\x03\x02\x02\x02\u0129\u0123\x03\x02\x02\x02\u0129" +
+		"\u0126\x03\x02\x02\x02\u012A\x0F\x03\x02\x02\x02\u012B\u012C\x075\x02" +
+		"\x02\u012C\u0130\x05h5\x02\u012D\u012F\x05\x12\n\x02\u012E\u012D\x03\x02" +
+		"\x02\x02\u012F\u0132\x03\x02\x02\x02\u0130\u012E\x03\x02\x02\x02\u0130" +
+		"\u0131\x03\x02\x02\x02\u0131\u0133\x03\x02\x02\x02\u0132\u0130\x03\x02" +
+		"\x02\x02\u0133\u0134\x05*\x16\x02\u0134\x11\x03\x02\x02\x02\u0135\u0136" +
+		"\x076\x02\x02\u0136\u0137\x07\xA6\x02\x02\u0137\u0143\x07\xA3\x02\x02" +
+		"\u0138\u0139\x077\x02\x02\u0139\u013A\x07\xA6\x02\x02\u013A\u0143\x07" +
+		"\xA3\x02\x02\u013B\u013C\x078\x02\x02\u013C\u013D\x07\xA6\x02\x02\u013D" +
+		"\u0143\x07\xA3\x02\x02\u013E\u013F\x079\x02\x02\u013F\u0140\x07\xA6\x02" +
+		"\x02\u0140\u0143\x05V,\x02\u0141\u0143\x05\x14\v\x02\u0142\u0135\x03\x02" +
+		"\x02\x02\u0142\u0138\x03\x02\x02\x02\u0142\u013B\x03\x02\x02\x02\u0142" +
+		"\u013E\x03\x02\x02\x02\u0142\u0141\x03\x02\x02\x02\u0143\x13\x03\x02\x02" +
+		"\x02\u0144\u0148\t\x02\x02\x02\u0145\u0147\x05X-\x02\u0146\u0145\x03\x02" +
+		"\x02\x02\u0147\u014A\x03\x02\x02\x02\u0148\u0146\x03\x02\x02\x02\u0148" +
+		"\u0149\x03\x02\x02\x02\u0149\u014B\x03\x02\x02\x02\u014A\u0148\x03\x02" +
+		"\x02\x02\u014B\u014C\x05*\x16\x02\u014C\x15\x03\x02\x02\x02\u014D\u014E" +
+		"\x07?\x02\x02\u014E\u0152\x07\xB3\x02\x02\u014F\u0151\x05\x18\r\x02\u0150" +
+		"\u014F\x03\x02\x02\x02\u0151\u0154\x03\x02\x02\x02\u0152\u0150\x03\x02" +
+		"\x02\x02\u0152\u0153\x03\x02\x02\x02\u0153\u0155\x03\x02\x02\x02\u0154" +
+		"\u0152\x03\x02\x02\x02\u0155\u0156\x05*\x16\x02\u0156\x17\x03\x02\x02" +
+		"\x02\u0157\u0158\x07@\x02\x02\u0158\u015B\x07\xA6\x02\x02\u0159\u015C" +
+		"\x07\xB2\x02\x02\u015A\u015C\x05,\x17\x02\u015B\u0159\x03\x02\x02\x02" +
+		"\u015B\u015A\x03\x02\x02\x02\u015C\u016D\x03\x02\x02\x02\u015D\u015E\x07" +
+		"A\x02\x02\u015E\u015F\x07\xA6\x02\x02\u015F\u016D\x07\xA3\x02\x02\u0160" +
+		"\u0161\x07B\x02\x02\u0161\u0162\x07\xA6\x02\x02\u0162\u016D\x07\xA3\x02" +
+		"\x02\u0163\u0164\x07C\x02\x02\u0164\u0165\x07\xA6\x02\x02\u0165\u0166" +
+		"\x07\xAA\x02\x02\u0166\u0167\x07\xAB\x02\x02\u0167\u0168\x07\xAC\x02\x02" +
+		"\u0168\u016D\x07\xAD\x02\x02\u0169\u016A\x07D\x02\x02\u016A\u016B\x07" +
+		"\xA6\x02\x02\u016B\u016D\t\x03\x02\x02\u016C\u0157\x03\x02\x02\x02\u016C" +
+		"\u015D\x03\x02\x02\x02\u016C\u0160\x03\x02\x02\x02\u016C\u0163\x03\x02" +
+		"\x02\x02\u016C\u0169\x03\x02\x02\x02\u016D\x19\x03\x02\x02\x02\u016E\u016F" +
+		"\x07F\x02\x02\u016F\u0173\x07\xB3\x02\x02\u0170\u0172\x05\x1C\x0F\x02" +
+		"\u0171\u0170\x03\x02\x02\x02\u0172\u0175\x03\x02\x02\x02\u0173\u0171\x03" +
+		"\x02\x02\x02\u0173\u0174\x03\x02\x02\x02\u0174\u0176\x03\x02\x02\x02\u0175" +
+		"\u0173\x03\x02\x02\x02\u0176\u0177\x05*\x16\x02\u0177\x1B\x03\x02\x02" +
+		"\x02\u0178\u0179\x07G\x02\x02\u0179\u017A\x07\xA6\x02\x02\u017A\u0188" +
+		"\x07\xAE\x02\x02\u017B\u017C\x07H\x02\x02\u017C\u017D\x07\xA6\x02\x02" +
+		"\u017D\u0188\x07\xA3\x02\x02\u017E\u017F\x07I\x02\x02\u017F\u0180\x07" +
+		"\xA6\x02\x02\u0180\u0188\x07\xB1\x02\x02\u0181\u0182\x07J\x02\x02\u0182" +
+		"\u0183\x07\xA6\x02\x02\u0183\u0188\x07\xA3\x02\x02\u0184\u0185\x07K\x02" +
+		"\x02\u0185\u0186\x07\xA6\x02\x02\u0186\u0188\x07\xB3\x02\x02\u0187\u0178" +
+		"\x03\x02\x02\x02\u0187\u017B\x03\x02\x02\x02\u0187\u017E\x03\x02\x02\x02" +
+		"\u0187\u0181\x03\x02\x02\x02\u0187\u0184\x03\x02\x02\x02\u0188\x1D\x03" +
+		"\x02\x02\x02\u0189\u018A\x07L\x02\x02\u018A\u018E\x07\xB3\x02\x02\u018B" +
+		"\u018D\x05 \x11\x02\u018C\u018B\x03\x02\x02\x02\u018D\u0190\x03\x02\x02" +
+		"\x02\u018E\u018C\x03\x02\x02\x02\u018E\u018F\x03\x02\x02\x02\u018F\u0191" +
+		"\x03\x02\x02\x02\u0190\u018E\x03\x02\x02\x02\u0191\u0192\x05*\x16\x02" +
+		"\u0192\x1F\x03\x02\x02\x02\u0193\u0194\x07L\x02\x02\u0194\u0195\x07\xA6" +
+		"\x02\x02\u0195\u0196\x07\xAF\x02\x02\u0196\u0197\x07\xA5\x02\x02\u0197" +
+		"!\x03\x02\x02\x02\u0198\u0199\x07M\x02\x02\u0199\u019D\x07\xB3\x02\x02" +
+		"\u019A\u019C\x05$\x13\x02\u019B\u019A\x03\x02\x02\x02\u019C\u019F\x03" +
+		"\x02\x02\x02\u019D\u019B\x03\x02\x02\x02\u019D\u019E\x03\x02\x02\x02\u019E" +
+		"\u01A0\x03\x02\x02\x02\u019F\u019D\x03\x02\x02\x02\u01A0\u01A1\x05*\x16" +
+		"\x02\u01A1#\x03\x02\x02\x02\u01A2\u01B3\x05.\x18\x02\u01A3\u01B3\x052" +
+		"\x1A\x02\u01A4\u01B3\x056\x1C\x02\u01A5\u01B3\x058\x1D\x02\u01A6\u01B3" +
+		"\x05<\x1F\x02\u01A7\u01B3\x05> \x02\u01A8\u01B3\x05@!\x02\u01A9\u01B3" +
+		"\x05B\"\x02\u01AA\u01B3\x05D#\x02\u01AB\u01B3\x05F$\x02\u01AC\u01B3\x05" +
+		"H%\x02\u01AD\u01B3\x05T+\x02\u01AE\u01B3\x05X-\x02\u01AF\u01B3\x05\\/" +
+		"\x02\u01B0\u01B3\x05b2\x02\u01B1\u01B3\x05f4\x02\u01B2\u01A2\x03\x02\x02" +
+		"\x02\u01B2\u01A3\x03\x02\x02\x02\u01B2\u01A4\x03\x02\x02\x02\u01B2\u01A5" +
+		"\x03\x02\x02\x02\u01B2\u01A6\x03\x02\x02\x02\u01B2\u01A7\x03\x02\x02\x02" +
+		"\u01B2\u01A8\x03\x02\x02\x02\u01B2\u01A9\x03\x02\x02\x02\u01B2\u01AA\x03" +
+		"\x02\x02\x02\u01B2\u01AB\x03\x02\x02\x02\u01B2\u01AC\x03\x02\x02\x02\u01B2" +
+		"\u01AD\x03\x02\x02\x02\u01B2\u01AE\x03\x02\x02\x02\u01B2\u01AF\x03\x02" +
+		"\x02\x02\u01B2\u01B0\x03\x02\x02\x02\u01B2\u01B1\x03\x02\x02\x02\u01B3" +
+		"%\x03\x02\x02\x02\u01B4\u01B5\x07N\x02\x02\u01B5\u01B9\x07\xB3\x02\x02" +
+		"\u01B6\u01B8\x05(\x15\x02\u01B7\u01B6\x03\x02\x02\x02\u01B8\u01BB\x03" +
+		"\x02\x02\x02\u01B9\u01B7\x03\x02\x02\x02\u01B9\u01BA\x03\x02\x02\x02\u01BA" +
+		"\u01BC\x03\x02\x02\x02\u01BB\u01B9\x03\x02\x02\x02\u01BC\u01BD\x05*\x16" +
+		"\x02\u01BD\'\x03\x02\x02\x02\u01BE\u01BF\x07\xA3\x02\x02\u01BF\u01C0\x07" +
+		"\xA6\x02\x02\u01C0\u01C1\x05J&\x02\u01C1)\x03\x02\x02\x02\u01C2\u01C3" +
+		"\t\x04\x02\x02\u01C3+\x03\x02\x02\x02\u01C4\u01C5\x07\xB3\x02\x02\u01C5" +
+		"\u01C6\x07R\x02\x02\u01C6\u01C7\t\x05\x02\x02\u01C7-\x03\x02\x02\x02\u01C8" +
+		"\u01C9\x07U\x02\x02\u01C9\u01CA\x07\xA6\x02\x02\u01CA\u01CB\x050\x19\x02" +
+		"\u01CB/\x03\x02\x02\x02\u01CC\u01CD\t\x06\x02\x02\u01CD1\x03\x02\x02\x02" +
+		"\u01CE\u01CF\x07r\x02\x02\u01CF\u01D1\x07\xA6\x02\x02\u01D0\u01D2\x05" +
+		"4\x1B\x02\u01D1\u01D0\x03\x02\x02\x02\u01D2\u01D3\x03\x02\x02\x02\u01D3" +
+		"\u01D1\x03\x02\x02\x02\u01D3\u01D4\x03\x02\x02\x02\u01D43\x03\x02\x02" +
+		"\x02\u01D5\u01D6\t\x07\x02\x02\u01D65\x03\x02\x02\x02\u01D7\u01D8\x07" +
+		"\x85\x02\x02\u01D8\u01D9\x07\xA6\x02\x02\u01D9\u01DA\x05R*\x02\u01DA7" +
+		"\x03\x02\x02\x02\u01DB\u01DC\x07\x86\x02\x02\u01DC\u01DD\x07\xA6\x02\x02" +
+		"\u01DD\u01DE\x05:\x1E\x02\u01DE9\x03\x02\x02\x02\u01DF\u01E0\t\b\x02\x02" +
+		"\u01E0;\x03\x02\x02\x02\u01E1\u01E2\x07\x8B\x02\x02\u01E2\u01E3\x07\xA6" +
+		"\x02\x02\u01E3\u01E4\t\t\x02\x02\u01E4=\x03\x02\x02\x02\u01E5\u01E6\x07" +
+		"\x8C\x02\x02\u01E6\u01E7\x07\xA6\x02\x02\u01E7\u01E8\t\t\x02\x02\u01E8" +
+		"?\x03\x02\x02\x02\u01E9\u01EA\x07\x8D\x02\x02\u01EA\u01EB\x07\xA6\x02" +
+		"\x02\u01EB\u01EC\t\t\x02\x02\u01ECA\x03\x02\x02\x02\u01ED\u01EE\x07\x8E" +
+		"\x02\x02\u01EE\u01EF\x07\xA6\x02\x02\u01EF\u01F0\x05L\'\x02\u01F0C\x03" +
+		"\x02\x02\x02\u01F1\u01F2\x07\x8F\x02\x02\u01F2\u01F3\x07\xA6\x02\x02\u01F3" +
+		"\u01F4\x05N(\x02\u01F4E\x03\x02\x02\x02\u01F5\u01F6\x07\x90\x02\x02\u01F6" +
+		"\u01F7\x07\xA6\x02\x02\u01F7\u01F8\x05P)\x02\u01F8G\x03\x02\x02\x02\u01F9" +
+		"\u01FA\x07\x91\x02\x02\u01FA\u01FB\x07\xA6\x02\x02\u01FB\u01FC\x05`1\x02" +
+		"\u01FCI\x03\x02\x02\x02\u01FD\u01FE\t\t\x02\x02\u01FEK\x03\x02\x02\x02" +
+		"\u01FF\u0200\t\t\x02\x02\u0200M\x03\x02\x02\x02\u0201\u0202\x07\xB3\x02" +
+		"\x02\u0202O\x03\x02\x02\x02\u0203\u0204\t\t\x02\x02\u0204Q\x03\x02\x02" +
+		"\x02\u0205\u0206\t\t\x02\x02\u0206S\x03\x02\x02\x02\u0207\u0208\x07\x92" +
+		"\x02\x02\u0208\u0209\x07\xA6\x02\x02\u0209\u020A\x05V,\x02\u020AU\x03" +
+		"\x02\x02\x02\u020B\u020C\t\t\x02\x02\u020CW\x03\x02\x02\x02\u020D\u020E" +
+		"\x07\x93\x02\x02\u020E\u0210\x07\xA6\x02\x02\u020F\u0211\x05Z.\x02\u0210" +
+		"\u020F\x03\x02\x02\x02\u0211\u0212\x03\x02\x02\x02\u0212\u0210\x03\x02" +
+		"\x02\x02\u0212\u0213\x03\x02\x02\x02\u0213Y\x03\x02\x02\x02\u0214\u0215" +
+		"\t\t\x02\x02\u0215[\x03\x02\x02\x02\u0216\u0217\x07\x94\x02\x02\u0217" +
+		"\u0218\x07\xA6\x02\x02\u0218\u0219\x05^0\x02\u0219]\x03\x02\x02\x02\u021A" +
+		"\u021B\t\t\x02\x02\u021B_\x03\x02\x02\x02\u021C\u021D\t\t\x02\x02\u021D" +
+		"a\x03\x02\x02\x02\u021E\u021F\x07\x95\x02\x02\u021F\u0220\x07\xA6\x02" +
+		"\x02\u0220\u0221\x05d3\x02\u0221c\x03\x02\x02\x02\u0222\u0223\t\t\x02" +
+		"\x02\u0223e\x03\x02\x02\x02\u0224\u0225\x07\x96\x02\x02\u0225\u0227\x07" +
+		"\xA6\x02\x02\u0226\u0228\x07\xA7\x02\x02\u0227\u0226\x03\x02\x02\x02\u0228" +
+		"\u0229\x03\x02\x02\x02\u0229\u0227\x03\x02\x02\x02\u0229\u022A\x03\x02" +
+		"\x02\x02\u022Ag\x03\x02\x02\x02\u022B\u022C\t\n\x02\x02\u022Ci\x03\x02" +
+		"\x02\x02\x19mx~\x80\u0103\u010A\u0114\u0129\u0130\u0142\u0148\u0152\u015B" +
+		"\u016C\u0173\u0187\u018E\u019D\u01B2\u01B9\u01D3\u0212\u0229";
 	public static __ATN: ATN;
 	public static get _ATN(): ATN {
 		if (!MapIniParser.__ATN) {
@@ -3474,11 +3472,23 @@ export class ProgramContext extends ParserRuleContext {
 
 
 export class ClassesContext extends ParserRuleContext {
-	public object(): ObjectContext | undefined {
-		return this.tryGetRuleContext(0, ObjectContext);
+	public mappedImageClass(): MappedImageClassContext | undefined {
+		return this.tryGetRuleContext(0, MappedImageClassContext);
 	}
-	public objectReskin(): ObjectReskinContext | undefined {
-		return this.tryGetRuleContext(0, ObjectReskinContext);
+	public aiDataClass(): AiDataClassContext | undefined {
+		return this.tryGetRuleContext(0, AiDataClassContext);
+	}
+	public animation2DClass(): Animation2DClassContext | undefined {
+		return this.tryGetRuleContext(0, Animation2DClassContext);
+	}
+	public armorClass(): ArmorClassContext | undefined {
+		return this.tryGetRuleContext(0, ArmorClassContext);
+	}
+	public commandButtonClass(): CommandButtonClassContext | undefined {
+		return this.tryGetRuleContext(0, CommandButtonClassContext);
+	}
+	public commandSetClass(): CommandSetClassContext | undefined {
+		return this.tryGetRuleContext(0, CommandSetClassContext);
 	}
 	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
 		super(parent, invokingState);
@@ -3508,76 +3518,58 @@ export class ClassesContext extends ParserRuleContext {
 }
 
 
-export class ObjectReskinContext extends ParserRuleContext {
-	public ID(): TerminalNode[];
-	public ID(i: number): TerminalNode;
-	public ID(i?: number): TerminalNode | TerminalNode[] {
-		if (i === undefined) {
-			return this.getTokens(MapIniParser.ID);
-		} else {
-			return this.getToken(MapIniParser.ID, i);
-		}
-	}
+export class AiDataClassContext extends ParserRuleContext {
 	public end(): EndContext {
 		return this.getRuleContext(0, EndContext);
 	}
-	public modules(): ModulesContext[];
-	public modules(i: number): ModulesContext;
-	public modules(i?: number): ModulesContext | ModulesContext[] {
+	public aidataClassProperties_single(): AidataClassProperties_singleContext[];
+	public aidataClassProperties_single(i: number): AidataClassProperties_singleContext;
+	public aidataClassProperties_single(i?: number): AidataClassProperties_singleContext | AidataClassProperties_singleContext[] {
 		if (i === undefined) {
-			return this.getRuleContexts(ModulesContext);
+			return this.getRuleContexts(AidataClassProperties_singleContext);
 		} else {
-			return this.getRuleContext(i, ModulesContext);
+			return this.getRuleContext(i, AidataClassProperties_singleContext);
 		}
 	}
-	public objectProperty(): ObjectPropertyContext[];
-	public objectProperty(i: number): ObjectPropertyContext;
-	public objectProperty(i?: number): ObjectPropertyContext | ObjectPropertyContext[] {
+	public aidataClassProperties_blockSideinfo(): AidataClassProperties_blockSideinfoContext[];
+	public aidataClassProperties_blockSideinfo(i: number): AidataClassProperties_blockSideinfoContext;
+	public aidataClassProperties_blockSideinfo(i?: number): AidataClassProperties_blockSideinfoContext | AidataClassProperties_blockSideinfoContext[] {
 		if (i === undefined) {
-			return this.getRuleContexts(ObjectPropertyContext);
+			return this.getRuleContexts(AidataClassProperties_blockSideinfoContext);
 		} else {
-			return this.getRuleContext(i, ObjectPropertyContext);
+			return this.getRuleContext(i, AidataClassProperties_blockSideinfoContext);
 		}
 	}
-	public objectKindOfProperty(): ObjectKindOfPropertyContext[];
-	public objectKindOfProperty(i: number): ObjectKindOfPropertyContext;
-	public objectKindOfProperty(i?: number): ObjectKindOfPropertyContext | ObjectKindOfPropertyContext[] {
+	public aidataClassproperties_BlockSkirmishBuildList(): AidataClassproperties_BlockSkirmishBuildListContext[];
+	public aidataClassproperties_BlockSkirmishBuildList(i: number): AidataClassproperties_BlockSkirmishBuildListContext;
+	public aidataClassproperties_BlockSkirmishBuildList(i?: number): AidataClassproperties_BlockSkirmishBuildListContext | AidataClassproperties_BlockSkirmishBuildListContext[] {
 		if (i === undefined) {
-			return this.getRuleContexts(ObjectKindOfPropertyContext);
+			return this.getRuleContexts(AidataClassproperties_BlockSkirmishBuildListContext);
 		} else {
-			return this.getRuleContext(i, ObjectKindOfPropertyContext);
-		}
-	}
-	public moduleBlocks(): ModuleBlocksContext[];
-	public moduleBlocks(i: number): ModuleBlocksContext;
-	public moduleBlocks(i?: number): ModuleBlocksContext | ModuleBlocksContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(ModuleBlocksContext);
-		} else {
-			return this.getRuleContext(i, ModuleBlocksContext);
+			return this.getRuleContext(i, AidataClassproperties_BlockSkirmishBuildListContext);
 		}
 	}
 	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
 		super(parent, invokingState);
 	}
 	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_objectReskin; }
+	public get ruleIndex(): number { return MapIniParser.RULE_aiDataClass; }
 	// @Override
 	public enterRule(listener: MapIniListener): void {
-		if (listener.enterObjectReskin) {
-			listener.enterObjectReskin(this);
+		if (listener.enterAiDataClass) {
+			listener.enterAiDataClass(this);
 		}
 	}
 	// @Override
 	public exitRule(listener: MapIniListener): void {
-		if (listener.exitObjectReskin) {
-			listener.exitObjectReskin(this);
+		if (listener.exitAiDataClass) {
+			listener.exitAiDataClass(this);
 		}
 	}
 	// @Override
 	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitObjectReskin) {
-			return visitor.visitObjectReskin(this);
+		if (visitor.visitAiDataClass) {
+			return visitor.visitAiDataClass(this);
 		} else {
 			return visitor.visitChildren(this);
 		}
@@ -3585,68 +3577,319 @@ export class ObjectReskinContext extends ParserRuleContext {
 }
 
 
-export class ObjectContext extends ParserRuleContext {
+export class AidataClassProperties_singleContext extends ParserRuleContext {
+	public EQ(): TerminalNode { return this.getToken(MapIniParser.EQ, 0); }
+	public FLOAT(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.FLOAT, 0); }
+	public INT(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.INT, 0); }
+	public BOOLEAN(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.BOOLEAN, 0); }
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return MapIniParser.RULE_aidataClassProperties_single; }
+	// @Override
+	public enterRule(listener: MapIniListener): void {
+		if (listener.enterAidataClassProperties_single) {
+			listener.enterAidataClassProperties_single(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: MapIniListener): void {
+		if (listener.exitAidataClassProperties_single) {
+			listener.exitAidataClassProperties_single(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
+		if (visitor.visitAidataClassProperties_single) {
+			return visitor.visitAidataClassProperties_single(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class AidataClassproperties_BlockSkirmishBuildListContext extends ParserRuleContext {
+	public faction(): FactionContext {
+		return this.getRuleContext(0, FactionContext);
+	}
+	public end(): EndContext {
+		return this.getRuleContext(0, EndContext);
+	}
+	public skirmishBuildListBlock(): SkirmishBuildListBlockContext[];
+	public skirmishBuildListBlock(i: number): SkirmishBuildListBlockContext;
+	public skirmishBuildListBlock(i?: number): SkirmishBuildListBlockContext | SkirmishBuildListBlockContext[] {
+		if (i === undefined) {
+			return this.getRuleContexts(SkirmishBuildListBlockContext);
+		} else {
+			return this.getRuleContext(i, SkirmishBuildListBlockContext);
+		}
+	}
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return MapIniParser.RULE_aidataClassproperties_BlockSkirmishBuildList; }
+	// @Override
+	public enterRule(listener: MapIniListener): void {
+		if (listener.enterAidataClassproperties_BlockSkirmishBuildList) {
+			listener.enterAidataClassproperties_BlockSkirmishBuildList(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: MapIniListener): void {
+		if (listener.exitAidataClassproperties_BlockSkirmishBuildList) {
+			listener.exitAidataClassproperties_BlockSkirmishBuildList(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
+		if (visitor.visitAidataClassproperties_BlockSkirmishBuildList) {
+			return visitor.visitAidataClassproperties_BlockSkirmishBuildList(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class SkirmishBuildListBlockContext extends ParserRuleContext {
+	public object_value(): Object_valueContext {
+		return this.getRuleContext(0, Object_valueContext);
+	}
+	public end(): EndContext {
+		return this.getRuleContext(0, EndContext);
+	}
+	public skirmishBuildListBlock_structure_properties(): SkirmishBuildListBlock_structure_propertiesContext[];
+	public skirmishBuildListBlock_structure_properties(i: number): SkirmishBuildListBlock_structure_propertiesContext;
+	public skirmishBuildListBlock_structure_properties(i?: number): SkirmishBuildListBlock_structure_propertiesContext | SkirmishBuildListBlock_structure_propertiesContext[] {
+		if (i === undefined) {
+			return this.getRuleContexts(SkirmishBuildListBlock_structure_propertiesContext);
+		} else {
+			return this.getRuleContext(i, SkirmishBuildListBlock_structure_propertiesContext);
+		}
+	}
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return MapIniParser.RULE_skirmishBuildListBlock; }
+	// @Override
+	public enterRule(listener: MapIniListener): void {
+		if (listener.enterSkirmishBuildListBlock) {
+			listener.enterSkirmishBuildListBlock(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: MapIniListener): void {
+		if (listener.exitSkirmishBuildListBlock) {
+			listener.exitSkirmishBuildListBlock(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
+		if (visitor.visitSkirmishBuildListBlock) {
+			return visitor.visitSkirmishBuildListBlock(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class SkirmishBuildListBlock_structure_propertiesContext extends ParserRuleContext {
+	public EQ(): TerminalNode { return this.getToken(MapIniParser.EQ, 0); }
+	public XCOORD(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.XCOORD, 0); }
+	public YCOORD(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.YCOORD, 0); }
+	public INT(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.INT, 0); }
+	public FLOAT(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.FLOAT, 0); }
+	public BOOLEAN(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.BOOLEAN, 0); }
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return MapIniParser.RULE_skirmishBuildListBlock_structure_properties; }
+	// @Override
+	public enterRule(listener: MapIniListener): void {
+		if (listener.enterSkirmishBuildListBlock_structure_properties) {
+			listener.enterSkirmishBuildListBlock_structure_properties(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: MapIniListener): void {
+		if (listener.exitSkirmishBuildListBlock_structure_properties) {
+			listener.exitSkirmishBuildListBlock_structure_properties(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
+		if (visitor.visitSkirmishBuildListBlock_structure_properties) {
+			return visitor.visitSkirmishBuildListBlock_structure_properties(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class AidataClassProperties_blockSideinfoContext extends ParserRuleContext {
+	public faction(): FactionContext {
+		return this.getRuleContext(0, FactionContext);
+	}
+	public end(): EndContext {
+		return this.getRuleContext(0, EndContext);
+	}
+	public sideinfoproperties(): SideinfopropertiesContext[];
+	public sideinfoproperties(i: number): SideinfopropertiesContext;
+	public sideinfoproperties(i?: number): SideinfopropertiesContext | SideinfopropertiesContext[] {
+		if (i === undefined) {
+			return this.getRuleContexts(SideinfopropertiesContext);
+		} else {
+			return this.getRuleContext(i, SideinfopropertiesContext);
+		}
+	}
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return MapIniParser.RULE_aidataClassProperties_blockSideinfo; }
+	// @Override
+	public enterRule(listener: MapIniListener): void {
+		if (listener.enterAidataClassProperties_blockSideinfo) {
+			listener.enterAidataClassProperties_blockSideinfo(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: MapIniListener): void {
+		if (listener.exitAidataClassProperties_blockSideinfo) {
+			listener.exitAidataClassProperties_blockSideinfo(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
+		if (visitor.visitAidataClassProperties_blockSideinfo) {
+			return visitor.visitAidataClassProperties_blockSideinfo(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class SideinfopropertiesContext extends ParserRuleContext {
+	public EQ(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.EQ, 0); }
+	public INT(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.INT, 0); }
+	public object_value(): Object_valueContext | undefined {
+		return this.tryGetRuleContext(0, Object_valueContext);
+	}
+	public sideinfo_skillset_blocks(): Sideinfo_skillset_blocksContext | undefined {
+		return this.tryGetRuleContext(0, Sideinfo_skillset_blocksContext);
+	}
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return MapIniParser.RULE_sideinfoproperties; }
+	// @Override
+	public enterRule(listener: MapIniListener): void {
+		if (listener.enterSideinfoproperties) {
+			listener.enterSideinfoproperties(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: MapIniListener): void {
+		if (listener.exitSideinfoproperties) {
+			listener.exitSideinfoproperties(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
+		if (visitor.visitSideinfoproperties) {
+			return visitor.visitSideinfoproperties(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class Sideinfo_skillset_blocksContext extends ParserRuleContext {
+	public end(): EndContext {
+		return this.getRuleContext(0, EndContext);
+	}
+	public science_property(): Science_propertyContext[];
+	public science_property(i: number): Science_propertyContext;
+	public science_property(i?: number): Science_propertyContext | Science_propertyContext[] {
+		if (i === undefined) {
+			return this.getRuleContexts(Science_propertyContext);
+		} else {
+			return this.getRuleContext(i, Science_propertyContext);
+		}
+	}
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return MapIniParser.RULE_sideinfo_skillset_blocks; }
+	// @Override
+	public enterRule(listener: MapIniListener): void {
+		if (listener.enterSideinfo_skillset_blocks) {
+			listener.enterSideinfo_skillset_blocks(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: MapIniListener): void {
+		if (listener.exitSideinfo_skillset_blocks) {
+			listener.exitSideinfo_skillset_blocks(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
+		if (visitor.visitSideinfo_skillset_blocks) {
+			return visitor.visitSideinfo_skillset_blocks(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class MappedImageClassContext extends ParserRuleContext {
 	public ID(): TerminalNode { return this.getToken(MapIniParser.ID, 0); }
 	public end(): EndContext {
 		return this.getRuleContext(0, EndContext);
 	}
-	public modules(): ModulesContext[];
-	public modules(i: number): ModulesContext;
-	public modules(i?: number): ModulesContext | ModulesContext[] {
+	public mappedImageClassProperties(): MappedImageClassPropertiesContext[];
+	public mappedImageClassProperties(i: number): MappedImageClassPropertiesContext;
+	public mappedImageClassProperties(i?: number): MappedImageClassPropertiesContext | MappedImageClassPropertiesContext[] {
 		if (i === undefined) {
-			return this.getRuleContexts(ModulesContext);
+			return this.getRuleContexts(MappedImageClassPropertiesContext);
 		} else {
-			return this.getRuleContext(i, ModulesContext);
-		}
-	}
-	public objectProperty(): ObjectPropertyContext[];
-	public objectProperty(i: number): ObjectPropertyContext;
-	public objectProperty(i?: number): ObjectPropertyContext | ObjectPropertyContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(ObjectPropertyContext);
-		} else {
-			return this.getRuleContext(i, ObjectPropertyContext);
-		}
-	}
-	public objectKindOfProperty(): ObjectKindOfPropertyContext[];
-	public objectKindOfProperty(i: number): ObjectKindOfPropertyContext;
-	public objectKindOfProperty(i?: number): ObjectKindOfPropertyContext | ObjectKindOfPropertyContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(ObjectKindOfPropertyContext);
-		} else {
-			return this.getRuleContext(i, ObjectKindOfPropertyContext);
-		}
-	}
-	public moduleBlocks(): ModuleBlocksContext[];
-	public moduleBlocks(i: number): ModuleBlocksContext;
-	public moduleBlocks(i?: number): ModuleBlocksContext | ModuleBlocksContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(ModuleBlocksContext);
-		} else {
-			return this.getRuleContext(i, ModuleBlocksContext);
+			return this.getRuleContext(i, MappedImageClassPropertiesContext);
 		}
 	}
 	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
 		super(parent, invokingState);
 	}
 	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_object; }
+	public get ruleIndex(): number { return MapIniParser.RULE_mappedImageClass; }
 	// @Override
 	public enterRule(listener: MapIniListener): void {
-		if (listener.enterObject) {
-			listener.enterObject(this);
+		if (listener.enterMappedImageClass) {
+			listener.enterMappedImageClass(this);
 		}
 	}
 	// @Override
 	public exitRule(listener: MapIniListener): void {
-		if (listener.exitObject) {
-			listener.exitObject(this);
+		if (listener.exitMappedImageClass) {
+			listener.exitMappedImageClass(this);
 		}
 	}
 	// @Override
 	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitObject) {
-			return visitor.visitObject(this);
+		if (visitor.visitMappedImageClass) {
+			return visitor.visitMappedImageClass(this);
 		} else {
 			return visitor.visitChildren(this);
 		}
@@ -3654,38 +3897,38 @@ export class ObjectContext extends ParserRuleContext {
 }
 
 
-export class ObjectPropertyContext extends ParserRuleContext {
-	public ID(): TerminalNode { return this.getToken(MapIniParser.ID, 0); }
-	public value(): ValueContext[];
-	public value(i: number): ValueContext;
-	public value(i?: number): ValueContext | ValueContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(ValueContext);
-		} else {
-			return this.getRuleContext(i, ValueContext);
-		}
+export class MappedImageClassPropertiesContext extends ParserRuleContext {
+	public EQ(): TerminalNode { return this.getToken(MapIniParser.EQ, 0); }
+	public NVALUE(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.NVALUE, 0); }
+	public file(): FileContext | undefined {
+		return this.tryGetRuleContext(0, FileContext);
 	}
+	public INT(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.INT, 0); }
+	public COORDLEFT(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.COORDLEFT, 0); }
+	public COORDTOP(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.COORDTOP, 0); }
+	public COORDRIGHT(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.COORDRIGHT, 0); }
+	public COORDBOTTOM(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.COORDBOTTOM, 0); }
 	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
 		super(parent, invokingState);
 	}
 	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_objectProperty; }
+	public get ruleIndex(): number { return MapIniParser.RULE_mappedImageClassProperties; }
 	// @Override
 	public enterRule(listener: MapIniListener): void {
-		if (listener.enterObjectProperty) {
-			listener.enterObjectProperty(this);
+		if (listener.enterMappedImageClassProperties) {
+			listener.enterMappedImageClassProperties(this);
 		}
 	}
 	// @Override
 	public exitRule(listener: MapIniListener): void {
-		if (listener.exitObjectProperty) {
-			listener.exitObjectProperty(this);
+		if (listener.exitMappedImageClassProperties) {
+			listener.exitMappedImageClassProperties(this);
 		}
 	}
 	// @Override
 	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitObjectProperty) {
-			return visitor.visitObjectProperty(this);
+		if (visitor.visitMappedImageClassProperties) {
+			return visitor.visitMappedImageClassProperties(this);
 		} else {
 			return visitor.visitChildren(this);
 		}
@@ -3693,227 +3936,41 @@ export class ObjectPropertyContext extends ParserRuleContext {
 }
 
 
-export class ModuleBlocksContext extends ParserRuleContext {
-	public addModuleBlock(): AddModuleBlockContext | undefined {
-		return this.tryGetRuleContext(0, AddModuleBlockContext);
-	}
-	public replaceModuleBlock(): ReplaceModuleBlockContext | undefined {
-		return this.tryGetRuleContext(0, ReplaceModuleBlockContext);
-	}
-	public removeModuleBlock(): RemoveModuleBlockContext | undefined {
-		return this.tryGetRuleContext(0, RemoveModuleBlockContext);
-	}
-	public objectBlocks(): ObjectBlocksContext | undefined {
-		return this.tryGetRuleContext(0, ObjectBlocksContext);
-	}
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
-		super(parent, invokingState);
-	}
-	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_moduleBlocks; }
-	// @Override
-	public enterRule(listener: MapIniListener): void {
-		if (listener.enterModuleBlocks) {
-			listener.enterModuleBlocks(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: MapIniListener): void {
-		if (listener.exitModuleBlocks) {
-			listener.exitModuleBlocks(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitModuleBlocks) {
-			return visitor.visitModuleBlocks(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-
-
-export class AddModuleBlockContext extends ParserRuleContext {
-	public end(): EndContext {
-		return this.getRuleContext(0, EndContext);
-	}
-	public modules(): ModulesContext[];
-	public modules(i: number): ModulesContext;
-	public modules(i?: number): ModulesContext | ModulesContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(ModulesContext);
-		} else {
-			return this.getRuleContext(i, ModulesContext);
-		}
-	}
-	public addModuleProperty(): AddModulePropertyContext[];
-	public addModuleProperty(i: number): AddModulePropertyContext;
-	public addModuleProperty(i?: number): AddModulePropertyContext | AddModulePropertyContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(AddModulePropertyContext);
-		} else {
-			return this.getRuleContext(i, AddModulePropertyContext);
-		}
-	}
-	public objectKindOfProperty(): ObjectKindOfPropertyContext[];
-	public objectKindOfProperty(i: number): ObjectKindOfPropertyContext;
-	public objectKindOfProperty(i?: number): ObjectKindOfPropertyContext | ObjectKindOfPropertyContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(ObjectKindOfPropertyContext);
-		} else {
-			return this.getRuleContext(i, ObjectKindOfPropertyContext);
-		}
-	}
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
-		super(parent, invokingState);
-	}
-	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_addModuleBlock; }
-	// @Override
-	public enterRule(listener: MapIniListener): void {
-		if (listener.enterAddModuleBlock) {
-			listener.enterAddModuleBlock(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: MapIniListener): void {
-		if (listener.exitAddModuleBlock) {
-			listener.exitAddModuleBlock(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitAddModuleBlock) {
-			return visitor.visitAddModuleBlock(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-
-
-export class AddModulePropertyContext extends ParserRuleContext {
-	public ID(): TerminalNode { return this.getToken(MapIniParser.ID, 0); }
-	public value(): ValueContext[];
-	public value(i: number): ValueContext;
-	public value(i?: number): ValueContext | ValueContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(ValueContext);
-		} else {
-			return this.getRuleContext(i, ValueContext);
-		}
-	}
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
-		super(parent, invokingState);
-	}
-	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_addModuleProperty; }
-	// @Override
-	public enterRule(listener: MapIniListener): void {
-		if (listener.enterAddModuleProperty) {
-			listener.enterAddModuleProperty(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: MapIniListener): void {
-		if (listener.exitAddModuleProperty) {
-			listener.exitAddModuleProperty(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitAddModuleProperty) {
-			return visitor.visitAddModuleProperty(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-
-
-export class ObjectKindOfPropertyContext extends ParserRuleContext {
-	public ID(): TerminalNode[];
-	public ID(i: number): TerminalNode;
-	public ID(i?: number): TerminalNode | TerminalNode[] {
-		if (i === undefined) {
-			return this.getTokens(MapIniParser.ID);
-		} else {
-			return this.getToken(MapIniParser.ID, i);
-		}
-	}
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
-		super(parent, invokingState);
-	}
-	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_objectKindOfProperty; }
-	// @Override
-	public enterRule(listener: MapIniListener): void {
-		if (listener.enterObjectKindOfProperty) {
-			listener.enterObjectKindOfProperty(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: MapIniListener): void {
-		if (listener.exitObjectKindOfProperty) {
-			listener.exitObjectKindOfProperty(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitObjectKindOfProperty) {
-			return visitor.visitObjectKindOfProperty(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-
-
-export class ReplaceModuleBlockContext extends ParserRuleContext {
+export class Animation2DClassContext extends ParserRuleContext {
 	public ID(): TerminalNode { return this.getToken(MapIniParser.ID, 0); }
 	public end(): EndContext {
 		return this.getRuleContext(0, EndContext);
 	}
-	public modules(): ModulesContext[];
-	public modules(i: number): ModulesContext;
-	public modules(i?: number): ModulesContext | ModulesContext[] {
+	public animation2DClassProperties(): Animation2DClassPropertiesContext[];
+	public animation2DClassProperties(i: number): Animation2DClassPropertiesContext;
+	public animation2DClassProperties(i?: number): Animation2DClassPropertiesContext | Animation2DClassPropertiesContext[] {
 		if (i === undefined) {
-			return this.getRuleContexts(ModulesContext);
+			return this.getRuleContexts(Animation2DClassPropertiesContext);
 		} else {
-			return this.getRuleContext(i, ModulesContext);
-		}
-	}
-	public replaceModuleProperty(): ReplaceModulePropertyContext[];
-	public replaceModuleProperty(i: number): ReplaceModulePropertyContext;
-	public replaceModuleProperty(i?: number): ReplaceModulePropertyContext | ReplaceModulePropertyContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(ReplaceModulePropertyContext);
-		} else {
-			return this.getRuleContext(i, ReplaceModulePropertyContext);
+			return this.getRuleContext(i, Animation2DClassPropertiesContext);
 		}
 	}
 	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
 		super(parent, invokingState);
 	}
 	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_replaceModuleBlock; }
+	public get ruleIndex(): number { return MapIniParser.RULE_animation2DClass; }
 	// @Override
 	public enterRule(listener: MapIniListener): void {
-		if (listener.enterReplaceModuleBlock) {
-			listener.enterReplaceModuleBlock(this);
+		if (listener.enterAnimation2DClass) {
+			listener.enterAnimation2DClass(this);
 		}
 	}
 	// @Override
 	public exitRule(listener: MapIniListener): void {
-		if (listener.exitReplaceModuleBlock) {
-			listener.exitReplaceModuleBlock(this);
+		if (listener.exitAnimation2DClass) {
+			listener.exitAnimation2DClass(this);
 		}
 	}
 	// @Override
 	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitReplaceModuleBlock) {
-			return visitor.visitReplaceModuleBlock(this);
+		if (visitor.visitAnimation2DClass) {
+			return visitor.visitAnimation2DClass(this);
 		} else {
 			return visitor.visitChildren(this);
 		}
@@ -3921,176 +3978,75 @@ export class ReplaceModuleBlockContext extends ParserRuleContext {
 }
 
 
-export class ReplaceModulePropertyContext extends ParserRuleContext {
+export class Animation2DClassPropertiesContext extends ParserRuleContext {
+	public EQ(): TerminalNode { return this.getToken(MapIniParser.EQ, 0); }
+	public A2D_ANIMATION_MODE(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.A2D_ANIMATION_MODE, 0); }
+	public INT(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.INT, 0); }
+	public BOOLEAN(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.BOOLEAN, 0); }
+	public ID(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.ID, 0); }
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return MapIniParser.RULE_animation2DClassProperties; }
+	// @Override
+	public enterRule(listener: MapIniListener): void {
+		if (listener.enterAnimation2DClassProperties) {
+			listener.enterAnimation2DClassProperties(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: MapIniListener): void {
+		if (listener.exitAnimation2DClassProperties) {
+			listener.exitAnimation2DClassProperties(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
+		if (visitor.visitAnimation2DClassProperties) {
+			return visitor.visitAnimation2DClassProperties(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class ArmorClassContext extends ParserRuleContext {
 	public ID(): TerminalNode { return this.getToken(MapIniParser.ID, 0); }
-	public value(): ValueContext[];
-	public value(i: number): ValueContext;
-	public value(i?: number): ValueContext | ValueContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(ValueContext);
-		} else {
-			return this.getRuleContext(i, ValueContext);
-		}
-	}
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
-		super(parent, invokingState);
-	}
-	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_replaceModuleProperty; }
-	// @Override
-	public enterRule(listener: MapIniListener): void {
-		if (listener.enterReplaceModuleProperty) {
-			listener.enterReplaceModuleProperty(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: MapIniListener): void {
-		if (listener.exitReplaceModuleProperty) {
-			listener.exitReplaceModuleProperty(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitReplaceModuleProperty) {
-			return visitor.visitReplaceModuleProperty(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-
-
-export class ModulesContext extends ParserRuleContext {
-	public drawModuleBlock(): DrawModuleBlockContext | undefined {
-		return this.tryGetRuleContext(0, DrawModuleBlockContext);
-	}
-	public bodyModuleBlock(): BodyModuleBlockContext | undefined {
-		return this.tryGetRuleContext(0, BodyModuleBlockContext);
-	}
-	public behaviormoduleBlock(): BehaviormoduleBlockContext | undefined {
-		return this.tryGetRuleContext(0, BehaviormoduleBlockContext);
-	}
-	public clientModuleBlock(): ClientModuleBlockContext | undefined {
-		return this.tryGetRuleContext(0, ClientModuleBlockContext);
-	}
-	public objectBlocks(): ObjectBlocksContext | undefined {
-		return this.tryGetRuleContext(0, ObjectBlocksContext);
-	}
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
-		super(parent, invokingState);
-	}
-	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_modules; }
-	// @Override
-	public enterRule(listener: MapIniListener): void {
-		if (listener.enterModules) {
-			listener.enterModules(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: MapIniListener): void {
-		if (listener.exitModules) {
-			listener.exitModules(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitModules) {
-			return visitor.visitModules(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-
-
-export class ObjectBlocksContext extends ParserRuleContext {
-	public objectPrerequisites(): ObjectPrerequisitesContext | undefined {
-		return this.tryGetRuleContext(0, ObjectPrerequisitesContext);
-	}
-	public objectWeaponSet(): ObjectWeaponSetContext | undefined {
-		return this.tryGetRuleContext(0, ObjectWeaponSetContext);
-	}
-	public objectArmorSet(): ObjectArmorSetContext | undefined {
-		return this.tryGetRuleContext(0, ObjectArmorSetContext);
-	}
-	public objectUnitSpecificSounds(): ObjectUnitSpecificSoundsContext | undefined {
-		return this.tryGetRuleContext(0, ObjectUnitSpecificSoundsContext);
-	}
-	public objectUnitSpecificFX(): ObjectUnitSpecificFXContext | undefined {
-		return this.tryGetRuleContext(0, ObjectUnitSpecificFXContext);
-	}
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
-		super(parent, invokingState);
-	}
-	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_objectBlocks; }
-	// @Override
-	public enterRule(listener: MapIniListener): void {
-		if (listener.enterObjectBlocks) {
-			listener.enterObjectBlocks(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: MapIniListener): void {
-		if (listener.exitObjectBlocks) {
-			listener.exitObjectBlocks(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitObjectBlocks) {
-			return visitor.visitObjectBlocks(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-
-
-export class ObjectPrerequisitesContext extends ParserRuleContext {
 	public end(): EndContext {
 		return this.getRuleContext(0, EndContext);
 	}
-	public objectPrerequisitesobjectProperty(): ObjectPrerequisitesobjectPropertyContext[];
-	public objectPrerequisitesobjectProperty(i: number): ObjectPrerequisitesobjectPropertyContext;
-	public objectPrerequisitesobjectProperty(i?: number): ObjectPrerequisitesobjectPropertyContext | ObjectPrerequisitesobjectPropertyContext[] {
+	public armorClassProperties(): ArmorClassPropertiesContext[];
+	public armorClassProperties(i: number): ArmorClassPropertiesContext;
+	public armorClassProperties(i?: number): ArmorClassPropertiesContext | ArmorClassPropertiesContext[] {
 		if (i === undefined) {
-			return this.getRuleContexts(ObjectPrerequisitesobjectPropertyContext);
+			return this.getRuleContexts(ArmorClassPropertiesContext);
 		} else {
-			return this.getRuleContext(i, ObjectPrerequisitesobjectPropertyContext);
-		}
-	}
-	public objectPrerequisitessciencePropety(): ObjectPrerequisitessciencePropetyContext[];
-	public objectPrerequisitessciencePropety(i: number): ObjectPrerequisitessciencePropetyContext;
-	public objectPrerequisitessciencePropety(i?: number): ObjectPrerequisitessciencePropetyContext | ObjectPrerequisitessciencePropetyContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(ObjectPrerequisitessciencePropetyContext);
-		} else {
-			return this.getRuleContext(i, ObjectPrerequisitessciencePropetyContext);
+			return this.getRuleContext(i, ArmorClassPropertiesContext);
 		}
 	}
 	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
 		super(parent, invokingState);
 	}
 	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_objectPrerequisites; }
+	public get ruleIndex(): number { return MapIniParser.RULE_armorClass; }
 	// @Override
 	public enterRule(listener: MapIniListener): void {
-		if (listener.enterObjectPrerequisites) {
-			listener.enterObjectPrerequisites(this);
+		if (listener.enterArmorClass) {
+			listener.enterArmorClass(this);
 		}
 	}
 	// @Override
 	public exitRule(listener: MapIniListener): void {
-		if (listener.exitObjectPrerequisites) {
-			listener.exitObjectPrerequisites(this);
+		if (listener.exitArmorClass) {
+			listener.exitArmorClass(this);
 		}
 	}
 	// @Override
 	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitObjectPrerequisites) {
-			return visitor.visitObjectPrerequisites(this);
+		if (visitor.visitArmorClass) {
+			return visitor.visitArmorClass(this);
 		} else {
 			return visitor.visitChildren(this);
 		}
@@ -4098,37 +4054,31 @@ export class ObjectPrerequisitesContext extends ParserRuleContext {
 }
 
 
-export class ObjectPrerequisitesobjectPropertyContext extends ParserRuleContext {
-	public ID(): TerminalNode[];
-	public ID(i: number): TerminalNode;
-	public ID(i?: number): TerminalNode | TerminalNode[] {
-		if (i === undefined) {
-			return this.getTokens(MapIniParser.ID);
-		} else {
-			return this.getToken(MapIniParser.ID, i);
-		}
-	}
+export class ArmorClassPropertiesContext extends ParserRuleContext {
+	public EQ(): TerminalNode { return this.getToken(MapIniParser.EQ, 0); }
+	public ARMOR_TYPE(): TerminalNode { return this.getToken(MapIniParser.ARMOR_TYPE, 0); }
+	public PROCENT(): TerminalNode { return this.getToken(MapIniParser.PROCENT, 0); }
 	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
 		super(parent, invokingState);
 	}
 	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_objectPrerequisitesobjectProperty; }
+	public get ruleIndex(): number { return MapIniParser.RULE_armorClassProperties; }
 	// @Override
 	public enterRule(listener: MapIniListener): void {
-		if (listener.enterObjectPrerequisitesobjectProperty) {
-			listener.enterObjectPrerequisitesobjectProperty(this);
+		if (listener.enterArmorClassProperties) {
+			listener.enterArmorClassProperties(this);
 		}
 	}
 	// @Override
 	public exitRule(listener: MapIniListener): void {
-		if (listener.exitObjectPrerequisitesobjectProperty) {
-			listener.exitObjectPrerequisitesobjectProperty(this);
+		if (listener.exitArmorClassProperties) {
+			listener.exitArmorClassProperties(this);
 		}
 	}
 	// @Override
 	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitObjectPrerequisitesobjectProperty) {
-			return visitor.visitObjectPrerequisitesobjectProperty(this);
+		if (visitor.visitArmorClassProperties) {
+			return visitor.visitArmorClassProperties(this);
 		} else {
 			return visitor.visitChildren(this);
 		}
@@ -4136,158 +4086,41 @@ export class ObjectPrerequisitesobjectPropertyContext extends ParserRuleContext 
 }
 
 
-export class ObjectPrerequisitessciencePropetyContext extends ParserRuleContext {
-	public ID(): TerminalNode[];
-	public ID(i: number): TerminalNode;
-	public ID(i?: number): TerminalNode | TerminalNode[] {
-		if (i === undefined) {
-			return this.getTokens(MapIniParser.ID);
-		} else {
-			return this.getToken(MapIniParser.ID, i);
-		}
-	}
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
-		super(parent, invokingState);
-	}
-	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_objectPrerequisitessciencePropety; }
-	// @Override
-	public enterRule(listener: MapIniListener): void {
-		if (listener.enterObjectPrerequisitessciencePropety) {
-			listener.enterObjectPrerequisitessciencePropety(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: MapIniListener): void {
-		if (listener.exitObjectPrerequisitessciencePropety) {
-			listener.exitObjectPrerequisitessciencePropety(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitObjectPrerequisitessciencePropety) {
-			return visitor.visitObjectPrerequisitessciencePropety(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-
-
-export class ObjectWeaponSetContext extends ParserRuleContext {
-	public end(): EndContext {
-		return this.getRuleContext(0, EndContext);
-	}
-	public objectWeaponSetPropety(): ObjectWeaponSetPropetyContext[];
-	public objectWeaponSetPropety(i: number): ObjectWeaponSetPropetyContext;
-	public objectWeaponSetPropety(i?: number): ObjectWeaponSetPropetyContext | ObjectWeaponSetPropetyContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(ObjectWeaponSetPropetyContext);
-		} else {
-			return this.getRuleContext(i, ObjectWeaponSetPropetyContext);
-		}
-	}
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
-		super(parent, invokingState);
-	}
-	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_objectWeaponSet; }
-	// @Override
-	public enterRule(listener: MapIniListener): void {
-		if (listener.enterObjectWeaponSet) {
-			listener.enterObjectWeaponSet(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: MapIniListener): void {
-		if (listener.exitObjectWeaponSet) {
-			listener.exitObjectWeaponSet(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitObjectWeaponSet) {
-			return visitor.visitObjectWeaponSet(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-
-
-export class ObjectWeaponSetPropetyContext extends ParserRuleContext {
+export class CommandButtonClassContext extends ParserRuleContext {
 	public ID(): TerminalNode { return this.getToken(MapIniParser.ID, 0); }
-	public value(): ValueContext[];
-	public value(i: number): ValueContext;
-	public value(i?: number): ValueContext | ValueContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(ValueContext);
-		} else {
-			return this.getRuleContext(i, ValueContext);
-		}
-	}
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
-		super(parent, invokingState);
-	}
-	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_objectWeaponSetPropety; }
-	// @Override
-	public enterRule(listener: MapIniListener): void {
-		if (listener.enterObjectWeaponSetPropety) {
-			listener.enterObjectWeaponSetPropety(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: MapIniListener): void {
-		if (listener.exitObjectWeaponSetPropety) {
-			listener.exitObjectWeaponSetPropety(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitObjectWeaponSetPropety) {
-			return visitor.visitObjectWeaponSetPropety(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-
-
-export class ObjectArmorSetContext extends ParserRuleContext {
 	public end(): EndContext {
 		return this.getRuleContext(0, EndContext);
 	}
-	public objectArmorSetPropety(): ObjectArmorSetPropetyContext[];
-	public objectArmorSetPropety(i: number): ObjectArmorSetPropetyContext;
-	public objectArmorSetPropety(i?: number): ObjectArmorSetPropetyContext | ObjectArmorSetPropetyContext[] {
+	public commandButtonClassProperties(): CommandButtonClassPropertiesContext[];
+	public commandButtonClassProperties(i: number): CommandButtonClassPropertiesContext;
+	public commandButtonClassProperties(i?: number): CommandButtonClassPropertiesContext | CommandButtonClassPropertiesContext[] {
 		if (i === undefined) {
-			return this.getRuleContexts(ObjectArmorSetPropetyContext);
+			return this.getRuleContexts(CommandButtonClassPropertiesContext);
 		} else {
-			return this.getRuleContext(i, ObjectArmorSetPropetyContext);
+			return this.getRuleContext(i, CommandButtonClassPropertiesContext);
 		}
 	}
 	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
 		super(parent, invokingState);
 	}
 	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_objectArmorSet; }
+	public get ruleIndex(): number { return MapIniParser.RULE_commandButtonClass; }
 	// @Override
 	public enterRule(listener: MapIniListener): void {
-		if (listener.enterObjectArmorSet) {
-			listener.enterObjectArmorSet(this);
+		if (listener.enterCommandButtonClass) {
+			listener.enterCommandButtonClass(this);
 		}
 	}
 	// @Override
 	public exitRule(listener: MapIniListener): void {
-		if (listener.exitObjectArmorSet) {
-			listener.exitObjectArmorSet(this);
+		if (listener.exitCommandButtonClass) {
+			listener.exitCommandButtonClass(this);
 		}
 	}
 	// @Override
 	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitObjectArmorSet) {
-			return visitor.visitObjectArmorSet(this);
+		if (visitor.visitCommandButtonClass) {
+			return visitor.visitCommandButtonClass(this);
 		} else {
 			return visitor.visitChildren(this);
 		}
@@ -4295,79 +4128,118 @@ export class ObjectArmorSetContext extends ParserRuleContext {
 }
 
 
-export class ObjectArmorSetPropetyContext extends ParserRuleContext {
+export class CommandButtonClassPropertiesContext extends ParserRuleContext {
+	public cb_command_property(): Cb_command_propertyContext | undefined {
+		return this.tryGetRuleContext(0, Cb_command_propertyContext);
+	}
+	public cb_options_property(): Cb_options_propertyContext | undefined {
+		return this.tryGetRuleContext(0, Cb_options_propertyContext);
+	}
+	public cb_buttonimage_property(): Cb_buttonimage_propertyContext | undefined {
+		return this.tryGetRuleContext(0, Cb_buttonimage_propertyContext);
+	}
+	public cb_buttonbordertype_property(): Cb_buttonbordertype_propertyContext | undefined {
+		return this.tryGetRuleContext(0, Cb_buttonbordertype_propertyContext);
+	}
+	public cb_textlabel_property(): Cb_textlabel_propertyContext | undefined {
+		return this.tryGetRuleContext(0, Cb_textlabel_propertyContext);
+	}
+	public cb_descriptionlabel_property(): Cb_descriptionlabel_propertyContext | undefined {
+		return this.tryGetRuleContext(0, Cb_descriptionlabel_propertyContext);
+	}
+	public cb_conflictinglabel_property(): Cb_conflictinglabel_propertyContext | undefined {
+		return this.tryGetRuleContext(0, Cb_conflictinglabel_propertyContext);
+	}
+	public cb_cursorname_propery(): Cb_cursorname_properyContext | undefined {
+		return this.tryGetRuleContext(0, Cb_cursorname_properyContext);
+	}
+	public cb_radius_cursorname_value(): Cb_radius_cursorname_valueContext | undefined {
+		return this.tryGetRuleContext(0, Cb_radius_cursorname_valueContext);
+	}
+	public cb_invalid_cursorname_propery(): Cb_invalid_cursorname_properyContext | undefined {
+		return this.tryGetRuleContext(0, Cb_invalid_cursorname_properyContext);
+	}
+	public cb_unitspecificsound_property(): Cb_unitspecificsound_propertyContext | undefined {
+		return this.tryGetRuleContext(0, Cb_unitspecificsound_propertyContext);
+	}
+	public object_property(): Object_propertyContext | undefined {
+		return this.tryGetRuleContext(0, Object_propertyContext);
+	}
+	public science_property(): Science_propertyContext | undefined {
+		return this.tryGetRuleContext(0, Science_propertyContext);
+	}
+	public specialpower_property(): Specialpower_propertyContext | undefined {
+		return this.tryGetRuleContext(0, Specialpower_propertyContext);
+	}
+	public upgrade_property(): Upgrade_propertyContext | undefined {
+		return this.tryGetRuleContext(0, Upgrade_propertyContext);
+	}
+	public weaponslot_property(): Weaponslot_propertyContext | undefined {
+		return this.tryGetRuleContext(0, Weaponslot_propertyContext);
+	}
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return MapIniParser.RULE_commandButtonClassProperties; }
+	// @Override
+	public enterRule(listener: MapIniListener): void {
+		if (listener.enterCommandButtonClassProperties) {
+			listener.enterCommandButtonClassProperties(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: MapIniListener): void {
+		if (listener.exitCommandButtonClassProperties) {
+			listener.exitCommandButtonClassProperties(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
+		if (visitor.visitCommandButtonClassProperties) {
+			return visitor.visitCommandButtonClassProperties(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class CommandSetClassContext extends ParserRuleContext {
 	public ID(): TerminalNode { return this.getToken(MapIniParser.ID, 0); }
-	public value(): ValueContext[];
-	public value(i: number): ValueContext;
-	public value(i?: number): ValueContext | ValueContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(ValueContext);
-		} else {
-			return this.getRuleContext(i, ValueContext);
-		}
-	}
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
-		super(parent, invokingState);
-	}
-	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_objectArmorSetPropety; }
-	// @Override
-	public enterRule(listener: MapIniListener): void {
-		if (listener.enterObjectArmorSetPropety) {
-			listener.enterObjectArmorSetPropety(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: MapIniListener): void {
-		if (listener.exitObjectArmorSetPropety) {
-			listener.exitObjectArmorSetPropety(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitObjectArmorSetPropety) {
-			return visitor.visitObjectArmorSetPropety(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-
-
-export class ObjectUnitSpecificSoundsContext extends ParserRuleContext {
 	public end(): EndContext {
 		return this.getRuleContext(0, EndContext);
 	}
-	public objectUnitSpecificSoundsPropety(): ObjectUnitSpecificSoundsPropetyContext[];
-	public objectUnitSpecificSoundsPropety(i: number): ObjectUnitSpecificSoundsPropetyContext;
-	public objectUnitSpecificSoundsPropety(i?: number): ObjectUnitSpecificSoundsPropetyContext | ObjectUnitSpecificSoundsPropetyContext[] {
+	public commandSetClassProperty(): CommandSetClassPropertyContext[];
+	public commandSetClassProperty(i: number): CommandSetClassPropertyContext;
+	public commandSetClassProperty(i?: number): CommandSetClassPropertyContext | CommandSetClassPropertyContext[] {
 		if (i === undefined) {
-			return this.getRuleContexts(ObjectUnitSpecificSoundsPropetyContext);
+			return this.getRuleContexts(CommandSetClassPropertyContext);
 		} else {
-			return this.getRuleContext(i, ObjectUnitSpecificSoundsPropetyContext);
+			return this.getRuleContext(i, CommandSetClassPropertyContext);
 		}
 	}
 	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
 		super(parent, invokingState);
 	}
 	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_objectUnitSpecificSounds; }
+	public get ruleIndex(): number { return MapIniParser.RULE_commandSetClass; }
 	// @Override
 	public enterRule(listener: MapIniListener): void {
-		if (listener.enterObjectUnitSpecificSounds) {
-			listener.enterObjectUnitSpecificSounds(this);
+		if (listener.enterCommandSetClass) {
+			listener.enterCommandSetClass(this);
 		}
 	}
 	// @Override
 	public exitRule(listener: MapIniListener): void {
-		if (listener.exitObjectUnitSpecificSounds) {
-			listener.exitObjectUnitSpecificSounds(this);
+		if (listener.exitCommandSetClass) {
+			listener.exitCommandSetClass(this);
 		}
 	}
 	// @Override
 	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitObjectUnitSpecificSounds) {
-			return visitor.visitObjectUnitSpecificSounds(this);
+		if (visitor.visitCommandSetClass) {
+			return visitor.visitCommandSetClass(this);
 		} else {
 			return visitor.visitChildren(this);
 		}
@@ -4375,1069 +4247,33 @@ export class ObjectUnitSpecificSoundsContext extends ParserRuleContext {
 }
 
 
-export class ObjectUnitSpecificSoundsPropetyContext extends ParserRuleContext {
-	public ID(): TerminalNode { return this.getToken(MapIniParser.ID, 0); }
-	public value(): ValueContext[];
-	public value(i: number): ValueContext;
-	public value(i?: number): ValueContext | ValueContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(ValueContext);
-		} else {
-			return this.getRuleContext(i, ValueContext);
-		}
+export class CommandSetClassPropertyContext extends ParserRuleContext {
+	public INT(): TerminalNode { return this.getToken(MapIniParser.INT, 0); }
+	public EQ(): TerminalNode { return this.getToken(MapIniParser.EQ, 0); }
+	public commandbutton_value(): Commandbutton_valueContext {
+		return this.getRuleContext(0, Commandbutton_valueContext);
 	}
 	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
 		super(parent, invokingState);
 	}
 	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_objectUnitSpecificSoundsPropety; }
+	public get ruleIndex(): number { return MapIniParser.RULE_commandSetClassProperty; }
 	// @Override
 	public enterRule(listener: MapIniListener): void {
-		if (listener.enterObjectUnitSpecificSoundsPropety) {
-			listener.enterObjectUnitSpecificSoundsPropety(this);
+		if (listener.enterCommandSetClassProperty) {
+			listener.enterCommandSetClassProperty(this);
 		}
 	}
 	// @Override
 	public exitRule(listener: MapIniListener): void {
-		if (listener.exitObjectUnitSpecificSoundsPropety) {
-			listener.exitObjectUnitSpecificSoundsPropety(this);
+		if (listener.exitCommandSetClassProperty) {
+			listener.exitCommandSetClassProperty(this);
 		}
 	}
 	// @Override
 	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitObjectUnitSpecificSoundsPropety) {
-			return visitor.visitObjectUnitSpecificSoundsPropety(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-
-
-export class ObjectUnitSpecificFXContext extends ParserRuleContext {
-	public end(): EndContext {
-		return this.getRuleContext(0, EndContext);
-	}
-	public objectUnitSpecificFXPropety(): ObjectUnitSpecificFXPropetyContext[];
-	public objectUnitSpecificFXPropety(i: number): ObjectUnitSpecificFXPropetyContext;
-	public objectUnitSpecificFXPropety(i?: number): ObjectUnitSpecificFXPropetyContext | ObjectUnitSpecificFXPropetyContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(ObjectUnitSpecificFXPropetyContext);
-		} else {
-			return this.getRuleContext(i, ObjectUnitSpecificFXPropetyContext);
-		}
-	}
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
-		super(parent, invokingState);
-	}
-	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_objectUnitSpecificFX; }
-	// @Override
-	public enterRule(listener: MapIniListener): void {
-		if (listener.enterObjectUnitSpecificFX) {
-			listener.enterObjectUnitSpecificFX(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: MapIniListener): void {
-		if (listener.exitObjectUnitSpecificFX) {
-			listener.exitObjectUnitSpecificFX(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitObjectUnitSpecificFX) {
-			return visitor.visitObjectUnitSpecificFX(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-
-
-export class ObjectUnitSpecificFXPropetyContext extends ParserRuleContext {
-	public ID(): TerminalNode { return this.getToken(MapIniParser.ID, 0); }
-	public value(): ValueContext[];
-	public value(i: number): ValueContext;
-	public value(i?: number): ValueContext | ValueContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(ValueContext);
-		} else {
-			return this.getRuleContext(i, ValueContext);
-		}
-	}
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
-		super(parent, invokingState);
-	}
-	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_objectUnitSpecificFXPropety; }
-	// @Override
-	public enterRule(listener: MapIniListener): void {
-		if (listener.enterObjectUnitSpecificFXPropety) {
-			listener.enterObjectUnitSpecificFXPropety(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: MapIniListener): void {
-		if (listener.exitObjectUnitSpecificFXPropety) {
-			listener.exitObjectUnitSpecificFXPropety(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitObjectUnitSpecificFXPropety) {
-			return visitor.visitObjectUnitSpecificFXPropety(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-
-
-export class ClientModuleBlockContext extends ParserRuleContext {
-	public ID(): TerminalNode[];
-	public ID(i: number): TerminalNode;
-	public ID(i?: number): TerminalNode | TerminalNode[] {
-		if (i === undefined) {
-			return this.getTokens(MapIniParser.ID);
-		} else {
-			return this.getToken(MapIniParser.ID, i);
-		}
-	}
-	public end(): EndContext {
-		return this.getRuleContext(0, EndContext);
-	}
-	public property(): PropertyContext[];
-	public property(i: number): PropertyContext;
-	public property(i?: number): PropertyContext | PropertyContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(PropertyContext);
-		} else {
-			return this.getRuleContext(i, PropertyContext);
-		}
-	}
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
-		super(parent, invokingState);
-	}
-	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_clientModuleBlock; }
-	// @Override
-	public enterRule(listener: MapIniListener): void {
-		if (listener.enterClientModuleBlock) {
-			listener.enterClientModuleBlock(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: MapIniListener): void {
-		if (listener.exitClientModuleBlock) {
-			listener.exitClientModuleBlock(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitClientModuleBlock) {
-			return visitor.visitClientModuleBlock(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-
-
-export class BehaviormoduleBlockContext extends ParserRuleContext {
-	public ID(): TerminalNode[];
-	public ID(i: number): TerminalNode;
-	public ID(i?: number): TerminalNode | TerminalNode[] {
-		if (i === undefined) {
-			return this.getTokens(MapIniParser.ID);
-		} else {
-			return this.getToken(MapIniParser.ID, i);
-		}
-	}
-	public end(): EndContext {
-		return this.getRuleContext(0, EndContext);
-	}
-	public property(): PropertyContext[];
-	public property(i: number): PropertyContext;
-	public property(i?: number): PropertyContext | PropertyContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(PropertyContext);
-		} else {
-			return this.getRuleContext(i, PropertyContext);
-		}
-	}
-	public behaviorTurret(): BehaviorTurretContext[];
-	public behaviorTurret(i: number): BehaviorTurretContext;
-	public behaviorTurret(i?: number): BehaviorTurretContext | BehaviorTurretContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(BehaviorTurretContext);
-		} else {
-			return this.getRuleContext(i, BehaviorTurretContext);
-		}
-	}
-	public objectKindOfProperty(): ObjectKindOfPropertyContext[];
-	public objectKindOfProperty(i: number): ObjectKindOfPropertyContext;
-	public objectKindOfProperty(i?: number): ObjectKindOfPropertyContext | ObjectKindOfPropertyContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(ObjectKindOfPropertyContext);
-		} else {
-			return this.getRuleContext(i, ObjectKindOfPropertyContext);
-		}
-	}
-	public behaviorDecals(): BehaviorDecalsContext[];
-	public behaviorDecals(i: number): BehaviorDecalsContext;
-	public behaviorDecals(i?: number): BehaviorDecalsContext | BehaviorDecalsContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(BehaviorDecalsContext);
-		} else {
-			return this.getRuleContext(i, BehaviorDecalsContext);
-		}
-	}
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
-		super(parent, invokingState);
-	}
-	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_behaviormoduleBlock; }
-	// @Override
-	public enterRule(listener: MapIniListener): void {
-		if (listener.enterBehaviormoduleBlock) {
-			listener.enterBehaviormoduleBlock(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: MapIniListener): void {
-		if (listener.exitBehaviormoduleBlock) {
-			listener.exitBehaviormoduleBlock(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitBehaviormoduleBlock) {
-			return visitor.visitBehaviormoduleBlock(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-
-
-export class BehaviorDecalsContext extends ParserRuleContext {
-	public end(): EndContext {
-		return this.getRuleContext(0, EndContext);
-	}
-	public property(): PropertyContext[];
-	public property(i: number): PropertyContext;
-	public property(i?: number): PropertyContext | PropertyContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(PropertyContext);
-		} else {
-			return this.getRuleContext(i, PropertyContext);
-		}
-	}
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
-		super(parent, invokingState);
-	}
-	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_behaviorDecals; }
-	// @Override
-	public enterRule(listener: MapIniListener): void {
-		if (listener.enterBehaviorDecals) {
-			listener.enterBehaviorDecals(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: MapIniListener): void {
-		if (listener.exitBehaviorDecals) {
-			listener.exitBehaviorDecals(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitBehaviorDecals) {
-			return visitor.visitBehaviorDecals(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-
-
-export class BehaviorTurretContext extends ParserRuleContext {
-	public end(): EndContext {
-		return this.getRuleContext(0, EndContext);
-	}
-	public property(): PropertyContext[];
-	public property(i: number): PropertyContext;
-	public property(i?: number): PropertyContext | PropertyContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(PropertyContext);
-		} else {
-			return this.getRuleContext(i, PropertyContext);
-		}
-	}
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
-		super(parent, invokingState);
-	}
-	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_behaviorTurret; }
-	// @Override
-	public enterRule(listener: MapIniListener): void {
-		if (listener.enterBehaviorTurret) {
-			listener.enterBehaviorTurret(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: MapIniListener): void {
-		if (listener.exitBehaviorTurret) {
-			listener.exitBehaviorTurret(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitBehaviorTurret) {
-			return visitor.visitBehaviorTurret(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-
-
-export class BodyModuleBlockContext extends ParserRuleContext {
-	public ID(): TerminalNode[];
-	public ID(i: number): TerminalNode;
-	public ID(i?: number): TerminalNode | TerminalNode[] {
-		if (i === undefined) {
-			return this.getTokens(MapIniParser.ID);
-		} else {
-			return this.getToken(MapIniParser.ID, i);
-		}
-	}
-	public end(): EndContext {
-		return this.getRuleContext(0, EndContext);
-	}
-	public property(): PropertyContext[];
-	public property(i: number): PropertyContext;
-	public property(i?: number): PropertyContext | PropertyContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(PropertyContext);
-		} else {
-			return this.getRuleContext(i, PropertyContext);
-		}
-	}
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
-		super(parent, invokingState);
-	}
-	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_bodyModuleBlock; }
-	// @Override
-	public enterRule(listener: MapIniListener): void {
-		if (listener.enterBodyModuleBlock) {
-			listener.enterBodyModuleBlock(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: MapIniListener): void {
-		if (listener.exitBodyModuleBlock) {
-			listener.exitBodyModuleBlock(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitBodyModuleBlock) {
-			return visitor.visitBodyModuleBlock(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-
-
-export class DrawModuleBlockContext extends ParserRuleContext {
-	public ID(): TerminalNode[];
-	public ID(i: number): TerminalNode;
-	public ID(i?: number): TerminalNode | TerminalNode[] {
-		if (i === undefined) {
-			return this.getTokens(MapIniParser.ID);
-		} else {
-			return this.getToken(MapIniParser.ID, i);
-		}
-	}
-	public end(): EndContext {
-		return this.getRuleContext(0, EndContext);
-	}
-	public drawModuleProperty(): DrawModulePropertyContext[];
-	public drawModuleProperty(i: number): DrawModulePropertyContext;
-	public drawModuleProperty(i?: number): DrawModulePropertyContext | DrawModulePropertyContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(DrawModulePropertyContext);
-		} else {
-			return this.getRuleContext(i, DrawModulePropertyContext);
-		}
-	}
-	public conditionStateBlocks(): ConditionStateBlocksContext[];
-	public conditionStateBlocks(i: number): ConditionStateBlocksContext;
-	public conditionStateBlocks(i?: number): ConditionStateBlocksContext | ConditionStateBlocksContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(ConditionStateBlocksContext);
-		} else {
-			return this.getRuleContext(i, ConditionStateBlocksContext);
-		}
-	}
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
-		super(parent, invokingState);
-	}
-	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_drawModuleBlock; }
-	// @Override
-	public enterRule(listener: MapIniListener): void {
-		if (listener.enterDrawModuleBlock) {
-			listener.enterDrawModuleBlock(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: MapIniListener): void {
-		if (listener.exitDrawModuleBlock) {
-			listener.exitDrawModuleBlock(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitDrawModuleBlock) {
-			return visitor.visitDrawModuleBlock(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-
-
-export class DrawModulePropertyContext extends ParserRuleContext {
-	public ID(): TerminalNode { return this.getToken(MapIniParser.ID, 0); }
-	public value(): ValueContext[];
-	public value(i: number): ValueContext;
-	public value(i?: number): ValueContext | ValueContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(ValueContext);
-		} else {
-			return this.getRuleContext(i, ValueContext);
-		}
-	}
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
-		super(parent, invokingState);
-	}
-	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_drawModuleProperty; }
-	// @Override
-	public enterRule(listener: MapIniListener): void {
-		if (listener.enterDrawModuleProperty) {
-			listener.enterDrawModuleProperty(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: MapIniListener): void {
-		if (listener.exitDrawModuleProperty) {
-			listener.exitDrawModuleProperty(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitDrawModuleProperty) {
-			return visitor.visitDrawModuleProperty(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-
-
-export class ConditionStateBlocksContext extends ParserRuleContext {
-	public conditionStateBlock(): ConditionStateBlockContext | undefined {
-		return this.tryGetRuleContext(0, ConditionStateBlockContext);
-	}
-	public defaultConditionStateBlock(): DefaultConditionStateBlockContext | undefined {
-		return this.tryGetRuleContext(0, DefaultConditionStateBlockContext);
-	}
-	public transitionStateBlock(): TransitionStateBlockContext | undefined {
-		return this.tryGetRuleContext(0, TransitionStateBlockContext);
-	}
-	public aliasConditionStateBlock(): AliasConditionStateBlockContext | undefined {
-		return this.tryGetRuleContext(0, AliasConditionStateBlockContext);
-	}
-	public ignoreConditionStateBlock(): IgnoreConditionStateBlockContext | undefined {
-		return this.tryGetRuleContext(0, IgnoreConditionStateBlockContext);
-	}
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
-		super(parent, invokingState);
-	}
-	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_conditionStateBlocks; }
-	// @Override
-	public enterRule(listener: MapIniListener): void {
-		if (listener.enterConditionStateBlocks) {
-			listener.enterConditionStateBlocks(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: MapIniListener): void {
-		if (listener.exitConditionStateBlocks) {
-			listener.exitConditionStateBlocks(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitConditionStateBlocks) {
-			return visitor.visitConditionStateBlocks(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-
-
-export class ConditionStateBlockContext extends ParserRuleContext {
-	public end(): EndContext {
-		return this.getRuleContext(0, EndContext);
-	}
-	public conditionStateProperty(): ConditionStatePropertyContext[];
-	public conditionStateProperty(i: number): ConditionStatePropertyContext;
-	public conditionStateProperty(i?: number): ConditionStatePropertyContext | ConditionStatePropertyContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(ConditionStatePropertyContext);
-		} else {
-			return this.getRuleContext(i, ConditionStatePropertyContext);
-		}
-	}
-	public turretProperty(): TurretPropertyContext[];
-	public turretProperty(i: number): TurretPropertyContext;
-	public turretProperty(i?: number): TurretPropertyContext | TurretPropertyContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(TurretPropertyContext);
-		} else {
-			return this.getRuleContext(i, TurretPropertyContext);
-		}
-	}
-	public transitionKeyProperty(): TransitionKeyPropertyContext[];
-	public transitionKeyProperty(i: number): TransitionKeyPropertyContext;
-	public transitionKeyProperty(i?: number): TransitionKeyPropertyContext | TransitionKeyPropertyContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(TransitionKeyPropertyContext);
-		} else {
-			return this.getRuleContext(i, TransitionKeyPropertyContext);
-		}
-	}
-	public ID(): TerminalNode[];
-	public ID(i: number): TerminalNode;
-	public ID(i?: number): TerminalNode | TerminalNode[] {
-		if (i === undefined) {
-			return this.getTokens(MapIniParser.ID);
-		} else {
-			return this.getToken(MapIniParser.ID, i);
-		}
-	}
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
-		super(parent, invokingState);
-	}
-	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_conditionStateBlock; }
-	// @Override
-	public enterRule(listener: MapIniListener): void {
-		if (listener.enterConditionStateBlock) {
-			listener.enterConditionStateBlock(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: MapIniListener): void {
-		if (listener.exitConditionStateBlock) {
-			listener.exitConditionStateBlock(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitConditionStateBlock) {
-			return visitor.visitConditionStateBlock(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-
-
-export class DefaultConditionStateBlockContext extends ParserRuleContext {
-	public end(): EndContext {
-		return this.getRuleContext(0, EndContext);
-	}
-	public conditionStateProperty(): ConditionStatePropertyContext[];
-	public conditionStateProperty(i: number): ConditionStatePropertyContext;
-	public conditionStateProperty(i?: number): ConditionStatePropertyContext | ConditionStatePropertyContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(ConditionStatePropertyContext);
-		} else {
-			return this.getRuleContext(i, ConditionStatePropertyContext);
-		}
-	}
-	public turretProperty(): TurretPropertyContext[];
-	public turretProperty(i: number): TurretPropertyContext;
-	public turretProperty(i?: number): TurretPropertyContext | TurretPropertyContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(TurretPropertyContext);
-		} else {
-			return this.getRuleContext(i, TurretPropertyContext);
-		}
-	}
-	public transitionKeyProperty(): TransitionKeyPropertyContext[];
-	public transitionKeyProperty(i: number): TransitionKeyPropertyContext;
-	public transitionKeyProperty(i?: number): TransitionKeyPropertyContext | TransitionKeyPropertyContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(TransitionKeyPropertyContext);
-		} else {
-			return this.getRuleContext(i, TransitionKeyPropertyContext);
-		}
-	}
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
-		super(parent, invokingState);
-	}
-	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_defaultConditionStateBlock; }
-	// @Override
-	public enterRule(listener: MapIniListener): void {
-		if (listener.enterDefaultConditionStateBlock) {
-			listener.enterDefaultConditionStateBlock(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: MapIniListener): void {
-		if (listener.exitDefaultConditionStateBlock) {
-			listener.exitDefaultConditionStateBlock(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitDefaultConditionStateBlock) {
-			return visitor.visitDefaultConditionStateBlock(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-
-
-export class ConditionStatePropertyContext extends ParserRuleContext {
-	public ID(): TerminalNode { return this.getToken(MapIniParser.ID, 0); }
-	public value(): ValueContext[];
-	public value(i: number): ValueContext;
-	public value(i?: number): ValueContext | ValueContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(ValueContext);
-		} else {
-			return this.getRuleContext(i, ValueContext);
-		}
-	}
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
-		super(parent, invokingState);
-	}
-	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_conditionStateProperty; }
-	// @Override
-	public enterRule(listener: MapIniListener): void {
-		if (listener.enterConditionStateProperty) {
-			listener.enterConditionStateProperty(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: MapIniListener): void {
-		if (listener.exitConditionStateProperty) {
-			listener.exitConditionStateProperty(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitConditionStateProperty) {
-			return visitor.visitConditionStateProperty(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-
-
-export class TransitionKeyPropertyContext extends ParserRuleContext {
-	public ID(): TerminalNode { return this.getToken(MapIniParser.ID, 0); }
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
-		super(parent, invokingState);
-	}
-	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_transitionKeyProperty; }
-	// @Override
-	public enterRule(listener: MapIniListener): void {
-		if (listener.enterTransitionKeyProperty) {
-			listener.enterTransitionKeyProperty(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: MapIniListener): void {
-		if (listener.exitTransitionKeyProperty) {
-			listener.exitTransitionKeyProperty(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitTransitionKeyProperty) {
-			return visitor.visitTransitionKeyProperty(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-
-
-export class TransitionStateBlockContext extends ParserRuleContext {
-	public ID(): TerminalNode[];
-	public ID(i: number): TerminalNode;
-	public ID(i?: number): TerminalNode | TerminalNode[] {
-		if (i === undefined) {
-			return this.getTokens(MapIniParser.ID);
-		} else {
-			return this.getToken(MapIniParser.ID, i);
-		}
-	}
-	public end(): EndContext {
-		return this.getRuleContext(0, EndContext);
-	}
-	public transitionStateProperty(): TransitionStatePropertyContext[];
-	public transitionStateProperty(i: number): TransitionStatePropertyContext;
-	public transitionStateProperty(i?: number): TransitionStatePropertyContext | TransitionStatePropertyContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(TransitionStatePropertyContext);
-		} else {
-			return this.getRuleContext(i, TransitionStatePropertyContext);
-		}
-	}
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
-		super(parent, invokingState);
-	}
-	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_transitionStateBlock; }
-	// @Override
-	public enterRule(listener: MapIniListener): void {
-		if (listener.enterTransitionStateBlock) {
-			listener.enterTransitionStateBlock(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: MapIniListener): void {
-		if (listener.exitTransitionStateBlock) {
-			listener.exitTransitionStateBlock(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitTransitionStateBlock) {
-			return visitor.visitTransitionStateBlock(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-
-
-export class TransitionStatePropertyContext extends ParserRuleContext {
-	public ID(): TerminalNode { return this.getToken(MapIniParser.ID, 0); }
-	public value(): ValueContext[];
-	public value(i: number): ValueContext;
-	public value(i?: number): ValueContext | ValueContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(ValueContext);
-		} else {
-			return this.getRuleContext(i, ValueContext);
-		}
-	}
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
-		super(parent, invokingState);
-	}
-	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_transitionStateProperty; }
-	// @Override
-	public enterRule(listener: MapIniListener): void {
-		if (listener.enterTransitionStateProperty) {
-			listener.enterTransitionStateProperty(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: MapIniListener): void {
-		if (listener.exitTransitionStateProperty) {
-			listener.exitTransitionStateProperty(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitTransitionStateProperty) {
-			return visitor.visitTransitionStateProperty(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-
-
-export class AliasConditionStateBlockContext extends ParserRuleContext {
-	public ID(): TerminalNode[];
-	public ID(i: number): TerminalNode;
-	public ID(i?: number): TerminalNode | TerminalNode[] {
-		if (i === undefined) {
-			return this.getTokens(MapIniParser.ID);
-		} else {
-			return this.getToken(MapIniParser.ID, i);
-		}
-	}
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
-		super(parent, invokingState);
-	}
-	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_aliasConditionStateBlock; }
-	// @Override
-	public enterRule(listener: MapIniListener): void {
-		if (listener.enterAliasConditionStateBlock) {
-			listener.enterAliasConditionStateBlock(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: MapIniListener): void {
-		if (listener.exitAliasConditionStateBlock) {
-			listener.exitAliasConditionStateBlock(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitAliasConditionStateBlock) {
-			return visitor.visitAliasConditionStateBlock(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-
-
-export class IgnoreConditionStateBlockContext extends ParserRuleContext {
-	public ID(): TerminalNode[];
-	public ID(i: number): TerminalNode;
-	public ID(i?: number): TerminalNode | TerminalNode[] {
-		if (i === undefined) {
-			return this.getTokens(MapIniParser.ID);
-		} else {
-			return this.getToken(MapIniParser.ID, i);
-		}
-	}
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
-		super(parent, invokingState);
-	}
-	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_ignoreConditionStateBlock; }
-	// @Override
-	public enterRule(listener: MapIniListener): void {
-		if (listener.enterIgnoreConditionStateBlock) {
-			listener.enterIgnoreConditionStateBlock(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: MapIniListener): void {
-		if (listener.exitIgnoreConditionStateBlock) {
-			listener.exitIgnoreConditionStateBlock(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitIgnoreConditionStateBlock) {
-			return visitor.visitIgnoreConditionStateBlock(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-
-
-export class RemoveModuleBlockContext extends ParserRuleContext {
-	public ID(): TerminalNode { return this.getToken(MapIniParser.ID, 0); }
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
-		super(parent, invokingState);
-	}
-	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_removeModuleBlock; }
-	// @Override
-	public enterRule(listener: MapIniListener): void {
-		if (listener.enterRemoveModuleBlock) {
-			listener.enterRemoveModuleBlock(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: MapIniListener): void {
-		if (listener.exitRemoveModuleBlock) {
-			listener.exitRemoveModuleBlock(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitRemoveModuleBlock) {
-			return visitor.visitRemoveModuleBlock(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-
-
-export class TurretPropertyContext extends ParserRuleContext {
-	public tturretProperty(): TturretPropertyContext | undefined {
-		return this.tryGetRuleContext(0, TturretPropertyContext);
-	}
-	public altTurretProperty(): AltTurretPropertyContext | undefined {
-		return this.tryGetRuleContext(0, AltTurretPropertyContext);
-	}
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
-		super(parent, invokingState);
-	}
-	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_turretProperty; }
-	// @Override
-	public enterRule(listener: MapIniListener): void {
-		if (listener.enterTurretProperty) {
-			listener.enterTurretProperty(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: MapIniListener): void {
-		if (listener.exitTurretProperty) {
-			listener.exitTurretProperty(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitTurretProperty) {
-			return visitor.visitTurretProperty(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-
-
-export class PropertyContext extends ParserRuleContext {
-	public ID(): TerminalNode { return this.getToken(MapIniParser.ID, 0); }
-	public value(): ValueContext[];
-	public value(i: number): ValueContext;
-	public value(i?: number): ValueContext | ValueContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(ValueContext);
-		} else {
-			return this.getRuleContext(i, ValueContext);
-		}
-	}
-	public WS(): TerminalNode[];
-	public WS(i: number): TerminalNode;
-	public WS(i?: number): TerminalNode | TerminalNode[] {
-		if (i === undefined) {
-			return this.getTokens(MapIniParser.WS);
-		} else {
-			return this.getToken(MapIniParser.WS, i);
-		}
-	}
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
-		super(parent, invokingState);
-	}
-	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_property; }
-	// @Override
-	public enterRule(listener: MapIniListener): void {
-		if (listener.enterProperty) {
-			listener.enterProperty(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: MapIniListener): void {
-		if (listener.exitProperty) {
-			listener.exitProperty(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitProperty) {
-			return visitor.visitProperty(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-
-
-export class TturretPropertyContext extends ParserRuleContext {
-	public value(): ValueContext[];
-	public value(i: number): ValueContext;
-	public value(i?: number): ValueContext | ValueContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(ValueContext);
-		} else {
-			return this.getRuleContext(i, ValueContext);
-		}
-	}
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
-		super(parent, invokingState);
-	}
-	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_tturretProperty; }
-	// @Override
-	public enterRule(listener: MapIniListener): void {
-		if (listener.enterTturretProperty) {
-			listener.enterTturretProperty(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: MapIniListener): void {
-		if (listener.exitTturretProperty) {
-			listener.exitTturretProperty(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitTturretProperty) {
-			return visitor.visitTturretProperty(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-
-
-export class AltTurretPropertyContext extends ParserRuleContext {
-	public value(): ValueContext[];
-	public value(i: number): ValueContext;
-	public value(i?: number): ValueContext | ValueContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(ValueContext);
-		} else {
-			return this.getRuleContext(i, ValueContext);
-		}
-	}
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
-		super(parent, invokingState);
-	}
-	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_altTurretProperty; }
-	// @Override
-	public enterRule(listener: MapIniListener): void {
-		if (listener.enterAltTurretProperty) {
-			listener.enterAltTurretProperty(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: MapIniListener): void {
-		if (listener.exitAltTurretProperty) {
-			listener.exitAltTurretProperty(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitAltTurretProperty) {
-			return visitor.visitAltTurretProperty(this);
+		if (visitor.visitCommandSetClassProperty) {
+			return visitor.visitCommandSetClassProperty(this);
 		} else {
 			return visitor.visitChildren(this);
 		}
@@ -5474,258 +4310,29 @@ export class EndContext extends ParserRuleContext {
 }
 
 
-export class ValueContext extends ParserRuleContext {
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
-		super(parent, invokingState);
-	}
-	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_value; }
-	public copyFrom(ctx: ValueContext): void {
-		super.copyFrom(ctx);
-	}
-}
-export class StringContext extends ValueContext {
-	public quoutedID(): QuoutedIDContext {
-		return this.getRuleContext(0, QuoutedIDContext);
-	}
-	constructor(ctx: ValueContext) {
-		super(ctx.parent, ctx.invokingState);
-		this.copyFrom(ctx);
-	}
-	// @Override
-	public enterRule(listener: MapIniListener): void {
-		if (listener.enterString) {
-			listener.enterString(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: MapIniListener): void {
-		if (listener.exitString) {
-			listener.exitString(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitString) {
-			return visitor.visitString(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-export class FiletypeContext extends ValueContext {
-	public ftype(): FtypeContext {
-		return this.getRuleContext(0, FtypeContext);
-	}
-	constructor(ctx: ValueContext) {
-		super(ctx.parent, ctx.invokingState);
-		this.copyFrom(ctx);
-	}
-	// @Override
-	public enterRule(listener: MapIniListener): void {
-		if (listener.enterFiletype) {
-			listener.enterFiletype(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: MapIniListener): void {
-		if (listener.exitFiletype) {
-			listener.exitFiletype(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitFiletype) {
-			return visitor.visitFiletype(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-export class ProcentageContext extends ValueContext {
-	public procent(): ProcentContext {
-		return this.getRuleContext(0, ProcentContext);
-	}
-	constructor(ctx: ValueContext) {
-		super(ctx.parent, ctx.invokingState);
-		this.copyFrom(ctx);
-	}
-	// @Override
-	public enterRule(listener: MapIniListener): void {
-		if (listener.enterProcentage) {
-			listener.enterProcentage(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: MapIniListener): void {
-		if (listener.exitProcentage) {
-			listener.exitProcentage(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitProcentage) {
-			return visitor.visitProcentage(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-export class IdContext extends ValueContext {
+export class FileContext extends ParserRuleContext {
 	public ID(): TerminalNode { return this.getToken(MapIniParser.ID, 0); }
-	constructor(ctx: ValueContext) {
-		super(ctx.parent, ctx.invokingState);
-		this.copyFrom(ctx);
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
 	}
 	// @Override
+	public get ruleIndex(): number { return MapIniParser.RULE_file; }
+	// @Override
 	public enterRule(listener: MapIniListener): void {
-		if (listener.enterId) {
-			listener.enterId(this);
+		if (listener.enterFile) {
+			listener.enterFile(this);
 		}
 	}
 	// @Override
 	public exitRule(listener: MapIniListener): void {
-		if (listener.exitId) {
-			listener.exitId(this);
+		if (listener.exitFile) {
+			listener.exitFile(this);
 		}
 	}
 	// @Override
 	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitId) {
-			return visitor.visitId(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-export class IntContext extends ValueContext {
-	public INT(): TerminalNode { return this.getToken(MapIniParser.INT, 0); }
-	constructor(ctx: ValueContext) {
-		super(ctx.parent, ctx.invokingState);
-		this.copyFrom(ctx);
-	}
-	// @Override
-	public enterRule(listener: MapIniListener): void {
-		if (listener.enterInt) {
-			listener.enterInt(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: MapIniListener): void {
-		if (listener.exitInt) {
-			listener.exitInt(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitInt) {
-			return visitor.visitInt(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-export class FloatContext extends ValueContext {
-	public FLOAT(): TerminalNode { return this.getToken(MapIniParser.FLOAT, 0); }
-	constructor(ctx: ValueContext) {
-		super(ctx.parent, ctx.invokingState);
-		this.copyFrom(ctx);
-	}
-	// @Override
-	public enterRule(listener: MapIniListener): void {
-		if (listener.enterFloat) {
-			listener.enterFloat(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: MapIniListener): void {
-		if (listener.exitFloat) {
-			listener.exitFloat(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitFloat) {
-			return visitor.visitFloat(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-export class BoolContext extends ValueContext {
-	public BOOL(): TerminalNode { return this.getToken(MapIniParser.BOOL, 0); }
-	constructor(ctx: ValueContext) {
-		super(ctx.parent, ctx.invokingState);
-		this.copyFrom(ctx);
-	}
-	// @Override
-	public enterRule(listener: MapIniListener): void {
-		if (listener.enterBool) {
-			listener.enterBool(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: MapIniListener): void {
-		if (listener.exitBool) {
-			listener.exitBool(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitBool) {
-			return visitor.visitBool(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-export class TurretValueContext extends ValueContext {
-	constructor(ctx: ValueContext) {
-		super(ctx.parent, ctx.invokingState);
-		this.copyFrom(ctx);
-	}
-	// @Override
-	public enterRule(listener: MapIniListener): void {
-		if (listener.enterTurretValue) {
-			listener.enterTurretValue(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: MapIniListener): void {
-		if (listener.exitTurretValue) {
-			listener.exitTurretValue(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitTurretValue) {
-			return visitor.visitTurretValue(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-export class AltTurretValueContext extends ValueContext {
-	constructor(ctx: ValueContext) {
-		super(ctx.parent, ctx.invokingState);
-		this.copyFrom(ctx);
-	}
-	// @Override
-	public enterRule(listener: MapIniListener): void {
-		if (listener.enterAltTurretValue) {
-			listener.enterAltTurretValue(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: MapIniListener): void {
-		if (listener.exitAltTurretValue) {
-			listener.exitAltTurretValue(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitAltTurretValue) {
-			return visitor.visitAltTurretValue(this);
+		if (visitor.visitFile) {
+			return visitor.visitFile(this);
 		} else {
 			return visitor.visitChildren(this);
 		}
@@ -5733,37 +4340,101 @@ export class AltTurretValueContext extends ValueContext {
 }
 
 
-export class FtypeContext extends ParserRuleContext {
-	public ID(): TerminalNode[];
-	public ID(i: number): TerminalNode;
-	public ID(i?: number): TerminalNode | TerminalNode[] {
+export class Cb_command_propertyContext extends ParserRuleContext {
+	public EQ(): TerminalNode { return this.getToken(MapIniParser.EQ, 0); }
+	public cb_command_value(): Cb_command_valueContext {
+		return this.getRuleContext(0, Cb_command_valueContext);
+	}
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return MapIniParser.RULE_cb_command_property; }
+	// @Override
+	public enterRule(listener: MapIniListener): void {
+		if (listener.enterCb_command_property) {
+			listener.enterCb_command_property(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: MapIniListener): void {
+		if (listener.exitCb_command_property) {
+			listener.exitCb_command_property(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
+		if (visitor.visitCb_command_property) {
+			return visitor.visitCb_command_property(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class Cb_command_valueContext extends ParserRuleContext {
+	public NVALUE(): TerminalNode { return this.getToken(MapIniParser.NVALUE, 0); }
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return MapIniParser.RULE_cb_command_value; }
+	// @Override
+	public enterRule(listener: MapIniListener): void {
+		if (listener.enterCb_command_value) {
+			listener.enterCb_command_value(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: MapIniListener): void {
+		if (listener.exitCb_command_value) {
+			listener.exitCb_command_value(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
+		if (visitor.visitCb_command_value) {
+			return visitor.visitCb_command_value(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class Cb_options_propertyContext extends ParserRuleContext {
+	public EQ(): TerminalNode { return this.getToken(MapIniParser.EQ, 0); }
+	public cb_options_value(): Cb_options_valueContext[];
+	public cb_options_value(i: number): Cb_options_valueContext;
+	public cb_options_value(i?: number): Cb_options_valueContext | Cb_options_valueContext[] {
 		if (i === undefined) {
-			return this.getTokens(MapIniParser.ID);
+			return this.getRuleContexts(Cb_options_valueContext);
 		} else {
-			return this.getToken(MapIniParser.ID, i);
+			return this.getRuleContext(i, Cb_options_valueContext);
 		}
 	}
 	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
 		super(parent, invokingState);
 	}
 	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_ftype; }
+	public get ruleIndex(): number { return MapIniParser.RULE_cb_options_property; }
 	// @Override
 	public enterRule(listener: MapIniListener): void {
-		if (listener.enterFtype) {
-			listener.enterFtype(this);
+		if (listener.enterCb_options_property) {
+			listener.enterCb_options_property(this);
 		}
 	}
 	// @Override
 	public exitRule(listener: MapIniListener): void {
-		if (listener.exitFtype) {
-			listener.exitFtype(this);
+		if (listener.exitCb_options_property) {
+			listener.exitCb_options_property(this);
 		}
 	}
 	// @Override
 	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitFtype) {
-			return visitor.visitFtype(this);
+		if (visitor.visitCb_options_property) {
+			return visitor.visitCb_options_property(this);
 		} else {
 			return visitor.visitChildren(this);
 		}
@@ -5771,37 +4442,610 @@ export class FtypeContext extends ParserRuleContext {
 }
 
 
-export class RgbContext extends ParserRuleContext {
-	public INT256(): TerminalNode[];
-	public INT256(i: number): TerminalNode;
-	public INT256(i?: number): TerminalNode | TerminalNode[] {
+export class Cb_options_valueContext extends ParserRuleContext {
+	public NVALUE(): TerminalNode { return this.getToken(MapIniParser.NVALUE, 0); }
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return MapIniParser.RULE_cb_options_value; }
+	// @Override
+	public enterRule(listener: MapIniListener): void {
+		if (listener.enterCb_options_value) {
+			listener.enterCb_options_value(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: MapIniListener): void {
+		if (listener.exitCb_options_value) {
+			listener.exitCb_options_value(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
+		if (visitor.visitCb_options_value) {
+			return visitor.visitCb_options_value(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class Cb_buttonimage_propertyContext extends ParserRuleContext {
+	public EQ(): TerminalNode { return this.getToken(MapIniParser.EQ, 0); }
+	public mappedimage_value(): Mappedimage_valueContext {
+		return this.getRuleContext(0, Mappedimage_valueContext);
+	}
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return MapIniParser.RULE_cb_buttonimage_property; }
+	// @Override
+	public enterRule(listener: MapIniListener): void {
+		if (listener.enterCb_buttonimage_property) {
+			listener.enterCb_buttonimage_property(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: MapIniListener): void {
+		if (listener.exitCb_buttonimage_property) {
+			listener.exitCb_buttonimage_property(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
+		if (visitor.visitCb_buttonimage_property) {
+			return visitor.visitCb_buttonimage_property(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class Cb_buttonbordertype_propertyContext extends ParserRuleContext {
+	public EQ(): TerminalNode { return this.getToken(MapIniParser.EQ, 0); }
+	public cb_buttonbordertype_value(): Cb_buttonbordertype_valueContext {
+		return this.getRuleContext(0, Cb_buttonbordertype_valueContext);
+	}
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return MapIniParser.RULE_cb_buttonbordertype_property; }
+	// @Override
+	public enterRule(listener: MapIniListener): void {
+		if (listener.enterCb_buttonbordertype_property) {
+			listener.enterCb_buttonbordertype_property(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: MapIniListener): void {
+		if (listener.exitCb_buttonbordertype_property) {
+			listener.exitCb_buttonbordertype_property(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
+		if (visitor.visitCb_buttonbordertype_property) {
+			return visitor.visitCb_buttonbordertype_property(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class Cb_buttonbordertype_valueContext extends ParserRuleContext {
+	public NVALUE(): TerminalNode { return this.getToken(MapIniParser.NVALUE, 0); }
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return MapIniParser.RULE_cb_buttonbordertype_value; }
+	// @Override
+	public enterRule(listener: MapIniListener): void {
+		if (listener.enterCb_buttonbordertype_value) {
+			listener.enterCb_buttonbordertype_value(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: MapIniListener): void {
+		if (listener.exitCb_buttonbordertype_value) {
+			listener.exitCb_buttonbordertype_value(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
+		if (visitor.visitCb_buttonbordertype_value) {
+			return visitor.visitCb_buttonbordertype_value(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class Cb_textlabel_propertyContext extends ParserRuleContext {
+	public EQ(): TerminalNode { return this.getToken(MapIniParser.EQ, 0); }
+	public NVALUE(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.NVALUE, 0); }
+	public ID(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.ID, 0); }
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return MapIniParser.RULE_cb_textlabel_property; }
+	// @Override
+	public enterRule(listener: MapIniListener): void {
+		if (listener.enterCb_textlabel_property) {
+			listener.enterCb_textlabel_property(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: MapIniListener): void {
+		if (listener.exitCb_textlabel_property) {
+			listener.exitCb_textlabel_property(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
+		if (visitor.visitCb_textlabel_property) {
+			return visitor.visitCb_textlabel_property(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class Cb_descriptionlabel_propertyContext extends ParserRuleContext {
+	public EQ(): TerminalNode { return this.getToken(MapIniParser.EQ, 0); }
+	public NVALUE(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.NVALUE, 0); }
+	public ID(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.ID, 0); }
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return MapIniParser.RULE_cb_descriptionlabel_property; }
+	// @Override
+	public enterRule(listener: MapIniListener): void {
+		if (listener.enterCb_descriptionlabel_property) {
+			listener.enterCb_descriptionlabel_property(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: MapIniListener): void {
+		if (listener.exitCb_descriptionlabel_property) {
+			listener.exitCb_descriptionlabel_property(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
+		if (visitor.visitCb_descriptionlabel_property) {
+			return visitor.visitCb_descriptionlabel_property(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class Cb_conflictinglabel_propertyContext extends ParserRuleContext {
+	public EQ(): TerminalNode { return this.getToken(MapIniParser.EQ, 0); }
+	public NVALUE(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.NVALUE, 0); }
+	public ID(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.ID, 0); }
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return MapIniParser.RULE_cb_conflictinglabel_property; }
+	// @Override
+	public enterRule(listener: MapIniListener): void {
+		if (listener.enterCb_conflictinglabel_property) {
+			listener.enterCb_conflictinglabel_property(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: MapIniListener): void {
+		if (listener.exitCb_conflictinglabel_property) {
+			listener.exitCb_conflictinglabel_property(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
+		if (visitor.visitCb_conflictinglabel_property) {
+			return visitor.visitCb_conflictinglabel_property(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class Cb_cursorname_properyContext extends ParserRuleContext {
+	public EQ(): TerminalNode { return this.getToken(MapIniParser.EQ, 0); }
+	public cursorname_value(): Cursorname_valueContext {
+		return this.getRuleContext(0, Cursorname_valueContext);
+	}
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return MapIniParser.RULE_cb_cursorname_propery; }
+	// @Override
+	public enterRule(listener: MapIniListener): void {
+		if (listener.enterCb_cursorname_propery) {
+			listener.enterCb_cursorname_propery(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: MapIniListener): void {
+		if (listener.exitCb_cursorname_propery) {
+			listener.exitCb_cursorname_propery(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
+		if (visitor.visitCb_cursorname_propery) {
+			return visitor.visitCb_cursorname_propery(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class Cb_radius_cursorname_valueContext extends ParserRuleContext {
+	public EQ(): TerminalNode { return this.getToken(MapIniParser.EQ, 0); }
+	public radius_cursorname_value(): Radius_cursorname_valueContext {
+		return this.getRuleContext(0, Radius_cursorname_valueContext);
+	}
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return MapIniParser.RULE_cb_radius_cursorname_value; }
+	// @Override
+	public enterRule(listener: MapIniListener): void {
+		if (listener.enterCb_radius_cursorname_value) {
+			listener.enterCb_radius_cursorname_value(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: MapIniListener): void {
+		if (listener.exitCb_radius_cursorname_value) {
+			listener.exitCb_radius_cursorname_value(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
+		if (visitor.visitCb_radius_cursorname_value) {
+			return visitor.visitCb_radius_cursorname_value(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class Cb_invalid_cursorname_properyContext extends ParserRuleContext {
+	public EQ(): TerminalNode { return this.getToken(MapIniParser.EQ, 0); }
+	public invalid_cursorname_value(): Invalid_cursorname_valueContext {
+		return this.getRuleContext(0, Invalid_cursorname_valueContext);
+	}
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return MapIniParser.RULE_cb_invalid_cursorname_propery; }
+	// @Override
+	public enterRule(listener: MapIniListener): void {
+		if (listener.enterCb_invalid_cursorname_propery) {
+			listener.enterCb_invalid_cursorname_propery(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: MapIniListener): void {
+		if (listener.exitCb_invalid_cursorname_propery) {
+			listener.exitCb_invalid_cursorname_propery(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
+		if (visitor.visitCb_invalid_cursorname_propery) {
+			return visitor.visitCb_invalid_cursorname_propery(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class Cb_unitspecificsound_propertyContext extends ParserRuleContext {
+	public EQ(): TerminalNode { return this.getToken(MapIniParser.EQ, 0); }
+	public audioevent_value(): Audioevent_valueContext {
+		return this.getRuleContext(0, Audioevent_valueContext);
+	}
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return MapIniParser.RULE_cb_unitspecificsound_property; }
+	// @Override
+	public enterRule(listener: MapIniListener): void {
+		if (listener.enterCb_unitspecificsound_property) {
+			listener.enterCb_unitspecificsound_property(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: MapIniListener): void {
+		if (listener.exitCb_unitspecificsound_property) {
+			listener.exitCb_unitspecificsound_property(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
+		if (visitor.visitCb_unitspecificsound_property) {
+			return visitor.visitCb_unitspecificsound_property(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class Commandbutton_valueContext extends ParserRuleContext {
+	public NVALUE(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.NVALUE, 0); }
+	public ID(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.ID, 0); }
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return MapIniParser.RULE_commandbutton_value; }
+	// @Override
+	public enterRule(listener: MapIniListener): void {
+		if (listener.enterCommandbutton_value) {
+			listener.enterCommandbutton_value(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: MapIniListener): void {
+		if (listener.exitCommandbutton_value) {
+			listener.exitCommandbutton_value(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
+		if (visitor.visitCommandbutton_value) {
+			return visitor.visitCommandbutton_value(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class Cursorname_valueContext extends ParserRuleContext {
+	public NVALUE(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.NVALUE, 0); }
+	public ID(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.ID, 0); }
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return MapIniParser.RULE_cursorname_value; }
+	// @Override
+	public enterRule(listener: MapIniListener): void {
+		if (listener.enterCursorname_value) {
+			listener.enterCursorname_value(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: MapIniListener): void {
+		if (listener.exitCursorname_value) {
+			listener.exitCursorname_value(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
+		if (visitor.visitCursorname_value) {
+			return visitor.visitCursorname_value(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class Radius_cursorname_valueContext extends ParserRuleContext {
+	public ID(): TerminalNode { return this.getToken(MapIniParser.ID, 0); }
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return MapIniParser.RULE_radius_cursorname_value; }
+	// @Override
+	public enterRule(listener: MapIniListener): void {
+		if (listener.enterRadius_cursorname_value) {
+			listener.enterRadius_cursorname_value(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: MapIniListener): void {
+		if (listener.exitRadius_cursorname_value) {
+			listener.exitRadius_cursorname_value(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
+		if (visitor.visitRadius_cursorname_value) {
+			return visitor.visitRadius_cursorname_value(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class Invalid_cursorname_valueContext extends ParserRuleContext {
+	public NVALUE(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.NVALUE, 0); }
+	public ID(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.ID, 0); }
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return MapIniParser.RULE_invalid_cursorname_value; }
+	// @Override
+	public enterRule(listener: MapIniListener): void {
+		if (listener.enterInvalid_cursorname_value) {
+			listener.enterInvalid_cursorname_value(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: MapIniListener): void {
+		if (listener.exitInvalid_cursorname_value) {
+			listener.exitInvalid_cursorname_value(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
+		if (visitor.visitInvalid_cursorname_value) {
+			return visitor.visitInvalid_cursorname_value(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class Mappedimage_valueContext extends ParserRuleContext {
+	public NVALUE(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.NVALUE, 0); }
+	public ID(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.ID, 0); }
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return MapIniParser.RULE_mappedimage_value; }
+	// @Override
+	public enterRule(listener: MapIniListener): void {
+		if (listener.enterMappedimage_value) {
+			listener.enterMappedimage_value(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: MapIniListener): void {
+		if (listener.exitMappedimage_value) {
+			listener.exitMappedimage_value(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
+		if (visitor.visitMappedimage_value) {
+			return visitor.visitMappedimage_value(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class Object_propertyContext extends ParserRuleContext {
+	public EQ(): TerminalNode { return this.getToken(MapIniParser.EQ, 0); }
+	public object_value(): Object_valueContext {
+		return this.getRuleContext(0, Object_valueContext);
+	}
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return MapIniParser.RULE_object_property; }
+	// @Override
+	public enterRule(listener: MapIniListener): void {
+		if (listener.enterObject_property) {
+			listener.enterObject_property(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: MapIniListener): void {
+		if (listener.exitObject_property) {
+			listener.exitObject_property(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
+		if (visitor.visitObject_property) {
+			return visitor.visitObject_property(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class Object_valueContext extends ParserRuleContext {
+	public NVALUE(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.NVALUE, 0); }
+	public ID(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.ID, 0); }
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return MapIniParser.RULE_object_value; }
+	// @Override
+	public enterRule(listener: MapIniListener): void {
+		if (listener.enterObject_value) {
+			listener.enterObject_value(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: MapIniListener): void {
+		if (listener.exitObject_value) {
+			listener.exitObject_value(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
+		if (visitor.visitObject_value) {
+			return visitor.visitObject_value(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class Science_propertyContext extends ParserRuleContext {
+	public EQ(): TerminalNode { return this.getToken(MapIniParser.EQ, 0); }
+	public science_value(): Science_valueContext[];
+	public science_value(i: number): Science_valueContext;
+	public science_value(i?: number): Science_valueContext | Science_valueContext[] {
 		if (i === undefined) {
-			return this.getTokens(MapIniParser.INT256);
+			return this.getRuleContexts(Science_valueContext);
 		} else {
-			return this.getToken(MapIniParser.INT256, i);
+			return this.getRuleContext(i, Science_valueContext);
 		}
 	}
 	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
 		super(parent, invokingState);
 	}
 	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_rgb; }
+	public get ruleIndex(): number { return MapIniParser.RULE_science_property; }
 	// @Override
 	public enterRule(listener: MapIniListener): void {
-		if (listener.enterRgb) {
-			listener.enterRgb(this);
+		if (listener.enterScience_property) {
+			listener.enterScience_property(this);
 		}
 	}
 	// @Override
 	public exitRule(listener: MapIniListener): void {
-		if (listener.exitRgb) {
-			listener.exitRgb(this);
+		if (listener.exitScience_property) {
+			listener.exitScience_property(this);
 		}
 	}
 	// @Override
 	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitRgb) {
-			return visitor.visitRgb(this);
+		if (visitor.visitScience_property) {
+			return visitor.visitScience_property(this);
 		} else {
 			return visitor.visitChildren(this);
 		}
@@ -5809,30 +5053,30 @@ export class RgbContext extends ParserRuleContext {
 }
 
 
-export class ProcentContext extends ParserRuleContext {
-	public FLOAT(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.FLOAT, 0); }
-	public INT(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.INT, 0); }
+export class Science_valueContext extends ParserRuleContext {
+	public NVALUE(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.NVALUE, 0); }
+	public ID(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.ID, 0); }
 	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
 		super(parent, invokingState);
 	}
 	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_procent; }
+	public get ruleIndex(): number { return MapIniParser.RULE_science_value; }
 	// @Override
 	public enterRule(listener: MapIniListener): void {
-		if (listener.enterProcent) {
-			listener.enterProcent(this);
+		if (listener.enterScience_value) {
+			listener.enterScience_value(this);
 		}
 	}
 	// @Override
 	public exitRule(listener: MapIniListener): void {
-		if (listener.exitProcent) {
-			listener.exitProcent(this);
+		if (listener.exitScience_value) {
+			listener.exitScience_value(this);
 		}
 	}
 	// @Override
 	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitProcent) {
-			return visitor.visitProcent(this);
+		if (visitor.visitScience_value) {
+			return visitor.visitScience_value(this);
 		} else {
 			return visitor.visitChildren(this);
 		}
@@ -5840,37 +5084,197 @@ export class ProcentContext extends ParserRuleContext {
 }
 
 
-export class IntRangContext extends ParserRuleContext {
-	public INT(): TerminalNode[];
-	public INT(i: number): TerminalNode;
-	public INT(i?: number): TerminalNode | TerminalNode[] {
+export class Specialpower_propertyContext extends ParserRuleContext {
+	public EQ(): TerminalNode { return this.getToken(MapIniParser.EQ, 0); }
+	public specialpower_value(): Specialpower_valueContext {
+		return this.getRuleContext(0, Specialpower_valueContext);
+	}
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return MapIniParser.RULE_specialpower_property; }
+	// @Override
+	public enterRule(listener: MapIniListener): void {
+		if (listener.enterSpecialpower_property) {
+			listener.enterSpecialpower_property(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: MapIniListener): void {
+		if (listener.exitSpecialpower_property) {
+			listener.exitSpecialpower_property(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
+		if (visitor.visitSpecialpower_property) {
+			return visitor.visitSpecialpower_property(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class Specialpower_valueContext extends ParserRuleContext {
+	public NVALUE(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.NVALUE, 0); }
+	public ID(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.ID, 0); }
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return MapIniParser.RULE_specialpower_value; }
+	// @Override
+	public enterRule(listener: MapIniListener): void {
+		if (listener.enterSpecialpower_value) {
+			listener.enterSpecialpower_value(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: MapIniListener): void {
+		if (listener.exitSpecialpower_value) {
+			listener.exitSpecialpower_value(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
+		if (visitor.visitSpecialpower_value) {
+			return visitor.visitSpecialpower_value(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class Audioevent_valueContext extends ParserRuleContext {
+	public NVALUE(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.NVALUE, 0); }
+	public ID(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.ID, 0); }
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return MapIniParser.RULE_audioevent_value; }
+	// @Override
+	public enterRule(listener: MapIniListener): void {
+		if (listener.enterAudioevent_value) {
+			listener.enterAudioevent_value(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: MapIniListener): void {
+		if (listener.exitAudioevent_value) {
+			listener.exitAudioevent_value(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
+		if (visitor.visitAudioevent_value) {
+			return visitor.visitAudioevent_value(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class Upgrade_propertyContext extends ParserRuleContext {
+	public EQ(): TerminalNode { return this.getToken(MapIniParser.EQ, 0); }
+	public upgrade_value(): Upgrade_valueContext {
+		return this.getRuleContext(0, Upgrade_valueContext);
+	}
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return MapIniParser.RULE_upgrade_property; }
+	// @Override
+	public enterRule(listener: MapIniListener): void {
+		if (listener.enterUpgrade_property) {
+			listener.enterUpgrade_property(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: MapIniListener): void {
+		if (listener.exitUpgrade_property) {
+			listener.exitUpgrade_property(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
+		if (visitor.visitUpgrade_property) {
+			return visitor.visitUpgrade_property(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class Upgrade_valueContext extends ParserRuleContext {
+	public NVALUE(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.NVALUE, 0); }
+	public ID(): TerminalNode | undefined { return this.tryGetToken(MapIniParser.ID, 0); }
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return MapIniParser.RULE_upgrade_value; }
+	// @Override
+	public enterRule(listener: MapIniListener): void {
+		if (listener.enterUpgrade_value) {
+			listener.enterUpgrade_value(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: MapIniListener): void {
+		if (listener.exitUpgrade_value) {
+			listener.exitUpgrade_value(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
+		if (visitor.visitUpgrade_value) {
+			return visitor.visitUpgrade_value(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class Weaponslot_propertyContext extends ParserRuleContext {
+	public EQ(): TerminalNode { return this.getToken(MapIniParser.EQ, 0); }
+	public WEAPONSLOT(): TerminalNode[];
+	public WEAPONSLOT(i: number): TerminalNode;
+	public WEAPONSLOT(i?: number): TerminalNode | TerminalNode[] {
 		if (i === undefined) {
-			return this.getTokens(MapIniParser.INT);
+			return this.getTokens(MapIniParser.WEAPONSLOT);
 		} else {
-			return this.getToken(MapIniParser.INT, i);
+			return this.getToken(MapIniParser.WEAPONSLOT, i);
 		}
 	}
 	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
 		super(parent, invokingState);
 	}
 	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_intRang; }
+	public get ruleIndex(): number { return MapIniParser.RULE_weaponslot_property; }
 	// @Override
 	public enterRule(listener: MapIniListener): void {
-		if (listener.enterIntRang) {
-			listener.enterIntRang(this);
+		if (listener.enterWeaponslot_property) {
+			listener.enterWeaponslot_property(this);
 		}
 	}
 	// @Override
 	public exitRule(listener: MapIniListener): void {
-		if (listener.exitIntRang) {
-			listener.exitIntRang(this);
+		if (listener.exitWeaponslot_property) {
+			listener.exitWeaponslot_property(this);
 		}
 	}
 	// @Override
 	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitIntRang) {
-			return visitor.visitIntRang(this);
+		if (visitor.visitWeaponslot_property) {
+			return visitor.visitWeaponslot_property(this);
 		} else {
 			return visitor.visitChildren(this);
 		}
@@ -5878,75 +5282,28 @@ export class IntRangContext extends ParserRuleContext {
 }
 
 
-export class FloatRangContext extends ParserRuleContext {
-	public FLOAT(): TerminalNode[];
-	public FLOAT(i: number): TerminalNode;
-	public FLOAT(i?: number): TerminalNode | TerminalNode[] {
-		if (i === undefined) {
-			return this.getTokens(MapIniParser.FLOAT);
-		} else {
-			return this.getToken(MapIniParser.FLOAT, i);
-		}
-	}
+export class FactionContext extends ParserRuleContext {
 	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
 		super(parent, invokingState);
 	}
 	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_floatRang; }
+	public get ruleIndex(): number { return MapIniParser.RULE_faction; }
 	// @Override
 	public enterRule(listener: MapIniListener): void {
-		if (listener.enterFloatRang) {
-			listener.enterFloatRang(this);
+		if (listener.enterFaction) {
+			listener.enterFaction(this);
 		}
 	}
 	// @Override
 	public exitRule(listener: MapIniListener): void {
-		if (listener.exitFloatRang) {
-			listener.exitFloatRang(this);
+		if (listener.exitFaction) {
+			listener.exitFaction(this);
 		}
 	}
 	// @Override
 	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitFloatRang) {
-			return visitor.visitFloatRang(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-
-
-export class QuoutedIDContext extends ParserRuleContext {
-	public WS(): TerminalNode[];
-	public WS(i: number): TerminalNode;
-	public WS(i?: number): TerminalNode | TerminalNode[] {
-		if (i === undefined) {
-			return this.getTokens(MapIniParser.WS);
-		} else {
-			return this.getToken(MapIniParser.WS, i);
-		}
-	}
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
-		super(parent, invokingState);
-	}
-	// @Override
-	public get ruleIndex(): number { return MapIniParser.RULE_quoutedID; }
-	// @Override
-	public enterRule(listener: MapIniListener): void {
-		if (listener.enterQuoutedID) {
-			listener.enterQuoutedID(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: MapIniListener): void {
-		if (listener.exitQuoutedID) {
-			listener.exitQuoutedID(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: MapIniVisitor<Result>): Result {
-		if (visitor.visitQuoutedID) {
-			return visitor.visitQuoutedID(this);
+		if (visitor.visitFaction) {
+			return visitor.visitFaction(this);
 		} else {
 			return visitor.visitChildren(this);
 		}

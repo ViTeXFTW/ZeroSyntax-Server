@@ -3,68 +3,58 @@
 
 import { ParseTreeListener } from "antlr4ts/tree/ParseTreeListener";
 
-import { StringContext } from "./MapIniParser";
-import { FiletypeContext } from "./MapIniParser";
-import { ProcentageContext } from "./MapIniParser";
-import { IdContext } from "./MapIniParser";
-import { IntContext } from "./MapIniParser";
-import { FloatContext } from "./MapIniParser";
-import { BoolContext } from "./MapIniParser";
-import { TurretValueContext } from "./MapIniParser";
-import { AltTurretValueContext } from "./MapIniParser";
 import { ProgramContext } from "./MapIniParser";
 import { ClassesContext } from "./MapIniParser";
-import { ObjectReskinContext } from "./MapIniParser";
-import { ObjectContext } from "./MapIniParser";
-import { ObjectPropertyContext } from "./MapIniParser";
-import { ModuleBlocksContext } from "./MapIniParser";
-import { AddModuleBlockContext } from "./MapIniParser";
-import { AddModulePropertyContext } from "./MapIniParser";
-import { ObjectKindOfPropertyContext } from "./MapIniParser";
-import { ReplaceModuleBlockContext } from "./MapIniParser";
-import { ReplaceModulePropertyContext } from "./MapIniParser";
-import { ModulesContext } from "./MapIniParser";
-import { ObjectBlocksContext } from "./MapIniParser";
-import { ObjectPrerequisitesContext } from "./MapIniParser";
-import { ObjectPrerequisitesobjectPropertyContext } from "./MapIniParser";
-import { ObjectPrerequisitessciencePropetyContext } from "./MapIniParser";
-import { ObjectWeaponSetContext } from "./MapIniParser";
-import { ObjectWeaponSetPropetyContext } from "./MapIniParser";
-import { ObjectArmorSetContext } from "./MapIniParser";
-import { ObjectArmorSetPropetyContext } from "./MapIniParser";
-import { ObjectUnitSpecificSoundsContext } from "./MapIniParser";
-import { ObjectUnitSpecificSoundsPropetyContext } from "./MapIniParser";
-import { ObjectUnitSpecificFXContext } from "./MapIniParser";
-import { ObjectUnitSpecificFXPropetyContext } from "./MapIniParser";
-import { ClientModuleBlockContext } from "./MapIniParser";
-import { BehaviormoduleBlockContext } from "./MapIniParser";
-import { BehaviorDecalsContext } from "./MapIniParser";
-import { BehaviorTurretContext } from "./MapIniParser";
-import { BodyModuleBlockContext } from "./MapIniParser";
-import { DrawModuleBlockContext } from "./MapIniParser";
-import { DrawModulePropertyContext } from "./MapIniParser";
-import { ConditionStateBlocksContext } from "./MapIniParser";
-import { ConditionStateBlockContext } from "./MapIniParser";
-import { DefaultConditionStateBlockContext } from "./MapIniParser";
-import { ConditionStatePropertyContext } from "./MapIniParser";
-import { TransitionKeyPropertyContext } from "./MapIniParser";
-import { TransitionStateBlockContext } from "./MapIniParser";
-import { TransitionStatePropertyContext } from "./MapIniParser";
-import { AliasConditionStateBlockContext } from "./MapIniParser";
-import { IgnoreConditionStateBlockContext } from "./MapIniParser";
-import { RemoveModuleBlockContext } from "./MapIniParser";
-import { TurretPropertyContext } from "./MapIniParser";
-import { PropertyContext } from "./MapIniParser";
-import { TturretPropertyContext } from "./MapIniParser";
-import { AltTurretPropertyContext } from "./MapIniParser";
+import { AiDataClassContext } from "./MapIniParser";
+import { AidataClassProperties_singleContext } from "./MapIniParser";
+import { AidataClassproperties_BlockSkirmishBuildListContext } from "./MapIniParser";
+import { SkirmishBuildListBlockContext } from "./MapIniParser";
+import { SkirmishBuildListBlock_structure_propertiesContext } from "./MapIniParser";
+import { AidataClassProperties_blockSideinfoContext } from "./MapIniParser";
+import { SideinfopropertiesContext } from "./MapIniParser";
+import { Sideinfo_skillset_blocksContext } from "./MapIniParser";
+import { MappedImageClassContext } from "./MapIniParser";
+import { MappedImageClassPropertiesContext } from "./MapIniParser";
+import { Animation2DClassContext } from "./MapIniParser";
+import { Animation2DClassPropertiesContext } from "./MapIniParser";
+import { ArmorClassContext } from "./MapIniParser";
+import { ArmorClassPropertiesContext } from "./MapIniParser";
+import { CommandButtonClassContext } from "./MapIniParser";
+import { CommandButtonClassPropertiesContext } from "./MapIniParser";
+import { CommandSetClassContext } from "./MapIniParser";
+import { CommandSetClassPropertyContext } from "./MapIniParser";
 import { EndContext } from "./MapIniParser";
-import { ValueContext } from "./MapIniParser";
-import { FtypeContext } from "./MapIniParser";
-import { RgbContext } from "./MapIniParser";
-import { ProcentContext } from "./MapIniParser";
-import { IntRangContext } from "./MapIniParser";
-import { FloatRangContext } from "./MapIniParser";
-import { QuoutedIDContext } from "./MapIniParser";
+import { FileContext } from "./MapIniParser";
+import { Cb_command_propertyContext } from "./MapIniParser";
+import { Cb_command_valueContext } from "./MapIniParser";
+import { Cb_options_propertyContext } from "./MapIniParser";
+import { Cb_options_valueContext } from "./MapIniParser";
+import { Cb_buttonimage_propertyContext } from "./MapIniParser";
+import { Cb_buttonbordertype_propertyContext } from "./MapIniParser";
+import { Cb_buttonbordertype_valueContext } from "./MapIniParser";
+import { Cb_textlabel_propertyContext } from "./MapIniParser";
+import { Cb_descriptionlabel_propertyContext } from "./MapIniParser";
+import { Cb_conflictinglabel_propertyContext } from "./MapIniParser";
+import { Cb_cursorname_properyContext } from "./MapIniParser";
+import { Cb_radius_cursorname_valueContext } from "./MapIniParser";
+import { Cb_invalid_cursorname_properyContext } from "./MapIniParser";
+import { Cb_unitspecificsound_propertyContext } from "./MapIniParser";
+import { Commandbutton_valueContext } from "./MapIniParser";
+import { Cursorname_valueContext } from "./MapIniParser";
+import { Radius_cursorname_valueContext } from "./MapIniParser";
+import { Invalid_cursorname_valueContext } from "./MapIniParser";
+import { Mappedimage_valueContext } from "./MapIniParser";
+import { Object_propertyContext } from "./MapIniParser";
+import { Object_valueContext } from "./MapIniParser";
+import { Science_propertyContext } from "./MapIniParser";
+import { Science_valueContext } from "./MapIniParser";
+import { Specialpower_propertyContext } from "./MapIniParser";
+import { Specialpower_valueContext } from "./MapIniParser";
+import { Audioevent_valueContext } from "./MapIniParser";
+import { Upgrade_propertyContext } from "./MapIniParser";
+import { Upgrade_valueContext } from "./MapIniParser";
+import { Weaponslot_propertyContext } from "./MapIniParser";
+import { FactionContext } from "./MapIniParser";
 
 
 /**
@@ -72,123 +62,6 @@ import { QuoutedIDContext } from "./MapIniParser";
  * `MapIniParser`.
  */
 export interface MapIniListener extends ParseTreeListener {
-	/**
-	 * Enter a parse tree produced by the `string`
-	 * labeled alternative in `MapIniParser.value`.
-	 * @param ctx the parse tree
-	 */
-	enterString?: (ctx: StringContext) => void;
-	/**
-	 * Exit a parse tree produced by the `string`
-	 * labeled alternative in `MapIniParser.value`.
-	 * @param ctx the parse tree
-	 */
-	exitString?: (ctx: StringContext) => void;
-
-	/**
-	 * Enter a parse tree produced by the `filetype`
-	 * labeled alternative in `MapIniParser.value`.
-	 * @param ctx the parse tree
-	 */
-	enterFiletype?: (ctx: FiletypeContext) => void;
-	/**
-	 * Exit a parse tree produced by the `filetype`
-	 * labeled alternative in `MapIniParser.value`.
-	 * @param ctx the parse tree
-	 */
-	exitFiletype?: (ctx: FiletypeContext) => void;
-
-	/**
-	 * Enter a parse tree produced by the `procentage`
-	 * labeled alternative in `MapIniParser.value`.
-	 * @param ctx the parse tree
-	 */
-	enterProcentage?: (ctx: ProcentageContext) => void;
-	/**
-	 * Exit a parse tree produced by the `procentage`
-	 * labeled alternative in `MapIniParser.value`.
-	 * @param ctx the parse tree
-	 */
-	exitProcentage?: (ctx: ProcentageContext) => void;
-
-	/**
-	 * Enter a parse tree produced by the `id`
-	 * labeled alternative in `MapIniParser.value`.
-	 * @param ctx the parse tree
-	 */
-	enterId?: (ctx: IdContext) => void;
-	/**
-	 * Exit a parse tree produced by the `id`
-	 * labeled alternative in `MapIniParser.value`.
-	 * @param ctx the parse tree
-	 */
-	exitId?: (ctx: IdContext) => void;
-
-	/**
-	 * Enter a parse tree produced by the `int`
-	 * labeled alternative in `MapIniParser.value`.
-	 * @param ctx the parse tree
-	 */
-	enterInt?: (ctx: IntContext) => void;
-	/**
-	 * Exit a parse tree produced by the `int`
-	 * labeled alternative in `MapIniParser.value`.
-	 * @param ctx the parse tree
-	 */
-	exitInt?: (ctx: IntContext) => void;
-
-	/**
-	 * Enter a parse tree produced by the `float`
-	 * labeled alternative in `MapIniParser.value`.
-	 * @param ctx the parse tree
-	 */
-	enterFloat?: (ctx: FloatContext) => void;
-	/**
-	 * Exit a parse tree produced by the `float`
-	 * labeled alternative in `MapIniParser.value`.
-	 * @param ctx the parse tree
-	 */
-	exitFloat?: (ctx: FloatContext) => void;
-
-	/**
-	 * Enter a parse tree produced by the `bool`
-	 * labeled alternative in `MapIniParser.value`.
-	 * @param ctx the parse tree
-	 */
-	enterBool?: (ctx: BoolContext) => void;
-	/**
-	 * Exit a parse tree produced by the `bool`
-	 * labeled alternative in `MapIniParser.value`.
-	 * @param ctx the parse tree
-	 */
-	exitBool?: (ctx: BoolContext) => void;
-
-	/**
-	 * Enter a parse tree produced by the `turretValue`
-	 * labeled alternative in `MapIniParser.value`.
-	 * @param ctx the parse tree
-	 */
-	enterTurretValue?: (ctx: TurretValueContext) => void;
-	/**
-	 * Exit a parse tree produced by the `turretValue`
-	 * labeled alternative in `MapIniParser.value`.
-	 * @param ctx the parse tree
-	 */
-	exitTurretValue?: (ctx: TurretValueContext) => void;
-
-	/**
-	 * Enter a parse tree produced by the `altTurretValue`
-	 * labeled alternative in `MapIniParser.value`.
-	 * @param ctx the parse tree
-	 */
-	enterAltTurretValue?: (ctx: AltTurretValueContext) => void;
-	/**
-	 * Exit a parse tree produced by the `altTurretValue`
-	 * labeled alternative in `MapIniParser.value`.
-	 * @param ctx the parse tree
-	 */
-	exitAltTurretValue?: (ctx: AltTurretValueContext) => void;
-
 	/**
 	 * Enter a parse tree produced by `MapIniParser.program`.
 	 * @param ctx the parse tree
@@ -212,477 +85,202 @@ export interface MapIniListener extends ParseTreeListener {
 	exitClasses?: (ctx: ClassesContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `MapIniParser.objectReskin`.
+	 * Enter a parse tree produced by `MapIniParser.aiDataClass`.
 	 * @param ctx the parse tree
 	 */
-	enterObjectReskin?: (ctx: ObjectReskinContext) => void;
+	enterAiDataClass?: (ctx: AiDataClassContext) => void;
 	/**
-	 * Exit a parse tree produced by `MapIniParser.objectReskin`.
+	 * Exit a parse tree produced by `MapIniParser.aiDataClass`.
 	 * @param ctx the parse tree
 	 */
-	exitObjectReskin?: (ctx: ObjectReskinContext) => void;
+	exitAiDataClass?: (ctx: AiDataClassContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `MapIniParser.object`.
+	 * Enter a parse tree produced by `MapIniParser.aidataClassProperties_single`.
 	 * @param ctx the parse tree
 	 */
-	enterObject?: (ctx: ObjectContext) => void;
+	enterAidataClassProperties_single?: (ctx: AidataClassProperties_singleContext) => void;
 	/**
-	 * Exit a parse tree produced by `MapIniParser.object`.
+	 * Exit a parse tree produced by `MapIniParser.aidataClassProperties_single`.
 	 * @param ctx the parse tree
 	 */
-	exitObject?: (ctx: ObjectContext) => void;
+	exitAidataClassProperties_single?: (ctx: AidataClassProperties_singleContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `MapIniParser.objectProperty`.
+	 * Enter a parse tree produced by `MapIniParser.aidataClassproperties_BlockSkirmishBuildList`.
 	 * @param ctx the parse tree
 	 */
-	enterObjectProperty?: (ctx: ObjectPropertyContext) => void;
+	enterAidataClassproperties_BlockSkirmishBuildList?: (ctx: AidataClassproperties_BlockSkirmishBuildListContext) => void;
 	/**
-	 * Exit a parse tree produced by `MapIniParser.objectProperty`.
+	 * Exit a parse tree produced by `MapIniParser.aidataClassproperties_BlockSkirmishBuildList`.
 	 * @param ctx the parse tree
 	 */
-	exitObjectProperty?: (ctx: ObjectPropertyContext) => void;
+	exitAidataClassproperties_BlockSkirmishBuildList?: (ctx: AidataClassproperties_BlockSkirmishBuildListContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `MapIniParser.moduleBlocks`.
+	 * Enter a parse tree produced by `MapIniParser.skirmishBuildListBlock`.
 	 * @param ctx the parse tree
 	 */
-	enterModuleBlocks?: (ctx: ModuleBlocksContext) => void;
+	enterSkirmishBuildListBlock?: (ctx: SkirmishBuildListBlockContext) => void;
 	/**
-	 * Exit a parse tree produced by `MapIniParser.moduleBlocks`.
+	 * Exit a parse tree produced by `MapIniParser.skirmishBuildListBlock`.
 	 * @param ctx the parse tree
 	 */
-	exitModuleBlocks?: (ctx: ModuleBlocksContext) => void;
+	exitSkirmishBuildListBlock?: (ctx: SkirmishBuildListBlockContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `MapIniParser.addModuleBlock`.
+	 * Enter a parse tree produced by `MapIniParser.skirmishBuildListBlock_structure_properties`.
 	 * @param ctx the parse tree
 	 */
-	enterAddModuleBlock?: (ctx: AddModuleBlockContext) => void;
+	enterSkirmishBuildListBlock_structure_properties?: (ctx: SkirmishBuildListBlock_structure_propertiesContext) => void;
 	/**
-	 * Exit a parse tree produced by `MapIniParser.addModuleBlock`.
+	 * Exit a parse tree produced by `MapIniParser.skirmishBuildListBlock_structure_properties`.
 	 * @param ctx the parse tree
 	 */
-	exitAddModuleBlock?: (ctx: AddModuleBlockContext) => void;
+	exitSkirmishBuildListBlock_structure_properties?: (ctx: SkirmishBuildListBlock_structure_propertiesContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `MapIniParser.addModuleProperty`.
+	 * Enter a parse tree produced by `MapIniParser.aidataClassProperties_blockSideinfo`.
 	 * @param ctx the parse tree
 	 */
-	enterAddModuleProperty?: (ctx: AddModulePropertyContext) => void;
+	enterAidataClassProperties_blockSideinfo?: (ctx: AidataClassProperties_blockSideinfoContext) => void;
 	/**
-	 * Exit a parse tree produced by `MapIniParser.addModuleProperty`.
+	 * Exit a parse tree produced by `MapIniParser.aidataClassProperties_blockSideinfo`.
 	 * @param ctx the parse tree
 	 */
-	exitAddModuleProperty?: (ctx: AddModulePropertyContext) => void;
+	exitAidataClassProperties_blockSideinfo?: (ctx: AidataClassProperties_blockSideinfoContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `MapIniParser.objectKindOfProperty`.
+	 * Enter a parse tree produced by `MapIniParser.sideinfoproperties`.
 	 * @param ctx the parse tree
 	 */
-	enterObjectKindOfProperty?: (ctx: ObjectKindOfPropertyContext) => void;
+	enterSideinfoproperties?: (ctx: SideinfopropertiesContext) => void;
 	/**
-	 * Exit a parse tree produced by `MapIniParser.objectKindOfProperty`.
+	 * Exit a parse tree produced by `MapIniParser.sideinfoproperties`.
 	 * @param ctx the parse tree
 	 */
-	exitObjectKindOfProperty?: (ctx: ObjectKindOfPropertyContext) => void;
+	exitSideinfoproperties?: (ctx: SideinfopropertiesContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `MapIniParser.replaceModuleBlock`.
+	 * Enter a parse tree produced by `MapIniParser.sideinfo_skillset_blocks`.
 	 * @param ctx the parse tree
 	 */
-	enterReplaceModuleBlock?: (ctx: ReplaceModuleBlockContext) => void;
+	enterSideinfo_skillset_blocks?: (ctx: Sideinfo_skillset_blocksContext) => void;
 	/**
-	 * Exit a parse tree produced by `MapIniParser.replaceModuleBlock`.
+	 * Exit a parse tree produced by `MapIniParser.sideinfo_skillset_blocks`.
 	 * @param ctx the parse tree
 	 */
-	exitReplaceModuleBlock?: (ctx: ReplaceModuleBlockContext) => void;
+	exitSideinfo_skillset_blocks?: (ctx: Sideinfo_skillset_blocksContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `MapIniParser.replaceModuleProperty`.
+	 * Enter a parse tree produced by `MapIniParser.mappedImageClass`.
 	 * @param ctx the parse tree
 	 */
-	enterReplaceModuleProperty?: (ctx: ReplaceModulePropertyContext) => void;
+	enterMappedImageClass?: (ctx: MappedImageClassContext) => void;
 	/**
-	 * Exit a parse tree produced by `MapIniParser.replaceModuleProperty`.
+	 * Exit a parse tree produced by `MapIniParser.mappedImageClass`.
 	 * @param ctx the parse tree
 	 */
-	exitReplaceModuleProperty?: (ctx: ReplaceModulePropertyContext) => void;
+	exitMappedImageClass?: (ctx: MappedImageClassContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `MapIniParser.modules`.
+	 * Enter a parse tree produced by `MapIniParser.mappedImageClassProperties`.
 	 * @param ctx the parse tree
 	 */
-	enterModules?: (ctx: ModulesContext) => void;
+	enterMappedImageClassProperties?: (ctx: MappedImageClassPropertiesContext) => void;
 	/**
-	 * Exit a parse tree produced by `MapIniParser.modules`.
+	 * Exit a parse tree produced by `MapIniParser.mappedImageClassProperties`.
 	 * @param ctx the parse tree
 	 */
-	exitModules?: (ctx: ModulesContext) => void;
+	exitMappedImageClassProperties?: (ctx: MappedImageClassPropertiesContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `MapIniParser.objectBlocks`.
+	 * Enter a parse tree produced by `MapIniParser.animation2DClass`.
 	 * @param ctx the parse tree
 	 */
-	enterObjectBlocks?: (ctx: ObjectBlocksContext) => void;
+	enterAnimation2DClass?: (ctx: Animation2DClassContext) => void;
 	/**
-	 * Exit a parse tree produced by `MapIniParser.objectBlocks`.
+	 * Exit a parse tree produced by `MapIniParser.animation2DClass`.
 	 * @param ctx the parse tree
 	 */
-	exitObjectBlocks?: (ctx: ObjectBlocksContext) => void;
+	exitAnimation2DClass?: (ctx: Animation2DClassContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `MapIniParser.objectPrerequisites`.
+	 * Enter a parse tree produced by `MapIniParser.animation2DClassProperties`.
 	 * @param ctx the parse tree
 	 */
-	enterObjectPrerequisites?: (ctx: ObjectPrerequisitesContext) => void;
+	enterAnimation2DClassProperties?: (ctx: Animation2DClassPropertiesContext) => void;
 	/**
-	 * Exit a parse tree produced by `MapIniParser.objectPrerequisites`.
+	 * Exit a parse tree produced by `MapIniParser.animation2DClassProperties`.
 	 * @param ctx the parse tree
 	 */
-	exitObjectPrerequisites?: (ctx: ObjectPrerequisitesContext) => void;
+	exitAnimation2DClassProperties?: (ctx: Animation2DClassPropertiesContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `MapIniParser.objectPrerequisitesobjectProperty`.
+	 * Enter a parse tree produced by `MapIniParser.armorClass`.
 	 * @param ctx the parse tree
 	 */
-	enterObjectPrerequisitesobjectProperty?: (ctx: ObjectPrerequisitesobjectPropertyContext) => void;
+	enterArmorClass?: (ctx: ArmorClassContext) => void;
 	/**
-	 * Exit a parse tree produced by `MapIniParser.objectPrerequisitesobjectProperty`.
+	 * Exit a parse tree produced by `MapIniParser.armorClass`.
 	 * @param ctx the parse tree
 	 */
-	exitObjectPrerequisitesobjectProperty?: (ctx: ObjectPrerequisitesobjectPropertyContext) => void;
+	exitArmorClass?: (ctx: ArmorClassContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `MapIniParser.objectPrerequisitessciencePropety`.
+	 * Enter a parse tree produced by `MapIniParser.armorClassProperties`.
 	 * @param ctx the parse tree
 	 */
-	enterObjectPrerequisitessciencePropety?: (ctx: ObjectPrerequisitessciencePropetyContext) => void;
+	enterArmorClassProperties?: (ctx: ArmorClassPropertiesContext) => void;
 	/**
-	 * Exit a parse tree produced by `MapIniParser.objectPrerequisitessciencePropety`.
+	 * Exit a parse tree produced by `MapIniParser.armorClassProperties`.
 	 * @param ctx the parse tree
 	 */
-	exitObjectPrerequisitessciencePropety?: (ctx: ObjectPrerequisitessciencePropetyContext) => void;
+	exitArmorClassProperties?: (ctx: ArmorClassPropertiesContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `MapIniParser.objectWeaponSet`.
+	 * Enter a parse tree produced by `MapIniParser.commandButtonClass`.
 	 * @param ctx the parse tree
 	 */
-	enterObjectWeaponSet?: (ctx: ObjectWeaponSetContext) => void;
+	enterCommandButtonClass?: (ctx: CommandButtonClassContext) => void;
 	/**
-	 * Exit a parse tree produced by `MapIniParser.objectWeaponSet`.
+	 * Exit a parse tree produced by `MapIniParser.commandButtonClass`.
 	 * @param ctx the parse tree
 	 */
-	exitObjectWeaponSet?: (ctx: ObjectWeaponSetContext) => void;
+	exitCommandButtonClass?: (ctx: CommandButtonClassContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `MapIniParser.objectWeaponSetPropety`.
+	 * Enter a parse tree produced by `MapIniParser.commandButtonClassProperties`.
 	 * @param ctx the parse tree
 	 */
-	enterObjectWeaponSetPropety?: (ctx: ObjectWeaponSetPropetyContext) => void;
+	enterCommandButtonClassProperties?: (ctx: CommandButtonClassPropertiesContext) => void;
 	/**
-	 * Exit a parse tree produced by `MapIniParser.objectWeaponSetPropety`.
+	 * Exit a parse tree produced by `MapIniParser.commandButtonClassProperties`.
 	 * @param ctx the parse tree
 	 */
-	exitObjectWeaponSetPropety?: (ctx: ObjectWeaponSetPropetyContext) => void;
+	exitCommandButtonClassProperties?: (ctx: CommandButtonClassPropertiesContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `MapIniParser.objectArmorSet`.
+	 * Enter a parse tree produced by `MapIniParser.commandSetClass`.
 	 * @param ctx the parse tree
 	 */
-	enterObjectArmorSet?: (ctx: ObjectArmorSetContext) => void;
+	enterCommandSetClass?: (ctx: CommandSetClassContext) => void;
 	/**
-	 * Exit a parse tree produced by `MapIniParser.objectArmorSet`.
+	 * Exit a parse tree produced by `MapIniParser.commandSetClass`.
 	 * @param ctx the parse tree
 	 */
-	exitObjectArmorSet?: (ctx: ObjectArmorSetContext) => void;
+	exitCommandSetClass?: (ctx: CommandSetClassContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `MapIniParser.objectArmorSetPropety`.
+	 * Enter a parse tree produced by `MapIniParser.commandSetClassProperty`.
 	 * @param ctx the parse tree
 	 */
-	enterObjectArmorSetPropety?: (ctx: ObjectArmorSetPropetyContext) => void;
+	enterCommandSetClassProperty?: (ctx: CommandSetClassPropertyContext) => void;
 	/**
-	 * Exit a parse tree produced by `MapIniParser.objectArmorSetPropety`.
+	 * Exit a parse tree produced by `MapIniParser.commandSetClassProperty`.
 	 * @param ctx the parse tree
 	 */
-	exitObjectArmorSetPropety?: (ctx: ObjectArmorSetPropetyContext) => void;
-
-	/**
-	 * Enter a parse tree produced by `MapIniParser.objectUnitSpecificSounds`.
-	 * @param ctx the parse tree
-	 */
-	enterObjectUnitSpecificSounds?: (ctx: ObjectUnitSpecificSoundsContext) => void;
-	/**
-	 * Exit a parse tree produced by `MapIniParser.objectUnitSpecificSounds`.
-	 * @param ctx the parse tree
-	 */
-	exitObjectUnitSpecificSounds?: (ctx: ObjectUnitSpecificSoundsContext) => void;
-
-	/**
-	 * Enter a parse tree produced by `MapIniParser.objectUnitSpecificSoundsPropety`.
-	 * @param ctx the parse tree
-	 */
-	enterObjectUnitSpecificSoundsPropety?: (ctx: ObjectUnitSpecificSoundsPropetyContext) => void;
-	/**
-	 * Exit a parse tree produced by `MapIniParser.objectUnitSpecificSoundsPropety`.
-	 * @param ctx the parse tree
-	 */
-	exitObjectUnitSpecificSoundsPropety?: (ctx: ObjectUnitSpecificSoundsPropetyContext) => void;
-
-	/**
-	 * Enter a parse tree produced by `MapIniParser.objectUnitSpecificFX`.
-	 * @param ctx the parse tree
-	 */
-	enterObjectUnitSpecificFX?: (ctx: ObjectUnitSpecificFXContext) => void;
-	/**
-	 * Exit a parse tree produced by `MapIniParser.objectUnitSpecificFX`.
-	 * @param ctx the parse tree
-	 */
-	exitObjectUnitSpecificFX?: (ctx: ObjectUnitSpecificFXContext) => void;
-
-	/**
-	 * Enter a parse tree produced by `MapIniParser.objectUnitSpecificFXPropety`.
-	 * @param ctx the parse tree
-	 */
-	enterObjectUnitSpecificFXPropety?: (ctx: ObjectUnitSpecificFXPropetyContext) => void;
-	/**
-	 * Exit a parse tree produced by `MapIniParser.objectUnitSpecificFXPropety`.
-	 * @param ctx the parse tree
-	 */
-	exitObjectUnitSpecificFXPropety?: (ctx: ObjectUnitSpecificFXPropetyContext) => void;
-
-	/**
-	 * Enter a parse tree produced by `MapIniParser.clientModuleBlock`.
-	 * @param ctx the parse tree
-	 */
-	enterClientModuleBlock?: (ctx: ClientModuleBlockContext) => void;
-	/**
-	 * Exit a parse tree produced by `MapIniParser.clientModuleBlock`.
-	 * @param ctx the parse tree
-	 */
-	exitClientModuleBlock?: (ctx: ClientModuleBlockContext) => void;
-
-	/**
-	 * Enter a parse tree produced by `MapIniParser.behaviormoduleBlock`.
-	 * @param ctx the parse tree
-	 */
-	enterBehaviormoduleBlock?: (ctx: BehaviormoduleBlockContext) => void;
-	/**
-	 * Exit a parse tree produced by `MapIniParser.behaviormoduleBlock`.
-	 * @param ctx the parse tree
-	 */
-	exitBehaviormoduleBlock?: (ctx: BehaviormoduleBlockContext) => void;
-
-	/**
-	 * Enter a parse tree produced by `MapIniParser.behaviorDecals`.
-	 * @param ctx the parse tree
-	 */
-	enterBehaviorDecals?: (ctx: BehaviorDecalsContext) => void;
-	/**
-	 * Exit a parse tree produced by `MapIniParser.behaviorDecals`.
-	 * @param ctx the parse tree
-	 */
-	exitBehaviorDecals?: (ctx: BehaviorDecalsContext) => void;
-
-	/**
-	 * Enter a parse tree produced by `MapIniParser.behaviorTurret`.
-	 * @param ctx the parse tree
-	 */
-	enterBehaviorTurret?: (ctx: BehaviorTurretContext) => void;
-	/**
-	 * Exit a parse tree produced by `MapIniParser.behaviorTurret`.
-	 * @param ctx the parse tree
-	 */
-	exitBehaviorTurret?: (ctx: BehaviorTurretContext) => void;
-
-	/**
-	 * Enter a parse tree produced by `MapIniParser.bodyModuleBlock`.
-	 * @param ctx the parse tree
-	 */
-	enterBodyModuleBlock?: (ctx: BodyModuleBlockContext) => void;
-	/**
-	 * Exit a parse tree produced by `MapIniParser.bodyModuleBlock`.
-	 * @param ctx the parse tree
-	 */
-	exitBodyModuleBlock?: (ctx: BodyModuleBlockContext) => void;
-
-	/**
-	 * Enter a parse tree produced by `MapIniParser.drawModuleBlock`.
-	 * @param ctx the parse tree
-	 */
-	enterDrawModuleBlock?: (ctx: DrawModuleBlockContext) => void;
-	/**
-	 * Exit a parse tree produced by `MapIniParser.drawModuleBlock`.
-	 * @param ctx the parse tree
-	 */
-	exitDrawModuleBlock?: (ctx: DrawModuleBlockContext) => void;
-
-	/**
-	 * Enter a parse tree produced by `MapIniParser.drawModuleProperty`.
-	 * @param ctx the parse tree
-	 */
-	enterDrawModuleProperty?: (ctx: DrawModulePropertyContext) => void;
-	/**
-	 * Exit a parse tree produced by `MapIniParser.drawModuleProperty`.
-	 * @param ctx the parse tree
-	 */
-	exitDrawModuleProperty?: (ctx: DrawModulePropertyContext) => void;
-
-	/**
-	 * Enter a parse tree produced by `MapIniParser.conditionStateBlocks`.
-	 * @param ctx the parse tree
-	 */
-	enterConditionStateBlocks?: (ctx: ConditionStateBlocksContext) => void;
-	/**
-	 * Exit a parse tree produced by `MapIniParser.conditionStateBlocks`.
-	 * @param ctx the parse tree
-	 */
-	exitConditionStateBlocks?: (ctx: ConditionStateBlocksContext) => void;
-
-	/**
-	 * Enter a parse tree produced by `MapIniParser.conditionStateBlock`.
-	 * @param ctx the parse tree
-	 */
-	enterConditionStateBlock?: (ctx: ConditionStateBlockContext) => void;
-	/**
-	 * Exit a parse tree produced by `MapIniParser.conditionStateBlock`.
-	 * @param ctx the parse tree
-	 */
-	exitConditionStateBlock?: (ctx: ConditionStateBlockContext) => void;
-
-	/**
-	 * Enter a parse tree produced by `MapIniParser.defaultConditionStateBlock`.
-	 * @param ctx the parse tree
-	 */
-	enterDefaultConditionStateBlock?: (ctx: DefaultConditionStateBlockContext) => void;
-	/**
-	 * Exit a parse tree produced by `MapIniParser.defaultConditionStateBlock`.
-	 * @param ctx the parse tree
-	 */
-	exitDefaultConditionStateBlock?: (ctx: DefaultConditionStateBlockContext) => void;
-
-	/**
-	 * Enter a parse tree produced by `MapIniParser.conditionStateProperty`.
-	 * @param ctx the parse tree
-	 */
-	enterConditionStateProperty?: (ctx: ConditionStatePropertyContext) => void;
-	/**
-	 * Exit a parse tree produced by `MapIniParser.conditionStateProperty`.
-	 * @param ctx the parse tree
-	 */
-	exitConditionStateProperty?: (ctx: ConditionStatePropertyContext) => void;
-
-	/**
-	 * Enter a parse tree produced by `MapIniParser.transitionKeyProperty`.
-	 * @param ctx the parse tree
-	 */
-	enterTransitionKeyProperty?: (ctx: TransitionKeyPropertyContext) => void;
-	/**
-	 * Exit a parse tree produced by `MapIniParser.transitionKeyProperty`.
-	 * @param ctx the parse tree
-	 */
-	exitTransitionKeyProperty?: (ctx: TransitionKeyPropertyContext) => void;
-
-	/**
-	 * Enter a parse tree produced by `MapIniParser.transitionStateBlock`.
-	 * @param ctx the parse tree
-	 */
-	enterTransitionStateBlock?: (ctx: TransitionStateBlockContext) => void;
-	/**
-	 * Exit a parse tree produced by `MapIniParser.transitionStateBlock`.
-	 * @param ctx the parse tree
-	 */
-	exitTransitionStateBlock?: (ctx: TransitionStateBlockContext) => void;
-
-	/**
-	 * Enter a parse tree produced by `MapIniParser.transitionStateProperty`.
-	 * @param ctx the parse tree
-	 */
-	enterTransitionStateProperty?: (ctx: TransitionStatePropertyContext) => void;
-	/**
-	 * Exit a parse tree produced by `MapIniParser.transitionStateProperty`.
-	 * @param ctx the parse tree
-	 */
-	exitTransitionStateProperty?: (ctx: TransitionStatePropertyContext) => void;
-
-	/**
-	 * Enter a parse tree produced by `MapIniParser.aliasConditionStateBlock`.
-	 * @param ctx the parse tree
-	 */
-	enterAliasConditionStateBlock?: (ctx: AliasConditionStateBlockContext) => void;
-	/**
-	 * Exit a parse tree produced by `MapIniParser.aliasConditionStateBlock`.
-	 * @param ctx the parse tree
-	 */
-	exitAliasConditionStateBlock?: (ctx: AliasConditionStateBlockContext) => void;
-
-	/**
-	 * Enter a parse tree produced by `MapIniParser.ignoreConditionStateBlock`.
-	 * @param ctx the parse tree
-	 */
-	enterIgnoreConditionStateBlock?: (ctx: IgnoreConditionStateBlockContext) => void;
-	/**
-	 * Exit a parse tree produced by `MapIniParser.ignoreConditionStateBlock`.
-	 * @param ctx the parse tree
-	 */
-	exitIgnoreConditionStateBlock?: (ctx: IgnoreConditionStateBlockContext) => void;
-
-	/**
-	 * Enter a parse tree produced by `MapIniParser.removeModuleBlock`.
-	 * @param ctx the parse tree
-	 */
-	enterRemoveModuleBlock?: (ctx: RemoveModuleBlockContext) => void;
-	/**
-	 * Exit a parse tree produced by `MapIniParser.removeModuleBlock`.
-	 * @param ctx the parse tree
-	 */
-	exitRemoveModuleBlock?: (ctx: RemoveModuleBlockContext) => void;
-
-	/**
-	 * Enter a parse tree produced by `MapIniParser.turretProperty`.
-	 * @param ctx the parse tree
-	 */
-	enterTurretProperty?: (ctx: TurretPropertyContext) => void;
-	/**
-	 * Exit a parse tree produced by `MapIniParser.turretProperty`.
-	 * @param ctx the parse tree
-	 */
-	exitTurretProperty?: (ctx: TurretPropertyContext) => void;
-
-	/**
-	 * Enter a parse tree produced by `MapIniParser.property`.
-	 * @param ctx the parse tree
-	 */
-	enterProperty?: (ctx: PropertyContext) => void;
-	/**
-	 * Exit a parse tree produced by `MapIniParser.property`.
-	 * @param ctx the parse tree
-	 */
-	exitProperty?: (ctx: PropertyContext) => void;
-
-	/**
-	 * Enter a parse tree produced by `MapIniParser.tturretProperty`.
-	 * @param ctx the parse tree
-	 */
-	enterTturretProperty?: (ctx: TturretPropertyContext) => void;
-	/**
-	 * Exit a parse tree produced by `MapIniParser.tturretProperty`.
-	 * @param ctx the parse tree
-	 */
-	exitTturretProperty?: (ctx: TturretPropertyContext) => void;
-
-	/**
-	 * Enter a parse tree produced by `MapIniParser.altTurretProperty`.
-	 * @param ctx the parse tree
-	 */
-	enterAltTurretProperty?: (ctx: AltTurretPropertyContext) => void;
-	/**
-	 * Exit a parse tree produced by `MapIniParser.altTurretProperty`.
-	 * @param ctx the parse tree
-	 */
-	exitAltTurretProperty?: (ctx: AltTurretPropertyContext) => void;
+	exitCommandSetClassProperty?: (ctx: CommandSetClassPropertyContext) => void;
 
 	/**
 	 * Enter a parse tree produced by `MapIniParser.end`.
@@ -696,80 +294,344 @@ export interface MapIniListener extends ParseTreeListener {
 	exitEnd?: (ctx: EndContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `MapIniParser.value`.
+	 * Enter a parse tree produced by `MapIniParser.file`.
 	 * @param ctx the parse tree
 	 */
-	enterValue?: (ctx: ValueContext) => void;
+	enterFile?: (ctx: FileContext) => void;
 	/**
-	 * Exit a parse tree produced by `MapIniParser.value`.
+	 * Exit a parse tree produced by `MapIniParser.file`.
 	 * @param ctx the parse tree
 	 */
-	exitValue?: (ctx: ValueContext) => void;
+	exitFile?: (ctx: FileContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `MapIniParser.ftype`.
+	 * Enter a parse tree produced by `MapIniParser.cb_command_property`.
 	 * @param ctx the parse tree
 	 */
-	enterFtype?: (ctx: FtypeContext) => void;
+	enterCb_command_property?: (ctx: Cb_command_propertyContext) => void;
 	/**
-	 * Exit a parse tree produced by `MapIniParser.ftype`.
+	 * Exit a parse tree produced by `MapIniParser.cb_command_property`.
 	 * @param ctx the parse tree
 	 */
-	exitFtype?: (ctx: FtypeContext) => void;
+	exitCb_command_property?: (ctx: Cb_command_propertyContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `MapIniParser.rgb`.
+	 * Enter a parse tree produced by `MapIniParser.cb_command_value`.
 	 * @param ctx the parse tree
 	 */
-	enterRgb?: (ctx: RgbContext) => void;
+	enterCb_command_value?: (ctx: Cb_command_valueContext) => void;
 	/**
-	 * Exit a parse tree produced by `MapIniParser.rgb`.
+	 * Exit a parse tree produced by `MapIniParser.cb_command_value`.
 	 * @param ctx the parse tree
 	 */
-	exitRgb?: (ctx: RgbContext) => void;
+	exitCb_command_value?: (ctx: Cb_command_valueContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `MapIniParser.procent`.
+	 * Enter a parse tree produced by `MapIniParser.cb_options_property`.
 	 * @param ctx the parse tree
 	 */
-	enterProcent?: (ctx: ProcentContext) => void;
+	enterCb_options_property?: (ctx: Cb_options_propertyContext) => void;
 	/**
-	 * Exit a parse tree produced by `MapIniParser.procent`.
+	 * Exit a parse tree produced by `MapIniParser.cb_options_property`.
 	 * @param ctx the parse tree
 	 */
-	exitProcent?: (ctx: ProcentContext) => void;
+	exitCb_options_property?: (ctx: Cb_options_propertyContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `MapIniParser.intRang`.
+	 * Enter a parse tree produced by `MapIniParser.cb_options_value`.
 	 * @param ctx the parse tree
 	 */
-	enterIntRang?: (ctx: IntRangContext) => void;
+	enterCb_options_value?: (ctx: Cb_options_valueContext) => void;
 	/**
-	 * Exit a parse tree produced by `MapIniParser.intRang`.
+	 * Exit a parse tree produced by `MapIniParser.cb_options_value`.
 	 * @param ctx the parse tree
 	 */
-	exitIntRang?: (ctx: IntRangContext) => void;
+	exitCb_options_value?: (ctx: Cb_options_valueContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `MapIniParser.floatRang`.
+	 * Enter a parse tree produced by `MapIniParser.cb_buttonimage_property`.
 	 * @param ctx the parse tree
 	 */
-	enterFloatRang?: (ctx: FloatRangContext) => void;
+	enterCb_buttonimage_property?: (ctx: Cb_buttonimage_propertyContext) => void;
 	/**
-	 * Exit a parse tree produced by `MapIniParser.floatRang`.
+	 * Exit a parse tree produced by `MapIniParser.cb_buttonimage_property`.
 	 * @param ctx the parse tree
 	 */
-	exitFloatRang?: (ctx: FloatRangContext) => void;
+	exitCb_buttonimage_property?: (ctx: Cb_buttonimage_propertyContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `MapIniParser.quoutedID`.
+	 * Enter a parse tree produced by `MapIniParser.cb_buttonbordertype_property`.
 	 * @param ctx the parse tree
 	 */
-	enterQuoutedID?: (ctx: QuoutedIDContext) => void;
+	enterCb_buttonbordertype_property?: (ctx: Cb_buttonbordertype_propertyContext) => void;
 	/**
-	 * Exit a parse tree produced by `MapIniParser.quoutedID`.
+	 * Exit a parse tree produced by `MapIniParser.cb_buttonbordertype_property`.
 	 * @param ctx the parse tree
 	 */
-	exitQuoutedID?: (ctx: QuoutedIDContext) => void;
+	exitCb_buttonbordertype_property?: (ctx: Cb_buttonbordertype_propertyContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `MapIniParser.cb_buttonbordertype_value`.
+	 * @param ctx the parse tree
+	 */
+	enterCb_buttonbordertype_value?: (ctx: Cb_buttonbordertype_valueContext) => void;
+	/**
+	 * Exit a parse tree produced by `MapIniParser.cb_buttonbordertype_value`.
+	 * @param ctx the parse tree
+	 */
+	exitCb_buttonbordertype_value?: (ctx: Cb_buttonbordertype_valueContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `MapIniParser.cb_textlabel_property`.
+	 * @param ctx the parse tree
+	 */
+	enterCb_textlabel_property?: (ctx: Cb_textlabel_propertyContext) => void;
+	/**
+	 * Exit a parse tree produced by `MapIniParser.cb_textlabel_property`.
+	 * @param ctx the parse tree
+	 */
+	exitCb_textlabel_property?: (ctx: Cb_textlabel_propertyContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `MapIniParser.cb_descriptionlabel_property`.
+	 * @param ctx the parse tree
+	 */
+	enterCb_descriptionlabel_property?: (ctx: Cb_descriptionlabel_propertyContext) => void;
+	/**
+	 * Exit a parse tree produced by `MapIniParser.cb_descriptionlabel_property`.
+	 * @param ctx the parse tree
+	 */
+	exitCb_descriptionlabel_property?: (ctx: Cb_descriptionlabel_propertyContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `MapIniParser.cb_conflictinglabel_property`.
+	 * @param ctx the parse tree
+	 */
+	enterCb_conflictinglabel_property?: (ctx: Cb_conflictinglabel_propertyContext) => void;
+	/**
+	 * Exit a parse tree produced by `MapIniParser.cb_conflictinglabel_property`.
+	 * @param ctx the parse tree
+	 */
+	exitCb_conflictinglabel_property?: (ctx: Cb_conflictinglabel_propertyContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `MapIniParser.cb_cursorname_propery`.
+	 * @param ctx the parse tree
+	 */
+	enterCb_cursorname_propery?: (ctx: Cb_cursorname_properyContext) => void;
+	/**
+	 * Exit a parse tree produced by `MapIniParser.cb_cursorname_propery`.
+	 * @param ctx the parse tree
+	 */
+	exitCb_cursorname_propery?: (ctx: Cb_cursorname_properyContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `MapIniParser.cb_radius_cursorname_value`.
+	 * @param ctx the parse tree
+	 */
+	enterCb_radius_cursorname_value?: (ctx: Cb_radius_cursorname_valueContext) => void;
+	/**
+	 * Exit a parse tree produced by `MapIniParser.cb_radius_cursorname_value`.
+	 * @param ctx the parse tree
+	 */
+	exitCb_radius_cursorname_value?: (ctx: Cb_radius_cursorname_valueContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `MapIniParser.cb_invalid_cursorname_propery`.
+	 * @param ctx the parse tree
+	 */
+	enterCb_invalid_cursorname_propery?: (ctx: Cb_invalid_cursorname_properyContext) => void;
+	/**
+	 * Exit a parse tree produced by `MapIniParser.cb_invalid_cursorname_propery`.
+	 * @param ctx the parse tree
+	 */
+	exitCb_invalid_cursorname_propery?: (ctx: Cb_invalid_cursorname_properyContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `MapIniParser.cb_unitspecificsound_property`.
+	 * @param ctx the parse tree
+	 */
+	enterCb_unitspecificsound_property?: (ctx: Cb_unitspecificsound_propertyContext) => void;
+	/**
+	 * Exit a parse tree produced by `MapIniParser.cb_unitspecificsound_property`.
+	 * @param ctx the parse tree
+	 */
+	exitCb_unitspecificsound_property?: (ctx: Cb_unitspecificsound_propertyContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `MapIniParser.commandbutton_value`.
+	 * @param ctx the parse tree
+	 */
+	enterCommandbutton_value?: (ctx: Commandbutton_valueContext) => void;
+	/**
+	 * Exit a parse tree produced by `MapIniParser.commandbutton_value`.
+	 * @param ctx the parse tree
+	 */
+	exitCommandbutton_value?: (ctx: Commandbutton_valueContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `MapIniParser.cursorname_value`.
+	 * @param ctx the parse tree
+	 */
+	enterCursorname_value?: (ctx: Cursorname_valueContext) => void;
+	/**
+	 * Exit a parse tree produced by `MapIniParser.cursorname_value`.
+	 * @param ctx the parse tree
+	 */
+	exitCursorname_value?: (ctx: Cursorname_valueContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `MapIniParser.radius_cursorname_value`.
+	 * @param ctx the parse tree
+	 */
+	enterRadius_cursorname_value?: (ctx: Radius_cursorname_valueContext) => void;
+	/**
+	 * Exit a parse tree produced by `MapIniParser.radius_cursorname_value`.
+	 * @param ctx the parse tree
+	 */
+	exitRadius_cursorname_value?: (ctx: Radius_cursorname_valueContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `MapIniParser.invalid_cursorname_value`.
+	 * @param ctx the parse tree
+	 */
+	enterInvalid_cursorname_value?: (ctx: Invalid_cursorname_valueContext) => void;
+	/**
+	 * Exit a parse tree produced by `MapIniParser.invalid_cursorname_value`.
+	 * @param ctx the parse tree
+	 */
+	exitInvalid_cursorname_value?: (ctx: Invalid_cursorname_valueContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `MapIniParser.mappedimage_value`.
+	 * @param ctx the parse tree
+	 */
+	enterMappedimage_value?: (ctx: Mappedimage_valueContext) => void;
+	/**
+	 * Exit a parse tree produced by `MapIniParser.mappedimage_value`.
+	 * @param ctx the parse tree
+	 */
+	exitMappedimage_value?: (ctx: Mappedimage_valueContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `MapIniParser.object_property`.
+	 * @param ctx the parse tree
+	 */
+	enterObject_property?: (ctx: Object_propertyContext) => void;
+	/**
+	 * Exit a parse tree produced by `MapIniParser.object_property`.
+	 * @param ctx the parse tree
+	 */
+	exitObject_property?: (ctx: Object_propertyContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `MapIniParser.object_value`.
+	 * @param ctx the parse tree
+	 */
+	enterObject_value?: (ctx: Object_valueContext) => void;
+	/**
+	 * Exit a parse tree produced by `MapIniParser.object_value`.
+	 * @param ctx the parse tree
+	 */
+	exitObject_value?: (ctx: Object_valueContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `MapIniParser.science_property`.
+	 * @param ctx the parse tree
+	 */
+	enterScience_property?: (ctx: Science_propertyContext) => void;
+	/**
+	 * Exit a parse tree produced by `MapIniParser.science_property`.
+	 * @param ctx the parse tree
+	 */
+	exitScience_property?: (ctx: Science_propertyContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `MapIniParser.science_value`.
+	 * @param ctx the parse tree
+	 */
+	enterScience_value?: (ctx: Science_valueContext) => void;
+	/**
+	 * Exit a parse tree produced by `MapIniParser.science_value`.
+	 * @param ctx the parse tree
+	 */
+	exitScience_value?: (ctx: Science_valueContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `MapIniParser.specialpower_property`.
+	 * @param ctx the parse tree
+	 */
+	enterSpecialpower_property?: (ctx: Specialpower_propertyContext) => void;
+	/**
+	 * Exit a parse tree produced by `MapIniParser.specialpower_property`.
+	 * @param ctx the parse tree
+	 */
+	exitSpecialpower_property?: (ctx: Specialpower_propertyContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `MapIniParser.specialpower_value`.
+	 * @param ctx the parse tree
+	 */
+	enterSpecialpower_value?: (ctx: Specialpower_valueContext) => void;
+	/**
+	 * Exit a parse tree produced by `MapIniParser.specialpower_value`.
+	 * @param ctx the parse tree
+	 */
+	exitSpecialpower_value?: (ctx: Specialpower_valueContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `MapIniParser.audioevent_value`.
+	 * @param ctx the parse tree
+	 */
+	enterAudioevent_value?: (ctx: Audioevent_valueContext) => void;
+	/**
+	 * Exit a parse tree produced by `MapIniParser.audioevent_value`.
+	 * @param ctx the parse tree
+	 */
+	exitAudioevent_value?: (ctx: Audioevent_valueContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `MapIniParser.upgrade_property`.
+	 * @param ctx the parse tree
+	 */
+	enterUpgrade_property?: (ctx: Upgrade_propertyContext) => void;
+	/**
+	 * Exit a parse tree produced by `MapIniParser.upgrade_property`.
+	 * @param ctx the parse tree
+	 */
+	exitUpgrade_property?: (ctx: Upgrade_propertyContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `MapIniParser.upgrade_value`.
+	 * @param ctx the parse tree
+	 */
+	enterUpgrade_value?: (ctx: Upgrade_valueContext) => void;
+	/**
+	 * Exit a parse tree produced by `MapIniParser.upgrade_value`.
+	 * @param ctx the parse tree
+	 */
+	exitUpgrade_value?: (ctx: Upgrade_valueContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `MapIniParser.weaponslot_property`.
+	 * @param ctx the parse tree
+	 */
+	enterWeaponslot_property?: (ctx: Weaponslot_propertyContext) => void;
+	/**
+	 * Exit a parse tree produced by `MapIniParser.weaponslot_property`.
+	 * @param ctx the parse tree
+	 */
+	exitWeaponslot_property?: (ctx: Weaponslot_propertyContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `MapIniParser.faction`.
+	 * @param ctx the parse tree
+	 */
+	enterFaction?: (ctx: FactionContext) => void;
+	/**
+	 * Exit a parse tree produced by `MapIniParser.faction`.
+	 * @param ctx the parse tree
+	 */
+	exitFaction?: (ctx: FactionContext) => void;
 }
 

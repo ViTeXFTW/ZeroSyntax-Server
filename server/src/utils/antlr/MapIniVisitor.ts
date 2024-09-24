@@ -3,68 +3,58 @@
 
 import { ParseTreeVisitor } from "antlr4ts/tree/ParseTreeVisitor";
 
-import { StringContext } from "./MapIniParser";
-import { FiletypeContext } from "./MapIniParser";
-import { ProcentageContext } from "./MapIniParser";
-import { IdContext } from "./MapIniParser";
-import { IntContext } from "./MapIniParser";
-import { FloatContext } from "./MapIniParser";
-import { BoolContext } from "./MapIniParser";
-import { TurretValueContext } from "./MapIniParser";
-import { AltTurretValueContext } from "./MapIniParser";
 import { ProgramContext } from "./MapIniParser";
 import { ClassesContext } from "./MapIniParser";
-import { ObjectReskinContext } from "./MapIniParser";
-import { ObjectContext } from "./MapIniParser";
-import { ObjectPropertyContext } from "./MapIniParser";
-import { ModuleBlocksContext } from "./MapIniParser";
-import { AddModuleBlockContext } from "./MapIniParser";
-import { AddModulePropertyContext } from "./MapIniParser";
-import { ObjectKindOfPropertyContext } from "./MapIniParser";
-import { ReplaceModuleBlockContext } from "./MapIniParser";
-import { ReplaceModulePropertyContext } from "./MapIniParser";
-import { ModulesContext } from "./MapIniParser";
-import { ObjectBlocksContext } from "./MapIniParser";
-import { ObjectPrerequisitesContext } from "./MapIniParser";
-import { ObjectPrerequisitesobjectPropertyContext } from "./MapIniParser";
-import { ObjectPrerequisitessciencePropetyContext } from "./MapIniParser";
-import { ObjectWeaponSetContext } from "./MapIniParser";
-import { ObjectWeaponSetPropetyContext } from "./MapIniParser";
-import { ObjectArmorSetContext } from "./MapIniParser";
-import { ObjectArmorSetPropetyContext } from "./MapIniParser";
-import { ObjectUnitSpecificSoundsContext } from "./MapIniParser";
-import { ObjectUnitSpecificSoundsPropetyContext } from "./MapIniParser";
-import { ObjectUnitSpecificFXContext } from "./MapIniParser";
-import { ObjectUnitSpecificFXPropetyContext } from "./MapIniParser";
-import { ClientModuleBlockContext } from "./MapIniParser";
-import { BehaviormoduleBlockContext } from "./MapIniParser";
-import { BehaviorDecalsContext } from "./MapIniParser";
-import { BehaviorTurretContext } from "./MapIniParser";
-import { BodyModuleBlockContext } from "./MapIniParser";
-import { DrawModuleBlockContext } from "./MapIniParser";
-import { DrawModulePropertyContext } from "./MapIniParser";
-import { ConditionStateBlocksContext } from "./MapIniParser";
-import { ConditionStateBlockContext } from "./MapIniParser";
-import { DefaultConditionStateBlockContext } from "./MapIniParser";
-import { ConditionStatePropertyContext } from "./MapIniParser";
-import { TransitionKeyPropertyContext } from "./MapIniParser";
-import { TransitionStateBlockContext } from "./MapIniParser";
-import { TransitionStatePropertyContext } from "./MapIniParser";
-import { AliasConditionStateBlockContext } from "./MapIniParser";
-import { IgnoreConditionStateBlockContext } from "./MapIniParser";
-import { RemoveModuleBlockContext } from "./MapIniParser";
-import { TurretPropertyContext } from "./MapIniParser";
-import { PropertyContext } from "./MapIniParser";
-import { TturretPropertyContext } from "./MapIniParser";
-import { AltTurretPropertyContext } from "./MapIniParser";
+import { AiDataClassContext } from "./MapIniParser";
+import { AidataClassProperties_singleContext } from "./MapIniParser";
+import { AidataClassproperties_BlockSkirmishBuildListContext } from "./MapIniParser";
+import { SkirmishBuildListBlockContext } from "./MapIniParser";
+import { SkirmishBuildListBlock_structure_propertiesContext } from "./MapIniParser";
+import { AidataClassProperties_blockSideinfoContext } from "./MapIniParser";
+import { SideinfopropertiesContext } from "./MapIniParser";
+import { Sideinfo_skillset_blocksContext } from "./MapIniParser";
+import { MappedImageClassContext } from "./MapIniParser";
+import { MappedImageClassPropertiesContext } from "./MapIniParser";
+import { Animation2DClassContext } from "./MapIniParser";
+import { Animation2DClassPropertiesContext } from "./MapIniParser";
+import { ArmorClassContext } from "./MapIniParser";
+import { ArmorClassPropertiesContext } from "./MapIniParser";
+import { CommandButtonClassContext } from "./MapIniParser";
+import { CommandButtonClassPropertiesContext } from "./MapIniParser";
+import { CommandSetClassContext } from "./MapIniParser";
+import { CommandSetClassPropertyContext } from "./MapIniParser";
 import { EndContext } from "./MapIniParser";
-import { ValueContext } from "./MapIniParser";
-import { FtypeContext } from "./MapIniParser";
-import { RgbContext } from "./MapIniParser";
-import { ProcentContext } from "./MapIniParser";
-import { IntRangContext } from "./MapIniParser";
-import { FloatRangContext } from "./MapIniParser";
-import { QuoutedIDContext } from "./MapIniParser";
+import { FileContext } from "./MapIniParser";
+import { Cb_command_propertyContext } from "./MapIniParser";
+import { Cb_command_valueContext } from "./MapIniParser";
+import { Cb_options_propertyContext } from "./MapIniParser";
+import { Cb_options_valueContext } from "./MapIniParser";
+import { Cb_buttonimage_propertyContext } from "./MapIniParser";
+import { Cb_buttonbordertype_propertyContext } from "./MapIniParser";
+import { Cb_buttonbordertype_valueContext } from "./MapIniParser";
+import { Cb_textlabel_propertyContext } from "./MapIniParser";
+import { Cb_descriptionlabel_propertyContext } from "./MapIniParser";
+import { Cb_conflictinglabel_propertyContext } from "./MapIniParser";
+import { Cb_cursorname_properyContext } from "./MapIniParser";
+import { Cb_radius_cursorname_valueContext } from "./MapIniParser";
+import { Cb_invalid_cursorname_properyContext } from "./MapIniParser";
+import { Cb_unitspecificsound_propertyContext } from "./MapIniParser";
+import { Commandbutton_valueContext } from "./MapIniParser";
+import { Cursorname_valueContext } from "./MapIniParser";
+import { Radius_cursorname_valueContext } from "./MapIniParser";
+import { Invalid_cursorname_valueContext } from "./MapIniParser";
+import { Mappedimage_valueContext } from "./MapIniParser";
+import { Object_propertyContext } from "./MapIniParser";
+import { Object_valueContext } from "./MapIniParser";
+import { Science_propertyContext } from "./MapIniParser";
+import { Science_valueContext } from "./MapIniParser";
+import { Specialpower_propertyContext } from "./MapIniParser";
+import { Specialpower_valueContext } from "./MapIniParser";
+import { Audioevent_valueContext } from "./MapIniParser";
+import { Upgrade_propertyContext } from "./MapIniParser";
+import { Upgrade_valueContext } from "./MapIniParser";
+import { Weaponslot_propertyContext } from "./MapIniParser";
+import { FactionContext } from "./MapIniParser";
 
 
 /**
@@ -75,78 +65,6 @@ import { QuoutedIDContext } from "./MapIniParser";
  * operations with no return type.
  */
 export interface MapIniVisitor<Result> extends ParseTreeVisitor<Result> {
-	/**
-	 * Visit a parse tree produced by the `string`
-	 * labeled alternative in `MapIniParser.value`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitString?: (ctx: StringContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by the `filetype`
-	 * labeled alternative in `MapIniParser.value`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitFiletype?: (ctx: FiletypeContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by the `procentage`
-	 * labeled alternative in `MapIniParser.value`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitProcentage?: (ctx: ProcentageContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by the `id`
-	 * labeled alternative in `MapIniParser.value`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitId?: (ctx: IdContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by the `int`
-	 * labeled alternative in `MapIniParser.value`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitInt?: (ctx: IntContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by the `float`
-	 * labeled alternative in `MapIniParser.value`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitFloat?: (ctx: FloatContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by the `bool`
-	 * labeled alternative in `MapIniParser.value`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitBool?: (ctx: BoolContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by the `turretValue`
-	 * labeled alternative in `MapIniParser.value`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitTurretValue?: (ctx: TurretValueContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by the `altTurretValue`
-	 * labeled alternative in `MapIniParser.value`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitAltTurretValue?: (ctx: AltTurretValueContext) => Result;
-
 	/**
 	 * Visit a parse tree produced by `MapIniParser.program`.
 	 * @param ctx the parse tree
@@ -162,305 +80,130 @@ export interface MapIniVisitor<Result> extends ParseTreeVisitor<Result> {
 	visitClasses?: (ctx: ClassesContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `MapIniParser.objectReskin`.
+	 * Visit a parse tree produced by `MapIniParser.aiDataClass`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitObjectReskin?: (ctx: ObjectReskinContext) => Result;
+	visitAiDataClass?: (ctx: AiDataClassContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `MapIniParser.object`.
+	 * Visit a parse tree produced by `MapIniParser.aidataClassProperties_single`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitObject?: (ctx: ObjectContext) => Result;
+	visitAidataClassProperties_single?: (ctx: AidataClassProperties_singleContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `MapIniParser.objectProperty`.
+	 * Visit a parse tree produced by `MapIniParser.aidataClassproperties_BlockSkirmishBuildList`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitObjectProperty?: (ctx: ObjectPropertyContext) => Result;
+	visitAidataClassproperties_BlockSkirmishBuildList?: (ctx: AidataClassproperties_BlockSkirmishBuildListContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `MapIniParser.moduleBlocks`.
+	 * Visit a parse tree produced by `MapIniParser.skirmishBuildListBlock`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitModuleBlocks?: (ctx: ModuleBlocksContext) => Result;
+	visitSkirmishBuildListBlock?: (ctx: SkirmishBuildListBlockContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `MapIniParser.addModuleBlock`.
+	 * Visit a parse tree produced by `MapIniParser.skirmishBuildListBlock_structure_properties`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitAddModuleBlock?: (ctx: AddModuleBlockContext) => Result;
+	visitSkirmishBuildListBlock_structure_properties?: (ctx: SkirmishBuildListBlock_structure_propertiesContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `MapIniParser.addModuleProperty`.
+	 * Visit a parse tree produced by `MapIniParser.aidataClassProperties_blockSideinfo`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitAddModuleProperty?: (ctx: AddModulePropertyContext) => Result;
+	visitAidataClassProperties_blockSideinfo?: (ctx: AidataClassProperties_blockSideinfoContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `MapIniParser.objectKindOfProperty`.
+	 * Visit a parse tree produced by `MapIniParser.sideinfoproperties`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitObjectKindOfProperty?: (ctx: ObjectKindOfPropertyContext) => Result;
+	visitSideinfoproperties?: (ctx: SideinfopropertiesContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `MapIniParser.replaceModuleBlock`.
+	 * Visit a parse tree produced by `MapIniParser.sideinfo_skillset_blocks`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitReplaceModuleBlock?: (ctx: ReplaceModuleBlockContext) => Result;
+	visitSideinfo_skillset_blocks?: (ctx: Sideinfo_skillset_blocksContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `MapIniParser.replaceModuleProperty`.
+	 * Visit a parse tree produced by `MapIniParser.mappedImageClass`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitReplaceModuleProperty?: (ctx: ReplaceModulePropertyContext) => Result;
+	visitMappedImageClass?: (ctx: MappedImageClassContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `MapIniParser.modules`.
+	 * Visit a parse tree produced by `MapIniParser.mappedImageClassProperties`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitModules?: (ctx: ModulesContext) => Result;
+	visitMappedImageClassProperties?: (ctx: MappedImageClassPropertiesContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `MapIniParser.objectBlocks`.
+	 * Visit a parse tree produced by `MapIniParser.animation2DClass`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitObjectBlocks?: (ctx: ObjectBlocksContext) => Result;
+	visitAnimation2DClass?: (ctx: Animation2DClassContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `MapIniParser.objectPrerequisites`.
+	 * Visit a parse tree produced by `MapIniParser.animation2DClassProperties`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitObjectPrerequisites?: (ctx: ObjectPrerequisitesContext) => Result;
+	visitAnimation2DClassProperties?: (ctx: Animation2DClassPropertiesContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `MapIniParser.objectPrerequisitesobjectProperty`.
+	 * Visit a parse tree produced by `MapIniParser.armorClass`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitObjectPrerequisitesobjectProperty?: (ctx: ObjectPrerequisitesobjectPropertyContext) => Result;
+	visitArmorClass?: (ctx: ArmorClassContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `MapIniParser.objectPrerequisitessciencePropety`.
+	 * Visit a parse tree produced by `MapIniParser.armorClassProperties`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitObjectPrerequisitessciencePropety?: (ctx: ObjectPrerequisitessciencePropetyContext) => Result;
+	visitArmorClassProperties?: (ctx: ArmorClassPropertiesContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `MapIniParser.objectWeaponSet`.
+	 * Visit a parse tree produced by `MapIniParser.commandButtonClass`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitObjectWeaponSet?: (ctx: ObjectWeaponSetContext) => Result;
+	visitCommandButtonClass?: (ctx: CommandButtonClassContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `MapIniParser.objectWeaponSetPropety`.
+	 * Visit a parse tree produced by `MapIniParser.commandButtonClassProperties`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitObjectWeaponSetPropety?: (ctx: ObjectWeaponSetPropetyContext) => Result;
+	visitCommandButtonClassProperties?: (ctx: CommandButtonClassPropertiesContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `MapIniParser.objectArmorSet`.
+	 * Visit a parse tree produced by `MapIniParser.commandSetClass`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitObjectArmorSet?: (ctx: ObjectArmorSetContext) => Result;
+	visitCommandSetClass?: (ctx: CommandSetClassContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `MapIniParser.objectArmorSetPropety`.
+	 * Visit a parse tree produced by `MapIniParser.commandSetClassProperty`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitObjectArmorSetPropety?: (ctx: ObjectArmorSetPropetyContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by `MapIniParser.objectUnitSpecificSounds`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitObjectUnitSpecificSounds?: (ctx: ObjectUnitSpecificSoundsContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by `MapIniParser.objectUnitSpecificSoundsPropety`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitObjectUnitSpecificSoundsPropety?: (ctx: ObjectUnitSpecificSoundsPropetyContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by `MapIniParser.objectUnitSpecificFX`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitObjectUnitSpecificFX?: (ctx: ObjectUnitSpecificFXContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by `MapIniParser.objectUnitSpecificFXPropety`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitObjectUnitSpecificFXPropety?: (ctx: ObjectUnitSpecificFXPropetyContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by `MapIniParser.clientModuleBlock`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitClientModuleBlock?: (ctx: ClientModuleBlockContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by `MapIniParser.behaviormoduleBlock`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitBehaviormoduleBlock?: (ctx: BehaviormoduleBlockContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by `MapIniParser.behaviorDecals`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitBehaviorDecals?: (ctx: BehaviorDecalsContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by `MapIniParser.behaviorTurret`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitBehaviorTurret?: (ctx: BehaviorTurretContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by `MapIniParser.bodyModuleBlock`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitBodyModuleBlock?: (ctx: BodyModuleBlockContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by `MapIniParser.drawModuleBlock`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitDrawModuleBlock?: (ctx: DrawModuleBlockContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by `MapIniParser.drawModuleProperty`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitDrawModuleProperty?: (ctx: DrawModulePropertyContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by `MapIniParser.conditionStateBlocks`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitConditionStateBlocks?: (ctx: ConditionStateBlocksContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by `MapIniParser.conditionStateBlock`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitConditionStateBlock?: (ctx: ConditionStateBlockContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by `MapIniParser.defaultConditionStateBlock`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitDefaultConditionStateBlock?: (ctx: DefaultConditionStateBlockContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by `MapIniParser.conditionStateProperty`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitConditionStateProperty?: (ctx: ConditionStatePropertyContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by `MapIniParser.transitionKeyProperty`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitTransitionKeyProperty?: (ctx: TransitionKeyPropertyContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by `MapIniParser.transitionStateBlock`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitTransitionStateBlock?: (ctx: TransitionStateBlockContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by `MapIniParser.transitionStateProperty`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitTransitionStateProperty?: (ctx: TransitionStatePropertyContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by `MapIniParser.aliasConditionStateBlock`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitAliasConditionStateBlock?: (ctx: AliasConditionStateBlockContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by `MapIniParser.ignoreConditionStateBlock`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitIgnoreConditionStateBlock?: (ctx: IgnoreConditionStateBlockContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by `MapIniParser.removeModuleBlock`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitRemoveModuleBlock?: (ctx: RemoveModuleBlockContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by `MapIniParser.turretProperty`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitTurretProperty?: (ctx: TurretPropertyContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by `MapIniParser.property`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitProperty?: (ctx: PropertyContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by `MapIniParser.tturretProperty`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitTturretProperty?: (ctx: TturretPropertyContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by `MapIniParser.altTurretProperty`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitAltTurretProperty?: (ctx: AltTurretPropertyContext) => Result;
+	visitCommandSetClassProperty?: (ctx: CommandSetClassPropertyContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `MapIniParser.end`.
@@ -470,52 +213,220 @@ export interface MapIniVisitor<Result> extends ParseTreeVisitor<Result> {
 	visitEnd?: (ctx: EndContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `MapIniParser.value`.
+	 * Visit a parse tree produced by `MapIniParser.file`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitValue?: (ctx: ValueContext) => Result;
+	visitFile?: (ctx: FileContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `MapIniParser.ftype`.
+	 * Visit a parse tree produced by `MapIniParser.cb_command_property`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitFtype?: (ctx: FtypeContext) => Result;
+	visitCb_command_property?: (ctx: Cb_command_propertyContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `MapIniParser.rgb`.
+	 * Visit a parse tree produced by `MapIniParser.cb_command_value`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitRgb?: (ctx: RgbContext) => Result;
+	visitCb_command_value?: (ctx: Cb_command_valueContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `MapIniParser.procent`.
+	 * Visit a parse tree produced by `MapIniParser.cb_options_property`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitProcent?: (ctx: ProcentContext) => Result;
+	visitCb_options_property?: (ctx: Cb_options_propertyContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `MapIniParser.intRang`.
+	 * Visit a parse tree produced by `MapIniParser.cb_options_value`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitIntRang?: (ctx: IntRangContext) => Result;
+	visitCb_options_value?: (ctx: Cb_options_valueContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `MapIniParser.floatRang`.
+	 * Visit a parse tree produced by `MapIniParser.cb_buttonimage_property`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitFloatRang?: (ctx: FloatRangContext) => Result;
+	visitCb_buttonimage_property?: (ctx: Cb_buttonimage_propertyContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `MapIniParser.quoutedID`.
+	 * Visit a parse tree produced by `MapIniParser.cb_buttonbordertype_property`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitQuoutedID?: (ctx: QuoutedIDContext) => Result;
+	visitCb_buttonbordertype_property?: (ctx: Cb_buttonbordertype_propertyContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `MapIniParser.cb_buttonbordertype_value`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitCb_buttonbordertype_value?: (ctx: Cb_buttonbordertype_valueContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `MapIniParser.cb_textlabel_property`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitCb_textlabel_property?: (ctx: Cb_textlabel_propertyContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `MapIniParser.cb_descriptionlabel_property`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitCb_descriptionlabel_property?: (ctx: Cb_descriptionlabel_propertyContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `MapIniParser.cb_conflictinglabel_property`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitCb_conflictinglabel_property?: (ctx: Cb_conflictinglabel_propertyContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `MapIniParser.cb_cursorname_propery`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitCb_cursorname_propery?: (ctx: Cb_cursorname_properyContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `MapIniParser.cb_radius_cursorname_value`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitCb_radius_cursorname_value?: (ctx: Cb_radius_cursorname_valueContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `MapIniParser.cb_invalid_cursorname_propery`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitCb_invalid_cursorname_propery?: (ctx: Cb_invalid_cursorname_properyContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `MapIniParser.cb_unitspecificsound_property`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitCb_unitspecificsound_property?: (ctx: Cb_unitspecificsound_propertyContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `MapIniParser.commandbutton_value`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitCommandbutton_value?: (ctx: Commandbutton_valueContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `MapIniParser.cursorname_value`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitCursorname_value?: (ctx: Cursorname_valueContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `MapIniParser.radius_cursorname_value`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitRadius_cursorname_value?: (ctx: Radius_cursorname_valueContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `MapIniParser.invalid_cursorname_value`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitInvalid_cursorname_value?: (ctx: Invalid_cursorname_valueContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `MapIniParser.mappedimage_value`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitMappedimage_value?: (ctx: Mappedimage_valueContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `MapIniParser.object_property`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitObject_property?: (ctx: Object_propertyContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `MapIniParser.object_value`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitObject_value?: (ctx: Object_valueContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `MapIniParser.science_property`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitScience_property?: (ctx: Science_propertyContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `MapIniParser.science_value`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitScience_value?: (ctx: Science_valueContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `MapIniParser.specialpower_property`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitSpecialpower_property?: (ctx: Specialpower_propertyContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `MapIniParser.specialpower_value`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitSpecialpower_value?: (ctx: Specialpower_valueContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `MapIniParser.audioevent_value`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitAudioevent_value?: (ctx: Audioevent_valueContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `MapIniParser.upgrade_property`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitUpgrade_property?: (ctx: Upgrade_propertyContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `MapIniParser.upgrade_value`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitUpgrade_value?: (ctx: Upgrade_valueContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `MapIniParser.weaponslot_property`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitWeaponslot_property?: (ctx: Weaponslot_propertyContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `MapIniParser.faction`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitFaction?: (ctx: FactionContext) => Result;
 }
 

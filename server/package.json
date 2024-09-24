@@ -39,6 +39,7 @@
 	},
 	"homepage": "https://github.com/Microsoft/vscode-extension-samples#readme",
 	"dependencies": {
+		"bintrees": "^1.0.2",
 		"jsonc-parser": "^3.3.1"
 	}
 }
