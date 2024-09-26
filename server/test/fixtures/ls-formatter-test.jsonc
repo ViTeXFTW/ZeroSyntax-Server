@@ -1,0 +1,12 @@
+{
+	"tests": [
+		{
+			"contentPath": "formatter/Object.ini",
+			"contentPathResolved": "formatter/ObjectResolved.ini"
+		}//,
+		// {
+		// 	"contentPath": "formatter/ObjectAddModule.ini",
+		// 	"contentPathResolved": "formatter/ObjectAddModuleResolved.ini"
+		// }
+	]
+}

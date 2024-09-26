@@ -1,0 +1,31 @@
+{
+	"tests": [
+		{
+			// Simple Object definition - No Diagnostics
+			"contentPath": "object/SimpleObject.ini",
+			"expectedDiagnostics": false
+		},
+		{
+			// Simple Object definition - No Diagnostics
+			"contentPath": "object/SimpleObjectError.ini",
+			"expectedDiagnostics": true
+		},
+		{
+			"contentPath":"object/SimpleAddModule.ini",
+			"expectedDiagnostics": false
+		},
+		{
+			"contentPath":"object/SimpleAddModuleError.ini",
+			"expectedDiagnostics": true
+		},
+		{
+			"contentPath":"object/SimpleDrawModule.ini",
+			"expectedDiagnostics": false
+		},
+		{
+			"contentPath":"object/SimpleDrawModuleError.ini",
+			"expectedDiagnostics": true
+		}
+	]
+	
+}

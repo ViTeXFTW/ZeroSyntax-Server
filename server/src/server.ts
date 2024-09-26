@@ -5,8 +5,6 @@
 import {
 	createConnection,
 	TextDocuments,
-	Diagnostic,
-	DiagnosticSeverity,
 	ProposedFeatures,
 	InitializeParams,
 	DidChangeConfigurationNotification,
@@ -14,26 +12,67 @@ import {
 	CompletionItemKind,
 	TextDocumentPositionParams,
 	TextDocumentSyncKind,
-	InitializeResult
-} from 'vscode-languageserver/node';
+	InitializeResult,
+	DidChangeConfigurationParams,
+	DocumentFormattingRequest,
+	DefinitionParams,
+	Definition,
+	HoverParams,
+	Hover,
+	SemanticTokensParams,
+	SemanticTokens,
+	DidOpenTextDocumentParams,
+	SemanticTokensBuilder,
+	TextDocumentChangeEvent,
+	DidOpenTextDocumentNotification,
+	DidChangeTextDocumentParams,
+	Diagnostic,
+	DiagnosticSeverity,
+	NotificationHandler,
+	TextDocumentContentChangeEvent,
+	DidCloseTextDocumentParams
+} from 'vscode-languageserver/node'
 
 import {
-	TextDocument
+	TextDocument,
 } from 'vscode-languageserver-textdocument';
+import {
+	TreeListener
+} from './AntlrListener';
+
+import { formatDocument } from './utils/formatter';
+import { SymbolTable } from './utils/symbols/SymbolTable';
+import { computeSymbolTable } from './utils/symbols/SymbolVisitor';
+import { computeDiagnostics } from './utils/diagnosticsVisitor';
+import { findDefinition } from './utils/definitions';
+import { getHoverInformation } from './utils/hover';
+import { tokenModifiers, tokenTypes } from './utils/tokenTypes'
+import { getSemanticTokens } from './utils/semanticTokens';
 
 // Create a connection for the server, using Node's IPC as a transport.
 // Also include all preview / proposed LSP features.
 const connection = createConnection(ProposedFeatures.all);
 
 // Create a simple text document manager.
-const documents: TextDocuments<TextDocument> = new TextDocuments(TextDocument);
+// const documents: TextDocuments<TextDocument> = new TextDocuments(TextDocument);
+
+// Timer used to delay parsing
+let parseTimer: NodeJS.Timeout | null = null;
+const parseDelay = 1000;
 
 let hasConfigurationCapability = false;
 let hasWorkspaceFolderCapability = false;
 let hasDiagnosticRelatedInformationCapability = false;
 
+const documents: TextDocuments<TextDocument> = new TextDocuments(TextDocument);
+
+let forceAddModule: boolean = true
+
+let symbolTable: Map<string, SymbolTable> = new Map<string, SymbolTable>();
+
 connection.onInitialize((params: InitializeParams) => {
 	const capabilities = params.capabilities;
+	const options = params.initializationOptions
 
 	// Does the client support the `workspace/configuration` request?
 	// If not, we fall back using global settings.
@@ -51,11 +90,23 @@ connection.onInitialize((params: InitializeParams) => {
 
 	const result: InitializeResult = {
 		capabilities: {
-			textDocumentSync: TextDocumentSyncKind.Incremental,
+			textDocumentSync: TextDocumentSyncKind.Full,
 			// Tell the client that this server supports code completion.
-			completionProvider: {
-				resolveProvider: true
-			}
+			// definitionProvider: false, //true
+			// hoverProvider: false, //true
+			// completionProvider: {
+			// 	resolveProvider: false //true
+			// },
+			// semanticTokensProvider: {
+			// 	legend: {
+			// 		tokenTypes,
+			// 		tokenModifiers
+			// 	},
+			// 	range: true,
+			// 	full: {
+			// 		delta: false
+			// 	}
+			// }
 		}
 	};
 	if (hasWorkspaceFolderCapability) {
@@ -69,173 +120,151 @@ connection.onInitialize((params: InitializeParams) => {
 });
 
 connection.onInitialized(() => {
-	if (hasConfigurationCapability) {
-		// Register for all configuration changes.
-		connection.client.register(DidChangeConfigurationNotification.type, undefined);
-	}
 	if (hasWorkspaceFolderCapability) {
 		connection.workspace.onDidChangeWorkspaceFolders(_event => {
-			connection.console.log('Workspace folder change event received.');
+			console.log('Workspace folder change event received.');
+
+			// Rerun symbol table
 		});
 	}
-});
 
-// The example settings
-interface ExampleSettings {
-	maxNumberOfProblems: number;
-}
+	connection.client.register(DocumentFormattingRequest.type)
 
-// The global settings, used when the `workspace/configuration` request is not supported by the client.
-// Please note that this is not the case when using this server with the client provided in this example
-// but could happen with other clients.
-const defaultSettings: ExampleSettings = { maxNumberOfProblems: 1000 };
-let globalSettings: ExampleSettings = defaultSettings;
-
-// Cache the settings of all open documents
-const documentSettings: Map<string, Thenable<ExampleSettings>> = new Map();
-
-connection.onDidChangeConfiguration(change => {
-	if (hasConfigurationCapability) {
-		// Reset all cached document settings
-		documentSettings.clear();
-	} else {
-		globalSettings = <ExampleSettings>(
-			(change.settings.languageServerExample || defaultSettings)
-		);
-	}
-
-	// Revalidate all open text documents
-	documents.all().forEach(validateTextDocument);
-});
-
-function getDocumentSettings(resource: string): Thenable<ExampleSettings> {
-	if (!hasConfigurationCapability) {
-		return Promise.resolve(globalSettings);
-	}
-	let result = documentSettings.get(resource);
-	if (!result) {
-		result = connection.workspace.getConfiguration({
-			scopeUri: resource,
-			section: 'languageServerExample'
-		});
-		documentSettings.set(resource, result);
-	}
-	return result;
-}
-
-// Only keep settings for open documents
-documents.onDidClose(e => {
-	documentSettings.delete(e.document.uri);
-});
-
-// The content of a text document has changed. This event is emitted
-// when the text document first opened or when its content has changed.
-documents.onDidChangeContent(async change => {
-	let textDocument = change.document;
-	// In this simple example we get the settings for every validate run.
-	let settings = await getDocumentSettings(textDocument.uri);
-
-	// The validator creates diagnostics for all uppercase words length 2 and more
-	let text = textDocument.getText();
-
-	let problems = 0;
-	let diagnostics: Diagnostic[] = [];
-
-
-
-	// diagnostics.push(diagnostic);
-
-	// Send the computed diagnostics to VS Code.
-	connection.sendDiagnostics({ uri: textDocument.uri, diagnostics });
-});
-
-async function validateTextDocument(textDocument: TextDocument): Promise<void> {
-	// In this simple example we get the settings for every validate run.
-	const settings = await getDocumentSettings(textDocument.uri);
-
-	// The validator creates diagnostics for all uppercase words length 2 and more
-	const text = textDocument.getText();
-	const pattern = /\b[A-Z]{2,}\b/g;
-	let m: RegExpExecArray | null;
-
-	let problems = 0;
-	const diagnostics: Diagnostic[] = [];
-	while ((m = pattern.exec(text)) && problems < settings.maxNumberOfProblems) {
-		problems++;
-		const diagnostic: Diagnostic = {
-			severity: DiagnosticSeverity.Warning,
-			range: {
-				start: textDocument.positionAt(m.index),
-				end: textDocument.positionAt(m.index + m[0].length)
-			},
-			message: `${m[0]} is all uppercase.`,
-			source: 'ex'
-		};
-		if (hasDiagnosticRelatedInformationCapability) {
-			diagnostic.relatedInformation = [
-				{
-					location: {
-						uri: textDocument.uri,
-						range: Object.assign({}, diagnostic.range)
-					},
-					message: 'Spelling matters'
-				},
-				{
-					location: {
-						uri: textDocument.uri,
-						range: Object.assign({}, diagnostic.range)
-					},
-					message: 'Particularly for names'
-				}
-			];
+	connection.onDocumentFormatting((_edits) => {
+		const document = documents.get(_edits.textDocument.uri)
+		if (!document) {
+			console.log(`Document not found.`)
+			return null
 		}
-		diagnostics.push(diagnostic);
+
+		return formatDocument(document, _edits.options.tabSize)
+	})
+
+	connection.client.register(DidChangeConfigurationNotification.type)
+
+	if (hasConfigurationCapability) {
+		connection.onDidChangeConfiguration(async (change: DidChangeConfigurationParams) => {
+			const settings = await connection.workspace.getConfiguration('ZeroSyntax')
+
+			if (settings.forceAddModule !== null) {
+				forceAddModule = settings.forceAddModule
+				console.log(`Updated forceAddmodule to: ${forceAddModule}`)
+			} else {
+				// If setting is not null set forceAddmoule to setting else default to true
+				change.settings.forceAddModule !== null ? forceAddModule = change.settings.forceAddModule : forceAddModule = true
+			}
+		})
+	}
+});
+
+// connection.onDidOpenTextDocument((params: DidOpenTextDocumentParams) => {
+// 	const document = params.textDocument.text
+// 	documents.set(params.textDocument.uri, params.textDocument.text)
+// })
+
+// connection.onDidChangeTextDocument((params: DidChangeTextDocumentParams) => {
+	
+// 	console.log('Content Change!')
+// 	const changes: TextDocumentContentChangeEvent[] = params.contentChanges
+
+// 	// changes.forEach((change: TextDocumentContentChangeEvent) => {
+// 	// 	if(TextDocumentContentChangeEvent.isIncremental(change)) {
+// 	// 	}
+// 	// })
+
+// 	changes.forEach((change: TextDocumentContentChangeEvent) => {
+// 		if(TextDocumentContentChangeEvent.isFull(change)) {
+// 			computeDiagnostics(documents.get(params.textDocument.uri)!)
+// 		}
+// 	})
+
+// })
+
+// connection.onDidCloseTextDocument((params: DidCloseTextDocumentParams) => {
+// 	console.log('Closed document')
+// 	documents.delete(params.textDocument.uri)
+// })
+
+connection.onDidOpenTextDocument(async (params: DidOpenTextDocumentParams) => {
+	const textDocument = documents.get(params.textDocument.uri)
+	symbolTable.set(textDocument!.uri, await computeSymbolTable(textDocument!))
+});
+
+connection.onHover((params: HoverParams): Hover | null => {
+	return getHoverInformation(params, documents, symbolTable.get(params.textDocument.uri)!)
+});
+
+connection.onDefinition((params: DefinitionParams): Definition | null => {
+	return findDefinition(params, documents, symbolTable.get(params.textDocument.uri)!)
+});
+
+documents.onDidChangeContent(async (change) => {
+	if(parseTimer) {
+		clearTimeout(parseTimer)
 	}
 
-	// Send the computed diagnostics to VSCode.
-	connection.sendDiagnostics({ uri: textDocument.uri, diagnostics });
-}
+	parseTimer = setTimeout(async () => {
+
+		/**
+		 * Handles updating SymbolTables for a document
+		 * if that document has been changed.
+		 */
+		if(!symbolTable.has(change.document.uri)) {
+			console.log(`SymbolTable doesn't exists`)
+			let table = await computeSymbolTable(change.document) 						// Compute Symbols from document, if table hasn't been created.
+			table.setVersion(change.document.version)									// Store document version for table.
+			symbolTable.set(change.document.uri, table)									// Update SymboTable Map
+			console.log(`Added SymbolTable to map with key: ${change.document.uri}`)
+		} else {
+			console.log(`SymbolTable exists`)
+			if(symbolTable.get(change.document.uri)?.getVersion() !== change.document.version) {
+				console.log(`Document version is wrong. Recomputing SymbolTable`)
+				symbolTable.delete(change.document.uri)
+				symbolTable.set(change.document.uri, await computeSymbolTable(change.document))
+			}
+		}
+
+		console.log(`Computing diagnostics...`)
+		const diagnostics = await computeDiagnostics(change.document)
+		connection.sendDiagnostics({uri: change.document.uri, diagnostics})
+		console.log(`Diagnostics sent!`)
+	}, parseDelay)
+});
+
+connection.onRequest("textDocument/semanticTokens/full", async (params: SemanticTokensParams): Promise<SemanticTokens> => {
+	// let temp = new SemanticTokensBuilder()
+	// return temp.build()
+
+	let uri = params.textDocument.uri;
+	if (!symbolTable.has(uri)) {
+		let document = documents.get(uri);
+		if (document) {
+			let table = await computeSymbolTable(document);
+			symbolTable.set(uri, table);
+		}
+	}
+	return await getSemanticTokens(documents, params, symbolTable.get(uri)!);
+});
+
+connection.onRequest("textDocument/semanticTokens/range", async (params: SemanticTokensParams): Promise<SemanticTokens> => {
+	// let temp = new SemanticTokensBuilder()
+	// return temp.build()
+
+	let uri = params.textDocument.uri;
+	if (!symbolTable.has(uri)) {
+		let document = documents.get(uri);
+		if (document) {
+			let table = await computeSymbolTable(document);
+			symbolTable.set(uri, table);
+		}
+	}
+	return await getSemanticTokens(documents, params, symbolTable.get(uri)!);
+});
 
 connection.onDidChangeWatchedFiles(_change => {
 	// Monitored files have change in VSCode
-	connection.console.log('We received a file change event');
+	console.log('We received a file change event');
 });
-
-// This handler provides the initial list of the completion items.
-connection.onCompletion(
-	(_textDocumentPosition: TextDocumentPositionParams): CompletionItem[] => {
-		// The pass parameter contains the position of the text document in
-		// which code complete got requested. For the example we ignore this
-		// info and always provide the same completion items.
-		return [
-			{
-				label: 'ObjectCreationList',
-				kind: CompletionItemKind.Text,
-				data: 1
-			},
-			{
-				label: 'W3DModelDraw',
-				kind: CompletionItemKind.Text,
-				data: 2
-			},
-		];
-	}
-);
-
-// This handler resolves additional information for the item selected in
-// the completion list.
-connection.onCompletionResolve(
-	(item: CompletionItem): CompletionItem => {
-		if (item.data === 1) {
-			item.detail = 'TypeScript details';
-			item.documentation = 'TypeScript documentation';
-		} else if (item.data === 2) {
-			item.detail = 'JavaScript details';
-			item.documentation = 'JavaScript documentation';
-		}
-		return item;
-	}
-);
 
 // Make the text document manager listen on the connection
 // for open, change and close text document events
@@ -243,3 +272,4 @@ documents.listen(connection);
 
 // Listen on the connection
 connection.listen();
+

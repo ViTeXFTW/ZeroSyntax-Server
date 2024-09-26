@@ -1,7 +1,7 @@
 {
-	"name": "ZS-Server",
-	"displayName": "ZeroSyntax-Highlight",
-	"description": "Syntax highlighting for Zero Hour map.ini",
+	"name": "zs-server",
+	"displayName": "ZeroSyntax-Server",
+	"description": "Language server for Generals Zero Hour INI files",
 	"icon": "./images/icon.png",
 	"version": "0.1.0",
 	"publisher": "ViTeXFTW",
@@ -17,11 +17,22 @@
 	"engines": {
 		"vscode": "^1.85.0"
 	},
-	"dependencies": {
-		"vscode-languageclient": "^8.1.0"
+	"scripts": {
+		"compile-test": "tsc -p tsconfig.test.json"
 	},
 	"devDependencies": {
-		"@types/vscode": "^1.75.1",
-		"@vscode/test-electron": "^2.2.3"
+		"@types/node": "^22.5.4",
+		"@vscode/test-cli": "^0.0.10",
+		"@vscode/test-electron": "^2.4.1",
+		"chai": "^5.1.1",
+		"mocha": "^10.7.3",
+		"typescript": "^5.5.4",
+		"vscode": "^1.1.37",
+		"vscode-test": "^1.6.1"
+	},
+	"dependencies": {
+		"glob": "^11.0.0",
+		"vscode-languageclient": "^9.0.1",
+		"vscode-languageserver-textdocument": "^1.0.12"
 	}
 }
