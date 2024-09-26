@@ -3,7 +3,6 @@ import { MapIniListener } from './utils/antlr/MapIniListener';
 import { ANTLRErrorListener, RecognitionException, Recognizer, Token } from 'antlr4ts';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { Stack } from 'stack-typescript'
-import { AddModuleBlockContext, AliasConditionStateBlockContext, BehaviormoduleBlockContext, BodyModuleBlockContext, ConditionStateBlockContext, DefaultConditionStateBlockContext, DrawModuleBlockContext, IgnoreConditionStateBlockContext, ObjectArmorSetContext, ObjectContext, ObjectUnitSpecificFXContext, ObjectUnitSpecificSoundsContext, ObjectWeaponSetContext, PropertyContext, RemoveModuleBlockContext, ReplaceModuleBlockContext, TransitionStateBlockContext } from './utils/antlr/MapIniParser';
 import * as list from './utils/lists'
 
 enum contexts {
