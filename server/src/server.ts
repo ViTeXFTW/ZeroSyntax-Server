@@ -15,39 +15,21 @@ import {
 	InitializeResult,
 	DidChangeConfigurationParams,
 	DocumentFormattingRequest,
-	DefinitionParams,
-	Definition,
-	HoverParams,
-	Hover,
-	SemanticTokensParams,
-	SemanticTokens,
 	DidOpenTextDocumentParams,
-	SemanticTokensBuilder,
-	TextDocumentChangeEvent,
-	DidOpenTextDocumentNotification,
-	DidChangeTextDocumentParams,
-	Diagnostic,
-	DiagnosticSeverity,
-	NotificationHandler,
-	TextDocumentContentChangeEvent,
-	DidCloseTextDocumentParams
 } from 'vscode-languageserver/node'
 
 import {
 	TextDocument,
 } from 'vscode-languageserver-textdocument';
-import {
-	TreeListener
-} from './AntlrListener';
 
-import { formatDocument } from './utils/formatter';
-import { SymbolTable } from './utils/symbols/SymbolTable';
-import { computeSymbolTable } from './utils/symbols/SymbolVisitor';
-import { computeDiagnostics } from './utils/diagnosticsVisitor';
-import { findDefinition } from './utils/definitions';
-import { getHoverInformation } from './utils/hover';
-import { tokenModifiers, tokenTypes } from './utils/tokenTypes'
-import { getSemanticTokens } from './utils/semanticTokens';
+import { formatDocument } from './formatting/formatter';
+import { computeDiagnostics } from './diagnostics/diagnosticsVisitor';
+import { Parser } from './parser';
+import { CandidatesCollection, CodeCompletionCore } from 'antlr4-c3';
+import { MapIniParser } from './utils/antlr4ng/MapIniParser';
+import { ErrorListener } from './errorListener';
+import { MapIniLexer } from './utils/antlr4ng/MapIniLexer';
+import { Token } from 'antlr4ng';
 
 // Create a connection for the server, using Node's IPC as a transport.
 // Also include all preview / proposed LSP features.
@@ -66,9 +48,10 @@ let hasDiagnosticRelatedInformationCapability = false;
 
 const documents: TextDocuments<TextDocument> = new TextDocuments(TextDocument);
 
-let forceAddModule: boolean = true
+let parser: Parser = new Parser();
+let currentParser: MapIniParser;
 
-let symbolTable: Map<string, SymbolTable> = new Map<string, SymbolTable>();
+let forceAddModule: boolean = true
 
 connection.onInitialize((params: InitializeParams) => {
 	const capabilities = params.capabilities;
@@ -95,7 +78,7 @@ connection.onInitialize((params: InitializeParams) => {
 			// definitionProvider: false, //true
 			// hoverProvider: false, //true
 			// completionProvider: {
-			// 	resolveProvider: false //true
+			// 	resolveProvider: true
 			// },
 			// semanticTokensProvider: {
 			// 	legend: {
@@ -163,7 +146,7 @@ connection.onInitialized(() => {
 // })
 
 // connection.onDidChangeTextDocument((params: DidChangeTextDocumentParams) => {
-	
+
 // 	console.log('Content Change!')
 // 	const changes: TextDocumentContentChangeEvent[] = params.contentChanges
 
@@ -187,78 +170,21 @@ connection.onInitialized(() => {
 
 connection.onDidOpenTextDocument(async (params: DidOpenTextDocumentParams) => {
 	const textDocument = documents.get(params.textDocument.uri)
-	symbolTable.set(textDocument!.uri, await computeSymbolTable(textDocument!))
-});
-
-connection.onHover((params: HoverParams): Hover | null => {
-	return getHoverInformation(params, documents, symbolTable.get(params.textDocument.uri)!)
-});
-
-connection.onDefinition((params: DefinitionParams): Definition | null => {
-	return findDefinition(params, documents, symbolTable.get(params.textDocument.uri)!)
 });
 
 documents.onDidChangeContent(async (change) => {
-	if(parseTimer) {
+	if (parseTimer) {
 		clearTimeout(parseTimer)
 	}
 
 	parseTimer = setTimeout(async () => {
 
-		/**
-		 * Handles updating SymbolTables for a document
-		 * if that document has been changed.
-		 */
-		if(!symbolTable.has(change.document.uri)) {
-			console.log(`SymbolTable doesn't exists`)
-			let table = await computeSymbolTable(change.document) 						// Compute Symbols from document, if table hasn't been created.
-			table.setVersion(change.document.version)									// Store document version for table.
-			symbolTable.set(change.document.uri, table)									// Update SymboTable Map
-			console.log(`Added SymbolTable to map with key: ${change.document.uri}`)
-		} else {
-			console.log(`SymbolTable exists`)
-			if(symbolTable.get(change.document.uri)?.getVersion() !== change.document.version) {
-				console.log(`Document version is wrong. Recomputing SymbolTable`)
-				symbolTable.delete(change.document.uri)
-				symbolTable.set(change.document.uri, await computeSymbolTable(change.document))
-			}
-		}
+		currentParser = parser.updateParser(change.document)
 
-		console.log(`Computing diagnostics...`)
-		const diagnostics = await computeDiagnostics(change.document)
-		connection.sendDiagnostics({uri: change.document.uri, diagnostics})
+		const diagnostics = await computeDiagnostics(currentParser)
+		connection.sendDiagnostics({ uri: change.document.uri, diagnostics })
 		console.log(`Diagnostics sent!`)
 	}, parseDelay)
-});
-
-connection.onRequest("textDocument/semanticTokens/full", async (params: SemanticTokensParams): Promise<SemanticTokens> => {
-	// let temp = new SemanticTokensBuilder()
-	// return temp.build()
-
-	let uri = params.textDocument.uri;
-	if (!symbolTable.has(uri)) {
-		let document = documents.get(uri);
-		if (document) {
-			let table = await computeSymbolTable(document);
-			symbolTable.set(uri, table);
-		}
-	}
-	return await getSemanticTokens(documents, params, symbolTable.get(uri)!);
-});
-
-connection.onRequest("textDocument/semanticTokens/range", async (params: SemanticTokensParams): Promise<SemanticTokens> => {
-	// let temp = new SemanticTokensBuilder()
-	// return temp.build()
-
-	let uri = params.textDocument.uri;
-	if (!symbolTable.has(uri)) {
-		let document = documents.get(uri);
-		if (document) {
-			let table = await computeSymbolTable(document);
-			symbolTable.set(uri, table);
-		}
-	}
-	return await getSemanticTokens(documents, params, symbolTable.get(uri)!);
 });
 
 connection.onDidChangeWatchedFiles(_change => {
