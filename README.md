@@ -1,5 +1,5 @@
 <div align="center">
-    <h1>ZeroSyntax-Snippets</h1>
+    <h1>ZeroSyntax-Server</h1>
     <img src="https://github.com/ViTeXFTW/ZeroSyntax/blob/main/ZeroSyntaxLogo128.png?raw=true">
 </div>
 
