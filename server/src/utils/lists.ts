@@ -1,12 +1,12 @@
 import { RBTree } from 'bintrees'
 
 const allowedAnimationProperties: string[] = [
-	"ANIMATIONDELAY",
-	"ANIMATIONMODE",
-	"IMAGE",
-	"IMAGE_SEQUENCE",
-	"NUMBERIMAGES",
-	"RANDOMIZESTARTFRAME"
+	"AnimationDelay",
+	"AnimationMode",
+	"Image",
+	"Image_Sequence",
+	"NumberImages",
+	"RandomizeStartFrame"
 ]
 
 const allowedAnimationModes: string[] = [
@@ -3954,7 +3954,7 @@ let definedObjects: string[] = [
 	"MIGFIRESTORM",
 ]
 
-let definedUpgrades: string[] = [
+export let definedUpgrades: string[] = [
 	"NONE",
 	"UPGRADE_NATIONALISM",
 	"UPGRADE_FANATICISM",

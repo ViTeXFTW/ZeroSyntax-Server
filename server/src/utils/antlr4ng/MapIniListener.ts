@@ -1,4 +1,4 @@
-// Generated from ./server/src/utils/antlr/MapIni.g4 by ANTLR 4.13.1
+// Generated from ./server/src/utils/antlr4ng/MapIni.g4 by ANTLR 4.13.1
 
 import { ErrorNode, ParseTreeListener, ParserRuleContext, TerminalNode } from "antlr4ng";
 
