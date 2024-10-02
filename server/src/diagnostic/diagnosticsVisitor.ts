@@ -58,8 +58,9 @@ export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements
         }
 
         if (ctx.commandbutton_value().ID()) {
-            const symbol = ctx.commandbutton_value().ID().symbol
-            const CB_text = ctx.commandbutton_value().ID().getText()
+            const symbol = ctx.commandbutton_value().ID()!.symbol
+            const CB_text = ctx.commandbutton_value().ID()!.getText()
+
             if (!list.commandButtons.find(CB_text) && !list.customCommandButtons.find(CB_text)) {
                 const severity = DiagnosticSeverity.Error
                 const start = new Location(symbol.line, symbol.column)
@@ -183,21 +184,6 @@ export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements
     // =====================================
     // =========== CLASS VALUES ============
     // =====================================
-    visitFaction_value(ctx: Faction_valueContext): void {
-        if (ctx.ID()) {
-            const symbol = ctx.ID()!.symbol
-            const ID_text = ctx.ID()!.getText()
-
-            if (!list.Faction.includes(ID_text) && !list.Faction.includes(ID_text)) {
-                const severity = DiagnosticSeverity.Error
-                const start = new Location(symbol.line, symbol.column)
-                const msg = `Faction ${ID_text} does not exist`
-                this.addDiagnostic(severity, start, start, msg)
-            }
-        }
-    }
-
-
     visitFxlist_value(ctx: Fxlist_valueContext): void {
         if (ctx.ID()) {
             const symbol = ctx.ID()!.symbol
@@ -242,19 +228,19 @@ export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements
         }
     }
 
-    visitAudioevent_value(ctx: Audioevent_valueContext): void {
-        if (ctx.ID()) {
-            const symbol = ctx.ID()!.symbol
-            const ID_text = ctx.ID()!.getText()
+    // visitAudioevent_value(ctx: Audioevent_valueContext): void {
+    //     if (ctx.ID()) {
+    //         const symbol = ctx.ID()!.symbol
+    //         const ID_text = ctx.ID()!.getText()
 
-            if (!list.audioEvent.find(ID_text) && !list.customAudioEvent.find(ID_text)) {
-                const severity = DiagnosticSeverity.Error
-                const start = new Location(symbol.line, symbol.column)
-                const msg = `AudioEvent ${ID_text} is not defined`
-                this.addDiagnostic(severity, start, start, msg)
-            }
-        }
-    }
+    //         if (!list.audioEvent.find(ID_text) && !list.customAudioEvent.find(ID_text)) {
+    //             const severity = DiagnosticSeverity.Error
+    //             const start = new Location(symbol.line, symbol.column)
+    //             const msg = `AudioEvent ${ID_text} is not defined`
+    //             this.addDiagnostic(severity, start, start, msg)
+    //         }
+    //     }
+    // }
 
 
     visitScience_value(ctx: Science_valueContext): void {

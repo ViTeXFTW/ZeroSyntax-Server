@@ -6,15 +6,71 @@ import { ErrorNode, ParseTreeListener, ParserRuleContext, TerminalNode } from "a
 import { ProgramContext } from "./MapIniParser.js";
 import { ClassesContext } from "./MapIniParser.js";
 import { AiDataClassContext } from "./MapIniParser.js";
-import { AidataClassProperties_singleContext } from "./MapIniParser.js";
-import { AidataClassproperties_BlockSkirmishBuildListContext } from "./MapIniParser.js";
-import { SkirmishBuildListBlockContext } from "./MapIniParser.js";
-import { SkirmishBuildListBlock_structure_propertiesContext } from "./MapIniParser.js";
-import { AidataClassProperties_blockSideinfoContext } from "./MapIniParser.js";
-import { SideinfopropertiesContext } from "./MapIniParser.js";
-import { Sideinfo_skillset_blocksContext } from "./MapIniParser.js";
+import { AiDataClass_propertiesContext } from "./MapIniParser.js";
+import { AiDataClass_structurePropertyContext } from "./MapIniParser.js";
+import { AiDataClass_teamPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_wealthPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_poorPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_structureWealthyPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_structurePoorPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_teamWealthPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_teamPoorPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_teamResourcesPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_guardInnerAIPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_guardOuterAIPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_guardInnerHumanPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_guardOuterHumanPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_guardChaseUnitsPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_guardEnemyScanPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_guardEnemyReturnScanPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_alertRangeModifierPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_aggressiveRangeModifierPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_attackProrityDistanceModifierPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_maxRecruitRadiusPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_skirmishBaseDefenseExtraDistancePropertyContext } from "./MapIniParser.js";
+import { AiDataClass_forceIdleMSECPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_forceSkirmishAIPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_rotateSkirmishBasePropertyContext } from "./MapIniParser.js";
+import { AiDataClass_attackUsesLineOfSightPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_enableRepulsorPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_repulsedDistancePropertyContext } from "./MapIniParser.js";
+import { AiDataClass_wallHeighPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_attackIgnoreInsignificantBuildingsPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_skirmishGroupFudgeDistancePropertyContext } from "./MapIniParser.js";
+import { AiDataClass_minInfantryGroupPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_minVehicleGroupPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_minDistanceGroupPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_distanceRequiresGroupPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_infantryPathfindDiameterPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_vehiclePathfindDiameterPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_supplycenterSaveDistancePropertyContext } from "./MapIniParser.js";
+import { AiDataClass_rebuildDelayTimeSecPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_aiDozerBoredRadiusPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_aiCrushesInfantryPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_maxRetaliationDistancePropertyContext } from "./MapIniParser.js";
+import { AiDataClass_retailationFriendsRadiusPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_sideInfoContext } from "./MapIniParser.js";
+import { AiDataClass_sideInfoPropertiesContext } from "./MapIniParser.js";
+import { AiDataClass_sideInfo_resourceGatheresEasyContext } from "./MapIniParser.js";
+import { AiDataClass_sideInfo_resourceGatheresMediumContext } from "./MapIniParser.js";
+import { AiDataClass_sideInfo_resourceGatheresHardContext } from "./MapIniParser.js";
+import { AiDataClass_sideInfo_baseDefenseStructureContext } from "./MapIniParser.js";
+import { AiDataClass_sideInfo_skillSetContext } from "./MapIniParser.js";
+import { AiDataClass_skirmishBuildListContext } from "./MapIniParser.js";
+import { AiDataClass_skirmishBuildList_structureContext } from "./MapIniParser.js";
+import { AiDataClass_skirmishBuildList_structure_propertiesContext } from "./MapIniParser.js";
+import { AiDataClass_skirmishBuildList_structure_locationPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_skirmishBuildList_structure_rebuildsPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_skirmishBuildList_structure_anglePropertyContext } from "./MapIniParser.js";
+import { AiDataClass_skirmishBuildList_structure_initiallyBuildPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_skirmishBuildList_structure_automaticallyBuildPropertyContext } from "./MapIniParser.js";
 import { MappedImageClassContext } from "./MapIniParser.js";
 import { MappedImageClassPropertiesContext } from "./MapIniParser.js";
+import { MappedImageClass_texturePropertyContext } from "./MapIniParser.js";
+import { MappedImageClass_textureWidthPropertyContext } from "./MapIniParser.js";
+import { MappedImageClass_textureHeightPropertyContext } from "./MapIniParser.js";
+import { MappedImageClass_coordsPropertyContext } from "./MapIniParser.js";
+import { MappedImageClass_statusPropertyContext } from "./MapIniParser.js";
 import { Animation2DClassContext } from "./MapIniParser.js";
 import { Animation2DClassPropertiesContext } from "./MapIniParser.js";
 import { ArmorClassContext } from "./MapIniParser.js";
@@ -50,6 +106,19 @@ import { Surface_valueContext } from "./MapIniParser.js";
 import { Zbehavior_valueContext } from "./MapIniParser.js";
 import { Appereance_valueContext } from "./MapIniParser.js";
 import { Movepriority_valueContext } from "./MapIniParser.js";
+import { RankClassContext } from "./MapIniParser.js";
+import { Rank_propertiesContext } from "./MapIniParser.js";
+import { ScienceClassContext } from "./MapIniParser.js";
+import { Science_propertiesContext } from "./MapIniParser.js";
+import { SpecialPowerClassContext } from "./MapIniParser.js";
+import { SpecialPower_propertiesContext } from "./MapIniParser.js";
+import { SoundEffectClassesContext } from "./MapIniParser.js";
+import { AudioEventClassContext } from "./MapIniParser.js";
+import { DialogEventClassContext } from "./MapIniParser.js";
+import { Audioevent_propertiesContext } from "./MapIniParser.js";
+import { UpgradeClassContext } from "./MapIniParser.js";
+import { Upgrade_propertiesContext } from "./MapIniParser.js";
+import { Academyclassifier_valueContext } from "./MapIniParser.js";
 import { WeaponClassContext } from "./MapIniParser.js";
 import { Weapon_propertiesContext } from "./MapIniParser.js";
 import { Weapon_damagetype_propertyContext } from "./MapIniParser.js";
@@ -193,75 +262,585 @@ export class MapIniListener implements ParseTreeListener {
      */
     exitAiDataClass?: (ctx: AiDataClassContext) => void;
     /**
-     * Enter a parse tree produced by `MapIniParser.aidataClassProperties_single`.
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_properties`.
      * @param ctx the parse tree
      */
-    enterAidataClassProperties_single?: (ctx: AidataClassProperties_singleContext) => void;
+    enterAiDataClass_properties?: (ctx: AiDataClass_propertiesContext) => void;
     /**
-     * Exit a parse tree produced by `MapIniParser.aidataClassProperties_single`.
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_properties`.
      * @param ctx the parse tree
      */
-    exitAidataClassProperties_single?: (ctx: AidataClassProperties_singleContext) => void;
+    exitAiDataClass_properties?: (ctx: AiDataClass_propertiesContext) => void;
     /**
-     * Enter a parse tree produced by `MapIniParser.aidataClassproperties_BlockSkirmishBuildList`.
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_structureProperty`.
      * @param ctx the parse tree
      */
-    enterAidataClassproperties_BlockSkirmishBuildList?: (ctx: AidataClassproperties_BlockSkirmishBuildListContext) => void;
+    enterAiDataClass_structureProperty?: (ctx: AiDataClass_structurePropertyContext) => void;
     /**
-     * Exit a parse tree produced by `MapIniParser.aidataClassproperties_BlockSkirmishBuildList`.
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_structureProperty`.
      * @param ctx the parse tree
      */
-    exitAidataClassproperties_BlockSkirmishBuildList?: (ctx: AidataClassproperties_BlockSkirmishBuildListContext) => void;
+    exitAiDataClass_structureProperty?: (ctx: AiDataClass_structurePropertyContext) => void;
     /**
-     * Enter a parse tree produced by `MapIniParser.skirmishBuildListBlock`.
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_teamProperty`.
      * @param ctx the parse tree
      */
-    enterSkirmishBuildListBlock?: (ctx: SkirmishBuildListBlockContext) => void;
+    enterAiDataClass_teamProperty?: (ctx: AiDataClass_teamPropertyContext) => void;
     /**
-     * Exit a parse tree produced by `MapIniParser.skirmishBuildListBlock`.
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_teamProperty`.
      * @param ctx the parse tree
      */
-    exitSkirmishBuildListBlock?: (ctx: SkirmishBuildListBlockContext) => void;
+    exitAiDataClass_teamProperty?: (ctx: AiDataClass_teamPropertyContext) => void;
     /**
-     * Enter a parse tree produced by `MapIniParser.skirmishBuildListBlock_structure_properties`.
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_wealthProperty`.
      * @param ctx the parse tree
      */
-    enterSkirmishBuildListBlock_structure_properties?: (ctx: SkirmishBuildListBlock_structure_propertiesContext) => void;
+    enterAiDataClass_wealthProperty?: (ctx: AiDataClass_wealthPropertyContext) => void;
     /**
-     * Exit a parse tree produced by `MapIniParser.skirmishBuildListBlock_structure_properties`.
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_wealthProperty`.
      * @param ctx the parse tree
      */
-    exitSkirmishBuildListBlock_structure_properties?: (ctx: SkirmishBuildListBlock_structure_propertiesContext) => void;
+    exitAiDataClass_wealthProperty?: (ctx: AiDataClass_wealthPropertyContext) => void;
     /**
-     * Enter a parse tree produced by `MapIniParser.aidataClassProperties_blockSideinfo`.
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_poorProperty`.
      * @param ctx the parse tree
      */
-    enterAidataClassProperties_blockSideinfo?: (ctx: AidataClassProperties_blockSideinfoContext) => void;
+    enterAiDataClass_poorProperty?: (ctx: AiDataClass_poorPropertyContext) => void;
     /**
-     * Exit a parse tree produced by `MapIniParser.aidataClassProperties_blockSideinfo`.
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_poorProperty`.
      * @param ctx the parse tree
      */
-    exitAidataClassProperties_blockSideinfo?: (ctx: AidataClassProperties_blockSideinfoContext) => void;
+    exitAiDataClass_poorProperty?: (ctx: AiDataClass_poorPropertyContext) => void;
     /**
-     * Enter a parse tree produced by `MapIniParser.sideinfoproperties`.
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_structureWealthyProperty`.
      * @param ctx the parse tree
      */
-    enterSideinfoproperties?: (ctx: SideinfopropertiesContext) => void;
+    enterAiDataClass_structureWealthyProperty?: (ctx: AiDataClass_structureWealthyPropertyContext) => void;
     /**
-     * Exit a parse tree produced by `MapIniParser.sideinfoproperties`.
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_structureWealthyProperty`.
      * @param ctx the parse tree
      */
-    exitSideinfoproperties?: (ctx: SideinfopropertiesContext) => void;
+    exitAiDataClass_structureWealthyProperty?: (ctx: AiDataClass_structureWealthyPropertyContext) => void;
     /**
-     * Enter a parse tree produced by `MapIniParser.sideinfo_skillset_blocks`.
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_structurePoorProperty`.
      * @param ctx the parse tree
      */
-    enterSideinfo_skillset_blocks?: (ctx: Sideinfo_skillset_blocksContext) => void;
+    enterAiDataClass_structurePoorProperty?: (ctx: AiDataClass_structurePoorPropertyContext) => void;
     /**
-     * Exit a parse tree produced by `MapIniParser.sideinfo_skillset_blocks`.
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_structurePoorProperty`.
      * @param ctx the parse tree
      */
-    exitSideinfo_skillset_blocks?: (ctx: Sideinfo_skillset_blocksContext) => void;
+    exitAiDataClass_structurePoorProperty?: (ctx: AiDataClass_structurePoorPropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_teamWealthProperty`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_teamWealthProperty?: (ctx: AiDataClass_teamWealthPropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_teamWealthProperty`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_teamWealthProperty?: (ctx: AiDataClass_teamWealthPropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_teamPoorProperty`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_teamPoorProperty?: (ctx: AiDataClass_teamPoorPropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_teamPoorProperty`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_teamPoorProperty?: (ctx: AiDataClass_teamPoorPropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_teamResourcesProperty`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_teamResourcesProperty?: (ctx: AiDataClass_teamResourcesPropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_teamResourcesProperty`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_teamResourcesProperty?: (ctx: AiDataClass_teamResourcesPropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_guardInnerAIProperty`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_guardInnerAIProperty?: (ctx: AiDataClass_guardInnerAIPropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_guardInnerAIProperty`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_guardInnerAIProperty?: (ctx: AiDataClass_guardInnerAIPropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_guardOuterAIProperty`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_guardOuterAIProperty?: (ctx: AiDataClass_guardOuterAIPropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_guardOuterAIProperty`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_guardOuterAIProperty?: (ctx: AiDataClass_guardOuterAIPropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_guardInnerHumanProperty`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_guardInnerHumanProperty?: (ctx: AiDataClass_guardInnerHumanPropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_guardInnerHumanProperty`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_guardInnerHumanProperty?: (ctx: AiDataClass_guardInnerHumanPropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_guardOuterHumanProperty`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_guardOuterHumanProperty?: (ctx: AiDataClass_guardOuterHumanPropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_guardOuterHumanProperty`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_guardOuterHumanProperty?: (ctx: AiDataClass_guardOuterHumanPropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_guardChaseUnitsProperty`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_guardChaseUnitsProperty?: (ctx: AiDataClass_guardChaseUnitsPropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_guardChaseUnitsProperty`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_guardChaseUnitsProperty?: (ctx: AiDataClass_guardChaseUnitsPropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_guardEnemyScanProperty`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_guardEnemyScanProperty?: (ctx: AiDataClass_guardEnemyScanPropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_guardEnemyScanProperty`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_guardEnemyScanProperty?: (ctx: AiDataClass_guardEnemyScanPropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_guardEnemyReturnScanProperty`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_guardEnemyReturnScanProperty?: (ctx: AiDataClass_guardEnemyReturnScanPropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_guardEnemyReturnScanProperty`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_guardEnemyReturnScanProperty?: (ctx: AiDataClass_guardEnemyReturnScanPropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_alertRangeModifierProperty`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_alertRangeModifierProperty?: (ctx: AiDataClass_alertRangeModifierPropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_alertRangeModifierProperty`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_alertRangeModifierProperty?: (ctx: AiDataClass_alertRangeModifierPropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_aggressiveRangeModifierProperty`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_aggressiveRangeModifierProperty?: (ctx: AiDataClass_aggressiveRangeModifierPropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_aggressiveRangeModifierProperty`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_aggressiveRangeModifierProperty?: (ctx: AiDataClass_aggressiveRangeModifierPropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_attackProrityDistanceModifierProperty`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_attackProrityDistanceModifierProperty?: (ctx: AiDataClass_attackProrityDistanceModifierPropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_attackProrityDistanceModifierProperty`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_attackProrityDistanceModifierProperty?: (ctx: AiDataClass_attackProrityDistanceModifierPropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_maxRecruitRadiusProperty`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_maxRecruitRadiusProperty?: (ctx: AiDataClass_maxRecruitRadiusPropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_maxRecruitRadiusProperty`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_maxRecruitRadiusProperty?: (ctx: AiDataClass_maxRecruitRadiusPropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_skirmishBaseDefenseExtraDistanceProperty`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_skirmishBaseDefenseExtraDistanceProperty?: (ctx: AiDataClass_skirmishBaseDefenseExtraDistancePropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_skirmishBaseDefenseExtraDistanceProperty`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_skirmishBaseDefenseExtraDistanceProperty?: (ctx: AiDataClass_skirmishBaseDefenseExtraDistancePropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_forceIdleMSECProperty`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_forceIdleMSECProperty?: (ctx: AiDataClass_forceIdleMSECPropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_forceIdleMSECProperty`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_forceIdleMSECProperty?: (ctx: AiDataClass_forceIdleMSECPropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_forceSkirmishAIProperty`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_forceSkirmishAIProperty?: (ctx: AiDataClass_forceSkirmishAIPropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_forceSkirmishAIProperty`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_forceSkirmishAIProperty?: (ctx: AiDataClass_forceSkirmishAIPropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_rotateSkirmishBaseProperty`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_rotateSkirmishBaseProperty?: (ctx: AiDataClass_rotateSkirmishBasePropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_rotateSkirmishBaseProperty`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_rotateSkirmishBaseProperty?: (ctx: AiDataClass_rotateSkirmishBasePropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_attackUsesLineOfSightProperty`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_attackUsesLineOfSightProperty?: (ctx: AiDataClass_attackUsesLineOfSightPropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_attackUsesLineOfSightProperty`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_attackUsesLineOfSightProperty?: (ctx: AiDataClass_attackUsesLineOfSightPropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_enableRepulsorProperty`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_enableRepulsorProperty?: (ctx: AiDataClass_enableRepulsorPropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_enableRepulsorProperty`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_enableRepulsorProperty?: (ctx: AiDataClass_enableRepulsorPropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_repulsedDistanceProperty`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_repulsedDistanceProperty?: (ctx: AiDataClass_repulsedDistancePropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_repulsedDistanceProperty`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_repulsedDistanceProperty?: (ctx: AiDataClass_repulsedDistancePropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_wallHeighProperty`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_wallHeighProperty?: (ctx: AiDataClass_wallHeighPropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_wallHeighProperty`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_wallHeighProperty?: (ctx: AiDataClass_wallHeighPropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_attackIgnoreInsignificantBuildingsProperty`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_attackIgnoreInsignificantBuildingsProperty?: (ctx: AiDataClass_attackIgnoreInsignificantBuildingsPropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_attackIgnoreInsignificantBuildingsProperty`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_attackIgnoreInsignificantBuildingsProperty?: (ctx: AiDataClass_attackIgnoreInsignificantBuildingsPropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_skirmishGroupFudgeDistanceProperty`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_skirmishGroupFudgeDistanceProperty?: (ctx: AiDataClass_skirmishGroupFudgeDistancePropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_skirmishGroupFudgeDistanceProperty`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_skirmishGroupFudgeDistanceProperty?: (ctx: AiDataClass_skirmishGroupFudgeDistancePropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_minInfantryGroupProperty`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_minInfantryGroupProperty?: (ctx: AiDataClass_minInfantryGroupPropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_minInfantryGroupProperty`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_minInfantryGroupProperty?: (ctx: AiDataClass_minInfantryGroupPropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_minVehicleGroupProperty`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_minVehicleGroupProperty?: (ctx: AiDataClass_minVehicleGroupPropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_minVehicleGroupProperty`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_minVehicleGroupProperty?: (ctx: AiDataClass_minVehicleGroupPropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_minDistanceGroupProperty`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_minDistanceGroupProperty?: (ctx: AiDataClass_minDistanceGroupPropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_minDistanceGroupProperty`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_minDistanceGroupProperty?: (ctx: AiDataClass_minDistanceGroupPropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_distanceRequiresGroupProperty`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_distanceRequiresGroupProperty?: (ctx: AiDataClass_distanceRequiresGroupPropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_distanceRequiresGroupProperty`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_distanceRequiresGroupProperty?: (ctx: AiDataClass_distanceRequiresGroupPropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_infantryPathfindDiameterProperty`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_infantryPathfindDiameterProperty?: (ctx: AiDataClass_infantryPathfindDiameterPropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_infantryPathfindDiameterProperty`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_infantryPathfindDiameterProperty?: (ctx: AiDataClass_infantryPathfindDiameterPropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_vehiclePathfindDiameterProperty`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_vehiclePathfindDiameterProperty?: (ctx: AiDataClass_vehiclePathfindDiameterPropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_vehiclePathfindDiameterProperty`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_vehiclePathfindDiameterProperty?: (ctx: AiDataClass_vehiclePathfindDiameterPropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_supplycenterSaveDistanceProperty`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_supplycenterSaveDistanceProperty?: (ctx: AiDataClass_supplycenterSaveDistancePropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_supplycenterSaveDistanceProperty`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_supplycenterSaveDistanceProperty?: (ctx: AiDataClass_supplycenterSaveDistancePropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_rebuildDelayTimeSecProperty`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_rebuildDelayTimeSecProperty?: (ctx: AiDataClass_rebuildDelayTimeSecPropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_rebuildDelayTimeSecProperty`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_rebuildDelayTimeSecProperty?: (ctx: AiDataClass_rebuildDelayTimeSecPropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_aiDozerBoredRadiusProperty`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_aiDozerBoredRadiusProperty?: (ctx: AiDataClass_aiDozerBoredRadiusPropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_aiDozerBoredRadiusProperty`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_aiDozerBoredRadiusProperty?: (ctx: AiDataClass_aiDozerBoredRadiusPropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_aiCrushesInfantryProperty`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_aiCrushesInfantryProperty?: (ctx: AiDataClass_aiCrushesInfantryPropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_aiCrushesInfantryProperty`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_aiCrushesInfantryProperty?: (ctx: AiDataClass_aiCrushesInfantryPropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_maxRetaliationDistanceProperty`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_maxRetaliationDistanceProperty?: (ctx: AiDataClass_maxRetaliationDistancePropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_maxRetaliationDistanceProperty`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_maxRetaliationDistanceProperty?: (ctx: AiDataClass_maxRetaliationDistancePropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_retailationFriendsRadiusProperty`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_retailationFriendsRadiusProperty?: (ctx: AiDataClass_retailationFriendsRadiusPropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_retailationFriendsRadiusProperty`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_retailationFriendsRadiusProperty?: (ctx: AiDataClass_retailationFriendsRadiusPropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_sideInfo`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_sideInfo?: (ctx: AiDataClass_sideInfoContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_sideInfo`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_sideInfo?: (ctx: AiDataClass_sideInfoContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_sideInfoProperties`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_sideInfoProperties?: (ctx: AiDataClass_sideInfoPropertiesContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_sideInfoProperties`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_sideInfoProperties?: (ctx: AiDataClass_sideInfoPropertiesContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_sideInfo_resourceGatheresEasy`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_sideInfo_resourceGatheresEasy?: (ctx: AiDataClass_sideInfo_resourceGatheresEasyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_sideInfo_resourceGatheresEasy`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_sideInfo_resourceGatheresEasy?: (ctx: AiDataClass_sideInfo_resourceGatheresEasyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_sideInfo_resourceGatheresMedium`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_sideInfo_resourceGatheresMedium?: (ctx: AiDataClass_sideInfo_resourceGatheresMediumContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_sideInfo_resourceGatheresMedium`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_sideInfo_resourceGatheresMedium?: (ctx: AiDataClass_sideInfo_resourceGatheresMediumContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_sideInfo_resourceGatheresHard`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_sideInfo_resourceGatheresHard?: (ctx: AiDataClass_sideInfo_resourceGatheresHardContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_sideInfo_resourceGatheresHard`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_sideInfo_resourceGatheresHard?: (ctx: AiDataClass_sideInfo_resourceGatheresHardContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_sideInfo_baseDefenseStructure`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_sideInfo_baseDefenseStructure?: (ctx: AiDataClass_sideInfo_baseDefenseStructureContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_sideInfo_baseDefenseStructure`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_sideInfo_baseDefenseStructure?: (ctx: AiDataClass_sideInfo_baseDefenseStructureContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_sideInfo_skillSet`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_sideInfo_skillSet?: (ctx: AiDataClass_sideInfo_skillSetContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_sideInfo_skillSet`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_sideInfo_skillSet?: (ctx: AiDataClass_sideInfo_skillSetContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_skirmishBuildList`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_skirmishBuildList?: (ctx: AiDataClass_skirmishBuildListContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_skirmishBuildList`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_skirmishBuildList?: (ctx: AiDataClass_skirmishBuildListContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_skirmishBuildList_structure`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_skirmishBuildList_structure?: (ctx: AiDataClass_skirmishBuildList_structureContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_skirmishBuildList_structure`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_skirmishBuildList_structure?: (ctx: AiDataClass_skirmishBuildList_structureContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_skirmishBuildList_structure_properties`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_skirmishBuildList_structure_properties?: (ctx: AiDataClass_skirmishBuildList_structure_propertiesContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_skirmishBuildList_structure_properties`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_skirmishBuildList_structure_properties?: (ctx: AiDataClass_skirmishBuildList_structure_propertiesContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_skirmishBuildList_structure_locationProperty`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_skirmishBuildList_structure_locationProperty?: (ctx: AiDataClass_skirmishBuildList_structure_locationPropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_skirmishBuildList_structure_locationProperty`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_skirmishBuildList_structure_locationProperty?: (ctx: AiDataClass_skirmishBuildList_structure_locationPropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_skirmishBuildList_structure_rebuildsProperty`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_skirmishBuildList_structure_rebuildsProperty?: (ctx: AiDataClass_skirmishBuildList_structure_rebuildsPropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_skirmishBuildList_structure_rebuildsProperty`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_skirmishBuildList_structure_rebuildsProperty?: (ctx: AiDataClass_skirmishBuildList_structure_rebuildsPropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_skirmishBuildList_structure_angleProperty`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_skirmishBuildList_structure_angleProperty?: (ctx: AiDataClass_skirmishBuildList_structure_anglePropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_skirmishBuildList_structure_angleProperty`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_skirmishBuildList_structure_angleProperty?: (ctx: AiDataClass_skirmishBuildList_structure_anglePropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_skirmishBuildList_structure_initiallyBuildProperty`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_skirmishBuildList_structure_initiallyBuildProperty?: (ctx: AiDataClass_skirmishBuildList_structure_initiallyBuildPropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_skirmishBuildList_structure_initiallyBuildProperty`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_skirmishBuildList_structure_initiallyBuildProperty?: (ctx: AiDataClass_skirmishBuildList_structure_initiallyBuildPropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.aiDataClass_skirmishBuildList_structure_automaticallyBuildProperty`.
+     * @param ctx the parse tree
+     */
+    enterAiDataClass_skirmishBuildList_structure_automaticallyBuildProperty?: (ctx: AiDataClass_skirmishBuildList_structure_automaticallyBuildPropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.aiDataClass_skirmishBuildList_structure_automaticallyBuildProperty`.
+     * @param ctx the parse tree
+     */
+    exitAiDataClass_skirmishBuildList_structure_automaticallyBuildProperty?: (ctx: AiDataClass_skirmishBuildList_structure_automaticallyBuildPropertyContext) => void;
     /**
      * Enter a parse tree produced by `MapIniParser.mappedImageClass`.
      * @param ctx the parse tree
@@ -282,6 +861,56 @@ export class MapIniListener implements ParseTreeListener {
      * @param ctx the parse tree
      */
     exitMappedImageClassProperties?: (ctx: MappedImageClassPropertiesContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.mappedImageClass_textureProperty`.
+     * @param ctx the parse tree
+     */
+    enterMappedImageClass_textureProperty?: (ctx: MappedImageClass_texturePropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.mappedImageClass_textureProperty`.
+     * @param ctx the parse tree
+     */
+    exitMappedImageClass_textureProperty?: (ctx: MappedImageClass_texturePropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.mappedImageClass_textureWidthProperty`.
+     * @param ctx the parse tree
+     */
+    enterMappedImageClass_textureWidthProperty?: (ctx: MappedImageClass_textureWidthPropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.mappedImageClass_textureWidthProperty`.
+     * @param ctx the parse tree
+     */
+    exitMappedImageClass_textureWidthProperty?: (ctx: MappedImageClass_textureWidthPropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.mappedImageClass_textureHeightProperty`.
+     * @param ctx the parse tree
+     */
+    enterMappedImageClass_textureHeightProperty?: (ctx: MappedImageClass_textureHeightPropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.mappedImageClass_textureHeightProperty`.
+     * @param ctx the parse tree
+     */
+    exitMappedImageClass_textureHeightProperty?: (ctx: MappedImageClass_textureHeightPropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.mappedImageClass_coordsProperty`.
+     * @param ctx the parse tree
+     */
+    enterMappedImageClass_coordsProperty?: (ctx: MappedImageClass_coordsPropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.mappedImageClass_coordsProperty`.
+     * @param ctx the parse tree
+     */
+    exitMappedImageClass_coordsProperty?: (ctx: MappedImageClass_coordsPropertyContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.mappedImageClass_statusProperty`.
+     * @param ctx the parse tree
+     */
+    enterMappedImageClass_statusProperty?: (ctx: MappedImageClass_statusPropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.mappedImageClass_statusProperty`.
+     * @param ctx the parse tree
+     */
+    exitMappedImageClass_statusProperty?: (ctx: MappedImageClass_statusPropertyContext) => void;
     /**
      * Enter a parse tree produced by `MapIniParser.animation2DClass`.
      * @param ctx the parse tree
@@ -632,6 +1261,136 @@ export class MapIniListener implements ParseTreeListener {
      * @param ctx the parse tree
      */
     exitMovepriority_value?: (ctx: Movepriority_valueContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.rankClass`.
+     * @param ctx the parse tree
+     */
+    enterRankClass?: (ctx: RankClassContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.rankClass`.
+     * @param ctx the parse tree
+     */
+    exitRankClass?: (ctx: RankClassContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.rank_properties`.
+     * @param ctx the parse tree
+     */
+    enterRank_properties?: (ctx: Rank_propertiesContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.rank_properties`.
+     * @param ctx the parse tree
+     */
+    exitRank_properties?: (ctx: Rank_propertiesContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.scienceClass`.
+     * @param ctx the parse tree
+     */
+    enterScienceClass?: (ctx: ScienceClassContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.scienceClass`.
+     * @param ctx the parse tree
+     */
+    exitScienceClass?: (ctx: ScienceClassContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.science_properties`.
+     * @param ctx the parse tree
+     */
+    enterScience_properties?: (ctx: Science_propertiesContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.science_properties`.
+     * @param ctx the parse tree
+     */
+    exitScience_properties?: (ctx: Science_propertiesContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.specialPowerClass`.
+     * @param ctx the parse tree
+     */
+    enterSpecialPowerClass?: (ctx: SpecialPowerClassContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.specialPowerClass`.
+     * @param ctx the parse tree
+     */
+    exitSpecialPowerClass?: (ctx: SpecialPowerClassContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.specialPower_properties`.
+     * @param ctx the parse tree
+     */
+    enterSpecialPower_properties?: (ctx: SpecialPower_propertiesContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.specialPower_properties`.
+     * @param ctx the parse tree
+     */
+    exitSpecialPower_properties?: (ctx: SpecialPower_propertiesContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.soundEffectClasses`.
+     * @param ctx the parse tree
+     */
+    enterSoundEffectClasses?: (ctx: SoundEffectClassesContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.soundEffectClasses`.
+     * @param ctx the parse tree
+     */
+    exitSoundEffectClasses?: (ctx: SoundEffectClassesContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.audioEventClass`.
+     * @param ctx the parse tree
+     */
+    enterAudioEventClass?: (ctx: AudioEventClassContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.audioEventClass`.
+     * @param ctx the parse tree
+     */
+    exitAudioEventClass?: (ctx: AudioEventClassContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.dialogEventClass`.
+     * @param ctx the parse tree
+     */
+    enterDialogEventClass?: (ctx: DialogEventClassContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.dialogEventClass`.
+     * @param ctx the parse tree
+     */
+    exitDialogEventClass?: (ctx: DialogEventClassContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.audioevent_properties`.
+     * @param ctx the parse tree
+     */
+    enterAudioevent_properties?: (ctx: Audioevent_propertiesContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.audioevent_properties`.
+     * @param ctx the parse tree
+     */
+    exitAudioevent_properties?: (ctx: Audioevent_propertiesContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.upgradeClass`.
+     * @param ctx the parse tree
+     */
+    enterUpgradeClass?: (ctx: UpgradeClassContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.upgradeClass`.
+     * @param ctx the parse tree
+     */
+    exitUpgradeClass?: (ctx: UpgradeClassContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.upgrade_properties`.
+     * @param ctx the parse tree
+     */
+    enterUpgrade_properties?: (ctx: Upgrade_propertiesContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.upgrade_properties`.
+     * @param ctx the parse tree
+     */
+    exitUpgrade_properties?: (ctx: Upgrade_propertiesContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.academyclassifier_value`.
+     * @param ctx the parse tree
+     */
+    enterAcademyclassifier_value?: (ctx: Academyclassifier_valueContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.academyclassifier_value`.
+     * @param ctx the parse tree
+     */
+    exitAcademyclassifier_value?: (ctx: Academyclassifier_valueContext) => void;
     /**
      * Enter a parse tree produced by `MapIniParser.weaponClass`.
      * @param ctx the parse tree

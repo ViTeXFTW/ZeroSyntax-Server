@@ -1,9 +1,10 @@
 import { CandidatesCollection } from "antlr4-c3";
 import { ParserRuleContext, TerminalNode, Token } from "antlr4ng";
 import { MapIniParser } from "../utils/antlr4ng/MapIniParser";
-import { CompletionItem, CompletionItemKind } from "vscode-languageserver";
+import { CompletionItem, CompletionItemKind, InsertTextFormat } from "vscode-languageserver";
 import * as list from '../utils/lists'
 import { RBTree } from "bintrees";
+
 
 
 export function findTokenIndex(tokens: Token[], offset: number): number {
@@ -29,16 +30,36 @@ export function generateCompletionItems(candidates: CandidatesCollection, parser
         }
 
         // Clean up the token name
-        const label = tokenName.startsWith("'") && tokenName.endsWith("'")
+        let label = tokenName.startsWith("'") && tokenName.endsWith("'")
             ? tokenName.substring(1, tokenName.length - 1)
             : tokenName;
 
-        completionItems.push({
-            label,
-            kind: CompletionItemKind.Field,
-            data: tokenType,
-            documentation: `Keyword: ${label}`,
-        });
+        switch(label) {
+        
+            case 'NEWLINE':
+            case 'COMMENT':
+                break;
+
+            case 'Coords':
+                completionItems.push({
+                    label,
+                    kind: CompletionItemKind.Snippet,
+                    insertTextFormat: InsertTextFormat.Snippet,
+                    detail: 'Insert Left, Top, Right & Bottom',
+                    insertText: 'Coords = Left:${1:0} Top:${2:0} Right:${3:0} Bottom:${0:0}',
+                    documentation: `Snippet: ${label}`
+                })
+                break;
+
+            default:
+                completionItems.push({
+                    label,
+                    kind: CompletionItemKind.Field,
+                    data: tokenType,
+                    documentation: `Keyword: ${label}`,
+                });
+                break;
+        }
     }
 
     // Process rule candidates (snippets, templates)
@@ -62,8 +83,6 @@ export function findContextAtPosition(tree: ParserRuleContext, position: number)
     }
 
     console.log(`Start: ${tree.start.start}, End: ${tree.stop.stop}, Position: ${position}`)
-    
-    position -= 1;
     
     const start = tree.start.start;
     const stop = tree.stop.stop + 1;
@@ -96,6 +115,33 @@ export function getContextSpecificCompletions(ruleName: string): CompletionItem[
 
     //TODO: Add retrievels here
     switch (ruleName) {
+        case 'cb_command_property':
+            completionItems.push(...getCompletionItemsFromStringArray(list.CommandButtonCommandValues))
+            break;
+
+        case 'cb_options_property':
+            completionItems.push(...getCompletionItemsFromStringArray(list.CommandButtonOptionValues))
+            break;
+
+        case 'cb_buttonbordertype_property':
+            completionItems.push(...getCompletionItemsFromStringArray(list.CommandButtonBorderTypeValues))
+            break;
+
+        case 'object_property':
+            completionItems.push(...getCompletionItemsFromRBTree(list.objects))
+            completionItems.push(...getCompletionItemsFromRBTree(list.customObjects))        
+            break;
+
+        case 'science_property':
+            completionItems.push(...getCompletionItemsFromRBTree(list.science))
+            completionItems.push(...getCompletionItemsFromRBTree(list.customScience))
+            break;
+
+        case 'specialpower_property':
+            completionItems.push(...getCompletionItemsFromRBTree(list.specialPower))
+            completionItems.push(...getCompletionItemsFromRBTree(list.customSpecialPower))
+            break;
+
         case 'upgrade_property':
             // Add completion items relevant to function declarations
 
@@ -127,5 +173,20 @@ function getCompletionItemsFromRBTree(tree: RBTree<string>): CompletionItem[] {
         });
     });
 
+    return completionItems;
+}
+
+function getCompletionItemsFromStringArray(stringArray: string[]): CompletionItem[] {
+    const completionItems: CompletionItem[] = [];
+    
+    stringArray.forEach(string => {
+        completionItems.push({
+            label: string,
+            kind: CompletionItemKind.Text,
+            data: string,
+            documentation: `Value: ${string}`,
+        });
+    });
+    
     return completionItems;
 }

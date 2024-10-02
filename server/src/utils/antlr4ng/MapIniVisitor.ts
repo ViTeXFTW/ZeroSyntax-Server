@@ -6,15 +6,71 @@ import { AbstractParseTreeVisitor } from "antlr4ng";
 import { ProgramContext } from "./MapIniParser.js";
 import { ClassesContext } from "./MapIniParser.js";
 import { AiDataClassContext } from "./MapIniParser.js";
-import { AidataClassProperties_singleContext } from "./MapIniParser.js";
-import { AidataClassproperties_BlockSkirmishBuildListContext } from "./MapIniParser.js";
-import { SkirmishBuildListBlockContext } from "./MapIniParser.js";
-import { SkirmishBuildListBlock_structure_propertiesContext } from "./MapIniParser.js";
-import { AidataClassProperties_blockSideinfoContext } from "./MapIniParser.js";
-import { SideinfopropertiesContext } from "./MapIniParser.js";
-import { Sideinfo_skillset_blocksContext } from "./MapIniParser.js";
+import { AiDataClass_propertiesContext } from "./MapIniParser.js";
+import { AiDataClass_structurePropertyContext } from "./MapIniParser.js";
+import { AiDataClass_teamPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_wealthPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_poorPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_structureWealthyPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_structurePoorPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_teamWealthPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_teamPoorPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_teamResourcesPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_guardInnerAIPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_guardOuterAIPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_guardInnerHumanPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_guardOuterHumanPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_guardChaseUnitsPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_guardEnemyScanPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_guardEnemyReturnScanPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_alertRangeModifierPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_aggressiveRangeModifierPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_attackProrityDistanceModifierPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_maxRecruitRadiusPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_skirmishBaseDefenseExtraDistancePropertyContext } from "./MapIniParser.js";
+import { AiDataClass_forceIdleMSECPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_forceSkirmishAIPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_rotateSkirmishBasePropertyContext } from "./MapIniParser.js";
+import { AiDataClass_attackUsesLineOfSightPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_enableRepulsorPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_repulsedDistancePropertyContext } from "./MapIniParser.js";
+import { AiDataClass_wallHeighPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_attackIgnoreInsignificantBuildingsPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_skirmishGroupFudgeDistancePropertyContext } from "./MapIniParser.js";
+import { AiDataClass_minInfantryGroupPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_minVehicleGroupPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_minDistanceGroupPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_distanceRequiresGroupPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_infantryPathfindDiameterPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_vehiclePathfindDiameterPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_supplycenterSaveDistancePropertyContext } from "./MapIniParser.js";
+import { AiDataClass_rebuildDelayTimeSecPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_aiDozerBoredRadiusPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_aiCrushesInfantryPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_maxRetaliationDistancePropertyContext } from "./MapIniParser.js";
+import { AiDataClass_retailationFriendsRadiusPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_sideInfoContext } from "./MapIniParser.js";
+import { AiDataClass_sideInfoPropertiesContext } from "./MapIniParser.js";
+import { AiDataClass_sideInfo_resourceGatheresEasyContext } from "./MapIniParser.js";
+import { AiDataClass_sideInfo_resourceGatheresMediumContext } from "./MapIniParser.js";
+import { AiDataClass_sideInfo_resourceGatheresHardContext } from "./MapIniParser.js";
+import { AiDataClass_sideInfo_baseDefenseStructureContext } from "./MapIniParser.js";
+import { AiDataClass_sideInfo_skillSetContext } from "./MapIniParser.js";
+import { AiDataClass_skirmishBuildListContext } from "./MapIniParser.js";
+import { AiDataClass_skirmishBuildList_structureContext } from "./MapIniParser.js";
+import { AiDataClass_skirmishBuildList_structure_propertiesContext } from "./MapIniParser.js";
+import { AiDataClass_skirmishBuildList_structure_locationPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_skirmishBuildList_structure_rebuildsPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_skirmishBuildList_structure_anglePropertyContext } from "./MapIniParser.js";
+import { AiDataClass_skirmishBuildList_structure_initiallyBuildPropertyContext } from "./MapIniParser.js";
+import { AiDataClass_skirmishBuildList_structure_automaticallyBuildPropertyContext } from "./MapIniParser.js";
 import { MappedImageClassContext } from "./MapIniParser.js";
 import { MappedImageClassPropertiesContext } from "./MapIniParser.js";
+import { MappedImageClass_texturePropertyContext } from "./MapIniParser.js";
+import { MappedImageClass_textureWidthPropertyContext } from "./MapIniParser.js";
+import { MappedImageClass_textureHeightPropertyContext } from "./MapIniParser.js";
+import { MappedImageClass_coordsPropertyContext } from "./MapIniParser.js";
+import { MappedImageClass_statusPropertyContext } from "./MapIniParser.js";
 import { Animation2DClassContext } from "./MapIniParser.js";
 import { Animation2DClassPropertiesContext } from "./MapIniParser.js";
 import { ArmorClassContext } from "./MapIniParser.js";
@@ -50,6 +106,19 @@ import { Surface_valueContext } from "./MapIniParser.js";
 import { Zbehavior_valueContext } from "./MapIniParser.js";
 import { Appereance_valueContext } from "./MapIniParser.js";
 import { Movepriority_valueContext } from "./MapIniParser.js";
+import { RankClassContext } from "./MapIniParser.js";
+import { Rank_propertiesContext } from "./MapIniParser.js";
+import { ScienceClassContext } from "./MapIniParser.js";
+import { Science_propertiesContext } from "./MapIniParser.js";
+import { SpecialPowerClassContext } from "./MapIniParser.js";
+import { SpecialPower_propertiesContext } from "./MapIniParser.js";
+import { SoundEffectClassesContext } from "./MapIniParser.js";
+import { AudioEventClassContext } from "./MapIniParser.js";
+import { DialogEventClassContext } from "./MapIniParser.js";
+import { Audioevent_propertiesContext } from "./MapIniParser.js";
+import { UpgradeClassContext } from "./MapIniParser.js";
+import { Upgrade_propertiesContext } from "./MapIniParser.js";
+import { Academyclassifier_valueContext } from "./MapIniParser.js";
 import { WeaponClassContext } from "./MapIniParser.js";
 import { Weapon_propertiesContext } from "./MapIniParser.js";
 import { Weapon_damagetype_propertyContext } from "./MapIniParser.js";
@@ -184,47 +253,353 @@ export class MapIniVisitor<Result> extends AbstractParseTreeVisitor<Result> {
      */
     visitAiDataClass?: (ctx: AiDataClassContext) => Result;
     /**
-     * Visit a parse tree produced by `MapIniParser.aidataClassProperties_single`.
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_properties`.
      * @param ctx the parse tree
      * @return the visitor result
      */
-    visitAidataClassProperties_single?: (ctx: AidataClassProperties_singleContext) => Result;
+    visitAiDataClass_properties?: (ctx: AiDataClass_propertiesContext) => Result;
     /**
-     * Visit a parse tree produced by `MapIniParser.aidataClassproperties_BlockSkirmishBuildList`.
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_structureProperty`.
      * @param ctx the parse tree
      * @return the visitor result
      */
-    visitAidataClassproperties_BlockSkirmishBuildList?: (ctx: AidataClassproperties_BlockSkirmishBuildListContext) => Result;
+    visitAiDataClass_structureProperty?: (ctx: AiDataClass_structurePropertyContext) => Result;
     /**
-     * Visit a parse tree produced by `MapIniParser.skirmishBuildListBlock`.
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_teamProperty`.
      * @param ctx the parse tree
      * @return the visitor result
      */
-    visitSkirmishBuildListBlock?: (ctx: SkirmishBuildListBlockContext) => Result;
+    visitAiDataClass_teamProperty?: (ctx: AiDataClass_teamPropertyContext) => Result;
     /**
-     * Visit a parse tree produced by `MapIniParser.skirmishBuildListBlock_structure_properties`.
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_wealthProperty`.
      * @param ctx the parse tree
      * @return the visitor result
      */
-    visitSkirmishBuildListBlock_structure_properties?: (ctx: SkirmishBuildListBlock_structure_propertiesContext) => Result;
+    visitAiDataClass_wealthProperty?: (ctx: AiDataClass_wealthPropertyContext) => Result;
     /**
-     * Visit a parse tree produced by `MapIniParser.aidataClassProperties_blockSideinfo`.
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_poorProperty`.
      * @param ctx the parse tree
      * @return the visitor result
      */
-    visitAidataClassProperties_blockSideinfo?: (ctx: AidataClassProperties_blockSideinfoContext) => Result;
+    visitAiDataClass_poorProperty?: (ctx: AiDataClass_poorPropertyContext) => Result;
     /**
-     * Visit a parse tree produced by `MapIniParser.sideinfoproperties`.
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_structureWealthyProperty`.
      * @param ctx the parse tree
      * @return the visitor result
      */
-    visitSideinfoproperties?: (ctx: SideinfopropertiesContext) => Result;
+    visitAiDataClass_structureWealthyProperty?: (ctx: AiDataClass_structureWealthyPropertyContext) => Result;
     /**
-     * Visit a parse tree produced by `MapIniParser.sideinfo_skillset_blocks`.
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_structurePoorProperty`.
      * @param ctx the parse tree
      * @return the visitor result
      */
-    visitSideinfo_skillset_blocks?: (ctx: Sideinfo_skillset_blocksContext) => Result;
+    visitAiDataClass_structurePoorProperty?: (ctx: AiDataClass_structurePoorPropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_teamWealthProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_teamWealthProperty?: (ctx: AiDataClass_teamWealthPropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_teamPoorProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_teamPoorProperty?: (ctx: AiDataClass_teamPoorPropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_teamResourcesProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_teamResourcesProperty?: (ctx: AiDataClass_teamResourcesPropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_guardInnerAIProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_guardInnerAIProperty?: (ctx: AiDataClass_guardInnerAIPropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_guardOuterAIProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_guardOuterAIProperty?: (ctx: AiDataClass_guardOuterAIPropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_guardInnerHumanProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_guardInnerHumanProperty?: (ctx: AiDataClass_guardInnerHumanPropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_guardOuterHumanProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_guardOuterHumanProperty?: (ctx: AiDataClass_guardOuterHumanPropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_guardChaseUnitsProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_guardChaseUnitsProperty?: (ctx: AiDataClass_guardChaseUnitsPropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_guardEnemyScanProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_guardEnemyScanProperty?: (ctx: AiDataClass_guardEnemyScanPropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_guardEnemyReturnScanProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_guardEnemyReturnScanProperty?: (ctx: AiDataClass_guardEnemyReturnScanPropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_alertRangeModifierProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_alertRangeModifierProperty?: (ctx: AiDataClass_alertRangeModifierPropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_aggressiveRangeModifierProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_aggressiveRangeModifierProperty?: (ctx: AiDataClass_aggressiveRangeModifierPropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_attackProrityDistanceModifierProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_attackProrityDistanceModifierProperty?: (ctx: AiDataClass_attackProrityDistanceModifierPropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_maxRecruitRadiusProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_maxRecruitRadiusProperty?: (ctx: AiDataClass_maxRecruitRadiusPropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_skirmishBaseDefenseExtraDistanceProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_skirmishBaseDefenseExtraDistanceProperty?: (ctx: AiDataClass_skirmishBaseDefenseExtraDistancePropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_forceIdleMSECProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_forceIdleMSECProperty?: (ctx: AiDataClass_forceIdleMSECPropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_forceSkirmishAIProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_forceSkirmishAIProperty?: (ctx: AiDataClass_forceSkirmishAIPropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_rotateSkirmishBaseProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_rotateSkirmishBaseProperty?: (ctx: AiDataClass_rotateSkirmishBasePropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_attackUsesLineOfSightProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_attackUsesLineOfSightProperty?: (ctx: AiDataClass_attackUsesLineOfSightPropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_enableRepulsorProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_enableRepulsorProperty?: (ctx: AiDataClass_enableRepulsorPropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_repulsedDistanceProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_repulsedDistanceProperty?: (ctx: AiDataClass_repulsedDistancePropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_wallHeighProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_wallHeighProperty?: (ctx: AiDataClass_wallHeighPropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_attackIgnoreInsignificantBuildingsProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_attackIgnoreInsignificantBuildingsProperty?: (ctx: AiDataClass_attackIgnoreInsignificantBuildingsPropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_skirmishGroupFudgeDistanceProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_skirmishGroupFudgeDistanceProperty?: (ctx: AiDataClass_skirmishGroupFudgeDistancePropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_minInfantryGroupProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_minInfantryGroupProperty?: (ctx: AiDataClass_minInfantryGroupPropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_minVehicleGroupProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_minVehicleGroupProperty?: (ctx: AiDataClass_minVehicleGroupPropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_minDistanceGroupProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_minDistanceGroupProperty?: (ctx: AiDataClass_minDistanceGroupPropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_distanceRequiresGroupProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_distanceRequiresGroupProperty?: (ctx: AiDataClass_distanceRequiresGroupPropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_infantryPathfindDiameterProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_infantryPathfindDiameterProperty?: (ctx: AiDataClass_infantryPathfindDiameterPropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_vehiclePathfindDiameterProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_vehiclePathfindDiameterProperty?: (ctx: AiDataClass_vehiclePathfindDiameterPropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_supplycenterSaveDistanceProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_supplycenterSaveDistanceProperty?: (ctx: AiDataClass_supplycenterSaveDistancePropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_rebuildDelayTimeSecProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_rebuildDelayTimeSecProperty?: (ctx: AiDataClass_rebuildDelayTimeSecPropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_aiDozerBoredRadiusProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_aiDozerBoredRadiusProperty?: (ctx: AiDataClass_aiDozerBoredRadiusPropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_aiCrushesInfantryProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_aiCrushesInfantryProperty?: (ctx: AiDataClass_aiCrushesInfantryPropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_maxRetaliationDistanceProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_maxRetaliationDistanceProperty?: (ctx: AiDataClass_maxRetaliationDistancePropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_retailationFriendsRadiusProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_retailationFriendsRadiusProperty?: (ctx: AiDataClass_retailationFriendsRadiusPropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_sideInfo`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_sideInfo?: (ctx: AiDataClass_sideInfoContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_sideInfoProperties`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_sideInfoProperties?: (ctx: AiDataClass_sideInfoPropertiesContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_sideInfo_resourceGatheresEasy`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_sideInfo_resourceGatheresEasy?: (ctx: AiDataClass_sideInfo_resourceGatheresEasyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_sideInfo_resourceGatheresMedium`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_sideInfo_resourceGatheresMedium?: (ctx: AiDataClass_sideInfo_resourceGatheresMediumContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_sideInfo_resourceGatheresHard`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_sideInfo_resourceGatheresHard?: (ctx: AiDataClass_sideInfo_resourceGatheresHardContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_sideInfo_baseDefenseStructure`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_sideInfo_baseDefenseStructure?: (ctx: AiDataClass_sideInfo_baseDefenseStructureContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_sideInfo_skillSet`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_sideInfo_skillSet?: (ctx: AiDataClass_sideInfo_skillSetContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_skirmishBuildList`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_skirmishBuildList?: (ctx: AiDataClass_skirmishBuildListContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_skirmishBuildList_structure`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_skirmishBuildList_structure?: (ctx: AiDataClass_skirmishBuildList_structureContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_skirmishBuildList_structure_properties`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_skirmishBuildList_structure_properties?: (ctx: AiDataClass_skirmishBuildList_structure_propertiesContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_skirmishBuildList_structure_locationProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_skirmishBuildList_structure_locationProperty?: (ctx: AiDataClass_skirmishBuildList_structure_locationPropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_skirmishBuildList_structure_rebuildsProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_skirmishBuildList_structure_rebuildsProperty?: (ctx: AiDataClass_skirmishBuildList_structure_rebuildsPropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_skirmishBuildList_structure_angleProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_skirmishBuildList_structure_angleProperty?: (ctx: AiDataClass_skirmishBuildList_structure_anglePropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_skirmishBuildList_structure_initiallyBuildProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_skirmishBuildList_structure_initiallyBuildProperty?: (ctx: AiDataClass_skirmishBuildList_structure_initiallyBuildPropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.aiDataClass_skirmishBuildList_structure_automaticallyBuildProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAiDataClass_skirmishBuildList_structure_automaticallyBuildProperty?: (ctx: AiDataClass_skirmishBuildList_structure_automaticallyBuildPropertyContext) => Result;
     /**
      * Visit a parse tree produced by `MapIniParser.mappedImageClass`.
      * @param ctx the parse tree
@@ -237,6 +612,36 @@ export class MapIniVisitor<Result> extends AbstractParseTreeVisitor<Result> {
      * @return the visitor result
      */
     visitMappedImageClassProperties?: (ctx: MappedImageClassPropertiesContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.mappedImageClass_textureProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitMappedImageClass_textureProperty?: (ctx: MappedImageClass_texturePropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.mappedImageClass_textureWidthProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitMappedImageClass_textureWidthProperty?: (ctx: MappedImageClass_textureWidthPropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.mappedImageClass_textureHeightProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitMappedImageClass_textureHeightProperty?: (ctx: MappedImageClass_textureHeightPropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.mappedImageClass_coordsProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitMappedImageClass_coordsProperty?: (ctx: MappedImageClass_coordsPropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.mappedImageClass_statusProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitMappedImageClass_statusProperty?: (ctx: MappedImageClass_statusPropertyContext) => Result;
     /**
      * Visit a parse tree produced by `MapIniParser.animation2DClass`.
      * @param ctx the parse tree
@@ -447,6 +852,84 @@ export class MapIniVisitor<Result> extends AbstractParseTreeVisitor<Result> {
      * @return the visitor result
      */
     visitMovepriority_value?: (ctx: Movepriority_valueContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.rankClass`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitRankClass?: (ctx: RankClassContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.rank_properties`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitRank_properties?: (ctx: Rank_propertiesContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.scienceClass`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitScienceClass?: (ctx: ScienceClassContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.science_properties`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitScience_properties?: (ctx: Science_propertiesContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.specialPowerClass`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitSpecialPowerClass?: (ctx: SpecialPowerClassContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.specialPower_properties`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitSpecialPower_properties?: (ctx: SpecialPower_propertiesContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.soundEffectClasses`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitSoundEffectClasses?: (ctx: SoundEffectClassesContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.audioEventClass`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAudioEventClass?: (ctx: AudioEventClassContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.dialogEventClass`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitDialogEventClass?: (ctx: DialogEventClassContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.audioevent_properties`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAudioevent_properties?: (ctx: Audioevent_propertiesContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.upgradeClass`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitUpgradeClass?: (ctx: UpgradeClassContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.upgrade_properties`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitUpgrade_properties?: (ctx: Upgrade_propertiesContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.academyclassifier_value`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAcademyclassifier_value?: (ctx: Academyclassifier_valueContext) => Result;
     /**
      * Visit a parse tree produced by `MapIniParser.weaponClass`.
      * @param ctx the parse tree

@@ -1,9 +1,9 @@
 grammar MapIni;
 
 // Parser Rules
-program: classes* EOF;
+program: (NEWLINE | classes)* EOF;
 
-classes: (mappedImageClass
+classes: mappedImageClass
        | aiDataClass
        | animation2DClass
        | armorClass
@@ -18,93 +18,156 @@ classes: (mappedImageClass
 //       | objectCreationListClass
 //       | particleSystemClass
 //       | playerTemplateClass
-//       | rankClass
-//       | scienceClass
-//       | soundEffectClasses
-//       | specialPowerClass
-//       | upgradeClass
+       | rankClass
+       | scienceClass
+       | soundEffectClasses
+       | specialPowerClass
+       | upgradeClass
        | weaponClass
-       | weatherClass) NL*
+       | weatherClass
        ;
 
 // AIData Class
-aiDataClass: 'AIData' NL (aidataClassProperties_single | aidataClassProperties_blockSideinfo | aidataClassproperties_BlockSkirmishBuildList)* end;
+aiDataClass: 'AIData' NEWLINE ((WS? aiDataClass_properties NEWLINE) | NEWLINE)* end;
 
-aidataClassProperties_single: 'StructureSeconds' EQ FLOAT
-                             | 'TeamSeconds' EQ INT
-                             | 'Wealthy' EQ INT
-                             | 'Poor' EQ INT
-                             | 'StructuresWealthyRate' EQ FLOAT
-                             | 'StructuresPoorRate' EQ FLOAT
-                             | 'TeamsWealthyRate' EQ FLOAT
-                             | 'TeamsPoorRate' EQ FLOAT
-                             | 'TeamResourcesToStart' EQ FLOAT
-                             | 'GuardInnerModifierAI' EQ FLOAT
-                             | 'GuardOuterModifierAI' EQ FLOAT
-                             | 'GuardInnerModifierHuman' EQ FLOAT
-                             | 'GuardOuterModifierHuman' EQ FLOAT
-                             | 'GuardChaseUnitsDuration' EQ INT
-                             | 'GuardEnemyScanRate' EQ INT
-                             | 'GuardEnemyReturnScanRate' EQ INT
-                             | 'AlertRangeModifier' EQ FLOAT
-                             | 'AggressiveRangeModifier' EQ FLOAT
-                             | 'AttackPriorityDistanceModifier' EQ FLOAT
-                             | 'MaxRecruitRadius' EQ FLOAT
-                             | 'SkirmishBaseDefenseExtraDistance' EQ FLOAT
-                             | 'ForceIdleMSEC' EQ INT
-                             | 'ForceSkirmishAI' EQ BOOLEAN
-                             | 'RotateSkirmishBases' EQ BOOLEAN
-                             | 'AttackUsesLineOfSight' EQ BOOLEAN
-                             | 'EnableRepulsors' EQ BOOLEAN
-                             | 'RepulsedDistance' EQ FLOAT
-                             | 'WallHeight' EQ INT
-                             | 'AttackIgnoreInsignificantBuildings' EQ BOOLEAN
-                             | 'SkirmishGroupFudgeDistance' EQ FLOAT
-                             | 'MinInfantryForGroup' EQ INT
-                             | 'MinVehiclesForGroup' EQ INT
-                             | 'MinDistanceForGroup' EQ FLOAT
-                             | 'DistanceRequiresGroup' EQ FLOAT
-                             | 'InfantryPathfindDiameter' EQ INT
-                             | 'VehiclePathfindDiameter' EQ INT
-                             | 'SupplyCenterSafeRadius' EQ FLOAT
-                             | 'RebuildDelayTimeSeconds' EQ INT
-                             | 'AIDozerBoredRadiusModifier' EQ FLOAT
-                             | 'AICrushesInfantry' EQ BOOLEAN
-                             | 'MaxRetaliationDistance' EQ FLOAT
-                             | 'RetaliationFriendsRadius' EQ FLOAT
-                             ;
+aiDataClass_properties: aiDataClass_structureProperty
+                      | aiDataClass_teamProperty
+                      | aiDataClass_wealthProperty
+                      | aiDataClass_poorProperty
+                      | aiDataClass_structureWealthyProperty
+                      | aiDataClass_structurePoorProperty
+                      | aiDataClass_teamWealthProperty
+                      | aiDataClass_teamPoorProperty
+                      | aiDataClass_teamResourcesProperty
+                      | aiDataClass_guardInnerAIProperty
+                      | aiDataClass_guardOuterAIProperty
+                      | aiDataClass_guardInnerHumanProperty
+                      | aiDataClass_guardOuterHumanProperty
+                      | aiDataClass_guardChaseUnitsProperty
+                      | aiDataClass_guardEnemyScanProperty
+                      | aiDataClass_guardEnemyReturnScanProperty
+                      | aiDataClass_alertRangeModifierProperty
+                      | aiDataClass_aggressiveRangeModifierProperty
+                      | aiDataClass_attackProrityDistanceModifierProperty
+                      | aiDataClass_maxRecruitRadiusProperty
+                      | aiDataClass_skirmishBaseDefenseExtraDistanceProperty
+                      | aiDataClass_forceIdleMSECProperty
+                      | aiDataClass_forceSkirmishAIProperty
+                      | aiDataClass_rotateSkirmishBaseProperty
+                      | aiDataClass_attackUsesLineOfSightProperty
+                      | aiDataClass_enableRepulsorProperty
+                      | aiDataClass_repulsedDistanceProperty
+                      | aiDataClass_wallHeighProperty
+                      | aiDataClass_attackIgnoreInsignificantBuildingsProperty
+                      | aiDataClass_skirmishGroupFudgeDistanceProperty
+                      | aiDataClass_minInfantryGroupProperty
+                      | aiDataClass_minVehicleGroupProperty
+                      | aiDataClass_minDistanceGroupProperty
+                      | aiDataClass_distanceRequiresGroupProperty
+                      | aiDataClass_infantryPathfindDiameterProperty
+                      | aiDataClass_vehiclePathfindDiameterProperty
+                      | aiDataClass_supplycenterSaveDistanceProperty
+                      | aiDataClass_rebuildDelayTimeSecProperty
+                      | aiDataClass_aiDozerBoredRadiusProperty
+                      | aiDataClass_aiCrushesInfantryProperty
+                      | aiDataClass_maxRetaliationDistanceProperty
+                      | aiDataClass_retailationFriendsRadiusProperty
+                      | aiDataClass_sideInfo*
+                      | aiDataClass_skirmishBuildList*
+                      ;
 
-aidataClassproperties_BlockSkirmishBuildList: 'SkirmishBuildList' faction_value skirmishBuildListBlock* end;
+aiDataClass_structureProperty: 'StructureSeconds' WS EQ WS FLOAT;
+aiDataClass_teamProperty: 'TeamSeconds' WS EQ WS INT;
+aiDataClass_wealthProperty: 'Wealthy' WS EQ WS INT;
+aiDataClass_poorProperty: 'Poor' WS EQ WS INT;
+aiDataClass_structureWealthyProperty: 'StructuresWealthyRate' WS EQ WS FLOAT;
+aiDataClass_structurePoorProperty: 'StructuresPoorRate' WS EQ WS FLOAT;
+aiDataClass_teamWealthProperty: 'TeamsWealthyRate' WS EQ WS FLOAT;
+aiDataClass_teamPoorProperty: 'TeamsPoorRate' WS EQ WS FLOAT;
+aiDataClass_teamResourcesProperty: 'TeamResourcesToStart' WS EQ WS FLOAT;
+aiDataClass_guardInnerAIProperty: 'GuardInnerModifierAI' WS EQ WS FLOAT;
+aiDataClass_guardOuterAIProperty: 'GuardOuterModifierAI' WS EQ WS FLOAT;
+aiDataClass_guardInnerHumanProperty: 'GuardInnerModifierHuman' WS EQ WS FLOAT;
+aiDataClass_guardOuterHumanProperty: 'GuardOuterModifierHuman' WS EQ WS FLOAT;
+aiDataClass_guardChaseUnitsProperty: 'GuardChaseUnitsDuration' WS EQ WS INT;
+aiDataClass_guardEnemyScanProperty: 'GuardEnemyScanRate' WS EQ WS INT;
+aiDataClass_guardEnemyReturnScanProperty: 'GuardEnemyReturnScanRate' WS EQ WS INT;
+aiDataClass_alertRangeModifierProperty: 'AlertRangeModifier' WS EQ WS FLOAT;
+aiDataClass_aggressiveRangeModifierProperty: 'AggressiveRangeModifier' WS EQ WS FLOAT;
+aiDataClass_attackProrityDistanceModifierProperty: 'AttackPriorityDistanceModifier' WS EQ WS FLOAT;
+aiDataClass_maxRecruitRadiusProperty: 'MaxRecruitRadius' WS EQ WS FLOAT;
+aiDataClass_skirmishBaseDefenseExtraDistanceProperty: 'SkirmishBaseDefenseExtraDistance' WS EQ WS FLOAT;
+aiDataClass_forceIdleMSECProperty: 'ForceIdleMSEC' WS EQ WS INT;
+aiDataClass_forceSkirmishAIProperty: 'ForceSkirmishAI' WS EQ WS BOOLEAN;
+aiDataClass_rotateSkirmishBaseProperty: 'RotateSkirmishBases' WS EQ WS BOOLEAN;
+aiDataClass_attackUsesLineOfSightProperty: 'AttackUsesLineOfSight' WS EQ WS BOOLEAN;
+aiDataClass_enableRepulsorProperty: 'EnableRepulsors' WS EQ WS BOOLEAN;
+aiDataClass_repulsedDistanceProperty: 'RepulsedDistance' WS EQ WS FLOAT;
+aiDataClass_wallHeighProperty: 'WallHeight' WS EQ WS INT;
+aiDataClass_attackIgnoreInsignificantBuildingsProperty: 'AttackIgnoreInsignificantBuildings' WS EQ WS BOOLEAN;
+aiDataClass_skirmishGroupFudgeDistanceProperty: 'SkirmishGroupFudgeDistance' WS EQ WS FLOAT;
+aiDataClass_minInfantryGroupProperty: 'MinInfantryForGroup' WS EQ WS INT;
+aiDataClass_minVehicleGroupProperty: 'MinVehiclesForGroup' WS EQ WS INT;
+aiDataClass_minDistanceGroupProperty: 'MinDistanceForGroup' WS EQ WS FLOAT;
+aiDataClass_distanceRequiresGroupProperty: 'DistanceRequiresGroup' WS EQ WS FLOAT;
+aiDataClass_infantryPathfindDiameterProperty: 'InfantryPathfindDiameter' WS EQ WS INT;
+aiDataClass_vehiclePathfindDiameterProperty: 'VehiclePathfindDiameter' WS EQ WS INT;
+aiDataClass_supplycenterSaveDistanceProperty: 'SupplyCenterSafeRadius' WS EQ WS FLOAT;
+aiDataClass_rebuildDelayTimeSecProperty: 'RebuildDelayTimeSeconds' WS EQ WS INT;
+aiDataClass_aiDozerBoredRadiusProperty: 'AIDozerBoredRadiusModifier' WS EQ WS FLOAT;
+aiDataClass_aiCrushesInfantryProperty: 'AICrushesInfantry' WS EQ WS BOOLEAN;
+aiDataClass_maxRetaliationDistanceProperty: 'MaxRetaliationDistance' WS EQ WS FLOAT;
+aiDataClass_retailationFriendsRadiusProperty: 'RetaliationFriendsRadius' WS EQ WS FLOAT;
 
-skirmishBuildListBlock: 'Structure' object_value skirmishBuildListBlock_structure_properties* end;
+aiDataClass_sideInfo: 'SideInfo' WS faction_value NEWLINE ((WS? (aiDataClass_sideInfoProperties) NEWLINE) | (WS? NEWLINE))* end;
 
-skirmishBuildListBlock_structure_properties: 'Location' EQ XCOORD YCOORD
-                                           | 'Rebuilds' EQ INT
-                                           | 'Angle' EQ FLOAT
-                                           | 'InitiallyBuilt' EQ BOOLEAN
-                                           | 'AutomaticallyBuild' EQ BOOLEAN
-                                           ;
+aiDataClass_sideInfoProperties: aiDataClass_sideInfo_resourceGatheresEasy
+                              | aiDataClass_sideInfo_resourceGatheresMedium
+                              | aiDataClass_sideInfo_resourceGatheresHard
+                              | aiDataClass_sideInfo_baseDefenseStructure
+                              | aiDataClass_sideInfo_skillSet
+                              ;
 
-aidataClassProperties_blockSideinfo: 'SideInfo' ID sideinfoproperties* end;
+aiDataClass_sideInfo_resourceGatheresEasy: 'ResourceGatherersEasy' WS EQ WS INT;
+aiDataClass_sideInfo_resourceGatheresMedium: 'ResourceGatherersNormal' WS EQ WS INT;
+aiDataClass_sideInfo_resourceGatheresHard: 'ResourceGatherersHard' WS EQ WS INT;
+aiDataClass_sideInfo_baseDefenseStructure: 'BaseDefenseStructure1' WS EQ WS object_value;
 
-sideinfoproperties: 'ResourceGatherersEasy' EQ INT
-                  | 'ResourceGatherersNormal' EQ INT
-                  | 'ResourceGatherersHard' EQ INT
-                  | 'BaseDefenseStructure1' EQ object_value
-                  | sideinfo_skillset_blocks
-                  ;
+aiDataClass_sideInfo_skillSet: ('SkillSet1' | 'SkillSet2' | 'SkillSet3' | 'SkillSet4' | 'SkillSet5') NEWLINE ((WS? science_property NEWLINE) | NEWLINE)* end;
 
-sideinfo_skillset_blocks: ('SkillSet1' | 'SkillSet2' | 'SkillSet3' | 'SkillSet4' | 'SkillSet5') science_property* end;
+aiDataClass_skirmishBuildList: 'SkirmishBuildList' WS faction_value NEWLINE ((WS? aiDataClass_skirmishBuildList_structure NEWLINE) | NEWLINE)* end;
+
+aiDataClass_skirmishBuildList_structure: 'Structure' WS object_value NEWLINE ((WS? aiDataClass_skirmishBuildList_structure_properties) | NEWLINE)* end;
+
+aiDataClass_skirmishBuildList_structure_properties: aiDataClass_skirmishBuildList_structure_locationProperty
+                                                  | aiDataClass_skirmishBuildList_structure_rebuildsProperty
+                                                  | aiDataClass_skirmishBuildList_structure_angleProperty
+                                                  | aiDataClass_skirmishBuildList_structure_initiallyBuildProperty
+                                                  | aiDataClass_skirmishBuildList_structure_automaticallyBuildProperty
+                                                  ;
+
+aiDataClass_skirmishBuildList_structure_locationProperty: 'Location' WS EQ WS XCOORD WS YCOORD;
+aiDataClass_skirmishBuildList_structure_rebuildsProperty: 'Rebuilds' WS EQ WS INT;
+aiDataClass_skirmishBuildList_structure_angleProperty: 'Angle' WS EQ WS FLOAT;
+aiDataClass_skirmishBuildList_structure_initiallyBuildProperty: 'InitiallyBuilt' WS EQ WS BOOLEAN;
+aiDataClass_skirmishBuildList_structure_automaticallyBuildProperty: 'AutomaticallyBuild' WS EQ WS BOOLEAN;
 
 // MappedImage Class
-mappedImageClass: 'MappedImage' ID mappedImageClassProperties* end;
+mappedImageClass: 'MappedImage' WS ID NEWLINE ((WS? mappedImageClassProperties NEWLINE) | NEWLINE)+ end;
 
-mappedImageClassProperties: 'Texture' EQ file
-                          | 'TextureWidth' EQ INT
-                          | 'TextureHeight' EQ INT
-                          | 'Coords' EQ COORDLEFT COORDTOP COORDRIGHT COORDBOTTOM
-                          | 'Status' EQ (ID | 'ROTATED_90_CLOCKWISE')
+mappedImageClassProperties: mappedImageClass_textureProperty
+                          | mappedImageClass_textureWidthProperty
+                          | mappedImageClass_textureHeightProperty
+                          | mappedImageClass_coordsProperty
+                          | mappedImageClass_statusProperty
                           ;
+
+mappedImageClass_textureProperty: 'Texture' WS? EQ WS? file;
+mappedImageClass_textureWidthProperty: 'TextureWidth' WS? EQ WS? INT;
+mappedImageClass_textureHeightProperty: 'TextureHeight' WS? EQ WS? INT;
+mappedImageClass_coordsProperty: 'Coords' WS? EQ WS? COORDLEFT WS COORDTOP WS COORDRIGHT WS COORDBOTTOM;
+mappedImageClass_statusProperty: 'Status' WS? EQ WS? (NONE | 'ROTATED_90_CLOCKWISE');
+
 
 // Animation2D Class
 animation2DClass: 'Animation' ID animation2DClassProperties* end;
@@ -122,7 +185,7 @@ armorClass: 'Armor' ID armorClassProperties* end;
 armorClassProperties: 'Armor' EQ ID PROCENT;
 
 // CommandButton Class
-commandButtonClass: 'CommandButton' ID NL (commandButtonClassProperties NL)* end;
+commandButtonClass: 'CommandButton' ID commandButtonClassProperties* end;
 
 commandButtonClassProperties: cb_command_property
                             | cb_options_property
@@ -353,6 +416,89 @@ zbehavior_value: ID;
 appereance_value: ID;
 movepriority_value: ID;
 
+// Rank Class
+rankClass: 'Rank' INT rank_properties* end;
+
+rank_properties: 'RankName' EQ ('INI:RankLevel1' | 'INI:RankLevel2' | 'INI:RankLevel3' | 'INI:RankLevel4' | 'INI:RankLevel5' | 'INI:RankLevel6' | 'INI:RankLevel7' | 'INI:RankLevel8')
+               | 'SkillPointsNeeded' EQ INT
+               | 'SciencesGranted' EQ science_value+
+               | 'SciencePurchasePointsGranted' EQ INT
+               ;
+
+// Sciecnce Class
+scienceClass: 'Science' ID science_properties* end;
+
+science_properties: 'PrerequisiteSciences' EQ science_value+
+                  | 'SciencePurchasePointCost' EQ INT
+                  | 'IsGrantable' EQ BOOLEAN
+                  | 'DisplayName' EQ ID
+                  | 'Description' EQ ID
+                  ;
+
+// SpecialPower Class
+specialPowerClass: 'SpecialPower' ID specialPower_properties* end;
+
+
+specialPower_properties: 'Enum' EQ ('SPECIAL_INVALID'|'SPECIAL_DAISY_CUTTER'||'SPECIAL_PARADROP_AMERICA'||'SPECIAL_CARPET_BOMB'||'SPECIAL_CLUSTER_MINES'||'SPECIAL_EMP_PULSE'||'SPECIAL_NAPALM_STRIKE'||'SPECIAL_CASH_HACK'||'SPECIAL_NEUTRON_MISSILE'||'SPECIAL_SPY_SATELLITE'||'SPECIAL_DEFECTOR'||'SPECIAL_TERROR_CELL'||'SPECIAL_AMBUSH'||'SPECIAL_BLACK_MARKET_NUKE'||'SPECIAL_ANTHRAX_BOMB'||'SPECIAL_SCUD_STORM'||'SPECIAL_DEMORALIZE_OBSOLETE'||'SPECIAL_CRATE_DROP'||'SPECIAL_A10_THUNDERBOLT_STRIKE'||'SPECIAL_DETONATE_DIRTY_NUKE'||'SPECIAL_ARTILLERY_BARRAGE'||'SPECIAL_MISSILE_DEFENDER_LASER_GUIDED_MISSILES'||'SPECIAL_REMOTE_CHARGES'||'SPECIAL_TIMED_CHARGES'||'SPECIAL_HELIX_NAPALM_BOMB'||'SPECIAL_HACKER_DISABLE_BUILDING'||'SPECIAL_TANKHUNTER_TNT_ATTACK'||'SPECIAL_BLACKLOTUS_CAPTURE_BUILDING'||'SPECIAL_BLACKLOTUS_DISABLE_VEHICLE_HACK'||'SPECIAL_BLACKLOTUS_STEAL_CASH_HACK'||'SPECIAL_INFANTRY_CAPTURE_BUILDING'||'SPECIAL_RADAR_VAN_SCAN'||'SPECIAL_SPY_DRONE'||'SPECIAL_DISGUISE_AS_VEHICLE'||'SPECIAL_BOOBY_TRAP'||'SPECIAL_REPAIR_VEHICLES'||'SPECIAL_PARTICLE_UPLINK_CANNON'||'SPECIAL_CASH_BOUNTY'||'SPECIAL_CHANGE_BATTLE_PLANS'||'SPECIAL_CIA_INTELLIGENCE'||'SPECIAL_CLEANUP_AREA'||'SPECIAL_LAUNCH_BAIKONUR_ROCKET'||'SPECIAL_SPECTRE_GUNSHIP'||'SPECIAL_GPS_SCRAMBLER'||'SPECIAL_FRENZY'||'SPECIAL_SNEAK_ATTACK'||'SPECIAL_CHINA_CARPET_BOMB'||'EARLY_SPECIAL_CHINA_CARPET_BOMB'||'SPECIAL_LEAFLET_DROP'||'EARLY_SPECIAL_LEAFLET_DROP'||'EARLY_SPECIAL_FRENZY'||'SPECIAL_COMMUNICATIONS_DOWNLOAD'||'EARLY_SPECIAL_REPAIR_VEHICLES'||'SPECIAL_TANK_PARADROP'||'SUPW_SPECIAL_PARTICLE_UPLINK_CANNON'||'AIRF_SPECIAL_DAISY_CUTTER'||'NUKE_SPECIAL_CLUSTER_MINES'||'NUKE_SPECIAL_NEUTRON_MISSILE'||'AIRF_SPECIAL_A10_THUNDERBOLT_STRIKE'||'AIRF_SPECIAL_SPECTRE_GUNSHIP'||'INFA_SPECIAL_PARADROP_AMERICA'||'SLTH_SPECIAL_GPS_SCRAMBLER'||'AIRF_SPECIAL_CARPET_BOMB'||'SUPR_SPECIAL_CRUISE_MISSILE'||'LAZR_SPECIAL_PARTICLE_UPLINK_CANNON'||'SUPW_SPECIAL_NEUTRON_MISSILE'||'SPECIAL_BATTLESHIP_BOMBARDMENT')
+                       | 'ReloadTime' EQ INT
+                       | 'RequiredScience' EQ science_value
+                       | 'PublicTimer' EQ BOOLEAN
+                       | 'SharedSyncedTimer' EQ BOOLEAN
+                       | 'ViewObjectDuration' EQ INT
+                       | 'ViewObjectRange' EQ INT
+                       | 'RadiusCursorRadius' EQ INT
+                       | 'ShortcutPower' EQ BOOLEAN
+                       | 'AcademyClassify' EQ academyclassifier_value
+                       | 'InitiateSound' EQ audioevent_value
+                       | 'InitiateAtLocationSound' EQ audioevent_value
+                       | 'DetectionTime' EQ INT
+                       ;
+
+// Sound Effect Class
+soundEffectClasses: audioEventClass | dialogEventClass;
+
+audioEventClass: 'AudioEvent' ID audioevent_properties* end;
+dialogEventClass: 'DialogEvent' ID audioevent_properties* end;
+
+audioevent_properties: 'Filename' EQ file
+                     | 'MinVolume' EQ INT
+                     | 'LoopCount' EQ INT
+                     | 'Control' EQ ID
+                     | 'Priority' EQ ('lowest' | 'LOWEST' | 'low' | 'LOW' | 'normal' | 'NORMAL' | 'high' | 'HIGH' | 'critical' | 'CRITICAL' | NONE)+
+                     | 'Control' EQ ('loop' | 'random' | 'all' | 'postdelay' | 'interrupt' | NONE)+
+                     | 'Sounds' EQ ID+
+                     | 'SoundsNight' EQ ID+
+                     | 'SoundsEvening' EQ ID+
+                     | 'SoundsMorning' EQ ID+
+                     | 'Attack' EQ ID
+                     | 'Delay' EQ INT INT
+                     | 'Decay' EQ ID
+                     | 'Volume' EQ INT
+                     | 'MinRange' EQ INT
+                     | 'MaxRange' EQ INT
+                     | 'Limit' EQ INT
+                     | 'Type' EQ ('ui' | 'world' | 'shrouded' | 'global' | 'voice' | 'player' | 'allies' | 'enemies' | 'everyone' | NONE)+
+                     | 'PitchShift' EQ INT INT
+                     | 'VolumeShift' EQ INT
+                     | 'LowPassCutoff' EQ INT
+                     ;
+
+
+// Upgrade Class
+upgradeClass: 'Upgrade' ID upgrade_properties* end;
+
+upgrade_properties: 'DisplayName' EQ ID
+                  | 'Type' EQ ('PLAYER' | 'OBJECT' | NONE)
+                  | 'UnitSpecificSound' EQ audioevent_value
+                  | 'BuildTime' EQ FLOAT
+                  | 'BuildCost' EQ INT
+                  | 'ButtonImage' EQ mappedimage_value
+                  | 'ResearchSound' EQ audioevent_value
+                  | 'AcademyClassify' EQ academyclassifier_value
+                  ;
+
+academyclassifier_value: ('ACT_NONE' | 'ACT_UPGRADE_RADAR' | 'ACT_SUPERPOWER' | NONE);
+
 // Weapon Class
 weaponClass: 'Weapon' ID weapon_properties* end;
 
@@ -427,9 +573,9 @@ weather_properties: 'SnowEnabled' EQ BOOLEAN
                   ;
 
 
-end: 'end' | 'End' | 'END';
+end: WS? ('end' | 'End' | 'END');
 
-file: ID '.' ('tga' | 'dds');
+file: ID '.' ('tga' | 'dds' | 'wav');
 
 
 // MappedImage
@@ -598,33 +744,33 @@ igui_properties: 'MaxSelectionSize' EQ INT
 
 
 // Properties that take Classes as a value:
-faction_value: ID;
+faction_value: 'America' | 'China' | 'GLA' | 'AmericaAirForceGeneral' | 'AmericaLaserGeneral' | 'AmericaSuperWeaponGeneral' | 'ChinaTankGeneral' | 'ChinaNukeGeneral' | 'ChinaInfantryGeneral' | 'GLADemolitionGeneral' | 'GLAStealthGeneral' | 'GLAToxinGeneral';
 
-commandbutton_value: ID;
+commandbutton_value: (ID | NONE);
 
-cursorname_value: ID;
-radius_cursorname_value: ID;
-invalid_cursorname_value: ID;
+cursorname_value: (ID | NONE);
+radius_cursorname_value: (ID | NONE);
+invalid_cursorname_value: (ID | NONE);
 
-mappedimage_value: ID;
+mappedimage_value: (ID | NONE);
 
-particlesystem_value: ID;
+particlesystem_value: (ID | NONE);
 
-fxlist_value: ID;
+fxlist_value: (ID | NONE);
 
 object_property: 'Object' EQ object_value;
 object_value: ID;
 
-science_property: 'Science' EQ science_value+;
-science_value: ID;
+science_property: 'Science' WS EQ WS science_value+;
+science_value: (ID | NONE);
 
 specialpower_property: 'SpecialPower' EQ specialpower_value;
-specialpower_value:  ID;
+specialpower_value:  (ID | NONE);
 
-audioevent_value: ID;
+audioevent_value: (ID | NONE);
 
 upgrade_property: 'Upgrade' EQ upgrade_value;
-upgrade_value: ID;
+upgrade_value: (ID | NONE);
 
 
 // Special Generic Properties
@@ -638,6 +784,7 @@ coord3D: XCOORD YCOORD ZCOORD;
 // Lexer Rules
 
 // General
+NONE: 'None' | 'NONE';
 INT: '-'? [0-9]+;
 FLOAT: '-'? [0-9]* '.' [0-9]+;
 PROCENT: (INT | FLOAT) '%';
@@ -675,12 +822,12 @@ BOOLEAN: 'Yes' | 'yes' | 'YES' | 'No' | 'no' | 'NO';
 STRING: '"' ( ~[\\"\n\r] | '\\' [\\"] )* '"'  ;
 ID: [a-zA-Z_0-9][a-zA-Z_0-9%:]*;
 
-NL: [\n];
+NEWLINE: ([\r]?[\n]);
+
+WS: [ \t]+;
 
 // Skips
-SKIp: [ \t\r]+ -> skip; // skip whitespaces
-COMMENT: (';' | '//') ~[\r\n]* -> skip; // skip comments
-WS: [ \t]+;
+COMMENT: WS? (';' | '//') ~[\r\n]* -> skip; // skip comments
 
 // Learned Things
 // Explicit strings ('something') has to be above generic (like ID) and if a lexer rule (1) ueses another lexer rule (2) then (2) has to be above (1)

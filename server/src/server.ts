@@ -228,12 +228,18 @@ connection.onCompletion((_textDocumentPosition: TextDocumentPositionParams): Com
 
 	// Find the token index at the cursor position
 	const tokenIndex = findTokenIndex(tokenStream.getTokens(), offset);
+	
+	const contextAtPosition = findContextAtPosition(tree, offset);
+
+	let candidates = null;
 
 	// Collect completion candidates
-	core.showDebugOutput = false
-	const candidates = core.collectCandidates(tokenIndex);
-
-	const contextAtPosition = findContextAtPosition(tree, offset);
+	core.showDebugOutput = true
+	if (contextAtPosition) {
+		candidates = core.collectCandidates(tokenIndex, contextAtPosition);
+	} else {
+		candidates = core.collectCandidates(tokenIndex)
+	}
 
 	console.log(`ContextAtPosition: ${parser.ruleNames[contextAtPosition!.ruleIndex]}`)
 
