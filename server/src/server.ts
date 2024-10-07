@@ -29,7 +29,7 @@ import { CodeCompletionCore } from 'antlr4-c3';
 import { MapIniParser } from './utils/antlr4ng/MapIniParser';
 import { MapIniLexer } from './utils/antlr4ng/MapIniLexer';
 import { CharStream, CommonTokenStream, DefaultErrorStrategy } from 'antlr4ng';
-import { findContextAtPosition, findTokenIndex, generateCompletionItems, getContextSpecificCompletions } from './completion/helpers';
+import { findContextAtPosition, findTokenIndex, generateCompletionItems, getContextSpecificCompletions, withTimeout } from './completion/helpers';
 
 // Create a connection for the server, using Node's IPC as a transport.
 // Also include all preview / proposed LSP features.
@@ -172,28 +172,29 @@ connection.onDidOpenTextDocument(async (params: DidOpenTextDocumentParams) => {
 });
 
 documents.onDidChangeContent(async (change) => {
-	// if (parseTimer) {
-	// 	clearTimeout(parseTimer)
-	// }
+	if (parseTimer) {
+		clearTimeout(parseTimer)
+	}
 
-	// parseTimer = setTimeout(async () => {
+    currentParser = parser.updateParser(change.document) //Potentially add another timer that is shorter, but does not create a parser for every input.
 
-	// 	currentParser = parser.updateParser(change.document)
+	parseTimer = setTimeout(async () => {
+		const diagnostics = await computeDiagnostics(currentParser)
+		connection.sendDiagnostics({ uri: change.document.uri, diagnostics })
+		console.log(`Diagnostics sent!`)
+	}, parseDelay)
 
-	// 	const diagnostics = await computeDiagnostics(currentParser)
-	// 	connection.sendDiagnostics({ uri: change.document.uri, diagnostics })
-	// 	console.log(`Diagnostics sent!`)
-	// }, parseDelay)
+	// currentParser = parser.updateParser(change.document)
 
-	currentParser = parser.updateParser(change.document)
-
-	const diagnostics = await computeDiagnostics(currentParser)
-	connection.sendDiagnostics({ uri: change.document.uri, diagnostics })
-	console.log(`Diagnostics sent!`)
+	// const diagnostics = await computeDiagnostics(currentParser)
+	// connection.sendDiagnostics({ uri: change.document.uri, diagnostics })
+	// console.log(`Diagnostics sent!`)
 });
 
 
-connection.onCompletion((_textDocumentPosition: TextDocumentPositionParams): CompletionItem[] => {
+connection.onCompletion(async (_textDocumentPosition: TextDocumentPositionParams): Promise<CompletionItem[]> => {
+
+    const TIMEOUT_MS = 5000; // Adjust as needed
 
 	console.log(`Requesting completions!`)
 
@@ -228,25 +229,34 @@ connection.onCompletion((_textDocumentPosition: TextDocumentPositionParams): Com
 
 	// Find the token index at the cursor position
 	const tokenIndex = findTokenIndex(tokenStream.getTokens(), offset);
+
+    console.log('Got Index')
 	
 	const contextAtPosition = findContextAtPosition(tree, offset);
+
+	console.log(`ContextAtPosition: ${parser.ruleNames[contextAtPosition!.ruleIndex]}`)
 
 	let candidates = null;
 
 	// Collect completion candidates
-	core.showDebugOutput = true
+	core.showDebugOutput = false
 	if (contextAtPosition) {
 		candidates = core.collectCandidates(tokenIndex, contextAtPosition);
+        console.log(`Got candiates`)
 	} else {
-		candidates = core.collectCandidates(tokenIndex)
-	}
+        console.log(`No candidates`)
+    }
 
-	console.log(`ContextAtPosition: ${parser.ruleNames[contextAtPosition!.ruleIndex]}`)
 
 	// Generate completion items
-	let completionItems = generateCompletionItems(candidates, parser);
 
-	completionItems.push(...getContextSpecificCompletions(parser.ruleNames[contextAtPosition!.ruleIndex]))
+	let completionItems: CompletionItem[] = []
+    
+    if(candidates) {
+        completionItems = await withTimeout(generateCompletionItems(candidates, parser), TIMEOUT_MS, completionItems);
+    }
+
+	completionItems.push(...await withTimeout(getContextSpecificCompletions(parser.ruleNames[contextAtPosition!.ruleIndex]), TIMEOUT_MS, completionItems))
 
 	return completionItems;
 })

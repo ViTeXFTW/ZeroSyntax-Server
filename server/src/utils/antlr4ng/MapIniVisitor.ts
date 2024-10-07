@@ -73,75 +73,21 @@ import { MappedImageClass_coordsPropertyContext } from "./MapIniParser.js";
 import { MappedImageClass_statusPropertyContext } from "./MapIniParser.js";
 import { Animation2DClassContext } from "./MapIniParser.js";
 import { Animation2DClassPropertiesContext } from "./MapIniParser.js";
+import { Animation2DClass_animationModePropertyContext } from "./MapIniParser.js";
+import { Animation2DClass_animationdelayPropertyContext } from "./MapIniParser.js";
+import { Animation2DClass_randomizeStartFramePropertyContext } from "./MapIniParser.js";
+import { Animation2DClass_numberImagesPropertyContext } from "./MapIniParser.js";
+import { Animation2DClass_imagePropertyContext } from "./MapIniParser.js";
 import { ArmorClassContext } from "./MapIniParser.js";
 import { ArmorClassPropertiesContext } from "./MapIniParser.js";
+import { ArmorClass_armorPropertyContext } from "./MapIniParser.js";
 import { CommandButtonClassContext } from "./MapIniParser.js";
 import { CommandButtonClassPropertiesContext } from "./MapIniParser.js";
-import { CommandSetClassContext } from "./MapIniParser.js";
-import { CommandSetClassPropertyContext } from "./MapIniParser.js";
-import { DamageFXClassContext } from "./MapIniParser.js";
-import { DamageFXClassPropertiesContext } from "./MapIniParser.js";
-import { DrawGroupInfoClassContext } from "./MapIniParser.js";
-import { DrawgroupinfoPropertiesContext } from "./MapIniParser.js";
-import { FxListClassContext } from "./MapIniParser.js";
-import { FxlistblocksContext } from "./MapIniParser.js";
-import { Fxlist_ps_blockContext } from "./MapIniParser.js";
-import { Fxlist_sound_blockContext } from "./MapIniParser.js";
-import { Fxlist_rayeffect_blockContext } from "./MapIniParser.js";
-import { Fxlist_tracer_blockContext } from "./MapIniParser.js";
-import { Fxlist_lightpulse_blockContext } from "./MapIniParser.js";
-import { Fxlist_viewshake_blockContext } from "./MapIniParser.js";
-import { Fxlist_terrainscorch_blockContext } from "./MapIniParser.js";
-import { Fxlist_fxlistatbone_blockContext } from "./MapIniParser.js";
-import { InGameUIClassContext } from "./MapIniParser.js";
-import { Igui_blocksContext } from "./MapIniParser.js";
-import { Ingui_block_propertiesContext } from "./MapIniParser.js";
-import { LocomotorClassContext } from "./MapIniParser.js";
-import { Locomotor_propertiesContext } from "./MapIniParser.js";
-import { Locomotor_surface_propertyContext } from "./MapIniParser.js";
-import { Locomotor_zbehavior_propertyContext } from "./MapIniParser.js";
-import { Locomotor_appereance_propertyContext } from "./MapIniParser.js";
-import { Locomotor_movepriority_propertyContext } from "./MapIniParser.js";
-import { Surface_valueContext } from "./MapIniParser.js";
-import { Zbehavior_valueContext } from "./MapIniParser.js";
-import { Appereance_valueContext } from "./MapIniParser.js";
-import { Movepriority_valueContext } from "./MapIniParser.js";
-import { RankClassContext } from "./MapIniParser.js";
-import { Rank_propertiesContext } from "./MapIniParser.js";
-import { ScienceClassContext } from "./MapIniParser.js";
-import { Science_propertiesContext } from "./MapIniParser.js";
-import { SpecialPowerClassContext } from "./MapIniParser.js";
-import { SpecialPower_propertiesContext } from "./MapIniParser.js";
-import { SoundEffectClassesContext } from "./MapIniParser.js";
-import { AudioEventClassContext } from "./MapIniParser.js";
-import { DialogEventClassContext } from "./MapIniParser.js";
-import { Audioevent_propertiesContext } from "./MapIniParser.js";
-import { UpgradeClassContext } from "./MapIniParser.js";
-import { Upgrade_propertiesContext } from "./MapIniParser.js";
-import { Academyclassifier_valueContext } from "./MapIniParser.js";
-import { WeaponClassContext } from "./MapIniParser.js";
-import { Weapon_propertiesContext } from "./MapIniParser.js";
-import { Weapon_damagetype_propertyContext } from "./MapIniParser.js";
-import { Weapon_deathtype_propertyContext } from "./MapIniParser.js";
-import { Weapon_damageaffects_propertyContext } from "./MapIniParser.js";
-import { Weapon_weaponbonus_propertyContext } from "./MapIniParser.js";
-import { Weapon_lasterbone_propertyContext } from "./MapIniParser.js";
-import { Weapon_weaponbonus_condition_valueContext } from "./MapIniParser.js";
-import { Weapon_weaponbonus_bonus_valueContext } from "./MapIniParser.js";
-import { DamageType_valueContext } from "./MapIniParser.js";
-import { DeathType_valueContext } from "./MapIniParser.js";
-import { DamageAffects_valueContext } from "./MapIniParser.js";
-import { WeatherClassContext } from "./MapIniParser.js";
-import { Weather_propertiesContext } from "./MapIniParser.js";
-import { EndContext } from "./MapIniParser.js";
-import { FileContext } from "./MapIniParser.js";
 import { Cb_command_propertyContext } from "./MapIniParser.js";
-import { Cb_command_valueContext } from "./MapIniParser.js";
 import { Cb_options_propertyContext } from "./MapIniParser.js";
 import { Cb_options_valueContext } from "./MapIniParser.js";
 import { Cb_buttonimage_propertyContext } from "./MapIniParser.js";
 import { Cb_buttonbordertype_propertyContext } from "./MapIniParser.js";
-import { Cb_buttonbordertype_valueContext } from "./MapIniParser.js";
 import { Cb_textlabel_propertyContext } from "./MapIniParser.js";
 import { Cb_descriptionlabel_propertyContext } from "./MapIniParser.js";
 import { Cb_conflictinglabel_propertyContext } from "./MapIniParser.js";
@@ -150,22 +96,21 @@ import { Cb_radius_cursorname_valueContext } from "./MapIniParser.js";
 import { Cb_invalid_cursorname_properyContext } from "./MapIniParser.js";
 import { Cb_unitspecificsound_propertyContext } from "./MapIniParser.js";
 import { Cb_maxshotsfire_propertyContext } from "./MapIniParser.js";
+import { CommandSetClassContext } from "./MapIniParser.js";
+import { CommandSetClassPropertyContext } from "./MapIniParser.js";
+import { DamageFXClassContext } from "./MapIniParser.js";
+import { DamageFXClassPropertiesContext } from "./MapIniParser.js";
 import { Dfx_throttletime_propertyContext } from "./MapIniParser.js";
 import { Dfx_amountformajorfx_propertyContext } from "./MapIniParser.js";
 import { Dfx_majorfx_propertyContext } from "./MapIniParser.js";
 import { Dfx_minorfx_propertyContext } from "./MapIniParser.js";
 import { Dfx_vetmajorfx_propertyContext } from "./MapIniParser.js";
 import { Dfx_vetminorfx_propertyContext } from "./MapIniParser.js";
-import { Dgi_useplayercolor_propertyContext } from "./MapIniParser.js";
-import { Dgi_colorfortext_propertyContext } from "./MapIniParser.js";
-import { Dgi_colordropshadow_propertyContext } from "./MapIniParser.js";
-import { Dgi_dropshadowoffsetX_propertyContext } from "./MapIniParser.js";
-import { Dgi_dropshadowoffsetY_propertyContext } from "./MapIniParser.js";
-import { Dgi_fontname_propertyContext } from "./MapIniParser.js";
-import { Dgi_fontsize_propertyContext } from "./MapIniParser.js";
-import { Dgi_fontisbold_propertyContext } from "./MapIniParser.js";
-import { Dgi_drawposXperc_propertyContext } from "./MapIniParser.js";
-import { Dgi_drawposYperc_propertyContext } from "./MapIniParser.js";
+import { DrawGroupInfoClassContext } from "./MapIniParser.js";
+import { DrawgroupinfoPropertiesContext } from "./MapIniParser.js";
+import { FxListClassContext } from "./MapIniParser.js";
+import { FxlistblocksContext } from "./MapIniParser.js";
+import { Fxlist_ps_blockContext } from "./MapIniParser.js";
 import { Fxlist_ps_name_propertyContext } from "./MapIniParser.js";
 import { Fxlist_ps_count_propertyContext } from "./MapIniParser.js";
 import { Fxlist_ps_offset_propertyContext } from "./MapIniParser.js";
@@ -180,9 +125,13 @@ import { Fxlist_ps_ricochet_propertyContext } from "./MapIniParser.js";
 import { Fxlist_ps_usecallerradius_propertyContext } from "./MapIniParser.js";
 import { Fxlist_ps_attachtoobject_propertyContext } from "./MapIniParser.js";
 import { Fxlist_ps_creategroundheight_propertyContext } from "./MapIniParser.js";
+import { Fxlist_sound_blockContext } from "./MapIniParser.js";
 import { Fxlist_sound_propertyContext } from "./MapIniParser.js";
+import { Fxlist_rayeffect_blockContext } from "./MapIniParser.js";
 import { Fxlist_rayeffect_primaryoffset_propertyContext } from "./MapIniParser.js";
 import { Fxlist_rayeffect_secondaryoffset_propretyContext } from "./MapIniParser.js";
+import { Fxlist_rayeffect_object_propetyContext } from "./MapIniParser.js";
+import { Fxlist_tracer_blockContext } from "./MapIniParser.js";
 import { Fxlist_tracer_name_propetyContext } from "./MapIniParser.js";
 import { Fxlist_tracer_bonename_propertyContext } from "./MapIniParser.js";
 import { Fxlist_tracer_speed_propertyContext } from "./MapIniParser.js";
@@ -191,21 +140,130 @@ import { Fxlist_tracer_length_propertyContext } from "./MapIniParser.js";
 import { Fxlist_tracer_width_propertyContext } from "./MapIniParser.js";
 import { Fxlist_tracer_color_propertyContext } from "./MapIniParser.js";
 import { Fxlist_tracer_probability_propertyContext } from "./MapIniParser.js";
+import { Fxlist_lightpulse_blockContext } from "./MapIniParser.js";
 import { Fxlist_lightpulse_color_propertyContext } from "./MapIniParser.js";
 import { Fxlist_lightpulse_radius_propertyContext } from "./MapIniParser.js";
 import { Fxlist_lightpulse_radiuspercentobjectsize_propertyContext } from "./MapIniParser.js";
 import { Fxlist_lightpulse_increasetime_propertyContext } from "./MapIniParser.js";
 import { Fxlist_lightpulse_decreasetime_propertyContext } from "./MapIniParser.js";
+import { Fxlist_viewshake_blockContext } from "./MapIniParser.js";
 import { Fxlist_viewshake_type_propertyContext } from "./MapIniParser.js";
+import { Fxlist_viewshake_type_valueContext } from "./MapIniParser.js";
+import { Fxlist_terrainscorch_blockContext } from "./MapIniParser.js";
 import { Fxlist_scorch_type_propertyContext } from "./MapIniParser.js";
 import { Fxlist_scorch_radius_propertyContext } from "./MapIniParser.js";
+import { Fxlist_fxlistatbone_blockContext } from "./MapIniParser.js";
 import { Fxlist_atbonepos_fx_propertyContext } from "./MapIniParser.js";
 import { Fxlist_atbonepos_bonename_propertyContext } from "./MapIniParser.js";
 import { Fxlist_atbonepos_orienttoobject_propertyContext } from "./MapIniParser.js";
-import { Fxlist_name_object_propetyContext } from "./MapIniParser.js";
+import { InGameUIClassContext } from "./MapIniParser.js";
 import { Igui_propertiesContext } from "./MapIniParser.js";
+import { Igui_blocksContext } from "./MapIniParser.js";
+import { Ingui_block_propertiesContext } from "./MapIniParser.js";
+import { LocomotorClassContext } from "./MapIniParser.js";
+import { Locomotor_propertiesContext } from "./MapIniParser.js";
+import { Locomotor_surface_propertyContext } from "./MapIniParser.js";
+import { Locomotor_zbehavior_propertyContext } from "./MapIniParser.js";
+import { Locomotor_appereance_propertyContext } from "./MapIniParser.js";
+import { Locomotor_movepriority_propertyContext } from "./MapIniParser.js";
+import { Surface_valueContext } from "./MapIniParser.js";
+import { Zbehavior_valueContext } from "./MapIniParser.js";
+import { Appereance_valueContext } from "./MapIniParser.js";
+import { Movepriority_valueContext } from "./MapIniParser.js";
+import { ObjectClassContext } from "./MapIniParser.js";
+import { ObjectClass_propertiesContext } from "./MapIniParser.js";
+import { ObjectClass_addModuleContext } from "./MapIniParser.js";
+import { ObjectClass_modulesContext } from "./MapIniParser.js";
+import { ObjectClass_drawModulesContext } from "./MapIniParser.js";
+import { DrawModule_typeBlock1ValueContext } from "./MapIniParser.js";
+import { DrawModule_type1ValueContext } from "./MapIniParser.js";
+import { DrawModule_typeBlock2ValueContext } from "./MapIniParser.js";
+import { DrawModule_type2ValueContext } from "./MapIniParser.js";
+import { DrawModule_typeBlock2propertiesContext } from "./MapIniParser.js";
+import { DrawModule_typeBlock3ValueContext } from "./MapIniParser.js";
+import { DrawModule_type3ValueContext } from "./MapIniParser.js";
+import { DrawModule_typeBlock3propertiesContext } from "./MapIniParser.js";
+import { DrawModule_typeBlock4ValueContext } from "./MapIniParser.js";
+import { DrawModule_type4ValueContext } from "./MapIniParser.js";
+import { DrawModule_typeBlock4propertiesContext } from "./MapIniParser.js";
+import { DrawModule_typeBlock5ValueContext } from "./MapIniParser.js";
+import { DrawModule_type5ValueContext } from "./MapIniParser.js";
+import { DrawModule_typeBlock5propertiesContext } from "./MapIniParser.js";
+import { DrawModule_conditionBlockContext } from "./MapIniParser.js";
+import { DrawModule_defaultconditionBlockContext } from "./MapIniParser.js";
+import { DrawModule_conditionStateValueContext } from "./MapIniParser.js";
+import { DrawModule_conditionStatePropertiesContext } from "./MapIniParser.js";
+import { RankClassContext } from "./MapIniParser.js";
+import { Rank_propertiesContext } from "./MapIniParser.js";
+import { ScienceClassContext } from "./MapIniParser.js";
+import { Science_propertiesContext } from "./MapIniParser.js";
+import { SpecialPowerClassContext } from "./MapIniParser.js";
+import { SpecialPower_propertiesContext } from "./MapIniParser.js";
+import { SoundEffectClassesContext } from "./MapIniParser.js";
+import { AudioEventClassContext } from "./MapIniParser.js";
+import { DialogEventClassContext } from "./MapIniParser.js";
+import { Audioevent_propertiesContext } from "./MapIniParser.js";
+import { ObjectCreationListClassContext } from "./MapIniParser.js";
+import { ObjectCreationListClass_blocksContext } from "./MapIniParser.js";
+import { ObjectCreationListClass_createDebrisBlockContext } from "./MapIniParser.js";
+import { ObjectCreationListClass_createDebrisPropertiesContext } from "./MapIniParser.js";
+import { Disposition_valueContext } from "./MapIniParser.js";
+import { ObjectCreationListClass_createObjectBlockContext } from "./MapIniParser.js";
+import { ObjectCreationListClass_createObjectPropertiesContext } from "./MapIniParser.js";
+import { ObjectCreationListClass_applyRandomForceBlockContext } from "./MapIniParser.js";
+import { ObjectCreationListClass_applyRandomForcePropertiesContext } from "./MapIniParser.js";
+import { ObjectCreationListClass_attackBlockContext } from "./MapIniParser.js";
+import { ObjectCreationListClass_attackPropertiesContext } from "./MapIniParser.js";
+import { ObjectCreationListClass_fireWeaponBlockContext } from "./MapIniParser.js";
+import { ObjectCreationListClass_fireWeaponPropertiesContext } from "./MapIniParser.js";
+import { ObjectCreationListClass_deliveryPayloadBlockContext } from "./MapIniParser.js";
+import { ObjectCreationListClass_deliveryPayloadPropertiesContext } from "./MapIniParser.js";
+import { ObjectCreationListClass_deliveryDecalContext } from "./MapIniParser.js";
+import { ParticleSystemClassContext } from "./MapIniParser.js";
+import { ParticleSystemClass_propertiesContext } from "./MapIniParser.js";
+import { ParticleSystemClass_priorityValueContext } from "./MapIniParser.js";
+import { ParticleSystemClass_shaderValueContext } from "./MapIniParser.js";
+import { ParticleSystemClass_typeValueContext } from "./MapIniParser.js";
+import { ParticleSystemClass_velocityTypeValueContext } from "./MapIniParser.js";
+import { ParticleSystemClass_volumeTypeValueContext } from "./MapIniParser.js";
+import { ParticleSystemClass_windTypeValueContext } from "./MapIniParser.js";
+import { PlayerTemplateClassContext } from "./MapIniParser.js";
+import { PlayerTemplateClass_propertiesContext } from "./MapIniParser.js";
+import { UpgradeClassContext } from "./MapIniParser.js";
+import { Upgrade_propertiesContext } from "./MapIniParser.js";
+import { Academyclassifier_valueContext } from "./MapIniParser.js";
+import { WeaponClassContext } from "./MapIniParser.js";
+import { Weapon_propertiesContext } from "./MapIniParser.js";
+import { Weapon_damagetype_propertyContext } from "./MapIniParser.js";
+import { Weapon_deathtype_propertyContext } from "./MapIniParser.js";
+import { Weapon_damageaffects_propertyContext } from "./MapIniParser.js";
+import { Weapon_weaponbonus_propertyContext } from "./MapIniParser.js";
+import { Weapon_lasterbone_propertyContext } from "./MapIniParser.js";
+import { Weapon_weaponbonus_condition_valueContext } from "./MapIniParser.js";
+import { Weapon_weaponbonus_bonus_valueContext } from "./MapIniParser.js";
+import { DeathType_valueContext } from "./MapIniParser.js";
+import { DamageAffects_valueContext } from "./MapIniParser.js";
+import { ProjectileColide_valueContext } from "./MapIniParser.js";
+import { DamageType_valueContext } from "./MapIniParser.js";
+import { ArmorType_valueContext } from "./MapIniParser.js";
+import { WeatherClassContext } from "./MapIniParser.js";
+import { Weather_propertiesContext } from "./MapIniParser.js";
+import { EndContext } from "./MapIniParser.js";
+import { FileContext } from "./MapIniParser.js";
+import { Dgi_useplayercolor_propertyContext } from "./MapIniParser.js";
+import { Dgi_colorfortext_propertyContext } from "./MapIniParser.js";
+import { Dgi_colordropshadow_propertyContext } from "./MapIniParser.js";
+import { Dgi_dropshadowoffsetX_propertyContext } from "./MapIniParser.js";
+import { Dgi_dropshadowoffsetY_propertyContext } from "./MapIniParser.js";
+import { Dgi_fontname_propertyContext } from "./MapIniParser.js";
+import { Dgi_fontsize_propertyContext } from "./MapIniParser.js";
+import { Dgi_fontisbold_propertyContext } from "./MapIniParser.js";
+import { Dgi_drawposXperc_propertyContext } from "./MapIniParser.js";
+import { Dgi_drawposYperc_propertyContext } from "./MapIniParser.js";
 import { Faction_valueContext } from "./MapIniParser.js";
+import { FactionEx_valueContext } from "./MapIniParser.js";
 import { Commandbutton_valueContext } from "./MapIniParser.js";
+import { CommandSet_valueContext } from "./MapIniParser.js";
 import { Cursorname_valueContext } from "./MapIniParser.js";
 import { Radius_cursorname_valueContext } from "./MapIniParser.js";
 import { Invalid_cursorname_valueContext } from "./MapIniParser.js";
@@ -214,6 +272,8 @@ import { Particlesystem_valueContext } from "./MapIniParser.js";
 import { Fxlist_valueContext } from "./MapIniParser.js";
 import { Object_propertyContext } from "./MapIniParser.js";
 import { Object_valueContext } from "./MapIniParser.js";
+import { Kindof_valueContext } from "./MapIniParser.js";
+import { Ocl_valueContext } from "./MapIniParser.js";
 import { Science_propertyContext } from "./MapIniParser.js";
 import { Science_valueContext } from "./MapIniParser.js";
 import { Specialpower_propertyContext } from "./MapIniParser.js";
@@ -221,6 +281,7 @@ import { Specialpower_valueContext } from "./MapIniParser.js";
 import { Audioevent_valueContext } from "./MapIniParser.js";
 import { Upgrade_propertyContext } from "./MapIniParser.js";
 import { Upgrade_valueContext } from "./MapIniParser.js";
+import { Weapon_valueContext } from "./MapIniParser.js";
 import { Weaponslot_propertyContext } from "./MapIniParser.js";
 import { Rand_valueContext } from "./MapIniParser.js";
 import { Coord3DContext } from "./MapIniParser.js";
@@ -655,6 +716,36 @@ export class MapIniVisitor<Result> extends AbstractParseTreeVisitor<Result> {
      */
     visitAnimation2DClassProperties?: (ctx: Animation2DClassPropertiesContext) => Result;
     /**
+     * Visit a parse tree produced by `MapIniParser.animation2DClass_animationModeProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAnimation2DClass_animationModeProperty?: (ctx: Animation2DClass_animationModePropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.animation2DClass_animationdelayProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAnimation2DClass_animationdelayProperty?: (ctx: Animation2DClass_animationdelayPropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.animation2DClass_randomizeStartFrameProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAnimation2DClass_randomizeStartFrameProperty?: (ctx: Animation2DClass_randomizeStartFramePropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.animation2DClass_numberImagesProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAnimation2DClass_numberImagesProperty?: (ctx: Animation2DClass_numberImagesPropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.animation2DClass_imageProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAnimation2DClass_imageProperty?: (ctx: Animation2DClass_imagePropertyContext) => Result;
+    /**
      * Visit a parse tree produced by `MapIniParser.armorClass`.
      * @param ctx the parse tree
      * @return the visitor result
@@ -666,6 +757,12 @@ export class MapIniVisitor<Result> extends AbstractParseTreeVisitor<Result> {
      * @return the visitor result
      */
     visitArmorClassProperties?: (ctx: ArmorClassPropertiesContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.armorClass_armorProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitArmorClass_armorProperty?: (ctx: ArmorClass_armorPropertyContext) => Result;
     /**
      * Visit a parse tree produced by `MapIniParser.commandButtonClass`.
      * @param ctx the parse tree
@@ -679,365 +776,11 @@ export class MapIniVisitor<Result> extends AbstractParseTreeVisitor<Result> {
      */
     visitCommandButtonClassProperties?: (ctx: CommandButtonClassPropertiesContext) => Result;
     /**
-     * Visit a parse tree produced by `MapIniParser.commandSetClass`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitCommandSetClass?: (ctx: CommandSetClassContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.commandSetClassProperty`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitCommandSetClassProperty?: (ctx: CommandSetClassPropertyContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.damageFXClass`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitDamageFXClass?: (ctx: DamageFXClassContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.damageFXClassProperties`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitDamageFXClassProperties?: (ctx: DamageFXClassPropertiesContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.drawGroupInfoClass`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitDrawGroupInfoClass?: (ctx: DrawGroupInfoClassContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.drawgroupinfoProperties`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitDrawgroupinfoProperties?: (ctx: DrawgroupinfoPropertiesContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.fxListClass`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitFxListClass?: (ctx: FxListClassContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.fxlistblocks`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitFxlistblocks?: (ctx: FxlistblocksContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.fxlist_ps_block`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitFxlist_ps_block?: (ctx: Fxlist_ps_blockContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.fxlist_sound_block`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitFxlist_sound_block?: (ctx: Fxlist_sound_blockContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.fxlist_rayeffect_block`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitFxlist_rayeffect_block?: (ctx: Fxlist_rayeffect_blockContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.fxlist_tracer_block`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitFxlist_tracer_block?: (ctx: Fxlist_tracer_blockContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.fxlist_lightpulse_block`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitFxlist_lightpulse_block?: (ctx: Fxlist_lightpulse_blockContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.fxlist_viewshake_block`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitFxlist_viewshake_block?: (ctx: Fxlist_viewshake_blockContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.fxlist_terrainscorch_block`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitFxlist_terrainscorch_block?: (ctx: Fxlist_terrainscorch_blockContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.fxlist_fxlistatbone_block`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitFxlist_fxlistatbone_block?: (ctx: Fxlist_fxlistatbone_blockContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.inGameUIClass`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitInGameUIClass?: (ctx: InGameUIClassContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.igui_blocks`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitIgui_blocks?: (ctx: Igui_blocksContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.ingui_block_properties`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitIngui_block_properties?: (ctx: Ingui_block_propertiesContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.locomotorClass`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitLocomotorClass?: (ctx: LocomotorClassContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.locomotor_properties`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitLocomotor_properties?: (ctx: Locomotor_propertiesContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.locomotor_surface_property`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitLocomotor_surface_property?: (ctx: Locomotor_surface_propertyContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.locomotor_zbehavior_property`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitLocomotor_zbehavior_property?: (ctx: Locomotor_zbehavior_propertyContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.locomotor_appereance_property`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitLocomotor_appereance_property?: (ctx: Locomotor_appereance_propertyContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.locomotor_movepriority_property`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitLocomotor_movepriority_property?: (ctx: Locomotor_movepriority_propertyContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.surface_value`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitSurface_value?: (ctx: Surface_valueContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.zbehavior_value`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitZbehavior_value?: (ctx: Zbehavior_valueContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.appereance_value`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitAppereance_value?: (ctx: Appereance_valueContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.movepriority_value`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitMovepriority_value?: (ctx: Movepriority_valueContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.rankClass`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitRankClass?: (ctx: RankClassContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.rank_properties`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitRank_properties?: (ctx: Rank_propertiesContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.scienceClass`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitScienceClass?: (ctx: ScienceClassContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.science_properties`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitScience_properties?: (ctx: Science_propertiesContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.specialPowerClass`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitSpecialPowerClass?: (ctx: SpecialPowerClassContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.specialPower_properties`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitSpecialPower_properties?: (ctx: SpecialPower_propertiesContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.soundEffectClasses`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitSoundEffectClasses?: (ctx: SoundEffectClassesContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.audioEventClass`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitAudioEventClass?: (ctx: AudioEventClassContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.dialogEventClass`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitDialogEventClass?: (ctx: DialogEventClassContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.audioevent_properties`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitAudioevent_properties?: (ctx: Audioevent_propertiesContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.upgradeClass`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitUpgradeClass?: (ctx: UpgradeClassContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.upgrade_properties`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitUpgrade_properties?: (ctx: Upgrade_propertiesContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.academyclassifier_value`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitAcademyclassifier_value?: (ctx: Academyclassifier_valueContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.weaponClass`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitWeaponClass?: (ctx: WeaponClassContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.weapon_properties`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitWeapon_properties?: (ctx: Weapon_propertiesContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.weapon_damagetype_property`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitWeapon_damagetype_property?: (ctx: Weapon_damagetype_propertyContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.weapon_deathtype_property`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitWeapon_deathtype_property?: (ctx: Weapon_deathtype_propertyContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.weapon_damageaffects_property`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitWeapon_damageaffects_property?: (ctx: Weapon_damageaffects_propertyContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.weapon_weaponbonus_property`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitWeapon_weaponbonus_property?: (ctx: Weapon_weaponbonus_propertyContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.weapon_lasterbone_property`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitWeapon_lasterbone_property?: (ctx: Weapon_lasterbone_propertyContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.weapon_weaponbonus_condition_value`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitWeapon_weaponbonus_condition_value?: (ctx: Weapon_weaponbonus_condition_valueContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.weapon_weaponbonus_bonus_value`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitWeapon_weaponbonus_bonus_value?: (ctx: Weapon_weaponbonus_bonus_valueContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.damageType_value`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitDamageType_value?: (ctx: DamageType_valueContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.deathType_value`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitDeathType_value?: (ctx: DeathType_valueContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.damageAffects_value`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitDamageAffects_value?: (ctx: DamageAffects_valueContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.weatherClass`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitWeatherClass?: (ctx: WeatherClassContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.weather_properties`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitWeather_properties?: (ctx: Weather_propertiesContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.end`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitEnd?: (ctx: EndContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.file`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitFile?: (ctx: FileContext) => Result;
-    /**
      * Visit a parse tree produced by `MapIniParser.cb_command_property`.
      * @param ctx the parse tree
      * @return the visitor result
      */
     visitCb_command_property?: (ctx: Cb_command_propertyContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.cb_command_value`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitCb_command_value?: (ctx: Cb_command_valueContext) => Result;
     /**
      * Visit a parse tree produced by `MapIniParser.cb_options_property`.
      * @param ctx the parse tree
@@ -1062,12 +805,6 @@ export class MapIniVisitor<Result> extends AbstractParseTreeVisitor<Result> {
      * @return the visitor result
      */
     visitCb_buttonbordertype_property?: (ctx: Cb_buttonbordertype_propertyContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.cb_buttonbordertype_value`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitCb_buttonbordertype_value?: (ctx: Cb_buttonbordertype_valueContext) => Result;
     /**
      * Visit a parse tree produced by `MapIniParser.cb_textlabel_property`.
      * @param ctx the parse tree
@@ -1117,6 +854,30 @@ export class MapIniVisitor<Result> extends AbstractParseTreeVisitor<Result> {
      */
     visitCb_maxshotsfire_property?: (ctx: Cb_maxshotsfire_propertyContext) => Result;
     /**
+     * Visit a parse tree produced by `MapIniParser.commandSetClass`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitCommandSetClass?: (ctx: CommandSetClassContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.commandSetClassProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitCommandSetClassProperty?: (ctx: CommandSetClassPropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.damageFXClass`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitDamageFXClass?: (ctx: DamageFXClassContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.damageFXClassProperties`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitDamageFXClassProperties?: (ctx: DamageFXClassPropertiesContext) => Result;
+    /**
      * Visit a parse tree produced by `MapIniParser.dfx_throttletime_property`.
      * @param ctx the parse tree
      * @return the visitor result
@@ -1153,65 +914,35 @@ export class MapIniVisitor<Result> extends AbstractParseTreeVisitor<Result> {
      */
     visitDfx_vetminorfx_property?: (ctx: Dfx_vetminorfx_propertyContext) => Result;
     /**
-     * Visit a parse tree produced by `MapIniParser.dgi_useplayercolor_property`.
+     * Visit a parse tree produced by `MapIniParser.drawGroupInfoClass`.
      * @param ctx the parse tree
      * @return the visitor result
      */
-    visitDgi_useplayercolor_property?: (ctx: Dgi_useplayercolor_propertyContext) => Result;
+    visitDrawGroupInfoClass?: (ctx: DrawGroupInfoClassContext) => Result;
     /**
-     * Visit a parse tree produced by `MapIniParser.dgi_colorfortext_property`.
+     * Visit a parse tree produced by `MapIniParser.drawgroupinfoProperties`.
      * @param ctx the parse tree
      * @return the visitor result
      */
-    visitDgi_colorfortext_property?: (ctx: Dgi_colorfortext_propertyContext) => Result;
+    visitDrawgroupinfoProperties?: (ctx: DrawgroupinfoPropertiesContext) => Result;
     /**
-     * Visit a parse tree produced by `MapIniParser.dgi_colordropshadow_property`.
+     * Visit a parse tree produced by `MapIniParser.fxListClass`.
      * @param ctx the parse tree
      * @return the visitor result
      */
-    visitDgi_colordropshadow_property?: (ctx: Dgi_colordropshadow_propertyContext) => Result;
+    visitFxListClass?: (ctx: FxListClassContext) => Result;
     /**
-     * Visit a parse tree produced by `MapIniParser.dgi_dropshadowoffsetX_property`.
+     * Visit a parse tree produced by `MapIniParser.fxlistblocks`.
      * @param ctx the parse tree
      * @return the visitor result
      */
-    visitDgi_dropshadowoffsetX_property?: (ctx: Dgi_dropshadowoffsetX_propertyContext) => Result;
+    visitFxlistblocks?: (ctx: FxlistblocksContext) => Result;
     /**
-     * Visit a parse tree produced by `MapIniParser.dgi_dropshadowoffsetY_property`.
+     * Visit a parse tree produced by `MapIniParser.fxlist_ps_block`.
      * @param ctx the parse tree
      * @return the visitor result
      */
-    visitDgi_dropshadowoffsetY_property?: (ctx: Dgi_dropshadowoffsetY_propertyContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.dgi_fontname_property`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitDgi_fontname_property?: (ctx: Dgi_fontname_propertyContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.dgi_fontsize_property`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitDgi_fontsize_property?: (ctx: Dgi_fontsize_propertyContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.dgi_fontisbold_property`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitDgi_fontisbold_property?: (ctx: Dgi_fontisbold_propertyContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.dgi_drawposXperc_property`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitDgi_drawposXperc_property?: (ctx: Dgi_drawposXperc_propertyContext) => Result;
-    /**
-     * Visit a parse tree produced by `MapIniParser.dgi_drawposYperc_property`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitDgi_drawposYperc_property?: (ctx: Dgi_drawposYperc_propertyContext) => Result;
+    visitFxlist_ps_block?: (ctx: Fxlist_ps_blockContext) => Result;
     /**
      * Visit a parse tree produced by `MapIniParser.fxlist_ps_name_property`.
      * @param ctx the parse tree
@@ -1297,11 +1028,23 @@ export class MapIniVisitor<Result> extends AbstractParseTreeVisitor<Result> {
      */
     visitFxlist_ps_creategroundheight_property?: (ctx: Fxlist_ps_creategroundheight_propertyContext) => Result;
     /**
+     * Visit a parse tree produced by `MapIniParser.fxlist_sound_block`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitFxlist_sound_block?: (ctx: Fxlist_sound_blockContext) => Result;
+    /**
      * Visit a parse tree produced by `MapIniParser.fxlist_sound_property`.
      * @param ctx the parse tree
      * @return the visitor result
      */
     visitFxlist_sound_property?: (ctx: Fxlist_sound_propertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.fxlist_rayeffect_block`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitFxlist_rayeffect_block?: (ctx: Fxlist_rayeffect_blockContext) => Result;
     /**
      * Visit a parse tree produced by `MapIniParser.fxlist_rayeffect_primaryoffset_property`.
      * @param ctx the parse tree
@@ -1314,6 +1057,18 @@ export class MapIniVisitor<Result> extends AbstractParseTreeVisitor<Result> {
      * @return the visitor result
      */
     visitFxlist_rayeffect_secondaryoffset_proprety?: (ctx: Fxlist_rayeffect_secondaryoffset_propretyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.fxlist_rayeffect_object_propety`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitFxlist_rayeffect_object_propety?: (ctx: Fxlist_rayeffect_object_propetyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.fxlist_tracer_block`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitFxlist_tracer_block?: (ctx: Fxlist_tracer_blockContext) => Result;
     /**
      * Visit a parse tree produced by `MapIniParser.fxlist_tracer_name_propety`.
      * @param ctx the parse tree
@@ -1363,6 +1118,12 @@ export class MapIniVisitor<Result> extends AbstractParseTreeVisitor<Result> {
      */
     visitFxlist_tracer_probability_property?: (ctx: Fxlist_tracer_probability_propertyContext) => Result;
     /**
+     * Visit a parse tree produced by `MapIniParser.fxlist_lightpulse_block`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitFxlist_lightpulse_block?: (ctx: Fxlist_lightpulse_blockContext) => Result;
+    /**
      * Visit a parse tree produced by `MapIniParser.fxlist_lightpulse_color_property`.
      * @param ctx the parse tree
      * @return the visitor result
@@ -1393,11 +1154,29 @@ export class MapIniVisitor<Result> extends AbstractParseTreeVisitor<Result> {
      */
     visitFxlist_lightpulse_decreasetime_property?: (ctx: Fxlist_lightpulse_decreasetime_propertyContext) => Result;
     /**
+     * Visit a parse tree produced by `MapIniParser.fxlist_viewshake_block`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitFxlist_viewshake_block?: (ctx: Fxlist_viewshake_blockContext) => Result;
+    /**
      * Visit a parse tree produced by `MapIniParser.fxlist_viewshake_type_property`.
      * @param ctx the parse tree
      * @return the visitor result
      */
     visitFxlist_viewshake_type_property?: (ctx: Fxlist_viewshake_type_propertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.fxlist_viewshake_type_value`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitFxlist_viewshake_type_value?: (ctx: Fxlist_viewshake_type_valueContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.fxlist_terrainscorch_block`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitFxlist_terrainscorch_block?: (ctx: Fxlist_terrainscorch_blockContext) => Result;
     /**
      * Visit a parse tree produced by `MapIniParser.fxlist_scorch_type_property`.
      * @param ctx the parse tree
@@ -1410,6 +1189,12 @@ export class MapIniVisitor<Result> extends AbstractParseTreeVisitor<Result> {
      * @return the visitor result
      */
     visitFxlist_scorch_radius_property?: (ctx: Fxlist_scorch_radius_propertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.fxlist_fxlistatbone_block`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitFxlist_fxlistatbone_block?: (ctx: Fxlist_fxlistatbone_blockContext) => Result;
     /**
      * Visit a parse tree produced by `MapIniParser.fxlist_atbonepos_fx_property`.
      * @param ctx the parse tree
@@ -1429,11 +1214,11 @@ export class MapIniVisitor<Result> extends AbstractParseTreeVisitor<Result> {
      */
     visitFxlist_atbonepos_orienttoobject_property?: (ctx: Fxlist_atbonepos_orienttoobject_propertyContext) => Result;
     /**
-     * Visit a parse tree produced by `MapIniParser.fxlist_name_object_propety`.
+     * Visit a parse tree produced by `MapIniParser.inGameUIClass`.
      * @param ctx the parse tree
      * @return the visitor result
      */
-    visitFxlist_name_object_propety?: (ctx: Fxlist_name_object_propetyContext) => Result;
+    visitInGameUIClass?: (ctx: InGameUIClassContext) => Result;
     /**
      * Visit a parse tree produced by `MapIniParser.igui_properties`.
      * @param ctx the parse tree
@@ -1441,17 +1226,641 @@ export class MapIniVisitor<Result> extends AbstractParseTreeVisitor<Result> {
      */
     visitIgui_properties?: (ctx: Igui_propertiesContext) => Result;
     /**
+     * Visit a parse tree produced by `MapIniParser.igui_blocks`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitIgui_blocks?: (ctx: Igui_blocksContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.ingui_block_properties`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitIngui_block_properties?: (ctx: Ingui_block_propertiesContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.locomotorClass`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitLocomotorClass?: (ctx: LocomotorClassContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.locomotor_properties`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitLocomotor_properties?: (ctx: Locomotor_propertiesContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.locomotor_surface_property`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitLocomotor_surface_property?: (ctx: Locomotor_surface_propertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.locomotor_zbehavior_property`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitLocomotor_zbehavior_property?: (ctx: Locomotor_zbehavior_propertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.locomotor_appereance_property`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitLocomotor_appereance_property?: (ctx: Locomotor_appereance_propertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.locomotor_movepriority_property`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitLocomotor_movepriority_property?: (ctx: Locomotor_movepriority_propertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.surface_value`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitSurface_value?: (ctx: Surface_valueContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.zbehavior_value`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitZbehavior_value?: (ctx: Zbehavior_valueContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.appereance_value`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAppereance_value?: (ctx: Appereance_valueContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.movepriority_value`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitMovepriority_value?: (ctx: Movepriority_valueContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.objectClass`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitObjectClass?: (ctx: ObjectClassContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.objectClass_properties`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitObjectClass_properties?: (ctx: ObjectClass_propertiesContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.objectClass_addModule`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitObjectClass_addModule?: (ctx: ObjectClass_addModuleContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.objectClass_modules`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitObjectClass_modules?: (ctx: ObjectClass_modulesContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.objectClass_drawModules`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitObjectClass_drawModules?: (ctx: ObjectClass_drawModulesContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.drawModule_typeBlock1Value`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitDrawModule_typeBlock1Value?: (ctx: DrawModule_typeBlock1ValueContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.drawModule_type1Value`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitDrawModule_type1Value?: (ctx: DrawModule_type1ValueContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.drawModule_typeBlock2Value`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitDrawModule_typeBlock2Value?: (ctx: DrawModule_typeBlock2ValueContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.drawModule_type2Value`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitDrawModule_type2Value?: (ctx: DrawModule_type2ValueContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.drawModule_typeBlock2properties`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitDrawModule_typeBlock2properties?: (ctx: DrawModule_typeBlock2propertiesContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.drawModule_typeBlock3Value`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitDrawModule_typeBlock3Value?: (ctx: DrawModule_typeBlock3ValueContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.drawModule_type3Value`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitDrawModule_type3Value?: (ctx: DrawModule_type3ValueContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.drawModule_typeBlock3properties`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitDrawModule_typeBlock3properties?: (ctx: DrawModule_typeBlock3propertiesContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.drawModule_typeBlock4Value`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitDrawModule_typeBlock4Value?: (ctx: DrawModule_typeBlock4ValueContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.drawModule_type4Value`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitDrawModule_type4Value?: (ctx: DrawModule_type4ValueContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.drawModule_typeBlock4properties`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitDrawModule_typeBlock4properties?: (ctx: DrawModule_typeBlock4propertiesContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.drawModule_typeBlock5Value`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitDrawModule_typeBlock5Value?: (ctx: DrawModule_typeBlock5ValueContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.drawModule_type5Value`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitDrawModule_type5Value?: (ctx: DrawModule_type5ValueContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.drawModule_typeBlock5properties`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitDrawModule_typeBlock5properties?: (ctx: DrawModule_typeBlock5propertiesContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.drawModule_conditionBlock`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitDrawModule_conditionBlock?: (ctx: DrawModule_conditionBlockContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.drawModule_defaultconditionBlock`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitDrawModule_defaultconditionBlock?: (ctx: DrawModule_defaultconditionBlockContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.drawModule_conditionStateValue`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitDrawModule_conditionStateValue?: (ctx: DrawModule_conditionStateValueContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.drawModule_conditionStateProperties`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitDrawModule_conditionStateProperties?: (ctx: DrawModule_conditionStatePropertiesContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.rankClass`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitRankClass?: (ctx: RankClassContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.rank_properties`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitRank_properties?: (ctx: Rank_propertiesContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.scienceClass`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitScienceClass?: (ctx: ScienceClassContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.science_properties`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitScience_properties?: (ctx: Science_propertiesContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.specialPowerClass`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitSpecialPowerClass?: (ctx: SpecialPowerClassContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.specialPower_properties`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitSpecialPower_properties?: (ctx: SpecialPower_propertiesContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.soundEffectClasses`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitSoundEffectClasses?: (ctx: SoundEffectClassesContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.audioEventClass`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAudioEventClass?: (ctx: AudioEventClassContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.dialogEventClass`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitDialogEventClass?: (ctx: DialogEventClassContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.audioevent_properties`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAudioevent_properties?: (ctx: Audioevent_propertiesContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.objectCreationListClass`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitObjectCreationListClass?: (ctx: ObjectCreationListClassContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.objectCreationListClass_blocks`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitObjectCreationListClass_blocks?: (ctx: ObjectCreationListClass_blocksContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.objectCreationListClass_createDebrisBlock`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitObjectCreationListClass_createDebrisBlock?: (ctx: ObjectCreationListClass_createDebrisBlockContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.objectCreationListClass_createDebrisProperties`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitObjectCreationListClass_createDebrisProperties?: (ctx: ObjectCreationListClass_createDebrisPropertiesContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.disposition_value`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitDisposition_value?: (ctx: Disposition_valueContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.objectCreationListClass_createObjectBlock`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitObjectCreationListClass_createObjectBlock?: (ctx: ObjectCreationListClass_createObjectBlockContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.objectCreationListClass_createObjectProperties`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitObjectCreationListClass_createObjectProperties?: (ctx: ObjectCreationListClass_createObjectPropertiesContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.objectCreationListClass_applyRandomForceBlock`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitObjectCreationListClass_applyRandomForceBlock?: (ctx: ObjectCreationListClass_applyRandomForceBlockContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.objectCreationListClass_applyRandomForceProperties`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitObjectCreationListClass_applyRandomForceProperties?: (ctx: ObjectCreationListClass_applyRandomForcePropertiesContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.objectCreationListClass_attackBlock`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitObjectCreationListClass_attackBlock?: (ctx: ObjectCreationListClass_attackBlockContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.objectCreationListClass_attackProperties`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitObjectCreationListClass_attackProperties?: (ctx: ObjectCreationListClass_attackPropertiesContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.objectCreationListClass_fireWeaponBlock`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitObjectCreationListClass_fireWeaponBlock?: (ctx: ObjectCreationListClass_fireWeaponBlockContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.objectCreationListClass_fireWeaponProperties`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitObjectCreationListClass_fireWeaponProperties?: (ctx: ObjectCreationListClass_fireWeaponPropertiesContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.objectCreationListClass_deliveryPayloadBlock`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitObjectCreationListClass_deliveryPayloadBlock?: (ctx: ObjectCreationListClass_deliveryPayloadBlockContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.objectCreationListClass_deliveryPayloadProperties`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitObjectCreationListClass_deliveryPayloadProperties?: (ctx: ObjectCreationListClass_deliveryPayloadPropertiesContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.objectCreationListClass_deliveryDecal`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitObjectCreationListClass_deliveryDecal?: (ctx: ObjectCreationListClass_deliveryDecalContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.particleSystemClass`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitParticleSystemClass?: (ctx: ParticleSystemClassContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.particleSystemClass_properties`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitParticleSystemClass_properties?: (ctx: ParticleSystemClass_propertiesContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.particleSystemClass_priorityValue`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitParticleSystemClass_priorityValue?: (ctx: ParticleSystemClass_priorityValueContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.particleSystemClass_shaderValue`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitParticleSystemClass_shaderValue?: (ctx: ParticleSystemClass_shaderValueContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.particleSystemClass_typeValue`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitParticleSystemClass_typeValue?: (ctx: ParticleSystemClass_typeValueContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.particleSystemClass_velocityTypeValue`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitParticleSystemClass_velocityTypeValue?: (ctx: ParticleSystemClass_velocityTypeValueContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.particleSystemClass_volumeTypeValue`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitParticleSystemClass_volumeTypeValue?: (ctx: ParticleSystemClass_volumeTypeValueContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.particleSystemClass_windTypeValue`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitParticleSystemClass_windTypeValue?: (ctx: ParticleSystemClass_windTypeValueContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.playerTemplateClass`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitPlayerTemplateClass?: (ctx: PlayerTemplateClassContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.playerTemplateClass_properties`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitPlayerTemplateClass_properties?: (ctx: PlayerTemplateClass_propertiesContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.upgradeClass`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitUpgradeClass?: (ctx: UpgradeClassContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.upgrade_properties`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitUpgrade_properties?: (ctx: Upgrade_propertiesContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.academyclassifier_value`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitAcademyclassifier_value?: (ctx: Academyclassifier_valueContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.weaponClass`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitWeaponClass?: (ctx: WeaponClassContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.weapon_properties`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitWeapon_properties?: (ctx: Weapon_propertiesContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.weapon_damagetype_property`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitWeapon_damagetype_property?: (ctx: Weapon_damagetype_propertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.weapon_deathtype_property`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitWeapon_deathtype_property?: (ctx: Weapon_deathtype_propertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.weapon_damageaffects_property`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitWeapon_damageaffects_property?: (ctx: Weapon_damageaffects_propertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.weapon_weaponbonus_property`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitWeapon_weaponbonus_property?: (ctx: Weapon_weaponbonus_propertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.weapon_lasterbone_property`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitWeapon_lasterbone_property?: (ctx: Weapon_lasterbone_propertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.weapon_weaponbonus_condition_value`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitWeapon_weaponbonus_condition_value?: (ctx: Weapon_weaponbonus_condition_valueContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.weapon_weaponbonus_bonus_value`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitWeapon_weaponbonus_bonus_value?: (ctx: Weapon_weaponbonus_bonus_valueContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.deathType_value`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitDeathType_value?: (ctx: DeathType_valueContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.damageAffects_value`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitDamageAffects_value?: (ctx: DamageAffects_valueContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.projectileColide_value`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitProjectileColide_value?: (ctx: ProjectileColide_valueContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.damageType_value`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitDamageType_value?: (ctx: DamageType_valueContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.armorType_value`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitArmorType_value?: (ctx: ArmorType_valueContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.weatherClass`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitWeatherClass?: (ctx: WeatherClassContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.weather_properties`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitWeather_properties?: (ctx: Weather_propertiesContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.end`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitEnd?: (ctx: EndContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.file`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitFile?: (ctx: FileContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.dgi_useplayercolor_property`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitDgi_useplayercolor_property?: (ctx: Dgi_useplayercolor_propertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.dgi_colorfortext_property`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitDgi_colorfortext_property?: (ctx: Dgi_colorfortext_propertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.dgi_colordropshadow_property`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitDgi_colordropshadow_property?: (ctx: Dgi_colordropshadow_propertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.dgi_dropshadowoffsetX_property`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitDgi_dropshadowoffsetX_property?: (ctx: Dgi_dropshadowoffsetX_propertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.dgi_dropshadowoffsetY_property`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitDgi_dropshadowoffsetY_property?: (ctx: Dgi_dropshadowoffsetY_propertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.dgi_fontname_property`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitDgi_fontname_property?: (ctx: Dgi_fontname_propertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.dgi_fontsize_property`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitDgi_fontsize_property?: (ctx: Dgi_fontsize_propertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.dgi_fontisbold_property`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitDgi_fontisbold_property?: (ctx: Dgi_fontisbold_propertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.dgi_drawposXperc_property`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitDgi_drawposXperc_property?: (ctx: Dgi_drawposXperc_propertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.dgi_drawposYperc_property`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitDgi_drawposYperc_property?: (ctx: Dgi_drawposYperc_propertyContext) => Result;
+    /**
      * Visit a parse tree produced by `MapIniParser.faction_value`.
      * @param ctx the parse tree
      * @return the visitor result
      */
     visitFaction_value?: (ctx: Faction_valueContext) => Result;
     /**
+     * Visit a parse tree produced by `MapIniParser.factionEx_value`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitFactionEx_value?: (ctx: FactionEx_valueContext) => Result;
+    /**
      * Visit a parse tree produced by `MapIniParser.commandbutton_value`.
      * @param ctx the parse tree
      * @return the visitor result
      */
     visitCommandbutton_value?: (ctx: Commandbutton_valueContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.commandSet_value`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitCommandSet_value?: (ctx: CommandSet_valueContext) => Result;
     /**
      * Visit a parse tree produced by `MapIniParser.cursorname_value`.
      * @param ctx the parse tree
@@ -1501,6 +1910,18 @@ export class MapIniVisitor<Result> extends AbstractParseTreeVisitor<Result> {
      */
     visitObject_value?: (ctx: Object_valueContext) => Result;
     /**
+     * Visit a parse tree produced by `MapIniParser.kindof_value`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitKindof_value?: (ctx: Kindof_valueContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.ocl_value`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitOcl_value?: (ctx: Ocl_valueContext) => Result;
+    /**
      * Visit a parse tree produced by `MapIniParser.science_property`.
      * @param ctx the parse tree
      * @return the visitor result
@@ -1542,6 +1963,12 @@ export class MapIniVisitor<Result> extends AbstractParseTreeVisitor<Result> {
      * @return the visitor result
      */
     visitUpgrade_value?: (ctx: Upgrade_valueContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.weapon_value`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitWeapon_value?: (ctx: Weapon_valueContext) => Result;
     /**
      * Visit a parse tree produced by `MapIniParser.weaponslot_property`.
      * @param ctx the parse tree

@@ -18,7 +18,7 @@ export function findTokenIndex(tokens: Token[], offset: number): number {
     return tokens.length - 1;
 }
 
-export function generateCompletionItems(candidates: CandidatesCollection, parser: MapIniParser): CompletionItem[] {
+export async function generateCompletionItems(candidates: CandidatesCollection, parser: MapIniParser): Promise<CompletionItem[]> {
     const completionItems: CompletionItem[] = [];
 
     // Process token candidates (keywords, symbols)
@@ -34,10 +34,64 @@ export function generateCompletionItems(candidates: CandidatesCollection, parser
             ? tokenName.substring(1, tokenName.length - 1)
             : tokenName;
 
-        switch(label) {
         
+        completionItems.push(createCompletionItem(label, CompletionItemKind.Field, tokenType, `Rule: ${label}`));
+
+        switch (label) {
+
             case 'NEWLINE':
             case 'COMMENT':
+                break;
+
+            case 'BOOLEAN':
+                completionItems.push(createCompletionItem('Yes', CompletionItemKind.Field, tokenType, `Rule: ${label}`))
+                completionItems.push(createCompletionItem('No', CompletionItemKind.Field, tokenType, `Rule: ${label}`))
+                break;
+
+            case 'PERCENT':
+                completionItems.push({
+                    label,
+                    kind: CompletionItemKind.Snippet,
+                    insertTextFormat: InsertTextFormat.Snippet,
+                    detail: 'Insert Percentage',
+                    insertText: '${0:100}%',
+                    documentation: `Snippet: ${label}`
+                })
+                break
+
+            case 'WEAPONSLOT':
+                completionItems.push(createCompletionItem('PRIMARY', CompletionItemKind.Field, tokenType, `Rule: ${label}`))
+                completionItems.push(createCompletionItem('SECONDARY', CompletionItemKind.Field, tokenType, `Rule: ${label}`))
+                completionItems.push(createCompletionItem('TERTIARY', CompletionItemKind.Field, tokenType, `Rule: ${label}`))
+                break;
+                
+
+            case 'VETERENCY':
+                completionItems.push(createCompletionItem('VETERAN', CompletionItemKind.Field, tokenType, `Rule: ${label}`))
+                completionItems.push(createCompletionItem('ELITE', CompletionItemKind.Field, tokenType, `Rule: ${label}`))
+                completionItems.push(createCompletionItem('HEROIC', CompletionItemKind.Field, tokenType, `Rule: ${label}`))
+                break;
+
+            case 'RGB':
+                completionItems.push({
+                    label,
+                    kind: CompletionItemKind.Snippet,
+                    insertTextFormat: InsertTextFormat.Snippet,
+                    detail: 'Insert RGB',
+                    insertText: 'R:${1:0} G:${2:0} B:${0:0}',
+                    documentation: `Snippet: ${label}`
+                })
+                break;
+
+            case 'RGBA':
+                completionItems.push({
+                    label,
+                    kind: CompletionItemKind.Snippet,
+                    insertTextFormat: InsertTextFormat.Snippet,
+                    detail: 'Insert RGBA',
+                    insertText: 'R:${1:0} G:${2:0} B:${3:0} A:${0:0}',
+                    documentation: `Snippet: ${label}`
+                })
                 break;
 
             case 'Coords':
@@ -51,103 +105,189 @@ export function generateCompletionItems(candidates: CandidatesCollection, parser
                 })
                 break;
 
-            default:
+            case 'XCOORD':
                 completionItems.push({
                     label,
-                    kind: CompletionItemKind.Field,
-                    data: tokenType,
-                    documentation: `Keyword: ${label}`,
-                });
+                    kind: CompletionItemKind.Snippet,
+                    insertTextFormat: InsertTextFormat.Snippet,
+                    detail: 'Insert X coordinate',
+                    insertText: 'X:${0:0}',
+                    documentation: `Snippet: ${label}`
+                })
+                break;
+
+            case 'YCOORD':
+                completionItems.push({
+                    label,
+                    kind: CompletionItemKind.Snippet,
+                    insertTextFormat: InsertTextFormat.Snippet,
+                    detail: 'Insert Y coordinate',
+                    insertText: 'Y:${0:0}',
+                    documentation: `Snippet: ${label}`
+                })
+                break;
+
+            case 'ZCOORD':
+                completionItems.push({
+                    label,
+                    kind: CompletionItemKind.Snippet,
+                    insertTextFormat: InsertTextFormat.Snippet,
+                    detail: 'Insert Z coordinate',
+                    insertText: 'Z:${0:0}',
+                    documentation: `Snippet: ${label}`
+                })
+                break;
+
+            case 'Location':
+                completionItems.push({
+                    label,
+                    kind: CompletionItemKind.Snippet,
+                    insertTextFormat: InsertTextFormat.Snippet,
+                    detail: 'Insert X: & Y: coordinate',
+                    insertText: 'Location = X:${1:0} Y:${0:0}',
+                    documentation: `Snippet: ${label}`
+                })
+                break;
+
+            default:
                 break;
         }
     }
 
     // Process rule candidates (snippets, templates)
-    for (const [ruleIndex, candidate] of candidates.rules) {
-        const ruleName = parser.ruleNames[ruleIndex];
+    // for (const [ruleIndex, candidate] of candidates.rules) {
+    //     const ruleName = parser.ruleNames[ruleIndex];
 
-        completionItems.push({
-            label: ruleName,
-            kind: CompletionItemKind.Snippet,
-            data: ruleIndex,
-            documentation: `Rule: ${ruleName}`,
-        });
-    }
+    //     completionItems.push({
+    //         label: ruleName,
+    //         kind: CompletionItemKind.Snippet,
+    //         data: ruleIndex,
+    //         documentation: `Rule: ${ruleName}`,
+    //     });
+    // }
 
     return completionItems;
 }
 
+function createCompletionItem(label: string, kind: CompletionItemKind, data: any, documentation: string): CompletionItem {
+    return {
+        label: label,
+        kind: kind,
+        data: data,
+        documentation: documentation
+    }
+}
+
 export function findContextAtPosition(tree: ParserRuleContext, position: number): ParserRuleContext | null {
     if (!tree || tree.start === null || tree.stop === null) {
-      return null;
+        return null;
     }
 
-    console.log(`Start: ${tree.start.start}, End: ${tree.stop.stop}, Position: ${position}`)
-    
+    // console.log(`Start: ${tree.start.start}, End: ${tree.stop.stop}, Position: ${position}`)
+
     const start = tree.start.start;
     const stop = tree.stop.stop + 1;
-  
+
     if (position < start || position > stop) {
-        console.log('out of range')
-      return null;
+        // console.log('out of range')
+        return null;
     }
-  
+
     // If the node covers the position, check its children
     for (let i = 0; i < tree.getChildCount(); i++) {
-      const child = tree.getChild(i);
-  
-      if (child instanceof ParserRuleContext) {
-        const result = findContextAtPosition(child, position);
-        if (result !== null) {
-          return result;
+        const child = tree.getChild(i);
+
+        if (child instanceof ParserRuleContext) {
+            const result = findContextAtPosition(child, position);
+            if (result !== null) {
+                return result;
+            }
         }
-      }
     }
-  
+
     // If no children cover the position, return this node
     return tree;
-  }
+}
 
-export function getContextSpecificCompletions(ruleName: string): CompletionItem[] {
+export async function getContextSpecificCompletions(ruleName: string): Promise<CompletionItem[]> {
     const completionItems: CompletionItem[] = [];
 
     console.log(`Rules: ${ruleName}`)
 
     //TODO: Add retrievels here
     switch (ruleName) {
-        case 'cb_command_property':
-            completionItems.push(...getCompletionItemsFromStringArray(list.CommandButtonCommandValues))
+        case 'audioevent_value':
+            completionItems.push(...getCompletionItemsFromRBTree(list.audioEvent))
+            completionItems.push(...getCompletionItemsFromRBTree(list.customAudioEvent))
             break;
 
-        case 'cb_options_property':
-            completionItems.push(...getCompletionItemsFromStringArray(list.CommandButtonOptionValues))
+        case 'commandbutton_value':
+            completionItems.push(...getCompletionItemsFromRBTree(list.commandButtons))
+            completionItems.push(...getCompletionItemsFromRBTree(list.customCommandButtons))
+            break;
+            
+        case 'dialogevent_value':
+            completionItems.push(...getCompletionItemsFromRBTree(list.dialogEvent))
+            completionItems.push(...getCompletionItemsFromRBTree(list.customDialogEvent))
             break;
 
-        case 'cb_buttonbordertype_property':
-            completionItems.push(...getCompletionItemsFromStringArray(list.CommandButtonBorderTypeValues))
+        case 'fxlist_value':
+            completionItems.push(...getCompletionItemsFromRBTree(list.fxLists))
+            completionItems.push(...getCompletionItemsFromRBTree(list.customFXLists))
             break;
 
-        case 'object_property':
+        case 'mappedimage_value':
+            completionItems.push(...getCompletionItemsFromRBTree(list.mappedImages))
+            completionItems.push(...getCompletionItemsFromRBTree(list.customMappedImages))
+            break;
+
+        case 'object_value':
             completionItems.push(...getCompletionItemsFromRBTree(list.objects))
-            completionItems.push(...getCompletionItemsFromRBTree(list.customObjects))        
+            completionItems.push(...getCompletionItemsFromRBTree(list.customObjects))
             break;
 
-        case 'science_property':
+        case 'science_value':
             completionItems.push(...getCompletionItemsFromRBTree(list.science))
             completionItems.push(...getCompletionItemsFromRBTree(list.customScience))
             break;
 
-        case 'specialpower_property':
+        case 'specialpower_value':
             completionItems.push(...getCompletionItemsFromRBTree(list.specialPower))
             completionItems.push(...getCompletionItemsFromRBTree(list.customSpecialPower))
             break;
 
-        case 'upgrade_property':
-            // Add completion items relevant to function declarations
+        case 'rand_value':
+            completionItems.push({
+                label: 'Random Value Distribution',
+                kind: CompletionItemKind.Snippet,
+                insertTextFormat: InsertTextFormat.Snippet,
+                detail: 'Insert rand_value',
+                insertText: '${1:0} ${2:0} ${3|CONSTANT,UNIFORM,GAUSSIAN,TRIANGULAR,LOW_BIAS,HIGH_BIAS|}',
+                documentation: `Snippet: Random Value Distribution}`
+            })
+            break;
 
+        case 'coord3D':
+            completionItems.push({
+                label: '3D Coordinates',
+                kind: CompletionItemKind.Snippet,
+                insertTextFormat: InsertTextFormat.Snippet,
+                detail: 'Insert X: Y: & Z:',
+                insertText: 'X:${1:0} Y:${2:0} Z:${0:0}',
+                documentation: `Snippet: 3D Coordinates`
+            })
+            break;
+
+        case 'particlesystem_value':
+            completionItems.push(...getCompletionItemsFromRBTree(list.particleSystem))
+            completionItems.push(...getCompletionItemsFromRBTree(list.customParticleSystem))
+            break;
+
+        case 'upgrade_value':
             completionItems.push(...getCompletionItemsFromRBTree(list.upgrades));
             completionItems.push(...getCompletionItemsFromRBTree(list.customUpgrades));
             break;
+
         // Add more cases for different contexts
         default:
             break;
@@ -167,7 +307,7 @@ function getCompletionItemsFromRBTree(tree: RBTree<string>): CompletionItem[] {
     tree.each((value: string) => {
         completionItems.push({
             label: value,
-            kind: CompletionItemKind.Text,
+            kind: CompletionItemKind.Field,
             data: value,
             documentation: `Value: ${value}`,
         });
@@ -178,15 +318,20 @@ function getCompletionItemsFromRBTree(tree: RBTree<string>): CompletionItem[] {
 
 function getCompletionItemsFromStringArray(stringArray: string[]): CompletionItem[] {
     const completionItems: CompletionItem[] = [];
-    
+
     stringArray.forEach(string => {
         completionItems.push({
             label: string,
-            kind: CompletionItemKind.Text,
+            kind: CompletionItemKind.Field,
             data: string,
             documentation: `Value: ${string}`,
         });
     });
-    
+
     return completionItems;
+}
+
+export function withTimeout<T>(promise: Promise<T>, ms: number, fallback: T): Promise<T> {
+    const timeout = new Promise<T>(resolve => setTimeout(() => resolve(fallback), ms));
+    return Promise.race([promise, timeout]);
 }

@@ -3,7 +3,7 @@ import { Diagnostic, DiagnosticSeverity } from "vscode-languageserver";
 import * as list from '../utils/lists'
 import { Location } from "../utils/location";
 import { MapIniVisitor } from "../utils/antlr4ng/MapIniVisitor";
-import { Appereance_valueContext, Audioevent_valueContext, Cb_buttonbordertype_valueContext, Cb_command_valueContext, Cb_options_valueContext, Commandbutton_valueContext, CommandSetClassPropertyContext, Cursorname_valueContext, EndContext, Faction_valueContext, Fxlist_valueContext, MapIniParser, Mappedimage_valueContext, Movepriority_valueContext, Object_valueContext, ProgramContext, Science_valueContext, Specialpower_valueContext, Surface_valueContext, Upgrade_valueContext, Zbehavior_valueContext } from "../utils/antlr4ng/MapIniParser";
+import { Appereance_valueContext, Audioevent_valueContext, AudioEventClassContext, Commandbutton_valueContext, CommandSetClassPropertyContext, Cursorname_valueContext, DialogEventClassContext, EndContext, Faction_valueContext, Fxlist_valueContext, MapIniParser, Mappedimage_valueContext, Movepriority_valueContext, Object_valueContext, ParticleSystemClassContext, ProgramContext, Science_valueContext, Specialpower_valueContext, Surface_valueContext, Upgrade_valueContext, Zbehavior_valueContext } from "../utils/antlr4ng/MapIniParser";
 import { AbstractParseTreeVisitor } from "antlr4ng";
 import { ErrorListener } from "../errorListener";
 
@@ -28,6 +28,10 @@ export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements
         // Do nothing
     }
 
+    visitParticleSystemClass(ctx: ParticleSystemClassContext): void {
+        console.log(`"${ctx.ID().getText()}",`)
+    }
+
     // =====================================
     // ============== CLASSES ==============
     // =====================================
@@ -37,6 +41,17 @@ export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements
     // ============== AI DATA ==============
     // =====================================
 
+    // =====================================
+    // ============ Audio Event ============
+    // =====================================
+
+    // visitAudioEventClass(ctx: AudioEventClassContext): void {
+    //     console.log(`"${ctx.ID().getText()}",`)
+    // }
+
+    // visitDialogEventClass(ctx: DialogEventClassContext): void {
+    //     console.log(`"${ctx.ID().getText()}",`)
+    // }
 
     // =====================================
     // =========== COMMANDSET ==============
@@ -74,46 +89,6 @@ export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements
     // =====================================
     // ========== COMMAND BUTTON ===========
     // =====================================
-    visitCb_command_value(ctx: Cb_command_valueContext): void {
-        if (ctx.ID()) {
-            const symbol = ctx.ID()!.symbol
-            const ID_text = ctx.ID()!.getText()
-            if (!list.CommandButtonCommandValues.includes(ID_text) && !list.CommandButtonCommandValues.includes(ID_text)) {
-                const severity = DiagnosticSeverity.Error
-                const start = new Location(symbol.line, symbol.column)
-                const msg = `CommandButton Command ${ID_text} is not defined`
-                this.addDiagnostic(severity, start, start, msg)
-            }
-        }
-    }
-
-    visitCb_options_value(ctx: Cb_options_valueContext): void {
-        if (ctx.ID()) {
-            const symbol = ctx.ID()!.symbol
-            const ID_text = ctx.ID()!.getText()
-
-            if (!list.CommandButtonOptionValues.includes(ID_text) && !list.CommandButtonOptionValues.includes(ID_text)) {
-                const severity = DiagnosticSeverity.Error
-                const start = new Location(symbol.line, symbol.column)
-                const msg = `CommandButton Option ${ID_text} is not defined`
-                this.addDiagnostic(severity, start, start, msg)
-            }
-        }
-    }
-
-    visitCb_buttonbordertype_value(ctx: Cb_buttonbordertype_valueContext): void {
-        if (ctx.ID()) {
-            const symbol = ctx.ID()!.symbol
-            const ID_text = ctx.ID()!.getText()
-
-            if (!list.CommandButtonBorderTypeValues.includes(ID_text)) {
-                const severity = DiagnosticSeverity.Error
-                const start = new Location(symbol.line, symbol.column)
-                const msg = `Border type ${ID_text} does not exist`
-                this.addDiagnostic(severity, start, start, msg)
-            }
-        }
-    }
 
 
     // =====================================
@@ -124,61 +99,61 @@ export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements
     // =====================================
     // =========== Locomotor ===============
     // =====================================
-    visitSurface_value(ctx: Surface_valueContext): void {
-        if (ctx.ID()) {
-            const symbol = ctx.ID()!.symbol
-            const ID_text = ctx.ID()!.getText()
+    // visitSurface_value(ctx: Surface_valueContext): void {
+    //     if (ctx.ID()) {
+    //         const symbol = ctx.ID()!.symbol
+    //         const ID_text = ctx.ID()!.getText()
 
-            if (!list.LocomotorSurface.includes(ID_text) && !list.LocomotorSurface.includes(ID_text)) {
-                const severity = DiagnosticSeverity.Error
-                const start = new Location(symbol.line, symbol.column)
-                const msg = `CommandButton Option ${ID_text} is not defined`
-                this.addDiagnostic(severity, start, start, msg)
-            }
-        }
-    }
+    //         if (!list.LocomotorSurface.includes(ID_text) && !list.LocomotorSurface.includes(ID_text)) {
+    //             const severity = DiagnosticSeverity.Error
+    //             const start = new Location(symbol.line, symbol.column)
+    //             const msg = `CommandButton Option ${ID_text} is not defined`
+    //             this.addDiagnostic(severity, start, start, msg)
+    //         }
+    //     }
+    // }
 
-    visitZbehavior_value(ctx: Zbehavior_valueContext): void {
-        if (ctx.ID()) {
-            const symbol = ctx.ID()!.symbol
-            const ID_text = ctx.ID()!.getText()
+    // visitZbehavior_value(ctx: Zbehavior_valueContext): void {
+    //     if (ctx.ID()) {
+    //         const symbol = ctx.ID()!.symbol
+    //         const ID_text = ctx.ID()!.getText()
 
-            if (!list.LocomotorZBehavior.includes(ID_text) && !list.LocomotorZBehavior.includes(ID_text)) {
-                const severity = DiagnosticSeverity.Error
-                const start = new Location(symbol.line, symbol.column)
-                const msg = `CommandButton Option ${ID_text} is not defined`
-                this.addDiagnostic(severity, start, start, msg)
-            }
-        }
-    }
+    //         if (!list.LocomotorZBehavior.includes(ID_text) && !list.LocomotorZBehavior.includes(ID_text)) {
+    //             const severity = DiagnosticSeverity.Error
+    //             const start = new Location(symbol.line, symbol.column)
+    //             const msg = `CommandButton Option ${ID_text} is not defined`
+    //             this.addDiagnostic(severity, start, start, msg)
+    //         }
+    //     }
+    // }
 
-    visitAppereance_value(ctx: Appereance_valueContext): void {
-        if (ctx.ID()) {
-            const symbol = ctx.ID()!.symbol
-            const ID_text = ctx.ID()!.getText()
+    // visitAppereance_value(ctx: Appereance_valueContext): void {
+    //     if (ctx.ID()) {
+    //         const symbol = ctx.ID()!.symbol
+    //         const ID_text = ctx.ID()!.getText()
 
-            if (!list.LocomotorAppearence.includes(ID_text) && !list.LocomotorAppearence.includes(ID_text)) {
-                const severity = DiagnosticSeverity.Error
-                const start = new Location(symbol.line, symbol.column)
-                const msg = `CommandButton Option ${ID_text} is not defined`
-                this.addDiagnostic(severity, start, start, msg)
-            }
-        }
-    }
+    //         if (!list.LocomotorAppearence.includes(ID_text) && !list.LocomotorAppearence.includes(ID_text)) {
+    //             const severity = DiagnosticSeverity.Error
+    //             const start = new Location(symbol.line, symbol.column)
+    //             const msg = `CommandButton Option ${ID_text} is not defined`
+    //             this.addDiagnostic(severity, start, start, msg)
+    //         }
+    //     }
+    // }
 
-    visitmovepriority_value(ctx: Movepriority_valueContext): void {
-        if (ctx.ID()) {
-            const symbol = ctx.ID()!.symbol
-            const ID_text = ctx.ID()!.getText()
+    // visitmovepriority_value(ctx: Movepriority_valueContext): void {
+    //     if (ctx.ID()) {
+    //         const symbol = ctx.ID()!.symbol
+    //         const ID_text = ctx.ID()!.getText()
 
-            if (!list.LocomotorMovePriority.includes(ID_text) && !list.LocomotorMovePriority.includes(ID_text)) {
-                const severity = DiagnosticSeverity.Error
-                const start = new Location(symbol.line, symbol.column)
-                const msg = `CommandButton Option ${ID_text} is not defined`
-                this.addDiagnostic(severity, start, start, msg)
-            }
-        }
-    }
+    //         if (!list.LocomotorMovePriority.includes(ID_text) && !list.LocomotorMovePriority.includes(ID_text)) {
+    //             const severity = DiagnosticSeverity.Error
+    //             const start = new Location(symbol.line, symbol.column)
+    //             const msg = `CommandButton Option ${ID_text} is not defined`
+    //             this.addDiagnostic(severity, start, start, msg)
+    //         }
+    //     }
+    // }
 
 
     // =====================================

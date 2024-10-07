@@ -1,6 +1,6 @@
 import { ParseTreeVisitor } from "antlr4ng/dist/tree/ParseTreeVisitor"
 import { AbstractParseTreeVisitor } from "antlr4ng/dist/tree/AbstractParseTreeVisitor"
-import { Animation2DClassContext, ArmorClassContext, ClassesContext, CommandButtonClassContext, MappedImageClassContext, ProgramContext } from "../utils/antlr4ng/MapIniParser";
+import { Animation2DClassContext, ArmorClassContext, ClassesContext, CommandButtonClassContext, MappedImageClassContext, ParticleSystemClassContext, ProgramContext } from "../utils/antlr4ng/MapIniParser";
 import * as list from '../utils/lists'
 
 export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements ParseTreeVisitor<void> {
@@ -24,6 +24,8 @@ export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements
     } else if (child instanceof CommandButtonClassContext) {
       list.customCommandButtons.remove(child.ID().getText().toUpperCase())
       list.customCommandButtons.insert(child.ID().getText().toUpperCase())
+    } else if (child instanceof ParticleSystemClassContext) {
+      console.log(`"${child.ID().getText()}",`)
     }
   }
 
