@@ -3,11 +3,10 @@ import { Diagnostic, DiagnosticSeverity } from "vscode-languageserver";
 import * as list from '../utils/lists'
 import { Location } from "../utils/location";
 import { MapIniVisitor } from "../utils/antlr4ng/MapIniVisitor";
-import { Armor_valueContext, ClassesContext, Commandbutton_valueContext, CommandSet_valueContext, CommandSetClassPropertyContext, Cursorname_valueContext, DamageFX_valueContext, DrawModule_conditionBlockContext, DrawModule_conditionStateValueContext, DrawModule_transitionKeyPropertyContext, DrawModule_transitionStateBlockContext, EndContext, Fxlist_valueContext, Locomotor_valueContext, MapIniParser, Mappedimage_valueContext, Object_valueContext, ObjectClass_drawModulesContext, ObjectClass_propertiesContext, ObjectClass_setsContext, ObjectClass_soundsContext, ObjectClassContext, Particlesystem_valueContext, ParticleSystemClassContext, ProgramContext, Science_valueContext, Specialpower_valueContext, TransitionKey_valueContext, Upgrade_valueContext } from "../utils/antlr4ng/MapIniParser";
-import { AbstractParseTreeVisitor, ParseTree } from "antlr4ng";
+import { Armor_valueContext, Commandbutton_valueContext, CommandSet_valueContext, CommandSetClassPropertyContext, Cursorname_valueContext, DamageFX_valueContext, DrawModule_conditionBlockContext, DrawModule_conditionStateValueContext, DrawModule_transitionKeyPropertyContext, DrawModule_transitionStateBlockContext, EndContext, Fxlist_valueContext, Locomotor_valueContext, MapIniParser, Mappedimage_valueContext, Object_valueContext, ObjectClass_drawModulesContext, ObjectClass_propertiesContext, ObjectClass_setsContext, ObjectClass_soundsContext, ObjectClassContext, Particlesystem_valueContext, ParticleSystemClassContext, ProgramContext, Science_valueContext, Specialpower_valueContext, TransitionKey_valueContext, Upgrade_valueContext } from "../utils/antlr4ng/MapIniParser";
+import { AbstractParseTreeVisitor } from "antlr4ng";
 import { ErrorListener } from "../errorListener";
 import { ClassVisitor } from './classVisitor';
-import { visit } from 'jsonc-parser';
 
 
 export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements MapIniVisitor<void> {

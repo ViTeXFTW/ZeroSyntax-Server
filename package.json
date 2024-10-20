@@ -3,7 +3,7 @@
 	"displayName": "ZeroSyntax-Server",
 	"description": "Language server for Generals Zero Hour INI files",
 	"icon": "./images/icon.png",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"publisher": "ViTeXFTW",
 	"author": {
 		"name": "ViTeXFTW",
@@ -93,7 +93,7 @@
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
-		"package": "vsce package",
+		"package": "npm run compile && vsce package",
 		"compile": "tsc -b",
 		"compile-test": "cd client && npm run compile-test && cd .. && cd server && npm run compile-test",
 		"watch": "tsc -b -w",
@@ -112,10 +112,11 @@
 		"antlr4ts-cli": "^0.5.0-alpha.4",
 		"eslint": "^8.35.0",
 		"typescript": "^5.5.4",
-		"vscode-test": "^1.6.1",
-		"vscode": "^1.1.37"
+		"vscode": "^1.1.37",
+		"vscode-test": "^1.6.1"
 	},
 	"dependencies": {
+		"antlr4-c3": "^3.4.1",
 		"antlr4ng": "^3.0.5"
 	}
 }
