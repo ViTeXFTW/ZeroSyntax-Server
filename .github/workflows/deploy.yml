@@ -33,9 +33,7 @@ jobs:
 
       # Step 5: Package and publish the extension
       - name: Publish VSCode Extension
-      - uses: actions/checkout@v2
-      - run: npm install
-      - uses: lannonbr/vsce-action@4.0.0
+        uses: lannonbr/vsce-action@4.0.0
         with:
           args: "publish -p $VSCE_TOKEN"
         env:
