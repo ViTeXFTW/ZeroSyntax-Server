@@ -2,7 +2,7 @@
 	"name": "zerosyntax-server",
 	"displayName": "ZeroSyntax-Server",
 	"description": "Language server for Generals Zero Hour INI files",
-	"icon": "./images/icon.png",
+	"icon": "images/icon.png",
 	"version": "0.1.2",
 	"publisher": "ViTeXFTW",
 	"author": {
