@@ -9,3 +9,6 @@ Yes, for a simpler parser the two share the same names, this only affects ArmorT
 
 **3. ⚠️ Inconsistent completions with VETERENCY ⚠️**  
 There have been obsereved issue where completions wont show correctly after a VETERENCY value (VETERAN, ELITE, HEROIC).  
+
+**4. ⚠️ Inconsistent completions with errors ⚠️**  
+Sometimes if there is diagnostic errors above the current cursor position, completions will not show.

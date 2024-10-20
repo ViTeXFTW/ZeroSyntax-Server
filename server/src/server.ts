@@ -29,7 +29,7 @@ import { CodeCompletionCore } from 'antlr4-c3';
 import { MapIniParser } from './utils/antlr4ng/MapIniParser';
 import { MapIniLexer } from './utils/antlr4ng/MapIniLexer';
 import { CharStream, CommonTokenStream, DefaultErrorStrategy } from 'antlr4ng';
-import { findContextAtPosition, findTokenIndex, generateCompletionItems, getContextSpecificCompletions, withTimeout } from './completion/helpers';
+import { findContextAtPosition, findTokenIndex, generateCompletionItems, getContextSpecificCompletions } from './completion/helpers';
 
 // Create a connection for the server, using Node's IPC as a transport.
 // Also include all preview / proposed LSP features.
@@ -39,8 +39,9 @@ const connection = createConnection(ProposedFeatures.all);
 // const documents: TextDocuments<TextDocument> = new TextDocuments(TextDocument);
 
 // Timer used to delay parsing
-let parseTimer: NodeJS.Timeout | null = null;
-const parseDelay = 1000;
+let diagnosticTimer: NodeJS.Timeout | null = null;
+const diagnosticParserDelay = 1000;
+
 let hasConfigurationCapability = false;
 let hasWorkspaceFolderCapability = false;
 let hasDiagnosticRelatedInformationCapability = false;
@@ -77,7 +78,7 @@ connection.onInitialize((params: InitializeParams) => {
 			// definitionProvider: false, //true
 			// hoverProvider: false, //true
 			completionProvider: {
-				resolveProvider: true
+				resolveProvider: false
 			},
 			// semanticTokensProvider: {
 			// 	legend: {
@@ -167,36 +168,28 @@ connection.onInitialized(() => {
 // 	documents.delete(params.textDocument.uri)
 // })
 
-connection.onDidOpenTextDocument(async (params: DidOpenTextDocumentParams) => {
+connection.onDidOpenTextDocument((params: DidOpenTextDocumentParams) => {
 	const textDocument = documents.get(params.textDocument.uri)
 });
 
-documents.onDidChangeContent(async (change) => {
-	if (parseTimer) {
-		clearTimeout(parseTimer)
+documents.onDidChangeContent((change) => {
+	if (diagnosticTimer) {
+		clearTimeout(diagnosticTimer)
 	}
 
     currentParser = parser.updateParser(change.document) //Potentially add another timer that is shorter, but does not create a parser for every input.
 
-	parseTimer = setTimeout(async () => {
-		const diagnostics = await computeDiagnostics(currentParser)
+	diagnosticTimer = setTimeout(() => {
+		let diagnostics = computeDiagnostics(currentParser)
+		// console.log(`Diagnostics: ${diagnostics}`)
 		connection.sendDiagnostics({ uri: change.document.uri, diagnostics })
 		console.log(`Diagnostics sent!`)
-	}, parseDelay)
-
-	// currentParser = parser.updateParser(change.document)
-
-	// const diagnostics = await computeDiagnostics(currentParser)
-	// connection.sendDiagnostics({ uri: change.document.uri, diagnostics })
-	// console.log(`Diagnostics sent!`)
+	}, diagnosticParserDelay)
 });
 
 
-connection.onCompletion(async (_textDocumentPosition: TextDocumentPositionParams): Promise<CompletionItem[]> => {
-
-    const TIMEOUT_MS = 5000; // Adjust as needed
-
-	console.log(`Requesting completions!`)
+connection.onCompletion((_textDocumentPosition: TextDocumentPositionParams): CompletionItem[] => {
+	// console.log(`Requesting completions!`)
 
 	// Retrieve the document
 	const document = documents.get(_textDocumentPosition.textDocument.uri)!;
@@ -221,6 +214,8 @@ connection.onCompletion(async (_textDocumentPosition: TextDocumentPositionParams
 	// Configure the core (optional)
 	core.ignoredTokens = new Set([
 		MapIniLexer.WS,    // Whitespace
+		MapIniLexer.NEWLINE,
+		MapIniLexer.COMMENT,
 		MapIniLexer.EOF,   // End of file
 		// Add other tokens to ignore if necessary
 	]);
@@ -253,10 +248,10 @@ connection.onCompletion(async (_textDocumentPosition: TextDocumentPositionParams
 	let completionItems: CompletionItem[] = []
     
     if(candidates) {
-        completionItems = await withTimeout(generateCompletionItems(candidates, parser), TIMEOUT_MS, completionItems);
+        completionItems = generateCompletionItems(candidates, parser);
     }
 
-	completionItems.push(...await withTimeout(getContextSpecificCompletions(parser.ruleNames[contextAtPosition!.ruleIndex]), TIMEOUT_MS, completionItems))
+	completionItems.push(...getContextSpecificCompletions(parser.ruleNames[contextAtPosition!.ruleIndex]))
 
 	return completionItems;
 })

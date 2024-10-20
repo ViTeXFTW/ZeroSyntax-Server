@@ -3,9 +3,11 @@ import { Diagnostic, DiagnosticSeverity } from "vscode-languageserver";
 import * as list from '../utils/lists'
 import { Location } from "../utils/location";
 import { MapIniVisitor } from "../utils/antlr4ng/MapIniVisitor";
-import { Appereance_valueContext, Audioevent_valueContext, AudioEventClassContext, Commandbutton_valueContext, CommandSetClassPropertyContext, Cursorname_valueContext, DialogEventClassContext, EndContext, Faction_valueContext, Fxlist_valueContext, MapIniParser, Mappedimage_valueContext, Movepriority_valueContext, Object_valueContext, ParticleSystemClassContext, ProgramContext, Science_valueContext, Specialpower_valueContext, Surface_valueContext, Upgrade_valueContext, Zbehavior_valueContext } from "../utils/antlr4ng/MapIniParser";
-import { AbstractParseTreeVisitor } from "antlr4ng";
+import { Armor_valueContext, ClassesContext, Commandbutton_valueContext, CommandSet_valueContext, CommandSetClassPropertyContext, Cursorname_valueContext, DamageFX_valueContext, DrawModule_conditionBlockContext, DrawModule_conditionStateValueContext, DrawModule_transitionKeyPropertyContext, DrawModule_transitionStateBlockContext, EndContext, Fxlist_valueContext, Locomotor_valueContext, MapIniParser, Mappedimage_valueContext, Object_valueContext, ObjectClass_drawModulesContext, ObjectClass_propertiesContext, ObjectClass_setsContext, ObjectClass_soundsContext, ObjectClassContext, Particlesystem_valueContext, ParticleSystemClassContext, ProgramContext, Science_valueContext, Specialpower_valueContext, TransitionKey_valueContext, Upgrade_valueContext } from "../utils/antlr4ng/MapIniParser";
+import { AbstractParseTreeVisitor, ParseTree } from "antlr4ng";
 import { ErrorListener } from "../errorListener";
+import { ClassVisitor } from './classVisitor';
+import { visit } from 'jsonc-parser';
 
 
 export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements MapIniVisitor<void> {
@@ -20,16 +22,13 @@ export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements
     }
 
     visitProgram(ctx: ProgramContext): void {
+        // console.log(`Program: ${ctx.getText()}`)
         this.visitChildren(ctx)
     }
 
     visitEnd(ctx: EndContext): void {
         this.visitChildren(ctx)
         // Do nothing
-    }
-
-    visitParticleSystemClass(ctx: ParticleSystemClassContext): void {
-        console.log(`"${ctx.ID().getText()}",`)
     }
 
     // =====================================
@@ -99,6 +98,7 @@ export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements
     // =====================================
     // =========== Locomotor ===============
     // =====================================
+
     // visitSurface_value(ctx: Surface_valueContext): void {
     //     if (ctx.ID()) {
     //         const symbol = ctx.ID()!.symbol
@@ -157,8 +157,92 @@ export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements
 
 
     // =====================================
+    // =========== OBJECT CLASS ============
+    // =====================================
+
+    visitObjectClass(ctx: ObjectClassContext): void {
+        // list.customConditionStates.clear()
+        this.visitChildren(ctx)
+    }
+
+    // visitObjectClass_properties(ctx: ObjectClass_propertiesContext): void {
+    //     this.visitChildren(ctx)
+    // }
+
+    // visitObjectClass_sounds(ctx: ObjectClass_soundsContext): void {
+    //     this.visitChildren(ctx)
+    // }
+
+    // visitObjectClass_sets(ctx: ObjectClass_setsContext): void {
+    //     this.visitChildren(ctx)
+    // }
+
+    visitObjectClass_drawModules(ctx: ObjectClass_drawModulesContext): void {
+        list.customConditionStates.clear()
+        this.visitChildren(ctx)
+    }
+
+
+    // =====================================
     // =========== CLASS VALUES ============
     // =====================================
+
+    visitArmor_value(ctx: Armor_valueContext): void {
+        if (ctx.ID()) {
+            const symbol = ctx.ID()!.symbol
+            const ID_text = ctx.ID()!.getText()
+
+            if (!list.definedArmor.find(ID_text) && !list.customArmor.find(ID_text)) {
+                const severity = DiagnosticSeverity.Error
+                const start = new Location(symbol.line, symbol.column)
+                const msg = `Armor ${ID_text} is not defined`
+                this.addDiagnostic(severity, start, start, msg)
+            }
+        }
+    }
+
+    visitCommandbutton_value(ctx: Commandbutton_valueContext): void {
+        if (ctx.ID()) {
+            const symbol = ctx.ID()!.symbol
+            const ID_text = ctx.ID()!.getText()
+
+            if (!list.commandButtons.find(ID_text) && !list.customCommandButtons.find(ID_text)) {
+                const severity = DiagnosticSeverity.Error
+                const start = new Location(symbol.line, symbol.column)
+                const msg = `CommandButton ${ID_text} is not defined`
+                this.addDiagnostic(severity, start, start, msg)
+            }
+        }
+    }
+
+    visitCommandSet_value(ctx: CommandSet_valueContext): void {
+        if (ctx.ID()) {
+            const symbol = ctx.ID()!.symbol
+            const ID_text = ctx.ID()!.getText()
+
+            if (!list.commandSets.find(ID_text) && !list.customCommandSets.find(ID_text)) {
+                const severity = DiagnosticSeverity.Error
+                const start = new Location(symbol.line, symbol.column)
+                const msg = `CommandSet ${ID_text} is not defined`
+                this.addDiagnostic(severity, start, start, msg)
+            }
+        }
+    }
+
+    visitDamagefx_value(ctx: DamageFX_valueContext): void {
+        if (ctx.ID()) {
+            const symbol = ctx.ID()!.symbol
+            const ID_text = ctx.ID()!.getText()
+
+            if (!list.definedDamageFX.find(ID_text) && !list.customDamageFX.find(ID_text)) {
+                const severity = DiagnosticSeverity.Error
+                const start = new Location(symbol.line, symbol.column)
+                const msg = `DamageFX ${ID_text} is not defined`
+                this.addDiagnostic(severity, start, start, msg)
+            }
+        }
+    }
+
     visitFxlist_value(ctx: Fxlist_valueContext): void {
         if (ctx.ID()) {
             const symbol = ctx.ID()!.symbol
@@ -190,6 +274,7 @@ export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements
 
 
     visitObject_value(ctx: Object_valueContext): void {
+        // console.log(`Object: ${ctx.ID()?.getText()}`)
         if (ctx.ID()) {
             const symbol = ctx.ID()!.symbol
             const ID_text = ctx.ID()!.getText()
@@ -202,6 +287,22 @@ export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements
             }
         }
     }
+
+
+    visitLocomotor_value(ctx: Locomotor_valueContext): void {
+        if (ctx.ID()) {
+            const symbol = ctx.ID()!.symbol
+            const ID_text = ctx.ID()!.getText()
+
+            if (!list.definedLocomotors.find(ID_text) && !list.customLocomotor.find(ID_text)) {
+                const severity = DiagnosticSeverity.Error
+                const start = new Location(symbol.line, symbol.column)
+                const msg = `Locomotor ${ID_text} is not defined`
+                this.addDiagnostic(severity, start, start, msg)
+            }
+        }
+    }
+
 
     // visitAudioevent_value(ctx: Audioevent_valueContext): void {
     //     if (ctx.ID()) {
@@ -216,6 +317,20 @@ export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements
     //         }
     //     }
     // }
+
+    visitParticlesystem_value(ctx: Particlesystem_valueContext): void {
+        if (ctx.ID()) {
+            const symbol = ctx.ID()!.symbol
+            const ID_text = ctx.ID()!.getText()
+
+            if (!list.particleSystem.find(ID_text) && !list.customParticleSystem.find(ID_text)) {
+                const severity = DiagnosticSeverity.Error
+                const start = new Location(symbol.line, symbol.column)
+                const msg = `ParticleSystem ${ID_text} is not defined`
+                this.addDiagnostic(severity, start, start, msg)
+            }
+        }
+    }
 
 
     visitScience_value(ctx: Science_valueContext): void {
@@ -249,6 +364,7 @@ export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements
     }
 
     visitUpgrade_value(ctx: Upgrade_valueContext): void {
+        // console.log(`Upgrade ${ctx.getText()}`)
         if (ctx.ID()) {
             const symbol = ctx.ID()!.symbol
             const ID_text = ctx.ID()!.getText()
@@ -276,6 +392,42 @@ export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements
         }
     }
 
+    visitDrawModule_conditionBlock(ctx: DrawModule_conditionBlockContext): void {
+        for (const state of ctx.drawModule_conditionStateValue()) {
+            if (state.ID()) {
+                if (!list.customConditionStates.find(state.ID()!.getText())) {
+                    const severity = DiagnosticSeverity.Error
+                    const start = new Location(state.ID()!.symbol.line, state.ID()!.symbol.column)
+                    const msg = `Custom condition state ${state.ID()!.getText()} is not defined`
+                    this.addDiagnostic(severity, start, start, msg)
+                }
+            }
+        }
+    }
+
+    visitDrawModule_transitionStateBlock(ctx: DrawModule_transitionStateBlockContext): void {
+        for (const state of ctx.drawModule_conditionStateValue()) {
+            if (state.ID()) {
+                if (!list.customConditionStates.find(state.ID()!.getText())) {
+                    const severity = DiagnosticSeverity.Error
+                    const start = new Location(state.ID()!.symbol.line, state.ID()!.symbol.column)
+                    const msg = `Custom condition state ${state.ID()!.getText()} is not defined`
+                    this.addDiagnostic(severity, start, start, msg)
+                }
+            }
+        }
+        this.visitChildren(ctx)
+    }
+
+    visitDrawModule_transitionKeyProperty(ctx: DrawModule_transitionKeyPropertyContext): void {
+        const ID_text = ctx.transitionKey_value().ID()!.getText()
+
+        console.log(`Adding ${ID_text} to customConditionStates in context ${ctx.getText()}`)
+
+        list.customConditionStates.remove(ID_text)
+        list.customConditionStates.insert(ID_text)
+    }
+
     private addDiagnostic(severity: DiagnosticSeverity, start: Location, end: Location, msg: string, srcAppend: string = ''): void {
         const diagnostic: Diagnostic = {
             severity,
@@ -298,7 +450,7 @@ export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements
     }
 }
 
-export async function computeDiagnostics(parser: MapIniParser): Promise<Diagnostic[]> {
+export function computeDiagnostics(parser: MapIniParser): Diagnostic[] {
 
     let diagnostics: Diagnostic[] = []
 
@@ -306,8 +458,12 @@ export async function computeDiagnostics(parser: MapIniParser): Promise<Diagnost
     parser.addErrorListener(new ErrorListener(diagnostics))
 
     const tree = parser.program()
-    const vistor = new DiagnosticVisitor(diagnostics)
+    // console.log(`Tree: ${tree.getText()}`)
 
+    const vistor = new DiagnosticVisitor(diagnostics)
+    const classVisitor = new ClassVisitor()
+
+    classVisitor.visitProgram(tree)
     vistor.visitProgram(tree)
 
     return diagnostics
