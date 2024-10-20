@@ -21,7 +21,6 @@ ZeroSyntax language server supports the following functionallities:
 - Diagnostics
 - Code Completion
 
-
 ### Formatting
 To format a ini file you can use the following command:
 
@@ -54,5 +53,5 @@ This projct is under the MIT [LICENSE](LICENSE)
 As this is my first open-source project, if you have any ideas or suggestions please write to me on eithre Discord or mail. (Discord might be better)
 
 ## Questions
-Discord: ViTeXFTW#6644
+Discord: ViTeXFTW#6644  
 Mail: vitexftw@gmail.com
