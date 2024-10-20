@@ -605,6 +605,8 @@ export function findContextAtPosition(tree: ParserRuleContext, position: number)
         return null;
     }
 
+    console.log(`Position: ${position}`)
+
     // console.log(`Start: ${tree.start.start}, End: ${tree.stop.stop}, Position: ${position}`)
 
     const start = tree.start.start;
