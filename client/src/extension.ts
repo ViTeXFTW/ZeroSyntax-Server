@@ -103,6 +103,8 @@ export function activate(context: vscode.ExtensionContext) {
 	if (languageServerRunning) {
 		client.start();
 	}
+
+	vscode.window.showWarningMessage('Zero Syntax: This is an alpha version!\nPlease report bugs to https://github.com/ViTeXFTW/ZeroSyntax-Server/issues');
 }
 
 vscode.workspace.onDidChangeConfiguration((e) => {

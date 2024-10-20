@@ -22,14 +22,14 @@ import {
 	TextDocument,
 } from 'vscode-languageserver-textdocument';
 
-import { formatDocument } from './formatting/formatter';
-import { computeDiagnostics } from './diagnostics/diagnosticsVisitor';
+import { formatDocument } from './formatter/formatter';
+import { computeDiagnostics } from './diagnostic/diagnosticsVisitor';
 import { Parser } from './parser';
-import { CandidatesCollection, CodeCompletionCore } from 'antlr4-c3';
+import { CodeCompletionCore } from 'antlr4-c3';
 import { MapIniParser } from './utils/antlr4ng/MapIniParser';
-import { ErrorListener } from './errorListener';
 import { MapIniLexer } from './utils/antlr4ng/MapIniLexer';
-import { Token } from 'antlr4ng';
+import { CharStream, CommonTokenStream, DefaultErrorStrategy } from 'antlr4ng';
+import { findContextAtPosition, findTokenIndex, generateCompletionItems, getContextSpecificCompletions } from './completion/helpers';
 
 // Create a connection for the server, using Node's IPC as a transport.
 // Also include all preview / proposed LSP features.
@@ -39,8 +39,8 @@ const connection = createConnection(ProposedFeatures.all);
 // const documents: TextDocuments<TextDocument> = new TextDocuments(TextDocument);
 
 // Timer used to delay parsing
-let parseTimer: NodeJS.Timeout | null = null;
-const parseDelay = 1000;
+let diagnosticTimer: NodeJS.Timeout | null = null;
+const diagnosticParserDelay = 1000;
 
 let hasConfigurationCapability = false;
 let hasWorkspaceFolderCapability = false;
@@ -77,9 +77,9 @@ connection.onInitialize((params: InitializeParams) => {
 			// Tell the client that this server supports code completion.
 			// definitionProvider: false, //true
 			// hoverProvider: false, //true
-			// completionProvider: {
-			// 	resolveProvider: true
-			// },
+			completionProvider: {
+				resolveProvider: false
+			},
 			// semanticTokensProvider: {
 			// 	legend: {
 			// 		tokenTypes,
@@ -168,24 +168,93 @@ connection.onInitialized(() => {
 // 	documents.delete(params.textDocument.uri)
 // })
 
-connection.onDidOpenTextDocument(async (params: DidOpenTextDocumentParams) => {
+connection.onDidOpenTextDocument((params: DidOpenTextDocumentParams) => {
 	const textDocument = documents.get(params.textDocument.uri)
 });
 
-documents.onDidChangeContent(async (change) => {
-	if (parseTimer) {
-		clearTimeout(parseTimer)
+documents.onDidChangeContent((change) => {
+	if (diagnosticTimer) {
+		clearTimeout(diagnosticTimer)
 	}
 
-	parseTimer = setTimeout(async () => {
+    currentParser = parser.updateParser(change.document) //Potentially add another timer that is shorter, but does not create a parser for every input.
 
-		currentParser = parser.updateParser(change.document)
-
-		const diagnostics = await computeDiagnostics(currentParser)
+	diagnosticTimer = setTimeout(() => {
+		let diagnostics = computeDiagnostics(currentParser)
+		// console.log(`Diagnostics: ${diagnostics}`)
 		connection.sendDiagnostics({ uri: change.document.uri, diagnostics })
 		console.log(`Diagnostics sent!`)
-	}, parseDelay)
+	}, diagnosticParserDelay)
 });
+
+
+connection.onCompletion((_textDocumentPosition: TextDocumentPositionParams): CompletionItem[] => {
+	// console.log(`Requesting completions!`)
+
+	// Retrieve the document
+	const document = documents.get(_textDocumentPosition.textDocument.uri)!;
+	const offset = document.offsetAt(_textDocumentPosition.position);
+
+	
+	let inputStream = CharStream.fromString(document.getText());
+	let lexer = new MapIniLexer(inputStream);
+	lexer.removeErrorListeners()
+	let tokenStream = new CommonTokenStream(lexer);
+	let parser = new MapIniParser(tokenStream);
+	parser.removeErrorListeners()
+	parser.errorHandler = new DefaultErrorStrategy()
+
+	// Parse the document
+	parser.buildParseTrees = true;
+	const tree = parser.program(); // Use your language's entry point
+
+	// Create the CodeCompletionCore instance
+	const core = new CodeCompletionCore(parser);
+
+	// Configure the core (optional)
+	core.ignoredTokens = new Set([
+		MapIniLexer.WS,    // Whitespace
+		MapIniLexer.NEWLINE,
+		MapIniLexer.COMMENT,
+		MapIniLexer.EOF,   // End of file
+		// Add other tokens to ignore if necessary
+	]);
+
+	if (!tokenStream) return []
+
+	// Find the token index at the cursor position
+	const tokenIndex = findTokenIndex(tokenStream.getTokens(), offset);
+
+    console.log('Got Index')
+	
+	const contextAtPosition = findContextAtPosition(tree, offset);
+
+	console.log(`ContextAtPosition: ${parser.ruleNames[contextAtPosition!.ruleIndex]}`)
+
+	let candidates = null;
+
+	// Collect completion candidates
+	core.showDebugOutput = false
+	if (contextAtPosition) {
+		candidates = core.collectCandidates(tokenIndex, contextAtPosition);
+        console.log(`Got candiates`)
+	} else {
+        console.log(`No candidates`)
+    }
+
+
+	// Generate completion items
+
+	let completionItems: CompletionItem[] = []
+    
+    if(candidates) {
+        completionItems = generateCompletionItems(candidates, parser);
+    }
+
+	completionItems.push(...getContextSpecificCompletions(parser.ruleNames[contextAtPosition!.ruleIndex]))
+
+	return completionItems;
+})
 
 connection.onDidChangeWatchedFiles(_change => {
 	// Monitored files have change in VSCode
@@ -198,4 +267,3 @@ documents.listen(connection);
 
 // Listen on the connection
 connection.listen();
-

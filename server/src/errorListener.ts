@@ -19,6 +19,11 @@ export class ErrorListener implements ANTLRErrorListener {
         msg: string,
         e: RecognitionException | null
       ): void {
+
+        // if (msg.includes("ID")) {
+        //     return;
+        // }
+
         const message = msg;
     
         // Create diagnostic for the error
@@ -28,6 +33,8 @@ export class ErrorListener implements ANTLRErrorListener {
         // Handle possible null offendingSymbol
         const offendingTextLength = offendingSymbol?.text?.length ?? 1;
         const endchar = charPositionInLine + offendingTextLength;
+
+
     
         const diagnostic: Diagnostic = {
           severity,
