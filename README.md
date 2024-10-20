@@ -32,13 +32,6 @@ To format a ini file you can use the following command:
 ```
 3. Press Enter
 
-#### Before 
-TODO: Add image
-
-#### After
-TODO: Add image
-
-
 ### Diagnostics
 Diagnostics works out of the box. Any syntax errors will be highlighted in the editor.
 
