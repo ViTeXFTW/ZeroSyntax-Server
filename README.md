@@ -41,7 +41,7 @@ The server supports context based code completion. This is done by analyzing the
 1. Write some code
 2. Press Ctrl+Space
 
-[Completions](./images/gifs/ZeroSyntax-ServerCompletionGif.gif)
+![Completions](./images/gifs/ZeroSyntax-ServerCompletionGif.gif)
 
 
 ## Contributing
