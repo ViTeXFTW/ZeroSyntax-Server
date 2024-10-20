@@ -1,37 +1,57 @@
-# LSP Example
+<div align="center">
+    <h1>ZeroSyntax-Server</h1>
+    <img src="https://github.com/ViTeXFTW/ZeroSyntax/blob/main/ZeroSyntaxLogo128.png?raw=true">
+</div>
 
-Heavily documented sample code for https://code.visualstudio.com/api/language-extensions/language-server-extension-guide
+## Introduction
+**ZeroHour-Server** is a language server written in TypeScript for Command and Conquor Generals Zero Hour INI. The server is intended to provide formatting, linting and code completion. Currently this is intended for Visual Studio Code only, however all functionallities will be server sided and can be utilized in other IDEs by creating an interface for communicating with the server over Json-RPC.
 
-## Functionality
+## How to install
 
-This Language Server works for plain text file. It has the following language features:
-- Completions
-- Diagnostics regenerated on each file change or configuration change
+1. Open Visual Studio Code
+2. Open the Extensions Tab
+3. Search for ZeroSyntax
+4. Click Install
+5. Click Reload
+6. Done!
 
-It also includes an End-to-End test.
+## Functionallities
+ZeroSyntax language server supports the following functionallities:
+- Formatting
+- Diagnostics
+- Code Completion
 
-## Structure
+### Formatting
+To format a ini file you can use the following command:
 
+1. Access it from the Command Pallette (Ctrl+Shift+P or Cmd+Shift+P on Mac)
+2. Write:
+```plaintext
+> Format Document
 ```
-.
-├── client // Language Client
-│   ├── src
-│   │   ├── test // End to End tests for Language Client / Server
-│   │   └── extension.ts // Language Client entry point
-├── package.json // The extension manifest.
-└── server // Language Server
-    └── src
-        └── server.ts // Language Server entry point
-```
+3. Press Enter
 
-## Running the Sample
+### Diagnostics
+Diagnostics works out of the box. Any syntax errors will be highlighted in the editor.
 
-- Run `npm install` in this folder. This installs all necessary npm modules in both the client and server folder
-- Open VS Code on this folder.
-- Press Ctrl+Shift+B to start compiling the client and server in [watch mode](https://code.visualstudio.com/docs/editor/tasks#:~:text=The%20first%20entry%20executes,the%20HelloWorld.js%20file.).
-- Switch to the Run and Debug View in the Sidebar (Ctrl+Shift+D).
-- Select `Launch Client` from the drop down (if it is not already).
-- Press ▷ to run the launch config (F5).
-- In the [Extension Development Host](https://code.visualstudio.com/api/get-started/your-first-extension#:~:text=Then%2C%20inside%20the%20editor%2C%20press%20F5.%20This%20will%20compile%20and%20run%20the%20extension%20in%20a%20new%20Extension%20Development%20Host%20window.) instance of VSCode, open a document in 'plain text' language mode.
-  - Type `j` or `t` to see `Javascript` and `TypeScript` completion.
-  - Enter text content such as `AAA aaa BBB`. The extension will emit diagnostics for all words in all-uppercase.
+### Code Completion
+The server supports context based code completion. This is done by analyzing the syntax tree and collecting possible completions based on the current context.
+
+1. Write some code
+2. Press Ctrl+Space
+
+![Completions](./images/gifs/ZeroSyntax-ServerCompletionGif.gif)
+
+
+## Contributing
+For contributing you will need to fork the repository, create your own branch make and test any changes you feel is missing from the project and create a pull request. I will then take a look at the code changes and merge the code if everything is in order.
+
+## Licsens
+This projct is under the MIT [LICENSE](LICENSE)
+
+## Sugestions
+As this is my first open-source project, if you have any ideas or suggestions please write to me on eithre Discord or mail. (Discord might be better)
+
+## Questions
+Discord: ViTeXFTW#6644  
+Mail: vitexftw@gmail.com

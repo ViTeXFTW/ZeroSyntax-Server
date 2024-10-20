@@ -1,19 +1,48 @@
 {
-	"name": "lsp-sample-server",
-	"description": "Example implementation of a language server in node.",
-	"version": "1.0.0",
-	"author": "Microsoft Corporation",
+	"name": "zs-server",
+	"displayName": "ZeroSyntax-Server",
+	"description": "Language server for Generals Zero Hour INI files",
+	"icon": "./images/icon.png",
+	"version": "0.1.0",
+	"publisher": "ViTeXFTW",
+	"author": "ViTeXFTW <vitexftw@gmail.com>",
 	"license": "MIT",
 	"engines": {
-		"node": "*"
+		"node": "*",
+		"vscode": "^1.85.0"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Microsoft/vscode-extension-samples"
+		"url": "git+https://github.com/Microsoft/vscode-extension-samples.git"
 	},
+	"categories": [
+		"Formatters",
+		"Programming Languages"
+	],
+	"activationEvents": [
+		"onLanguage:ini"
+	],
+	"scripts": {
+		"compile-test": "tsc -p tsconfig.test.json"
+	},
+	"devDependencies": {
+		"@types/bintrees": "^1.0.6",
+		"@types/chai": "^4.3.19",
+		"@types/node": "^22.5.4",
+		"rimraf": "^6.0.1",
+		"stack-typescript": "^1.0.4",
+		"vscode-languageserver": "^9.0.1",
+		"vscode-languageserver-textdocument": "^1.0.12"
+	},
+	"main": "index.js",
+	"bugs": {
+		"url": "https://github.com/Microsoft/vscode-extension-samples/issues"
+	},
+	"homepage": "https://github.com/Microsoft/vscode-extension-samples#readme",
 	"dependencies": {
-		"vscode-languageserver": "^8.1.0",
-		"vscode-languageserver-textdocument": "^1.0.8"
-	},
-	"scripts": {}
+		"antlr4-c3": "^3.4.1",
+		"antlr4ng": "^3.0.7",
+		"bintrees": "^1.0.2",
+		"jsonc-parser": "^3.3.1"
+	}
 }

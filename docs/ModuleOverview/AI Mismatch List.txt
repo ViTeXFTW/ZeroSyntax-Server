@@ -1,0 +1,12 @@
+Things that cause the AI to mismatch in multiplayer
+
+- Building scaffolds in the AI base within the first minute or so
+- Attacking/Rushing the AI within the first 2 minutes or so
+
+- When a unit fires a weapon that uses dumb projectiles fires too close to itself
+  You can make a test map containing all DumbProjectile units and test them out individually. Steps to reproduce are:
+  1. Select a tank
+  2. Force fire as close as possible to the firing point/bone
+  3. Look for projectile detonation FX (graphics + audio) at the bottom left corner of the map.
+     - If they appear in that spot (and thus disappear from the force-fired position), that means the game would mismatch in MP
+     - tanks in ZH have low weapon speed 300/400 so they are not affected)

@@ -5,8 +5,6 @@
 import {
 	createConnection,
 	TextDocuments,
-	Diagnostic,
-	DiagnosticSeverity,
 	ProposedFeatures,
 	InitializeParams,
 	DidChangeConfigurationNotification,
@@ -14,26 +12,50 @@ import {
 	CompletionItemKind,
 	TextDocumentPositionParams,
 	TextDocumentSyncKind,
-	InitializeResult
-} from 'vscode-languageserver/node';
+	InitializeResult,
+	DidChangeConfigurationParams,
+	DocumentFormattingRequest,
+	DidOpenTextDocumentParams,
+} from 'vscode-languageserver/node'
 
 import {
-	TextDocument
+	TextDocument,
 } from 'vscode-languageserver-textdocument';
+
+import { formatDocument } from './formatter/formatter';
+import { computeDiagnostics } from './diagnostic/diagnosticsVisitor';
+import { Parser } from './parser';
+import { CodeCompletionCore } from 'antlr4-c3';
+import { MapIniParser } from './utils/antlr4ng/MapIniParser';
+import { MapIniLexer } from './utils/antlr4ng/MapIniLexer';
+import { CharStream, CommonTokenStream, DefaultErrorStrategy } from 'antlr4ng';
+import { findContextAtPosition, findTokenIndex, generateCompletionItems, getContextSpecificCompletions } from './completion/helpers';
 
 // Create a connection for the server, using Node's IPC as a transport.
 // Also include all preview / proposed LSP features.
 const connection = createConnection(ProposedFeatures.all);
 
 // Create a simple text document manager.
-const documents: TextDocuments<TextDocument> = new TextDocuments(TextDocument);
+// const documents: TextDocuments<TextDocument> = new TextDocuments(TextDocument);
+
+// Timer used to delay parsing
+let diagnosticTimer: NodeJS.Timeout | null = null;
+const diagnosticParserDelay = 1000;
 
 let hasConfigurationCapability = false;
 let hasWorkspaceFolderCapability = false;
 let hasDiagnosticRelatedInformationCapability = false;
 
+const documents: TextDocuments<TextDocument> = new TextDocuments(TextDocument);
+
+let parser: Parser = new Parser();
+let currentParser: MapIniParser;
+
+let forceAddModule: boolean = true
+
 connection.onInitialize((params: InitializeParams) => {
 	const capabilities = params.capabilities;
+	const options = params.initializationOptions
 
 	// Does the client support the `workspace/configuration` request?
 	// If not, we fall back using global settings.
@@ -51,11 +73,23 @@ connection.onInitialize((params: InitializeParams) => {
 
 	const result: InitializeResult = {
 		capabilities: {
-			textDocumentSync: TextDocumentSyncKind.Incremental,
+			textDocumentSync: TextDocumentSyncKind.Full,
 			// Tell the client that this server supports code completion.
+			// definitionProvider: false, //true
+			// hoverProvider: false, //true
 			completionProvider: {
-				resolveProvider: true
-			}
+				resolveProvider: false
+			},
+			// semanticTokensProvider: {
+			// 	legend: {
+			// 		tokenTypes,
+			// 		tokenModifiers
+			// 	},
+			// 	range: true,
+			// 	full: {
+			// 		delta: false
+			// 	}
+			// }
 		}
 	};
 	if (hasWorkspaceFolderCapability) {
@@ -69,202 +103,163 @@ connection.onInitialize((params: InitializeParams) => {
 });
 
 connection.onInitialized(() => {
-	if (hasConfigurationCapability) {
-		// Register for all configuration changes.
-		connection.client.register(DidChangeConfigurationNotification.type, undefined);
-	}
 	if (hasWorkspaceFolderCapability) {
 		connection.workspace.onDidChangeWorkspaceFolders(_event => {
-			connection.console.log('Workspace folder change event received.');
+			console.log('Workspace folder change event received.');
+
+			// Rerun symbol table
 		});
 	}
-});
 
-// The example settings
-interface ExampleSettings {
-	maxNumberOfProblems: number;
-}
+	connection.client.register(DocumentFormattingRequest.type)
 
-// The global settings, used when the `workspace/configuration` request is not supported by the client.
-// Please note that this is not the case when using this server with the client provided in this example
-// but could happen with other clients.
-const defaultSettings: ExampleSettings = { maxNumberOfProblems: 1000 };
-let globalSettings: ExampleSettings = defaultSettings;
+	connection.onDocumentFormatting((_edits) => {
+		const document = documents.get(_edits.textDocument.uri)
+		if (!document) {
+			console.log(`Document not found.`)
+			return null
+		}
 
-// Cache the settings of all open documents
-const documentSettings: Map<string, Thenable<ExampleSettings>> = new Map();
+		return formatDocument(document, _edits.options.tabSize)
+	})
 
-connection.onDidChangeConfiguration(change => {
+	connection.client.register(DidChangeConfigurationNotification.type)
+
 	if (hasConfigurationCapability) {
-		// Reset all cached document settings
-		documentSettings.clear();
-	} else {
-		globalSettings = <ExampleSettings>(
-			(change.settings.languageServerExample || defaultSettings)
-		);
-	}
+		connection.onDidChangeConfiguration(async (change: DidChangeConfigurationParams) => {
+			const settings = await connection.workspace.getConfiguration('ZeroSyntax')
 
-	// Revalidate all open text documents
-	documents.all().forEach(validateTextDocument);
-});
-
-function getDocumentSettings(resource: string): Thenable<ExampleSettings> {
-	if (!hasConfigurationCapability) {
-		return Promise.resolve(globalSettings);
-	}
-	let result = documentSettings.get(resource);
-	if (!result) {
-		result = connection.workspace.getConfiguration({
-			scopeUri: resource,
-			section: 'languageServerExample'
-		});
-		documentSettings.set(resource, result);
-	}
-	return result;
-}
-
-// Only keep settings for open documents
-documents.onDidClose(e => {
-	documentSettings.delete(e.document.uri);
-});
-
-// The content of a text document has changed. This event is emitted
-// when the text document first opened or when its content has changed.
-documents.onDidChangeContent(async change => {
-	let textDocument = change.document;
-	// In this simple example we get the settings for every validate run.
-	let settings = await getDocumentSettings(textDocument.uri);
-
-	// The validator creates diagnostics for all uppercase words length 2 and more
-	let text = textDocument.getText();
-	let pattern = /\b[A-Z]{2,}\b/g;
-	let m: RegExpExecArray | null;
-
-	let problems = 0;
-	let diagnostics: Diagnostic[] = [];
-	while ((m = pattern.exec(text)) && problems < settings.maxNumberOfProblems) {
-		problems++;
-		let diagnostic: Diagnostic = {
-		severity: DiagnosticSeverity.Warning,
-		range: {
-			start: textDocument.positionAt(m.index),
-			end: textDocument.positionAt(m.index + m[0].length)
-		},
-		message: `${m[0]} is all uppercase.`,
-		source: 'ex'
-		};
-		if (hasDiagnosticRelatedInformationCapability) {
-		diagnostic.relatedInformation = [
-			{
-			location: {
-				uri: textDocument.uri,
-				range: Object.assign({}, diagnostic.range)
-			},
-			message: 'Spelling matters'
-			},
-			{
-			location: {
-				uri: textDocument.uri,
-				range: Object.assign({}, diagnostic.range)
-			},
-			message: 'Particularly for names'
+			if (settings.forceAddModule !== null) {
+				forceAddModule = settings.forceAddModule
+				console.log(`Updated forceAddmodule to: ${forceAddModule}`)
+			} else {
+				// If setting is not null set forceAddmoule to setting else default to true
+				change.settings.forceAddModule !== null ? forceAddModule = change.settings.forceAddModule : forceAddModule = true
 			}
-		];
-		}
-		diagnostics.push(diagnostic);
+		})
 	}
-
-	// Send the computed diagnostics to VS Code.
-	connection.sendDiagnostics({ uri: textDocument.uri, diagnostics });
 });
 
-async function validateTextDocument(textDocument: TextDocument): Promise<void> {
-	// In this simple example we get the settings for every validate run.
-	const settings = await getDocumentSettings(textDocument.uri);
+// connection.onDidOpenTextDocument((params: DidOpenTextDocumentParams) => {
+// 	const document = params.textDocument.text
+// 	documents.set(params.textDocument.uri, params.textDocument.text)
+// })
 
-	// The validator creates diagnostics for all uppercase words length 2 and more
-	const text = textDocument.getText();
-	const pattern = /\b[A-Z]{2,}\b/g;
-	let m: RegExpExecArray | null;
+// connection.onDidChangeTextDocument((params: DidChangeTextDocumentParams) => {
 
-	let problems = 0;
-	const diagnostics: Diagnostic[] = [];
-	while ((m = pattern.exec(text)) && problems < settings.maxNumberOfProblems) {
-		problems++;
-		const diagnostic: Diagnostic = {
-			severity: DiagnosticSeverity.Warning,
-			range: {
-				start: textDocument.positionAt(m.index),
-				end: textDocument.positionAt(m.index + m[0].length)
-			},
-			message: `${m[0]} is all uppercase.`,
-			source: 'ex'
-		};
-		if (hasDiagnosticRelatedInformationCapability) {
-			diagnostic.relatedInformation = [
-				{
-					location: {
-						uri: textDocument.uri,
-						range: Object.assign({}, diagnostic.range)
-					},
-					message: 'Spelling matters'
-				},
-				{
-					location: {
-						uri: textDocument.uri,
-						range: Object.assign({}, diagnostic.range)
-					},
-					message: 'Particularly for names'
-				}
-			];
-		}
-		diagnostics.push(diagnostic);
+// 	console.log('Content Change!')
+// 	const changes: TextDocumentContentChangeEvent[] = params.contentChanges
+
+// 	// changes.forEach((change: TextDocumentContentChangeEvent) => {
+// 	// 	if(TextDocumentContentChangeEvent.isIncremental(change)) {
+// 	// 	}
+// 	// })
+
+// 	changes.forEach((change: TextDocumentContentChangeEvent) => {
+// 		if(TextDocumentContentChangeEvent.isFull(change)) {
+// 			computeDiagnostics(documents.get(params.textDocument.uri)!)
+// 		}
+// 	})
+
+// })
+
+// connection.onDidCloseTextDocument((params: DidCloseTextDocumentParams) => {
+// 	console.log('Closed document')
+// 	documents.delete(params.textDocument.uri)
+// })
+
+connection.onDidOpenTextDocument((params: DidOpenTextDocumentParams) => {
+	const textDocument = documents.get(params.textDocument.uri)
+});
+
+documents.onDidChangeContent((change) => {
+	if (diagnosticTimer) {
+		clearTimeout(diagnosticTimer)
 	}
 
-	// Send the computed diagnostics to VSCode.
-	connection.sendDiagnostics({ uri: textDocument.uri, diagnostics });
-}
+    currentParser = parser.updateParser(change.document) //Potentially add another timer that is shorter, but does not create a parser for every input.
+
+	diagnosticTimer = setTimeout(() => {
+		let diagnostics = computeDiagnostics(currentParser)
+		// console.log(`Diagnostics: ${diagnostics}`)
+		connection.sendDiagnostics({ uri: change.document.uri, diagnostics })
+		console.log(`Diagnostics sent!`)
+	}, diagnosticParserDelay)
+});
+
+
+connection.onCompletion((_textDocumentPosition: TextDocumentPositionParams): CompletionItem[] => {
+	// console.log(`Requesting completions!`)
+
+	// Retrieve the document
+	const document = documents.get(_textDocumentPosition.textDocument.uri)!;
+	const offset = document.offsetAt(_textDocumentPosition.position);
+
+	
+	let inputStream = CharStream.fromString(document.getText());
+	let lexer = new MapIniLexer(inputStream);
+	lexer.removeErrorListeners()
+	let tokenStream = new CommonTokenStream(lexer);
+	let parser = new MapIniParser(tokenStream);
+	parser.removeErrorListeners()
+	parser.errorHandler = new DefaultErrorStrategy()
+
+	// Parse the document
+	parser.buildParseTrees = true;
+	const tree = parser.program(); // Use your language's entry point
+
+	// Create the CodeCompletionCore instance
+	const core = new CodeCompletionCore(parser);
+
+	// Configure the core (optional)
+	core.ignoredTokens = new Set([
+		MapIniLexer.WS,    // Whitespace
+		MapIniLexer.NEWLINE,
+		MapIniLexer.COMMENT,
+		MapIniLexer.EOF,   // End of file
+		// Add other tokens to ignore if necessary
+	]);
+
+	if (!tokenStream) return []
+
+	// Find the token index at the cursor position
+	const tokenIndex = findTokenIndex(tokenStream.getTokens(), offset);
+
+    console.log('Got Index')
+	
+	const contextAtPosition = findContextAtPosition(tree, offset);
+
+	console.log(`ContextAtPosition: ${parser.ruleNames[contextAtPosition!.ruleIndex]}`)
+
+	let candidates = null;
+
+	// Collect completion candidates
+	core.showDebugOutput = false
+	if (contextAtPosition) {
+		candidates = core.collectCandidates(tokenIndex, contextAtPosition);
+        console.log(`Got candiates`)
+	} else {
+        console.log(`No candidates`)
+    }
+
+
+	// Generate completion items
+
+	let completionItems: CompletionItem[] = []
+    
+    if(candidates) {
+        completionItems = generateCompletionItems(candidates, parser);
+    }
+
+	completionItems.push(...getContextSpecificCompletions(parser.ruleNames[contextAtPosition!.ruleIndex]))
+
+	return completionItems;
+})
 
 connection.onDidChangeWatchedFiles(_change => {
 	// Monitored files have change in VSCode
-	connection.console.log('We received a file change event');
+	console.log('We received a file change event');
 });
-
-// This handler provides the initial list of the completion items.
-connection.onCompletion(
-	(_textDocumentPosition: TextDocumentPositionParams): CompletionItem[] => {
-		// The pass parameter contains the position of the text document in
-		// which code complete got requested. For the example we ignore this
-		// info and always provide the same completion items.
-		return [
-			{
-				label: 'TypeScript',
-				kind: CompletionItemKind.Text,
-				data: 1
-			},
-			{
-				label: 'JavaScript',
-				kind: CompletionItemKind.Text,
-				data: 2
-			}
-		];
-	}
-);
-
-// This handler resolves additional information for the item selected in
-// the completion list.
-connection.onCompletionResolve(
-	(item: CompletionItem): CompletionItem => {
-		if (item.data === 1) {
-			item.detail = 'TypeScript details';
-			item.documentation = 'TypeScript documentation';
-		} else if (item.data === 2) {
-			item.detail = 'JavaScript details';
-			item.documentation = 'JavaScript documentation';
-		}
-		return item;
-	}
-);
 
 // Make the text document manager listen on the connection
 // for open, change and close text document events
