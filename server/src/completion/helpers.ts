@@ -69,6 +69,7 @@ export function generateCompletionItems(candidates: CandidatesCollection, parser
 
 
             case 'VETERENCY':
+                completionItems.push(createCompletionItem('REGULAR', CompletionItemKind.Field, tokenType, `Rule: ${label}`))
                 completionItems.push(createCompletionItem('VETERAN', CompletionItemKind.Field, tokenType, `Rule: ${label}`))
                 completionItems.push(createCompletionItem('ELITE', CompletionItemKind.Field, tokenType, `Rule: ${label}`))
                 completionItems.push(createCompletionItem('HEROIC', CompletionItemKind.Field, tokenType, `Rule: ${label}`))
@@ -199,7 +200,7 @@ export function generateCompletionItems(candidates: CandidatesCollection, parser
             case 'MappedImage':
                 completionItems.push(createCompletionItem('MappedImage', CompletionItemKind.Field, tokenType, `Rule: ${label}`))
                 completionItems.push({
-                    label: 's_MappedImage',
+                    label: 'MappedImage',
                     kind: CompletionItemKind.Property,
                     insertTextFormat: InsertTextFormat.Snippet,
                     detail: 'Insert Mapped Image',
@@ -212,7 +213,7 @@ export function generateCompletionItems(candidates: CandidatesCollection, parser
             case 'CommandButton':
                 completionItems.push(createCompletionItem('CommandButton', CompletionItemKind.Field, tokenType, `Rule: ${label}`))
                 completionItems.push({
-                    label: 's_CommandButton',
+                    label: 'CommandButton',
                     kind: CompletionItemKind.Property,
                     insertTextFormat: InsertTextFormat.Snippet,
                     detail: 'Insert Command Button',
@@ -225,7 +226,7 @@ export function generateCompletionItems(candidates: CandidatesCollection, parser
             case 'CommandSet':
                 completionItems.push(createCompletionItem('CommandSet', CompletionItemKind.Field, tokenType, `Rule: ${label}`))
                 completionItems.push({
-                    label: 's_CommandSet',
+                    label: 'CommandSet',
                     kind: CompletionItemKind.Property,
                     insertTextFormat: InsertTextFormat.Snippet,
                     detail: 'Insert Command Set',
@@ -238,7 +239,7 @@ export function generateCompletionItems(candidates: CandidatesCollection, parser
             case 'DamageFX':
                 completionItems.push(createCompletionItem('DamageFX', CompletionItemKind.Field, tokenType, `Rule: ${label}`))
                 completionItems.push({
-                    label: 's_DamageFX',
+                    label: 'DamageFX',
                     kind: CompletionItemKind.Property,
                     insertTextFormat: InsertTextFormat.Snippet,
                     detail: 'Insert Damage FX',
@@ -251,7 +252,7 @@ export function generateCompletionItems(candidates: CandidatesCollection, parser
             case 'FXList':
                 completionItems.push(createCompletionItem('FXList', CompletionItemKind.Field, tokenType, `Rule: ${label}`))
                 completionItems.push({
-                    label: 's_FXList',
+                    label: 'FXList',
                     kind: CompletionItemKind.Property,
                     insertTextFormat: InsertTextFormat.Snippet,
                     detail: 'Insert FX List',
@@ -264,7 +265,7 @@ export function generateCompletionItems(candidates: CandidatesCollection, parser
             case 'Locomotor':
                 completionItems.push(createCompletionItem('Locomotor', CompletionItemKind.Field, tokenType, `Rule: ${label}`))
                 completionItems.push({
-                    label: 's_Locomotor',
+                    label: 'Locomotor',
                     kind: CompletionItemKind.Property,
                     insertTextFormat: InsertTextFormat.Snippet,
                     detail: 'Insert Locomotor',
@@ -277,7 +278,7 @@ export function generateCompletionItems(candidates: CandidatesCollection, parser
             case 'Object':
                 completionItems.push(createCompletionItem('Object', CompletionItemKind.Field, tokenType, `Rule: ${label}`))
                 completionItems.push({
-                    label: 's_Object',
+                    label: 'Object',
                     kind: CompletionItemKind.Property,
                     insertTextFormat: InsertTextFormat.Snippet,
                     detail: 'Insert Object',
@@ -289,7 +290,7 @@ export function generateCompletionItems(candidates: CandidatesCollection, parser
             case 'AddModule':
                 completionItems.push(createCompletionItem('AddModule', CompletionItemKind.Field, tokenType, `Rule: ${label}`))
                 completionItems.push({
-                    label: 's_AddModule',
+                    label: 'AddModule',
                     kind: CompletionItemKind.Property,
                     insertTextFormat: InsertTextFormat.Snippet,
                     detail: 'Insert AddModule',
@@ -301,7 +302,7 @@ export function generateCompletionItems(candidates: CandidatesCollection, parser
             case 'Draw':
                 completionItems.push(createCompletionItem('Draw', CompletionItemKind.Field, tokenType, `Rule: ${label}`))
                 completionItems.push({
-                    label: 's_Draw',
+                    label: 'Draw',
                     kind: CompletionItemKind.Property,
                     insertTextFormat: InsertTextFormat.Snippet,
                     detail: 'Insert Draw',
@@ -313,7 +314,7 @@ export function generateCompletionItems(candidates: CandidatesCollection, parser
             case 'DefaultConditionState':
                 completionItems.push(createCompletionItem('DefaultConditionState', CompletionItemKind.Field, tokenType, `Rule: ${label}`))
                 completionItems.push({
-                    label: 's_DefaultConditionState',
+                    label: 'DefaultConditionState',
                     kind: CompletionItemKind.Property,
                     insertTextFormat: InsertTextFormat.Snippet,
                     detail: 'Insert DefaultConditionState',
@@ -326,7 +327,7 @@ export function generateCompletionItems(candidates: CandidatesCollection, parser
             case 'ConditionState':
                 completionItems.push(createCompletionItem('ConditionState', CompletionItemKind.Field, tokenType, `Rule: ${label}`))
                 completionItems.push({
-                    label: 's_ConditionState',
+                    label: 'ConditionState',
                     kind: CompletionItemKind.Property,
                     insertTextFormat: InsertTextFormat.Snippet,
                     detail: 'Insert ConditionState',
@@ -338,7 +339,7 @@ export function generateCompletionItems(candidates: CandidatesCollection, parser
             case 'TransitionState':
                 completionItems.push(createCompletionItem('TransitionState', CompletionItemKind.Field, tokenType, `Rule: ${label}`))
                 completionItems.push({
-                    label: 's_TransitionState',
+                    label: 'TransitionState',
                     kind: CompletionItemKind.Property,
                     insertTextFormat: InsertTextFormat.Snippet,
                     detail: 'Insert TransitionState',
@@ -350,7 +351,7 @@ export function generateCompletionItems(candidates: CandidatesCollection, parser
             case 'Body':
                 completionItems.push(createCompletionItem('Body', CompletionItemKind.Field, tokenType, `Rule: ${label}`))
                 completionItems.push({
-                    label: 's_Body',
+                    label: 'Body',
                     kind: CompletionItemKind.Property,
                     insertTextFormat: InsertTextFormat.Snippet,
                     detail: 'Insert Body',
@@ -362,7 +363,7 @@ export function generateCompletionItems(candidates: CandidatesCollection, parser
             case 'Behavior':
                 completionItems.push(createCompletionItem('Behavior', CompletionItemKind.Field, tokenType, `Rule: ${label}`))
                 completionItems.push({
-                    label: 's_Behavior',
+                    label: 'Behavior',
                     kind: CompletionItemKind.Property,
                     insertTextFormat: InsertTextFormat.Snippet,
                     detail: 'Insert Behavior',
@@ -375,7 +376,7 @@ export function generateCompletionItems(candidates: CandidatesCollection, parser
             case 'WeaponSet':
                 completionItems.push(createCompletionItem('WeaponSet', CompletionItemKind.Field, tokenType, `Rule: ${label}`))
                 completionItems.push({
-                    label: 's_WeaponSet',
+                    label: 'WeaponSet',
                     kind: CompletionItemKind.Property,
                     insertTextFormat: InsertTextFormat.Snippet,
                     detail: 'Insert WeaponSet',
@@ -387,7 +388,7 @@ export function generateCompletionItems(candidates: CandidatesCollection, parser
             case 'ArmorSet':
                 completionItems.push(createCompletionItem('ArmorSet', CompletionItemKind.Field, tokenType, `Rule: ${label}`))
                 completionItems.push({
-                    label: 's_ArmorSet',
+                    label: 'ArmorSet',
                     kind: CompletionItemKind.Property,
                     insertTextFormat: InsertTextFormat.Snippet,
                     detail: 'Insert ArmorSet',
@@ -399,7 +400,7 @@ export function generateCompletionItems(candidates: CandidatesCollection, parser
             case 'Prerequisite':
                 completionItems.push(createCompletionItem('Prerequisite', CompletionItemKind.Field, tokenType, `Rule: ${label}`))
                 completionItems.push({
-                    label: 's_Prerequisite',
+                    label: 'Prerequisite',
                     kind: CompletionItemKind.Property,
                     insertTextFormat: InsertTextFormat.Snippet,
                     detail: 'Insert Prerequisite',
@@ -411,7 +412,7 @@ export function generateCompletionItems(candidates: CandidatesCollection, parser
             case 'UnitSpecificSounds':
                 completionItems.push(createCompletionItem('UnitSpecificSounds', CompletionItemKind.Field, tokenType, `Rule: ${label}`))
                 completionItems.push({
-                    label: 's_UnitSpecificSounds',
+                    label: 'UnitSpecificSounds',
                     kind: CompletionItemKind.Property,
                     insertTextFormat: InsertTextFormat.Snippet,
                     detail: 'Insert Unit Specific Sounds',
@@ -424,7 +425,7 @@ export function generateCompletionItems(candidates: CandidatesCollection, parser
             case 'ObjectCreationList':
                 completionItems.push(createCompletionItem('ObjectCreationList', CompletionItemKind.Field, tokenType, `Rule: ${label}`))
                 completionItems.push({
-                    label: 's_ObjectCreationList',
+                    label: 'ObjectCreationList',
                     kind: CompletionItemKind.Property,
                     insertTextFormat: InsertTextFormat.Snippet,
                     detail: 'Insert Object Creation List',
@@ -436,7 +437,7 @@ export function generateCompletionItems(candidates: CandidatesCollection, parser
             case 'CreateDebris':
                 completionItems.push(createCompletionItem('CreateDebris', CompletionItemKind.Field, tokenType, `Rule: ${label}`))
                 completionItems.push({
-                    label: 's_CreateDebris',
+                    label: 'CreateDebris',
                     kind: CompletionItemKind.Property,
                     insertTextFormat: InsertTextFormat.Snippet,
                     detail: 'Insert Create Debris',
@@ -448,7 +449,7 @@ export function generateCompletionItems(candidates: CandidatesCollection, parser
             case 'CreateObject':
                 completionItems.push(createCompletionItem('CreateObject', CompletionItemKind.Field, tokenType, `Rule: ${label}`))
                 completionItems.push({
-                    label: 's_CreateObject',
+                    label: 'CreateObject',
                     kind: CompletionItemKind.Property,
                     insertTextFormat: InsertTextFormat.Snippet,
                     detail: 'Insert Create Object',
@@ -460,7 +461,7 @@ export function generateCompletionItems(candidates: CandidatesCollection, parser
             case 'FireWeapon':
                 completionItems.push(createCompletionItem('FireWeapon', CompletionItemKind.Field, tokenType, `Rule: ${label}`))
                 completionItems.push({
-                    label: 's_FireWeapon',
+                    label: 'FireWeapon',
                     kind: CompletionItemKind.Property,
                     insertTextFormat: InsertTextFormat.Snippet,
                     detail: 'Insert Fire Weapon',
@@ -472,7 +473,7 @@ export function generateCompletionItems(candidates: CandidatesCollection, parser
             case 'DeliveryPayload':
                 completionItems.push(createCompletionItem('DeliveryPayload', CompletionItemKind.Field, tokenType, `Rule: ${label}`))
                 completionItems.push({
-                    label: 's_DeliveryPayload',
+                    label: 'DeliveryPayload',
                     kind: CompletionItemKind.Property,
                     insertTextFormat: InsertTextFormat.Snippet,
                     detail: 'Insert Delivery Payload',
@@ -484,7 +485,7 @@ export function generateCompletionItems(candidates: CandidatesCollection, parser
             case 'DeliveryDecal':
                 completionItems.push(createCompletionItem('DeliveryDecal', CompletionItemKind.Field, tokenType, `Rule: ${label}`))
                 completionItems.push({
-                    label: 's_DeliveryDecal',
+                    label: 'DeliveryDecal',
                     kind: CompletionItemKind.Property,
                     insertTextFormat: InsertTextFormat.Snippet,
                     detail: 'Insert Delivery Decal',
@@ -496,7 +497,7 @@ export function generateCompletionItems(candidates: CandidatesCollection, parser
             case 'ApplyRandomForce':
                 completionItems.push(createCompletionItem('ApplyRandomForce', CompletionItemKind.Field, tokenType, `Rule: ${label}`))
                 completionItems.push({
-                    label: 's_ApplyRandomForce',
+                    label: 'ApplyRandomForce',
                     kind: CompletionItemKind.Property,
                     insertTextFormat: InsertTextFormat.Snippet,
                     detail: 'Insert Apply Random Force',
@@ -508,7 +509,7 @@ export function generateCompletionItems(candidates: CandidatesCollection, parser
             case 'Attack':
                 completionItems.push(createCompletionItem('Attack', CompletionItemKind.Field, tokenType, `Rule: ${label}`))
                 completionItems.push({
-                    label: 's_Attack',
+                    label: 'Attack',
                     kind: CompletionItemKind.Property,
                     insertTextFormat: InsertTextFormat.Snippet,
                     detail: 'Insert Attack',
@@ -521,7 +522,7 @@ export function generateCompletionItems(candidates: CandidatesCollection, parser
             case 'ParticleSystem':
                 completionItems.push(createCompletionItem('ParticleSystem', CompletionItemKind.Field, tokenType, `Rule: ${label}`))
                 completionItems.push({
-                    label: 's_ParticleSystem',
+                    label: 'ParticleSystem',
                     kind: CompletionItemKind.Property,
                     insertTextFormat: InsertTextFormat.Snippet,
                     detail: 'Insert Particle System',
@@ -534,7 +535,7 @@ export function generateCompletionItems(candidates: CandidatesCollection, parser
             case 'PlayerTemplate':
                 completionItems.push(createCompletionItem('PlayerTemplate', CompletionItemKind.Field, tokenType, `Rule: ${label}`))
                 completionItems.push({
-                    label: 's_PlayerTemplate',
+                    label: 'PlayerTemplate',
                     kind: CompletionItemKind.Property,
                     insertTextFormat: InsertTextFormat.Snippet,
                     detail: 'Insert Player Template',
@@ -547,7 +548,7 @@ export function generateCompletionItems(candidates: CandidatesCollection, parser
             case 'Rank':
                 completionItems.push(createCompletionItem('Rank', CompletionItemKind.Field, tokenType, `Rule: ${label}`))
                 completionItems.push({
-                    label: 's_Rank',
+                    label: 'Rank',
                     kind: CompletionItemKind.Property,
                     insertTextFormat: InsertTextFormat.Snippet,
                     detail: 'Insert Rank',
@@ -560,7 +561,7 @@ export function generateCompletionItems(candidates: CandidatesCollection, parser
             case 'Upgrade':
                 completionItems.push(createCompletionItem('Upgrade', CompletionItemKind.Field, tokenType, `Rule: ${label}`))
                 completionItems.push({
-                    label: 's_Upgrade',
+                    label: 'Upgrade',
                     kind: CompletionItemKind.Property,
                     insertTextFormat: InsertTextFormat.Snippet,
                     detail: 'Insert Upgrade',
