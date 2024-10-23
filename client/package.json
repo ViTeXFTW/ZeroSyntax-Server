@@ -17,6 +17,9 @@
 	"engines": {
 		"vscode": "^1.85.0"
 	},
+	"activationEvents": [
+		"onLanguage:ini"
+	],
 	"scripts": {
 		"compile-test": "tsc -p tsconfig.test.json"
 	},
