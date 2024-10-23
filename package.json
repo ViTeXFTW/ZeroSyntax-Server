@@ -29,6 +29,17 @@
 	],
 	"main": "./client/out/extension",
 	"contributes": {
+		"languages": [
+			{
+				"id": "ini",
+				"aliases": ["Ini", "INI"],
+				"extensions": [
+					".ini",
+					".Ini",
+					".INI"
+				]
+			}
+		],
 		"viewsContainers": {
 			"activitybar": [
 				{
