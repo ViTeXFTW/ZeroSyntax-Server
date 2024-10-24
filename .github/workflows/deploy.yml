@@ -1,0 +1,41 @@
+name: Deploy VSCode Extension
+
+on:
+  push:
+    branches:
+      - master  # or the branch you want to trigger deployment from
+  workflow_dispatch:  # Allows manual triggering
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.x'
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Lint, build, and test (optional but recommended)
+      - name: Run build and tests
+        run: |
+          npm run compile  # if you have a linting step
+          # npm run build # if you have a build step
+          # npm test      # if you have tests
+
+      # Step 5: Package and publish the extension
+      - name: Publish VSCode Extension
+        uses: lannonbr/vsce-action@4.0.0
+        with:
+          args: "publish -p $VSCE_TOKEN"
+        env:
+          VSCE_TOKEN: ${{ secrets.VSCE_TOKEN }}
+

@@ -74,6 +74,7 @@ connection.onInitialize((params: InitializeParams) => {
 	const result: InitializeResult = {
 		capabilities: {
 			textDocumentSync: TextDocumentSyncKind.Full,
+			documentFormattingProvider: true,
 			// Tell the client that this server supports code completion.
 			// definitionProvider: false, //true
 			// hoverProvider: false, //true
@@ -113,16 +114,6 @@ connection.onInitialized(() => {
 
 	connection.client.register(DocumentFormattingRequest.type)
 
-	connection.onDocumentFormatting((_edits) => {
-		const document = documents.get(_edits.textDocument.uri)
-		if (!document) {
-			console.log(`Document not found.`)
-			return null
-		}
-
-		return formatDocument(document, _edits.options.tabSize)
-	})
-
 	connection.client.register(DidChangeConfigurationNotification.type)
 
 	if (hasConfigurationCapability) {
@@ -139,6 +130,16 @@ connection.onInitialized(() => {
 		})
 	}
 });
+
+connection.onDocumentFormatting((_edits) => {
+	const document = documents.get(_edits.textDocument.uri)
+	if (!document) {
+		console.log(`Document not found.`)
+		return null
+	}
+
+	return formatDocument(document, _edits.options.tabSize)
+})
 
 // connection.onDidOpenTextDocument((params: DidOpenTextDocumentParams) => {
 // 	const document = params.textDocument.text
