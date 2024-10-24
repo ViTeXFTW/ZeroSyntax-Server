@@ -60,6 +60,7 @@ export class ClassVisitor extends AbstractParseTreeVisitor<void> implements MapI
     } else if (child instanceof SoundEffectClassesContext) {
       //TODO: Add SoundEffect Classes List
     } else if (child instanceof SpecialPowerClassContext && child.specialpower_value()) {
+      console.log(`Added ${child.specialpower_value()!.getText()} to customSpecialPower`)
       list.customSpecialPower.remove(child.specialpower_value()!.getText())
       list.customSpecialPower.insert(child.specialpower_value()!.getText())
     } else if (child instanceof UpgradeClassContext && child.upgrade_value()) {

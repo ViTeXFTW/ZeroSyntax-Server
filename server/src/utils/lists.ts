@@ -8775,6 +8775,9 @@ let locomotors: string[] = [
 let definedUpgrades: string[] = [
 	"None",
 	"NONE",
+	"Upgrade_Veterancy_VETERAN",
+	"Upgrade_Veterancy_ELITE",
+	"Upgrade_Veterancy_HEROIC",
 	"Upgrade_Nationalism",
 	"Upgrade_Fanaticism",
 	"Upgrade_AmericaRadar",

@@ -651,6 +651,8 @@ import { DamageAffects_valueContext } from "./MapIniParser.js";
 import { ProjectileColide_valueContext } from "./MapIniParser.js";
 import { DamageType_valueContext } from "./MapIniParser.js";
 import { ArmorType_valueContext } from "./MapIniParser.js";
+import { WaterTransparencyClassContext } from "./MapIniParser.js";
+import { WaterTransparency_propertiesContext } from "./MapIniParser.js";
 import { WeatherClassContext } from "./MapIniParser.js";
 import { Weather_propertiesContext } from "./MapIniParser.js";
 import { EndContext } from "./MapIniParser.js";
@@ -4608,6 +4610,18 @@ export class MapIniVisitor<Result> extends AbstractParseTreeVisitor<Result> {
      * @return the visitor result
      */
     visitArmorType_value?: (ctx: ArmorType_valueContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.waterTransparencyClass`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitWaterTransparencyClass?: (ctx: WaterTransparencyClassContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.waterTransparency_properties`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitWaterTransparency_properties?: (ctx: WaterTransparency_propertiesContext) => Result;
     /**
      * Visit a parse tree produced by `MapIniParser.weatherClass`.
      * @param ctx the parse tree

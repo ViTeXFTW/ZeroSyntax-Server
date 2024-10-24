@@ -177,6 +177,7 @@ export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements
     // }
 
     visitObjectClass_drawModules(ctx: ObjectClass_drawModulesContext): void {
+        console.log(list.customConditionStates)
         list.customConditionStates.clear()
         this.visitChildren(ctx)
     }
@@ -402,6 +403,7 @@ export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements
                 }
             }
         }
+        this.visitChildren(ctx)
     }
 
     visitDrawModule_transitionStateBlock(ctx: DrawModule_transitionStateBlockContext): void {
@@ -410,7 +412,7 @@ export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements
                 if (!list.customConditionStates.find(state.ID()!.getText())) {
                     const severity = DiagnosticSeverity.Error
                     const start = new Location(state.ID()!.symbol.line, state.ID()!.symbol.column)
-                    const msg = `Custom condition state ${state.ID()!.getText()} is not defined`
+                    const msg = `Custom condition state ${state.ID()!.getText()} is not defined. If this is a TransitionKey, please define it above this`
                     this.addDiagnostic(severity, start, start, msg)
                 }
             }
@@ -419,12 +421,15 @@ export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements
     }
 
     visitDrawModule_transitionKeyProperty(ctx: DrawModule_transitionKeyPropertyContext): void {
-        const ID_text = ctx.transitionKey_value().ID()!.getText()
 
-        console.log(`Adding ${ID_text} to customConditionStates in context ${ctx.getText()}`)
+        if (ctx.transitionKey_value().ID()) {
+            const ID_text = ctx.transitionKey_value().ID()!.getText()
 
-        list.customConditionStates.remove(ID_text)
-        list.customConditionStates.insert(ID_text)
+            console.log(`Adding ${ID_text} to customConditionStates in context ${ctx.getText()}`)
+    
+            list.customConditionStates.remove(ID_text)
+            list.customConditionStates.insert(ID_text)
+        }
     }
 
     private addDiagnostic(severity: DiagnosticSeverity, start: Location, end: Location, msg: string, srcAppend: string = ''): void {
