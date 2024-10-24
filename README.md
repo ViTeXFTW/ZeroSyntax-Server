@@ -44,13 +44,13 @@ The server supports context based code completion. This is done by analyzing the
 
 
 ## Contributing
-For contributing you will need to fork the repository, create your own branch make and test any changes you feel is missing from the project and create a pull request. I will then take a look at the code changes and merge the code if everything is in order.
+See [CONTRIBUTIN](CONTRIBUTING)
 
 ## Licsens
 This projct is under the MIT [LICENSE](LICENSE)
 
 ## Sugestions
-As this is my first open-source project, if you have any ideas or suggestions please write to me on eithre Discord or mail. (Discord might be better)
+As this is my first open-source project, if you have any ideas or suggestions please write to me on either Discord or mail. (Discord might be better)
 
 ## Questions
 Discord: ViTeXFTW#6644  

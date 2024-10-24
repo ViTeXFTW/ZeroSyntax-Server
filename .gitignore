@@ -1,7 +1,10 @@
+# Project related files
 TODO.txt
 out
+
+# Node files
 node_modules
-client/server
+
+# Vscode files
 .vscode-test
-.vscode
 **/*.js.ma
