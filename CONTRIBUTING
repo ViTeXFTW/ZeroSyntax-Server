@@ -1,0 +1,58 @@
+First of all, thank you for taking an interest.
+
+# Introduction
+Please take some time to read and understand this file. This will help keep the project clean and transparent for all contributors. It will also make it easier for admins and moderators to merge your code suggestions.
+
+# Forks
+The first part is to create your own fork of the project. You can do this directly from GitHub by pressing the fork button in the top right corner. This will create a copy of the repository on your account. In this repository you can do whatever you want without it affecting the original repository. As long as you adhere to the following rules when branching and creating pull requests (PR).
+
+# Branches
+When creating a new branch please adhere to the following guidelines:
+- The branch should match one of the below
+- The branch "sections" are seperated with "/" (slash)
+- The branch name is lowercase
+
+## Issue fixing branch
+If the branch you are creating fixes an issue please name the branch:  
+`issue/(Issue #)/(GitHub name)`
+
+This signals that the branch is trying to fix a known issue.
+
+## Feature branch
+If you would like to add a new feature that you feel is missing. Please create a feature-request issue on the original repository, this way a issue number gets created. Then create the branch with the name:  
+`feature/(Issue #)/(GitHub name)`
+
+## Examples
+
+**Issue:**  
+`issue/18/vitexftw`
+
+**Feature:**  
+`feature/22/Mads`
+
+# Commit messages
+Commit messages should be consice and descriptive. They should specify what section was changed.  
+Please prefix your commit messeage with one of the following.
+
+| Prefix      | Description                |
+|:------------|:---------------------------|
+| fix:        | Fixes a GitHub issue       |
+| feat:       | Adds new feature           |
+| doc:        | Document code/github       |
+| refactor:   | Rewritten code (no effect) |
+
+### Example
+See commit messeage for this PR [#17](https://github.com/ViTeXFTW/ZeroSyntax-Server/pull/17)  
+"Fix: [BUG] Incorrect error in WeaponSet Weapon property #14"
+
+# Pull Requests (PR)
+For PRs please use the attached [PR Template](./.github/PULL_REQUEST_TEMPLATE/pull_request_template.md)
+
+### Example
+See commit messeage for this PR [#17](https://github.com/ViTeXFTW/ZeroSyntax-Server/pull/17)
+
+# Merges
+Merges are only approved by the admin (ViTeXFTW), and will be done when the PR has been reviewed and tested.
+
+# License
+By contributing you agree that your code will be licensed under the [LICENSE](./LICENSE) file in the root directory of this source tree.
