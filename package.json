@@ -3,7 +3,7 @@
 	"displayName": "ZeroSyntax-Server",
 	"description": "Language server for Generals Zero Hour INI files",
 	"icon": "images/icon.png",
-	"version": "0.1.2",
+	"version": "0.1.3",
 	"publisher": "ViTeXFTW",
 	"author": {
 		"name": "ViTeXFTW",
@@ -29,6 +29,17 @@
 	],
 	"main": "./client/out/extension",
 	"contributes": {
+		"languages": [
+			{
+				"id": "ini",
+				"aliases": ["Ini", "INI"],
+				"extensions": [
+					".ini",
+					".Ini",
+					".INI"
+				]
+			}
+		],
 		"viewsContainers": {
 			"activitybar": [
 				{
@@ -95,6 +106,7 @@
 		"vscode:prepublish": "npm run compile",
 		"package": "npm run compile && vsce package",
 		"compile": "tsc -b",
+		"clean": "rimraf ./client/out && rimraf ./server/out",
 		"compile-test": "cd client && npm run compile-test && cd .. && cd server && npm run compile-test",
 		"watch": "tsc -b -w",
 		"lint": "eslint ./client/src ./server/src --ext .ts,.tsx",

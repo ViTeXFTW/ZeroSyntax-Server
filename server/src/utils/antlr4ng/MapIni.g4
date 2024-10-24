@@ -4287,7 +4287,7 @@ audioevent_value: (ID | None_value);
 upgrade_property: 'Upgrade' ((WS? EQ WS?) | WS) upgrade_value;
 upgrade_value: (ID | None_value);
 
-weapon_value: ID;
+weapon_value: ID | None_value;
 turret_property: TURRET ((WS? EQ WS?) | WS) (None_value | ID | TURRET | ALT_TURRET);
 alt_turret_property: ALT_TURRET ((WS? EQ WS?) | WS) (None_value | ID | TURRET | ALT_TURRET);
 transitionKey_value: (None_value | ID | drawModule_conditionStateValue | 'TransitionFinishBeforeSwitch');
