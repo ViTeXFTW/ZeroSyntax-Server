@@ -82,13 +82,28 @@
 					"default": true,
 					"description": "Controls whether the server is started automatically after the extension is activated."
 				},
-				"languageServerExample.maxNumberOfProblems": {
+				"ZeroSyntax.displayAlphaWarning": {
+					"type": "boolean",
+					"default": true,
+					"description": "Controls whether the alpha warning is displayed when the server is started."
+				},
+				"ZeroSyntax.forceAddModule": {
+					"type": "boolean",
+					"default": true,
+					"description": "Controls whether AddModule around modules is forced."
+				},
+				"ZeroSyntax.precompileTransitionKeys": {
+					"type": "boolean",
+					"default": true,
+					"description": "Controls whether the transition keys are precompiled when the server is started."
+				},
+				"ZeroSyntax.maxNumberOfProblems": {
 					"scope": "resource",
 					"type": "number",
 					"default": 100,
 					"description": "Controls the maximum number of problems produced by the server."
 				},
-				"languageServerExample.trace.server": {
+				"ZeroSyntax.trace.server": {
 					"scope": "window",
 					"type": "string",
 					"enum": [
@@ -105,6 +120,7 @@
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
 		"package": "npm run compile && vsce package",
+		"cc": "npm run clean && npm run antlr4ng && npm run compile",
 		"compile": "tsc -b",
 		"clean": "rimraf ./client/out && rimraf ./server/out",
 		"compile-test": "cd client && npm run compile-test && cd .. && cd server && npm run compile-test",

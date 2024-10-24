@@ -32,6 +32,8 @@ export function activate(context: vscode.ExtensionContext) {
 	// context.subscriptions.push(vscode.commands.registerCommand(command, formatDocument));
 
 	let languageServerRunning = ZSconfig.get<boolean>('serverStartupSetting', false); // Default to 2 if not set
+	let displayAlphaWarning = ZSconfig.get<boolean>('displayAlphaWarning', true);
+	let precompileTransitionKeys = ZSconfig.get<boolean>('precompileTransitionKeys', false);
 
 	context.subscriptions.push(vscode.commands.registerCommand('ZeroSyntax.stopLanguageServer', () => {
 		if (languageServerRunning) {
@@ -72,10 +74,12 @@ export function activate(context: vscode.ExtensionContext) {
 			// Notify the server about file changes to '.clientrc files contained in the workspace
 			fileEvents: vscode.workspace.createFileSystemWatcher('**/.clientrc')
 		},
-		// initializationOptions: {
+		initializationOptions: {
+			precompileTransitionKeys: precompileTransitionKeys,
+			forceAddModule: forceAddModule
 		// 	SemanticTokenTypes,
 		// 	SemanticTokenModifiers
-		// },
+		},
 		// middleware: {
         //     didChange: (event, next) => {
         //         const { contentChanges, document } = event;
@@ -104,7 +108,14 @@ export function activate(context: vscode.ExtensionContext) {
 		client.start();
 	}
 
-	vscode.window.showWarningMessage('Zero Syntax: This is an alpha version!\nPlease report bugs to https://github.com/ViTeXFTW/ZeroSyntax-Server/issues');
+	if (displayAlphaWarning) {
+		// Add buttons to close or turn off the warning
+		vscode.window.showWarningMessage('Zero Syntax: This is an alpha version!\nPlease report bugs to https://github.com/ViTeXFTW/ZeroSyntax-Server/issues', 'Turn off', 'Close').then((selection) => {
+			if (selection === 'Turn off') {
+				ZSconfig.update('displayAlphaWarning', false, vscode.ConfigurationTarget.Global);
+			}
+		});
+	}
 }
 
 vscode.workspace.onDidChangeConfiguration((e) => {
