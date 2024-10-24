@@ -3,7 +3,7 @@
 	"displayName": "ZeroSyntax-Server",
 	"description": "Language server for Generals Zero Hour INI files",
 	"icon": "images/icon.png",
-	"version": "0.1.3",
+	"version": "0.1.4",
 	"publisher": "ViTeXFTW",
 	"author": {
 		"name": "ViTeXFTW",
@@ -79,7 +79,7 @@
 				},
 				"ZeroSyntax.serverStartupSetting": {
 					"type": "boolean",
-					"default": false,
+					"default": true,
 					"description": "Controls whether the server is started automatically after the extension is activated."
 				},
 				"languageServerExample.maxNumberOfProblems": {
