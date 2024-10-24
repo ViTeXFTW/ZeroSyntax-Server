@@ -651,6 +651,8 @@ import { DamageAffects_valueContext } from "./MapIniParser.js";
 import { ProjectileColide_valueContext } from "./MapIniParser.js";
 import { DamageType_valueContext } from "./MapIniParser.js";
 import { ArmorType_valueContext } from "./MapIniParser.js";
+import { WaterTransparencyClassContext } from "./MapIniParser.js";
+import { WaterTransparency_propertiesContext } from "./MapIniParser.js";
 import { WeatherClassContext } from "./MapIniParser.js";
 import { Weather_propertiesContext } from "./MapIniParser.js";
 import { EndContext } from "./MapIniParser.js";
@@ -7197,6 +7199,26 @@ export class MapIniListener implements ParseTreeListener {
      * @param ctx the parse tree
      */
     exitArmorType_value?: (ctx: ArmorType_valueContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.waterTransparencyClass`.
+     * @param ctx the parse tree
+     */
+    enterWaterTransparencyClass?: (ctx: WaterTransparencyClassContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.waterTransparencyClass`.
+     * @param ctx the parse tree
+     */
+    exitWaterTransparencyClass?: (ctx: WaterTransparencyClassContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.waterTransparency_properties`.
+     * @param ctx the parse tree
+     */
+    enterWaterTransparency_properties?: (ctx: WaterTransparency_propertiesContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.waterTransparency_properties`.
+     * @param ctx the parse tree
+     */
+    exitWaterTransparency_properties?: (ctx: WaterTransparency_propertiesContext) => void;
     /**
      * Enter a parse tree produced by `MapIniParser.weatherClass`.
      * @param ctx the parse tree

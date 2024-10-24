@@ -25,6 +25,7 @@ classes: mappedImageClass
        | specialPowerClass
        | upgradeClass
        | weaponClass
+       | waterTransparencyClass
        | weatherClass
        ;
 
@@ -1760,13 +1761,13 @@ behaviorModule_flightDeckBehavior_properties: 'NumRunways' ((WS? EQ WS?) | WS) (
                                             | 'Runway1Landing' ((WS? EQ WS?) | WS) ID (WS ID)*
                                             | 'Runway1Taxi' ((WS? EQ WS?) | WS) ID (WS ID)*
                                             | 'Runway1Creation' ((WS? EQ WS?) | WS) ID (WS ID)*
-                                            | 'Runway1CatapultSystem' ((WS? EQ WS?) | WS) fxlist_value
+                                            | 'Runway1CatapultSystem' ((WS? EQ WS?) | WS) ID  
                                             | 'Runway2Spaces' ((WS? EQ WS?) | WS) ID (WS ID)*
                                             | 'Runway2Takeoff' ((WS? EQ WS?) | WS) ID (WS ID)*
                                             | 'Runway2Landing' ((WS? EQ WS?) | WS) ID (WS ID)*
                                             | 'Runway2Taxi' ((WS? EQ WS?) | WS) ID (WS ID)*
                                             | 'Runway2Creation' ((WS? EQ WS?) | WS) ID (WS ID)*
-                                            | 'Runway2CatapultSystem' ((WS? EQ WS?) | WS) fxlist_value
+                                            | 'Runway2CatapultSystem' ((WS? EQ WS?) | WS) ID
                                             | 'ApproachHeight' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                             | 'LandingDeckHeightOffset' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                             | 'HealAmountPerSecond' ((WS? EQ WS?) | WS) (INT | FLOAT)
@@ -2446,15 +2447,15 @@ behaviorModule_particleUplinkCannonUpdate_properties: 'SpecialPowerTemplate' ((W
                                                       | 'OuterNodesMediumFlareParticleSystem' ((WS? EQ WS?) | WS) particlesystem_value
                                                       | 'OuterNodesIntenseFlareParticleSystem' ((WS? EQ WS?) | WS) particlesystem_value
                                                       | 'ConnectorBoneName' ((WS? EQ WS?) | WS) ID
-                                                      | 'ConnectorMediumLaserName' ((WS? EQ WS?) | WS) particlesystem_value
-                                                      | 'ConnectorIntenseLaserName' ((WS? EQ WS?) | WS) particlesystem_value
+                                                      | 'ConnectorMediumLaserName' ((WS? EQ WS?) | WS) ID
+                                                      | 'ConnectorIntenseLaserName' ((WS? EQ WS?) | WS) ID
                                                       | 'ConnectorMediumFlare' ((WS? EQ WS?) | WS) particlesystem_value
                                                       | 'ConnectorIntenseFlare' ((WS? EQ WS?) | WS) particlesystem_value
                                                       | 'FireBoneName' ((WS? EQ WS?) | WS) (ID | STRING)
                                                       | 'LaserBaseLightFlareParticleSystemName' ((WS? EQ WS?) | WS) particlesystem_value
                                                       | 'LaserBaseMediumFlareParticleSystemName' ((WS? EQ WS?) | WS) particlesystem_value
                                                       | 'LaserBaseIntenseFlareParticleSystemName' ((WS? EQ WS?) | WS) particlesystem_value
-                                                      | 'ParticleBeamLaserName' ((WS? EQ WS?) | WS) particlesystem_value
+                                                      | 'ParticleBeamLaserName' ((WS? EQ WS?) | WS) ID
                                                       | 'SwathOfDeathDistance' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                                       | 'SwathOfDeathAmplitude' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                                       | 'TotalScorchMarks' ((WS? EQ WS?) | WS) (INT | FLOAT)
@@ -2996,7 +2997,7 @@ behaviorModule_specialPowerCompletionDie_properties: behaviorModule_deathTypes
 behaviorModule_specialPowerCreate: 'SpecialPowerCreate' WS moduleTag_value NEWLINE (WS | NEWLINE)*;
 
 behaviorModule_spectreGunshipDeploymentUpdate: 'SpectreGunshipDeploymentUpdate' WS moduleTag_value NEWLINE ((WS? behaviorModule_spectreGunshipDeploymentUpdate_properties WS? NEWLINE) | (WS | NEWLINE))*;
-behaviorModule_spectreGunshipDeploymentUpdate_properties: 'GunshipTemplateName' ((WS? EQ WS?) | WS) specialpower_value
+behaviorModule_spectreGunshipDeploymentUpdate_properties: 'GunshipTemplateName' ((WS? EQ WS?) | WS) ('AirF_AmericaJetSpectreGunship1' | 'AirF_AmericaJetSpectreGunship2' | 'AirF_AmericaJetSpectreGunship3' | 'AmericaJetSpectreGunship')
                                              | 'RequiredScience' ((WS? EQ WS?) | WS) science_value (WS science_value)*
                                              | 'SpecialPowerTemplate' ((WS? EQ WS?) | WS) specialpower_value
                                              | 'AttackAreaRadius' ((WS? EQ WS?) | WS) (INT | FLOAT)
@@ -3756,7 +3757,7 @@ rank_properties: 'RankName' ((WS? EQ WS?) | WS) ('INI:RankLevel1' | 'INI:RankLev
                ;
 
 // Sciecnce Class
-scienceClass: 'Science' WS (ID | science_value) WS* NEWLINE ((WS? science_properties WS? NEWLINE) | (WS | NEWLINE))* end;
+scienceClass: 'Science' WS science_value WS* NEWLINE ((WS? science_properties WS? NEWLINE) | (WS | NEWLINE))* end;
 
 science_properties: 'PrerequisiteSciences' ((WS? EQ WS?) | WS) science_value (WS science_value)*
                   | 'SciencePurchasePointCost' ((WS? EQ WS?) | WS) INT
@@ -3766,10 +3767,10 @@ science_properties: 'PrerequisiteSciences' ((WS? EQ WS?) | WS) science_value (WS
                   ;
 
 // SpecialPower Class
-specialPowerClass: 'SpecialPower' WS (ID | specialpower_value) WS* NEWLINE ((WS? specialPower_properties WS? NEWLINE) | (WS | NEWLINE))* end;
+specialPowerClass: 'SpecialPower' WS specialpower_value WS* NEWLINE ((WS? specialPower_properties WS? NEWLINE) | (WS | NEWLINE))* end;
 
 
-specialPower_properties: 'Enum' ((WS? EQ WS?) | WS) ('SPECIAL_INVALID'|'SPECIAL_DAISY_CUTTER'||'SPECIAL_PARADROP_AMERICA'||'SPECIAL_CARPET_BOMB'||'SPECIAL_CLUSTER_MINES'||'SPECIAL_EMP_PULSE'||'SPECIAL_NAPALM_STRIKE'||'SPECIAL_CASH_HACK'||'SPECIAL_NEUTRON_MISSILE'||'SPECIAL_SPY_SATELLITE'||'SPECIAL_DEFECTOR'||'SPECIAL_TERROR_CELL'||'SPECIAL_AMBUSH'||'SPECIAL_BLACK_MARKET_NUKE'||'SPECIAL_ANTHRAX_BOMB'||'SPECIAL_SCUD_STORM'||'SPECIAL_DEMORALIZE_OBSOLETE'||'SPECIAL_CRATE_DROP'||'SPECIAL_A10_THUNDERBOLT_STRIKE'||'SPECIAL_DETONATE_DIRTY_NUKE'||'SPECIAL_ARTILLERY_BARRAGE'||'SPECIAL_MISSILE_DEFENDER_LASER_GUIDED_MISSILES'||'SPECIAL_REMOTE_CHARGES'||'SPECIAL_TIMED_CHARGES'||'SPECIAL_HELIX_NAPALM_BOMB'||'SPECIAL_HACKER_DISABLE_BUILDING'||'SPECIAL_TANKHUNTER_TNT_ATTACK'||'SPECIAL_BLACKLOTUS_CAPTURE_BUILDING'||'SPECIAL_BLACKLOTUS_DISABLE_VEHICLE_HACK'||'SPECIAL_BLACKLOTUS_STEAL_CASH_HACK'||'SPECIAL_INFANTRY_CAPTURE_BUILDING'||'SPECIAL_RADAR_VAN_SCAN'||'SPECIAL_SPY_DRONE'||'SPECIAL_DISGUISE_AS_VEHICLE'||'SPECIAL_BOOBY_TRAP'||'SPECIAL_REPAIR_VEHICLES'||'SPECIAL_PARTICLE_UPLINK_CANNON'||'SPECIAL_CASH_BOUNTY'||'SPECIAL_CHANGE_BATTLE_PLANS'||'SPECIAL_CIA_INTELLIGENCE'||'SPECIAL_CLEANUP_AREA'||'SPECIAL_LAUNCH_BAIKONUR_ROCKET'||'SPECIAL_SPECTRE_GUNSHIP'||'SPECIAL_GPS_SCRAMBLER'||'SPECIAL_FRENZY'||'SPECIAL_SNEAK_ATTACK'||'SPECIAL_CHINA_CARPET_BOMB'||'EARLY_SPECIAL_CHINA_CARPET_BOMB'||'SPECIAL_LEAFLET_DROP'||'EARLY_SPECIAL_LEAFLET_DROP'||'EARLY_SPECIAL_FRENZY'||'SPECIAL_COMMUNICATIONS_DOWNLOAD'||'EARLY_SPECIAL_REPAIR_VEHICLES'||'SPECIAL_TANK_PARADROP'||'SUPW_SPECIAL_PARTICLE_UPLINK_CANNON'||'AIRF_SPECIAL_DAISY_CUTTER'||'NUKE_SPECIAL_CLUSTER_MINES'||'NUKE_SPECIAL_NEUTRON_MISSILE'||'AIRF_SPECIAL_A10_THUNDERBOLT_STRIKE'||'AIRF_SPECIAL_SPECTRE_GUNSHIP'||'INFA_SPECIAL_PARADROP_AMERICA'||'SLTH_SPECIAL_GPS_SCRAMBLER'||'AIRF_SPECIAL_CARPET_BOMB'||'SUPR_SPECIAL_CRUISE_MISSILE'||'LAZR_SPECIAL_PARTICLE_UPLINK_CANNON'||'SUPW_SPECIAL_NEUTRON_MISSILE'||'SPECIAL_BATTLESHIP_BOMBARDMENT')
+specialPower_properties: 'Enum' ((WS? EQ WS?) | WS) ('SPECIAL_INVALID'|'SPECIAL_DAISY_CUTTER'|'SPECIAL_PARADROP_AMERICA'|'SPECIAL_CARPET_BOMB'|'SPECIAL_CLUSTER_MINES'|'SPECIAL_EMP_PULSE'|'SPECIAL_NAPALM_STRIKE'|'SPECIAL_CASH_HACK'|'SPECIAL_NEUTRON_MISSILE'|'SPECIAL_SPY_SATELLITE'|'SPECIAL_DEFECTOR'|'SPECIAL_TERROR_CELL'|'SPECIAL_AMBUSH'|'SPECIAL_BLACK_MARKET_NUKE'|'SPECIAL_ANTHRAX_BOMB'|'SPECIAL_SCUD_STORM'|'SPECIAL_DEMORALIZE_OBSOLETE'|'SPECIAL_CRATE_DROP'|'SPECIAL_A10_THUNDERBOLT_STRIKE'|'SPECIAL_DETONATE_DIRTY_NUKE'|'SPECIAL_ARTILLERY_BARRAGE'|'SPECIAL_MISSILE_DEFENDER_LASER_GUIDED_MISSILES'|'SPECIAL_REMOTE_CHARGES'|'SPECIAL_TIMED_CHARGES'|'SPECIAL_HELIX_NAPALM_BOMB'|'SPECIAL_HACKER_DISABLE_BUILDING'|'SPECIAL_TANKHUNTER_TNT_ATTACK'|'SPECIAL_BLACKLOTUS_CAPTURE_BUILDING'|'SPECIAL_BLACKLOTUS_DISABLE_VEHICLE_HACK'|'SPECIAL_BLACKLOTUS_STEAL_CASH_HACK'|'SPECIAL_INFANTRY_CAPTURE_BUILDING'|'SPECIAL_RADAR_VAN_SCAN'|'SPECIAL_SPY_DRONE'|'SPECIAL_DISGUISE_AS_VEHICLE'|'SPECIAL_BOOBY_TRAP'|'SPECIAL_REPAIR_VEHICLES'|'SPECIAL_PARTICLE_UPLINK_CANNON'|'SPECIAL_CASH_BOUNTY'|'SPECIAL_CHANGE_BATTLE_PLANS'|'SPECIAL_CIA_INTELLIGENCE'|'SPECIAL_CLEANUP_AREA'|'SPECIAL_LAUNCH_BAIKONUR_ROCKET'|'SPECIAL_SPECTRE_GUNSHIP'|'SPECIAL_GPS_SCRAMBLER'|'SPECIAL_FRENZY'|'SPECIAL_SNEAK_ATTACK'|'SPECIAL_CHINA_CARPET_BOMB'|'EARLY_SPECIAL_CHINA_CARPET_BOMB'|'SPECIAL_LEAFLET_DROP'|'EARLY_SPECIAL_LEAFLET_DROP'|'EARLY_SPECIAL_FRENZY'|'SPECIAL_COMMUNICATIONS_DOWNLOAD'|'EARLY_SPECIAL_REPAIR_VEHICLES'|'SPECIAL_TANK_PARADROP'|'SUPW_SPECIAL_PARTICLE_UPLINK_CANNON'|'AIRF_SPECIAL_DAISY_CUTTER'|'NUKE_SPECIAL_CLUSTER_MINES'|'NUKE_SPECIAL_NEUTRON_MISSILE'|'AIRF_SPECIAL_A10_THUNDERBOLT_STRIKE'|'AIRF_SPECIAL_SPECTRE_GUNSHIP'|'INFA_SPECIAL_PARADROP_AMERICA'|'SLTH_SPECIAL_GPS_SCRAMBLER'|'AIRF_SPECIAL_CARPET_BOMB'|'SUPR_SPECIAL_CRUISE_MISSILE'|'LAZR_SPECIAL_PARTICLE_UPLINK_CANNON'|'SUPW_SPECIAL_NEUTRON_MISSILE'|'SPECIAL_BATTLESHIP_BOMBARDMENT')
                        | 'ReloadTime' ((WS? EQ WS?) | WS) INT
                        | 'RequiredScience' ((WS? EQ WS?) | WS) science_value (WS science_value)*
                        | 'PublicTimer' ((WS? EQ WS?) | WS) BOOLEAN
@@ -4198,6 +4199,18 @@ damageType_value: (PLUS | DASH)? (None_value | All_value | 'EXPLOSION' | 'WATER'
 armorType_value: (None_value | 'NORMAL' | 'DEFAULT' | 'TOPPLING' | STATUS | 'PARTICLE_BEAM' | 'MICROWAVE' | 'EXPLOSION' | 'CRUSH' | 'ARMOR_PIERCING' | 'SMALL_ARMS' | 'GATTLING' | 'RADIATION' | 'FLAME' | 'LASER' | 'SNIPER' | 'POISON' | 'HEALING' | 'UNRESISTABLE' | 'WATER' | 'DEPLOY' | 'SURRENDER' | 'HACK' | 'KILL_PILOT' | 'PENALTY' | 'FALLING' | 'MELEE' | 'DISARM' | 'HAZARD_CLEANUP' | 'INFANTRY_MISSILE' | 'AURORA_BOMB' | 'LAND_MINE' | 'JET_MISSILES' | 'STEALTHJET_MISSILES' | 'MOLOTOV_COCKTAIL' | 'COMANCHE_VULCAN' | 'SUBDUAL_MISSILE' | 'SUBDUAL_VEHICLE' | 'SUBDUAL_BUILDING');
 
 STATUS: 'STATUS';
+
+// WaterTransparency
+waterTransparencyClass: 'WaterTransparency' WS* NEWLINE ((WS? waterTransparency_properties WS? NEWLINE) | (WS | NEWLINE))* end;
+
+waterTransparency_properties: 'TransparentWaterMinOpacity' WS? EQ WS? (INT | FLOAT)
+                            | 'TransparentWaterDepth' WS? EQ WS? (INT | FLOAT)
+                            | 'StandingWaterTexture' WS? EQ WS? file
+                            | 'StandingWaterColor' WS? EQ WS? RGB
+                            | 'RadarWaterColor' WS? EQ WS? RGB
+                            | 'AdditiveBlending' WS? EQ WS? BOOLEAN
+                            ;
+
 
 // Weather Class
 weatherClass: 'Weather' WS* NEWLINE ((WS? weather_properties WS? NEWLINE) | (WS | NEWLINE))* end;
