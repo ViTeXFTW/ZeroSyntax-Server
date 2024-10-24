@@ -18,7 +18,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16.x'
+          node-version: '20.x'
 
       # Step 3: Install dependencies
       - name: Install dependencies
@@ -33,9 +33,9 @@ jobs:
 
       # Step 5: Package and publish the extension
       - name: Publish VSCode Extension
+        uses: lannonbr/vsce-action@4.0.0
+        with:
+          args: "publish -p $VSCE_TOKEN"
         env:
           VSCE_TOKEN: ${{ secrets.VSCE_TOKEN }}
-        run: |
-          npx vsce package  # This packages the extension
-          npx vsce publish  # This publishes the extension
 
