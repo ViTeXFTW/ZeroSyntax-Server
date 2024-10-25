@@ -3794,8 +3794,8 @@ dialogEventClass: 'DialogEvent' WS audioevent_value WS* NEWLINE ((WS? audioevent
 audioevent_properties: 'Filename' ((WS? EQ WS?) | WS) file
                      | 'MinVolume' ((WS? EQ WS?) | WS) INT
                      | 'LoopCount' ((WS? EQ WS?) | WS) INT
-                     | 'Priority' ((WS? EQ WS?) | WS) ('lowest' | 'LOWEST' | 'low' | 'LOW' | 'normal' | 'NORMAL' | 'high' | 'HIGH' | 'critical' | 'CRITICAL' | None_value) (WS ('lowest' | 'LOWEST' | 'low' | 'LOW' | 'normal' | 'NORMAL' | 'high' | 'HIGH' | 'critical' | 'CRITICAL' | None_value))*
-                     | 'Control' ((WS? EQ WS?) | WS) ('loop' | 'random' | All_value | 'postdelay' | 'interrupt' | None_value | 'Loop' | 'Random' | 'PostDelay' | 'Interrupt') (WS ('loop' | 'random' | All_value | 'postdelay' | 'interrupt' | None_value | 'Loop' | 'Random' | 'PostDelay' | 'Interrupt'))*
+                     | 'Priority' ((WS? EQ WS?) | WS) ('lowest' | 'LOWEST' | 'Lowest' | 'low' | 'LOW' | 'Low' | 'normal' | 'NORMAL' | 'Normal' | 'high' | 'HIGH' | 'High' | 'critical' | 'CRITICAL' | 'Critical' | None_value) (WS ('lowest' | 'LOWEST' | 'Lowest' | 'low' | 'LOW' | 'Low' | 'normal' | 'NORMAL' | 'Normal' | 'high' | 'HIGH' | 'High' | 'critical' | 'CRITICAL' | 'Critical' | None_value))*
+                     | 'Control' ((WS? EQ WS?) | WS) ('loop' | 'random' | All_value | 'postdelay' | 'interrupt' | None_value | 'Loop' | 'Random' | 'PostDelay' | 'Interrupt' | 'Postdelay') (WS ('loop' | 'random' | All_value | 'postdelay' | 'interrupt' | None_value | 'Loop' | 'Random' | 'PostDelay' | 'Interrupt' | 'Postdelay'))*
                      | 'Sounds' ((WS? EQ WS?) | WS) ID (WS ID)*
                      | 'SoundsNight' ((WS? EQ WS?) | WS) ID (WS ID)*
                      | 'SoundsEvening' ((WS? EQ WS?) | WS) ID (WS ID)*
