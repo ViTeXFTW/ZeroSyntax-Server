@@ -4380,7 +4380,7 @@ BOOLEAN: 'Yes' | 'yes' | 'YES' | 'No' | 'no' | 'NO';
 STRING: '"' ( ~[\\"\n\r] | '\\' [\\"] )* '"'  ;
 ID: ([a-zA-Z_0-9][a-zA-Z_0-9%\-:]* | BOX);
 
-NEWLINE: ([\r]?[\n]);
+NEWLINE: WS* ([\r]?[\n]);
 
 WS: [ \t]+;
 
