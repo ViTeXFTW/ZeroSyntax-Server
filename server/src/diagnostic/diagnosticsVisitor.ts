@@ -3,8 +3,8 @@ import { Diagnostic, DiagnosticSeverity } from "vscode-languageserver";
 import * as list from '../utils/lists'
 import { Location } from "../utils/location";
 import { MapIniVisitor } from "../utils/antlr4ng/MapIniVisitor";
-import { Armor_valueContext, Commandbutton_valueContext, CommandSet_valueContext, CommandSetClassPropertyContext, Cursorname_valueContext, DamageFX_valueContext, DrawModule_conditionBlockContext, DrawModule_conditionStateValueContext, DrawModule_transitionKeyPropertyContext, DrawModule_transitionStateBlockContext, EndContext, Fxlist_valueContext, Locomotor_valueContext, MapIniParser, Mappedimage_valueContext, Object_valueContext, ObjectClass_drawModulesContext, ObjectClass_propertiesContext, ObjectClass_setsContext, ObjectClass_soundsContext, ObjectClassContext, Particlesystem_valueContext, ParticleSystemClassContext, ProgramContext, Science_valueContext, Specialpower_valueContext, TransitionKey_valueContext, Upgrade_valueContext } from "../utils/antlr4ng/MapIniParser";
-import { AbstractParseTreeVisitor } from "antlr4ng";
+import { Armor_valueContext, Commandbutton_valueContext, CommandSet_valueContext, CommandSetClassPropertyContext, Cursorname_valueContext, DamageFX_valueContext, DrawModule_conditionBlockContext, DrawModule_conditionStatePropertiesContext, DrawModule_conditionStateValueContext, DrawModule_defaultconditionBlockContext, DrawModule_transitionKeyPropertyContext, DrawModule_transitionStateBlockContext, EndContext, Fxlist_valueContext, Locomotor_valueContext, MapIniParser, Mappedimage_valueContext, Object_valueContext, ObjectClass_drawModulesContext, ObjectClass_propertiesContext, ObjectClass_setsContext, ObjectClass_soundsContext, ObjectClassContext, Particlesystem_valueContext, ParticleSystemClassContext, ProgramContext, Science_valueContext, Specialpower_valueContext, TransitionKey_valueContext, Upgrade_valueContext, W3dDebrisDrawModuleContext, W3dDefaultDrawModuleContext, W3dDependencyDrawModuleContext, W3dLaserDrawModuleContext, W3dModelDrawModuleContext, W3dOverlordTankDrawModuleContext, W3dProjectileStreamDrawModuleContext, W3dScienceModelDrawModuleContext, W3dSupplyDrawModuleContext, W3dTreeDrawModuleContext, W3dVehicleDrawModuleContext } from "../utils/antlr4ng/MapIniParser";
+import { AbstractParseTreeVisitor, ParserRuleContext } from "antlr4ng";
 import { ErrorListener } from "../errorListener";
 import { ClassVisitor } from './classVisitor';
 
@@ -14,10 +14,12 @@ export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements
     }
 
     diagnostics: Diagnostic[]
+    precompileTransitionKeys: boolean
 
-    constructor(diagnostics: Diagnostic[]) {
+    constructor(diagnostics: Diagnostic[], precompileTransitionKeys: boolean) {
         super()
         this.diagnostics = diagnostics
+        this.precompileTransitionKeys = precompileTransitionKeys
     }
 
     visitProgram(ctx: ProgramContext): void {
@@ -177,11 +179,52 @@ export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements
     // }
 
     visitObjectClass_drawModules(ctx: ObjectClass_drawModulesContext): void {
-        console.log(list.customConditionStates)
         list.customConditionStates.clear()
+
+
+        if (this.precompileTransitionKeys) {
+            for (const child of ctx.children || []) {
+                if (child instanceof W3dModelDrawModuleContext ||
+                    child instanceof W3dVehicleDrawModuleContext ||
+                    child instanceof W3dOverlordTankDrawModuleContext
+                ) {
+                    this.collectTransitionKeys(child)
+                }
+            }
+        }
+
+
         this.visitChildren(ctx)
     }
 
+    private collectTransitionKeys(ctx: ParserRuleContext): void {
+        for (const child of ctx.children || []) {
+            if (child instanceof DrawModule_conditionBlockContext) {
+                // Recursively check condition block for TransitionKey properties
+                this.collectTransitionKeysFromBlock(child)
+            } else if (child instanceof DrawModule_defaultconditionBlockContext) {
+                // Check default condition block
+                this.collectTransitionKeysFromBlock(child)
+            }
+            // Recursively check other children
+            this.collectTransitionKeys(child as ParserRuleContext)
+        }
+    }
+
+    private collectTransitionKeysFromBlock(ctx: ParserRuleContext): void {
+        for (const child of ctx.children || []) {
+            if (child instanceof DrawModule_conditionStatePropertiesContext) {
+                const transitionKeyProp = child.drawModule_transitionKeyProperty?.()
+                if (transitionKeyProp?.transitionKey_value()?.ID()) {
+                    const ID_text = transitionKeyProp.transitionKey_value().ID()!.getText()
+                    list.customConditionStates.remove(ID_text)
+                    list.customConditionStates.insert(ID_text)
+                }
+            }
+            // Recursively check other children
+            this.collectTransitionKeysFromBlock(child as ParserRuleContext)
+        }
+    }
 
     // =====================================
     // =========== CLASS VALUES ============
@@ -403,6 +446,7 @@ export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements
                 }
             }
         }
+
         this.visitChildren(ctx)
     }
 
@@ -454,7 +498,7 @@ export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements
     }
 }
 
-export function computeDiagnostics(parser: MapIniParser): Diagnostic[] {
+export function computeDiagnostics(parser: MapIniParser, precompileTransitionKeys: boolean): Diagnostic[] {
 
     let diagnostics: Diagnostic[] = []
 
@@ -464,7 +508,7 @@ export function computeDiagnostics(parser: MapIniParser): Diagnostic[] {
     const tree = parser.program()
     // console.log(`Tree: ${tree.getText()}`)
 
-    const vistor = new DiagnosticVisitor(diagnostics)
+    const vistor = new DiagnosticVisitor(diagnostics, precompileTransitionKeys)
     const classVisitor = new ClassVisitor()
 
     classVisitor.visitProgram(tree)

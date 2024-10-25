@@ -52,6 +52,7 @@ let parser: Parser = new Parser();
 let currentParser: MapIniParser;
 
 let forceAddModule: boolean = true
+let precompileTransitionKeys: boolean = false
 
 connection.onInitialize((params: InitializeParams) => {
 	const capabilities = params.capabilities;
@@ -93,6 +94,10 @@ connection.onInitialize((params: InitializeParams) => {
 			// }
 		}
 	};
+
+	forceAddModule = options.forceAddModule !== undefined ? options.forceAddModule : true
+	precompileTransitionKeys = options.precompileTransitionKeys !== undefined ? options.precompileTransitionKeys : false
+
 	if (hasWorkspaceFolderCapability) {
 		result.capabilities.workspace = {
 			workspaceFolders: {
@@ -120,12 +125,10 @@ connection.onInitialized(() => {
 		connection.onDidChangeConfiguration(async (change: DidChangeConfigurationParams) => {
 			const settings = await connection.workspace.getConfiguration('ZeroSyntax')
 
-			if (settings.forceAddModule !== null) {
-				forceAddModule = settings.forceAddModule
-				console.log(`Updated forceAddmodule to: ${forceAddModule}`)
-			} else {
-				// If setting is not null set forceAddmoule to setting else default to true
-				change.settings.forceAddModule !== null ? forceAddModule = change.settings.forceAddModule : forceAddModule = true
+			forceAddModule = settings.forceAddModule !== null ? settings.forceAddModule : true
+			
+			if (settings.precompileTransitionKeys !== null) {
+				precompileTransitionKeys = settings.precompileTransitionKeys
 			}
 		})
 	}
@@ -181,7 +184,7 @@ documents.onDidChangeContent((change) => {
     currentParser = parser.updateParser(change.document) //Potentially add another timer that is shorter, but does not create a parser for every input.
 
 	diagnosticTimer = setTimeout(() => {
-		let diagnostics = computeDiagnostics(currentParser)
+		let diagnostics = computeDiagnostics(currentParser, precompileTransitionKeys)
 		// console.log(`Diagnostics: ${diagnostics}`)
 		connection.sendDiagnostics({ uri: change.document.uri, diagnostics })
 		console.log(`Diagnostics sent!`)

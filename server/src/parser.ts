@@ -13,6 +13,8 @@ export class Parser {
     private lexer: MapIniLexer | undefined;
     private tokenStream: CommonTokenStream | undefined;
 
+    private document: TextDocument | undefined;
+
     constructor() {}
 
     updateParser(document: TextDocument): MapIniParser {
@@ -20,6 +22,7 @@ export class Parser {
         this.lexer = new MapIniLexer(this.inputStream);
         this.tokenStream = new CommonTokenStream(this.lexer);
         this.latestParser = new MapIniParser(this.tokenStream);
+        this.document = document;
 
         return this.latestParser
     }
@@ -46,6 +49,10 @@ export class Parser {
         } else {
             return null
         }
+    }
+
+    getDocument(): TextDocument | undefined {
+        return this.document
     }
 
 }
