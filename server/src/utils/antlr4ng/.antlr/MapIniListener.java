@@ -1,4 +1,4 @@
-// Generated from c:/Users/Mads/Sync/ZeroSyntax/ZeroSyntax-Server/server/src/utils/antlr4ng/MapIni.g4 by ANTLR 4.13.1
+// Generated from c:/Users/Mads/Sync/ZeroSyntax-Server/server/src/utils/antlr4ng/MapIni.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -6486,6 +6486,26 @@ public interface MapIniListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitArmorType_value(MapIniParser.ArmorType_valueContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MapIniParser#waterTransparencyClass}.
+	 * @param ctx the parse tree
+	 */
+	void enterWaterTransparencyClass(MapIniParser.WaterTransparencyClassContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MapIniParser#waterTransparencyClass}.
+	 * @param ctx the parse tree
+	 */
+	void exitWaterTransparencyClass(MapIniParser.WaterTransparencyClassContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MapIniParser#waterTransparency_properties}.
+	 * @param ctx the parse tree
+	 */
+	void enterWaterTransparency_properties(MapIniParser.WaterTransparency_propertiesContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MapIniParser#waterTransparency_properties}.
+	 * @param ctx the parse tree
+	 */
+	void exitWaterTransparency_properties(MapIniParser.WaterTransparency_propertiesContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MapIniParser#weatherClass}.
 	 * @param ctx the parse tree
