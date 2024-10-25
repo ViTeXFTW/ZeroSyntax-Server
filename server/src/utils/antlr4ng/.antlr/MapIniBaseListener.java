@@ -1,4 +1,4 @@
-// Generated from c:/Users/Mads/Sync/ZeroSyntax/ZeroSyntax-Server/server/src/utils/antlr4ng/MapIni.g4 by ANTLR 4.13.1
+// Generated from c:/Users/Mads/Sync/ZeroSyntax-Server/server/src/utils/antlr4ng/MapIni.g4 by ANTLR 4.13.1
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -7787,6 +7787,30 @@ public class MapIniBaseListener implements MapIniListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitArmorType_value(MapIniParser.ArmorType_valueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterWaterTransparencyClass(MapIniParser.WaterTransparencyClassContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitWaterTransparencyClass(MapIniParser.WaterTransparencyClassContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterWaterTransparency_properties(MapIniParser.WaterTransparency_propertiesContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitWaterTransparency_properties(MapIniParser.WaterTransparency_propertiesContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
