@@ -4333,7 +4333,7 @@ Null_value: 'Null' | 'NULL';
 None_value: 'None' | 'NONE' | 'none';
 All_value: 'All' | 'ALL' | 'all';
 INT: DASH? [0-9]+;
-FLOAT: DASH? [0-9]* '.' [0-9]+ 'f'?;
+FLOAT: DASH? [0-9]* '.' ([0-9]+ 'f'?)?;
 PERCENT: (INT | FLOAT) '%';
 EQ: '=';
 DASH: '-';
