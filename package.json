@@ -118,11 +118,12 @@
 		}
 	},
 	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"package": "npm run compile && vsce package",
+		"vscode:prepublish": "npm run cc",
+		"package": "npm run cc && vsce package",
 		"cc": "npm run clean && npm run antlr4ng && npm run compile",
 		"compile": "tsc -b",
 		"clean": "rimraf ./client/out && rimraf ./server/out",
+		"clean-node": "rimraf ./node_modules && rimraf ./client/node_modules && rimraf ./server/node_modules && npm install",
 		"compile-test": "cd client && npm run compile-test && cd .. && cd server && npm run compile-test",
 		"watch": "tsc -b -w",
 		"lint": "eslint ./client/src ./server/src --ext .ts,.tsx",

@@ -30,6 +30,7 @@ import { MapIniParser } from './utils/antlr4ng/MapIniParser';
 import { MapIniLexer } from './utils/antlr4ng/MapIniLexer';
 import { CharStream, CommonTokenStream, DefaultErrorStrategy } from 'antlr4ng';
 import { findContextAtPosition, findTokenIndex, generateCompletionItems, getContextSpecificCompletions } from './completion/helpers';
+import { CompletionVisitor } from './completion/completionVisitor';
 
 // Create a connection for the server, using Node's IPC as a transport.
 // Also include all preview / proposed LSP features.
@@ -212,11 +213,14 @@ connection.onCompletion((_textDocumentPosition: TextDocumentPositionParams): Com
 	parser.buildParseTrees = true;
 	const tree = parser.program(); // Use your language's entry point
 
+	const completionVisitor = new CompletionVisitor(offset)
+	completionVisitor.visit(tree)
 	// Create the CodeCompletionCore instance
 	const core = new CodeCompletionCore(parser);
 
 	// Configure the core (optional)
 	core.ignoredTokens = new Set([
+		MapIniLexer.ID,
 		MapIniLexer.WS,    // Whitespace
 		MapIniLexer.NEWLINE,
 		MapIniLexer.COMMENT,
@@ -246,7 +250,6 @@ connection.onCompletion((_textDocumentPosition: TextDocumentPositionParams): Com
         console.log(`No candidates`)
     }
 
-
 	// Generate completion items
 
 	let completionItems: CompletionItem[] = []
@@ -254,6 +257,8 @@ connection.onCompletion((_textDocumentPosition: TextDocumentPositionParams): Com
     if(candidates) {
         completionItems = generateCompletionItems(candidates, parser);
     }
+
+	completionItems.push(...completionVisitor.getCompletionList())
 
 	completionItems.push(...getContextSpecificCompletions(parser.ruleNames[contextAtPosition!.ruleIndex]))
 

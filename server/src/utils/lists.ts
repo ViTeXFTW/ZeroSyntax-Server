@@ -4299,7 +4299,7 @@ let definedCommandButtons: string[] = [
 	"Boss_Command_ConstructGLAVehicleCombatBikeTerrorist",
 ]
 
-let definedCommandSets: string[] = [
+export const definedCommandSets: string[] = [
 	"GenericCommandSet",
 	"StopOnlyGenericCommandSet",
 	"AmericaDozerCommandSet",
@@ -6605,7 +6605,7 @@ let definedParticleSystems: string[] = [
 "SonicRange1",
 ]
 
-let definedObjects: string[] = [
+export const definedObjects: string[] = [
 	"SalvageCrate",
 	"BridgeTowerConcreteLeft01",
 	"BridgeTowerConcreteLeft02",
@@ -8587,7 +8587,7 @@ let definedObjects: string[] = [
 	"DefaultThingTemplate"
 ]
 
-let locomotors: string[] = [
+export const locomotors: string[] = [
 	"BasicHumanLocomotor",
 	"MissileDefenderLocomotor",
 	"BasicHumanLocomotorPlus25",
@@ -9444,25 +9444,25 @@ const allowedKindOfs: string[] = [
 ]
 
 const allowedModelDrawsString: string[] = [
-	"w3ddebrisdraw",
-    "w3ddefaultdraw",
-    "w3ddependencymodeldraw",
-    "w3dmodeldraw",
-    "w3doverlordtankdraw",
-    "w3doverlordaircraftdraw",
-    "w3doverlordtruckdraw",
-    "w3dlaserdraw",
-	"w3dpolicecardraw",
-    "w3dtreedraw",
-    "w3dpropdraw",
-    "w3dprojectilestreamdraw",
-    "w3dropedraw",
-    "w3dsciencemodeldraw",
-    "w3dsupplydraw",
-    "w3dtankdraw",
-    "w3dtanktruckdraw",
-    "w3dtracerdraw",
-    "w3dtruckdraw"
+	"W3DDebrisDraw",
+    "W3DDefaultDraw",
+    "W3DDependencyModelDraw",
+    "W3DModelDraw",
+    "W3DOverlordTankDraw",
+    "W3DOverlordAircraftDraw",
+    "W3DOverlordTruckDraw",
+    "W3DLaserDraw",
+	"W3DPoliceCardDraw",
+    "W3DTreedraw",
+    "W3DPropDraw",
+    "W3DProjectileStreamDraw",
+    "W3DDropedraw",
+    "W3DScienceModelDraw",
+    "W3DSupplyDraw",
+    "W3DTankDraw",
+    "W3DTankTruckDraw",
+    "W3DTracerDraw",
+    "W3DTruckDraw"
 ]
 
 export enum allowedModelDraws {
@@ -9722,8 +9722,9 @@ const allowedMultiConditionProperties: string[] = [
 	"ParticleSysBone"
 ]
 
-let allowedConditionStates: string[] = [
+const allowedConditionStates: string[] = [
 	"NONE",
+	"PLAYER_UPGRADE",
 	"USER_1",
 	"USER_2",
 	"JAMMED",
@@ -9853,7 +9854,7 @@ let allowedConditionStates: string[] = [
 	"GARRISONED"
 ]
 
-const definedMappedImages: string[] = [
+export const definedMappedImages: string[] = [
 	"SUQuadCannon",
 	"SSAutoloader",
 	"SAPathfinder1",
