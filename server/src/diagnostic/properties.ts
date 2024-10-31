@@ -33,9 +33,9 @@ function propertyComparator(a: string, b: string): number {
 export function isValidPropertyValue(value: string, propertyDefinition: PropertyDefinition, position: number): boolean {
 	
 	// If the property type is an array, get the type at the given position else get the type
-	const type = Array.isArray(propertyDefinition.type) 
-        ? propertyDefinition.type[Math.min(position, propertyDefinition.type.length - 1)]
-        : propertyDefinition.type;
+	const type = Array.isArray(propertyDefinition?.type) 
+        ? propertyDefinition?.type[Math.min(position, propertyDefinition?.type.length - 1)]
+        : propertyDefinition?.type;
 
 
 	if (type === 'integer') {
@@ -50,7 +50,7 @@ export function isValidPropertyValue(value: string, propertyDefinition: Property
 
 		if (['YES', 'NO'].includes(value.toUpperCase())) return false;
 
-		switch (propertyDefinition.type) {
+		switch (propertyDefinition?.type) {
 			case IniTypes_t.ARMOR:
 				if(list.definedArmor.find(value) || list.customArmor.find(value)) {
 					return true;
@@ -114,7 +114,7 @@ export function isValidPropertyValue(value: string, propertyDefinition: Property
 }
 
 export function handleStringValidation(value: string, propertyDefinition: PropertyDefinition, position: number): boolean {
-	if (propertyDefinition.modifier) {
+	if (propertyDefinition?.modifier) {
 		for (const modifier of propertyDefinition.modifier) {
 			if (value.startsWith(modifier)) {
 				value = value.substring(modifier.length)
@@ -123,7 +123,7 @@ export function handleStringValidation(value: string, propertyDefinition: Proper
 	}
 
 	// Check position-specific valid values if they exist
-	if (propertyDefinition.validValues) {
+	if (propertyDefinition?.validValues) {
 		// If the property has an array type, always treat validValues as position-specific
 		if (Array.isArray(propertyDefinition.type)) {
 			const positionValidValues = propertyDefinition.validValues[

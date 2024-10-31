@@ -93,7 +93,7 @@ end: 'End' | 'end' | 'END';
 
 // General
 STRING: '"' ( ~[\\"\n\r] | '\\' [\\"] )* '"'  ;
-ID: [a-zA-Z_0-9+\-][a-zA-Z_0-9%:.]*;
+ID: [a-zA-Z_0-9+\-.][a-zA-Z_0-9%:.]*;
 
 NEWLINE: ([\r]?[\n]);
 

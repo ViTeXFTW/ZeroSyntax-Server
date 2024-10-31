@@ -58,7 +58,7 @@ export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements
             const propertyValues = ctx.property_values()
 
             // Check if the property has a limited number of values
-            if (getObjectPropertyDefinition(propertyName)!.numberOfValues) {
+            if (getObjectPropertyDefinition(propertyName)?.numberOfValues) {
 
                 // If the property does not have an infinite number of values, check if it has the correct number of values
                 if (!getObjectPropertyDefinition(propertyName)!.numberOfValues!.includes(-1) && !getObjectPropertyDefinition(propertyName)!.numberOfValues!.includes(propertyValues.ID().length)) {
@@ -84,7 +84,7 @@ export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements
                 if (!isValidPropertyValue(valueText, getObjectPropertyDefinition(propertyName)!, i)) {
                     const severity = DiagnosticSeverity.Error
                     const start = new Location(value.symbol.line, value.symbol.column)
-                    const msg = `Invalid value for property ${propertyName}. Expected type: ${getObjectPropertyDefinition(propertyName)!.type}`
+                    const msg = `Invalid value for property ${propertyName}. Expected type: ${getObjectPropertyDefinition(propertyName)?.type}`
                     this.addDiagnostic(severity, start, start, msg)
                 }
             }
