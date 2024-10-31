@@ -21,12 +21,19 @@ import { ObjectArmorSetArmorContext } from "./MapIniParser.js";
 import { ObjectPrerequisiteContext } from "./MapIniParser.js";
 import { ObjectPrerequisite_objectContext } from "./MapIniParser.js";
 import { ObjectPrerequisite_scienceContext } from "./MapIniParser.js";
+import { ObjectUnitSpecificSoundsContext } from "./MapIniParser.js";
+import { ObjectUnitSpecificSoundsSoundContext } from "./MapIniParser.js";
+import { ObjectUnitSpecificFXContext } from "./MapIniParser.js";
+import { ObjectUnitSpecificFXFXContext } from "./MapIniParser.js";
 import { DrawModuleContext } from "./MapIniParser.js";
 import { ConditionStateContext } from "./MapIniParser.js";
 import { AliasConditionContext } from "./MapIniParser.js";
 import { BodyModuleContext } from "./MapIniParser.js";
+import { BodyModulePropertyContext } from "./MapIniParser.js";
 import { BehaviorModuleContext } from "./MapIniParser.js";
+import { BehaviorModulePropertyContext } from "./MapIniParser.js";
 import { ClientModuleContext } from "./MapIniParser.js";
+import { ClientModulePropertyContext } from "./MapIniParser.js";
 import { ObjectPropertyContext } from "./MapIniParser.js";
 import { DrawModulePropertyContext } from "./MapIniParser.js";
 import { ConditionStatePropertyContext } from "./MapIniParser.js";
@@ -162,6 +169,30 @@ export class MapIniVisitor<Result> extends AbstractParseTreeVisitor<Result> {
      */
     visitObjectPrerequisite_science?: (ctx: ObjectPrerequisite_scienceContext) => Result;
     /**
+     * Visit a parse tree produced by `MapIniParser.objectUnitSpecificSounds`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitObjectUnitSpecificSounds?: (ctx: ObjectUnitSpecificSoundsContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.objectUnitSpecificSoundsSound`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitObjectUnitSpecificSoundsSound?: (ctx: ObjectUnitSpecificSoundsSoundContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.objectUnitSpecificFX`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitObjectUnitSpecificFX?: (ctx: ObjectUnitSpecificFXContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.objectUnitSpecificFXFX`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitObjectUnitSpecificFXFX?: (ctx: ObjectUnitSpecificFXFXContext) => Result;
+    /**
      * Visit a parse tree produced by `MapIniParser.drawModule`.
      * @param ctx the parse tree
      * @return the visitor result
@@ -186,17 +217,35 @@ export class MapIniVisitor<Result> extends AbstractParseTreeVisitor<Result> {
      */
     visitBodyModule?: (ctx: BodyModuleContext) => Result;
     /**
+     * Visit a parse tree produced by `MapIniParser.bodyModuleProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitBodyModuleProperty?: (ctx: BodyModulePropertyContext) => Result;
+    /**
      * Visit a parse tree produced by `MapIniParser.behaviorModule`.
      * @param ctx the parse tree
      * @return the visitor result
      */
     visitBehaviorModule?: (ctx: BehaviorModuleContext) => Result;
     /**
+     * Visit a parse tree produced by `MapIniParser.behaviorModuleProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitBehaviorModuleProperty?: (ctx: BehaviorModulePropertyContext) => Result;
+    /**
      * Visit a parse tree produced by `MapIniParser.clientModule`.
      * @param ctx the parse tree
      * @return the visitor result
      */
     visitClientModule?: (ctx: ClientModuleContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.clientModuleProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitClientModuleProperty?: (ctx: ClientModulePropertyContext) => Result;
     /**
      * Visit a parse tree produced by `MapIniParser.objectProperty`.
      * @param ctx the parse tree

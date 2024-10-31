@@ -1,4 +1,4 @@
-// Generated from c:/Users/Mads/Sync/ZeroSyntax-Server/server/src/utils/antlr4ng/MapIni.g4 by ANTLR 4.13.1
+// Generated from c:/Users/mads2/Desktop/ZeroSyntax-Server/server/src/utils/antlr4ng/MapIni.g4 by ANTLR 4.13.1
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -112,6 +112,126 @@ public class MapIniBaseListener implements MapIniListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterObjectSets(MapIniParser.ObjectSetsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitObjectSets(MapIniParser.ObjectSetsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterObjectWeaponSet(MapIniParser.ObjectWeaponSetContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitObjectWeaponSet(MapIniParser.ObjectWeaponSetContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterPropertyCondition(MapIniParser.PropertyConditionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPropertyCondition(MapIniParser.PropertyConditionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterObjectWeaponSetWeapon(MapIniParser.ObjectWeaponSetWeaponContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitObjectWeaponSetWeapon(MapIniParser.ObjectWeaponSetWeaponContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterWeaponSlot_value(MapIniParser.WeaponSlot_valueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitWeaponSlot_value(MapIniParser.WeaponSlot_valueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterObjectArmorSet(MapIniParser.ObjectArmorSetContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitObjectArmorSet(MapIniParser.ObjectArmorSetContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterObjectArmorSetArmor(MapIniParser.ObjectArmorSetArmorContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitObjectArmorSetArmor(MapIniParser.ObjectArmorSetArmorContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterObjectPrerequisite(MapIniParser.ObjectPrerequisiteContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitObjectPrerequisite(MapIniParser.ObjectPrerequisiteContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterObjectPrerequisite_object(MapIniParser.ObjectPrerequisite_objectContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitObjectPrerequisite_object(MapIniParser.ObjectPrerequisite_objectContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterObjectPrerequisite_science(MapIniParser.ObjectPrerequisite_scienceContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitObjectPrerequisite_science(MapIniParser.ObjectPrerequisite_scienceContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterDrawModule(MapIniParser.DrawModuleContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -191,6 +311,30 @@ public class MapIniBaseListener implements MapIniListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitObjectProperty(MapIniParser.ObjectPropertyContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterDrawModuleProperty(MapIniParser.DrawModulePropertyContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDrawModuleProperty(MapIniParser.DrawModulePropertyContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterConditionStateProperty(MapIniParser.ConditionStatePropertyContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitConditionStateProperty(MapIniParser.ConditionStatePropertyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -299,18 +443,6 @@ public class MapIniBaseListener implements MapIniListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitObject_value(MapIniParser.Object_valueContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterObjectProperty_locomotor(MapIniParser.ObjectProperty_locomotorContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitObjectProperty_locomotor(MapIniParser.ObjectProperty_locomotorContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

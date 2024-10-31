@@ -13,7 +13,7 @@ mappedImageClass: 'MappedImage' mappedImage_value NEWLINE (property)* end;
 
 
 // Object Class
-objectClass: 'Object' object_value NEWLINE (module_modifier | module | objectProperty | objectSets | NEWLINE)* end;
+objectClass: 'Object' object_value NEWLINE (module_modifier | module | objectProperty | objectSets | objectUnitSpecificSounds | objectUnitSpecificFX | NEWLINE)* end;
 
 module_modifier:  (addModule
                      | removeModule
@@ -47,19 +47,30 @@ objectPrerequisite: 'Prerequisites' NEWLINE (objectPrerequisite_object | objectP
 objectPrerequisite_object: 'Object' EQ property_values NEWLINE;
 objectPrerequisite_science: 'Science' EQ property_values NEWLINE;
 
+// UnitSpecificSounds
+objectUnitSpecificSounds: 'UnitSpecificSounds' NEWLINE (objectUnitSpecificSoundsSound | NEWLINE)* end;
+objectUnitSpecificSoundsSound: ID EQ property_values NEWLINE;
+
+// UnitSpecificFX
+objectUnitSpecificFX: 'UnitSpecificFX' NEWLINE (objectUnitSpecificFXFX | NEWLINE)* end;
+objectUnitSpecificFXFX: ID EQ property_values NEWLINE;
+
 // Draw Modules
 drawModule: 'Draw' EQ drawModule_type moduleTag_value NEWLINE (conditionState | aliasCondition | drawModuleProperty | NEWLINE)* end;
 conditionState:  ('DefaultConditionState' | ('ConditionState' EQ conditionState_values) | ('TransitionState' EQ conditionState_values)) NEWLINE (conditionStateProperty | NEWLINE)* end;
 aliasCondition:  'AliasConditionState' EQ conditionState_values NEWLINE;
 
 // Body Module
-bodyModule: 'Body' EQ bodyModule_type moduleTag_value NEWLINE (property | NEWLINE)* end;
+bodyModule: 'Body' EQ bodyModule_type moduleTag_value NEWLINE (bodyModuleProperty | NEWLINE)* end;
+bodyModuleProperty: ID EQ property_values NEWLINE;
 
 // Behavior Module
-behaviorModule: 'Behavior' EQ behaviorModule_type moduleTag_value NEWLINE (property | NEWLINE)* end;
+behaviorModule: 'Behavior' EQ behaviorModule_type moduleTag_value NEWLINE (behaviorModuleProperty | NEWLINE)* end;
+behaviorModuleProperty: ID EQ property_values NEWLINE;
 
 // Client Module
-clientModule: 'Client' EQ clientModule_type moduleTag_value NEWLINE (property | NEWLINE)* end;
+clientModule: 'Client' EQ clientModule_type moduleTag_value NEWLINE (clientModuleProperty | NEWLINE)* end;
+clientModuleProperty: ID EQ property_values NEWLINE;
 
 objectProperty: ID EQ property_values NEWLINE;
 drawModuleProperty: ID EQ property_values NEWLINE;

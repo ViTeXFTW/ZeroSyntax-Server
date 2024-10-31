@@ -21,12 +21,19 @@ import { ObjectArmorSetArmorContext } from "./MapIniParser.js";
 import { ObjectPrerequisiteContext } from "./MapIniParser.js";
 import { ObjectPrerequisite_objectContext } from "./MapIniParser.js";
 import { ObjectPrerequisite_scienceContext } from "./MapIniParser.js";
+import { ObjectUnitSpecificSoundsContext } from "./MapIniParser.js";
+import { ObjectUnitSpecificSoundsSoundContext } from "./MapIniParser.js";
+import { ObjectUnitSpecificFXContext } from "./MapIniParser.js";
+import { ObjectUnitSpecificFXFXContext } from "./MapIniParser.js";
 import { DrawModuleContext } from "./MapIniParser.js";
 import { ConditionStateContext } from "./MapIniParser.js";
 import { AliasConditionContext } from "./MapIniParser.js";
 import { BodyModuleContext } from "./MapIniParser.js";
+import { BodyModulePropertyContext } from "./MapIniParser.js";
 import { BehaviorModuleContext } from "./MapIniParser.js";
+import { BehaviorModulePropertyContext } from "./MapIniParser.js";
 import { ClientModuleContext } from "./MapIniParser.js";
+import { ClientModulePropertyContext } from "./MapIniParser.js";
 import { ObjectPropertyContext } from "./MapIniParser.js";
 import { DrawModulePropertyContext } from "./MapIniParser.js";
 import { ConditionStatePropertyContext } from "./MapIniParser.js";
@@ -231,6 +238,46 @@ export class MapIniListener implements ParseTreeListener {
      */
     exitObjectPrerequisite_science?: (ctx: ObjectPrerequisite_scienceContext) => void;
     /**
+     * Enter a parse tree produced by `MapIniParser.objectUnitSpecificSounds`.
+     * @param ctx the parse tree
+     */
+    enterObjectUnitSpecificSounds?: (ctx: ObjectUnitSpecificSoundsContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.objectUnitSpecificSounds`.
+     * @param ctx the parse tree
+     */
+    exitObjectUnitSpecificSounds?: (ctx: ObjectUnitSpecificSoundsContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.objectUnitSpecificSoundsSound`.
+     * @param ctx the parse tree
+     */
+    enterObjectUnitSpecificSoundsSound?: (ctx: ObjectUnitSpecificSoundsSoundContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.objectUnitSpecificSoundsSound`.
+     * @param ctx the parse tree
+     */
+    exitObjectUnitSpecificSoundsSound?: (ctx: ObjectUnitSpecificSoundsSoundContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.objectUnitSpecificFX`.
+     * @param ctx the parse tree
+     */
+    enterObjectUnitSpecificFX?: (ctx: ObjectUnitSpecificFXContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.objectUnitSpecificFX`.
+     * @param ctx the parse tree
+     */
+    exitObjectUnitSpecificFX?: (ctx: ObjectUnitSpecificFXContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.objectUnitSpecificFXFX`.
+     * @param ctx the parse tree
+     */
+    enterObjectUnitSpecificFXFX?: (ctx: ObjectUnitSpecificFXFXContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.objectUnitSpecificFXFX`.
+     * @param ctx the parse tree
+     */
+    exitObjectUnitSpecificFXFX?: (ctx: ObjectUnitSpecificFXFXContext) => void;
+    /**
      * Enter a parse tree produced by `MapIniParser.drawModule`.
      * @param ctx the parse tree
      */
@@ -271,6 +318,16 @@ export class MapIniListener implements ParseTreeListener {
      */
     exitBodyModule?: (ctx: BodyModuleContext) => void;
     /**
+     * Enter a parse tree produced by `MapIniParser.bodyModuleProperty`.
+     * @param ctx the parse tree
+     */
+    enterBodyModuleProperty?: (ctx: BodyModulePropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.bodyModuleProperty`.
+     * @param ctx the parse tree
+     */
+    exitBodyModuleProperty?: (ctx: BodyModulePropertyContext) => void;
+    /**
      * Enter a parse tree produced by `MapIniParser.behaviorModule`.
      * @param ctx the parse tree
      */
@@ -281,6 +338,16 @@ export class MapIniListener implements ParseTreeListener {
      */
     exitBehaviorModule?: (ctx: BehaviorModuleContext) => void;
     /**
+     * Enter a parse tree produced by `MapIniParser.behaviorModuleProperty`.
+     * @param ctx the parse tree
+     */
+    enterBehaviorModuleProperty?: (ctx: BehaviorModulePropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.behaviorModuleProperty`.
+     * @param ctx the parse tree
+     */
+    exitBehaviorModuleProperty?: (ctx: BehaviorModulePropertyContext) => void;
+    /**
      * Enter a parse tree produced by `MapIniParser.clientModule`.
      * @param ctx the parse tree
      */
@@ -290,6 +357,16 @@ export class MapIniListener implements ParseTreeListener {
      * @param ctx the parse tree
      */
     exitClientModule?: (ctx: ClientModuleContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.clientModuleProperty`.
+     * @param ctx the parse tree
+     */
+    enterClientModuleProperty?: (ctx: ClientModulePropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.clientModuleProperty`.
+     * @param ctx the parse tree
+     */
+    exitClientModuleProperty?: (ctx: ClientModulePropertyContext) => void;
     /**
      * Enter a parse tree produced by `MapIniParser.objectProperty`.
      * @param ctx the parse tree

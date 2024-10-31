@@ -8,7 +8,7 @@ export enum DrawModule_t {
 	W3DOverlordTRUCKDRAW = "W3DOverlordTruckDraw",
 	W3DLLASERDRAW = "W3DLaserDraw",
 	W3DPOLICECARDDRAW = "W3DPoliceCardDraw",
-	W3DTREEDRAW = "W3DTreedraw",
+	W3DTREEDRAW = "W3DTreeDraw",
 	W3DPROPDRAW = "W3DPropDraw",
 	W3DPROJECTILESTREAMDRAW = "W3DProjectileStreamDraw",
 	W3DDROPEDRAW = "W3DDropedraw",

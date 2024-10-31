@@ -1,4 +1,4 @@
-// Generated from c:/Users/Mads/Sync/ZeroSyntax-Server/server/src/utils/antlr4ng/MapIni.g4 by ANTLR 4.13.1
+// Generated from c:/Users/mads2/Desktop/ZeroSyntax-Server/server/src/utils/antlr4ng/MapIni.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -87,6 +87,106 @@ public interface MapIniListener extends ParseTreeListener {
 	 */
 	void exitModule(MapIniParser.ModuleContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link MapIniParser#objectSets}.
+	 * @param ctx the parse tree
+	 */
+	void enterObjectSets(MapIniParser.ObjectSetsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MapIniParser#objectSets}.
+	 * @param ctx the parse tree
+	 */
+	void exitObjectSets(MapIniParser.ObjectSetsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MapIniParser#objectWeaponSet}.
+	 * @param ctx the parse tree
+	 */
+	void enterObjectWeaponSet(MapIniParser.ObjectWeaponSetContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MapIniParser#objectWeaponSet}.
+	 * @param ctx the parse tree
+	 */
+	void exitObjectWeaponSet(MapIniParser.ObjectWeaponSetContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MapIniParser#propertyCondition}.
+	 * @param ctx the parse tree
+	 */
+	void enterPropertyCondition(MapIniParser.PropertyConditionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MapIniParser#propertyCondition}.
+	 * @param ctx the parse tree
+	 */
+	void exitPropertyCondition(MapIniParser.PropertyConditionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MapIniParser#objectWeaponSetWeapon}.
+	 * @param ctx the parse tree
+	 */
+	void enterObjectWeaponSetWeapon(MapIniParser.ObjectWeaponSetWeaponContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MapIniParser#objectWeaponSetWeapon}.
+	 * @param ctx the parse tree
+	 */
+	void exitObjectWeaponSetWeapon(MapIniParser.ObjectWeaponSetWeaponContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MapIniParser#weaponSlot_value}.
+	 * @param ctx the parse tree
+	 */
+	void enterWeaponSlot_value(MapIniParser.WeaponSlot_valueContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MapIniParser#weaponSlot_value}.
+	 * @param ctx the parse tree
+	 */
+	void exitWeaponSlot_value(MapIniParser.WeaponSlot_valueContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MapIniParser#objectArmorSet}.
+	 * @param ctx the parse tree
+	 */
+	void enterObjectArmorSet(MapIniParser.ObjectArmorSetContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MapIniParser#objectArmorSet}.
+	 * @param ctx the parse tree
+	 */
+	void exitObjectArmorSet(MapIniParser.ObjectArmorSetContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MapIniParser#objectArmorSetArmor}.
+	 * @param ctx the parse tree
+	 */
+	void enterObjectArmorSetArmor(MapIniParser.ObjectArmorSetArmorContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MapIniParser#objectArmorSetArmor}.
+	 * @param ctx the parse tree
+	 */
+	void exitObjectArmorSetArmor(MapIniParser.ObjectArmorSetArmorContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MapIniParser#objectPrerequisite}.
+	 * @param ctx the parse tree
+	 */
+	void enterObjectPrerequisite(MapIniParser.ObjectPrerequisiteContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MapIniParser#objectPrerequisite}.
+	 * @param ctx the parse tree
+	 */
+	void exitObjectPrerequisite(MapIniParser.ObjectPrerequisiteContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MapIniParser#objectPrerequisite_object}.
+	 * @param ctx the parse tree
+	 */
+	void enterObjectPrerequisite_object(MapIniParser.ObjectPrerequisite_objectContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MapIniParser#objectPrerequisite_object}.
+	 * @param ctx the parse tree
+	 */
+	void exitObjectPrerequisite_object(MapIniParser.ObjectPrerequisite_objectContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MapIniParser#objectPrerequisite_science}.
+	 * @param ctx the parse tree
+	 */
+	void enterObjectPrerequisite_science(MapIniParser.ObjectPrerequisite_scienceContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MapIniParser#objectPrerequisite_science}.
+	 * @param ctx the parse tree
+	 */
+	void exitObjectPrerequisite_science(MapIniParser.ObjectPrerequisite_scienceContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link MapIniParser#drawModule}.
 	 * @param ctx the parse tree
 	 */
@@ -156,6 +256,26 @@ public interface MapIniListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitObjectProperty(MapIniParser.ObjectPropertyContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MapIniParser#drawModuleProperty}.
+	 * @param ctx the parse tree
+	 */
+	void enterDrawModuleProperty(MapIniParser.DrawModulePropertyContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MapIniParser#drawModuleProperty}.
+	 * @param ctx the parse tree
+	 */
+	void exitDrawModuleProperty(MapIniParser.DrawModulePropertyContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MapIniParser#conditionStateProperty}.
+	 * @param ctx the parse tree
+	 */
+	void enterConditionStateProperty(MapIniParser.ConditionStatePropertyContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MapIniParser#conditionStateProperty}.
+	 * @param ctx the parse tree
+	 */
+	void exitConditionStateProperty(MapIniParser.ConditionStatePropertyContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MapIniParser#property}.
 	 * @param ctx the parse tree
@@ -246,16 +366,6 @@ public interface MapIniListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitObject_value(MapIniParser.Object_valueContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link MapIniParser#objectProperty_locomotor}.
-	 * @param ctx the parse tree
-	 */
-	void enterObjectProperty_locomotor(MapIniParser.ObjectProperty_locomotorContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MapIniParser#objectProperty_locomotor}.
-	 * @param ctx the parse tree
-	 */
-	void exitObjectProperty_locomotor(MapIniParser.ObjectProperty_locomotorContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MapIniParser#locomotor_modifier}.
 	 * @param ctx the parse tree

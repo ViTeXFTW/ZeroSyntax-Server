@@ -3,7 +3,7 @@ import { Diagnostic, DiagnosticSeverity } from "vscode-languageserver";
 import * as list from '../utils/lists'
 import { Location } from "../utils/location";
 import { MapIniVisitor } from "../utils/antlr4ng/MapIniVisitor";
-import { AddModuleContext, AliasConditionContext, BehaviorModuleContext, BodyModule_typeContext, BodyModuleContext, ClassContext, ClientModuleContext, ConditionState_valuesContext, ConditionStateContext, ConditionStatePropertyContext, DrawModule_typeContext, DrawModuleContext, DrawModulePropertyContext, EndContext, MapIniParser, MappedImageClassContext, Module_modifierContext, ModuleContext, ObjectArmorSetContext, ObjectClassContext, ObjectPrerequisiteContext, ObjectPropertyContext, ObjectWeaponSetContext, ProgramContext, Property_valueContext, Property_valuesContext, PropertyContext, RemoveModuleContext } from "../utils/antlr4ng/MapIniParser";
+import { AddModuleContext, AliasConditionContext, BehaviorModuleContext, BodyModule_typeContext, BodyModuleContext, ClassContext, ClientModuleContext, ConditionState_valuesContext, ConditionStateContext, ConditionStatePropertyContext, DrawModule_typeContext, DrawModuleContext, DrawModulePropertyContext, EndContext, MapIniParser, MappedImageClassContext, Module_modifierContext, ModuleContext, ObjectArmorSetContext, ObjectClassContext, ObjectPrerequisiteContext, ObjectPropertyContext, ObjectUnitSpecificSoundsContext, ObjectUnitSpecificFXContext, ObjectWeaponSetContext, ProgramContext, Property_valueContext, Property_valuesContext, PropertyContext, RemoveModuleContext, BodyModulePropertyContext } from "../utils/antlr4ng/MapIniParser";
 import { AbstractParseTreeVisitor, ParserRuleContext, TerminalNode } from "antlr4ng";
 import { ErrorListener } from "../errorListener";
 import { ClassVisitor } from './classVisitor';
@@ -12,6 +12,8 @@ import { ForceAddModule_t } from './types/ForceAddModule_t';
 import { WeaponSlot_t } from './types/PropertyTypes';
 import { DrawModule_t } from './types/DrawModule_t';
 import { getDrawModulePropertyDefinition, getDrawModulePropertyTree } from './types/DrawModuleProperties';
+import { BodyModule_t } from './types/BodyModule_t';
+import { getBodyModulePropertyDefinition, getBodyModulePropertyTree } from './types/BodyModuleProperties';
 
 
 export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements MapIniVisitor<void> {
@@ -313,6 +315,18 @@ export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements
         this.visitChildren(ctx)
     }
 
+	visitObjectUnitSpecificSounds(ctx: ObjectUnitSpecificSoundsContext): void {
+		this.checkEnd(ctx)
+
+		this.visitChildren(ctx)
+	}
+
+    visitObjectUnitSpecificFX(ctx: ObjectUnitSpecificFXContext): void {
+		this.checkEnd(ctx)
+
+		this.visitChildren(ctx)
+	}
+
     visitDrawModule(ctx: DrawModuleContext): void {
         this.checkEnd(ctx)
 
@@ -417,6 +431,30 @@ export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements
     }
 
     visitBodyModule(ctx: BodyModuleContext): void {
+		this.checkEnd(ctx);
+
+		const bodyModule = ctx.bodyModule_type()!.ID()!.getText() as BodyModule_t
+        const tree = getBodyModulePropertyTree(bodyModule)
+
+		console.log(`BodyModule: ${bodyModule}`)
+
+        if (bodyModule && ctx.bodyModuleProperty()) {
+            for (const property of ctx.bodyModuleProperty()) {
+                if (property.ID()) {
+                    const propertyName = property.ID()!.getText()
+					console.log(`Property: ${propertyName}`)
+                    if (!tree.find(propertyName)) {
+                        const severity = DiagnosticSeverity.Error
+                        const start = new Location(property.ID()!.symbol.line, property.ID()!.symbol.column)
+                        const msg = `BodyModule ${bodyModule} doesn't have property ${propertyName}`
+                        this.addDiagnostic(severity, start, start, msg, "body_module")
+                        break;
+                    }
+
+                    this.validateProperty(propertyName, property, getBodyModulePropertyDefinition(bodyModule, propertyName)!)
+                }
+            }
+        }
         this.visitChildren(ctx)
     }
 
@@ -472,7 +510,7 @@ export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements
 
     private validateProperty(
         propertyName: string, 
-        ctx: PropertyContext | DrawModulePropertyContext | ConditionStatePropertyContext,
+        ctx: PropertyContext | DrawModulePropertyContext | ConditionStatePropertyContext | BodyModulePropertyContext,
         propertyDefinition: PropertyDefinition
     ): void {
         // Check if the property is assigned a value
