@@ -1,0 +1,15 @@
+export enum IniTypes_t {
+	ARMOR = 'Armor',
+	AUDIO_EVENT = 'AudioEvent',
+	COMMAND_BUTTON = 'CommandButton',
+	COMMAND_SET = 'CommandSet',
+	DIALOG_EVENT = 'DialogEvent',
+	FXLIST = 'FXList',
+	MAPPED_IMAGE = 'MappedImage',
+	LOCOMOTOR = 'Locomotor',
+	OBJECT = 'Object',
+	OBJECT_CREATION_LIST = 'ObjectCreationList',
+	SPECIAL_POWER = 'SpecialPower',
+	SCIENCE = 'Science',
+	UPGRADE = 'Upgrade'
+}

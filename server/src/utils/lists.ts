@@ -4774,7 +4774,7 @@ export const definedCommandSets: string[] = [
 	"Boss_ChinaNuclearMissileCommandSetUpgrade",
 ]
 
-let definedFXLists: string[] = [
+export let definedFXLists: string[] = [
 	"WeaponFX_GenericTankFire",
 	"WeaponFX_ToxinShellWeapon",
 	"FX_CarOverlappedByCrusher",
@@ -9311,7 +9311,7 @@ const allowedAddModuleProperties: string[] = [
 ]
 
 
-const allowedLocomotorProperties: string[] = [
+export const allowedLocomotorTypes: string[] = [
 	"SET_NORMAL",
 	"SET_PANIC",
 	"SET_NORMAL_UPGRADED",
@@ -9322,7 +9322,9 @@ const allowedLocomotorProperties: string[] = [
 	"SET_WANDER"
 ]
 
-const allowedKindOfs: string[] = [
+export const allowedKindOfs: string[] = [
+	"NONE",
+	"ALL",
     "UNIT",
     "STRUCTURE",
     "SPECIALIGNORE_DOCKING_BONES",
@@ -9464,28 +9466,6 @@ const allowedModelDrawsString: string[] = [
     "W3DTracerDraw",
     "W3DTruckDraw"
 ]
-
-export enum allowedModelDraws {
-    W3DDEBRISDRAW = "w3ddebrisdraw",
-    W3DDEFAULTDRAW = "w3ddefaultdraw",
-    W3DDEPENDENCYMODELDRAW = "w3ddependencymodeldraw",
-    W3DMODELDRAW = "w3dmodeldraw",
-    W3DOVERLORDTANKDRAW = "w3doverlordtankdraw",
-    W3DOVERLORDAIRCRAFTDRAW = "w3doverlordaircraftdraw",
-    W3DOVERLORDTRUCKDRAW = "w3doverlordtruckdraw",
-    W3DLASERDRAW = "w3dlaserdraw",
-    W3DPOLICECARDRAW = "w3dpolicecardraw",
-    W3DTREEDRAW = "w3dtreedraw",
-    W3DPROPDRAW = "w3dpropdraw",
-    W3DPROJECTILESTREAMDRAW = "w3dprojectilestreamdraw",
-    W3DROPEDRAW = "w3dropedraw",
-    W3DSCIENCEMODELDRAW = "w3dsciencemodeldraw",
-    W3DSUPPLYDRAW = "w3dsupplydraw",
-    W3DTANKDRAW = "w3dtankdraw",
-    W3DTANKTRUCKDRAW = "w3dtanktruckdraw",
-    W3DTRACERDRAW = "w3dtracerdraw",
-    W3DTRUCKDRAW = "w3dtruckdraw"
-}
 
 const allowedSingleModelDrawProperties: string[] = [
 	"TrackMarks",
@@ -9722,7 +9702,7 @@ const allowedMultiConditionProperties: string[] = [
 	"ParticleSysBone"
 ]
 
-const allowedConditionStates: string[] = [
+export const allowedConditionStates: string[] = [
 	"NONE",
 	"PLAYER_UPGRADE",
 	"USER_1",
@@ -11440,7 +11420,7 @@ export let addModuleProperties: RBTree<string> = new RBTree(stringComparator)
 allowedAddModuleProperties.forEach(item => addModuleProperties.insert(item))
 
 export let locomotorTypes: RBTree<string> = new RBTree(stringComparator)
-allowedLocomotorProperties.forEach(item => locomotorTypes.insert(item))
+allowedLocomotorTypes.forEach(item => locomotorTypes.insert(item))
 
 export let kindOfs: RBTree<string> = new RBTree(stringComparator)
 allowedKindOfs.forEach(item => kindOfs.insert(item))

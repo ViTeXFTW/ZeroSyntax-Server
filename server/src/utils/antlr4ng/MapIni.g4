@@ -1,7 +1,7 @@
 grammar MapIni;
 
 // Parser Rules
-program: (class | NEWLINE | WS)* EOF;
+program: (class | NEWLINE)* EOF;
 
 class: mappedImageClass
      | objectClass
@@ -9,44 +9,66 @@ class: mappedImageClass
      ;
 
 // MappedImage Class
-mappedImageClass: 'MappedImage' WS mappedImage_value NEWLINE (property)* end;
+mappedImageClass: 'MappedImage' mappedImage_value NEWLINE (property)* end;
 
 
 // Object Class
-objectClass: 'Object' WS object_value NEWLINE (module_modifier | objectProperty | NEWLINE)* end;
+objectClass: 'Object' object_value NEWLINE (module_modifier | module | objectProperty | objectSets | NEWLINE)* end;
 
-module_modifier: WS? (addModule
+module_modifier:  (addModule
                      | removeModule
 //                     | replcaeModule
                      )
                      ;
 
-addModule: 'AddModule' NEWLINE (module | property | NEWLINE)* end;
-removeModule: 'RemoveModule' WS moduleTag_value;
+addModule: 'AddModule' NEWLINE (module | objectProperty | NEWLINE)* end;
+removeModule: 'RemoveModule'  moduleTag_value;
 
-module: WS ?(drawModule
-            | bodyModule
-            | behaviorModule
-            | clientModule)
-            ;
+module: (drawModule
+        | bodyModule
+        | behaviorModule
+        | clientModule)
+        ;
+
+objectSets: (objectWeaponSet | objectArmorSet | objectPrerequisite);
+
+// WeaponSet
+objectWeaponSet: 'WeaponSet' NEWLINE (propertyCondition | objectWeaponSetWeapon | NEWLINE)* end;
+propertyCondition: 'Condition' EQ property_values NEWLINE;
+objectWeaponSetWeapon: 'Weapon' EQ weaponSlot_value property_values NEWLINE;
+weaponSlot_value: ID;
+
+// ArmorSet
+objectArmorSet: 'ArmorSet' NEWLINE (propertyCondition | objectArmorSetArmor | NEWLINE)* end;
+objectArmorSetArmor: 'Armor' EQ property_values NEWLINE;
+
+// Prerequisite
+objectPrerequisite: 'Prerequisites' NEWLINE (objectPrerequisite_object | objectPrerequisite_science | NEWLINE)* end;
+objectPrerequisite_object: 'Object' EQ property_values NEWLINE;
+objectPrerequisite_science: 'Science' EQ property_values NEWLINE;
 
 // Draw Modules
-drawModule: 'Draw' EQ drawModule_type WS moduleTag_value NEWLINE (conditionState | aliasCondition | property | NEWLINE)* end;
-conditionState: WS? ('DefaultConditionState' | ('ConditionState' EQ conditionState_values) | ('TransitionState' EQ conditionState_values)) NEWLINE (property | NEWLINE)* end;
-aliasCondition: WS? 'AliasConditionState' EQ conditionState_values NEWLINE;
+drawModule: 'Draw' EQ drawModule_type moduleTag_value NEWLINE (conditionState | aliasCondition | drawModuleProperty | NEWLINE)* end;
+conditionState:  ('DefaultConditionState' | ('ConditionState' EQ conditionState_values) | ('TransitionState' EQ conditionState_values)) NEWLINE (conditionStateProperty | NEWLINE)* end;
+aliasCondition:  'AliasConditionState' EQ conditionState_values NEWLINE;
 
-bodyModule: 'Body' EQ bodyModule_type WS moduleTag_value NEWLINE (property | NEWLINE)* end;
+// Body Module
+bodyModule: 'Body' EQ bodyModule_type moduleTag_value NEWLINE (property | NEWLINE)* end;
 
-behaviorModule: 'Behavior' EQ behaviorModule_type WS moduleTag_value NEWLINE (property | NEWLINE)* end;
+// Behavior Module
+behaviorModule: 'Behavior' EQ behaviorModule_type moduleTag_value NEWLINE (property | NEWLINE)* end;
 
-clientModule: 'Client' EQ clientModule_type WS moduleTag_value NEWLINE (property | NEWLINE)* end;
+// Client Module
+clientModule: 'Client' EQ clientModule_type moduleTag_value NEWLINE (property | NEWLINE)* end;
 
-objectProperty: property;
-property: WS? ID EQ property_values NEWLINE;
+objectProperty: ID EQ property_values NEWLINE;
+drawModuleProperty: ID EQ property_values NEWLINE;
+conditionStateProperty: ID EQ property_values NEWLINE;
+property:  ID EQ property_values NEWLINE;
 
 // Module values
 drawModule_type: ID;
-conditionState_values: ID (WS ID)*;
+conditionState_values: ID (ID)*;
 bodyModule_type: ID;
 behaviorModule_type: ID;
 clientModule_type: ID;
@@ -56,24 +78,29 @@ moduleTag_value: ID;
 mappedImage_value: ID;
 object_value: ID;
 
+// Object Special Values
+locomotor_modifier: ID;
+
 // Property values
-property_values: ID (WS ID)*;
+property_value: ID;
+property_values: ID ( ID)*;
 
 // General
-EQ: WS? '=' WS?;
+EQ: '=' ;
 
 // Map.ini
-end: WS? 'End' | 'end' | 'END';
+end: 'End' | 'end' | 'END';
 
 // General
 STRING: '"' ( ~[\\"\n\r] | '\\' [\\"] )* '"'  ;
 ID: [a-zA-Z_0-9+\-][a-zA-Z_0-9%:.]*;
 
-NEWLINE: WS? ([\r]?[\n]);
-WS: [ \t]+;
+NEWLINE: ([\r]?[\n]);
+
 
 // Skips
-COMMENT: WS? (';' | '//') ~[\r\n]* -> skip; // skip comments
+WS: [ \t] -> skip;
+COMMENT:  (';' | '//') ~[\r\n]* -> skip; // skip comments
 
 // Learned Things
 // Explicit strings ('something') has to be a

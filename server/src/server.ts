@@ -31,6 +31,7 @@ import { MapIniLexer } from './utils/antlr4ng/MapIniLexer';
 import { CharStream, CommonTokenStream, DefaultErrorStrategy } from 'antlr4ng';
 import { findContextAtPosition, findTokenIndex, generateCompletionItems, getContextSpecificCompletions } from './completion/helpers';
 import { CompletionVisitor } from './completion/completionVisitor';
+import { ForceAddModule_t } from './diagnostic/types/ForceAddModule_t';
 
 // Create a connection for the server, using Node's IPC as a transport.
 // Also include all preview / proposed LSP features.
@@ -52,7 +53,7 @@ const documents: TextDocuments<TextDocument> = new TextDocuments(TextDocument);
 let parser: Parser = new Parser();
 let currentParser: MapIniParser;
 
-let forceAddModule: boolean = true
+let forceAddModule: ForceAddModule_t = ForceAddModule_t.No
 let precompileTransitionKeys: boolean = false
 
 connection.onInitialize((params: InitializeParams) => {
@@ -131,6 +132,10 @@ connection.onInitialized(() => {
 			if (settings.precompileTransitionKeys !== null) {
 				precompileTransitionKeys = settings.precompileTransitionKeys
 			}
+
+			if (settings.forceAddModule !== null) {
+				forceAddModule = settings.forceAddModule as ForceAddModule_t
+			}
 		})
 	}
 });
@@ -185,7 +190,7 @@ documents.onDidChangeContent((change) => {
     currentParser = parser.updateParser(change.document) //Potentially add another timer that is shorter, but does not create a parser for every input.
 
 	diagnosticTimer = setTimeout(() => {
-		let diagnostics = computeDiagnostics(currentParser, precompileTransitionKeys)
+		let diagnostics = computeDiagnostics(currentParser, forceAddModule, precompileTransitionKeys)
 		// console.log(`Diagnostics: ${diagnostics}`)
 		connection.sendDiagnostics({ uri: change.document.uri, diagnostics })
 		console.log(`Diagnostics sent!`)

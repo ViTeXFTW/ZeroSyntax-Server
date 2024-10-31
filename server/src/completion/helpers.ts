@@ -4,7 +4,7 @@ import { MapIniParser, ObjectPropertyContext } from "../utils/antlr4ng/MapIniPar
 import { CompletionItem, CompletionItemKind, InsertTextFormat } from "vscode-languageserver";
 import * as list from '../utils/lists'
 import { RBTree } from "bintrees";
-import { getPropertyDefinition } from '../diagnostic/properties';
+import { getObjectPropertyDefinition, objectPropertyNameTree } from '../diagnostic/properties';
 
 
 
@@ -117,6 +117,13 @@ export function getContextSpecificCompletions(ruleName: string): CompletionItem[
     console.log(`Rules: ${ruleName}`)
 
     switch (ruleName) {
+
+        case 'objectClass':
+            objectPropertyNameTree.reach(property => completionItems.push({ label: property, kind: CompletionItemKind.Field, documentation: getObjectPropertyDefinition(property)?.description }))
+            break;
+
+        case 'objectProperty':
+            break;
         
         case 'drawModule_type':
             completionItems.push(...getCompletionItemsFromRBTree(list.modelDraws))

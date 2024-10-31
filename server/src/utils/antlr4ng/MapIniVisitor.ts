@@ -11,6 +11,16 @@ import { Module_modifierContext } from "./MapIniParser.js";
 import { AddModuleContext } from "./MapIniParser.js";
 import { RemoveModuleContext } from "./MapIniParser.js";
 import { ModuleContext } from "./MapIniParser.js";
+import { ObjectSetsContext } from "./MapIniParser.js";
+import { ObjectWeaponSetContext } from "./MapIniParser.js";
+import { PropertyConditionContext } from "./MapIniParser.js";
+import { ObjectWeaponSetWeaponContext } from "./MapIniParser.js";
+import { WeaponSlot_valueContext } from "./MapIniParser.js";
+import { ObjectArmorSetContext } from "./MapIniParser.js";
+import { ObjectArmorSetArmorContext } from "./MapIniParser.js";
+import { ObjectPrerequisiteContext } from "./MapIniParser.js";
+import { ObjectPrerequisite_objectContext } from "./MapIniParser.js";
+import { ObjectPrerequisite_scienceContext } from "./MapIniParser.js";
 import { DrawModuleContext } from "./MapIniParser.js";
 import { ConditionStateContext } from "./MapIniParser.js";
 import { AliasConditionContext } from "./MapIniParser.js";
@@ -18,6 +28,8 @@ import { BodyModuleContext } from "./MapIniParser.js";
 import { BehaviorModuleContext } from "./MapIniParser.js";
 import { ClientModuleContext } from "./MapIniParser.js";
 import { ObjectPropertyContext } from "./MapIniParser.js";
+import { DrawModulePropertyContext } from "./MapIniParser.js";
+import { ConditionStatePropertyContext } from "./MapIniParser.js";
 import { PropertyContext } from "./MapIniParser.js";
 import { DrawModule_typeContext } from "./MapIniParser.js";
 import { ConditionState_valuesContext } from "./MapIniParser.js";
@@ -27,6 +39,8 @@ import { ClientModule_typeContext } from "./MapIniParser.js";
 import { ModuleTag_valueContext } from "./MapIniParser.js";
 import { MappedImage_valueContext } from "./MapIniParser.js";
 import { Object_valueContext } from "./MapIniParser.js";
+import { Locomotor_modifierContext } from "./MapIniParser.js";
+import { Property_valueContext } from "./MapIniParser.js";
 import { Property_valuesContext } from "./MapIniParser.js";
 import { EndContext } from "./MapIniParser.js";
 
@@ -88,6 +102,66 @@ export class MapIniVisitor<Result> extends AbstractParseTreeVisitor<Result> {
      */
     visitModule?: (ctx: ModuleContext) => Result;
     /**
+     * Visit a parse tree produced by `MapIniParser.objectSets`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitObjectSets?: (ctx: ObjectSetsContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.objectWeaponSet`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitObjectWeaponSet?: (ctx: ObjectWeaponSetContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.propertyCondition`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitPropertyCondition?: (ctx: PropertyConditionContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.objectWeaponSetWeapon`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitObjectWeaponSetWeapon?: (ctx: ObjectWeaponSetWeaponContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.weaponSlot_value`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitWeaponSlot_value?: (ctx: WeaponSlot_valueContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.objectArmorSet`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitObjectArmorSet?: (ctx: ObjectArmorSetContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.objectArmorSetArmor`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitObjectArmorSetArmor?: (ctx: ObjectArmorSetArmorContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.objectPrerequisite`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitObjectPrerequisite?: (ctx: ObjectPrerequisiteContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.objectPrerequisite_object`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitObjectPrerequisite_object?: (ctx: ObjectPrerequisite_objectContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.objectPrerequisite_science`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitObjectPrerequisite_science?: (ctx: ObjectPrerequisite_scienceContext) => Result;
+    /**
      * Visit a parse tree produced by `MapIniParser.drawModule`.
      * @param ctx the parse tree
      * @return the visitor result
@@ -129,6 +203,18 @@ export class MapIniVisitor<Result> extends AbstractParseTreeVisitor<Result> {
      * @return the visitor result
      */
     visitObjectProperty?: (ctx: ObjectPropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.drawModuleProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitDrawModuleProperty?: (ctx: DrawModulePropertyContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.conditionStateProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitConditionStateProperty?: (ctx: ConditionStatePropertyContext) => Result;
     /**
      * Visit a parse tree produced by `MapIniParser.property`.
      * @param ctx the parse tree
@@ -183,6 +269,18 @@ export class MapIniVisitor<Result> extends AbstractParseTreeVisitor<Result> {
      * @return the visitor result
      */
     visitObject_value?: (ctx: Object_valueContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.locomotor_modifier`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitLocomotor_modifier?: (ctx: Locomotor_modifierContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.property_value`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitProperty_value?: (ctx: Property_valueContext) => Result;
     /**
      * Visit a parse tree produced by `MapIniParser.property_values`.
      * @param ctx the parse tree

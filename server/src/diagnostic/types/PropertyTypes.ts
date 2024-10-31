@@ -1,4 +1,3 @@
-
 export enum BuildCompletion_t {
 	NONE = 'NONE',
 	INVALID = 'INVALID',
@@ -36,4 +35,38 @@ export enum EditorSorting_t {
 	FOR_REVIEW = 'FOR_REVIEW',
 	ROAD = 'ROAD',
 	WAYPOINT = 'WAYPOINT'
+}
+
+export enum LOD_t {
+	LOW = 'LOW',
+	MEDIUM = 'MEDIUM',
+	HIGH = 'HIGH'
+}
+
+export enum AnimationMode_t {
+	MANUAL = 'MANUAL',
+	LOOP = 'LOOP',
+	PING_PONG = 'PING_PONG'
+}
+
+export enum ConditionStateFlags_t {
+	NONE = 'NONE',
+	DISABLE_ANIMATION = 'DISABLE_ANIMATION'
+}
+
+export enum WeaponSlot_t {
+	PRIMARY = 'PRIMARY',
+	SECONDARY = 'SECONDARY',
+	TERTIARY = 'TERTIARY'
+}
+
+export enum Locomotor_types_t {
+	SET_NORMAL = 'SET_NORMAL',
+	SET_PANIC = 'SET_PANIC',
+	SET_NORMAL_UPGRADED = 'SET_NORMAL_UPGRADED',
+	SET_SUPERSONIC = 'SET_SUPERSONIC',
+	SET_SLUGGISH = 'SET_SLUGGISH',
+	SET_TAXIING = 'SET_TAXIING',
+	SET_FREEFALL = 'SET_FREEFALL',
+	SET_WANDER = 'SET_WANDER'
 }

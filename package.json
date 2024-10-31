@@ -88,8 +88,13 @@
 					"description": "Controls whether the alpha warning is displayed when the server is started."
 				},
 				"ZeroSyntax.forceAddModule": {
-					"type": "boolean",
-					"default": true,
+					"type": "string",
+					"default": "no",
+					"enum": [
+						"no",
+						"yes",
+						"auto"
+					],
 					"description": "Controls whether AddModule around modules is forced."
 				},
 				"ZeroSyntax.precompileTransitionKeys": {
