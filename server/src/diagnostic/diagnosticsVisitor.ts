@@ -10,6 +10,8 @@ import { ClassVisitor } from './classVisitor';
 import { conditionStatePropertyNameTree, W3DModelDrawPropertyNameTree, getConditionStatePropertyDefinition, getW3DModelDrawPropertyDefinition, getObjectPropertyDefinition, isValidPropertyValue, objectPropertyNameTree, PropertyDefinition } from './properties';
 import { ForceAddModule_t } from './types/ForceAddModule_t';
 import { WeaponSlot_t } from './types/PropertyTypes';
+import { DrawModule_t } from './types/DrawModule_t';
+import { getDrawModulePropertyDefinition, getDrawModulePropertyTree } from './types/DrawModuleProperties';
 
 
 export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements MapIniVisitor<void> {
@@ -314,6 +316,26 @@ export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements
     visitDrawModule(ctx: DrawModuleContext): void {
         this.checkEnd(ctx)
 
+        const drawModule = ctx.drawModule_type()!.ID()!.getText() as DrawModule_t
+        const tree = getDrawModulePropertyTree(drawModule)
+
+        if (drawModule && ctx.drawModuleProperty()) {
+            for (const property of ctx.drawModuleProperty()) {
+                if (property.ID()) {
+                    const propertyName = property.ID()!.getText()
+                    if (!tree.find(propertyName)) {
+                        const severity = DiagnosticSeverity.Error
+                        const start = new Location(property.ID()!.symbol.line, property.ID()!.symbol.column)
+                        const msg = `DrawModule ${drawModule} doesn't have property ${propertyName}`
+                        this.addDiagnostic(severity, start, start, msg, "draw_module")
+                        break;
+                    }
+
+                    this.validateProperty(propertyName, property, getDrawModulePropertyDefinition(drawModule, propertyName)!)
+                }
+            }
+        }
+
         this.visitChildren(ctx)
     }
 
@@ -332,20 +354,20 @@ export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements
     }
 
     visitDrawModuleProperty(ctx: DrawModulePropertyContext): void {
-        if (ctx.ID()) {
-            const propertyName = ctx.ID()!.getText()
+        // if (ctx.ID()) {
+        //     const propertyName = ctx.ID()!.getText()
 
-            if (!W3DModelDrawPropertyNameTree.find(propertyName)) {
-                const severity = DiagnosticSeverity.Error
-                const start = new Location(ctx.ID()!.symbol.line, ctx.ID()!.symbol.column)
-                const msg = `DrawModule doesn't have property ${propertyName}`
-                this.addDiagnostic(severity, start, start, msg)
-                this.visitChildren(ctx)
-                return
-            }
+        //     if (!W3DModelDrawPropertyNameTree.find(propertyName)) {
+        //         const severity = DiagnosticSeverity.Error
+        //         const start = new Location(ctx.ID()!.symbol.line, ctx.ID()!.symbol.column)
+        //         const msg = `DrawModule doesn't have property ${propertyName}`
+        //         this.addDiagnostic(severity, start, start, msg)
+        //         this.visitChildren(ctx)
+        //         return
+        //     }
 
-            this.validateProperty(propertyName, ctx, getW3DModelDrawPropertyDefinition(propertyName)!)
-        }
+        //     this.validateProperty(propertyName, ctx, getW3DModelDrawPropertyDefinition(propertyName)!)
+        // }
 
         this.visitChildren(ctx)
     }
@@ -480,9 +502,10 @@ export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements
                 // If the property does not have a specified limit, the limit is 1
                 if (propertyValues.ID().length !== 1) {
                     const severity = DiagnosticSeverity.Error
-                    const start = new Location(ctx.start!.line, ctx.start!.column)
+                    const start = new Location(propertyValues.stop!.line, propertyValues.stop!.column)
+                    const end = new Location(propertyValues.stop!.line, propertyValues.stop!.column + propertyName.length)
                     const msg = `Property ${propertyName} must have one value`
-                    this.addDiagnostic(severity, start, start, msg, "limit_1")
+                    this.addDiagnostic(severity, start, end, msg, "limit_1")
                 }
             }
     
