@@ -32,6 +32,7 @@ import { CharStream, CommonTokenStream, DefaultErrorStrategy } from 'antlr4ng';
 import { findContextAtPosition, findTokenIndex, generateCompletionItems, getContextSpecificCompletions } from './completion/helpers';
 import { CompletionVisitor } from './completion/completionVisitor';
 import { ForceAddModule_t } from './diagnostic/types/ForceAddModule_t';
+import { CompletionProvider } from './completion/completionProvider';
 
 // Create a connection for the server, using Node's IPC as a transport.
 // Also include all preview / proposed LSP features.
@@ -197,77 +198,18 @@ documents.onDidChangeContent((change) => {
 	}, diagnosticParserDelay)
 });
 
+const completionProvider = new CompletionProvider(parser);
 
 connection.onCompletion((_textDocumentPosition: TextDocumentPositionParams): CompletionItem[] => {
 	// console.log(`Requesting completions!`)
 
-	// Retrieve the document
 	const document = documents.get(_textDocumentPosition.textDocument.uri)!;
-	const offset = document.offsetAt(_textDocumentPosition.position);
-
-	
-	let inputStream = CharStream.fromString(document.getText());
-	let lexer = new MapIniLexer(inputStream);
-	lexer.removeErrorListeners()
-	let tokenStream = new CommonTokenStream(lexer);
-	let parser = new MapIniParser(tokenStream);
-	parser.removeErrorListeners()
-	parser.errorHandler = new DefaultErrorStrategy()
-
-	// Parse the document
-	parser.buildParseTrees = true;
-	const tree = parser.program(); // Use your language's entry point
-
-	const completionVisitor = new CompletionVisitor(offset)
-	completionVisitor.visit(tree)
-	// Create the CodeCompletionCore instance
-	const core = new CodeCompletionCore(parser);
-
-	// Configure the core (optional)
-	core.ignoredTokens = new Set([
-		MapIniLexer.ID,
-		MapIniLexer.WS,    // Whitespace
-		MapIniLexer.NEWLINE,
-		MapIniLexer.COMMENT,
-		MapIniLexer.EOF,   // End of file
-		// Add other tokens to ignore if necessary
-	]);
-
-	if (!tokenStream) return []
-
-	// Find the token index at the cursor position
-	const tokenIndex = findTokenIndex(tokenStream.getTokens(), offset);
-
-    console.log('Got Index')
-	
-	const contextAtPosition = findContextAtPosition(tree, offset);
-
-	console.log(`ContextAtPosition: ${parser.ruleNames[contextAtPosition!.ruleIndex]}`)
-
-	let candidates = null;
-
-	// Collect completion candidates
-	core.showDebugOutput = false
-	if (contextAtPosition) {
-		candidates = core.collectCandidates(tokenIndex, contextAtPosition);
-        console.log(`Got candiates`)
-	} else {
-        console.log(`No candidates`)
-    }
-
-	// Generate completion items
-
-	let completionItems: CompletionItem[] = []
     
-    if(candidates) {
-        completionItems = generateCompletionItems(candidates, parser);
-    }
+    return completionProvider.getCompletions(
+        document, 
+        _textDocumentPosition.position
+    );
 
-	completionItems.push(...completionVisitor.getCompletionList())
-
-	completionItems.push(...getContextSpecificCompletions(parser.ruleNames[contextAtPosition!.ruleIndex]))
-
-	return completionItems;
 })
 
 connection.onDidChangeWatchedFiles(_change => {

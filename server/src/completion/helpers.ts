@@ -119,7 +119,7 @@ export function getContextSpecificCompletions(ruleName: string): CompletionItem[
     switch (ruleName) {
 
         case 'objectClass':
-            objectPropertyNameTree.reach(property => completionItems.push({ label: property, kind: CompletionItemKind.Field, documentation: getObjectPropertyDefinition(property)?.description }))
+            // objectPropertyNameTree.reach(property => completionItems.push({ label: property, kind: CompletionItemKind.Field, documentation: getObjectPropertyDefinition(property)?.description }))
             break;
 
         case 'objectProperty':
