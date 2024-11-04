@@ -11,5 +11,7 @@ export enum IniTypes_t {
 	OBJECT_CREATION_LIST = 'ObjectCreationList',
 	SPECIAL_POWER = 'SpecialPower',
 	SCIENCE = 'Science',
-	UPGRADE = 'Upgrade'
+	PARTICLE_SYSTEM = 'ParticleSystem',
+	UPGRADE = 'Upgrade',
+	WEAPON = 'Weapon',
 }

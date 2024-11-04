@@ -1,19 +1,23 @@
 
+import { AbstractParseTreeVisitor, ParserRuleContext } from "antlr4ng";
 import { Diagnostic, DiagnosticSeverity } from "vscode-languageserver";
-import * as list from '../utils/lists'
-import { Location } from "../utils/location";
+import { AddModuleContext, AliasConditionContext, BehaviorModuleContext, BodyModuleContext, BodyModulePropertyContext, ClassContext, ClientModuleContext, ConditionState_valuesContext, ConditionStateBlockContext, ConditionStatePropertyContext, DefaultConditionStateBlockContext, DrawModule_typeContext, DrawModuleContext, DrawModulePropertyContext, MapIniParser, Module_modifierContext, ModuleContext, ObjectArmorSetContext, ObjectClassContext, ObjectPrerequisiteContext, ObjectPropertyContext, ObjectUnitSpecificFXContext, ObjectUnitSpecificSoundsContext, ObjectWeaponSetContext, ProgramContext, PropertyContext, RemoveModuleContext, TransitionStateBlockContext } from "../utils/antlr4ng/MapIniParser";
 import { MapIniVisitor } from "../utils/antlr4ng/MapIniVisitor";
-import { AddModuleContext, AliasConditionContext, BehaviorModuleContext, BodyModule_typeContext, BodyModuleContext, ClassContext, ClientModuleContext, ConditionState_valuesContext, ConditionStateContext, ConditionStatePropertyContext, DrawModule_typeContext, DrawModuleContext, DrawModulePropertyContext, EndContext, MapIniParser, MappedImageClassContext, Module_modifierContext, ModuleContext, ObjectArmorSetContext, ObjectClassContext, ObjectPrerequisiteContext, ObjectPropertyContext, ObjectUnitSpecificSoundsContext, ObjectUnitSpecificFXContext, ObjectWeaponSetContext, ProgramContext, Property_valueContext, Property_valuesContext, PropertyContext, RemoveModuleContext, BodyModulePropertyContext } from "../utils/antlr4ng/MapIniParser";
-import { AbstractParseTreeVisitor, ParserRuleContext, TerminalNode } from "antlr4ng";
-import { ErrorListener } from "../errorListener";
+import * as list from '../utils/lists';
+import { Location } from "../utils/location";
 import { ClassVisitor } from './classVisitor';
-import { conditionStatePropertyNameTree, W3DModelDrawPropertyNameTree, getConditionStatePropertyDefinition, getW3DModelDrawPropertyDefinition, getObjectPropertyDefinition, isValidPropertyValue, objectPropertyNameTree, PropertyDefinition } from './properties';
-import { ForceAddModule_t } from './types/ForceAddModule_t';
-import { WeaponSlot_t } from './types/PropertyTypes';
-import { DrawModule_t } from './types/DrawModule_t';
-import { getDrawModulePropertyDefinition, getDrawModulePropertyTree } from './types/DrawModuleProperties';
+import { getObjectPropertyDefinition, isValidPropertyValue, objectPropertyNameTree, PropertyDefinition } from './properties';
+import { BehaviorModule_t } from './types/BehaviorModule_t';
+import { getBehaviorModulePropertyDefinition, getBehaviorModulePropertyTree } from './types/BehaviorModuleProperties';
 import { BodyModule_t } from './types/BodyModule_t';
 import { getBodyModulePropertyDefinition, getBodyModulePropertyTree } from './types/BodyModuleProperties';
+import { ClientModule_t } from './types/ClientModule_t';
+import { getClientModulePropertyDefinition, getClientModulePropertyTree } from './types/ClientModuleProperties';
+import { getConditionStatePropertyDefinition, getConditionStatePropertyTree } from './types/ConditionStateProperties';
+import { DrawModule_t } from './types/DrawModule_t';
+import { getDrawModulePropertyDefinition, getDrawModulePropertyTree } from './types/DrawModuleProperties';
+import { ForceAddModule_t } from './types/ForceAddModule_t';
+import { armorSetProperties, prerequisiteProperties, unitSpecificFXProperties, unitSpecificSoundsProperties, weaponSetProperties } from './types/ObjectSetProperties';
 
 
 export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements MapIniVisitor<void> {
@@ -101,7 +105,9 @@ export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements
 
     visitObjectClass(ctx: ObjectClassContext): void {
         // list.customConditionStates.clear()
-        this.checkEnd(ctx)
+        if (!this.checkEnd(ctx)) {
+            return
+        }
 
         this.visitChildren(ctx)
     }
@@ -127,7 +133,9 @@ export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements
     }
 
     visitAddModule(ctx: AddModuleContext): void {
-        this.checkEnd(ctx)
+        if (!this.checkEnd(ctx)) {
+            return
+        }
 
         this.visitChildren(ctx)
     }
@@ -153,185 +161,192 @@ export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements
     }
 
     visitObjectWeaponSet(ctx: ObjectWeaponSetContext): void {
-        this.checkEnd(ctx)
-
-        if (ctx.propertyCondition()) {
-            if (ctx.propertyCondition().length < 1) {
-                const severity = DiagnosticSeverity.Error
-                const start = new Location(ctx.start!.line, ctx.start!.column)
-                const msg = `WeaponSet must have at least one condition`
-                this.addDiagnostic(severity, start, start, msg, "weapon_set")
-                this.visitChildren(ctx)
-                return
-            }
-
-            for (const condition of ctx.propertyCondition()) {
-                for (const property of condition.property_values().ID()) {
-                    const propertyName = property.getText()
-                    if (!list.conditionStates.find(propertyName.toUpperCase()) && !list.customConditionStates.find(propertyName.toUpperCase())) {
-                        const severity = DiagnosticSeverity.Error
-                        const start = new Location(property.symbol.line, property.symbol.column)
-                        const msg = `Condition state ${propertyName} is not defined`
-                        this.addDiagnostic(severity, start, start, msg, "weapon_set")
-                    }
-                }
-            }
+        if (!this.checkEnd(ctx)) {
+            return
         }
+		
+		if (ctx.objectWeaponSetProperty()) {
+			for (const property of ctx.objectWeaponSetProperty()) {
+				const propertyName = property.ID()!.getText()
 
-        if (ctx.objectWeaponSetWeapon()) {
-            for (const weapon of ctx.objectWeaponSetWeapon()) {
-                if (!weapon.EQ()) {
-                    const severity = DiagnosticSeverity.Error
-                    const start = new Location(weapon.start!.line, weapon.start!.column)
-                    const msg = `Weapon must be assigned a value`
-                    this.addDiagnostic(severity, start, start, msg, "weapon_set")
-                    this.visitChildren(weapon)
-                    return
-                }
+				if (!property.EQ()) {
+					const severity = DiagnosticSeverity.Error
+					const start = new Location(property.ID()!.symbol.line, property.ID()!.symbol.column)
+					const msg = `Property must be assigned a value`
+					this.addDiagnostic(severity, start, start, msg, "weapon_set")
+					return
+				}
 
-                if (weapon.weaponSlot_value().ID()) {
-                    const weaponSlot = weapon.weaponSlot_value()!.ID()!.getText()
-                    if (!Object.values(WeaponSlot_t).includes(weaponSlot as WeaponSlot_t)) {
-                        const severity = DiagnosticSeverity.Error
-                        const start = new Location(weapon.weaponSlot_value()!.ID().symbol.line, weapon.weaponSlot_value()!.ID().symbol.column)
-                        const msg = `Invalid WeaponSlot, valid values are: ${Object.values(WeaponSlot_t).join(', ')}`
-                        this.addDiagnostic(severity, start, start, msg, "weapon_set")
-                        this.visitChildren(weapon)
-                        return
-                    }
-                } else {
-                    const severity = DiagnosticSeverity.Error
-                    const start = new Location(weapon.start!.line, weapon.start!.column)
-                    const msg = `Weapon must be assigned a WeaponSlot`
-                    this.addDiagnostic(severity, start, start, msg, "weapon_set")
-                    this.visitChildren(weapon)
-                    return
-                }
+				if (!weaponSetProperties[propertyName]) {
+					const severity = DiagnosticSeverity.Error
+					const start = new Location(property.ID()!.symbol.line, property.ID()!.symbol.column)
+					const msg = `WeaponSet doesn't have property ${propertyName}`
+					this.addDiagnostic(severity, start, start, msg, "weapon_set")
+				}
 
-                if (weapon.property_values().ID()) {
-                    for (const property of weapon.property_values().ID()) {
-                        const propertyName = property.getText()
-                        if (!list.weapons.find(propertyName) && !list.customWeapons.find(propertyName)) {
-                            const severity = DiagnosticSeverity.Error
-                            const start = new Location(property.symbol.line, property.symbol.column)
-                            const msg = `Weapon ${propertyName} is not defined`
-                            this.addDiagnostic(severity, start, start, msg, "weapon_set")
-                            this.visitChildren(weapon)
-                            return
-                        }
-                    }
-                }
-            }
-        }
+				this.validateProperty(propertyName, property, weaponSetProperties[propertyName]!)
+			}
+		}
 
         this.visitChildren(ctx)
     }
 
     visitObjectArmorSet(ctx: ObjectArmorSetContext): void {
-        this.checkEnd(ctx)
-
-        if (ctx.propertyCondition()) {
-            if (ctx.propertyCondition().length < 1) {
-                const severity = DiagnosticSeverity.Error
-                const start = new Location(ctx.start!.line, ctx.start!.column)
-                const msg = `ArmorSet must have at least one condition`
-                this.addDiagnostic(severity, start, start, msg, "armor_set")
-                this.visitChildren(ctx)
-                return
-            }
-
-            for (const condition of ctx.propertyCondition()) {
-                for (const property of condition.property_values().ID()) {
-                    const propertyName = property.getText()
-                    if (!list.conditionStates.find(propertyName.toUpperCase()) && !list.customConditionStates.find(propertyName.toUpperCase())) {
-                        const severity = DiagnosticSeverity.Error
-                        const start = new Location(property.symbol.line, property.symbol.column)
-                        const msg = `Condition state ${propertyName} is not defined`
-                        this.addDiagnostic(severity, start, start, msg, "armor_set")
-                    }
-                }
-            }
+        if (!this.checkEnd(ctx)) {
+            return
         }
 
-        if (ctx.objectArmorSetArmor()) {
-            for (const armor of ctx.objectArmorSetArmor()) {
-                if (!armor.EQ()) {
-                    const severity = DiagnosticSeverity.Error
-                    const start = new Location(armor.start!.line, armor.start!.column)
-                    const msg = `Armor must be assigned a value`
-                    this.addDiagnostic(severity, start, start, msg, "armor_set")
-                    this.visitChildren(armor)
-                    return
-                }
+		if (ctx.objectArmorSetProperty()) {
+			for (const property of ctx.objectArmorSetProperty()) {
+				const propertyName = property.ID()!.getText()
 
-                if (armor.property_values().ID()) {
-                    for (const property of armor.property_values().ID()) {
-                        const propertyName = property.getText()
-                        if (!list.definedArmor.find(propertyName) && !list.customArmor.find(propertyName)) {
-                            const severity = DiagnosticSeverity.Error
-                            const start = new Location(property.symbol.line, property.symbol.column)
-                            const msg = `Armor ${propertyName} is not defined`
-                            this.addDiagnostic(severity, start, start, msg, "armor_set")
-                        }
-                    }
-                }
-            }
-        }
+				if (!property.EQ()) {
+					const severity = DiagnosticSeverity.Error
+					const start = new Location(property.ID()!.symbol.line, property.ID()!.symbol.column)
+					const msg = `Property must be assigned a value`
+					this.addDiagnostic(severity, start, start, msg, "armor_set")
+					return
+				}
+
+				if (!armorSetProperties[propertyName]) {
+					const severity = DiagnosticSeverity.Error
+					const start = new Location(property.ID()!.symbol.line, property.ID()!.symbol.column)
+					const msg = `ArmorSet doesn't have property ${propertyName}`
+					this.addDiagnostic(severity, start, start, msg, "armor_set")
+				}
+
+				this.validateProperty(propertyName, property, armorSetProperties[propertyName]!)
+			}
+		}
 
         this.visitChildren(ctx)
     }
 
     visitObjectPrerequisite(ctx: ObjectPrerequisiteContext): void {
-        this.checkEnd(ctx)
-
-        if (ctx.objectPrerequisite_object()) {
-            for (const objectProperty of ctx.objectPrerequisite_object()) {
-                for (const property of objectProperty.property_values().ID()) {
-                    const propertyName = property.getText()
-                    if (!list.objects.find(propertyName) && !list.customObjects.find(propertyName)) {
-                        const severity = DiagnosticSeverity.Error
-                        const start = new Location(property.symbol.line, property.symbol.column)
-                        const msg = `Object ${propertyName} is not defined`
-                        this.addDiagnostic(severity, start, start, msg, "prerequisite")
-                    }
-                }
-            }
+        if (!this.checkEnd(ctx)) {
+            return
         }
 
-        if (ctx.objectPrerequisite_science()) {
-            for (const scienceProperty of ctx.objectPrerequisite_science()) {
-                for (const property of scienceProperty.property_values().ID()) {
-                    const propertyName = property.getText()
-                    if (!list.science.find(propertyName) && !list.customScience.find(propertyName)) {
-                        const severity = DiagnosticSeverity.Error
-                        const start = new Location(property.symbol.line, property.symbol.column)
-                        const msg = `Science ${propertyName} is not defined`
-                        this.addDiagnostic(severity, start, start, msg, "prerequisite")
-                    }
-                }
-            }
-        }
+		if (ctx.objectPrerequisiteProperty()) {
+			for (const property of ctx.objectPrerequisiteProperty()) {
+				const propertyName = property.ID()!.getText()
+
+				if (!property.EQ()) {
+					const severity = DiagnosticSeverity.Error
+					const start = new Location(property.ID()!.symbol.line, property.ID()!.symbol.column)
+					const msg = `Property must be assigned a value`
+					this.addDiagnostic(severity, start, start, msg, "prerequisite")
+					return
+				}
+
+				if (!prerequisiteProperties[propertyName]) {
+					const severity = DiagnosticSeverity.Error
+					const start = new Location(property.ID()!.symbol.line, property.ID()!.symbol.column)
+					const msg = `Prerequisite doesn't have property ${propertyName}`
+					this.addDiagnostic(severity, start, start, msg, "prerequisite")
+				}
+
+				this.validateProperty(propertyName, property, prerequisiteProperties[propertyName]!)
+			}
+		}
 
         this.visitChildren(ctx)
     }
 
 	visitObjectUnitSpecificSounds(ctx: ObjectUnitSpecificSoundsContext): void {
-		this.checkEnd(ctx)
+		if (!this.checkEnd(ctx)) {
+			return
+		}
+
+		if (ctx.objectUnitSpecificSoundsProperty()) {
+			for (const property of ctx.objectUnitSpecificSoundsProperty()) {
+				const propertyName = property.ID()!.getText()
+
+				if (!property.EQ()) {
+					const severity = DiagnosticSeverity.Error
+					const start = new Location(property.ID()!.symbol.line, property.ID()!.symbol.column)
+					const msg = `Property must be assigned a value`
+					this.addDiagnostic(severity, start, start, msg, "unit_specific_sounds")
+				}
+
+				if (!unitSpecificSoundsProperties[propertyName]) {
+					const severity = DiagnosticSeverity.Error
+					const start = new Location(property.ID()!.symbol.line, property.ID()!.symbol.column)
+					const msg = `UnitSpecificSounds doesn't have property ${propertyName}`
+					this.addDiagnostic(severity, start, start, msg, "unit_specific_sounds")
+				}
+
+				this.validateProperty(propertyName, property, unitSpecificSoundsProperties[propertyName]!)
+			}
+		}
 
 		this.visitChildren(ctx)
 	}
 
     visitObjectUnitSpecificFX(ctx: ObjectUnitSpecificFXContext): void {
-		this.checkEnd(ctx)
+		if (!this.checkEnd(ctx)) {
+			return
+		}
+
+		if (ctx.objectUnitSpecificFXProperty()) {
+			for (const property of ctx.objectUnitSpecificFXProperty()) {
+				const propertyName = property.ID()!.getText()
+
+				if (!property.EQ()) {
+					const severity = DiagnosticSeverity.Error
+					const start = new Location(property.ID()!.symbol.line, property.ID()!.symbol.column)
+					const msg = `Property must be assigned a value`
+					this.addDiagnostic(severity, start, start, msg, "unit_specific_fx")
+				}
+
+				if (!unitSpecificFXProperties[propertyName]) {
+					const severity = DiagnosticSeverity.Error
+					const start = new Location(property.ID()!.symbol.line, property.ID()!.symbol.column)
+					const msg = `UnitSpecificFX doesn't have property ${propertyName}`
+					this.addDiagnostic(severity, start, start, msg, "unit_specific_fx")
+				}
+
+				this.validateProperty(propertyName, property, unitSpecificFXProperties[propertyName]!)
+			}
+		}
 
 		this.visitChildren(ctx)
 	}
 
     visitDrawModule(ctx: DrawModuleContext): void {
-        this.checkEnd(ctx)
+        if (!this.checkEnd(ctx)) {
+            return
+        }
 
         const drawModule = ctx.drawModule_type()!.ID()!.getText() as DrawModule_t
         const tree = getDrawModulePropertyTree(drawModule)
+
+		if (ctx.conditionState()) {
+			for (const condition of ctx.conditionState()) {
+				if (condition.defaultConditionStateBlock() && condition.defaultConditionStateBlock()!.getChild(0)) {
+					if (!getDrawModulePropertyDefinition(drawModule, condition.defaultConditionStateBlock()!.getChild(0)!.getText())) {
+						const severity = DiagnosticSeverity.Error
+						const start = new Location(condition.defaultConditionStateBlock()!.start!.line, condition.defaultConditionStateBlock()!.start!.column)
+						const msg = `DrawModule ${drawModule} doesn't have ConditionBlock`
+						this.addDiagnostic(severity, start, start, msg, "draw_module")
+					}
+				} else if (condition.conditionStateBlock()) {
+					if (!getDrawModulePropertyDefinition(drawModule, condition.conditionStateBlock()!.getChild(0)!.getText())) {
+						const severity = DiagnosticSeverity.Error
+						const start = new Location(condition.conditionStateBlock()!.start!.line, condition.conditionStateBlock()!.start!.column)
+						const msg = `DrawModule ${drawModule} doesn't have ConditionBlock`
+						this.addDiagnostic(severity, start, start, msg, "draw_module")
+					}
+				} else if (condition.transitionStateBlock()) {
+					if (!getDrawModulePropertyDefinition(drawModule, condition.transitionStateBlock()!.getChild(0)!.getText())) {
+						const severity = DiagnosticSeverity.Error
+						const start = new Location(condition.transitionStateBlock()!.start!.line, condition.transitionStateBlock()!.start!.column)
+						const msg = `DrawModule ${drawModule} doesn't have ConditionBlock`
+						this.addDiagnostic(severity, start, start, msg, "draw_module")
+					}
+				}
+			}
+		}
 
         if (drawModule && ctx.drawModuleProperty()) {
             for (const property of ctx.drawModuleProperty()) {
@@ -386,11 +401,29 @@ export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements
         this.visitChildren(ctx)
     }
 
-    visitConditionState(ctx: ConditionStateContext): void {
-        this.checkEnd(ctx)
+	visitDefaultConditionStateBlock(ctx: DefaultConditionStateBlockContext): void {
+		if (!this.checkEnd(ctx)) {
+			return
+		}
 
-        this.visitChildren(ctx)
-    }
+		this.visitChildren(ctx)
+	}
+
+	visitConditionStateBlock(ctx: ConditionStateBlockContext): void {
+		if (!this.checkEnd(ctx)) {
+			return
+		}
+
+		this.visitChildren(ctx)
+	}
+
+	visitTransitionStateBlock(ctx: TransitionStateBlockContext): void {
+		if (!this.checkEnd(ctx)) {
+			return
+		}
+
+		this.visitChildren(ctx)
+	}
 
     visitConditionState_values(ctx: ConditionState_valuesContext): void {
         if (ctx.ID()) {
@@ -411,7 +444,7 @@ export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements
         if (ctx.ID()) {
             const propertyName = ctx.ID()!.getText()
             
-            if (!conditionStatePropertyNameTree.find(propertyName)) {
+            if (!getConditionStatePropertyTree().find(propertyName)) {
                 const severity = DiagnosticSeverity.Error
                 const start = new Location(ctx.ID()!.symbol.line, ctx.ID()!.symbol.column)
                 const msg = `ConditionState doesn't have property ${propertyName}`
@@ -431,18 +464,17 @@ export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements
     }
 
     visitBodyModule(ctx: BodyModuleContext): void {
-		this.checkEnd(ctx);
+		if (!this.checkEnd(ctx)) {
+			return
+		}
 
 		const bodyModule = ctx.bodyModule_type()!.ID()!.getText() as BodyModule_t
         const tree = getBodyModulePropertyTree(bodyModule)
-
-		console.log(`BodyModule: ${bodyModule}`)
 
         if (bodyModule && ctx.bodyModuleProperty()) {
             for (const property of ctx.bodyModuleProperty()) {
                 if (property.ID()) {
                     const propertyName = property.ID()!.getText()
-					console.log(`Property: ${propertyName}`)
                     if (!tree.find(propertyName)) {
                         const severity = DiagnosticSeverity.Error
                         const start = new Location(property.ID()!.symbol.line, property.ID()!.symbol.column)
@@ -458,11 +490,60 @@ export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements
         this.visitChildren(ctx)
     }
 
+	// TODO: Implement check for valid behavior name
     visitBehaviorModule(ctx: BehaviorModuleContext): void {
+		if (!this.checkEnd(ctx)) {
+			return
+		}
+
+		const behaviorModule = ctx.behaviorModule_type()!.ID()!.getText() as BehaviorModule_t
+        const tree = getBehaviorModulePropertyTree(behaviorModule)
+
+		if (behaviorModule && ctx.behaviorModuleProperty()) {
+			for (const property of ctx.behaviorModuleProperty()) {
+				if (property.ID()) {
+					const propertyName = property.ID()!.getText()
+					if (!tree.find(propertyName)) {
+						const severity = DiagnosticSeverity.Error
+						const start = new Location(property.ID()!.symbol.line, property.ID()!.symbol.column)
+						const msg = `BehaviorModule ${behaviorModule} doesn't have property ${propertyName}`
+						this.addDiagnostic(severity, start, start, msg, "behavior_module")
+						break;
+					}
+
+					this.validateProperty(propertyName, property, getBehaviorModulePropertyDefinition(behaviorModule, propertyName)!)
+				}
+			}
+		}
+
         this.visitChildren(ctx)
     }
 
     visitClientModule(ctx: ClientModuleContext): void {
+		if (!this.checkEnd(ctx)) {
+			return
+		}
+
+		const clientModule = ctx.clientModule_type()!.ID()!.getText() as ClientModule_t
+		const tree = getClientModulePropertyTree(clientModule)
+
+		if (clientModule && ctx.clientModuleProperty()) {
+			for (const property of ctx.clientModuleProperty()) {
+				if (property.ID()) {
+					const propertyName = property.ID()!.getText()
+					if (!tree.find(propertyName)) {
+						const severity = DiagnosticSeverity.Error
+						const start = new Location(property.ID()!.symbol.line, property.ID()!.symbol.column)
+						const msg = `ClientModule ${clientModule} doesn't have property ${propertyName}`
+						this.addDiagnostic(severity, start, start, msg, "client_module")
+						break;
+					}
+
+					this.validateProperty(propertyName, property, getClientModulePropertyDefinition(clientModule, propertyName)!)
+				}
+			}
+		}
+
         this.visitChildren(ctx)
     }
 
@@ -520,12 +601,19 @@ export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements
             const msg = `Property must be assigned a value`
             this.addDiagnostic(severity, start, start, msg, "equals")
             this.visitChildren(ctx)
-            return
         }
     
         if (ctx.property_values()) {
             const propertyValues = ctx.property_values()
-    
+
+			// Check if property value is newline
+			if (/\r?\n$/.test(propertyValues.getChild(0)!.getText()) || propertyValues.getChild(0)!.getText().toUpperCase() === '<MISSING ID>') {
+				const severity = DiagnosticSeverity.Error
+				const start = new Location(ctx.start!.line, ctx.start!.column)
+				const msg = `Property ${propertyName} must be assigned a value`
+				this.addDiagnostic(severity, start, start, msg, "newline")
+			}
+
             // Check if the property has a limited number of values
             if (propertyDefinition.numberOfValues) {
                 // If the property does not have an infinite number of values, check if it has the correct number of values
@@ -583,7 +671,7 @@ export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements
         }
     }
 
-    private checkEnd(ctx: ParserRuleContext): void {
+    private checkEnd(ctx: ParserRuleContext): boolean {
         if (ctx.children) {
             const lastChild = ctx.children[ctx.children.length - 1]
             if (lastChild.getText().toUpperCase() !== 'END') {
@@ -591,8 +679,10 @@ export class DiagnosticVisitor extends AbstractParseTreeVisitor<void> implements
                 const start = new Location(ctx.start!.line, ctx.start!.column)
                 const msg = `${ctx.getChild(0)!.getText()} must be closed with 'End'`
                 this.addDiagnostic(severity, start, start, msg)
+				return false
             }
         }
+		return true
     }
 
     private addDiagnostic(severity: DiagnosticSeverity, start: Location, end: Location, msg: string, srcAppend: string = ''): void {

@@ -32,12 +32,12 @@ const baseBodyProperties: {[key: string]: PropertyDefinition} = {
 	'SubdualDamageHealRate': {
 		name: 'SubdualDamageHealRate',
 		type: 'float',
-		description: '' //TODO fill this
+		description: 'Rate at which the object heals when taking subdual damage'
 	},
 	'SubdualDamageHealAmount': {
 		name: 'SubdualDamageHealAmount',
 		type: 'float',
-		description: '' //TODO fille this
+		description: 'Amount of health healed per tick when taking subdual damage'
 	}
 }
 
@@ -53,12 +53,12 @@ export const BodyModulesDefinitions: { [key in BodyModule_t]: { [key: string]: P
 		'PropagateDamageTypesToSlavesWhenExisting': {
 			name: 'PropagateDamageTypesToSlavesWhenExisting',
 			type: 'boolean',
-			description: ''
+			description: 'If true, the damage types will be propagated to the slaves when the slaves exist'
 		},
 		'SwallowDamageTypesIfSlavesNotExisting': {
 			name: 'SwallowDamageTypesIfSlavesNotExisting',
 			type: 'boolean',
-			description: ''
+			description: 'If true, the damage types will be swallowed if the slaves do not exist'
 		}
 	},
 	[BodyModule_t.IMMORTALBODY]: {
@@ -73,7 +73,7 @@ export const BodyModulesDefinitions: { [key in BodyModule_t]: { [key: string]: P
 		'SecondLifeMaxHealth': {
 			name: 'SecondLifeMaxHealth',
 			type: 'integer',
-			description: ''
+			description: 'Health of the object when it is in second life'
 		}
 	}
 }

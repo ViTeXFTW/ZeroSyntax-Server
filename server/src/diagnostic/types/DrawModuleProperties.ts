@@ -30,6 +30,16 @@ export const W3DDrawModuleTrees: { [key in DrawModule_t]: RBTree<string> } = {
 }
 
 const baseW3DModelProperties: { [key: string]: PropertyDefinition } = {
+	'ConditionState': {	// Used to define that this DrawModule needs a CondtionState block.
+		name: 'ConditionState',
+		type: 'string',
+		description: 'The condition state of the object'
+	},
+	'DefaultConditionState': {	// Used to define that this DrawModule needs a DefaultConditionState block.
+		name: 'DefaultConditionState',
+		type: 'string',
+		description: 'The default condition state of the object'
+	},
 	'AnimationsRequirePower': {
 		name: 'AnimationsRequirePower',
 		type: 'boolean',
@@ -272,13 +282,15 @@ const W3DModelDrawPropertyDefinitions: { [key in DrawModule_t]: { [key: string]:
 		},
 		'InnerColor': {
 			name: 'InnerColor',
-			type: 'string',
+			type: ['string', 'string', 'string', 'string'],
 			description: 'The color of the inner beam',
+			numberOfValues: [4]
 		},
 		'OuterColor': {
 			name: 'OuterColor',
-			type: 'string',
+			type: ['string', 'string', 'string', 'string'],
 			description: 'The color of the outer beam',
+			numberOfValues: [4]
 		},
 		'MaxIntensityLifetime': {
 			name: 'MaxIntensityLifetime',

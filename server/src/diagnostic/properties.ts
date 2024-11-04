@@ -1,7 +1,7 @@
 import { RBTree } from 'bintrees';
 import * as list from '../utils/lists';
 import { IniTypes_t } from './types/IniType_t';
-import { AnimationMode_t, BuildCompletion_t, ConditionStateFlags_t, EditorSorting_t, Locomotor_types_t, LOD_t, MaxSimultaneousLinkKey_t, RadarPriority_t, WeaponSlot_t } from './types/PropertyTypes';
+import { AnimationMode_t, BuildCompletion_t, ConditionStateFlags_t, EditorSorting_t, Locomotor_types_t, LOD_t, MaxSimultaneousLinkKey_t, RadarPriority_t, Side_t, WeaponSlot_t } from './types/PropertyTypes';
 
 
 /**
@@ -102,8 +102,18 @@ export function isValidPropertyValue(value: string, propertyDefinition: Property
 					return true;
 				}
 				return false;
+			case IniTypes_t.PARTICLE_SYSTEM:
+				if(list.particleSystem.find(value) || list.customParticleSystem.find(value)) {
+					return true;
+				}
+				return false;
 			case IniTypes_t.UPGRADE:
 				if(list.upgrades.find(value) || list.customUpgrades.find(value)) {
+					return true;
+				}
+				return false;
+			case IniTypes_t.WEAPON:
+				if(list.weapons.find(value) || list.customWeapons.find(value)) {
 					return true;
 				}
 				return false;
@@ -330,6 +340,11 @@ const objectProperties: PropertyDefinition[] = [
 		validValues: Object.values(RadarPriority_t)
 	},
 	{
+		name: 'Side',
+		type: Object.values(Side_t),
+		description: 'The side of the object'
+	},
+	{
 		name: 'MaxSimultaneousLinkKey',
 		type: "string",
 		description: 'The maximum number of simultaneous links for the object',
@@ -354,244 +369,4 @@ objectProperties.forEach(property => {
 // Add a helper function to get property definition
 export function getObjectPropertyDefinition(name: string): PropertyDefinition | undefined {
 	return objectPropertyDefinitionMap.get(name);
-}
-
-
-// ================================
-// ========= DRAW MODULE ==========
-// ================================
-
-const w3dModelDrawProperties: PropertyDefinition[] = [
-	{
-		name: 'AnimationsRequirePower',
-		type: 'boolean',
-		description: 'Whether the animations require power',
-	},
-	{
-		name: 'AttachToBoneInAnotherModule',
-		type: 'string',
-		description: 'The bone to attach the object to in another module',
-	},
-	{
-		name: 'ExtraPublicBone',
-		type: 'string',
-		description: 'Bone to expose to other modules',
-	},
-	{
-		name: 'IgnoreConditionStates',
-		type: 'string',
-		description: 'Condition states to ignore',
-		validValues: list.allowedConditionStates,
-		numberOfValues: [-1]
-	},
-	{
-		name: 'InitialRecoilSpeed',
-		type: 'float',
-		description: 'The initial recoil speed of the object',
-	},
-	{
-		name: 'MaxRecoilDistance',
-		type: 'float',
-		description: 'The maximum recoil distance of the object',
-	},
-	{
-		name: 'MinLODRequired',
-		type: 'string',
-		description: 'The minimum LOD required to display the object',
-		validValues: Object.values(LOD_t)
-	},
-	{
-		name: 'OkToChangeModelColor',
-		type: 'boolean',
-		description: 'Whether the object can change its model color',
-	},
-	{
-		name: 'RecoilDamping',
-		type: 'float',
-		description: 'The recoil damping of the object',
-	},
-	{
-		name: 'RecoilSettleSpeed',
-		type: 'float',
-		description: 'The recoil settle speed of the object',
-	},
-	{
-		name: 'ReceivesDynamicLights',
-		type: 'boolean',
-		description: 'Whether the object receives dynamic lights',
-	},
-	{
-		name: 'ParticlesAttachedToAnimatedBones',
-		type: 'boolean',
-		description: 'Whether particles are attached to animated bones',
-	},
-	{
-		name: 'ProjectileBoneFeedbackEnabledSlots',
-		type: 'string',
-		description: 'The slots to enable projectile bone feedback for',
-		numberOfValues: [-1],
-		validValues: Object.values(WeaponSlot_t)
-	},
-	{
-		name: 'TrackMarks',
-		type: 'string',
-		description: 'The type of track marks the object leaves',
-	}
-]
-
-export const W3DModelDrawPropertyNameTree = new RBTree(propertyComparator);
-
-const W3DModelDrawPropertyDefinitionMap = new Map<string, PropertyDefinition>();
-
-w3dModelDrawProperties.forEach(property => {
-	W3DModelDrawPropertyDefinitionMap.set(property.name, property);
-	W3DModelDrawPropertyNameTree.insert(property.name);
-});
-
-export function getW3DModelDrawPropertyDefinition(name: string): PropertyDefinition | undefined {
-	return W3DModelDrawPropertyDefinitionMap.get(name);
-}
-
-// ================================
-// === CONDITION STATE PROPERTY ===
-// ================================
-
-const conditionStateProperties: PropertyDefinition[] = [
-	{
-		name: 'Model',
-		type: 'string',
-		description: 'Model name to be used by the Draw module'
-	},
-	{
-		name: 'Turret',
-		type: 'string',
-		description: 'Bone name of the turret in the model'
-	},
-	{
-		name: 'TurretArtAngle',
-		type: 'float',
-		description: 'The art angle of the turret'
-	},
-	{
-		name: 'TurretPitch',
-		type: 'float',
-		description: 'The pitch of the turret'
-	},
-	{
-		name: 'TurretArtPitch',
-		type: 'float',
-		description: 'The art pitch of the turret'
-	},
-	{
-		name: 'AltTurret',
-		type: 'string',
-		description: 'Alternative turret bone name'
-	},
-	{
-		name: 'AltTurretArtAngle',
-		type: 'float',
-		description: 'Alternative turret art angle'
-	},
-	{
-		name: 'AltTurretPitch',
-		type: 'float',
-		description: 'Alternative turret pitch'
-	},
-	{
-		name: 'HideSubObject',
-		type: 'string',
-		description: 'Sub object to hide',
-		numberOfValues: [-1]
-	},
-	{
-		name: 'ShowSubObject',
-		type: 'string',
-		description: 'Sub object to show',
-		numberOfValues: [-1]
-	},
-	{
-		name: 'WeaponFireFXBone',
-		type: 'string',
-		description: 'Bone to attach the weapon fire FX to'
-	},
-	{
-		name: 'WeaponRecoilBone',
-		type: 'string',
-		description: 'Bone to attach the weapon recoil FX to'
-	},
-	{
-		name: 'WeaponMuzzleFlash',
-		type: 'string',
-		description: 'Whether to show the weapon muzzle flash',
-		validValues: list.definedFXLists
-	},
-	{
-		name: 'WeaponLaunchBone',
-		type: 'string',
-		description: 'Bone to attach the weapon launch FX to'
-	},
-	{
-		name: 'WeaponHideShowBone',
-		type: 'string',
-		description: 'Bone to hide or show'
-	},
-	{
-		name: 'Animation',
-		type: 'string',
-		description: 'Animation to play'
-	},
-	{
-		name: 'IdleAnimation',
-		type: 'string',
-		description: 'Idle animation to play'
-	},
-	{
-		name: 'AnimationMode',
-		type: 'string',
-		description: 'Animation mode to play',
-		validValues: Object.values(AnimationMode_t)
-	},
-	{
-		name: 'TransitionKey',
-		type: 'string',
-		description: 'Key to transition to the next state'
-	},
-	{
-		name: 'WaitForStateToFinishIfPossible',
-		type: 'boolean',
-		description: 'Whether to wait for the state to finish if possible'
-	},
-	{
-		name: 'Flags',
-		type: 'string',
-		description: 'Flags to set for the state',
-		numberOfValues: [-1],
-		validValues: Object.values(ConditionStateFlags_t)
-	},
-	{
-		name: 'ParticleSysBone',
-		type: ['string', 'string'],
-		description: 'Bone to attach the particle system to',
-		numberOfValues: [2],
-		validValues: [null, list.definedFXLists]
-	},
-	{
-		name: 'AnimationSpeedFactorRange',
-		type: 'integer',
-		description: 'The animation speed factor range',
-		numberOfValues: [1, 2]
-	}
-]
-
-export const conditionStatePropertyNameTree = new RBTree(propertyComparator);
-
-const conditionStatePropertyDefinitionMap = new Map<string, PropertyDefinition>();
-
-conditionStateProperties.forEach(property => {
-	conditionStatePropertyDefinitionMap.set(property.name, property);
-	conditionStatePropertyNameTree.insert(property.name);
-});
-
-export function getConditionStatePropertyDefinition(name: string): PropertyDefinition | undefined {
-	return conditionStatePropertyDefinitionMap.get(name);
 }

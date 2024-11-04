@@ -32,16 +32,12 @@ export class MapIniParser extends antlr.Parser {
     public static readonly T__17 = 18;
     public static readonly T__18 = 19;
     public static readonly T__19 = 20;
-    public static readonly T__20 = 21;
-    public static readonly T__21 = 22;
-    public static readonly T__22 = 23;
-    public static readonly T__23 = 24;
-    public static readonly EQ = 25;
-    public static readonly STRING = 26;
-    public static readonly ID = 27;
-    public static readonly NEWLINE = 28;
-    public static readonly WS = 29;
-    public static readonly COMMENT = 30;
+    public static readonly EQ = 21;
+    public static readonly STRING = 22;
+    public static readonly ID = 23;
+    public static readonly NEWLINE = 24;
+    public static readonly WS = 25;
+    public static readonly COMMENT = 26;
     public static readonly RULE_program = 0;
     public static readonly RULE_class = 1;
     public static readonly RULE_mappedImageClass = 2;
@@ -52,20 +48,20 @@ export class MapIniParser extends antlr.Parser {
     public static readonly RULE_module = 7;
     public static readonly RULE_objectSets = 8;
     public static readonly RULE_objectWeaponSet = 9;
-    public static readonly RULE_propertyCondition = 10;
-    public static readonly RULE_objectWeaponSetWeapon = 11;
-    public static readonly RULE_weaponSlot_value = 12;
-    public static readonly RULE_objectArmorSet = 13;
-    public static readonly RULE_objectArmorSetArmor = 14;
-    public static readonly RULE_objectPrerequisite = 15;
-    public static readonly RULE_objectPrerequisite_object = 16;
-    public static readonly RULE_objectPrerequisite_science = 17;
-    public static readonly RULE_objectUnitSpecificSounds = 18;
-    public static readonly RULE_objectUnitSpecificSoundsSound = 19;
-    public static readonly RULE_objectUnitSpecificFX = 20;
-    public static readonly RULE_objectUnitSpecificFXFX = 21;
-    public static readonly RULE_drawModule = 22;
-    public static readonly RULE_conditionState = 23;
+    public static readonly RULE_objectWeaponSetProperty = 10;
+    public static readonly RULE_objectArmorSet = 11;
+    public static readonly RULE_objectArmorSetProperty = 12;
+    public static readonly RULE_objectPrerequisite = 13;
+    public static readonly RULE_objectPrerequisiteProperty = 14;
+    public static readonly RULE_objectUnitSpecificSounds = 15;
+    public static readonly RULE_objectUnitSpecificSoundsProperty = 16;
+    public static readonly RULE_objectUnitSpecificFX = 17;
+    public static readonly RULE_objectUnitSpecificFXProperty = 18;
+    public static readonly RULE_drawModule = 19;
+    public static readonly RULE_conditionState = 20;
+    public static readonly RULE_defaultConditionStateBlock = 21;
+    public static readonly RULE_conditionStateBlock = 22;
+    public static readonly RULE_transitionStateBlock = 23;
     public static readonly RULE_aliasCondition = 24;
     public static readonly RULE_bodyModule = 25;
     public static readonly RULE_bodyModuleProperty = 26;
@@ -92,26 +88,25 @@ export class MapIniParser extends antlr.Parser {
 
     public static readonly literalNames = [
         null, "'MappedImage'", "'Object'", "'AddModule'", "'RemoveModule'", 
-        "'WeaponSet'", "'Condition'", "'Weapon'", "'ArmorSet'", "'Armor'", 
-        "'Prerequisites'", "'Science'", "'UnitSpecificSounds'", "'UnitSpecificFX'", 
-        "'Draw'", "'DefaultConditionState'", "'ConditionState'", "'TransitionState'", 
-        "'AliasConditionState'", "'Body'", "'Behavior'", "'Client'", "'End'", 
-        "'end'", "'END'", "'='"
+        "'WeaponSet'", "'ArmorSet'", "'Prerequisites'", "'UnitSpecificSounds'", 
+        "'UnitSpecificFX'", "'Draw'", "'DefaultConditionState'", "'ConditionState'", 
+        "'TransitionState'", "'AliasConditionState'", "'Body'", "'Behavior'", 
+        "'ClientUpdate'", "'End'", "'end'", "'END'", "'='"
     ];
 
     public static readonly symbolicNames = [
         null, null, null, null, null, null, null, null, null, null, null, 
-        null, null, null, null, null, null, null, null, null, null, null, 
-        null, null, null, "EQ", "STRING", "ID", "NEWLINE", "WS", "COMMENT"
+        null, null, null, null, null, null, null, null, null, null, "EQ", 
+        "STRING", "ID", "NEWLINE", "WS", "COMMENT"
     ];
     public static readonly ruleNames = [
         "program", "class", "mappedImageClass", "objectClass", "module_modifier", 
         "addModule", "removeModule", "module", "objectSets", "objectWeaponSet", 
-        "propertyCondition", "objectWeaponSetWeapon", "weaponSlot_value", 
-        "objectArmorSet", "objectArmorSetArmor", "objectPrerequisite", "objectPrerequisite_object", 
-        "objectPrerequisite_science", "objectUnitSpecificSounds", "objectUnitSpecificSoundsSound", 
-        "objectUnitSpecificFX", "objectUnitSpecificFXFX", "drawModule", 
-        "conditionState", "aliasCondition", "bodyModule", "bodyModuleProperty", 
+        "objectWeaponSetProperty", "objectArmorSet", "objectArmorSetProperty", 
+        "objectPrerequisite", "objectPrerequisiteProperty", "objectUnitSpecificSounds", 
+        "objectUnitSpecificSoundsProperty", "objectUnitSpecificFX", "objectUnitSpecificFXProperty", 
+        "drawModule", "conditionState", "defaultConditionStateBlock", "conditionStateBlock", 
+        "transitionStateBlock", "aliasCondition", "bodyModule", "bodyModuleProperty", 
         "behaviorModule", "behaviorModuleProperty", "clientModule", "clientModuleProperty", 
         "objectProperty", "drawModuleProperty", "conditionStateProperty", 
         "property", "drawModule_type", "conditionState_values", "bodyModule_type", 
@@ -144,7 +139,7 @@ export class MapIniParser extends antlr.Parser {
             this.state = 98;
             this.errorHandler.sync(this);
             _la = this.tokenStream.LA(1);
-            while ((((_la) & ~0x1F) === 0 && ((1 << _la) & 268435462) !== 0)) {
+            while ((((_la) & ~0x1F) === 0 && ((1 << _la) & 16777222) !== 0)) {
                 {
                 this.state = 96;
                 this.errorHandler.sync(this);
@@ -241,7 +236,7 @@ export class MapIniParser extends antlr.Parser {
             this.state = 113;
             this.errorHandler.sync(this);
             _la = this.tokenStream.LA(1);
-            while (_la === 27) {
+            while (_la === 23) {
                 {
                 {
                 this.state = 110;
@@ -285,7 +280,7 @@ export class MapIniParser extends antlr.Parser {
             this.state = 130;
             this.errorHandler.sync(this);
             _la = this.tokenStream.LA(1);
-            while ((((_la) & ~0x1F) === 0 && ((1 << _la) & 406353208) !== 0)) {
+            while ((((_la) & ~0x1F) === 0 && ((1 << _la) & 25397240) !== 0)) {
                 {
                 this.state = 128;
                 this.errorHandler.sync(this);
@@ -297,10 +292,10 @@ export class MapIniParser extends antlr.Parser {
                     this.module_modifier();
                     }
                     break;
-                case MapIniParser.T__13:
-                case MapIniParser.T__18:
-                case MapIniParser.T__19:
-                case MapIniParser.T__20:
+                case MapIniParser.T__9:
+                case MapIniParser.T__14:
+                case MapIniParser.T__15:
+                case MapIniParser.T__16:
                     {
                     this.state = 122;
                     this.module_();
@@ -313,20 +308,20 @@ export class MapIniParser extends antlr.Parser {
                     }
                     break;
                 case MapIniParser.T__4:
-                case MapIniParser.T__7:
-                case MapIniParser.T__9:
+                case MapIniParser.T__5:
+                case MapIniParser.T__6:
                     {
                     this.state = 124;
                     this.objectSets();
                     }
                     break;
-                case MapIniParser.T__11:
+                case MapIniParser.T__7:
                     {
                     this.state = 125;
                     this.objectUnitSpecificSounds();
                     }
                     break;
-                case MapIniParser.T__12:
+                case MapIniParser.T__8:
                     {
                     this.state = 126;
                     this.objectUnitSpecificFX();
@@ -416,15 +411,15 @@ export class MapIniParser extends antlr.Parser {
             this.state = 146;
             this.errorHandler.sync(this);
             _la = this.tokenStream.LA(1);
-            while ((((_la) & ~0x1F) === 0 && ((1 << _la) & 406339584) !== 0)) {
+            while ((((_la) & ~0x1F) === 0 && ((1 << _la) & 25396224) !== 0)) {
                 {
                 this.state = 144;
                 this.errorHandler.sync(this);
                 switch (this.tokenStream.LA(1)) {
-                case MapIniParser.T__13:
-                case MapIniParser.T__18:
-                case MapIniParser.T__19:
-                case MapIniParser.T__20:
+                case MapIniParser.T__9:
+                case MapIniParser.T__14:
+                case MapIniParser.T__15:
+                case MapIniParser.T__16:
                     {
                     this.state = 141;
                     this.module_();
@@ -501,25 +496,25 @@ export class MapIniParser extends antlr.Parser {
             this.state = 158;
             this.errorHandler.sync(this);
             switch (this.tokenStream.LA(1)) {
-            case MapIniParser.T__13:
+            case MapIniParser.T__9:
                 {
                 this.state = 154;
                 this.drawModule();
                 }
                 break;
-            case MapIniParser.T__18:
+            case MapIniParser.T__14:
                 {
                 this.state = 155;
                 this.bodyModule();
                 }
                 break;
-            case MapIniParser.T__19:
+            case MapIniParser.T__15:
                 {
                 this.state = 156;
                 this.behaviorModule();
                 }
                 break;
-            case MapIniParser.T__20:
+            case MapIniParser.T__16:
                 {
                 this.state = 157;
                 this.clientModule();
@@ -558,13 +553,13 @@ export class MapIniParser extends antlr.Parser {
                 this.objectWeaponSet();
                 }
                 break;
-            case MapIniParser.T__7:
+            case MapIniParser.T__5:
                 {
                 this.state = 161;
                 this.objectArmorSet();
                 }
                 break;
-            case MapIniParser.T__9:
+            case MapIniParser.T__6:
                 {
                 this.state = 162;
                 this.objectPrerequisite();
@@ -599,29 +594,23 @@ export class MapIniParser extends antlr.Parser {
             this.match(MapIniParser.T__4);
             this.state = 166;
             this.match(MapIniParser.NEWLINE);
-            this.state = 172;
+            this.state = 171;
             this.errorHandler.sync(this);
             _la = this.tokenStream.LA(1);
-            while ((((_la) & ~0x1F) === 0 && ((1 << _la) & 268435648) !== 0)) {
+            while (_la === 23 || _la === 24) {
                 {
-                this.state = 170;
+                this.state = 169;
                 this.errorHandler.sync(this);
                 switch (this.tokenStream.LA(1)) {
-                case MapIniParser.T__5:
+                case MapIniParser.ID:
                     {
                     this.state = 167;
-                    this.propertyCondition();
-                    }
-                    break;
-                case MapIniParser.T__6:
-                    {
-                    this.state = 168;
-                    this.objectWeaponSetWeapon();
+                    this.objectWeaponSetProperty();
                     }
                     break;
                 case MapIniParser.NEWLINE:
                     {
-                    this.state = 169;
+                    this.state = 168;
                     this.match(MapIniParser.NEWLINE);
                     }
                     break;
@@ -629,11 +618,11 @@ export class MapIniParser extends antlr.Parser {
                     throw new antlr.NoViableAltException(this);
                 }
                 }
-                this.state = 174;
+                this.state = 173;
                 this.errorHandler.sync(this);
                 _la = this.tokenStream.LA(1);
             }
-            this.state = 175;
+            this.state = 174;
             this.end();
             }
         }
@@ -650,74 +639,20 @@ export class MapIniParser extends antlr.Parser {
         }
         return localContext;
     }
-    public propertyCondition(): PropertyConditionContext {
-        let localContext = new PropertyConditionContext(this.context, this.state);
-        this.enterRule(localContext, 20, MapIniParser.RULE_propertyCondition);
+    public objectWeaponSetProperty(): ObjectWeaponSetPropertyContext {
+        let localContext = new ObjectWeaponSetPropertyContext(this.context, this.state);
+        this.enterRule(localContext, 20, MapIniParser.RULE_objectWeaponSetProperty);
         try {
             this.enterOuterAlt(localContext, 1);
             {
-            this.state = 177;
-            this.match(MapIniParser.T__5);
-            this.state = 178;
-            this.match(MapIniParser.EQ);
-            this.state = 179;
-            this.property_values();
-            this.state = 180;
-            this.match(MapIniParser.NEWLINE);
-            }
-        }
-        catch (re) {
-            if (re instanceof antlr.RecognitionException) {
-                this.errorHandler.reportError(this, re);
-                this.errorHandler.recover(this, re);
-            } else {
-                throw re;
-            }
-        }
-        finally {
-            this.exitRule();
-        }
-        return localContext;
-    }
-    public objectWeaponSetWeapon(): ObjectWeaponSetWeaponContext {
-        let localContext = new ObjectWeaponSetWeaponContext(this.context, this.state);
-        this.enterRule(localContext, 22, MapIniParser.RULE_objectWeaponSetWeapon);
-        try {
-            this.enterOuterAlt(localContext, 1);
-            {
-            this.state = 182;
-            this.match(MapIniParser.T__6);
-            this.state = 183;
-            this.match(MapIniParser.EQ);
-            this.state = 184;
-            this.weaponSlot_value();
-            this.state = 185;
-            this.property_values();
-            this.state = 186;
-            this.match(MapIniParser.NEWLINE);
-            }
-        }
-        catch (re) {
-            if (re instanceof antlr.RecognitionException) {
-                this.errorHandler.reportError(this, re);
-                this.errorHandler.recover(this, re);
-            } else {
-                throw re;
-            }
-        }
-        finally {
-            this.exitRule();
-        }
-        return localContext;
-    }
-    public weaponSlot_value(): WeaponSlot_valueContext {
-        let localContext = new WeaponSlot_valueContext(this.context, this.state);
-        this.enterRule(localContext, 24, MapIniParser.RULE_weaponSlot_value);
-        try {
-            this.enterOuterAlt(localContext, 1);
-            {
-            this.state = 188;
+            this.state = 176;
             this.match(MapIniParser.ID);
+            this.state = 177;
+            this.match(MapIniParser.EQ);
+            this.state = 178;
+            this.property_values();
+            this.state = 179;
+            this.match(MapIniParser.NEWLINE);
             }
         }
         catch (re) {
@@ -735,38 +670,32 @@ export class MapIniParser extends antlr.Parser {
     }
     public objectArmorSet(): ObjectArmorSetContext {
         let localContext = new ObjectArmorSetContext(this.context, this.state);
-        this.enterRule(localContext, 26, MapIniParser.RULE_objectArmorSet);
+        this.enterRule(localContext, 22, MapIniParser.RULE_objectArmorSet);
         let _la: number;
         try {
             this.enterOuterAlt(localContext, 1);
             {
-            this.state = 190;
-            this.match(MapIniParser.T__7);
-            this.state = 191;
+            this.state = 181;
+            this.match(MapIniParser.T__5);
+            this.state = 182;
             this.match(MapIniParser.NEWLINE);
-            this.state = 197;
+            this.state = 187;
             this.errorHandler.sync(this);
             _la = this.tokenStream.LA(1);
-            while ((((_la) & ~0x1F) === 0 && ((1 << _la) & 268436032) !== 0)) {
+            while (_la === 23 || _la === 24) {
                 {
-                this.state = 195;
+                this.state = 185;
                 this.errorHandler.sync(this);
                 switch (this.tokenStream.LA(1)) {
-                case MapIniParser.T__5:
+                case MapIniParser.ID:
                     {
-                    this.state = 192;
-                    this.propertyCondition();
-                    }
-                    break;
-                case MapIniParser.T__8:
-                    {
-                    this.state = 193;
-                    this.objectArmorSetArmor();
+                    this.state = 183;
+                    this.objectArmorSetProperty();
                     }
                     break;
                 case MapIniParser.NEWLINE:
                     {
-                    this.state = 194;
+                    this.state = 184;
                     this.match(MapIniParser.NEWLINE);
                     }
                     break;
@@ -774,11 +703,11 @@ export class MapIniParser extends antlr.Parser {
                     throw new antlr.NoViableAltException(this);
                 }
                 }
-                this.state = 199;
+                this.state = 189;
                 this.errorHandler.sync(this);
                 _la = this.tokenStream.LA(1);
             }
-            this.state = 200;
+            this.state = 190;
             this.end();
             }
         }
@@ -795,19 +724,19 @@ export class MapIniParser extends antlr.Parser {
         }
         return localContext;
     }
-    public objectArmorSetArmor(): ObjectArmorSetArmorContext {
-        let localContext = new ObjectArmorSetArmorContext(this.context, this.state);
-        this.enterRule(localContext, 28, MapIniParser.RULE_objectArmorSetArmor);
+    public objectArmorSetProperty(): ObjectArmorSetPropertyContext {
+        let localContext = new ObjectArmorSetPropertyContext(this.context, this.state);
+        this.enterRule(localContext, 24, MapIniParser.RULE_objectArmorSetProperty);
         try {
             this.enterOuterAlt(localContext, 1);
             {
-            this.state = 202;
-            this.match(MapIniParser.T__8);
-            this.state = 203;
+            this.state = 192;
+            this.match(MapIniParser.ID);
+            this.state = 193;
             this.match(MapIniParser.EQ);
-            this.state = 204;
+            this.state = 194;
             this.property_values();
-            this.state = 205;
+            this.state = 195;
             this.match(MapIniParser.NEWLINE);
             }
         }
@@ -826,38 +755,32 @@ export class MapIniParser extends antlr.Parser {
     }
     public objectPrerequisite(): ObjectPrerequisiteContext {
         let localContext = new ObjectPrerequisiteContext(this.context, this.state);
-        this.enterRule(localContext, 30, MapIniParser.RULE_objectPrerequisite);
+        this.enterRule(localContext, 26, MapIniParser.RULE_objectPrerequisite);
         let _la: number;
         try {
             this.enterOuterAlt(localContext, 1);
             {
-            this.state = 207;
-            this.match(MapIniParser.T__9);
-            this.state = 208;
+            this.state = 197;
+            this.match(MapIniParser.T__6);
+            this.state = 198;
             this.match(MapIniParser.NEWLINE);
-            this.state = 214;
+            this.state = 203;
             this.errorHandler.sync(this);
             _la = this.tokenStream.LA(1);
-            while ((((_la) & ~0x1F) === 0 && ((1 << _la) & 268437508) !== 0)) {
+            while (_la === 23 || _la === 24) {
                 {
-                this.state = 212;
+                this.state = 201;
                 this.errorHandler.sync(this);
                 switch (this.tokenStream.LA(1)) {
-                case MapIniParser.T__1:
+                case MapIniParser.ID:
                     {
-                    this.state = 209;
-                    this.objectPrerequisite_object();
-                    }
-                    break;
-                case MapIniParser.T__10:
-                    {
-                    this.state = 210;
-                    this.objectPrerequisite_science();
+                    this.state = 199;
+                    this.objectPrerequisiteProperty();
                     }
                     break;
                 case MapIniParser.NEWLINE:
                     {
-                    this.state = 211;
+                    this.state = 200;
                     this.match(MapIniParser.NEWLINE);
                     }
                     break;
@@ -865,11 +788,11 @@ export class MapIniParser extends antlr.Parser {
                     throw new antlr.NoViableAltException(this);
                 }
                 }
-                this.state = 216;
+                this.state = 205;
                 this.errorHandler.sync(this);
                 _la = this.tokenStream.LA(1);
             }
-            this.state = 217;
+            this.state = 206;
             this.end();
             }
         }
@@ -886,19 +809,19 @@ export class MapIniParser extends antlr.Parser {
         }
         return localContext;
     }
-    public objectPrerequisite_object(): ObjectPrerequisite_objectContext {
-        let localContext = new ObjectPrerequisite_objectContext(this.context, this.state);
-        this.enterRule(localContext, 32, MapIniParser.RULE_objectPrerequisite_object);
+    public objectPrerequisiteProperty(): ObjectPrerequisitePropertyContext {
+        let localContext = new ObjectPrerequisitePropertyContext(this.context, this.state);
+        this.enterRule(localContext, 28, MapIniParser.RULE_objectPrerequisiteProperty);
         try {
             this.enterOuterAlt(localContext, 1);
             {
-            this.state = 219;
-            this.match(MapIniParser.T__1);
-            this.state = 220;
+            this.state = 208;
+            this.match(MapIniParser.ID);
+            this.state = 209;
             this.match(MapIniParser.EQ);
-            this.state = 221;
+            this.state = 210;
             this.property_values();
-            this.state = 222;
+            this.state = 211;
             this.match(MapIniParser.NEWLINE);
             }
         }
@@ -915,14 +838,70 @@ export class MapIniParser extends antlr.Parser {
         }
         return localContext;
     }
-    public objectPrerequisite_science(): ObjectPrerequisite_scienceContext {
-        let localContext = new ObjectPrerequisite_scienceContext(this.context, this.state);
-        this.enterRule(localContext, 34, MapIniParser.RULE_objectPrerequisite_science);
+    public objectUnitSpecificSounds(): ObjectUnitSpecificSoundsContext {
+        let localContext = new ObjectUnitSpecificSoundsContext(this.context, this.state);
+        this.enterRule(localContext, 30, MapIniParser.RULE_objectUnitSpecificSounds);
+        let _la: number;
+        try {
+            this.enterOuterAlt(localContext, 1);
+            {
+            this.state = 213;
+            this.match(MapIniParser.T__7);
+            this.state = 214;
+            this.match(MapIniParser.NEWLINE);
+            this.state = 219;
+            this.errorHandler.sync(this);
+            _la = this.tokenStream.LA(1);
+            while (_la === 23 || _la === 24) {
+                {
+                this.state = 217;
+                this.errorHandler.sync(this);
+                switch (this.tokenStream.LA(1)) {
+                case MapIniParser.ID:
+                    {
+                    this.state = 215;
+                    this.objectUnitSpecificSoundsProperty();
+                    }
+                    break;
+                case MapIniParser.NEWLINE:
+                    {
+                    this.state = 216;
+                    this.match(MapIniParser.NEWLINE);
+                    }
+                    break;
+                default:
+                    throw new antlr.NoViableAltException(this);
+                }
+                }
+                this.state = 221;
+                this.errorHandler.sync(this);
+                _la = this.tokenStream.LA(1);
+            }
+            this.state = 222;
+            this.end();
+            }
+        }
+        catch (re) {
+            if (re instanceof antlr.RecognitionException) {
+                this.errorHandler.reportError(this, re);
+                this.errorHandler.recover(this, re);
+            } else {
+                throw re;
+            }
+        }
+        finally {
+            this.exitRule();
+        }
+        return localContext;
+    }
+    public objectUnitSpecificSoundsProperty(): ObjectUnitSpecificSoundsPropertyContext {
+        let localContext = new ObjectUnitSpecificSoundsPropertyContext(this.context, this.state);
+        this.enterRule(localContext, 32, MapIniParser.RULE_objectUnitSpecificSoundsProperty);
         try {
             this.enterOuterAlt(localContext, 1);
             {
             this.state = 224;
-            this.match(MapIniParser.T__10);
+            this.match(MapIniParser.ID);
             this.state = 225;
             this.match(MapIniParser.EQ);
             this.state = 226;
@@ -944,21 +923,21 @@ export class MapIniParser extends antlr.Parser {
         }
         return localContext;
     }
-    public objectUnitSpecificSounds(): ObjectUnitSpecificSoundsContext {
-        let localContext = new ObjectUnitSpecificSoundsContext(this.context, this.state);
-        this.enterRule(localContext, 36, MapIniParser.RULE_objectUnitSpecificSounds);
+    public objectUnitSpecificFX(): ObjectUnitSpecificFXContext {
+        let localContext = new ObjectUnitSpecificFXContext(this.context, this.state);
+        this.enterRule(localContext, 34, MapIniParser.RULE_objectUnitSpecificFX);
         let _la: number;
         try {
             this.enterOuterAlt(localContext, 1);
             {
             this.state = 229;
-            this.match(MapIniParser.T__11);
+            this.match(MapIniParser.T__8);
             this.state = 230;
             this.match(MapIniParser.NEWLINE);
             this.state = 235;
             this.errorHandler.sync(this);
             _la = this.tokenStream.LA(1);
-            while (_la === 27 || _la === 28) {
+            while (_la === 23 || _la === 24) {
                 {
                 this.state = 233;
                 this.errorHandler.sync(this);
@@ -966,7 +945,7 @@ export class MapIniParser extends antlr.Parser {
                 case MapIniParser.ID:
                     {
                     this.state = 231;
-                    this.objectUnitSpecificSoundsSound();
+                    this.objectUnitSpecificFXProperty();
                     }
                     break;
                 case MapIniParser.NEWLINE:
@@ -1000,9 +979,9 @@ export class MapIniParser extends antlr.Parser {
         }
         return localContext;
     }
-    public objectUnitSpecificSoundsSound(): ObjectUnitSpecificSoundsSoundContext {
-        let localContext = new ObjectUnitSpecificSoundsSoundContext(this.context, this.state);
-        this.enterRule(localContext, 38, MapIniParser.RULE_objectUnitSpecificSoundsSound);
+    public objectUnitSpecificFXProperty(): ObjectUnitSpecificFXPropertyContext {
+        let localContext = new ObjectUnitSpecificFXPropertyContext(this.context, this.state);
+        this.enterRule(localContext, 36, MapIniParser.RULE_objectUnitSpecificFXProperty);
         try {
             this.enterOuterAlt(localContext, 1);
             {
@@ -1029,139 +1008,54 @@ export class MapIniParser extends antlr.Parser {
         }
         return localContext;
     }
-    public objectUnitSpecificFX(): ObjectUnitSpecificFXContext {
-        let localContext = new ObjectUnitSpecificFXContext(this.context, this.state);
-        this.enterRule(localContext, 40, MapIniParser.RULE_objectUnitSpecificFX);
+    public drawModule(): DrawModuleContext {
+        let localContext = new DrawModuleContext(this.context, this.state);
+        this.enterRule(localContext, 38, MapIniParser.RULE_drawModule);
         let _la: number;
         try {
             this.enterOuterAlt(localContext, 1);
             {
             this.state = 245;
-            this.match(MapIniParser.T__12);
+            this.match(MapIniParser.T__9);
             this.state = 246;
-            this.match(MapIniParser.NEWLINE);
-            this.state = 251;
-            this.errorHandler.sync(this);
-            _la = this.tokenStream.LA(1);
-            while (_la === 27 || _la === 28) {
-                {
-                this.state = 249;
-                this.errorHandler.sync(this);
-                switch (this.tokenStream.LA(1)) {
-                case MapIniParser.ID:
-                    {
-                    this.state = 247;
-                    this.objectUnitSpecificFXFX();
-                    }
-                    break;
-                case MapIniParser.NEWLINE:
-                    {
-                    this.state = 248;
-                    this.match(MapIniParser.NEWLINE);
-                    }
-                    break;
-                default:
-                    throw new antlr.NoViableAltException(this);
-                }
-                }
-                this.state = 253;
-                this.errorHandler.sync(this);
-                _la = this.tokenStream.LA(1);
-            }
-            this.state = 254;
-            this.end();
-            }
-        }
-        catch (re) {
-            if (re instanceof antlr.RecognitionException) {
-                this.errorHandler.reportError(this, re);
-                this.errorHandler.recover(this, re);
-            } else {
-                throw re;
-            }
-        }
-        finally {
-            this.exitRule();
-        }
-        return localContext;
-    }
-    public objectUnitSpecificFXFX(): ObjectUnitSpecificFXFXContext {
-        let localContext = new ObjectUnitSpecificFXFXContext(this.context, this.state);
-        this.enterRule(localContext, 42, MapIniParser.RULE_objectUnitSpecificFXFX);
-        try {
-            this.enterOuterAlt(localContext, 1);
-            {
-            this.state = 256;
-            this.match(MapIniParser.ID);
-            this.state = 257;
             this.match(MapIniParser.EQ);
-            this.state = 258;
-            this.property_values();
-            this.state = 259;
-            this.match(MapIniParser.NEWLINE);
-            }
-        }
-        catch (re) {
-            if (re instanceof antlr.RecognitionException) {
-                this.errorHandler.reportError(this, re);
-                this.errorHandler.recover(this, re);
-            } else {
-                throw re;
-            }
-        }
-        finally {
-            this.exitRule();
-        }
-        return localContext;
-    }
-    public drawModule(): DrawModuleContext {
-        let localContext = new DrawModuleContext(this.context, this.state);
-        this.enterRule(localContext, 44, MapIniParser.RULE_drawModule);
-        let _la: number;
-        try {
-            this.enterOuterAlt(localContext, 1);
-            {
-            this.state = 261;
-            this.match(MapIniParser.T__13);
-            this.state = 262;
-            this.match(MapIniParser.EQ);
-            this.state = 263;
+            this.state = 247;
             this.drawModule_type();
-            this.state = 264;
+            this.state = 248;
             this.moduleTag_value();
-            this.state = 265;
+            this.state = 249;
             this.match(MapIniParser.NEWLINE);
-            this.state = 272;
+            this.state = 256;
             this.errorHandler.sync(this);
             _la = this.tokenStream.LA(1);
-            while ((((_la) & ~0x1F) === 0 && ((1 << _la) & 403144704) !== 0)) {
+            while ((((_la) & ~0x1F) === 0 && ((1 << _la) & 25196544) !== 0)) {
                 {
-                this.state = 270;
+                this.state = 254;
                 this.errorHandler.sync(this);
                 switch (this.tokenStream.LA(1)) {
-                case MapIniParser.T__14:
-                case MapIniParser.T__15:
-                case MapIniParser.T__16:
+                case MapIniParser.T__10:
+                case MapIniParser.T__11:
+                case MapIniParser.T__12:
                     {
-                    this.state = 266;
+                    this.state = 250;
                     this.conditionState();
                     }
                     break;
-                case MapIniParser.T__17:
+                case MapIniParser.T__13:
                     {
-                    this.state = 267;
+                    this.state = 251;
                     this.aliasCondition();
                     }
                     break;
                 case MapIniParser.ID:
                     {
-                    this.state = 268;
+                    this.state = 252;
                     this.drawModuleProperty();
                     }
                     break;
                 case MapIniParser.NEWLINE:
                     {
-                    this.state = 269;
+                    this.state = 253;
                     this.match(MapIniParser.NEWLINE);
                     }
                     break;
@@ -1169,11 +1063,11 @@ export class MapIniParser extends antlr.Parser {
                     throw new antlr.NoViableAltException(this);
                 }
                 }
-                this.state = 274;
+                this.state = 258;
                 this.errorHandler.sync(this);
                 _la = this.tokenStream.LA(1);
             }
-            this.state = 275;
+            this.state = 259;
             this.end();
             }
         }
@@ -1192,66 +1086,137 @@ export class MapIniParser extends antlr.Parser {
     }
     public conditionState(): ConditionStateContext {
         let localContext = new ConditionStateContext(this.context, this.state);
-        this.enterRule(localContext, 46, MapIniParser.RULE_conditionState);
-        let _la: number;
+        this.enterRule(localContext, 40, MapIniParser.RULE_conditionState);
         try {
-            this.enterOuterAlt(localContext, 1);
-            {
-            this.state = 284;
+            this.state = 264;
             this.errorHandler.sync(this);
             switch (this.tokenStream.LA(1)) {
-            case MapIniParser.T__14:
+            case MapIniParser.T__10:
+                this.enterOuterAlt(localContext, 1);
                 {
-                this.state = 277;
-                this.match(MapIniParser.T__14);
+                this.state = 261;
+                this.defaultConditionStateBlock();
                 }
                 break;
-            case MapIniParser.T__15:
+            case MapIniParser.T__11:
+                this.enterOuterAlt(localContext, 2);
                 {
-                {
-                this.state = 278;
-                this.match(MapIniParser.T__15);
-                this.state = 279;
-                this.match(MapIniParser.EQ);
-                this.state = 280;
-                this.conditionState_values();
-                }
+                this.state = 262;
+                this.conditionStateBlock();
                 }
                 break;
-            case MapIniParser.T__16:
+            case MapIniParser.T__12:
+                this.enterOuterAlt(localContext, 3);
                 {
-                {
-                this.state = 281;
-                this.match(MapIniParser.T__16);
-                this.state = 282;
-                this.match(MapIniParser.EQ);
-                this.state = 283;
-                this.conditionState_values();
-                }
+                this.state = 263;
+                this.transitionStateBlock();
                 }
                 break;
             default:
                 throw new antlr.NoViableAltException(this);
             }
-            this.state = 286;
+        }
+        catch (re) {
+            if (re instanceof antlr.RecognitionException) {
+                this.errorHandler.reportError(this, re);
+                this.errorHandler.recover(this, re);
+            } else {
+                throw re;
+            }
+        }
+        finally {
+            this.exitRule();
+        }
+        return localContext;
+    }
+    public defaultConditionStateBlock(): DefaultConditionStateBlockContext {
+        let localContext = new DefaultConditionStateBlockContext(this.context, this.state);
+        this.enterRule(localContext, 42, MapIniParser.RULE_defaultConditionStateBlock);
+        try {
+            let alternative: number;
+            this.enterOuterAlt(localContext, 1);
+            {
+            this.state = 266;
+            this.match(MapIniParser.T__10);
+            this.state = 267;
             this.match(MapIniParser.NEWLINE);
-            this.state = 291;
+            this.state = 272;
+            this.errorHandler.sync(this);
+            alternative = this.interpreter.adaptivePredict(this.tokenStream, 25, this.context);
+            while (alternative !== 2 && alternative !== antlr.ATN.INVALID_ALT_NUMBER) {
+                if (alternative === 1) {
+                    {
+                    this.state = 270;
+                    this.errorHandler.sync(this);
+                    switch (this.tokenStream.LA(1)) {
+                    case MapIniParser.ID:
+                        {
+                        this.state = 268;
+                        this.conditionStateProperty();
+                        }
+                        break;
+                    case MapIniParser.NEWLINE:
+                        {
+                        this.state = 269;
+                        this.match(MapIniParser.NEWLINE);
+                        }
+                        break;
+                    default:
+                        throw new antlr.NoViableAltException(this);
+                    }
+                    }
+                }
+                this.state = 274;
+                this.errorHandler.sync(this);
+                alternative = this.interpreter.adaptivePredict(this.tokenStream, 25, this.context);
+            }
+            }
+        }
+        catch (re) {
+            if (re instanceof antlr.RecognitionException) {
+                this.errorHandler.reportError(this, re);
+                this.errorHandler.recover(this, re);
+            } else {
+                throw re;
+            }
+        }
+        finally {
+            this.exitRule();
+        }
+        return localContext;
+    }
+    public conditionStateBlock(): ConditionStateBlockContext {
+        let localContext = new ConditionStateBlockContext(this.context, this.state);
+        this.enterRule(localContext, 44, MapIniParser.RULE_conditionStateBlock);
+        let _la: number;
+        try {
+            this.enterOuterAlt(localContext, 1);
+            {
+            this.state = 275;
+            this.match(MapIniParser.T__11);
+            this.state = 276;
+            this.match(MapIniParser.EQ);
+            this.state = 277;
+            this.conditionState_values();
+            this.state = 278;
+            this.match(MapIniParser.NEWLINE);
+            this.state = 283;
             this.errorHandler.sync(this);
             _la = this.tokenStream.LA(1);
-            while (_la === 27 || _la === 28) {
+            while (_la === 23 || _la === 24) {
                 {
-                this.state = 289;
+                this.state = 281;
                 this.errorHandler.sync(this);
                 switch (this.tokenStream.LA(1)) {
                 case MapIniParser.ID:
                     {
-                    this.state = 287;
+                    this.state = 279;
                     this.conditionStateProperty();
                     }
                     break;
                 case MapIniParser.NEWLINE:
                     {
-                    this.state = 288;
+                    this.state = 280;
                     this.match(MapIniParser.NEWLINE);
                     }
                     break;
@@ -1259,11 +1224,71 @@ export class MapIniParser extends antlr.Parser {
                     throw new antlr.NoViableAltException(this);
                 }
                 }
-                this.state = 293;
+                this.state = 285;
                 this.errorHandler.sync(this);
                 _la = this.tokenStream.LA(1);
             }
-            this.state = 294;
+            this.state = 286;
+            this.end();
+            }
+        }
+        catch (re) {
+            if (re instanceof antlr.RecognitionException) {
+                this.errorHandler.reportError(this, re);
+                this.errorHandler.recover(this, re);
+            } else {
+                throw re;
+            }
+        }
+        finally {
+            this.exitRule();
+        }
+        return localContext;
+    }
+    public transitionStateBlock(): TransitionStateBlockContext {
+        let localContext = new TransitionStateBlockContext(this.context, this.state);
+        this.enterRule(localContext, 46, MapIniParser.RULE_transitionStateBlock);
+        let _la: number;
+        try {
+            this.enterOuterAlt(localContext, 1);
+            {
+            this.state = 288;
+            this.match(MapIniParser.T__12);
+            this.state = 289;
+            this.match(MapIniParser.EQ);
+            this.state = 290;
+            this.conditionState_values();
+            this.state = 291;
+            this.match(MapIniParser.NEWLINE);
+            this.state = 296;
+            this.errorHandler.sync(this);
+            _la = this.tokenStream.LA(1);
+            while (_la === 23 || _la === 24) {
+                {
+                this.state = 294;
+                this.errorHandler.sync(this);
+                switch (this.tokenStream.LA(1)) {
+                case MapIniParser.ID:
+                    {
+                    this.state = 292;
+                    this.conditionStateProperty();
+                    }
+                    break;
+                case MapIniParser.NEWLINE:
+                    {
+                    this.state = 293;
+                    this.match(MapIniParser.NEWLINE);
+                    }
+                    break;
+                default:
+                    throw new antlr.NoViableAltException(this);
+                }
+                }
+                this.state = 298;
+                this.errorHandler.sync(this);
+                _la = this.tokenStream.LA(1);
+            }
+            this.state = 299;
             this.end();
             }
         }
@@ -1286,13 +1311,13 @@ export class MapIniParser extends antlr.Parser {
         try {
             this.enterOuterAlt(localContext, 1);
             {
-            this.state = 296;
-            this.match(MapIniParser.T__17);
-            this.state = 297;
+            this.state = 301;
+            this.match(MapIniParser.T__13);
+            this.state = 302;
             this.match(MapIniParser.EQ);
-            this.state = 298;
+            this.state = 303;
             this.conditionState_values();
-            this.state = 299;
+            this.state = 304;
             this.match(MapIniParser.NEWLINE);
             }
         }
@@ -1316,33 +1341,33 @@ export class MapIniParser extends antlr.Parser {
         try {
             this.enterOuterAlt(localContext, 1);
             {
-            this.state = 301;
-            this.match(MapIniParser.T__18);
-            this.state = 302;
+            this.state = 306;
+            this.match(MapIniParser.T__14);
+            this.state = 307;
             this.match(MapIniParser.EQ);
-            this.state = 303;
+            this.state = 308;
             this.bodyModule_type();
-            this.state = 304;
+            this.state = 309;
             this.moduleTag_value();
-            this.state = 305;
-            this.match(MapIniParser.NEWLINE);
             this.state = 310;
+            this.match(MapIniParser.NEWLINE);
+            this.state = 315;
             this.errorHandler.sync(this);
             _la = this.tokenStream.LA(1);
-            while (_la === 27 || _la === 28) {
+            while (_la === 23 || _la === 24) {
                 {
-                this.state = 308;
+                this.state = 313;
                 this.errorHandler.sync(this);
                 switch (this.tokenStream.LA(1)) {
                 case MapIniParser.ID:
                     {
-                    this.state = 306;
+                    this.state = 311;
                     this.bodyModuleProperty();
                     }
                     break;
                 case MapIniParser.NEWLINE:
                     {
-                    this.state = 307;
+                    this.state = 312;
                     this.match(MapIniParser.NEWLINE);
                     }
                     break;
@@ -1350,11 +1375,11 @@ export class MapIniParser extends antlr.Parser {
                     throw new antlr.NoViableAltException(this);
                 }
                 }
-                this.state = 312;
+                this.state = 317;
                 this.errorHandler.sync(this);
                 _la = this.tokenStream.LA(1);
             }
-            this.state = 313;
+            this.state = 318;
             this.end();
             }
         }
@@ -1377,13 +1402,13 @@ export class MapIniParser extends antlr.Parser {
         try {
             this.enterOuterAlt(localContext, 1);
             {
-            this.state = 315;
+            this.state = 320;
             this.match(MapIniParser.ID);
-            this.state = 316;
+            this.state = 321;
             this.match(MapIniParser.EQ);
-            this.state = 317;
+            this.state = 322;
             this.property_values();
-            this.state = 318;
+            this.state = 323;
             this.match(MapIniParser.NEWLINE);
             }
         }
@@ -1407,33 +1432,33 @@ export class MapIniParser extends antlr.Parser {
         try {
             this.enterOuterAlt(localContext, 1);
             {
-            this.state = 320;
-            this.match(MapIniParser.T__19);
-            this.state = 321;
+            this.state = 325;
+            this.match(MapIniParser.T__15);
+            this.state = 326;
             this.match(MapIniParser.EQ);
-            this.state = 322;
+            this.state = 327;
             this.behaviorModule_type();
-            this.state = 323;
+            this.state = 328;
             this.moduleTag_value();
-            this.state = 324;
-            this.match(MapIniParser.NEWLINE);
             this.state = 329;
+            this.match(MapIniParser.NEWLINE);
+            this.state = 334;
             this.errorHandler.sync(this);
             _la = this.tokenStream.LA(1);
-            while (_la === 27 || _la === 28) {
+            while (_la === 23 || _la === 24) {
                 {
-                this.state = 327;
+                this.state = 332;
                 this.errorHandler.sync(this);
                 switch (this.tokenStream.LA(1)) {
                 case MapIniParser.ID:
                     {
-                    this.state = 325;
+                    this.state = 330;
                     this.behaviorModuleProperty();
                     }
                     break;
                 case MapIniParser.NEWLINE:
                     {
-                    this.state = 326;
+                    this.state = 331;
                     this.match(MapIniParser.NEWLINE);
                     }
                     break;
@@ -1441,11 +1466,11 @@ export class MapIniParser extends antlr.Parser {
                     throw new antlr.NoViableAltException(this);
                 }
                 }
-                this.state = 331;
+                this.state = 336;
                 this.errorHandler.sync(this);
                 _la = this.tokenStream.LA(1);
             }
-            this.state = 332;
+            this.state = 337;
             this.end();
             }
         }
@@ -1468,13 +1493,13 @@ export class MapIniParser extends antlr.Parser {
         try {
             this.enterOuterAlt(localContext, 1);
             {
-            this.state = 334;
+            this.state = 339;
             this.match(MapIniParser.ID);
-            this.state = 335;
+            this.state = 340;
             this.match(MapIniParser.EQ);
-            this.state = 336;
+            this.state = 341;
             this.property_values();
-            this.state = 337;
+            this.state = 342;
             this.match(MapIniParser.NEWLINE);
             }
         }
@@ -1498,33 +1523,33 @@ export class MapIniParser extends antlr.Parser {
         try {
             this.enterOuterAlt(localContext, 1);
             {
-            this.state = 339;
-            this.match(MapIniParser.T__20);
-            this.state = 340;
+            this.state = 344;
+            this.match(MapIniParser.T__16);
+            this.state = 345;
             this.match(MapIniParser.EQ);
-            this.state = 341;
+            this.state = 346;
             this.clientModule_type();
-            this.state = 342;
+            this.state = 347;
             this.moduleTag_value();
-            this.state = 343;
-            this.match(MapIniParser.NEWLINE);
             this.state = 348;
+            this.match(MapIniParser.NEWLINE);
+            this.state = 353;
             this.errorHandler.sync(this);
             _la = this.tokenStream.LA(1);
-            while (_la === 27 || _la === 28) {
+            while (_la === 23 || _la === 24) {
                 {
-                this.state = 346;
+                this.state = 351;
                 this.errorHandler.sync(this);
                 switch (this.tokenStream.LA(1)) {
                 case MapIniParser.ID:
                     {
-                    this.state = 344;
+                    this.state = 349;
                     this.clientModuleProperty();
                     }
                     break;
                 case MapIniParser.NEWLINE:
                     {
-                    this.state = 345;
+                    this.state = 350;
                     this.match(MapIniParser.NEWLINE);
                     }
                     break;
@@ -1532,11 +1557,11 @@ export class MapIniParser extends antlr.Parser {
                     throw new antlr.NoViableAltException(this);
                 }
                 }
-                this.state = 350;
+                this.state = 355;
                 this.errorHandler.sync(this);
                 _la = this.tokenStream.LA(1);
             }
-            this.state = 351;
+            this.state = 356;
             this.end();
             }
         }
@@ -1556,35 +1581,6 @@ export class MapIniParser extends antlr.Parser {
     public clientModuleProperty(): ClientModulePropertyContext {
         let localContext = new ClientModulePropertyContext(this.context, this.state);
         this.enterRule(localContext, 60, MapIniParser.RULE_clientModuleProperty);
-        try {
-            this.enterOuterAlt(localContext, 1);
-            {
-            this.state = 353;
-            this.match(MapIniParser.ID);
-            this.state = 354;
-            this.match(MapIniParser.EQ);
-            this.state = 355;
-            this.property_values();
-            this.state = 356;
-            this.match(MapIniParser.NEWLINE);
-            }
-        }
-        catch (re) {
-            if (re instanceof antlr.RecognitionException) {
-                this.errorHandler.reportError(this, re);
-                this.errorHandler.recover(this, re);
-            } else {
-                throw re;
-            }
-        }
-        finally {
-            this.exitRule();
-        }
-        return localContext;
-    }
-    public objectProperty(): ObjectPropertyContext {
-        let localContext = new ObjectPropertyContext(this.context, this.state);
-        this.enterRule(localContext, 62, MapIniParser.RULE_objectProperty);
         try {
             this.enterOuterAlt(localContext, 1);
             {
@@ -1611,9 +1607,9 @@ export class MapIniParser extends antlr.Parser {
         }
         return localContext;
     }
-    public drawModuleProperty(): DrawModulePropertyContext {
-        let localContext = new DrawModulePropertyContext(this.context, this.state);
-        this.enterRule(localContext, 64, MapIniParser.RULE_drawModuleProperty);
+    public objectProperty(): ObjectPropertyContext {
+        let localContext = new ObjectPropertyContext(this.context, this.state);
+        this.enterRule(localContext, 62, MapIniParser.RULE_objectProperty);
         try {
             this.enterOuterAlt(localContext, 1);
             {
@@ -1640,9 +1636,9 @@ export class MapIniParser extends antlr.Parser {
         }
         return localContext;
     }
-    public conditionStateProperty(): ConditionStatePropertyContext {
-        let localContext = new ConditionStatePropertyContext(this.context, this.state);
-        this.enterRule(localContext, 66, MapIniParser.RULE_conditionStateProperty);
+    public drawModuleProperty(): DrawModulePropertyContext {
+        let localContext = new DrawModulePropertyContext(this.context, this.state);
+        this.enterRule(localContext, 64, MapIniParser.RULE_drawModuleProperty);
         try {
             this.enterOuterAlt(localContext, 1);
             {
@@ -1669,9 +1665,9 @@ export class MapIniParser extends antlr.Parser {
         }
         return localContext;
     }
-    public property(): PropertyContext {
-        let localContext = new PropertyContext(this.context, this.state);
-        this.enterRule(localContext, 68, MapIniParser.RULE_property);
+    public conditionStateProperty(): ConditionStatePropertyContext {
+        let localContext = new ConditionStatePropertyContext(this.context, this.state);
+        this.enterRule(localContext, 66, MapIniParser.RULE_conditionStateProperty);
         try {
             this.enterOuterAlt(localContext, 1);
             {
@@ -1698,13 +1694,42 @@ export class MapIniParser extends antlr.Parser {
         }
         return localContext;
     }
+    public property(): PropertyContext {
+        let localContext = new PropertyContext(this.context, this.state);
+        this.enterRule(localContext, 68, MapIniParser.RULE_property);
+        try {
+            this.enterOuterAlt(localContext, 1);
+            {
+            this.state = 378;
+            this.match(MapIniParser.ID);
+            this.state = 379;
+            this.match(MapIniParser.EQ);
+            this.state = 380;
+            this.property_values();
+            this.state = 381;
+            this.match(MapIniParser.NEWLINE);
+            }
+        }
+        catch (re) {
+            if (re instanceof antlr.RecognitionException) {
+                this.errorHandler.reportError(this, re);
+                this.errorHandler.recover(this, re);
+            } else {
+                throw re;
+            }
+        }
+        finally {
+            this.exitRule();
+        }
+        return localContext;
+    }
     public drawModule_type(): DrawModule_typeContext {
         let localContext = new DrawModule_typeContext(this.context, this.state);
         this.enterRule(localContext, 70, MapIniParser.RULE_drawModule_type);
         try {
             this.enterOuterAlt(localContext, 1);
             {
-            this.state = 378;
+            this.state = 383;
             this.match(MapIniParser.ID);
             }
         }
@@ -1728,19 +1753,19 @@ export class MapIniParser extends antlr.Parser {
         try {
             this.enterOuterAlt(localContext, 1);
             {
-            this.state = 380;
+            this.state = 385;
             this.match(MapIniParser.ID);
-            this.state = 384;
+            this.state = 389;
             this.errorHandler.sync(this);
             _la = this.tokenStream.LA(1);
-            while (_la === 27) {
+            while (_la === 23) {
                 {
                 {
-                this.state = 381;
+                this.state = 386;
                 this.match(MapIniParser.ID);
                 }
                 }
-                this.state = 386;
+                this.state = 391;
                 this.errorHandler.sync(this);
                 _la = this.tokenStream.LA(1);
             }
@@ -1765,7 +1790,7 @@ export class MapIniParser extends antlr.Parser {
         try {
             this.enterOuterAlt(localContext, 1);
             {
-            this.state = 387;
+            this.state = 392;
             this.match(MapIniParser.ID);
             }
         }
@@ -1788,7 +1813,7 @@ export class MapIniParser extends antlr.Parser {
         try {
             this.enterOuterAlt(localContext, 1);
             {
-            this.state = 389;
+            this.state = 394;
             this.match(MapIniParser.ID);
             }
         }
@@ -1811,7 +1836,7 @@ export class MapIniParser extends antlr.Parser {
         try {
             this.enterOuterAlt(localContext, 1);
             {
-            this.state = 391;
+            this.state = 396;
             this.match(MapIniParser.ID);
             }
         }
@@ -1834,7 +1859,7 @@ export class MapIniParser extends antlr.Parser {
         try {
             this.enterOuterAlt(localContext, 1);
             {
-            this.state = 393;
+            this.state = 398;
             this.match(MapIniParser.ID);
             }
         }
@@ -1857,7 +1882,7 @@ export class MapIniParser extends antlr.Parser {
         try {
             this.enterOuterAlt(localContext, 1);
             {
-            this.state = 395;
+            this.state = 400;
             this.match(MapIniParser.ID);
             }
         }
@@ -1880,7 +1905,7 @@ export class MapIniParser extends antlr.Parser {
         try {
             this.enterOuterAlt(localContext, 1);
             {
-            this.state = 397;
+            this.state = 402;
             this.match(MapIniParser.ID);
             }
         }
@@ -1903,7 +1928,7 @@ export class MapIniParser extends antlr.Parser {
         try {
             this.enterOuterAlt(localContext, 1);
             {
-            this.state = 399;
+            this.state = 404;
             this.match(MapIniParser.ID);
             }
         }
@@ -1926,7 +1951,7 @@ export class MapIniParser extends antlr.Parser {
         try {
             this.enterOuterAlt(localContext, 1);
             {
-            this.state = 401;
+            this.state = 406;
             this.match(MapIniParser.ID);
             }
         }
@@ -1950,19 +1975,19 @@ export class MapIniParser extends antlr.Parser {
         try {
             this.enterOuterAlt(localContext, 1);
             {
-            this.state = 403;
+            this.state = 408;
             this.match(MapIniParser.ID);
-            this.state = 407;
+            this.state = 412;
             this.errorHandler.sync(this);
             _la = this.tokenStream.LA(1);
-            while (_la === 27) {
+            while (_la === 23) {
                 {
                 {
-                this.state = 404;
+                this.state = 409;
                 this.match(MapIniParser.ID);
                 }
                 }
-                this.state = 409;
+                this.state = 414;
                 this.errorHandler.sync(this);
                 _la = this.tokenStream.LA(1);
             }
@@ -1988,9 +2013,9 @@ export class MapIniParser extends antlr.Parser {
         try {
             this.enterOuterAlt(localContext, 1);
             {
-            this.state = 410;
+            this.state = 415;
             _la = this.tokenStream.LA(1);
-            if(!((((_la) & ~0x1F) === 0 && ((1 << _la) & 29360128) !== 0))) {
+            if(!((((_la) & ~0x1F) === 0 && ((1 << _la) & 1835008) !== 0))) {
             this.errorHandler.recoverInline(this);
             }
             else {
@@ -2014,7 +2039,7 @@ export class MapIniParser extends antlr.Parser {
     }
 
     public static readonly _serializedATN: number[] = [
-        4,1,30,413,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
+        4,1,26,418,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
         6,2,7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,
         2,14,7,14,2,15,7,15,2,16,7,16,2,17,7,17,2,18,7,18,2,19,7,19,2,20,
         7,20,2,21,7,21,2,22,7,22,2,23,7,23,2,24,7,24,2,25,7,25,2,26,7,26,
@@ -2026,136 +2051,138 @@ export class MapIniParser extends antlr.Parser {
         3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,5,3,129,8,3,10,3,12,3,132,9,3,
         1,3,1,3,1,4,1,4,3,4,138,8,4,1,5,1,5,1,5,1,5,1,5,5,5,145,8,5,10,5,
         12,5,148,9,5,1,5,1,5,1,6,1,6,1,6,1,7,1,7,1,7,1,7,3,7,159,8,7,1,8,
-        1,8,1,8,3,8,164,8,8,1,9,1,9,1,9,1,9,1,9,5,9,171,8,9,10,9,12,9,174,
-        9,9,1,9,1,9,1,10,1,10,1,10,1,10,1,10,1,11,1,11,1,11,1,11,1,11,1,
-        11,1,12,1,12,1,13,1,13,1,13,1,13,1,13,5,13,196,8,13,10,13,12,13,
-        199,9,13,1,13,1,13,1,14,1,14,1,14,1,14,1,14,1,15,1,15,1,15,1,15,
-        1,15,5,15,213,8,15,10,15,12,15,216,9,15,1,15,1,15,1,16,1,16,1,16,
-        1,16,1,16,1,17,1,17,1,17,1,17,1,17,1,18,1,18,1,18,1,18,5,18,234,
-        8,18,10,18,12,18,237,9,18,1,18,1,18,1,19,1,19,1,19,1,19,1,19,1,20,
-        1,20,1,20,1,20,5,20,250,8,20,10,20,12,20,253,9,20,1,20,1,20,1,21,
-        1,21,1,21,1,21,1,21,1,22,1,22,1,22,1,22,1,22,1,22,1,22,1,22,1,22,
-        5,22,271,8,22,10,22,12,22,274,9,22,1,22,1,22,1,23,1,23,1,23,1,23,
-        1,23,1,23,1,23,3,23,285,8,23,1,23,1,23,1,23,5,23,290,8,23,10,23,
-        12,23,293,9,23,1,23,1,23,1,24,1,24,1,24,1,24,1,24,1,25,1,25,1,25,
-        1,25,1,25,1,25,1,25,5,25,309,8,25,10,25,12,25,312,9,25,1,25,1,25,
-        1,26,1,26,1,26,1,26,1,26,1,27,1,27,1,27,1,27,1,27,1,27,1,27,5,27,
-        328,8,27,10,27,12,27,331,9,27,1,27,1,27,1,28,1,28,1,28,1,28,1,28,
-        1,29,1,29,1,29,1,29,1,29,1,29,1,29,5,29,347,8,29,10,29,12,29,350,
-        9,29,1,29,1,29,1,30,1,30,1,30,1,30,1,30,1,31,1,31,1,31,1,31,1,31,
-        1,32,1,32,1,32,1,32,1,32,1,33,1,33,1,33,1,33,1,33,1,34,1,34,1,34,
-        1,34,1,34,1,35,1,35,1,36,1,36,5,36,383,8,36,10,36,12,36,386,9,36,
-        1,37,1,37,1,38,1,38,1,39,1,39,1,40,1,40,1,41,1,41,1,42,1,42,1,43,
-        1,43,1,44,1,44,1,45,1,45,5,45,406,8,45,10,45,12,45,409,9,45,1,46,
-        1,46,1,46,0,0,47,0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,
-        36,38,40,42,44,46,48,50,52,54,56,58,60,62,64,66,68,70,72,74,76,78,
-        80,82,84,86,88,90,92,0,1,1,0,22,24,414,0,98,1,0,0,0,2,105,1,0,0,
-        0,4,107,1,0,0,0,6,118,1,0,0,0,8,137,1,0,0,0,10,139,1,0,0,0,12,151,
-        1,0,0,0,14,158,1,0,0,0,16,163,1,0,0,0,18,165,1,0,0,0,20,177,1,0,
-        0,0,22,182,1,0,0,0,24,188,1,0,0,0,26,190,1,0,0,0,28,202,1,0,0,0,
-        30,207,1,0,0,0,32,219,1,0,0,0,34,224,1,0,0,0,36,229,1,0,0,0,38,240,
-        1,0,0,0,40,245,1,0,0,0,42,256,1,0,0,0,44,261,1,0,0,0,46,284,1,0,
-        0,0,48,296,1,0,0,0,50,301,1,0,0,0,52,315,1,0,0,0,54,320,1,0,0,0,
-        56,334,1,0,0,0,58,339,1,0,0,0,60,353,1,0,0,0,62,358,1,0,0,0,64,363,
-        1,0,0,0,66,368,1,0,0,0,68,373,1,0,0,0,70,378,1,0,0,0,72,380,1,0,
-        0,0,74,387,1,0,0,0,76,389,1,0,0,0,78,391,1,0,0,0,80,393,1,0,0,0,
-        82,395,1,0,0,0,84,397,1,0,0,0,86,399,1,0,0,0,88,401,1,0,0,0,90,403,
-        1,0,0,0,92,410,1,0,0,0,94,97,3,2,1,0,95,97,5,28,0,0,96,94,1,0,0,
-        0,96,95,1,0,0,0,97,100,1,0,0,0,98,96,1,0,0,0,98,99,1,0,0,0,99,101,
-        1,0,0,0,100,98,1,0,0,0,101,102,5,0,0,1,102,1,1,0,0,0,103,106,3,4,
-        2,0,104,106,3,6,3,0,105,103,1,0,0,0,105,104,1,0,0,0,106,3,1,0,0,
-        0,107,108,5,1,0,0,108,109,3,82,41,0,109,113,5,28,0,0,110,112,3,68,
-        34,0,111,110,1,0,0,0,112,115,1,0,0,0,113,111,1,0,0,0,113,114,1,0,
-        0,0,114,116,1,0,0,0,115,113,1,0,0,0,116,117,3,92,46,0,117,5,1,0,
-        0,0,118,119,5,2,0,0,119,120,3,84,42,0,120,130,5,28,0,0,121,129,3,
-        8,4,0,122,129,3,14,7,0,123,129,3,62,31,0,124,129,3,16,8,0,125,129,
-        3,36,18,0,126,129,3,40,20,0,127,129,5,28,0,0,128,121,1,0,0,0,128,
-        122,1,0,0,0,128,123,1,0,0,0,128,124,1,0,0,0,128,125,1,0,0,0,128,
-        126,1,0,0,0,128,127,1,0,0,0,129,132,1,0,0,0,130,128,1,0,0,0,130,
-        131,1,0,0,0,131,133,1,0,0,0,132,130,1,0,0,0,133,134,3,92,46,0,134,
-        7,1,0,0,0,135,138,3,10,5,0,136,138,3,12,6,0,137,135,1,0,0,0,137,
-        136,1,0,0,0,138,9,1,0,0,0,139,140,5,3,0,0,140,146,5,28,0,0,141,145,
-        3,14,7,0,142,145,3,62,31,0,143,145,5,28,0,0,144,141,1,0,0,0,144,
-        142,1,0,0,0,144,143,1,0,0,0,145,148,1,0,0,0,146,144,1,0,0,0,146,
-        147,1,0,0,0,147,149,1,0,0,0,148,146,1,0,0,0,149,150,3,92,46,0,150,
-        11,1,0,0,0,151,152,5,4,0,0,152,153,3,80,40,0,153,13,1,0,0,0,154,
-        159,3,44,22,0,155,159,3,50,25,0,156,159,3,54,27,0,157,159,3,58,29,
-        0,158,154,1,0,0,0,158,155,1,0,0,0,158,156,1,0,0,0,158,157,1,0,0,
-        0,159,15,1,0,0,0,160,164,3,18,9,0,161,164,3,26,13,0,162,164,3,30,
-        15,0,163,160,1,0,0,0,163,161,1,0,0,0,163,162,1,0,0,0,164,17,1,0,
-        0,0,165,166,5,5,0,0,166,172,5,28,0,0,167,171,3,20,10,0,168,171,3,
-        22,11,0,169,171,5,28,0,0,170,167,1,0,0,0,170,168,1,0,0,0,170,169,
-        1,0,0,0,171,174,1,0,0,0,172,170,1,0,0,0,172,173,1,0,0,0,173,175,
-        1,0,0,0,174,172,1,0,0,0,175,176,3,92,46,0,176,19,1,0,0,0,177,178,
-        5,6,0,0,178,179,5,25,0,0,179,180,3,90,45,0,180,181,5,28,0,0,181,
-        21,1,0,0,0,182,183,5,7,0,0,183,184,5,25,0,0,184,185,3,24,12,0,185,
-        186,3,90,45,0,186,187,5,28,0,0,187,23,1,0,0,0,188,189,5,27,0,0,189,
-        25,1,0,0,0,190,191,5,8,0,0,191,197,5,28,0,0,192,196,3,20,10,0,193,
-        196,3,28,14,0,194,196,5,28,0,0,195,192,1,0,0,0,195,193,1,0,0,0,195,
-        194,1,0,0,0,196,199,1,0,0,0,197,195,1,0,0,0,197,198,1,0,0,0,198,
-        200,1,0,0,0,199,197,1,0,0,0,200,201,3,92,46,0,201,27,1,0,0,0,202,
-        203,5,9,0,0,203,204,5,25,0,0,204,205,3,90,45,0,205,206,5,28,0,0,
-        206,29,1,0,0,0,207,208,5,10,0,0,208,214,5,28,0,0,209,213,3,32,16,
-        0,210,213,3,34,17,0,211,213,5,28,0,0,212,209,1,0,0,0,212,210,1,0,
-        0,0,212,211,1,0,0,0,213,216,1,0,0,0,214,212,1,0,0,0,214,215,1,0,
-        0,0,215,217,1,0,0,0,216,214,1,0,0,0,217,218,3,92,46,0,218,31,1,0,
-        0,0,219,220,5,2,0,0,220,221,5,25,0,0,221,222,3,90,45,0,222,223,5,
-        28,0,0,223,33,1,0,0,0,224,225,5,11,0,0,225,226,5,25,0,0,226,227,
-        3,90,45,0,227,228,5,28,0,0,228,35,1,0,0,0,229,230,5,12,0,0,230,235,
-        5,28,0,0,231,234,3,38,19,0,232,234,5,28,0,0,233,231,1,0,0,0,233,
-        232,1,0,0,0,234,237,1,0,0,0,235,233,1,0,0,0,235,236,1,0,0,0,236,
-        238,1,0,0,0,237,235,1,0,0,0,238,239,3,92,46,0,239,37,1,0,0,0,240,
-        241,5,27,0,0,241,242,5,25,0,0,242,243,3,90,45,0,243,244,5,28,0,0,
-        244,39,1,0,0,0,245,246,5,13,0,0,246,251,5,28,0,0,247,250,3,42,21,
-        0,248,250,5,28,0,0,249,247,1,0,0,0,249,248,1,0,0,0,250,253,1,0,0,
-        0,251,249,1,0,0,0,251,252,1,0,0,0,252,254,1,0,0,0,253,251,1,0,0,
-        0,254,255,3,92,46,0,255,41,1,0,0,0,256,257,5,27,0,0,257,258,5,25,
-        0,0,258,259,3,90,45,0,259,260,5,28,0,0,260,43,1,0,0,0,261,262,5,
-        14,0,0,262,263,5,25,0,0,263,264,3,70,35,0,264,265,3,80,40,0,265,
-        272,5,28,0,0,266,271,3,46,23,0,267,271,3,48,24,0,268,271,3,64,32,
-        0,269,271,5,28,0,0,270,266,1,0,0,0,270,267,1,0,0,0,270,268,1,0,0,
-        0,270,269,1,0,0,0,271,274,1,0,0,0,272,270,1,0,0,0,272,273,1,0,0,
-        0,273,275,1,0,0,0,274,272,1,0,0,0,275,276,3,92,46,0,276,45,1,0,0,
-        0,277,285,5,15,0,0,278,279,5,16,0,0,279,280,5,25,0,0,280,285,3,72,
-        36,0,281,282,5,17,0,0,282,283,5,25,0,0,283,285,3,72,36,0,284,277,
-        1,0,0,0,284,278,1,0,0,0,284,281,1,0,0,0,285,286,1,0,0,0,286,291,
-        5,28,0,0,287,290,3,66,33,0,288,290,5,28,0,0,289,287,1,0,0,0,289,
-        288,1,0,0,0,290,293,1,0,0,0,291,289,1,0,0,0,291,292,1,0,0,0,292,
-        294,1,0,0,0,293,291,1,0,0,0,294,295,3,92,46,0,295,47,1,0,0,0,296,
-        297,5,18,0,0,297,298,5,25,0,0,298,299,3,72,36,0,299,300,5,28,0,0,
-        300,49,1,0,0,0,301,302,5,19,0,0,302,303,5,25,0,0,303,304,3,74,37,
-        0,304,305,3,80,40,0,305,310,5,28,0,0,306,309,3,52,26,0,307,309,5,
-        28,0,0,308,306,1,0,0,0,308,307,1,0,0,0,309,312,1,0,0,0,310,308,1,
-        0,0,0,310,311,1,0,0,0,311,313,1,0,0,0,312,310,1,0,0,0,313,314,3,
-        92,46,0,314,51,1,0,0,0,315,316,5,27,0,0,316,317,5,25,0,0,317,318,
-        3,90,45,0,318,319,5,28,0,0,319,53,1,0,0,0,320,321,5,20,0,0,321,322,
-        5,25,0,0,322,323,3,76,38,0,323,324,3,80,40,0,324,329,5,28,0,0,325,
-        328,3,56,28,0,326,328,5,28,0,0,327,325,1,0,0,0,327,326,1,0,0,0,328,
-        331,1,0,0,0,329,327,1,0,0,0,329,330,1,0,0,0,330,332,1,0,0,0,331,
-        329,1,0,0,0,332,333,3,92,46,0,333,55,1,0,0,0,334,335,5,27,0,0,335,
-        336,5,25,0,0,336,337,3,90,45,0,337,338,5,28,0,0,338,57,1,0,0,0,339,
-        340,5,21,0,0,340,341,5,25,0,0,341,342,3,78,39,0,342,343,3,80,40,
-        0,343,348,5,28,0,0,344,347,3,60,30,0,345,347,5,28,0,0,346,344,1,
-        0,0,0,346,345,1,0,0,0,347,350,1,0,0,0,348,346,1,0,0,0,348,349,1,
-        0,0,0,349,351,1,0,0,0,350,348,1,0,0,0,351,352,3,92,46,0,352,59,1,
-        0,0,0,353,354,5,27,0,0,354,355,5,25,0,0,355,356,3,90,45,0,356,357,
-        5,28,0,0,357,61,1,0,0,0,358,359,5,27,0,0,359,360,5,25,0,0,360,361,
-        3,90,45,0,361,362,5,28,0,0,362,63,1,0,0,0,363,364,5,27,0,0,364,365,
-        5,25,0,0,365,366,3,90,45,0,366,367,5,28,0,0,367,65,1,0,0,0,368,369,
-        5,27,0,0,369,370,5,25,0,0,370,371,3,90,45,0,371,372,5,28,0,0,372,
-        67,1,0,0,0,373,374,5,27,0,0,374,375,5,25,0,0,375,376,3,90,45,0,376,
-        377,5,28,0,0,377,69,1,0,0,0,378,379,5,27,0,0,379,71,1,0,0,0,380,
-        384,5,27,0,0,381,383,5,27,0,0,382,381,1,0,0,0,383,386,1,0,0,0,384,
-        382,1,0,0,0,384,385,1,0,0,0,385,73,1,0,0,0,386,384,1,0,0,0,387,388,
-        5,27,0,0,388,75,1,0,0,0,389,390,5,27,0,0,390,77,1,0,0,0,391,392,
-        5,27,0,0,392,79,1,0,0,0,393,394,5,27,0,0,394,81,1,0,0,0,395,396,
-        5,27,0,0,396,83,1,0,0,0,397,398,5,27,0,0,398,85,1,0,0,0,399,400,
-        5,27,0,0,400,87,1,0,0,0,401,402,5,27,0,0,402,89,1,0,0,0,403,407,
-        5,27,0,0,404,406,5,27,0,0,405,404,1,0,0,0,406,409,1,0,0,0,407,405,
-        1,0,0,0,407,408,1,0,0,0,408,91,1,0,0,0,409,407,1,0,0,0,410,411,7,
-        0,0,0,411,93,1,0,0,0,34,96,98,105,113,128,130,137,144,146,158,163,
-        170,172,195,197,212,214,233,235,249,251,270,272,284,289,291,308,
-        310,327,329,346,348,384,407
+        1,8,1,8,3,8,164,8,8,1,9,1,9,1,9,1,9,5,9,170,8,9,10,9,12,9,173,9,
+        9,1,9,1,9,1,10,1,10,1,10,1,10,1,10,1,11,1,11,1,11,1,11,5,11,186,
+        8,11,10,11,12,11,189,9,11,1,11,1,11,1,12,1,12,1,12,1,12,1,12,1,13,
+        1,13,1,13,1,13,5,13,202,8,13,10,13,12,13,205,9,13,1,13,1,13,1,14,
+        1,14,1,14,1,14,1,14,1,15,1,15,1,15,1,15,5,15,218,8,15,10,15,12,15,
+        221,9,15,1,15,1,15,1,16,1,16,1,16,1,16,1,16,1,17,1,17,1,17,1,17,
+        5,17,234,8,17,10,17,12,17,237,9,17,1,17,1,17,1,18,1,18,1,18,1,18,
+        1,18,1,19,1,19,1,19,1,19,1,19,1,19,1,19,1,19,1,19,5,19,255,8,19,
+        10,19,12,19,258,9,19,1,19,1,19,1,20,1,20,1,20,3,20,265,8,20,1,21,
+        1,21,1,21,1,21,5,21,271,8,21,10,21,12,21,274,9,21,1,22,1,22,1,22,
+        1,22,1,22,1,22,5,22,282,8,22,10,22,12,22,285,9,22,1,22,1,22,1,23,
+        1,23,1,23,1,23,1,23,1,23,5,23,295,8,23,10,23,12,23,298,9,23,1,23,
+        1,23,1,24,1,24,1,24,1,24,1,24,1,25,1,25,1,25,1,25,1,25,1,25,1,25,
+        5,25,314,8,25,10,25,12,25,317,9,25,1,25,1,25,1,26,1,26,1,26,1,26,
+        1,26,1,27,1,27,1,27,1,27,1,27,1,27,1,27,5,27,333,8,27,10,27,12,27,
+        336,9,27,1,27,1,27,1,28,1,28,1,28,1,28,1,28,1,29,1,29,1,29,1,29,
+        1,29,1,29,1,29,5,29,352,8,29,10,29,12,29,355,9,29,1,29,1,29,1,30,
+        1,30,1,30,1,30,1,30,1,31,1,31,1,31,1,31,1,31,1,32,1,32,1,32,1,32,
+        1,32,1,33,1,33,1,33,1,33,1,33,1,34,1,34,1,34,1,34,1,34,1,35,1,35,
+        1,36,1,36,5,36,388,8,36,10,36,12,36,391,9,36,1,37,1,37,1,38,1,38,
+        1,39,1,39,1,40,1,40,1,41,1,41,1,42,1,42,1,43,1,43,1,44,1,44,1,45,
+        1,45,5,45,411,8,45,10,45,12,45,414,9,45,1,46,1,46,1,46,0,0,47,0,
+        2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,
+        48,50,52,54,56,58,60,62,64,66,68,70,72,74,76,78,80,82,84,86,88,90,
+        92,0,1,1,0,18,20,420,0,98,1,0,0,0,2,105,1,0,0,0,4,107,1,0,0,0,6,
+        118,1,0,0,0,8,137,1,0,0,0,10,139,1,0,0,0,12,151,1,0,0,0,14,158,1,
+        0,0,0,16,163,1,0,0,0,18,165,1,0,0,0,20,176,1,0,0,0,22,181,1,0,0,
+        0,24,192,1,0,0,0,26,197,1,0,0,0,28,208,1,0,0,0,30,213,1,0,0,0,32,
+        224,1,0,0,0,34,229,1,0,0,0,36,240,1,0,0,0,38,245,1,0,0,0,40,264,
+        1,0,0,0,42,266,1,0,0,0,44,275,1,0,0,0,46,288,1,0,0,0,48,301,1,0,
+        0,0,50,306,1,0,0,0,52,320,1,0,0,0,54,325,1,0,0,0,56,339,1,0,0,0,
+        58,344,1,0,0,0,60,358,1,0,0,0,62,363,1,0,0,0,64,368,1,0,0,0,66,373,
+        1,0,0,0,68,378,1,0,0,0,70,383,1,0,0,0,72,385,1,0,0,0,74,392,1,0,
+        0,0,76,394,1,0,0,0,78,396,1,0,0,0,80,398,1,0,0,0,82,400,1,0,0,0,
+        84,402,1,0,0,0,86,404,1,0,0,0,88,406,1,0,0,0,90,408,1,0,0,0,92,415,
+        1,0,0,0,94,97,3,2,1,0,95,97,5,24,0,0,96,94,1,0,0,0,96,95,1,0,0,0,
+        97,100,1,0,0,0,98,96,1,0,0,0,98,99,1,0,0,0,99,101,1,0,0,0,100,98,
+        1,0,0,0,101,102,5,0,0,1,102,1,1,0,0,0,103,106,3,4,2,0,104,106,3,
+        6,3,0,105,103,1,0,0,0,105,104,1,0,0,0,106,3,1,0,0,0,107,108,5,1,
+        0,0,108,109,3,82,41,0,109,113,5,24,0,0,110,112,3,68,34,0,111,110,
+        1,0,0,0,112,115,1,0,0,0,113,111,1,0,0,0,113,114,1,0,0,0,114,116,
+        1,0,0,0,115,113,1,0,0,0,116,117,3,92,46,0,117,5,1,0,0,0,118,119,
+        5,2,0,0,119,120,3,84,42,0,120,130,5,24,0,0,121,129,3,8,4,0,122,129,
+        3,14,7,0,123,129,3,62,31,0,124,129,3,16,8,0,125,129,3,30,15,0,126,
+        129,3,34,17,0,127,129,5,24,0,0,128,121,1,0,0,0,128,122,1,0,0,0,128,
+        123,1,0,0,0,128,124,1,0,0,0,128,125,1,0,0,0,128,126,1,0,0,0,128,
+        127,1,0,0,0,129,132,1,0,0,0,130,128,1,0,0,0,130,131,1,0,0,0,131,
+        133,1,0,0,0,132,130,1,0,0,0,133,134,3,92,46,0,134,7,1,0,0,0,135,
+        138,3,10,5,0,136,138,3,12,6,0,137,135,1,0,0,0,137,136,1,0,0,0,138,
+        9,1,0,0,0,139,140,5,3,0,0,140,146,5,24,0,0,141,145,3,14,7,0,142,
+        145,3,62,31,0,143,145,5,24,0,0,144,141,1,0,0,0,144,142,1,0,0,0,144,
+        143,1,0,0,0,145,148,1,0,0,0,146,144,1,0,0,0,146,147,1,0,0,0,147,
+        149,1,0,0,0,148,146,1,0,0,0,149,150,3,92,46,0,150,11,1,0,0,0,151,
+        152,5,4,0,0,152,153,3,80,40,0,153,13,1,0,0,0,154,159,3,38,19,0,155,
+        159,3,50,25,0,156,159,3,54,27,0,157,159,3,58,29,0,158,154,1,0,0,
+        0,158,155,1,0,0,0,158,156,1,0,0,0,158,157,1,0,0,0,159,15,1,0,0,0,
+        160,164,3,18,9,0,161,164,3,22,11,0,162,164,3,26,13,0,163,160,1,0,
+        0,0,163,161,1,0,0,0,163,162,1,0,0,0,164,17,1,0,0,0,165,166,5,5,0,
+        0,166,171,5,24,0,0,167,170,3,20,10,0,168,170,5,24,0,0,169,167,1,
+        0,0,0,169,168,1,0,0,0,170,173,1,0,0,0,171,169,1,0,0,0,171,172,1,
+        0,0,0,172,174,1,0,0,0,173,171,1,0,0,0,174,175,3,92,46,0,175,19,1,
+        0,0,0,176,177,5,23,0,0,177,178,5,21,0,0,178,179,3,90,45,0,179,180,
+        5,24,0,0,180,21,1,0,0,0,181,182,5,6,0,0,182,187,5,24,0,0,183,186,
+        3,24,12,0,184,186,5,24,0,0,185,183,1,0,0,0,185,184,1,0,0,0,186,189,
+        1,0,0,0,187,185,1,0,0,0,187,188,1,0,0,0,188,190,1,0,0,0,189,187,
+        1,0,0,0,190,191,3,92,46,0,191,23,1,0,0,0,192,193,5,23,0,0,193,194,
+        5,21,0,0,194,195,3,90,45,0,195,196,5,24,0,0,196,25,1,0,0,0,197,198,
+        5,7,0,0,198,203,5,24,0,0,199,202,3,28,14,0,200,202,5,24,0,0,201,
+        199,1,0,0,0,201,200,1,0,0,0,202,205,1,0,0,0,203,201,1,0,0,0,203,
+        204,1,0,0,0,204,206,1,0,0,0,205,203,1,0,0,0,206,207,3,92,46,0,207,
+        27,1,0,0,0,208,209,5,23,0,0,209,210,5,21,0,0,210,211,3,90,45,0,211,
+        212,5,24,0,0,212,29,1,0,0,0,213,214,5,8,0,0,214,219,5,24,0,0,215,
+        218,3,32,16,0,216,218,5,24,0,0,217,215,1,0,0,0,217,216,1,0,0,0,218,
+        221,1,0,0,0,219,217,1,0,0,0,219,220,1,0,0,0,220,222,1,0,0,0,221,
+        219,1,0,0,0,222,223,3,92,46,0,223,31,1,0,0,0,224,225,5,23,0,0,225,
+        226,5,21,0,0,226,227,3,90,45,0,227,228,5,24,0,0,228,33,1,0,0,0,229,
+        230,5,9,0,0,230,235,5,24,0,0,231,234,3,36,18,0,232,234,5,24,0,0,
+        233,231,1,0,0,0,233,232,1,0,0,0,234,237,1,0,0,0,235,233,1,0,0,0,
+        235,236,1,0,0,0,236,238,1,0,0,0,237,235,1,0,0,0,238,239,3,92,46,
+        0,239,35,1,0,0,0,240,241,5,23,0,0,241,242,5,21,0,0,242,243,3,90,
+        45,0,243,244,5,24,0,0,244,37,1,0,0,0,245,246,5,10,0,0,246,247,5,
+        21,0,0,247,248,3,70,35,0,248,249,3,80,40,0,249,256,5,24,0,0,250,
+        255,3,40,20,0,251,255,3,48,24,0,252,255,3,64,32,0,253,255,5,24,0,
+        0,254,250,1,0,0,0,254,251,1,0,0,0,254,252,1,0,0,0,254,253,1,0,0,
+        0,255,258,1,0,0,0,256,254,1,0,0,0,256,257,1,0,0,0,257,259,1,0,0,
+        0,258,256,1,0,0,0,259,260,3,92,46,0,260,39,1,0,0,0,261,265,3,42,
+        21,0,262,265,3,44,22,0,263,265,3,46,23,0,264,261,1,0,0,0,264,262,
+        1,0,0,0,264,263,1,0,0,0,265,41,1,0,0,0,266,267,5,11,0,0,267,272,
+        5,24,0,0,268,271,3,66,33,0,269,271,5,24,0,0,270,268,1,0,0,0,270,
+        269,1,0,0,0,271,274,1,0,0,0,272,270,1,0,0,0,272,273,1,0,0,0,273,
+        43,1,0,0,0,274,272,1,0,0,0,275,276,5,12,0,0,276,277,5,21,0,0,277,
+        278,3,72,36,0,278,283,5,24,0,0,279,282,3,66,33,0,280,282,5,24,0,
+        0,281,279,1,0,0,0,281,280,1,0,0,0,282,285,1,0,0,0,283,281,1,0,0,
+        0,283,284,1,0,0,0,284,286,1,0,0,0,285,283,1,0,0,0,286,287,3,92,46,
+        0,287,45,1,0,0,0,288,289,5,13,0,0,289,290,5,21,0,0,290,291,3,72,
+        36,0,291,296,5,24,0,0,292,295,3,66,33,0,293,295,5,24,0,0,294,292,
+        1,0,0,0,294,293,1,0,0,0,295,298,1,0,0,0,296,294,1,0,0,0,296,297,
+        1,0,0,0,297,299,1,0,0,0,298,296,1,0,0,0,299,300,3,92,46,0,300,47,
+        1,0,0,0,301,302,5,14,0,0,302,303,5,21,0,0,303,304,3,72,36,0,304,
+        305,5,24,0,0,305,49,1,0,0,0,306,307,5,15,0,0,307,308,5,21,0,0,308,
+        309,3,74,37,0,309,310,3,80,40,0,310,315,5,24,0,0,311,314,3,52,26,
+        0,312,314,5,24,0,0,313,311,1,0,0,0,313,312,1,0,0,0,314,317,1,0,0,
+        0,315,313,1,0,0,0,315,316,1,0,0,0,316,318,1,0,0,0,317,315,1,0,0,
+        0,318,319,3,92,46,0,319,51,1,0,0,0,320,321,5,23,0,0,321,322,5,21,
+        0,0,322,323,3,90,45,0,323,324,5,24,0,0,324,53,1,0,0,0,325,326,5,
+        16,0,0,326,327,5,21,0,0,327,328,3,76,38,0,328,329,3,80,40,0,329,
+        334,5,24,0,0,330,333,3,56,28,0,331,333,5,24,0,0,332,330,1,0,0,0,
+        332,331,1,0,0,0,333,336,1,0,0,0,334,332,1,0,0,0,334,335,1,0,0,0,
+        335,337,1,0,0,0,336,334,1,0,0,0,337,338,3,92,46,0,338,55,1,0,0,0,
+        339,340,5,23,0,0,340,341,5,21,0,0,341,342,3,90,45,0,342,343,5,24,
+        0,0,343,57,1,0,0,0,344,345,5,17,0,0,345,346,5,21,0,0,346,347,3,78,
+        39,0,347,348,3,80,40,0,348,353,5,24,0,0,349,352,3,60,30,0,350,352,
+        5,24,0,0,351,349,1,0,0,0,351,350,1,0,0,0,352,355,1,0,0,0,353,351,
+        1,0,0,0,353,354,1,0,0,0,354,356,1,0,0,0,355,353,1,0,0,0,356,357,
+        3,92,46,0,357,59,1,0,0,0,358,359,5,23,0,0,359,360,5,21,0,0,360,361,
+        3,90,45,0,361,362,5,24,0,0,362,61,1,0,0,0,363,364,5,23,0,0,364,365,
+        5,21,0,0,365,366,3,90,45,0,366,367,5,24,0,0,367,63,1,0,0,0,368,369,
+        5,23,0,0,369,370,5,21,0,0,370,371,3,90,45,0,371,372,5,24,0,0,372,
+        65,1,0,0,0,373,374,5,23,0,0,374,375,5,21,0,0,375,376,3,90,45,0,376,
+        377,5,24,0,0,377,67,1,0,0,0,378,379,5,23,0,0,379,380,5,21,0,0,380,
+        381,3,90,45,0,381,382,5,24,0,0,382,69,1,0,0,0,383,384,5,23,0,0,384,
+        71,1,0,0,0,385,389,5,23,0,0,386,388,5,23,0,0,387,386,1,0,0,0,388,
+        391,1,0,0,0,389,387,1,0,0,0,389,390,1,0,0,0,390,73,1,0,0,0,391,389,
+        1,0,0,0,392,393,5,23,0,0,393,75,1,0,0,0,394,395,5,23,0,0,395,77,
+        1,0,0,0,396,397,5,23,0,0,397,79,1,0,0,0,398,399,5,23,0,0,399,81,
+        1,0,0,0,400,401,5,23,0,0,401,83,1,0,0,0,402,403,5,23,0,0,403,85,
+        1,0,0,0,404,405,5,23,0,0,405,87,1,0,0,0,406,407,5,23,0,0,407,89,
+        1,0,0,0,408,412,5,23,0,0,409,411,5,23,0,0,410,409,1,0,0,0,411,414,
+        1,0,0,0,412,410,1,0,0,0,412,413,1,0,0,0,413,91,1,0,0,0,414,412,1,
+        0,0,0,415,416,7,0,0,0,416,93,1,0,0,0,38,96,98,105,113,128,130,137,
+        144,146,158,163,169,171,185,187,201,203,217,219,233,235,254,256,
+        264,270,272,281,283,294,296,313,315,332,334,351,353,389,412
     ];
 
     private static __ATN: antlr.ATN;
@@ -2610,23 +2637,14 @@ export class ObjectWeaponSetContext extends antlr.ParserRuleContext {
     public end(): EndContext {
         return this.getRuleContext(0, EndContext)!;
     }
-    public propertyCondition(): PropertyConditionContext[];
-    public propertyCondition(i: number): PropertyConditionContext | null;
-    public propertyCondition(i?: number): PropertyConditionContext[] | PropertyConditionContext | null {
+    public objectWeaponSetProperty(): ObjectWeaponSetPropertyContext[];
+    public objectWeaponSetProperty(i: number): ObjectWeaponSetPropertyContext | null;
+    public objectWeaponSetProperty(i?: number): ObjectWeaponSetPropertyContext[] | ObjectWeaponSetPropertyContext | null {
         if (i === undefined) {
-            return this.getRuleContexts(PropertyConditionContext);
+            return this.getRuleContexts(ObjectWeaponSetPropertyContext);
         }
 
-        return this.getRuleContext(i, PropertyConditionContext);
-    }
-    public objectWeaponSetWeapon(): ObjectWeaponSetWeaponContext[];
-    public objectWeaponSetWeapon(i: number): ObjectWeaponSetWeaponContext | null;
-    public objectWeaponSetWeapon(i?: number): ObjectWeaponSetWeaponContext[] | ObjectWeaponSetWeaponContext | null {
-        if (i === undefined) {
-            return this.getRuleContexts(ObjectWeaponSetWeaponContext);
-        }
-
-        return this.getRuleContext(i, ObjectWeaponSetWeaponContext);
+        return this.getRuleContext(i, ObjectWeaponSetPropertyContext);
     }
     public override get ruleIndex(): number {
         return MapIniParser.RULE_objectWeaponSet;
@@ -2651,104 +2669,38 @@ export class ObjectWeaponSetContext extends antlr.ParserRuleContext {
 }
 
 
-export class PropertyConditionContext extends antlr.ParserRuleContext {
-    public constructor(parent: antlr.ParserRuleContext | null, invokingState: number) {
-        super(parent, invokingState);
-    }
-    public EQ(): antlr.TerminalNode {
-        return this.getToken(MapIniParser.EQ, 0)!;
-    }
-    public property_values(): Property_valuesContext {
-        return this.getRuleContext(0, Property_valuesContext)!;
-    }
-    public NEWLINE(): antlr.TerminalNode {
-        return this.getToken(MapIniParser.NEWLINE, 0)!;
-    }
-    public override get ruleIndex(): number {
-        return MapIniParser.RULE_propertyCondition;
-    }
-    public override enterRule(listener: MapIniListener): void {
-        if(listener.enterPropertyCondition) {
-             listener.enterPropertyCondition(this);
-        }
-    }
-    public override exitRule(listener: MapIniListener): void {
-        if(listener.exitPropertyCondition) {
-             listener.exitPropertyCondition(this);
-        }
-    }
-    public override accept<Result>(visitor: MapIniVisitor<Result>): Result | null {
-        if (visitor.visitPropertyCondition) {
-            return visitor.visitPropertyCondition(this);
-        } else {
-            return visitor.visitChildren(this);
-        }
-    }
-}
-
-
-export class ObjectWeaponSetWeaponContext extends antlr.ParserRuleContext {
-    public constructor(parent: antlr.ParserRuleContext | null, invokingState: number) {
-        super(parent, invokingState);
-    }
-    public EQ(): antlr.TerminalNode {
-        return this.getToken(MapIniParser.EQ, 0)!;
-    }
-    public weaponSlot_value(): WeaponSlot_valueContext {
-        return this.getRuleContext(0, WeaponSlot_valueContext)!;
-    }
-    public property_values(): Property_valuesContext {
-        return this.getRuleContext(0, Property_valuesContext)!;
-    }
-    public NEWLINE(): antlr.TerminalNode {
-        return this.getToken(MapIniParser.NEWLINE, 0)!;
-    }
-    public override get ruleIndex(): number {
-        return MapIniParser.RULE_objectWeaponSetWeapon;
-    }
-    public override enterRule(listener: MapIniListener): void {
-        if(listener.enterObjectWeaponSetWeapon) {
-             listener.enterObjectWeaponSetWeapon(this);
-        }
-    }
-    public override exitRule(listener: MapIniListener): void {
-        if(listener.exitObjectWeaponSetWeapon) {
-             listener.exitObjectWeaponSetWeapon(this);
-        }
-    }
-    public override accept<Result>(visitor: MapIniVisitor<Result>): Result | null {
-        if (visitor.visitObjectWeaponSetWeapon) {
-            return visitor.visitObjectWeaponSetWeapon(this);
-        } else {
-            return visitor.visitChildren(this);
-        }
-    }
-}
-
-
-export class WeaponSlot_valueContext extends antlr.ParserRuleContext {
+export class ObjectWeaponSetPropertyContext extends antlr.ParserRuleContext {
     public constructor(parent: antlr.ParserRuleContext | null, invokingState: number) {
         super(parent, invokingState);
     }
     public ID(): antlr.TerminalNode {
         return this.getToken(MapIniParser.ID, 0)!;
     }
+    public EQ(): antlr.TerminalNode {
+        return this.getToken(MapIniParser.EQ, 0)!;
+    }
+    public property_values(): Property_valuesContext {
+        return this.getRuleContext(0, Property_valuesContext)!;
+    }
+    public NEWLINE(): antlr.TerminalNode {
+        return this.getToken(MapIniParser.NEWLINE, 0)!;
+    }
     public override get ruleIndex(): number {
-        return MapIniParser.RULE_weaponSlot_value;
+        return MapIniParser.RULE_objectWeaponSetProperty;
     }
     public override enterRule(listener: MapIniListener): void {
-        if(listener.enterWeaponSlot_value) {
-             listener.enterWeaponSlot_value(this);
+        if(listener.enterObjectWeaponSetProperty) {
+             listener.enterObjectWeaponSetProperty(this);
         }
     }
     public override exitRule(listener: MapIniListener): void {
-        if(listener.exitWeaponSlot_value) {
-             listener.exitWeaponSlot_value(this);
+        if(listener.exitObjectWeaponSetProperty) {
+             listener.exitObjectWeaponSetProperty(this);
         }
     }
     public override accept<Result>(visitor: MapIniVisitor<Result>): Result | null {
-        if (visitor.visitWeaponSlot_value) {
-            return visitor.visitWeaponSlot_value(this);
+        if (visitor.visitObjectWeaponSetProperty) {
+            return visitor.visitObjectWeaponSetProperty(this);
         } else {
             return visitor.visitChildren(this);
         }
@@ -2772,23 +2724,14 @@ export class ObjectArmorSetContext extends antlr.ParserRuleContext {
     public end(): EndContext {
         return this.getRuleContext(0, EndContext)!;
     }
-    public propertyCondition(): PropertyConditionContext[];
-    public propertyCondition(i: number): PropertyConditionContext | null;
-    public propertyCondition(i?: number): PropertyConditionContext[] | PropertyConditionContext | null {
+    public objectArmorSetProperty(): ObjectArmorSetPropertyContext[];
+    public objectArmorSetProperty(i: number): ObjectArmorSetPropertyContext | null;
+    public objectArmorSetProperty(i?: number): ObjectArmorSetPropertyContext[] | ObjectArmorSetPropertyContext | null {
         if (i === undefined) {
-            return this.getRuleContexts(PropertyConditionContext);
+            return this.getRuleContexts(ObjectArmorSetPropertyContext);
         }
 
-        return this.getRuleContext(i, PropertyConditionContext);
-    }
-    public objectArmorSetArmor(): ObjectArmorSetArmorContext[];
-    public objectArmorSetArmor(i: number): ObjectArmorSetArmorContext | null;
-    public objectArmorSetArmor(i?: number): ObjectArmorSetArmorContext[] | ObjectArmorSetArmorContext | null {
-        if (i === undefined) {
-            return this.getRuleContexts(ObjectArmorSetArmorContext);
-        }
-
-        return this.getRuleContext(i, ObjectArmorSetArmorContext);
+        return this.getRuleContext(i, ObjectArmorSetPropertyContext);
     }
     public override get ruleIndex(): number {
         return MapIniParser.RULE_objectArmorSet;
@@ -2813,9 +2756,12 @@ export class ObjectArmorSetContext extends antlr.ParserRuleContext {
 }
 
 
-export class ObjectArmorSetArmorContext extends antlr.ParserRuleContext {
+export class ObjectArmorSetPropertyContext extends antlr.ParserRuleContext {
     public constructor(parent: antlr.ParserRuleContext | null, invokingState: number) {
         super(parent, invokingState);
+    }
+    public ID(): antlr.TerminalNode {
+        return this.getToken(MapIniParser.ID, 0)!;
     }
     public EQ(): antlr.TerminalNode {
         return this.getToken(MapIniParser.EQ, 0)!;
@@ -2827,21 +2773,21 @@ export class ObjectArmorSetArmorContext extends antlr.ParserRuleContext {
         return this.getToken(MapIniParser.NEWLINE, 0)!;
     }
     public override get ruleIndex(): number {
-        return MapIniParser.RULE_objectArmorSetArmor;
+        return MapIniParser.RULE_objectArmorSetProperty;
     }
     public override enterRule(listener: MapIniListener): void {
-        if(listener.enterObjectArmorSetArmor) {
-             listener.enterObjectArmorSetArmor(this);
+        if(listener.enterObjectArmorSetProperty) {
+             listener.enterObjectArmorSetProperty(this);
         }
     }
     public override exitRule(listener: MapIniListener): void {
-        if(listener.exitObjectArmorSetArmor) {
-             listener.exitObjectArmorSetArmor(this);
+        if(listener.exitObjectArmorSetProperty) {
+             listener.exitObjectArmorSetProperty(this);
         }
     }
     public override accept<Result>(visitor: MapIniVisitor<Result>): Result | null {
-        if (visitor.visitObjectArmorSetArmor) {
-            return visitor.visitObjectArmorSetArmor(this);
+        if (visitor.visitObjectArmorSetProperty) {
+            return visitor.visitObjectArmorSetProperty(this);
         } else {
             return visitor.visitChildren(this);
         }
@@ -2865,23 +2811,14 @@ export class ObjectPrerequisiteContext extends antlr.ParserRuleContext {
     public end(): EndContext {
         return this.getRuleContext(0, EndContext)!;
     }
-    public objectPrerequisite_object(): ObjectPrerequisite_objectContext[];
-    public objectPrerequisite_object(i: number): ObjectPrerequisite_objectContext | null;
-    public objectPrerequisite_object(i?: number): ObjectPrerequisite_objectContext[] | ObjectPrerequisite_objectContext | null {
+    public objectPrerequisiteProperty(): ObjectPrerequisitePropertyContext[];
+    public objectPrerequisiteProperty(i: number): ObjectPrerequisitePropertyContext | null;
+    public objectPrerequisiteProperty(i?: number): ObjectPrerequisitePropertyContext[] | ObjectPrerequisitePropertyContext | null {
         if (i === undefined) {
-            return this.getRuleContexts(ObjectPrerequisite_objectContext);
+            return this.getRuleContexts(ObjectPrerequisitePropertyContext);
         }
 
-        return this.getRuleContext(i, ObjectPrerequisite_objectContext);
-    }
-    public objectPrerequisite_science(): ObjectPrerequisite_scienceContext[];
-    public objectPrerequisite_science(i: number): ObjectPrerequisite_scienceContext | null;
-    public objectPrerequisite_science(i?: number): ObjectPrerequisite_scienceContext[] | ObjectPrerequisite_scienceContext | null {
-        if (i === undefined) {
-            return this.getRuleContexts(ObjectPrerequisite_scienceContext);
-        }
-
-        return this.getRuleContext(i, ObjectPrerequisite_scienceContext);
+        return this.getRuleContext(i, ObjectPrerequisitePropertyContext);
     }
     public override get ruleIndex(): number {
         return MapIniParser.RULE_objectPrerequisite;
@@ -2906,9 +2843,12 @@ export class ObjectPrerequisiteContext extends antlr.ParserRuleContext {
 }
 
 
-export class ObjectPrerequisite_objectContext extends antlr.ParserRuleContext {
+export class ObjectPrerequisitePropertyContext extends antlr.ParserRuleContext {
     public constructor(parent: antlr.ParserRuleContext | null, invokingState: number) {
         super(parent, invokingState);
+    }
+    public ID(): antlr.TerminalNode {
+        return this.getToken(MapIniParser.ID, 0)!;
     }
     public EQ(): antlr.TerminalNode {
         return this.getToken(MapIniParser.EQ, 0)!;
@@ -2920,57 +2860,21 @@ export class ObjectPrerequisite_objectContext extends antlr.ParserRuleContext {
         return this.getToken(MapIniParser.NEWLINE, 0)!;
     }
     public override get ruleIndex(): number {
-        return MapIniParser.RULE_objectPrerequisite_object;
+        return MapIniParser.RULE_objectPrerequisiteProperty;
     }
     public override enterRule(listener: MapIniListener): void {
-        if(listener.enterObjectPrerequisite_object) {
-             listener.enterObjectPrerequisite_object(this);
+        if(listener.enterObjectPrerequisiteProperty) {
+             listener.enterObjectPrerequisiteProperty(this);
         }
     }
     public override exitRule(listener: MapIniListener): void {
-        if(listener.exitObjectPrerequisite_object) {
-             listener.exitObjectPrerequisite_object(this);
+        if(listener.exitObjectPrerequisiteProperty) {
+             listener.exitObjectPrerequisiteProperty(this);
         }
     }
     public override accept<Result>(visitor: MapIniVisitor<Result>): Result | null {
-        if (visitor.visitObjectPrerequisite_object) {
-            return visitor.visitObjectPrerequisite_object(this);
-        } else {
-            return visitor.visitChildren(this);
-        }
-    }
-}
-
-
-export class ObjectPrerequisite_scienceContext extends antlr.ParserRuleContext {
-    public constructor(parent: antlr.ParserRuleContext | null, invokingState: number) {
-        super(parent, invokingState);
-    }
-    public EQ(): antlr.TerminalNode {
-        return this.getToken(MapIniParser.EQ, 0)!;
-    }
-    public property_values(): Property_valuesContext {
-        return this.getRuleContext(0, Property_valuesContext)!;
-    }
-    public NEWLINE(): antlr.TerminalNode {
-        return this.getToken(MapIniParser.NEWLINE, 0)!;
-    }
-    public override get ruleIndex(): number {
-        return MapIniParser.RULE_objectPrerequisite_science;
-    }
-    public override enterRule(listener: MapIniListener): void {
-        if(listener.enterObjectPrerequisite_science) {
-             listener.enterObjectPrerequisite_science(this);
-        }
-    }
-    public override exitRule(listener: MapIniListener): void {
-        if(listener.exitObjectPrerequisite_science) {
-             listener.exitObjectPrerequisite_science(this);
-        }
-    }
-    public override accept<Result>(visitor: MapIniVisitor<Result>): Result | null {
-        if (visitor.visitObjectPrerequisite_science) {
-            return visitor.visitObjectPrerequisite_science(this);
+        if (visitor.visitObjectPrerequisiteProperty) {
+            return visitor.visitObjectPrerequisiteProperty(this);
         } else {
             return visitor.visitChildren(this);
         }
@@ -2994,14 +2898,14 @@ export class ObjectUnitSpecificSoundsContext extends antlr.ParserRuleContext {
     public end(): EndContext {
         return this.getRuleContext(0, EndContext)!;
     }
-    public objectUnitSpecificSoundsSound(): ObjectUnitSpecificSoundsSoundContext[];
-    public objectUnitSpecificSoundsSound(i: number): ObjectUnitSpecificSoundsSoundContext | null;
-    public objectUnitSpecificSoundsSound(i?: number): ObjectUnitSpecificSoundsSoundContext[] | ObjectUnitSpecificSoundsSoundContext | null {
+    public objectUnitSpecificSoundsProperty(): ObjectUnitSpecificSoundsPropertyContext[];
+    public objectUnitSpecificSoundsProperty(i: number): ObjectUnitSpecificSoundsPropertyContext | null;
+    public objectUnitSpecificSoundsProperty(i?: number): ObjectUnitSpecificSoundsPropertyContext[] | ObjectUnitSpecificSoundsPropertyContext | null {
         if (i === undefined) {
-            return this.getRuleContexts(ObjectUnitSpecificSoundsSoundContext);
+            return this.getRuleContexts(ObjectUnitSpecificSoundsPropertyContext);
         }
 
-        return this.getRuleContext(i, ObjectUnitSpecificSoundsSoundContext);
+        return this.getRuleContext(i, ObjectUnitSpecificSoundsPropertyContext);
     }
     public override get ruleIndex(): number {
         return MapIniParser.RULE_objectUnitSpecificSounds;
@@ -3026,7 +2930,7 @@ export class ObjectUnitSpecificSoundsContext extends antlr.ParserRuleContext {
 }
 
 
-export class ObjectUnitSpecificSoundsSoundContext extends antlr.ParserRuleContext {
+export class ObjectUnitSpecificSoundsPropertyContext extends antlr.ParserRuleContext {
     public constructor(parent: antlr.ParserRuleContext | null, invokingState: number) {
         super(parent, invokingState);
     }
@@ -3043,21 +2947,21 @@ export class ObjectUnitSpecificSoundsSoundContext extends antlr.ParserRuleContex
         return this.getToken(MapIniParser.NEWLINE, 0)!;
     }
     public override get ruleIndex(): number {
-        return MapIniParser.RULE_objectUnitSpecificSoundsSound;
+        return MapIniParser.RULE_objectUnitSpecificSoundsProperty;
     }
     public override enterRule(listener: MapIniListener): void {
-        if(listener.enterObjectUnitSpecificSoundsSound) {
-             listener.enterObjectUnitSpecificSoundsSound(this);
+        if(listener.enterObjectUnitSpecificSoundsProperty) {
+             listener.enterObjectUnitSpecificSoundsProperty(this);
         }
     }
     public override exitRule(listener: MapIniListener): void {
-        if(listener.exitObjectUnitSpecificSoundsSound) {
-             listener.exitObjectUnitSpecificSoundsSound(this);
+        if(listener.exitObjectUnitSpecificSoundsProperty) {
+             listener.exitObjectUnitSpecificSoundsProperty(this);
         }
     }
     public override accept<Result>(visitor: MapIniVisitor<Result>): Result | null {
-        if (visitor.visitObjectUnitSpecificSoundsSound) {
-            return visitor.visitObjectUnitSpecificSoundsSound(this);
+        if (visitor.visitObjectUnitSpecificSoundsProperty) {
+            return visitor.visitObjectUnitSpecificSoundsProperty(this);
         } else {
             return visitor.visitChildren(this);
         }
@@ -3081,14 +2985,14 @@ export class ObjectUnitSpecificFXContext extends antlr.ParserRuleContext {
     public end(): EndContext {
         return this.getRuleContext(0, EndContext)!;
     }
-    public objectUnitSpecificFXFX(): ObjectUnitSpecificFXFXContext[];
-    public objectUnitSpecificFXFX(i: number): ObjectUnitSpecificFXFXContext | null;
-    public objectUnitSpecificFXFX(i?: number): ObjectUnitSpecificFXFXContext[] | ObjectUnitSpecificFXFXContext | null {
+    public objectUnitSpecificFXProperty(): ObjectUnitSpecificFXPropertyContext[];
+    public objectUnitSpecificFXProperty(i: number): ObjectUnitSpecificFXPropertyContext | null;
+    public objectUnitSpecificFXProperty(i?: number): ObjectUnitSpecificFXPropertyContext[] | ObjectUnitSpecificFXPropertyContext | null {
         if (i === undefined) {
-            return this.getRuleContexts(ObjectUnitSpecificFXFXContext);
+            return this.getRuleContexts(ObjectUnitSpecificFXPropertyContext);
         }
 
-        return this.getRuleContext(i, ObjectUnitSpecificFXFXContext);
+        return this.getRuleContext(i, ObjectUnitSpecificFXPropertyContext);
     }
     public override get ruleIndex(): number {
         return MapIniParser.RULE_objectUnitSpecificFX;
@@ -3113,7 +3017,7 @@ export class ObjectUnitSpecificFXContext extends antlr.ParserRuleContext {
 }
 
 
-export class ObjectUnitSpecificFXFXContext extends antlr.ParserRuleContext {
+export class ObjectUnitSpecificFXPropertyContext extends antlr.ParserRuleContext {
     public constructor(parent: antlr.ParserRuleContext | null, invokingState: number) {
         super(parent, invokingState);
     }
@@ -3130,21 +3034,21 @@ export class ObjectUnitSpecificFXFXContext extends antlr.ParserRuleContext {
         return this.getToken(MapIniParser.NEWLINE, 0)!;
     }
     public override get ruleIndex(): number {
-        return MapIniParser.RULE_objectUnitSpecificFXFX;
+        return MapIniParser.RULE_objectUnitSpecificFXProperty;
     }
     public override enterRule(listener: MapIniListener): void {
-        if(listener.enterObjectUnitSpecificFXFX) {
-             listener.enterObjectUnitSpecificFXFX(this);
+        if(listener.enterObjectUnitSpecificFXProperty) {
+             listener.enterObjectUnitSpecificFXProperty(this);
         }
     }
     public override exitRule(listener: MapIniListener): void {
-        if(listener.exitObjectUnitSpecificFXFX) {
-             listener.exitObjectUnitSpecificFXFX(this);
+        if(listener.exitObjectUnitSpecificFXProperty) {
+             listener.exitObjectUnitSpecificFXProperty(this);
         }
     }
     public override accept<Result>(visitor: MapIniVisitor<Result>): Result | null {
-        if (visitor.visitObjectUnitSpecificFXFX) {
-            return visitor.visitObjectUnitSpecificFXFX(this);
+        if (visitor.visitObjectUnitSpecificFXProperty) {
+            return visitor.visitObjectUnitSpecificFXProperty(this);
         } else {
             return visitor.visitChildren(this);
         }
@@ -3231,6 +3135,93 @@ export class ConditionStateContext extends antlr.ParserRuleContext {
     public constructor(parent: antlr.ParserRuleContext | null, invokingState: number) {
         super(parent, invokingState);
     }
+    public defaultConditionStateBlock(): DefaultConditionStateBlockContext | null {
+        return this.getRuleContext(0, DefaultConditionStateBlockContext);
+    }
+    public conditionStateBlock(): ConditionStateBlockContext | null {
+        return this.getRuleContext(0, ConditionStateBlockContext);
+    }
+    public transitionStateBlock(): TransitionStateBlockContext | null {
+        return this.getRuleContext(0, TransitionStateBlockContext);
+    }
+    public override get ruleIndex(): number {
+        return MapIniParser.RULE_conditionState;
+    }
+    public override enterRule(listener: MapIniListener): void {
+        if(listener.enterConditionState) {
+             listener.enterConditionState(this);
+        }
+    }
+    public override exitRule(listener: MapIniListener): void {
+        if(listener.exitConditionState) {
+             listener.exitConditionState(this);
+        }
+    }
+    public override accept<Result>(visitor: MapIniVisitor<Result>): Result | null {
+        if (visitor.visitConditionState) {
+            return visitor.visitConditionState(this);
+        } else {
+            return visitor.visitChildren(this);
+        }
+    }
+}
+
+
+export class DefaultConditionStateBlockContext extends antlr.ParserRuleContext {
+    public constructor(parent: antlr.ParserRuleContext | null, invokingState: number) {
+        super(parent, invokingState);
+    }
+    public NEWLINE(): antlr.TerminalNode[];
+    public NEWLINE(i: number): antlr.TerminalNode | null;
+    public NEWLINE(i?: number): antlr.TerminalNode | null | antlr.TerminalNode[] {
+    	if (i === undefined) {
+    		return this.getTokens(MapIniParser.NEWLINE);
+    	} else {
+    		return this.getToken(MapIniParser.NEWLINE, i);
+    	}
+    }
+    public conditionStateProperty(): ConditionStatePropertyContext[];
+    public conditionStateProperty(i: number): ConditionStatePropertyContext | null;
+    public conditionStateProperty(i?: number): ConditionStatePropertyContext[] | ConditionStatePropertyContext | null {
+        if (i === undefined) {
+            return this.getRuleContexts(ConditionStatePropertyContext);
+        }
+
+        return this.getRuleContext(i, ConditionStatePropertyContext);
+    }
+    public override get ruleIndex(): number {
+        return MapIniParser.RULE_defaultConditionStateBlock;
+    }
+    public override enterRule(listener: MapIniListener): void {
+        if(listener.enterDefaultConditionStateBlock) {
+             listener.enterDefaultConditionStateBlock(this);
+        }
+    }
+    public override exitRule(listener: MapIniListener): void {
+        if(listener.exitDefaultConditionStateBlock) {
+             listener.exitDefaultConditionStateBlock(this);
+        }
+    }
+    public override accept<Result>(visitor: MapIniVisitor<Result>): Result | null {
+        if (visitor.visitDefaultConditionStateBlock) {
+            return visitor.visitDefaultConditionStateBlock(this);
+        } else {
+            return visitor.visitChildren(this);
+        }
+    }
+}
+
+
+export class ConditionStateBlockContext extends antlr.ParserRuleContext {
+    public constructor(parent: antlr.ParserRuleContext | null, invokingState: number) {
+        super(parent, invokingState);
+    }
+    public EQ(): antlr.TerminalNode {
+        return this.getToken(MapIniParser.EQ, 0)!;
+    }
+    public conditionState_values(): ConditionState_valuesContext {
+        return this.getRuleContext(0, ConditionState_valuesContext)!;
+    }
     public NEWLINE(): antlr.TerminalNode[];
     public NEWLINE(i: number): antlr.TerminalNode | null;
     public NEWLINE(i?: number): antlr.TerminalNode | null | antlr.TerminalNode[] {
@@ -3252,28 +3243,76 @@ export class ConditionStateContext extends antlr.ParserRuleContext {
 
         return this.getRuleContext(i, ConditionStatePropertyContext);
     }
-    public EQ(): antlr.TerminalNode | null {
-        return this.getToken(MapIniParser.EQ, 0);
-    }
-    public conditionState_values(): ConditionState_valuesContext | null {
-        return this.getRuleContext(0, ConditionState_valuesContext);
-    }
     public override get ruleIndex(): number {
-        return MapIniParser.RULE_conditionState;
+        return MapIniParser.RULE_conditionStateBlock;
     }
     public override enterRule(listener: MapIniListener): void {
-        if(listener.enterConditionState) {
-             listener.enterConditionState(this);
+        if(listener.enterConditionStateBlock) {
+             listener.enterConditionStateBlock(this);
         }
     }
     public override exitRule(listener: MapIniListener): void {
-        if(listener.exitConditionState) {
-             listener.exitConditionState(this);
+        if(listener.exitConditionStateBlock) {
+             listener.exitConditionStateBlock(this);
         }
     }
     public override accept<Result>(visitor: MapIniVisitor<Result>): Result | null {
-        if (visitor.visitConditionState) {
-            return visitor.visitConditionState(this);
+        if (visitor.visitConditionStateBlock) {
+            return visitor.visitConditionStateBlock(this);
+        } else {
+            return visitor.visitChildren(this);
+        }
+    }
+}
+
+
+export class TransitionStateBlockContext extends antlr.ParserRuleContext {
+    public constructor(parent: antlr.ParserRuleContext | null, invokingState: number) {
+        super(parent, invokingState);
+    }
+    public EQ(): antlr.TerminalNode {
+        return this.getToken(MapIniParser.EQ, 0)!;
+    }
+    public conditionState_values(): ConditionState_valuesContext {
+        return this.getRuleContext(0, ConditionState_valuesContext)!;
+    }
+    public NEWLINE(): antlr.TerminalNode[];
+    public NEWLINE(i: number): antlr.TerminalNode | null;
+    public NEWLINE(i?: number): antlr.TerminalNode | null | antlr.TerminalNode[] {
+    	if (i === undefined) {
+    		return this.getTokens(MapIniParser.NEWLINE);
+    	} else {
+    		return this.getToken(MapIniParser.NEWLINE, i);
+    	}
+    }
+    public end(): EndContext {
+        return this.getRuleContext(0, EndContext)!;
+    }
+    public conditionStateProperty(): ConditionStatePropertyContext[];
+    public conditionStateProperty(i: number): ConditionStatePropertyContext | null;
+    public conditionStateProperty(i?: number): ConditionStatePropertyContext[] | ConditionStatePropertyContext | null {
+        if (i === undefined) {
+            return this.getRuleContexts(ConditionStatePropertyContext);
+        }
+
+        return this.getRuleContext(i, ConditionStatePropertyContext);
+    }
+    public override get ruleIndex(): number {
+        return MapIniParser.RULE_transitionStateBlock;
+    }
+    public override enterRule(listener: MapIniListener): void {
+        if(listener.enterTransitionStateBlock) {
+             listener.enterTransitionStateBlock(this);
+        }
+    }
+    public override exitRule(listener: MapIniListener): void {
+        if(listener.exitTransitionStateBlock) {
+             listener.exitTransitionStateBlock(this);
+        }
+    }
+    public override accept<Result>(visitor: MapIniVisitor<Result>): Result | null {
+        if (visitor.visitTransitionStateBlock) {
+            return visitor.visitTransitionStateBlock(this);
         } else {
             return visitor.visitChildren(this);
         }
