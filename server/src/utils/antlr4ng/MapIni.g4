@@ -302,7 +302,7 @@ fxlist_ps_block: 'ParticleSystem' WS* NEWLINE
                 | fxlist_ps_creategroundheight_property) NEWLINE) | (WS | NEWLINE))*
                 end;
 
-fxlist_ps_name_property: 'Name' ((WS? EQ WS?) | WS) particlesystem_value;
+fxlist_ps_name_property: 'Name' ((WS? EQ WS?) | WS) particlesystem_value | damageType_value | kindof_value;
 fxlist_ps_count_property: 'Count' ((WS? EQ WS?) | WS) rand_value;
 fxlist_ps_offset_property: 'Offset' ((WS? EQ WS?) | WS) coord3D;
 fxlist_ps_radius_property: 'Radius' ((WS? EQ WS?) | WS) rand_value;
@@ -712,7 +712,7 @@ objectClass_sets: objectClass_weaponSetBlock
                 ;
 
 objectClass_weaponSetBlock: 'WeaponSet' WS* NEWLINE ((WS? objectClass_weaponSetProperties WS? NEWLINE) | (WS | NEWLINE))* end;
-objectClass_weaponSetProperties: 'Conditions' ((WS? EQ WS?) | WS) objectClass_setConditions (WS objectClass_setConditions)*
+objectClass_weaponSetProperties: 'Conditions' ((WS? EQ WS?) | WS) (objectClass_setConditions | drawModule_conditionStateValue) (WS (objectClass_setConditions | drawModule_conditionStateValue))*
                                | weapon_property
                                | 'PreferredAgainst' ((WS? EQ WS?) | WS) WEAPONSLOT WS kindof_value (WS kindof_value)*
                                | 'AutoChooseSources' ((WS? EQ WS?) | WS) WEAPONSLOT WS autochoose_sources (WS autochoose_sources)*
@@ -721,12 +721,12 @@ objectClass_weaponSetProperties: 'Conditions' ((WS? EQ WS?) | WS) objectClass_se
                                ;
 
 objectClass_armorSetBlock: 'ArmorSet' WS* NEWLINE ((WS? objectClass_armorSetProperties WS? NEWLINE) | (WS | NEWLINE))* end;
-objectClass_armorSetProperties: 'Conditions' ((WS? EQ WS?) | WS) objectClass_setConditions (WS objectClass_setConditions)*
+objectClass_armorSetProperties: 'Conditions' ((WS? EQ WS?) | WS) (objectClass_setConditions | drawModule_conditionStateValue) (WS (objectClass_setConditions | drawModule_conditionStateValue))*
                                | 'Armor' ((WS? EQ WS?) | WS) armor_value
                                | 'DamageFX' ((WS? EQ WS?) | WS) damageFX_value
                                ;
 
-objectClass_setConditions: (None_value | 'PLAYER_UPGRADE' | 'MINE_CLEARING_DETAIL' | 'CRATEUPGRADE_ONE' | 'CRATEUPGRADE_TWO' | 'WEAPON_RIDER1' | 'WEAPON_RIDER2' | 'WEAPON_RIDER3' | 'WEAPON_RIDER4' | 'WEAPON_RIDER5' | 'WEAPON_RIDER6' | 'WEAPON_RIDER7' | 'WEAPON_RIDER8' | 'SECOND_LIFE' | 'CRATE_UPGRADE_ONE' | 'CRATE_UPGRADE_TWO');
+objectClass_setConditions: (None_value | 'PLAYER_UPGRADE' | 'MINE_CLEARING_DETAIL' | 'CRATEUPGRADE_ONE' | 'CRATEUPGRADE_TWO' | 'WEAPON_RIDER1' | 'WEAPON_RIDER2' | 'WEAPON_RIDER3' | 'WEAPON_RIDER4' | 'WEAPON_RIDER5' | 'WEAPON_RIDER6' | 'WEAPON_RIDER7' | 'WEAPON_RIDER8' | 'SECOND_LIFE' | 'CRATE_UPGRADE_ONE' | 'CRATE_UPGRADE_TWO' | VETERENCY | 'HERO');
 
 objectClass_prerequisiteSetBlock: 'Prerequisites' WS* NEWLINE ((WS? objectClass_prerequisiteSetProperties WS? NEWLINE) | (WS | NEWLINE))* end;
 objectClass_prerequisiteSetProperties: 'Object' ((WS? EQ WS?) | WS) object_value (WS object_value)*
@@ -740,7 +740,7 @@ objectClass_unitSpecificFXProperties: 'CombatDropKillFX' ((WS? EQ WS?) | WS) fxl
 
 objectClass_removeModule: ('RemoveModule') WS moduleTag_value;
 
-objectClass_addModule: ('AddModule' | 'addmodule' | 'Addmodule') WS* NEWLINE ((WS? (objectClass_modules | objectClass_properties) WS? NEWLINE) | (WS | NEWLINE))* end;
+objectClass_addModule: ('AddModule' | 'addmodule' | 'Addmodule') WS* ID? NEWLINE ((WS? (objectClass_modules | objectClass_properties) WS? NEWLINE) | (WS | NEWLINE))* end;
 
 objectClass_replaceModule: ('ReplaceModule') WS moduleTag_value WS* NEWLINE ((WS? (objectClass_drawModules | objectClass_bodyModules | objectClass_behaviorModules | objectClass_clientModules) WS? NEWLINE) | (WS | NEWLINE))* end;
 
@@ -776,7 +776,7 @@ w3dModelDrawProperties: 'TrackMarks' ((WS? EQ WS?) | WS) file
 	              | 'RecoilSettleSpeed' ((WS? EQ WS?) | WS) INT
 	              | 'RecoilDamping' ((WS? EQ WS?) | WS) (INT | FLOAT)
 	              | 'AnimationsRequirePower' ((WS? EQ WS?) | WS) BOOLEAN
-                | 'ExtraPublicBone' ((WS? EQ WS?) | WS) (ID | STRING) (WS (ID | STRING))*
+                | 'ExtraPublicBone' ((WS? EQ WS?) | WS) (ID | STRING | damageType_value | kindof_value) (WS (ID | STRING | damageType_value | kindof_value))*
                 ;
 
 w3dLaserDrawModule: ('W3DLaserDraw') WS moduleTag_value NEWLINE ((WS? (w3dLaserDrawProperties) WS? NEWLINE) | (WS | NEWLINE | drawModule_conditionBlock | drawModule_defaultconditionBlock | drawModule_transitionStateBlock))*;
@@ -790,7 +790,7 @@ w3dLaserDrawProperties: 'NumBeams' ((WS? EQ WS?) | WS) INT
                       | 'Texture' ((WS? EQ WS?) | WS) file
                       | 'ScrollRate' ((WS? EQ WS?) | WS) (INT | FLOAT)
                       | 'Tile' ((WS? EQ WS?) | WS) BOOLEAN
-                      | 'Segments' ((WS? EQ WS?) | WS) INT
+                      | 'Segments' ((WS? EQ WS?) | WS) (INT | FLOAT)
                       | 'ArcHeight' ((WS? EQ WS?) | WS) (INT | FLOAT)
                       | 'SegmentOverlapRatio' ((WS? EQ WS?) | WS) (INT | FLOAT)
                       | 'TilingScalar' ((WS? EQ WS?) | WS) (INT | FLOAT)
@@ -872,8 +872,7 @@ drawModule_transitionStateBlock: 'TransitionState' ((WS? EQ WS?) | WS) drawModul
 
 drawModule_conditionStateValue: (None_value | ID | 'USER_1' | 'USER_2' | 'JAMMED' | 'ATTACKING' | 'WEAPONSET_CRATEUPGRADE_ONE' | 'WEAPONSET_CRATEUPGRADE_TWO' | 'ARMORSET_CRATEUPGRADE_TWO' | 'ARMORSET_CRATEUPGRADE_ONE' | 'PREORDER' | 'STUNNED' | 'STUNNED_FLAILING' | 'EXPLODED_BOUNCING' | 'EXPLODED_FLAILING' | 'CAPTURED' | 'RAISING_FLAG' | 'CONTINUOUS_FIRE_SLOW' | 'CONTINUOUS_FIRE_FAST' | 'CONTINUOUS_FIRE_MEAN' | 'SPECIAL_CHEERING' | 'ARMED' | 'RAPELLING' | 'PARACHUTING' | 'CLIMBING' | 'SPLATTED' | 'BURNED' | 'AFLAME' | 'SMOLDERING' | 'POWER_PLANT_UPGRADING' | 'POWER_PLANT_UPGRADED' | 'OVER_WATER' | 'MOVING' | 'DEPLOYED' | 'UNPACKING' | 'PACKING' | 'JETEXHAUST' | 'JETAFTERBURNER' | 'LOADED' | 'CARRYING' | 'DOCKING_ENDING' | 'DOCKING_ACTIVE' | 'DOCKING_BEGINNING' | 'DOCKING' | 'PANICKING' | 'RADAR_UPGRADED' | 'RADAR_EXTENDED' | 'CONSTRUCTION_COMPLETE' | 'ACTIVELY_CONSTRUCTING' | 'ACTIVELY_BEING_CONSTRUCTED' | 'PARTIALLY_CONSTRUCTED' | 'AWAITING_CONSTRUCTION' | 'DYING' | 'PRONE' | 'FREEFALL' | 'POST_COLLAPSE' | 'TOPPLED' | 'TURRET_ROTATE' | 'RELOADING_A' | 'BETWEEN_FIRING_SHOTS_A' | 'FIRING_A' | 'PREATTACK_A' | 'USING_WEAPON_A' | 'RELOADING_B' | 'BETWEEN_FIRING_SHOTS_B' | 'FIRING_B' | 'PREATTACK_B' | 'USING_WEAPON_B' | 'RELOADING_C' | 'BETWEEN_FIRING_SHOTS_C' | 'FIRING_C' | 'PREATTACK_C' | 'USING_WEAPON_C' | 'DOOR_4_WAITING_TO_CLOSE' | 'DOOR_4_WAITING_OPEN' | 'DOOR_4_CLOSING' | 'DOOR_4_OPENING' | 'DOOR_3_WAITING_TO_CLOSE' | 'DOOR_3_WAITING_OPEN' | 'DOOR_3_CLOSING' | 'DOOR_3_OPENING' | 'DOOR_2_WAITING_TO_CLOSE' | 'DOOR_2_WAITING_OPEN' | 'DOOR_2_CLOSING' | 'DOOR_2_OPENING' | 'DOOR_1_WAITING_TO_CLOSE' | 'DOOR_1_WAITING_OPEN' | 'DOOR_1_CLOSING' | 'DOOR_1_OPENING' | 'WEAPONSET_PLAYER_UPGRADE' | 'WEAPONSET_HERO' | 'WEAPONSET_ELITE' | 'WEAPONSET_VETERAN' | 'ENEMYNEAR' | 'REALLYDAMAGED' | 'RUBBLE' | 'DAMAGED' | 'SNOW' | 'SOLD' | 'DISGUISED' | 'NIGHT' | 'RAPPELLING' | 'SPECIAL_DAMAGED' | 'BACKCRUSHED' | 'FRONTCRUSHED' | 'SECOND_LIFE' | 'RIDER1' | 'RIDER2' | 'RIDER3' | 'RIDER4' | 'RIDER5' | 'RIDER6' | 'RIDER7' | 'RIDER8' | 'PRISTINE' | 'RIGHT_TO_CENTER' | 'CENTER_TO_RIGHT' | 'LEFT_TO_CENTER' | 'CENTER_TO_LEFT' | 'DOWN_DEFAULT' | 'AWAITING_CONSTRUCTION' | 'PARTIALLY_CONSTRUCTED' | 'ACTIVELY_BEING_CONSTRUCTED' | 'UP_DAY' | 'UP_NIGHT' | 'UP_SNOW' | 'UP_SNOWNIGHT' | 'RADAR_EXTENDING' | 'GARRISONED');
 
-drawModule_conditionStateProperties: 'Model' WS (EQ WS)? (None_value | ID)
-                                   | 'WeaponHideShowBone' ((WS? EQ WS?) | WS) WEAPONSLOT WS (None_value | STRING | ID)
+drawModule_conditionStateProperties: 'Model' WS (EQ WS)? (None_value | ID)                                   | 'WeaponHideShowBone' ((WS? EQ WS?) | WS) WEAPONSLOT WS (None_value | STRING | ID)
                                    | 'AnimationSpeedFactorRange' ((WS? EQ WS?) | WS) (INT | FLOAT) WS (INT | FLOAT)
                                    | 'AnimationMode' ((WS? EQ WS?) | WS) (None_value | MANUAL | 'ONCE' | 'ONCE_BACKWARDS' | 'LOOP' | 'LOOP_BACKWARDS' | 'PING_PONG' | 'LOOP_PINGPONG' | 'PING_PONG_BACKWARDS')
                                    | drawModule_transitionKeyProperty
@@ -881,14 +880,14 @@ drawModule_conditionStateProperties: 'Model' WS (EQ WS)? (None_value | ID)
                                    | 'WaitForStateToFinishIfPossible' ((WS? EQ WS?) | WS) (drawModule_conditionStateValue | 'TransitionFinishBeforeSwitch')
                                    | turret_property
                                    | 'TurretArtAngle' ((WS? EQ WS?) | WS) (INT | FLOAT)
-                                   | 'TurretPitch' ((WS? EQ WS?) | WS) ID
+                                   | 'TurretPitch' ((WS? EQ WS?) | WS) (ID | TURRET)
                                    | 'TurretArtPitch'  ((WS? EQ WS?) | WS) (INT | FLOAT)
                                    | alt_turret_property
                                    | 'AltTurretArtAngle' ((WS? EQ WS?) | WS) (INT | FLOAT)
-                                   | 'AltTurretPitch' ((WS? EQ WS?) | WS) ID
+                                   | 'AltTurretPitch' ((WS? EQ WS?) | WS) (ID | TURRET)
                                    | 'AltTurretArtPitch' ((WS? EQ WS?) | WS) (INT | FLOAT)
-                                   | 'ShowSubObject' ((WS? EQ WS?) | WS) (None_value | ID | BOX | TURRET | ALT_TURRET | STRING | armorType_value | damageType_value) (WS (None_value | ID | BOX | TURRET | ALT_TURRET | STRING | armorType_value | damageType_value))*
-                                   | 'HideSubObject' ((WS? EQ WS?) | WS) (None_value | ID | BOX | TURRET | ALT_TURRET | STRING | armorType_value | damageType_value) (WS (None_value | ID | BOX | TURRET | ALT_TURRET | STRING | armorType_value | damageType_value))*
+                                   | 'ShowSubObject' ((WS? EQ WS?) | WS) (None_value | ID | BOX | TURRET | ALT_TURRET | STRING | armorType_value | damageType_value | drawModule_conditionStateValue | kindof_value) (WS (None_value | ID | BOX | TURRET | ALT_TURRET | STRING | armorType_value | damageType_value | drawModule_conditionStateValue | kindof_value))*
+                                   | 'HideSubObject' ((WS? EQ WS?) | WS) (None_value | ID | BOX | TURRET | ALT_TURRET | STRING | armorType_value | damageType_value | drawModule_conditionStateValue | kindof_value) (WS (None_value | ID | BOX | TURRET | ALT_TURRET | STRING | armorType_value | damageType_value | drawModule_conditionStateValue | kindof_value))*
                                    | 'WeaponRecoilBone' ((WS? EQ WS?) | WS) WEAPONSLOT WS (None_value | ID | STRING | TURRET | ALT_TURRET)
                                    | 'WeaponFireFXBone' ((WS? EQ WS?) | WS) WEAPONSLOT WS (None_value | ID | STRING |  TURRET | ALT_TURRET)
                                    | 'WeaponMuzzleFlash' ((WS? EQ WS?) | WS) WEAPONSLOT WS (None_value | ID | TURRET | ALT_TURRET)
@@ -919,7 +918,8 @@ bodyModule_highlander_properties: 'PropagateDamageTypesToSlavesWhenExisting' ((W
 
 objectClass_behaviorModules: 'Behavior' ((WS? EQ WS?) | WS) behaviorModule_value end;
 
-behaviorModule_value: behaviorModule_animationSteeringUpdate
+behaviorModule_value: behaviorModule_activeShroudUpgrade
+                    | behaviorModule_animationSteeringUpdate
                     | behaviorModule_armorUpgradeUpdate
                     | behaviorModule_assultTroopAIUpdate
                     | behaviorModule_assistedTargetingUpdate
@@ -930,7 +930,7 @@ behaviorModule_value: behaviorModule_animationSteeringUpdate
                     | behaviorModule_baseRegenerateUpdate
                     | behaviorModule_battleBusSlowDeathBehavior
                     | behaviorModule_battlePlanUpdate
-					| behaviorModule_boneFXDamage
+					          | behaviorModule_boneFXDamage
                     | behaviorModule_boneFXUpdate
                     | behaviorModule_bridgeBehavior
                     | behaviorModule_bridgeScaffoldBehavior
@@ -1098,6 +1098,15 @@ behaviorModule_value: behaviorModule_animationSteeringUpdate
                     | behaviorModule_workerAIUpdate
                     ;
 
+behaviorModule_activeShroudUpgrade: 'ActiveShroudUpgrade' WS moduleTag_value NEWLINE ((WS? behaviorModule_activeShroudUpgrade_properties WS? NEWLINE) | (WS | NEWLINE))*;
+behaviorModule_activeShroudUpgrade_properties: 'TriggeredBy' ((WS? EQ WS?) | WS) upgrade_value (WS upgrade_value)*
+                                            | 'ConflictsWith' ((WS? EQ WS?) | WS) upgrade_value (WS upgrade_value)*
+                                            | 'RemovesUpgrade' ((WS? EQ WS?) | WS) upgrade_value (WS upgrade_value)*
+                                            | 'FXListUpgrade' ((WS? EQ WS?) | WS) fxlist_value
+                                            | 'RequiresAllTriggers' ((WS? EQ WS?) | WS) BOOLEAN
+                                            | 'NewShroudRange' ((WS? EQ WS?) | WS) (INT | FLOAT)
+                                            ;
+
 behaviorModule_animationSteeringUpdate: 'AnimationSteeringUpdate' WS moduleTag_value NEWLINE ((WS? behaviorModule_animationSteeringUpdate_properties WS? NEWLINE) | (WS | NEWLINE))*;
 behaviorModule_animationSteeringUpdate_properties: 'MinTransitionTime' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                                  ;
@@ -1138,8 +1147,8 @@ behaviorModule_autoHealBehavior_properties: 'StartsActive' ((WS? EQ WS?) | WS) B
                                                 | 'HealingAmount' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                                 | 'HealingDelay' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                                 | 'Radius' ((WS? EQ WS?) | WS) (INT | FLOAT)
-                                                | 'KindOf' ((WS? EQ WS?) | WS) kindof_value
-                                                | 'ForbiddenKindOf' ((WS? EQ WS?) | WS) kindof_value
+                                                | 'KindOf' ((WS? EQ WS?) | WS) kindof_value (WS kindof_value)*
+                                                | 'ForbiddenKindOf' ((WS? EQ WS?) | WS) kindof_value (WS kindof_value)*
                                                 | 'RadiusParticleSystemName' ((WS? EQ WS?) | WS) particlesystem_value
                                                 | 'UnitHealPulseParticleSystemName' ((WS? EQ WS?) | WS) particlesystem_value
                                                 | 'StartHealingDelay' ((WS? EQ WS?) | WS) (INT | FLOAT)
@@ -1414,8 +1423,8 @@ behaviorModule_commandSetUpgrade_properties: 'TriggeredBy' ((WS? EQ WS?) | WS) u
                                              ;
 
 behaviorModule_convertToCarBombCrateCollide: 'ConvertToCarBombCrateCollide' WS moduleTag_value NEWLINE ((WS? behaviorModule_convertToCarBombCrateCollide_properties WS? NEWLINE) | (WS | NEWLINE))*;
-behaviorModule_convertToCarBombCrateCollide_properties: 'RequiredKindOf' ((WS? EQ WS?) | WS) kindof_value
-                                                      | 'ForbiddenKindOf' ((WS? EQ WS?) | WS) kindof_value
+behaviorModule_convertToCarBombCrateCollide_properties: 'RequiredKindOf' ((WS? EQ WS?) | WS) kindof_value (WS kindof_value)*
+                                                      | 'ForbiddenKindOf' ((WS? EQ WS?) | WS) kindof_value (WS kindof_value)*
                                                       | 'ForbidOwnerPlayer' ((WS? EQ WS?) | WS) BOOLEAN
                                                       | 'BuildingPickup' ((WS? EQ WS?) | WS) BOOLEAN
                                                       | 'HumanOnly' ((WS? EQ WS?) | WS) BOOLEAN
@@ -1476,8 +1485,8 @@ behaviorModule_createObjectDie_properties: behaviorModule_deathTypes
                                           ;
 
 behaviorModule_convertToHijackedVehicleCrateCollide: 'ConvertToHijackedVehicleCrateCollide' WS moduleTag_value NEWLINE ((WS? behaviorModule_convertToHijackedVehicleCrateCollide_properties WS? NEWLINE) | (WS | NEWLINE))*;
-behaviorModule_convertToHijackedVehicleCrateCollide_properties: 'RequiredKindOf' ((WS? EQ WS?) | WS) kindof_value
-                                                      | 'ForbiddenKindOf' ((WS? EQ WS?) | WS) kindof_value
+behaviorModule_convertToHijackedVehicleCrateCollide_properties: 'RequiredKindOf' ((WS? EQ WS?) | WS) kindof_value (WS kindof_value)*
+                                                      | 'ForbiddenKindOf' ((WS? EQ WS?) | WS) kindof_value (WS kindof_value)*
                                                       | 'ForbidOwnerPlayer' ((WS? EQ WS?) | WS) BOOLEAN
                                                       | 'BuildingPickup' ((WS? EQ WS?) | WS) BOOLEAN
                                                       | 'HumanOnly' ((WS? EQ WS?) | WS) BOOLEAN
@@ -1550,8 +1559,8 @@ behaviorModule_dumbProjectileBehavior_properties: 'MaxLifespan' ((WS? EQ WS?) | 
                                                  | 'SecondHeight' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                                  | 'FirstPercentIndent' ((WS? EQ WS?) | WS) PERCENT
                                                  | 'SecondPercentIndent' ((WS? EQ WS?) | WS) PERCENT
-                                                 | 'GarrisonHitKillRequiredKindOf' ((WS? EQ WS?) | WS) kindof_value
-                                                 | 'GarrisonHitKillForbiddenKindOf' ((WS? EQ WS?) | WS) kindof_value
+                                                 | 'GarrisonHitKillRequiredKindOf' ((WS? EQ WS?) | WS) kindof_value (WS kindof_value)*
+                                                 | 'GarrisonHitKillForbiddenKindOf' ((WS? EQ WS?) | WS) kindof_value (WS kindof_value)*
                                                  | 'GarrisonHitKillCount' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                                  | 'GarrisonHitKillFX' ((WS? EQ WS?) | WS) fxlist_value
                                                  | 'FlightPathAdjustDistPerSecond' ((WS? EQ WS?) | WS) (INT | FLOAT)
@@ -1761,7 +1770,7 @@ behaviorModule_flightDeckBehavior_properties: 'NumRunways' ((WS? EQ WS?) | WS) (
                                             | 'Runway1Landing' ((WS? EQ WS?) | WS) ID (WS ID)*
                                             | 'Runway1Taxi' ((WS? EQ WS?) | WS) ID (WS ID)*
                                             | 'Runway1Creation' ((WS? EQ WS?) | WS) ID (WS ID)*
-                                            | 'Runway1CatapultSystem' ((WS? EQ WS?) | WS) ID  
+                                            | 'Runway1CatapultSystem' ((WS? EQ WS?) | WS) ID
                                             | 'Runway2Spaces' ((WS? EQ WS?) | WS) ID (WS ID)*
                                             | 'Runway2Takeoff' ((WS? EQ WS?) | WS) ID (WS ID)*
                                             | 'Runway2Landing' ((WS? EQ WS?) | WS) ID (WS ID)*
@@ -2162,8 +2171,8 @@ behaviorModule_modelConditionUpgrade_properties: 'TriggeredBy' ((WS? EQ WS?) | W
                                                  ;
 
 behaviorModule_moneyCrateCollide: 'MoneyCrateCollide' WS moduleTag_value NEWLINE ((WS? behaviorModule_moneyCrateCollide_properties WS? NEWLINE) | (WS | NEWLINE))*;
-behaviorModule_moneyCrateCollide_properties: 'RequiredKindOf' ((WS? EQ WS?) | WS) kindof_value
-                                             | 'ForbiddenKindOf' ((WS? EQ WS?) | WS) kindof_value
+behaviorModule_moneyCrateCollide_properties: 'RequiredKindOf' ((WS? EQ WS?) | WS) kindof_value (WS kindof_value)*
+                                             | 'ForbiddenKindOf' ((WS? EQ WS?) | WS) kindof_value (WS kindof_value)*
                                              | 'ForbidOwnerPlayer' ((WS? EQ WS?) | WS) BOOLEAN
                                              | 'BuildingPickup' ((WS? EQ WS?) | WS) BOOLEAN
                                              | 'HumanOnly' ((WS? EQ WS?) | WS) BOOLEAN
@@ -2446,9 +2455,9 @@ behaviorModule_particleUplinkCannonUpdate_properties: 'SpecialPowerTemplate' ((W
                                                       | 'OuterNodesLightFlareParticleSystem' ((WS? EQ WS?) | WS) particlesystem_value
                                                       | 'OuterNodesMediumFlareParticleSystem' ((WS? EQ WS?) | WS) particlesystem_value
                                                       | 'OuterNodesIntenseFlareParticleSystem' ((WS? EQ WS?) | WS) particlesystem_value
-                                                      | 'ConnectorBoneName' ((WS? EQ WS?) | WS) ID
-                                                      | 'ConnectorMediumLaserName' ((WS? EQ WS?) | WS) ID
-                                                      | 'ConnectorIntenseLaserName' ((WS? EQ WS?) | WS) ID
+                                                      | 'ConnectorBoneName' ((WS? EQ WS?) | WS) (ID | None_value)
+                                                      | 'ConnectorMediumLaserName' ((WS? EQ WS?) | WS) (ID | None_value)
+                                                      | 'ConnectorIntenseLaserName' ((WS? EQ WS?) | WS) (ID | None_value)
                                                       | 'ConnectorMediumFlare' ((WS? EQ WS?) | WS) particlesystem_value
                                                       | 'ConnectorIntenseFlare' ((WS? EQ WS?) | WS) particlesystem_value
                                                       | 'FireBoneName' ((WS? EQ WS?) | WS) (ID | STRING)
@@ -2750,8 +2759,8 @@ behaviorModule_riderChangeContain_properties: 'ContainMax' ((WS? EQ WS?) | WS) (
                                              ;
 
 behaviorModule_sabotageCommandCenterCrateCollide: 'SabotageCommandCenterCrateCollide' WS moduleTag_value NEWLINE ((WS? behaviorModule_sabotageCommandCenterCrateCollide_properties WS? NEWLINE) | (WS | NEWLINE))*;
-behaviorModule_sabotageCommandCenterCrateCollide_properties: 'RequiredKindOf' ((WS? EQ WS?) | WS) kindof_value
-                                             | 'ForbiddenKindOf' ((WS? EQ WS?) | WS) kindof_value
+behaviorModule_sabotageCommandCenterCrateCollide_properties: 'RequiredKindOf' ((WS? EQ WS?) | WS) kindof_value (WS kindof_value)*
+                                             | 'ForbiddenKindOf' ((WS? EQ WS?) | WS) kindof_value (WS kindof_value)*
                                              | 'ForbidOwnerPlayer' ((WS? EQ WS?) | WS) BOOLEAN
                                              | 'BuildingPickup' ((WS? EQ WS?) | WS) BOOLEAN
                                              | 'HumanOnly' ((WS? EQ WS?) | WS) BOOLEAN
@@ -2764,8 +2773,8 @@ behaviorModule_sabotageCommandCenterCrateCollide_properties: 'RequiredKindOf' ((
                                              ;
 
 behaviorModule_sabotageFakeBuildingCrateCollide: 'SabotageFakeBuildingCrateCollide' WS moduleTag_value NEWLINE ((WS? behaviorModule_sabotageFakeBuildingCrateCollide_properties WS? NEWLINE) | (WS | NEWLINE))*;
-behaviorModule_sabotageFakeBuildingCrateCollide_properties: 'RequiredKindOf' ((WS? EQ WS?) | WS) kindof_value
-                                             | 'ForbiddenKindOf' ((WS? EQ WS?) | WS) kindof_value
+behaviorModule_sabotageFakeBuildingCrateCollide_properties: 'RequiredKindOf' ((WS? EQ WS?) | WS) kindof_value (WS kindof_value)*
+                                             | 'ForbiddenKindOf' ((WS? EQ WS?) | WS) kindof_value (WS kindof_value)*
                                              | 'ForbidOwnerPlayer' ((WS? EQ WS?) | WS) BOOLEAN
                                              | 'BuildingPickup' ((WS? EQ WS?) | WS) BOOLEAN
                                              | 'HumanOnly' ((WS? EQ WS?) | WS) BOOLEAN
@@ -2778,8 +2787,8 @@ behaviorModule_sabotageFakeBuildingCrateCollide_properties: 'RequiredKindOf' ((W
                                              ;
 
 behaviorModule_sabotageInternetCenterCrateCollide: 'SabotageInternetCenterCrateCollide' WS moduleTag_value NEWLINE ((WS? behaviorModule_sabotageInternetCenterCrateCollide_properties WS? NEWLINE) | (WS | NEWLINE))*;
-behaviorModule_sabotageInternetCenterCrateCollide_properties: 'RequiredKindOf' ((WS? EQ WS?) | WS) kindof_value
-                                             | 'ForbiddenKindOf' ((WS? EQ WS?) | WS) kindof_value
+behaviorModule_sabotageInternetCenterCrateCollide_properties: 'RequiredKindOf' ((WS? EQ WS?) | WS) kindof_value (WS kindof_value)*
+                                             | 'ForbiddenKindOf' ((WS? EQ WS?) | WS) kindof_value (WS kindof_value)*
                                              | 'ForbidOwnerPlayer' ((WS? EQ WS?) | WS) BOOLEAN
                                              | 'BuildingPickup' ((WS? EQ WS?) | WS) BOOLEAN
                                              | 'HumanOnly' ((WS? EQ WS?) | WS) BOOLEAN
@@ -2793,8 +2802,8 @@ behaviorModule_sabotageInternetCenterCrateCollide_properties: 'RequiredKindOf' (
                                              ;
 
 behaviorModule_sabotageMilitaryFactoryCrateCollide: 'SabotageMilitaryFactoryCrateCollide' WS moduleTag_value NEWLINE ((WS? behaviorModule_sabotageMilitaryFactoryCrateCollide_properties WS? NEWLINE) | (WS | NEWLINE))*;
-behaviorModule_sabotageMilitaryFactoryCrateCollide_properties: 'RequiredKindOf' ((WS? EQ WS?) | WS) kindof_value
-                                             | 'ForbiddenKindOf' ((WS? EQ WS?) | WS) kindof_value
+behaviorModule_sabotageMilitaryFactoryCrateCollide_properties: 'RequiredKindOf' ((WS? EQ WS?) | WS) kindof_value (WS kindof_value)*
+                                             | 'ForbiddenKindOf' ((WS? EQ WS?) | WS) kindof_value (WS kindof_value)*
                                              | 'ForbidOwnerPlayer' ((WS? EQ WS?) | WS) BOOLEAN
                                              | 'BuildingPickup' ((WS? EQ WS?) | WS) BOOLEAN
                                              | 'HumanOnly' ((WS? EQ WS?) | WS) BOOLEAN
@@ -2808,8 +2817,8 @@ behaviorModule_sabotageMilitaryFactoryCrateCollide_properties: 'RequiredKindOf' 
                                              ;
 
 behaviorModule_sabotagePowerPlantCrateCollide: 'SabotagePowerPlantCrateCollide' WS moduleTag_value NEWLINE ((WS? behaviorModule_sabotagePowerPlantCrateCollide_properties WS? NEWLINE) | (WS | NEWLINE))*;
-behaviorModule_sabotagePowerPlantCrateCollide_properties: 'RequiredKindOf' ((WS? EQ WS?) | WS) kindof_value
-                                             | 'ForbiddenKindOf' ((WS? EQ WS?) | WS) kindof_value
+behaviorModule_sabotagePowerPlantCrateCollide_properties: 'RequiredKindOf' ((WS? EQ WS?) | WS) kindof_value (WS kindof_value)*
+                                             | 'ForbiddenKindOf' ((WS? EQ WS?) | WS) kindof_value (WS kindof_value)*
                                              | 'ForbidOwnerPlayer' ((WS? EQ WS?) | WS) BOOLEAN
                                              | 'BuildingPickup' ((WS? EQ WS?) | WS) BOOLEAN
                                              | 'HumanOnly' ((WS? EQ WS?) | WS) BOOLEAN
@@ -2823,8 +2832,8 @@ behaviorModule_sabotagePowerPlantCrateCollide_properties: 'RequiredKindOf' ((WS?
                                              ;
 
 behaviorModule_sabotageSuperweaponCrateCollide: 'SabotageSuperweaponCrateCollide' WS moduleTag_value NEWLINE ((WS? behaviorModule_sabotageSuperweaponCrateCollide_properties WS? NEWLINE) | (WS | NEWLINE))*;
-behaviorModule_sabotageSuperweaponCrateCollide_properties: 'RequiredKindOf' ((WS? EQ WS?) | WS) kindof_value
-                                             | 'ForbiddenKindOf' ((WS? EQ WS?) | WS) kindof_value
+behaviorModule_sabotageSuperweaponCrateCollide_properties: 'RequiredKindOf' ((WS? EQ WS?) | WS) kindof_value (WS kindof_value)*
+                                             | 'ForbiddenKindOf' ((WS? EQ WS?) | WS) kindof_value (WS kindof_value)*
                                              | 'ForbidOwnerPlayer' ((WS? EQ WS?) | WS) BOOLEAN
                                              | 'BuildingPickup' ((WS? EQ WS?) | WS) BOOLEAN
                                              | 'HumanOnly' ((WS? EQ WS?) | WS) BOOLEAN
@@ -2837,8 +2846,8 @@ behaviorModule_sabotageSuperweaponCrateCollide_properties: 'RequiredKindOf' ((WS
                                              ;
 
 behaviorModule_sabotageSupplyCenterCrateCollide: 'SabotageSupplyCenterCrateCollide' WS moduleTag_value NEWLINE ((WS? behaviorModule_sabotageSupplyCenterCrateCollide_properties WS? NEWLINE) | (WS | NEWLINE))*;
-behaviorModule_sabotageSupplyCenterCrateCollide_properties: 'RequiredKindOf' ((WS? EQ WS?) | WS) kindof_value
-                                             | 'ForbiddenKindOf' ((WS? EQ WS?) | WS) kindof_value
+behaviorModule_sabotageSupplyCenterCrateCollide_properties: 'RequiredKindOf' ((WS? EQ WS?) | WS) kindof_value (WS kindof_value)*
+                                             | 'ForbiddenKindOf' ((WS? EQ WS?) | WS) kindof_value (WS kindof_value)*
                                              | 'ForbidOwnerPlayer' ((WS? EQ WS?) | WS) BOOLEAN
                                              | 'BuildingPickup' ((WS? EQ WS?) | WS) BOOLEAN
                                              | 'HumanOnly' ((WS? EQ WS?) | WS) BOOLEAN
@@ -2852,8 +2861,8 @@ behaviorModule_sabotageSupplyCenterCrateCollide_properties: 'RequiredKindOf' ((W
                                              ;
 
 behaviorModule_salvageCrateCollide: 'SalvageCrateCollide' WS moduleTag_value NEWLINE ((WS? behaviorModule_salvageCrateCollide_properties WS? NEWLINE) | (WS | NEWLINE))*;
-behaviorModule_salvageCrateCollide_properties: 'RequiredKindOf' ((WS? EQ WS?) | WS) kindof_value
-                                             | 'ForbiddenKindOf' ((WS? EQ WS?) | WS) kindof_value
+behaviorModule_salvageCrateCollide_properties: 'RequiredKindOf' ((WS? EQ WS?) | WS) kindof_value (WS kindof_value)*
+                                             | 'ForbiddenKindOf' ((WS? EQ WS?) | WS) kindof_value (WS kindof_value)*
                                              | 'ForbidOwnerPlayer' ((WS? EQ WS?) | WS) BOOLEAN
                                              | 'BuildingPickup' ((WS? EQ WS?) | WS) BOOLEAN
                                              | 'HumanOnly' ((WS? EQ WS?) | WS) BOOLEAN
@@ -2997,7 +3006,7 @@ behaviorModule_specialPowerCompletionDie_properties: behaviorModule_deathTypes
 behaviorModule_specialPowerCreate: 'SpecialPowerCreate' WS moduleTag_value NEWLINE (WS | NEWLINE)*;
 
 behaviorModule_spectreGunshipDeploymentUpdate: 'SpectreGunshipDeploymentUpdate' WS moduleTag_value NEWLINE ((WS? behaviorModule_spectreGunshipDeploymentUpdate_properties WS? NEWLINE) | (WS | NEWLINE))*;
-behaviorModule_spectreGunshipDeploymentUpdate_properties: 'GunshipTemplateName' ((WS? EQ WS?) | WS) ('AirF_AmericaJetSpectreGunship1' | 'AirF_AmericaJetSpectreGunship2' | 'AirF_AmericaJetSpectreGunship3' | 'AmericaJetSpectreGunship')
+behaviorModule_spectreGunshipDeploymentUpdate_properties: 'GunshipTemplateName' ((WS? EQ WS?) | WS) object_value
                                              | 'RequiredScience' ((WS? EQ WS?) | WS) science_value (WS science_value)*
                                              | 'SpecialPowerTemplate' ((WS? EQ WS?) | WS) specialpower_value
                                              | 'AttackAreaRadius' ((WS? EQ WS?) | WS) (INT | FLOAT)
@@ -3086,8 +3095,8 @@ behaviorModule_stealthDetectorUpdate_properties: 'DetectionRate' ((WS? EQ WS?) |
                                              | 'IRBrightParticleSysName' ((WS? EQ WS?) | WS) particlesystem_value
                                              | 'IRGridParticleSysName' ((WS? EQ WS?) | WS) particlesystem_value
                                              | 'IRParticleSysBone' ((WS? EQ WS?) | WS) (ID | STRING)
-                                             | 'ExtraRequiredKindOf' ((WS? EQ WS?) | WS) kindof_value
-                                             | 'ExtraForbiddenKindOf' ((WS? EQ WS?) | WS) kindof_value
+                                             | 'ExtraRequiredKindOf' ((WS? EQ WS?) | WS) kindof_value (WS kindof_value)*
+                                             | 'ExtraForbiddenKindOf' ((WS? EQ WS?) | WS) kindof_value (WS kindof_value)*
                                              | 'CanDetectWhileGarrisoned' ((WS? EQ WS?) | WS) BOOLEAN
                                              | 'CanDetectWhileContained' ((WS? EQ WS?) | WS) BOOLEAN
                                              ;
@@ -3409,8 +3418,8 @@ behaviorModule_tunnelContain_properties: 'ContainMax' ((WS? EQ WS?) | WS) (INT |
                                              ;
 
 behaviorModule_unitCrateCollide: 'UnitCrateCollide' WS moduleTag_value NEWLINE ((WS? behaviorModule_unitCrateCollide_properties WS? NEWLINE) | (WS | NEWLINE))*;
-behaviorModule_unitCrateCollide_properties: 'RequiredKindOf' ((WS? EQ WS?) | WS) kindof_value
-                                             | 'ForbiddenKindOf' ((WS? EQ WS?) | WS) kindof_value
+behaviorModule_unitCrateCollide_properties: 'RequiredKindOf' ((WS? EQ WS?) | WS) kindof_value (WS kindof_value)*
+                                             | 'ForbiddenKindOf' ((WS? EQ WS?) | WS) kindof_value (WS kindof_value)*
                                              | 'ForbidOwnerPlayer' ((WS? EQ WS?) | WS) BOOLEAN
                                              | 'BuildingPickup' ((WS? EQ WS?) | WS) BOOLEAN
                                              | 'HumanOnly' ((WS? EQ WS?) | WS) BOOLEAN
@@ -3438,12 +3447,12 @@ behaviorModule_upgradeDie_properties: behaviorModule_deathTypes
                                              | 'VeterancyLevels' ((WS? EQ WS?) | WS) veterency_modifier (WS veterency_modifier)*
                                              | 'ExemptStatus' ((WS? EQ WS?) | WS) status_value (WS status_value)*
                                              | 'RequiredStatus' ((WS? EQ WS?) | WS) status_value
-                                             | 'UpgradeToRemove' ((WS? EQ WS?) | WS) upgrade_value WS moduleTag_value
+                                             | 'UpgradeToRemove' ((WS? EQ WS?) | WS) upgrade_value
                                              ;
 
 behaviorModule_veterancyCrateCollide: 'VeterancyCrateCollide' WS moduleTag_value NEWLINE ((WS? behaviorModule_veterancyCrateCollide_properties WS? NEWLINE) | (WS | NEWLINE))*;
-behaviorModule_veterancyCrateCollide_properties: 'RequiredKindOf' ((WS? EQ WS?) | WS) kindof_value
-                                             | 'ForbiddenKindOf' ((WS? EQ WS?) | WS) kindof_value
+behaviorModule_veterancyCrateCollide_properties: 'RequiredKindOf' ((WS? EQ WS?) | WS) kindof_value (WS kindof_value)*
+                                             | 'ForbiddenKindOf' ((WS? EQ WS?) | WS) kindof_value (WS kindof_value)*
                                              | 'ForbidOwnerPlayer' ((WS? EQ WS?) | WS) BOOLEAN
                                              | 'BuildingPickup' ((WS? EQ WS?) | WS) BOOLEAN
                                              | 'HumanOnly' ((WS? EQ WS?) | WS) BOOLEAN
@@ -3482,12 +3491,12 @@ behaviorModule_waveGuideUpdate_properties: 'WaveDelay' ((WS? EQ WS?) | WS) (INT 
                                              ;
 
 behaviorModule_weaponBonusUpdate: 'WeaponBonusUpdate' WS moduleTag_value NEWLINE ((WS? behaviorModule_weaponBonusUpdate_properties WS? NEWLINE) | (WS | NEWLINE))*;
-behaviorModule_weaponBonusUpdate_properties: 'RequiredAffectKindOf' ((WS? EQ WS?) | WS) kindof_value
-                                             | 'ForbiddenAffectKindOf' ((WS? EQ WS?) | WS) kindof_value
+behaviorModule_weaponBonusUpdate_properties: 'RequiredAffectKindOf' ((WS? EQ WS?) | WS) kindof_value (WS kindof_value)*
+                                             | 'ForbiddenAffectKindOf' ((WS? EQ WS?) | WS) kindof_value (WS kindof_value)*
                                              | 'BonusDuration' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                              | 'BonusDelay' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                              | 'BonusRange' ((WS? EQ WS?) | WS) (INT | FLOAT)
-                                             | 'BonusConditionType' ((WS? EQ WS?) | WS) ID
+                                             | 'BonusConditionType' ((WS? EQ WS?) | WS) (ID | weapon_weaponbonus_condition_value | damageType_value | kindof_value)
                                              ;
 
 behaviorModule_weaponBonusUpgrade: 'WeaponBonusUpgrade' WS moduleTag_value NEWLINE ((WS? behaviorModule_weaponBonusUpgrade_properties WS? NEWLINE) | (WS | NEWLINE))*;
@@ -3659,8 +3668,9 @@ behaviorModule_missileAIUpdate_properties: behaviorModule_turretBlock
                                           | 'UseWeaponSpeed' ((WS? EQ WS?) | WS) BOOLEAN
                                           | 'DetonateOnNoFuel' ((WS? EQ WS?) | WS) BOOLEAN
                                           | 'DistanceScatterWhenJammed' ((WS? EQ WS?) | WS) (INT | FLOAT)
-                                          | 'GarrisonHitKillRequiredKindOf' ((WS? EQ WS?) | WS) kindof_value
-                                          | 'GarrisonHitKillForbiddenKindOf' ((WS? EQ WS?) | WS) kindof_value
+                                          | 'GarrisonHitKillRequiredKindOf' ((WS? EQ WS?) | WS) kindof_value (WS kindof_value)*
+                                          | 'GarrisonHitKillForbiddenKindOf' ((WS? EQ WS?) | WS) kindof_value (WS kindof_value)*
+                                          | 'GarrisonHitKillForbiddenKindOf' ((WS? EQ WS?) | WS) kindof_value (WS kindof_value)*
                                           | 'GarrisonHitKillCount' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                           | 'GarrisonHitKillFX' ((WS? EQ WS?) | WS) fxlist_value
                                           | 'DetonateCallsKill' ((WS? EQ WS?) | WS) BOOLEAN
@@ -3796,7 +3806,7 @@ audioevent_properties: 'Filename' ((WS? EQ WS?) | WS) file
                      | 'LoopCount' ((WS? EQ WS?) | WS) INT
                      | 'Priority' ((WS? EQ WS?) | WS) ('lowest' | 'LOWEST' | 'Lowest' | 'low' | 'LOW' | 'Low' | 'normal' | 'NORMAL' | 'Normal' | 'high' | 'HIGH' | 'High' | 'critical' | 'CRITICAL' | 'Critical' | None_value) (WS ('lowest' | 'LOWEST' | 'Lowest' | 'low' | 'LOW' | 'Low' | 'normal' | 'NORMAL' | 'Normal' | 'high' | 'HIGH' | 'High' | 'critical' | 'CRITICAL' | 'Critical' | None_value))*
                      | 'Control' ((WS? EQ WS?) | WS) ('loop' | 'random' | All_value | 'postdelay' | 'interrupt' | None_value | 'Loop' | 'Random' | 'PostDelay' | 'Interrupt' | 'Postdelay') (WS ('loop' | 'random' | All_value | 'postdelay' | 'interrupt' | None_value | 'Loop' | 'Random' | 'PostDelay' | 'Interrupt' | 'Postdelay'))*
-                     | 'Sounds' ((WS? EQ WS?) | WS) ID (WS ID)*
+                     | 'Sounds' ((WS? EQ WS?) | WS) (ID | None_value) (WS (ID | None_value))*
                      | 'SoundsNight' ((WS? EQ WS?) | WS) ID (WS ID)*
                      | 'SoundsEvening' ((WS? EQ WS?) | WS) ID (WS ID)*
                      | 'SoundsMorning' ((WS? EQ WS?) | WS) ID (WS ID)*
@@ -3807,7 +3817,7 @@ audioevent_properties: 'Filename' ((WS? EQ WS?) | WS) file
                      | 'MinRange' ((WS? EQ WS?) | WS) INT
                      | 'MaxRange' ((WS? EQ WS?) | WS) INT
                      | 'Limit' ((WS? EQ WS?) | WS) INT
-                     | 'Type' ((WS? EQ WS?) | WS) ('ui' | 'world' | 'shrouded' | 'global' | 'voice' | 'player' | 'allies' | 'enemies' | 'everyone' | None_value) (WS ('ui' | 'world' | 'shrouded' | 'global' | 'voice' | 'player' | 'allies' | 'enemies' | 'everyone' | None_value))*
+                     | 'Type' ((WS? EQ WS?) | WS) ('ui' | 'Ui' | 'UI' | 'world' | 'World' | 'WORLD' | 'shrouded' | 'Shrouded' | 'SHROUDED' | 'global' | 'Global' | 'GLOBAL' | 'voice' | 'Voice' | 'VOICE' | 'player' | 'Player' | 'PLAYER' | 'allies' | 'Allies' | 'ALLIES' | 'enemies' | 'Enemies' | 'ENEMIES' | 'everyone' | 'Everyone' | 'EVERYONE' | None_value) (WS ('ui' | 'Ui' | 'UI' | 'world' | 'World' | 'WORLD' | 'shrouded' | 'Shrouded' | 'SHROUDED' | 'global' | 'Global' | 'GLOBAL' | 'voice' | 'Voice' | 'VOICE' | 'player' | 'Player' | 'PLAYER' | 'allies' | 'Allies' | 'ALLIES' | 'enemies' | 'Enemies' | 'ENEMIES' | 'everyone' | 'Everyone' | 'EVERYONE' | None_value))*
                      | 'PitchShift' ((WS? EQ WS?) | WS) INT (WS INT)?
                      | 'VolumeShift' ((WS? EQ WS?) | WS) INT (WS INT)?
                      | 'LowPassCutoff' ((WS? EQ WS?) | WS) INT
@@ -3892,6 +3902,7 @@ objectCreationListClass_createObjectProperties: 'ObjectNames' ((WS? EQ WS?) | WS
                                               | 'RollRate' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                               | 'PitchRate' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                               | 'YawRate' ((WS? EQ WS?) | WS) (INT | FLOAT)
+                                              | 'ParticleSystem' ((WS? EQ WS?) | WS) particlesystem_value
                                               ;
 
 objectCreationListClass_applyRandomForceBlock: 'ApplyRandomForce' WS* NEWLINE ((WS? objectCreationListClass_applyRandomForceProperties WS? NEWLINE) | (WS | NEWLINE))* end;
@@ -3987,22 +3998,22 @@ particleSystemClass_properties: 'Priority' ((WS? EQ WS?) | WS) particleSystemCla
 							  | 'SlaveSystem' ((WS? EQ WS?) | WS) particlesystem_value
 							  | 'SlavePosOffset' ((WS? EQ WS?) | WS) coord3D
 							  | 'PerParticleAttachedSystem' ((WS? EQ WS?) | WS) particlesystem_value
-							  | 'Alpha1' ((WS? EQ WS?) | WS) (INT | FLOAT) WS (INT | FLOAT) WS (INT | FLOAT)
-							  | 'Alpha2' ((WS? EQ WS?) | WS) (INT | FLOAT) WS (INT | FLOAT) WS (INT | FLOAT)
-							  | 'Alpha3' ((WS? EQ WS?) | WS) (INT | FLOAT) WS (INT | FLOAT) WS (INT | FLOAT)
-							  | 'Alpha4' ((WS? EQ WS?) | WS) (INT | FLOAT) WS (INT | FLOAT) WS (INT | FLOAT)
-							  | 'Alpha5' ((WS? EQ WS?) | WS) (INT | FLOAT) WS (INT | FLOAT) WS (INT | FLOAT)
-							  | 'Alpha6' ((WS? EQ WS?) | WS) (INT | FLOAT) WS (INT | FLOAT) WS (INT | FLOAT)
-							  | 'Alpha7' ((WS? EQ WS?) | WS) (INT | FLOAT) WS (INT | FLOAT) WS (INT | FLOAT)
-							  | 'Alpha8' ((WS? EQ WS?) | WS) (INT | FLOAT) WS (INT | FLOAT) WS (INT | FLOAT)
-							  | 'Color1' ((WS? EQ WS?) | WS) RGB WS (INT | FLOAT)
-							  | 'Color2' ((WS? EQ WS?) | WS) RGB WS (INT | FLOAT)
-							  | 'Color3' ((WS? EQ WS?) | WS) RGB WS (INT | FLOAT)
-							  | 'Color4' ((WS? EQ WS?) | WS) RGB WS (INT | FLOAT)
-							  | 'Color5' ((WS? EQ WS?) | WS) RGB WS (INT | FLOAT)
-							  | 'Color6' ((WS? EQ WS?) | WS) RGB WS (INT | FLOAT)
-							  | 'Color7' ((WS? EQ WS?) | WS) RGB WS (INT | FLOAT)
-							  | 'Color8' ((WS? EQ WS?) | WS) RGB WS (INT | FLOAT)
+							  | 'Alpha1' ((WS? EQ WS?) | WS) (INT | FLOAT) WS (INT | FLOAT) WS (INT | FLOAT) (WS (INT | FLOAT))*
+							  | 'Alpha2' ((WS? EQ WS?) | WS) (INT | FLOAT) WS (INT | FLOAT) WS (INT | FLOAT) (WS (INT | FLOAT))*
+							  | 'Alpha3' ((WS? EQ WS?) | WS) (INT | FLOAT) WS (INT | FLOAT) WS (INT | FLOAT) (WS (INT | FLOAT))*
+							  | 'Alpha4' ((WS? EQ WS?) | WS) (INT | FLOAT) WS (INT | FLOAT) WS (INT | FLOAT) (WS (INT | FLOAT))*
+							  | 'Alpha5' ((WS? EQ WS?) | WS) (INT | FLOAT) WS (INT | FLOAT) WS (INT | FLOAT) (WS (INT | FLOAT))*
+							  | 'Alpha6' ((WS? EQ WS?) | WS) (INT | FLOAT) WS (INT | FLOAT) WS (INT | FLOAT) (WS (INT | FLOAT))*
+							  | 'Alpha7' ((WS? EQ WS?) | WS) (INT | FLOAT) WS (INT | FLOAT) WS (INT | FLOAT) (WS (INT | FLOAT))*
+							  | 'Alpha8' ((WS? EQ WS?) | WS) (INT | FLOAT) WS (INT | FLOAT) WS (INT | FLOAT) (WS (INT | FLOAT))*
+							  | 'Color1' ((WS? EQ WS?) | WS) RGB WS (INT | FLOAT) (WS (INT | FLOAT))*
+							  | 'Color2' ((WS? EQ WS?) | WS) RGB WS (INT | FLOAT) (WS (INT | FLOAT))*
+							  | 'Color3' ((WS? EQ WS?) | WS) RGB WS (INT | FLOAT) (WS (INT | FLOAT))*
+							  | 'Color4' ((WS? EQ WS?) | WS) RGB WS (INT | FLOAT) (WS (INT | FLOAT))*
+							  | 'Color5' ((WS? EQ WS?) | WS) RGB WS (INT | FLOAT) (WS (INT | FLOAT))*
+							  | 'Color6' ((WS? EQ WS?) | WS) RGB WS (INT | FLOAT) (WS (INT | FLOAT))*
+							  | 'Color7' ((WS? EQ WS?) | WS) RGB WS (INT | FLOAT) (WS (INT | FLOAT))*
+							  | 'Color8' ((WS? EQ WS?) | WS) RGB WS (INT | FLOAT) (WS (INT | FLOAT))*
 							  | 'ColorScale' ((WS? EQ WS?) | WS) (INT | FLOAT) WS (INT | FLOAT)
 							  | 'BurstDelay' ((WS? EQ WS?) | WS) (INT | FLOAT) WS (INT | FLOAT)
 							  | 'BurstCount' ((WS? EQ WS?) | WS) (INT | FLOAT) WS (INT | FLOAT)
@@ -4063,6 +4074,8 @@ playerTemplateClass_properties: 'Side' ((WS? EQ WS?) | WS) faction_value
 							  | 'LoadScreenMusic' ((WS? EQ WS?) | WS) ID
 							  | 'BeaconName' ((WS? EQ WS?) | WS) object_value
 							  | 'SideIconImage' ((WS? EQ WS?) | WS) mappedimage_value
+							  | 'ProductionCostChange' ((WS? EQ WS?) | WS) object_value WS PERCENT
+                | 'ProductionTimeChange' ((WS? EQ WS?) | WS) object_value WS PERCENT
 							  | 'PurchaseScienceCommandSetRank1' ((WS? EQ WS?) | WS) commandSet_value
 							  | 'PurchaseScienceCommandSetRank3' ((WS? EQ WS?) | WS) commandSet_value
 							  | 'PurchaseScienceCommandSetRank8' ((WS? EQ WS?) | WS) commandSet_value
@@ -4187,9 +4200,9 @@ weapon_damagetype_property: 'DamageType' ((WS? EQ WS?) | WS) damageType_value;
 weapon_deathtype_property: 'DeathType' ((WS? EQ WS?) | WS) deathType_value;
 weapon_damageaffects_property: 'RadiusDamageAffects' ((WS? EQ WS?) | WS) damageAffects_value (WS damageAffects_value)*;
 weapon_weaponbonus_property: 'WeaponBonus' ((WS? EQ WS?) | WS) weapon_weaponbonus_condition_value WS weapon_weaponbonus_bonus_value WS PERCENT;
-weapon_lasterbone_property: 'LaserBoneName' ((WS? EQ WS?) | WS) (ID | STRING);
+weapon_lasterbone_property: 'LaserBoneName' ((WS? EQ WS?) | WS) (ID | STRING | damageType_value);
 
-weapon_weaponbonus_condition_value: (None_value | 'GARRISONED' | 'HORDE' | 'CONTINUOUS_FIRE_MEAN' | 'CONTINUOUS_FIRE_FAST' | 'NATIONALISM' | 'PLAYER_UPGRADE' | 'DRONE_SPOTTING' | 'DEMORALIZED_OBSOLETE' | 'ENTHUSIASTIC' | VETERENCY | 'BATTLEPLAN_BOMBARDMENT' | 'BATTLEPLAN_HOLDTHELINE' | 'BATTLEPLAN_SEARCHANDDESTROY' | 'SUBLIMINAL' | 'SOLO_HUMAN_EASY' | 'SOLO_HUMAN_NORMAL' | 'SOLO_HUMAN_HARD' | 'SOLO_AI_EASY' | 'SOLO_AI_NORMAL' | 'SOLO_AI_HARD' | 'FAERIE_FIRE' | 'FANATICISM' | 'FRENZY_ONE' | 'FRENZY_TWO' | 'FRENZY_THREE');
+weapon_weaponbonus_condition_value: (None_value | 'GARRISONED' | 'HORDE' | 'CONTINUOUS_FIRE_MEAN' | 'UNSELECTABLE' | 'DEPLOYED' | 'CONTINUOUS_FIRE_FAST' | 'NATIONALISM' | 'PLAYER_UPGRADE' | 'DRONE_SPOTTING' | 'DEMORALIZED_OBSOLETE' | 'ENTHUSIASTIC' | VETERENCY | 'BATTLEPLAN_BOMBARDMENT' | 'BATTLEPLAN_HOLDTHELINE' | 'BATTLEPLAN_SEARCHANDDESTROY' | 'SUBLIMINAL' | 'SOLO_HUMAN_EASY' | 'SOLO_HUMAN_NORMAL' | 'SOLO_HUMAN_HARD' | 'SOLO_AI_EASY' | 'SOLO_AI_NORMAL' | 'SOLO_AI_HARD' | 'FAERIE_FIRE' | 'FANATICISM' | 'FRENZY_ONE' | 'FRENZY_TWO' | 'FRENZY_THREE');
 weapon_weaponbonus_bonus_value: (None_value | 'DAMAGE' | 'RADIUS' | 'RANGE' | 'RATE_OF_FIRE' | 'PRE_ATTACK');
 deathType_value: (PLUS | DASH)? (None_value | All_value | 'NORMAL' | 'CRUSHED' | 'BURNED' | 'EXPLODED' | 'POISONED' | 'TOPPLED' | 'FLOODED' | 'SUICIDED' | 'LASERED' | 'DETONATED' | 'SPLATTED' | 'POISONED_BETA' | 'EXTRA_2' | 'EXTRA_3' | 'EXTRA_4' | 'EXTRA_5' | 'EXTRA_6' | 'EXTRA_7' | 'EXTRA_8' | 'POISONED_GAMMA');
 damageAffects_value: (None_value | 'ENEMIES' | 'NEUTRALS' | 'NEUTRAL' | 'ALLIES' | 'NOT_SIMILAR' | 'SELF' | 'SUICIDE' | 'NOT_AIRBORNE');
@@ -4295,7 +4308,7 @@ science_value: (ID | None_value);
 specialpower_property: 'SpecialPower' ((WS? EQ WS?) | WS) specialpower_value;
 specialpower_value:  (ID | None_value);
 
-audioevent_value: (ID | None_value);
+audioevent_value: (ID | None_value | damageType_value | kindof_value);
 
 upgrade_property: 'Upgrade' ((WS? EQ WS?) | WS) upgrade_value;
 upgrade_value: (ID | None_value);

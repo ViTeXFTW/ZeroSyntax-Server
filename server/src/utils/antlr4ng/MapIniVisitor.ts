@@ -224,6 +224,8 @@ import { BodyModule_highlanderContext } from "./MapIniParser.js";
 import { BodyModule_highlander_propertiesContext } from "./MapIniParser.js";
 import { ObjectClass_behaviorModulesContext } from "./MapIniParser.js";
 import { BehaviorModule_valueContext } from "./MapIniParser.js";
+import { BehaviorModule_activeShroudUpgradeContext } from "./MapIniParser.js";
+import { BehaviorModule_activeShroudUpgrade_propertiesContext } from "./MapIniParser.js";
 import { BehaviorModule_animationSteeringUpdateContext } from "./MapIniParser.js";
 import { BehaviorModule_animationSteeringUpdate_propertiesContext } from "./MapIniParser.js";
 import { BehaviorModule_armorUpgradeUpdateContext } from "./MapIniParser.js";
@@ -2048,6 +2050,18 @@ export class MapIniVisitor<Result> extends AbstractParseTreeVisitor<Result> {
      * @return the visitor result
      */
     visitBehaviorModule_value?: (ctx: BehaviorModule_valueContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.behaviorModule_activeShroudUpgrade`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitBehaviorModule_activeShroudUpgrade?: (ctx: BehaviorModule_activeShroudUpgradeContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.behaviorModule_activeShroudUpgrade_properties`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitBehaviorModule_activeShroudUpgrade_properties?: (ctx: BehaviorModule_activeShroudUpgrade_propertiesContext) => Result;
     /**
      * Visit a parse tree produced by `MapIniParser.behaviorModule_animationSteeringUpdate`.
      * @param ctx the parse tree
