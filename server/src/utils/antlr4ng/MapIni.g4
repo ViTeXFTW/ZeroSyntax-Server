@@ -192,7 +192,7 @@ armorClass: 'Armor' WS armor_value WS* NEWLINE ((WS? armorClassProperties WS? NE
 
 armorClassProperties: armorClass_armorProperty;
 
-armorClass_armorProperty: 'Armor' ((WS? EQ WS?) | WS) armorType_value WS PERCENT;
+armorClass_armorProperty: 'Armor' ((WS? EQ WS?) | WS) armorType_value WS (INT | FLOAT | PERCENT);
 
 // CommandButton Class
 commandButtonClass: 'CommandButton' WS commandbutton_value WS* NEWLINE ((WS? commandButtonClassProperties WS? NEWLINE) | (NEWLINE | WS))* end;
@@ -362,7 +362,7 @@ fxlist_lightpulse_block: 'LightPulse' WS* NEWLINE ((WS? (fxlist_lightpulse_color
 
 fxlist_lightpulse_color_property: 'Color' ((WS? EQ WS?) | WS) RGB;
 fxlist_lightpulse_radius_property: 'Radius' ((WS? EQ WS?) | WS) (INT | FLOAT);
-fxlist_lightpulse_radiuspercentobjectsize_property: 'RadiusAsPercentOfObjectSize' ((WS? EQ WS?) | WS) PERCENT;
+fxlist_lightpulse_radiuspercentobjectsize_property: 'RadiusAsPercentOfObjectSize' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT);
 fxlist_lightpulse_increasetime_property: 'IncreaseTime' ((WS? EQ WS?) | WS) INT;
 fxlist_lightpulse_decreasetime_property: 'DecreaseTime' ((WS? EQ WS?) | WS) INT;
 
@@ -467,8 +467,8 @@ igui_blocks: ('SpyDroneRadiusCursor'
 
 ingui_block_properties: 'Texture' ((WS? EQ WS?) | WS) ID
                       | 'Style' ((WS? EQ WS?) | WS) shadow_value
-                      | 'OpacityMin' ((WS? EQ WS?) | WS) PERCENT
-                      | 'OpacityMax' ((WS? EQ WS?) | WS) PERCENT
+                      | 'OpacityMin' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
+                      | 'OpacityMax' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                       | 'OpacityThrobTime' ((WS? EQ WS?) | WS) INT
                       | 'Color' ((WS? EQ WS?) | WS) RGBA
                       | 'OnlyVisibleToOwningPlayer' ((WS? EQ WS?) | WS) BOOLEAN
@@ -854,9 +854,9 @@ w3dTreeDrawProperties: 'ModelName' ((WS? EQ WS?) | WS) ID
                                 | 'StumpName' ((WS? EQ WS?) | WS) ID
                                 | 'KillWhenFinishedToppling' ((WS? EQ WS?) | WS) BOOLEAN
                                 | 'DoTopple' ((WS? EQ WS?) | WS) BOOLEAN
-                                | 'InitialVelocityPercent' ((WS? EQ WS?) | WS) PERCENT
-                                | 'InitialAccelPercent' ((WS? EQ WS?) | WS) PERCENT
-                                | 'BounceVelocityPercent' ((WS? EQ WS?) | WS) PERCENT
+                                | 'InitialVelocityPercent' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
+                                | 'InitialAccelPercent' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
+                                | 'BounceVelocityPercent' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                 | 'MinimumToppleSpeed' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                 | 'SinkDistance' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                 | 'SinkTime' ((WS? EQ WS?) | WS) (INT | FLOAT)
@@ -888,10 +888,10 @@ drawModule_conditionStateProperties: 'Model' WS (EQ WS)? (None_value | ID)      
                                    | 'AltTurretArtPitch' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                    | 'ShowSubObject' ((WS? EQ WS?) | WS) (None_value | ID | BOX | TURRET | ALT_TURRET | STRING | armorType_value | damageType_value | drawModule_conditionStateValue | kindof_value) (WS (None_value | ID | BOX | TURRET | ALT_TURRET | STRING | armorType_value | damageType_value | drawModule_conditionStateValue | kindof_value))*
                                    | 'HideSubObject' ((WS? EQ WS?) | WS) (None_value | ID | BOX | TURRET | ALT_TURRET | STRING | armorType_value | damageType_value | drawModule_conditionStateValue | kindof_value) (WS (None_value | ID | BOX | TURRET | ALT_TURRET | STRING | armorType_value | damageType_value | drawModule_conditionStateValue | kindof_value))*
-                                   | 'WeaponRecoilBone' ((WS? EQ WS?) | WS) WEAPONSLOT WS (None_value | ID | STRING | TURRET | ALT_TURRET)
-                                   | 'WeaponFireFXBone' ((WS? EQ WS?) | WS) WEAPONSLOT WS (None_value | ID | STRING |  TURRET | ALT_TURRET)
-                                   | 'WeaponMuzzleFlash' ((WS? EQ WS?) | WS) WEAPONSLOT WS (None_value | ID | TURRET | ALT_TURRET)
-                                   | 'WeaponLaunchBone' ((WS? EQ WS?) | WS) WEAPONSLOT WS (None_value | ID | STRING | TURRET | ALT_TURRET)
+                                   | 'WeaponRecoilBone' ((WS? EQ WS?) | WS) WEAPONSLOT WS (None_value | ID | STRING | TURRET | ALT_TURRET) (WS (None_value | ID | STRING | TURRET | ALT_TURRET))*
+                                   | 'WeaponFireFXBone' ((WS? EQ WS?) | WS) WEAPONSLOT WS (None_value | ID | STRING |  TURRET | ALT_TURRET) (WS (None_value | ID | STRING | TURRET | ALT_TURRET))*
+                                   | 'WeaponMuzzleFlash' ((WS? EQ WS?) | WS) WEAPONSLOT WS (None_value | ID | TURRET | ALT_TURRET) (WS (None_value | ID | TURRET | ALT_TURRET))*
+                                   | 'WeaponLaunchBone' ((WS? EQ WS?) | WS) WEAPONSLOT WS (None_value | ID | STRING | TURRET | ALT_TURRET) (WS (None_value | ID | STRING | TURRET | ALT_TURRET))*
                                    | 'Animation' ((WS? EQ WS?) | WS) (None_value | ID | TURRET | ALT_TURRET) ('.' (None_value | ID | TURRET | ALT_TURRET) (WS (INT | FLOAT))?)?
                                    | 'IdleAnimation' ((WS? EQ WS?) | WS) (None_value | ID) '.' (None_value | ID) (WS INT WS INT)?
                                    | 'ParticleSysBone' ((WS? EQ WS?) | WS) (None_value | ID | STRING | TURRET | ALT_TURRET) WS particlesystem_value
@@ -1175,7 +1175,7 @@ behaviorModule_baseRegenerateUpdate: 'BaseRegenerateUpdate' WS moduleTag_value N
 behaviorModule_battleBusSlowDeathBehavior: 'BattleBusSlowDeathBehavior' WS moduleTag_value NEWLINE ((WS? behaviorModule_battleBusSlowDeathBehavior_properties WS? NEWLINE) | (WS | NEWLINE))*;
 behaviorModule_battleBusSlowDeathBehavior_properties: 'SinkRate' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                                     | 'ProbabilityModifier' ((WS? EQ WS?) | WS) (INT | FLOAT)
-                                                    | 'ModifierBonusPerOverkillPercent' ((WS? EQ WS?) | WS) PERCENT
+                                                    | 'ModifierBonusPerOverkillPercent' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                                     | 'SinkDelay' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                                     | 'SinkDelayVariance' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                                     | 'DestructionDelay' ((WS? EQ WS?) | WS) (INT | FLOAT)
@@ -1197,7 +1197,7 @@ behaviorModule_battleBusSlowDeathBehavior_properties: 'SinkRate' ((WS? EQ WS?) |
                                                     | 'FXHitGround' ((WS? EQ WS?) | WS) fxlist_value
                                                     | 'OCLHitGround' ((WS? EQ WS?) | WS) ocl_value
                                                     | 'ThrowForce' ((WS? EQ WS?) | WS) (INT | FLOAT)
-                                                    | 'PercentDamageToPassengers' ((WS? EQ WS?) | WS) PERCENT
+                                                    | 'PercentDamageToPassengers' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                                     | 'EmptyHulkDestructionDelay' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                                     ;
 
@@ -1375,7 +1375,7 @@ behaviorModule_cashBountyPower_properties: 'SpecialPowerTemplate' ((WS? EQ WS?) 
                                            | 'StartsPaused' ((WS? EQ WS?) | WS) BOOLEAN
                                            | 'InitiateSound' ((WS? EQ WS?) | WS) audioevent_value
                                            | 'ScriptedSpecialPowerOnly' ((WS? EQ WS?) | WS) BOOLEAN
-                                           | 'Bounty' ((WS? EQ WS?) | WS) PERCENT
+                                           | 'Bounty' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                            ;
 
 behaviorModule_cashHackSpecialPower: 'CashHackSpecialPower' WS moduleTag_value NEWLINE ((WS? behaviorModule_cashHackSpecialPower_properties WS? NEWLINE) | (WS | NEWLINE))*;
@@ -1444,7 +1444,7 @@ behaviorModule_costModifierUpgrade_properties: 'TriggeredBy' ((WS? EQ WS?) | WS)
                                              | 'FXListUpgrade' ((WS? EQ WS?) | WS) fxlist_value
                                              | 'RequiresAllTriggers' ((WS? EQ WS?) | WS) BOOLEAN
                                              | 'EffectKindOf' ((WS? EQ WS?) | WS) kindof_value
-                                             | 'Percentage' ((WS? EQ WS?) | WS) PERCENT
+                                             | 'Percentage' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                              ;
 
 behaviorModule_countermeasuresBehavior: 'CountermeasuresBehavior' WS moduleTag_value NEWLINE ((WS? behaviorModule_countermeasuresBehavior_properties WS? NEWLINE) | (WS | NEWLINE))*;
@@ -1456,7 +1456,7 @@ behaviorModule_countermeasuresBehavior_properties: 'FlareTemplateName' ((WS? EQ 
                                                  | 'DelayBetweenVolleys' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                                  | 'NumberOfVolleys' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                                  | 'ReloadTime' ((WS? EQ WS?) | WS) (INT | FLOAT)
-                                                 | 'EvasionRate' ((WS? EQ WS?) | WS) PERCENT
+                                                 | 'EvasionRate' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                                  | 'MustReloadAtAirfield' ((WS? EQ WS?) | WS) BOOLEAN
                                                  | 'MissileDecoyDelay' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                                  | 'ReactionLaunchLatency' ((WS? EQ WS?) | WS) (INT | FLOAT)
@@ -1507,9 +1507,9 @@ behaviorModule_crushDie_properties: behaviorModule_deathTypes
                                     | 'TotalCrushSound' ((WS? EQ WS?) | WS) audioevent_value
                                     | 'BackEndCrushSound' ((WS? EQ WS?) | WS) audioevent_value
                                     | 'FrontEndCrushSound' ((WS? EQ WS?) | WS) audioevent_value
-                                    | 'TotalCrushSoundPercent' ((WS? EQ WS?) | WS) PERCENT
-                                    | 'BackEndCrushSoundPercent' ((WS? EQ WS?) | WS) PERCENT
-                                    | 'FrontEndCrushSoundPercent' ((WS? EQ WS?) | WS) PERCENT
+                                    | 'TotalCrushSoundPercent' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
+                                    | 'BackEndCrushSoundPercent' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
+                                    | 'FrontEndCrushSoundPercent' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                     ;
 
 behaviorModule_damDie: 'DamDie' WS moduleTag_value NEWLINE ((WS? behaviorModule_damDie_properties WS? NEWLINE) | (WS | NEWLINE))*;
@@ -1557,8 +1557,8 @@ behaviorModule_dumbProjectileBehavior_properties: 'MaxLifespan' ((WS? EQ WS?) | 
                                                  | 'OrientToFlightPath' ((WS? EQ WS?) | WS) BOOLEAN
                                                  | 'FirstHeight' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                                  | 'SecondHeight' ((WS? EQ WS?) | WS) (INT | FLOAT)
-                                                 | 'FirstPercentIndent' ((WS? EQ WS?) | WS) PERCENT
-                                                 | 'SecondPercentIndent' ((WS? EQ WS?) | WS) PERCENT
+                                                 | 'FirstPercentIndent' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
+                                                 | 'SecondPercentIndent' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                                  | 'GarrisonHitKillRequiredKindOf' ((WS? EQ WS?) | WS) kindof_value (WS kindof_value)*
                                                  | 'GarrisonHitKillForbiddenKindOf' ((WS? EQ WS?) | WS) kindof_value (WS kindof_value)*
                                                  | 'GarrisonHitKillCount' ((WS? EQ WS?) | WS) (INT | FLOAT)
@@ -1580,8 +1580,8 @@ behaviorModule_dynamicShroudClearingRangeUpdate_properties: behaviorModule_dynam
 behaviorModule_dynamicShroudClearingRangeUpdate_decal: 'GridDecalTemplate' NEWLINE ((WS? behaviorModule_dynamicShroudClearingRangeUpdate_decal_properties WS? NEWLINE) | (WS | NEWLINE))* end;
 behaviorModule_dynamicShroudClearingRangeUpdate_decal_properties: 'Texture' ((WS? EQ WS?) | WS) ID
                                                             | 'Style' ((WS? EQ WS?) | WS) shadow_value
-                                                            | 'OpacityMin' ((WS? EQ WS?) | WS) PERCENT
-                                                            | 'OpacityMax' ((WS? EQ WS?) | WS) PERCENT
+                                                            | 'OpacityMin' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
+                                                            | 'OpacityMax' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                                             | 'OpacityThrobTime' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                                             | 'Color' ((WS? EQ WS?) | WS) RGBA
                                                             | 'OnlyVisibleToOwningPlayer' ((WS? EQ WS?) | WS) BOOLEAN
@@ -1799,7 +1799,7 @@ behaviorModule_garrisonContain: 'GarrisonContain' WS moduleTag_value NEWLINE ((W
 behaviorModule_garrisonContain_properties: 'ContainMax' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                            | 'EnterSound' ((WS? EQ WS?) | WS) audioevent_value
                                            | 'ExitSound' ((WS? EQ WS?) | WS) audioevent_value
-                                           | 'DamagePercentToUnits' ((WS? EQ WS?) | WS) PERCENT
+                                           | 'DamagePercentToUnits' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                            | 'BurnedDeathToUnits' ((WS? EQ WS?) | WS) BOOLEAN
                                            | behaviorModule_allowInsideKindOf
                                            | behaviorModule_forbidInsideKindOf
@@ -1872,7 +1872,7 @@ behaviorModule_healContain: 'HealContain' WS moduleTag_value NEWLINE ((WS? behav
 behaviorModule_healContain_properties: 'ContainMax' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                        | 'EnterSound' ((WS? EQ WS?) | WS) audioevent_value
                                        | 'ExitSound' ((WS? EQ WS?) | WS) audioevent_value
-                                       | 'DamagePercentToUnits' ((WS? EQ WS?) | WS) PERCENT
+                                       | 'DamagePercentToUnits' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                        | 'BurnedDeathToUnits' ((WS? EQ WS?) | WS) BOOLEAN
                                        | behaviorModule_allowInsideKindOf
                                        | behaviorModule_forbidInsideKindOf
@@ -1903,7 +1903,7 @@ behaviorModule_heightDieUpdate_properties: 'TargetHeight' ((WS? EQ WS?) | WS) (I
 behaviorModule_helicopterSlowDeathBehavior: 'HelicopterSlowDeathBehavior' WS moduleTag_value NEWLINE ((WS? behaviorModule_helicopterSlowDeathBehavior_properties WS? NEWLINE) | (WS | NEWLINE))*;
 behaviorModule_helicopterSlowDeathBehavior_properties: 'SinkRate' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                                       | 'ProbabilityModifier' ((WS? EQ WS?) | WS) (INT | FLOAT)
-                                                      | 'ModifierBonusPerOverkillPercent' ((WS? EQ WS?) | WS) PERCENT
+                                                      | 'ModifierBonusPerOverkillPercent' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                                       | 'SinkDelay' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                                       | 'SinkDelayVariance' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                                       | 'DestructionDelay' ((WS? EQ WS?) | WS) (INT | FLOAT)
@@ -1927,7 +1927,7 @@ behaviorModule_helicopterSlowDeathBehavior_properties: 'SinkRate' ((WS? EQ WS?) 
                                                       | 'MaxSelfSpin' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                                       | 'SelfSpinUpdateDelay' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                                       | 'SelfSpinUpdateAmount' ((WS? EQ WS?) | WS) (INT | FLOAT)
-                                                      | 'FallHowFast' ((WS? EQ WS?) | WS) PERCENT
+                                                      | 'FallHowFast' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                                       | 'MinBladeFlyOffDelay' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                                       | 'MaxBladeFlyOffDelay' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                                       | 'AttachParticle' ((WS? EQ WS?) | WS) ID
@@ -1952,7 +1952,7 @@ behaviorModule_helixContain: 'HelixContain' WS moduleTag_value NEWLINE ((WS? beh
 behaviorModule_helixContain_properties: 'ContainMax' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                       | 'EnterSound' ((WS? EQ WS?) | WS) audioevent_value
                                       | 'ExitSound' ((WS? EQ WS?) | WS) audioevent_value
-                                      | 'DamagePercentToUnits' ((WS? EQ WS?) | WS) PERCENT
+                                      | 'DamagePercentToUnits' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                       | 'BurnedDeathToUnits' ((WS? EQ WS?) | WS) BOOLEAN
                                       | behaviorModule_allowInsideKindOf
                                       | behaviorModule_forbidInsideKindOf
@@ -1978,7 +1978,7 @@ behaviorModule_helixContain_properties: 'ContainMax' ((WS? EQ WS?) | WS) (INT | 
                                       | 'ExitBone' ((WS? EQ WS?) | WS) (ID | STRING)
                                       | 'ExitPitchRate' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                       | 'InitialPayload' ((WS? EQ WS?) | WS) object_value WS INT
-                                      | 'HealthRegen%PerSec' ((WS? EQ WS?) | WS) PERCENT
+                                      | 'HealthRegen%PerSec' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                       | 'ExitDelay' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                       | 'ArmedRidersUpgradeMyWeaponSet' ((WS? EQ WS?) | WS) BOOLEAN
                                       | 'DelayExitInAir' ((WS? EQ WS?) | WS) (INT | FLOAT)
@@ -2018,7 +2018,7 @@ behaviorModule_internetHackContain: 'InternetHackContain' WS moduleTag_value NEW
 behaviorModule_internetHackContain_properties: 'ContainMax' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                               | 'EnterSound' ((WS? EQ WS?) | WS) audioevent_value
                                               | 'ExitSound' ((WS? EQ WS?) | WS) audioevent_value
-                                              | 'DamagePercentToUnits' ((WS? EQ WS?) | WS) PERCENT
+                                              | 'DamagePercentToUnits' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                               | 'BurnedDeathToUnits' ((WS? EQ WS?) | WS) BOOLEAN
                                               | behaviorModule_allowInsideKindOf
                                               | behaviorModule_forbidInsideKindOf
@@ -2044,7 +2044,7 @@ behaviorModule_internetHackContain_properties: 'ContainMax' ((WS? EQ WS?) | WS) 
                                               | 'ExitBone' ((WS? EQ WS?) | WS) (ID | STRING)
                                               | 'ExitPitchRate' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                               | 'InitialPayload' ((WS? EQ WS?) | WS) object_value WS INT
-                                              | 'HealthRegen%PerSec' ((WS? EQ WS?) | WS) PERCENT
+                                              | 'HealthRegen%PerSec' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                               | 'ExitDelay' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                               | 'ArmedRidersUpgradeMyWeaponSet' ((WS? EQ WS?) | WS) BOOLEAN
                                               | 'DelayExitInAir' ((WS? EQ WS?) | WS) (INT | FLOAT)
@@ -2053,7 +2053,7 @@ behaviorModule_internetHackContain_properties: 'ContainMax' ((WS? EQ WS?) | WS) 
 behaviorModule_jetSlowDeathBehavior: 'JetSlowDeathBehavior' WS moduleTag_value NEWLINE ((WS? behaviorModule_jetSlowDeathBehavior_properties WS? NEWLINE) | (WS | NEWLINE))*;
 behaviorModule_jetSlowDeathBehavior_properties: 'SinkRate' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                               | 'ProbabilityModifier' ((WS? EQ WS?) | WS) (INT | FLOAT)
-                                              | 'ModifierBonusPerOverkillPercent' ((WS? EQ WS?) | WS) PERCENT
+                                              | 'ModifierBonusPerOverkillPercent' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                               | 'SinkDelay' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                               | 'SinkDelayVariance' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                               | 'DestructionDelay' ((WS? EQ WS?) | WS) (INT | FLOAT)
@@ -2084,9 +2084,9 @@ behaviorModule_jetSlowDeathBehavior_properties: 'SinkRate' ((WS? EQ WS?) | WS) (
                                               | 'OCLFinalBlowUp' ((WS? EQ WS?) | WS) ocl_value
                                               | 'DeathLoopSound' ((WS? EQ WS?) | WS) audioevent_value
                                               | 'RollRate' ((WS? EQ WS?) | WS) (INT | FLOAT)
-                                              | 'RollRateDelta' ((WS? EQ WS?) | WS) PERCENT
+                                              | 'RollRateDelta' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                               | 'PitchRate' ((WS? EQ WS?) | WS) (INT | FLOAT)
-                                              | 'FallHowFast' ((WS? EQ WS?) | WS) PERCENT
+                                              | 'FallHowFast' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                               ;
 
 behaviorModule_keepObjectDie: 'KeepObjectDie' WS moduleTag_value NEWLINE ((WS? behaviorModule_keepObjectDie_properties WS? NEWLINE) | (WS | NEWLINE))*;
@@ -2139,7 +2139,7 @@ behaviorModule_minefieldBehavior_properties: 'DetonationWeapon' ((WS? EQ WS?) | 
                                              | 'ScootFromStartingPointTime' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                              | 'NumVirtualMines' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                              | 'RepeatDetonateMoveThresh' ((WS? EQ WS?) | WS) (INT | FLOAT)
-                                             | 'DegenPercentPerSecondAfterCreatorDies' ((WS? EQ WS?) | WS) PERCENT
+                                             | 'DegenPercentPerSecondAfterCreatorDies' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                              | 'CreationList' ((WS? EQ WS?) | WS) ID
                                              ;
 
@@ -2198,7 +2198,7 @@ behaviorModule_neutronBlastBehavior_properties: 'BlastRadius' ((WS? EQ WS?) | WS
 behaviorModule_neutronMissileSlowDeathBehavior: 'NeutronMissileSlowDeathBehavior' WS moduleTag_value NEWLINE ((WS? behaviorModule_neutronMissileSlowDeathBehavior_properties WS? NEWLINE) | (WS | NEWLINE))*;
 behaviorModule_neutronMissileSlowDeathBehavior_properties: 'SinkRate' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                                         | 'ProbabilityModifier' ((WS? EQ WS?) | WS) (INT | FLOAT)
-                                                        | 'ModifierBonusPerOverkillPercent' ((WS? EQ WS?) | WS) PERCENT
+                                                        | 'ModifierBonusPerOverkillPercent' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                                         | 'SinkDelay' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                                         | 'SinkDelayVariance' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                                         | 'DestructionDelay' ((WS? EQ WS?) | WS) (INT | FLOAT)
@@ -2319,8 +2319,8 @@ behaviorModule_neutronMissileUpdate_properties: 'DistanceToTravelBeforeTurning' 
 behaviorModule_neutronMissileUpdate_properties_decal: 'DeliveryDecal' NEWLINE ((WS? behaviorModule_neutronMissileUpdate_properties_decal_properties WS? NEWLINE) | (WS | NEWLINE))* end;
 behaviorModule_neutronMissileUpdate_properties_decal_properties: 'Texture' ((WS? EQ WS?) | WS) ID
                                                                  | 'Style' ((WS? EQ WS?) | WS) shadow_value
-                                                                 | 'OpacityMin' ((WS? EQ WS?) | WS) PERCENT
-                                                                 | 'OpacityMax' ((WS? EQ WS?) | WS) PERCENT
+                                                                 | 'OpacityMin' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
+                                                                 | 'OpacityMax' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                                                  | 'OpacityThrobTime' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                                                  | 'Color' ((WS? EQ WS?) | WS) RGBA
                                                                  | 'OnlyVisibleToOwningPlayer' ((WS? EQ WS?) | WS) BOOLEAN
@@ -2360,15 +2360,15 @@ behaviorModule_objectCreationUpgrade_properties: 'TriggeredBy' ((WS? EQ WS?) | W
                                                  ;
 
 behaviorModule_overchargeBehavior: 'OverchargeBehavior' WS moduleTag_value NEWLINE ((WS? behaviorModule_overchargeBehavior_properties WS? NEWLINE) | (WS | NEWLINE))*;
-behaviorModule_overchargeBehavior_properties: 'HealthPercentToDrainPerSecond' ((WS? EQ WS?) | WS) PERCENT
-                                              | 'NotAllowedWhenHealthBelowPercent' ((WS? EQ WS?) | WS) PERCENT
+behaviorModule_overchargeBehavior_properties: 'HealthPercentToDrainPerSecond' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
+                                              | 'NotAllowedWhenHealthBelowPercent' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                               ;
 
 behaviorModule_overlordContain: 'OverlordContain' WS moduleTag_value NEWLINE ((WS? behaviorModule_overlordContain_properties WS? NEWLINE) | (WS | NEWLINE))*;
 behaviorModule_overlordContain_properties: 'ContainMax' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                              | 'EnterSound' ((WS? EQ WS?) | WS) audioevent_value
                                              | 'ExitSound' ((WS? EQ WS?) | WS) audioevent_value
-                                             | 'DamagePercentToUnits' ((WS? EQ WS?) | WS) PERCENT
+                                             | 'DamagePercentToUnits' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                              | 'BurnedDeathToUnits' ((WS? EQ WS?) | WS) BOOLEAN
                                              | behaviorModule_allowInsideKindOf
                                              | behaviorModule_forbidInsideKindOf
@@ -2394,7 +2394,7 @@ behaviorModule_overlordContain_properties: 'ContainMax' ((WS? EQ WS?) | WS) (INT
                                              | 'ExitBone' ((WS? EQ WS?) | WS) (ID | STRING)
                                              | 'ExitPitchRate' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                              | 'InitialPayload' ((WS? EQ WS?) | WS) object_value WS INT
-                                             | 'HealthRegen%PerSec' ((WS? EQ WS?) | WS) PERCENT
+                                             | 'HealthRegen%PerSec' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                              | 'ExitDelay' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                              | 'ArmedRidersUpgradeMyWeaponSet' ((WS? EQ WS?) | WS) BOOLEAN
                                              | 'DelayExitInAir' ((WS? EQ WS?) | WS) BOOLEAN
@@ -2406,7 +2406,7 @@ behaviorModule_parachuteContain: 'ParachuteContain' WS moduleTag_value NEWLINE (
 behaviorModule_parachuteContain_properties: 'ContainMax' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                              | 'EnterSound' ((WS? EQ WS?) | WS) audioevent_value
                                              | 'ExitSound' ((WS? EQ WS?) | WS) audioevent_value
-                                             | 'DamagePercentToUnits' ((WS? EQ WS?) | WS) PERCENT
+                                             | 'DamagePercentToUnits' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                              | 'BurnedDeathToUnits' ((WS? EQ WS?) | WS) BOOLEAN
                                              | behaviorModule_allowInsideKindOf
                                              | behaviorModule_forbidInsideKindOf
@@ -2555,8 +2555,8 @@ behaviorModule_projectileStreamUpdate: 'ProjectileStreamUpdate' WS moduleTag_val
 behaviorModule_propagandaTowerBehavior: 'PropagandaTowerBehavior' WS moduleTag_value NEWLINE ((WS? behaviorModule_propagandaTowerBehavior_properties WS? NEWLINE) | (WS | NEWLINE))*;
 behaviorModule_propagandaTowerBehavior_properties: 'Radius' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                                  | 'DelayBetweenUpdates' ((WS? EQ WS?) | WS) (INT | FLOAT)
-                                                 | 'HealPercentEachSecond' ((WS? EQ WS?) | WS) PERCENT
-                                                 | 'UpgradedHealPercentEachSecond' ((WS? EQ WS?) | WS) PERCENT
+                                                 | 'HealPercentEachSecond' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
+                                                 | 'UpgradedHealPercentEachSecond' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                                  | 'PulseFX' ((WS? EQ WS?) | WS) fxlist_value
                                                  | 'UpgradeRequired' ((WS? EQ WS?) | WS) upgrade_value
                                                  | 'UpgradedPulseFX' ((WS? EQ WS?) | WS) fxlist_value
@@ -2601,7 +2601,7 @@ behaviorModule_railedTransportContain: 'RailedTransportContain' WS moduleTag_val
 behaviorModule_railedTransportContain_properties: 'ContainMax' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                                  | 'EnterSound' ((WS? EQ WS?) | WS) audioevent_value
                                                  | 'ExitSound' ((WS? EQ WS?) | WS) audioevent_value
-                                                 | 'DamagePercentToUnits' ((WS? EQ WS?) | WS) PERCENT
+                                                 | 'DamagePercentToUnits' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                                  | 'BurnedDeathToUnits' ((WS? EQ WS?) | WS) BOOLEAN
                                                  | behaviorModule_allowInsideKindOf
                                                  | behaviorModule_forbidInsideKindOf
@@ -2627,7 +2627,7 @@ behaviorModule_railedTransportContain_properties: 'ContainMax' ((WS? EQ WS?) | W
                                                  | 'ExitBone' ((WS? EQ WS?) | WS) (ID | STRING)
                                                  | 'ExitPitchRate' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                                  | 'InitialPayload' ((WS? EQ WS?) | WS) object_value WS INT
-                                                 | 'HealthRegen%PerSec' ((WS? EQ WS?) | WS) PERCENT
+                                                 | 'HealthRegen%PerSec' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                                  | 'ExitDelay' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                                  | 'ArmedRidersUpgradeMyWeaponSet' ((WS? EQ WS?) | WS) BOOLEAN
                                                  | 'DelayExitInAir' ((WS? EQ WS?) | WS) BOOLEAN
@@ -2684,7 +2684,7 @@ behaviorModule_railroadBehavior_properties: 'Mass' ((WS? EQ WS?) | WS) (INT | FL
 behaviorModule_rebuildHoleBehavior: 'RebuildHoleBehavior' WS moduleTag_value NEWLINE ((WS? behaviorModule_rebuildHoleBehavior_properties WS? NEWLINE) | (WS | NEWLINE))*;
 behaviorModule_rebuildHoleBehavior_properties: 'WorkerObjectName' ((WS? EQ WS?) | WS) object_value
                                              | 'WorkerRespawnDelay' ((WS? EQ WS?) | WS) (INT | FLOAT)
-                                             | 'HoleHealthRegen%PerSecond' ((WS? EQ WS?) | WS) PERCENT
+                                             | 'HoleHealthRegen%PerSecond' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                              ;
 
 behaviorModule_rebuildHoleExposeDie: 'RebuildHoleExposeDie' WS moduleTag_value NEWLINE ((WS? behaviorModule_rebuildHoleExposeDie_properties WS? NEWLINE) | (WS | NEWLINE))*;
@@ -2716,7 +2716,7 @@ behaviorModule_riderChangeContain: 'RiderChangeContain' WS moduleTag_value NEWLI
 behaviorModule_riderChangeContain_properties: 'ContainMax' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                              | 'EnterSound' ((WS? EQ WS?) | WS) audioevent_value
                                              | 'ExitSound' ((WS? EQ WS?) | WS) audioevent_value
-                                             | 'DamagePercentToUnits' ((WS? EQ WS?) | WS) PERCENT
+                                             | 'DamagePercentToUnits' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                              | 'BurnedDeathToUnits' ((WS? EQ WS?) | WS) BOOLEAN
                                              | behaviorModule_allowInsideKindOf
                                              | behaviorModule_forbidInsideKindOf
@@ -2742,7 +2742,7 @@ behaviorModule_riderChangeContain_properties: 'ContainMax' ((WS? EQ WS?) | WS) (
                                              | 'ExitBone' ((WS? EQ WS?) | WS) (ID | STRING)
                                              | 'ExitPitchRate' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                              | 'InitialPayload' ((WS? EQ WS?) | WS) object_value WS INT
-                                             | 'HealthRegen%PerSec' ((WS? EQ WS?) | WS) PERCENT
+                                             | 'HealthRegen%PerSec' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                              | 'ExitDelay' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                              | 'ArmedRidersUpgradeMyWeaponSet' ((WS? EQ WS?) | WS) BOOLEAN
                                              | 'DelayExitInAir' ((WS? EQ WS?) | WS) BOOLEAN
@@ -2755,7 +2755,7 @@ behaviorModule_riderChangeContain_properties: 'ContainMax' ((WS? EQ WS?) | WS) (
                                              | 'Rider7' ((WS? EQ WS?) | WS) object_value WS drawModule_conditionStateValue WS objectClass_setConditions WS status_value WS commandSet_value WS locomotor_type
                                              | 'Rider8' ((WS? EQ WS?) | WS) object_value WS drawModule_conditionStateValue WS objectClass_setConditions WS status_value WS commandSet_value WS locomotor_type
                                              | 'ScuttleDelay' ((WS? EQ WS?) | WS) (INT | FLOAT)
-                                             | 'ScuttleStatus' ((WS? EQ WS?) | WS) ID
+                                             | 'ScuttleStatus' ((WS? EQ WS?) | WS) (ID | None_value | damageType_value | kindof_value | deathType_value)
                                              ;
 
 behaviorModule_sabotageCommandCenterCrateCollide: 'SabotageCommandCenterCrateCollide' WS moduleTag_value NEWLINE ((WS? behaviorModule_sabotageCommandCenterCrateCollide_properties WS? NEWLINE) | (WS | NEWLINE))*;
@@ -2872,9 +2872,9 @@ behaviorModule_salvageCrateCollide_properties: 'RequiredKindOf' ((WS? EQ WS?) | 
                                              | 'ExecuteAnimationTime' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                              | 'ExecuteAnimationZRise' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                              | 'ExecuteAnimationFades' ((WS? EQ WS?) | WS) BOOLEAN
-                                             | 'WeaponChance' ((WS? EQ WS?) | WS) PERCENT
-                                             | 'LevelChance' ((WS? EQ WS?) | WS) PERCENT
-                                             | 'MoneyChance' ((WS? EQ WS?) | WS) PERCENT
+                                             | 'WeaponChance' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
+                                             | 'LevelChance' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
+                                             | 'MoneyChance' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                              | 'MinMoney' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                              | 'MaxMoney' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                              ;
@@ -2904,7 +2904,7 @@ behaviorModule_slavedUpdate_properties: 'GuardMaxRange' ((WS? EQ WS?) | WS) (INT
 behaviorModule_slowDeathBehavior: 'SlowDeathBehavior' WS moduleTag_value NEWLINE ((WS? behaviorModule_slowDeathBehavior_properties WS? NEWLINE) | (WS | NEWLINE))*;
 behaviorModule_slowDeathBehavior_properties: 'SinkRate' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                              | 'ProbabilityModifier' ((WS? EQ WS?) | WS) (INT | FLOAT)
-                                             | 'ModifierBonusPerOverkillPercent' ((WS? EQ WS?) | WS) PERCENT
+                                             | 'ModifierBonusPerOverkillPercent' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                              | 'SinkDelay' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                              | 'SinkDelayVariance' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                              | 'DestructionDelay' ((WS? EQ WS?) | WS) (INT | FLOAT)
@@ -3034,8 +3034,8 @@ behaviorModule_spectreGunshipUpdate_properties: 'SpecialPowerTemplate' ((WS? EQ 
 behaviorModule_spectreGunshipUpdate_attackareadecal: 'AttackAreaDecal' NEWLINE ((WS? behaviorModule_spectreGunshipUpdate_attackareadecal_properties WS? NEWLINE) | (WS | NEWLINE))* end;
 behaviorModule_spectreGunshipUpdate_attackareadecal_properties: 'Texture' ((WS? EQ WS?) | WS) ID
                                              | 'Style' ((WS? EQ WS?) | WS) shadow_value
-                                             | 'OpacityMin' ((WS? EQ WS?) | WS) PERCENT
-                                             | 'OpacityMax' ((WS? EQ WS?) | WS) PERCENT
+                                             | 'OpacityMin' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
+                                             | 'OpacityMax' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                              | 'OpacityThrobTime' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                              | 'Color' ((WS? EQ WS?) | WS) RGBA
                                              | 'OnlyVisibleToOwningPlayer' ((WS? EQ WS?) | WS) BOOLEAN
@@ -3044,8 +3044,8 @@ behaviorModule_spectreGunshipUpdate_attackareadecal_properties: 'Texture' ((WS? 
 behaviorModule_spectreGunshipUpdate_targetingreticleDecal: 'TargetingReticleDecal' NEWLINE ((WS? behaviorModule_spectreGunshipUpdate_targetingreticleDecal_properties WS? NEWLINE) | (WS | NEWLINE))* end;
 behaviorModule_spectreGunshipUpdate_targetingreticleDecal_properties: 'Texture' ((WS? EQ WS?) | WS) ID
                                              | 'Style' ((WS? EQ WS?) | WS) shadow_value
-                                             | 'OpacityMin' ((WS? EQ WS?) | WS) PERCENT
-                                             | 'OpacityMax' ((WS? EQ WS?) | WS) PERCENT
+                                             | 'OpacityMin' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
+                                             | 'OpacityMax' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                              | 'OpacityThrobTime' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                              | 'Color' ((WS? EQ WS?) | WS) RGBA
                                              | 'OnlyVisibleToOwningPlayer' ((WS? EQ WS?) | WS) BOOLEAN
@@ -3108,8 +3108,8 @@ behaviorModule_stealthUpdate_properties: 'StealthDelay' ((WS? EQ WS?) | WS) (INT
                                              | 'HintDetectableConditions' ((WS? EQ WS?) | WS) status_value (WS status_value)*
                                              | 'RequiredStatus' ((WS? EQ WS?) | WS) status_value
                                              | 'ForbiddenStatus' ((WS? EQ WS?) | WS) status_value
-                                             | 'FriendlyOpacityMin' ((WS? EQ WS?) | WS) PERCENT
-                                             | 'FriendlyOpacityMax' ((WS? EQ WS?) | WS) PERCENT
+                                             | 'FriendlyOpacityMin' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
+                                             | 'FriendlyOpacityMax' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                              | 'PulseFrequency' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                              | 'DisguisesAsTeam' ((WS? EQ WS?) | WS) BOOLEAN
                                              | 'RevealDistanceFromTarget' ((WS? EQ WS?) | WS) (INT | FLOAT)
@@ -3239,8 +3239,8 @@ behaviorModule_toppleUpdate_properties: 'ToppleFX' ((WS? EQ WS?) | WS) fxlist_va
                                              | 'ToppleLeftOrRightOnly' ((WS? EQ WS?) | WS) BOOLEAN
                                              | 'ReorientToppledRubble' ((WS? EQ WS?) | WS) BOOLEAN
                                              | 'InitialVelocityPercent' ((WS? EQ WS?) | WS) (INT | FLOAT)
-                                             | 'InitialAccelPercent' ((WS? EQ WS?) | WS) PERCENT
-                                             | 'BounceVelocityPercent' ((WS? EQ WS?) | WS) PERCENT
+                                             | 'InitialAccelPercent' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
+                                             | 'BounceVelocityPercent' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                              ;
 
 behaviorModule_transitionDamageFX: 'TransitionDamageFX' WS moduleTag_value NEWLINE ((WS? behaviorModule_transitionDamageFX_properties WS? NEWLINE) | (WS | NEWLINE))*;
@@ -3361,7 +3361,7 @@ behaviorModule_transportContain: 'TransportContain' WS moduleTag_value NEWLINE (
 behaviorModule_transportContain_properties: 'ContainMax' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                              | 'EnterSound' ((WS? EQ WS?) | WS) audioevent_value
                                              | 'ExitSound' ((WS? EQ WS?) | WS) audioevent_value
-                                             | 'DamagePercentToUnits' ((WS? EQ WS?) | WS) PERCENT
+                                             | 'DamagePercentToUnits' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                              | 'BurnedDeathToUnits' ((WS? EQ WS?) | WS) BOOLEAN
                                              | behaviorModule_allowInsideKindOf
                                              | behaviorModule_forbidInsideKindOf
@@ -3387,7 +3387,7 @@ behaviorModule_transportContain_properties: 'ContainMax' ((WS? EQ WS?) | WS) (IN
                                              | 'ExitBone' ((WS? EQ WS?) | WS) (ID | STRING)
                                              | 'ExitPitchRate' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                              | 'InitialPayload' ((WS? EQ WS?) | WS) object_value WS INT
-                                             | 'HealthRegen%PerSec' ((WS? EQ WS?) | WS) PERCENT
+                                             | 'HealthRegen%PerSec' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                              | 'ExitDelay' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                              | 'ArmedRidersUpgradeMyWeaponSet' ((WS? EQ WS?) | WS) BOOLEAN
                                              | 'DelayExitInAir' ((WS? EQ WS?) | WS) BOOLEAN
@@ -3397,7 +3397,7 @@ behaviorModule_tunnelContain: 'TunnelContain' WS moduleTag_value NEWLINE ((WS? b
 behaviorModule_tunnelContain_properties: 'ContainMax' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                              | 'EnterSound' ((WS? EQ WS?) | WS) audioevent_value
                                              | 'ExitSound' ((WS? EQ WS?) | WS) audioevent_value
-                                             | 'DamagePercentToUnits' ((WS? EQ WS?) | WS) PERCENT
+                                             | 'DamagePercentToUnits' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                              | 'BurnedDeathToUnits' ((WS? EQ WS?) | WS) BOOLEAN
                                              | behaviorModule_allowInsideKindOf
                                              | behaviorModule_forbidInsideKindOf
@@ -3447,7 +3447,7 @@ behaviorModule_upgradeDie_properties: behaviorModule_deathTypes
                                              | 'VeterancyLevels' ((WS? EQ WS?) | WS) veterency_modifier (WS veterency_modifier)*
                                              | 'ExemptStatus' ((WS? EQ WS?) | WS) status_value (WS status_value)*
                                              | 'RequiredStatus' ((WS? EQ WS?) | WS) status_value
-                                             | 'UpgradeToRemove' ((WS? EQ WS?) | WS) upgrade_value
+                                             | 'UpgradeToRemove' ((WS? EQ WS?) | WS) upgrade_value WS moduleTag_value
                                              ;
 
 behaviorModule_veterancyCrateCollide: 'VeterancyCrateCollide' WS moduleTag_value NEWLINE ((WS? behaviorModule_veterancyCrateCollide_properties WS? NEWLINE) | (WS | NEWLINE))*;
@@ -3610,7 +3610,7 @@ behaviorModule_deployableAIUpdate_properties: behaviorModule_turretBlock
 behaviorModule_dozerAIUpdate: 'DozerAIUpdate' WS moduleTag_value NEWLINE ((WS? behaviorModule_dozerAIUpdate_properties WS? NEWLINE) | (WS | NEWLINE))*;
 behaviorModule_dozerAIUpdate_properties: behaviorModule_turretBlock
                                          | behaviorModule_aiUpdate_properties
-                                         | 'RepairHealthPercentPerSecond' ((WS? EQ WS?) | WS) PERCENT
+                                         | 'RepairHealthPercentPerSecond' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                          | 'BoredTime' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                          | 'BoredRange' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                          ;
@@ -3633,10 +3633,10 @@ behaviorModule_hackInternetAIUpdate_properties: behaviorModule_turretBlock
 behaviorModule_jetAIUpdate: 'JetAIUpdate' WS moduleTag_value NEWLINE ((WS? behaviorModule_jetAIUpdate_properties WS? NEWLINE) | (WS | NEWLINE))*;
 behaviorModule_jetAIUpdate_properties: behaviorModule_turretBlock
                                          | behaviorModule_aiUpdate_properties
-                                         | 'OutOfAmmoDamagePerSecond' ((WS? EQ WS?) | WS) PERCENT
+                                         | 'OutOfAmmoDamagePerSecond' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                          | 'NeedsRunway' ((WS? EQ WS?) | WS) BOOLEAN
                                          | 'KeepsParkingSpaceWhenAirborne' ((WS? EQ WS?) | WS) BOOLEAN
-                                         | 'TakeoffDistForMaxLift' ((WS? EQ WS?) | WS) PERCENT
+                                         | 'TakeoffDistForMaxLift' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                          | 'TakeoffPause' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                          | 'MinHeight' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                          | 'ParkingOffset' ((WS? EQ WS?) | WS) (INT | FLOAT)
@@ -3707,7 +3707,7 @@ behaviorModule_workerAIUpdate: 'WorkerAIUpdate' WS moduleTag_value NEWLINE ((WS?
 behaviorModule_workerAIUpdate_properties: behaviorModule_turretBlock
                                          | behaviorModule_aiUpdate_properties
                                          | 'MaxBoxes' ((WS? EQ WS?) | WS) (INT | FLOAT)
-                                         | 'RepairHealthPercentPerSecond' ((WS? EQ WS?) | WS) PERCENT
+                                         | 'RepairHealthPercentPerSecond' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                          | 'BoredTime' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                          | 'BoredRange' ((WS? EQ WS?) | WS) (INT | FLOAT)
                                          | 'SupplyCenterActionDelay' ((WS? EQ WS?) | WS) (INT | FLOAT)
@@ -3968,8 +3968,8 @@ objectCreationListClass_deliveryPayloadProperties: objectCreationListClass_deliv
 objectCreationListClass_deliveryDecal: 'DeliveryDecal' WS* NEWLINE
                                        (WS? ('Texture' ((WS? EQ WS?) | WS) ID
                                      | 'Style' ((WS? EQ WS?) | WS) shadow_value
-                                     | 'OpacityMin' ((WS? EQ WS?) | WS) PERCENT
-                                     | 'OpacityMax' ((WS? EQ WS?) | WS) PERCENT
+                                     | 'OpacityMin' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
+                                     | 'OpacityMax' ((WS? EQ WS?) | WS) (INT | FLOAT | PERCENT)
                                      | 'OpacityThrobTime' ((WS? EQ WS?) | WS) INT
                                      | 'Color' ((WS? EQ WS?) | WS) RGBA
                                      | 'OnlyVisibleToOwningPlayer' ((WS? EQ WS?) | WS) BOOLEAN) WS? NEWLINE)*
@@ -4074,8 +4074,8 @@ playerTemplateClass_properties: 'Side' ((WS? EQ WS?) | WS) faction_value
 							  | 'LoadScreenMusic' ((WS? EQ WS?) | WS) ID
 							  | 'BeaconName' ((WS? EQ WS?) | WS) object_value
 							  | 'SideIconImage' ((WS? EQ WS?) | WS) mappedimage_value
-							  | 'ProductionCostChange' ((WS? EQ WS?) | WS) object_value WS PERCENT
-                | 'ProductionTimeChange' ((WS? EQ WS?) | WS) object_value WS PERCENT
+							  | 'ProductionCostChange' ((WS? EQ WS?) | WS) object_value WS (INT | FLOAT | PERCENT)
+                | 'ProductionTimeChange' ((WS? EQ WS?) | WS) object_value WS (INT | FLOAT | PERCENT)
 							  | 'PurchaseScienceCommandSetRank1' ((WS? EQ WS?) | WS) commandSet_value
 							  | 'PurchaseScienceCommandSetRank3' ((WS? EQ WS?) | WS) commandSet_value
 							  | 'PurchaseScienceCommandSetRank8' ((WS? EQ WS?) | WS) commandSet_value
@@ -4199,7 +4199,7 @@ weapon_properties: weapon_damagetype_property
 weapon_damagetype_property: 'DamageType' ((WS? EQ WS?) | WS) damageType_value;
 weapon_deathtype_property: 'DeathType' ((WS? EQ WS?) | WS) deathType_value;
 weapon_damageaffects_property: 'RadiusDamageAffects' ((WS? EQ WS?) | WS) damageAffects_value (WS damageAffects_value)*;
-weapon_weaponbonus_property: 'WeaponBonus' ((WS? EQ WS?) | WS) weapon_weaponbonus_condition_value WS weapon_weaponbonus_bonus_value WS PERCENT;
+weapon_weaponbonus_property: 'WeaponBonus' ((WS? EQ WS?) | WS) weapon_weaponbonus_condition_value WS weapon_weaponbonus_bonus_value WS (INT | FLOAT | PERCENT);
 weapon_lasterbone_property: 'LaserBoneName' ((WS? EQ WS?) | WS) (ID | STRING | damageType_value);
 
 weapon_weaponbonus_condition_value: (None_value | 'GARRISONED' | 'HORDE' | 'CONTINUOUS_FIRE_MEAN' | 'UNSELECTABLE' | 'DEPLOYED' | 'CONTINUOUS_FIRE_FAST' | 'NATIONALISM' | 'PLAYER_UPGRADE' | 'DRONE_SPOTTING' | 'DEMORALIZED_OBSOLETE' | 'ENTHUSIASTIC' | VETERENCY | 'BATTLEPLAN_BOMBARDMENT' | 'BATTLEPLAN_HOLDTHELINE' | 'BATTLEPLAN_SEARCHANDDESTROY' | 'SUBLIMINAL' | 'SOLO_HUMAN_EASY' | 'SOLO_HUMAN_NORMAL' | 'SOLO_HUMAN_HARD' | 'SOLO_AI_EASY' | 'SOLO_AI_NORMAL' | 'SOLO_AI_HARD' | 'FAERIE_FIRE' | 'FANATICISM' | 'FRENZY_ONE' | 'FRENZY_TWO' | 'FRENZY_THREE');
@@ -4246,7 +4246,7 @@ weather_properties: 'SnowEnabled' ((WS? EQ WS?) | WS) BOOLEAN
 
 end: WS? ('end' | 'End' | 'END');
 
-file: ID '.' ('tga' | 'dds' | 'wav' | 'wnd');
+file: (ID | 'SMUDGE') '.' ('tga' | 'dds' | 'wav' | 'wnd');
 
 
 // DrawGroupInfo Class
@@ -4258,7 +4258,7 @@ dgi_dropshadowoffsetY_property: 'DropShadowOffsetY' EQ INT;
 dgi_fontname_property: 'FontName' EQ ID+;
 dgi_fontsize_property: 'FontSize' EQ INT;
 dgi_fontisbold_property: 'FontIsBold' EQ BOOLEAN;
-dgi_drawposXperc_property: 'DrawPositionXPercent' EQ PERCENT;
+dgi_drawposXperc_property: 'DrawPositionXPercent' EQ (INT | FLOAT | PERCENT);
 dgi_drawposYperc_property: 'DrawPositionYPixel' EQ INT;
 
 
@@ -4287,7 +4287,7 @@ invalid_cursorname_value: (ID | None_value);
 
 mappedimage_value: (ID | None_value);
 
-particlesystem_value: (ID | None_value);
+particlesystem_value: (ID | None_value | damageType_value | deathType_value);
 
 fxlist_value: (ID | None_value);
 
