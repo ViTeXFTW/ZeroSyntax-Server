@@ -224,6 +224,8 @@ import { BodyModule_highlanderContext } from "./MapIniParser.js";
 import { BodyModule_highlander_propertiesContext } from "./MapIniParser.js";
 import { ObjectClass_behaviorModulesContext } from "./MapIniParser.js";
 import { BehaviorModule_valueContext } from "./MapIniParser.js";
+import { BehaviorModule_activeShroudUpgradeContext } from "./MapIniParser.js";
+import { BehaviorModule_activeShroudUpgrade_propertiesContext } from "./MapIniParser.js";
 import { BehaviorModule_animationSteeringUpdateContext } from "./MapIniParser.js";
 import { BehaviorModule_animationSteeringUpdate_propertiesContext } from "./MapIniParser.js";
 import { BehaviorModule_armorUpgradeUpdateContext } from "./MapIniParser.js";
@@ -2929,6 +2931,26 @@ export class MapIniListener implements ParseTreeListener {
      * @param ctx the parse tree
      */
     exitBehaviorModule_value?: (ctx: BehaviorModule_valueContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.behaviorModule_activeShroudUpgrade`.
+     * @param ctx the parse tree
+     */
+    enterBehaviorModule_activeShroudUpgrade?: (ctx: BehaviorModule_activeShroudUpgradeContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.behaviorModule_activeShroudUpgrade`.
+     * @param ctx the parse tree
+     */
+    exitBehaviorModule_activeShroudUpgrade?: (ctx: BehaviorModule_activeShroudUpgradeContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.behaviorModule_activeShroudUpgrade_properties`.
+     * @param ctx the parse tree
+     */
+    enterBehaviorModule_activeShroudUpgrade_properties?: (ctx: BehaviorModule_activeShroudUpgrade_propertiesContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.behaviorModule_activeShroudUpgrade_properties`.
+     * @param ctx the parse tree
+     */
+    exitBehaviorModule_activeShroudUpgrade_properties?: (ctx: BehaviorModule_activeShroudUpgrade_propertiesContext) => void;
     /**
      * Enter a parse tree produced by `MapIniParser.behaviorModule_animationSteeringUpdate`.
      * @param ctx the parse tree
