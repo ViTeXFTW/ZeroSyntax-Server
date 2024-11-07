@@ -4775,12 +4775,6 @@ let definedCommandSets: string[] = [
 ]
 
 let definedFXLists: string[] = [
-	"WeaponFX_USAPathfinderFire",
-	"WeaponFX_USAPathfinderFireHeroic",
-	"FX_SmallStructureCollapseDelay",
-	"FX_SmallStructureCollapseBurst",
-	"FX_SmallStructureCollapseFinal",
-	"FX_SmallStructureConstructionDeath",
 	"WeaponFX_GenericTankFire",
 	"WeaponFX_ToxinShellWeapon",
 	"FX_CarOverlappedByCrusher",
