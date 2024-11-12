@@ -32,7 +32,10 @@
 		"languages": [
 			{
 				"id": "ini",
-				"aliases": ["Ini", "INI"],
+				"aliases": [
+					"Ini",
+					"INI"
+				],
 				"extensions": [
 					".ini",
 					".Ini",
@@ -125,11 +128,11 @@
 	"scripts": {
 		"vscode:prepublish": "npm run cc",
 		"package": "npm run cc && vsce package",
-		"cc": "npm run clean && npm run antlr4ng && npm run compile",
+		"cc": "npm run clean && npm run antlr4ng && npm run compile && npm run compile-test",
 		"compile": "tsc -b",
+		"compile-test": "cd server && npm run compile-test",
 		"clean": "rimraf ./client/out && rimraf ./server/out",
 		"clean-node": "rimraf ./node_modules && rimraf ./client/node_modules && rimraf ./server/node_modules && npm install",
-		"compile-test": "cd client && npm run compile-test && cd .. && cd server && npm run compile-test",
 		"watch": "tsc -b -w",
 		"lint": "eslint ./client/src ./server/src --ext .ts,.tsx",
 		"postinstall": "cd client && npm install && cd ../server && npm install && cd ..",
@@ -141,6 +144,8 @@
 		"@types/node": "^16.18.34",
 		"@typescript-eslint/eslint-plugin": "^6.7.0",
 		"@typescript-eslint/parser": "^6.7.0",
+		"@vscode/test-cli": "^0.0.10",
+		"@vscode/test-electron": "^2.4.1",
 		"antlr4-c3": "^3.4.1",
 		"antlr4ng-cli": "^2.0.0",
 		"antlr4ts-cli": "^0.5.0-alpha.4",

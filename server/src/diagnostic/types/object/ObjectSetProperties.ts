@@ -1,6 +1,6 @@
-import { PropertyDefinition } from '../properties';
-import { IniTypes_t } from './IniType_t';
-import * as list from '../../utils/lists';
+import { PropertyDefinition } from '../../properties';
+import { IniTypes_t } from '../IniType_t';
+import * as list from '../../../utils/lists';
 
 export const weaponSetProperties: { [key: string]: PropertyDefinition } = {
 	'Conditions': {

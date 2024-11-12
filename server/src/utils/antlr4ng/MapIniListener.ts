@@ -5,8 +5,13 @@ import { ErrorNode, ParseTreeListener, ParserRuleContext, TerminalNode } from "a
 
 import { ProgramContext } from "./MapIniParser.js";
 import { ClassContext } from "./MapIniParser.js";
-import { MappedImageClassContext } from "./MapIniParser.js";
+import { SimpleClassContext } from "./MapIniParser.js";
+import { Class_identifierContext } from "./MapIniParser.js";
+import { Class_valueContext } from "./MapIniParser.js";
+import { ObjectReskinClassContext } from "./MapIniParser.js";
+import { ObjectReskin_identifierContext } from "./MapIniParser.js";
 import { ObjectClassContext } from "./MapIniParser.js";
+import { Object_identifierContext } from "./MapIniParser.js";
 import { Module_modifierContext } from "./MapIniParser.js";
 import { AddModuleContext } from "./MapIniParser.js";
 import { RemoveModuleContext } from "./MapIniParser.js";
@@ -32,6 +37,8 @@ import { BodyModuleContext } from "./MapIniParser.js";
 import { BodyModulePropertyContext } from "./MapIniParser.js";
 import { BehaviorModuleContext } from "./MapIniParser.js";
 import { BehaviorModulePropertyContext } from "./MapIniParser.js";
+import { TurretBlockContext } from "./MapIniParser.js";
+import { TurretPropertyContext } from "./MapIniParser.js";
 import { ClientModuleContext } from "./MapIniParser.js";
 import { ClientModulePropertyContext } from "./MapIniParser.js";
 import { ObjectPropertyContext } from "./MapIniParser.js";
@@ -47,8 +54,8 @@ import { ModuleTag_valueContext } from "./MapIniParser.js";
 import { MappedImage_valueContext } from "./MapIniParser.js";
 import { Object_valueContext } from "./MapIniParser.js";
 import { Locomotor_modifierContext } from "./MapIniParser.js";
-import { Property_valueContext } from "./MapIniParser.js";
 import { Property_valuesContext } from "./MapIniParser.js";
+import { Property_valueContext } from "./MapIniParser.js";
 import { EndContext } from "./MapIniParser.js";
 
 
@@ -78,15 +85,55 @@ export class MapIniListener implements ParseTreeListener {
      */
     exitClass?: (ctx: ClassContext) => void;
     /**
-     * Enter a parse tree produced by `MapIniParser.mappedImageClass`.
+     * Enter a parse tree produced by `MapIniParser.simpleClass`.
      * @param ctx the parse tree
      */
-    enterMappedImageClass?: (ctx: MappedImageClassContext) => void;
+    enterSimpleClass?: (ctx: SimpleClassContext) => void;
     /**
-     * Exit a parse tree produced by `MapIniParser.mappedImageClass`.
+     * Exit a parse tree produced by `MapIniParser.simpleClass`.
      * @param ctx the parse tree
      */
-    exitMappedImageClass?: (ctx: MappedImageClassContext) => void;
+    exitSimpleClass?: (ctx: SimpleClassContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.class_identifier`.
+     * @param ctx the parse tree
+     */
+    enterClass_identifier?: (ctx: Class_identifierContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.class_identifier`.
+     * @param ctx the parse tree
+     */
+    exitClass_identifier?: (ctx: Class_identifierContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.class_value`.
+     * @param ctx the parse tree
+     */
+    enterClass_value?: (ctx: Class_valueContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.class_value`.
+     * @param ctx the parse tree
+     */
+    exitClass_value?: (ctx: Class_valueContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.objectReskinClass`.
+     * @param ctx the parse tree
+     */
+    enterObjectReskinClass?: (ctx: ObjectReskinClassContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.objectReskinClass`.
+     * @param ctx the parse tree
+     */
+    exitObjectReskinClass?: (ctx: ObjectReskinClassContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.objectReskin_identifier`.
+     * @param ctx the parse tree
+     */
+    enterObjectReskin_identifier?: (ctx: ObjectReskin_identifierContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.objectReskin_identifier`.
+     * @param ctx the parse tree
+     */
+    exitObjectReskin_identifier?: (ctx: ObjectReskin_identifierContext) => void;
     /**
      * Enter a parse tree produced by `MapIniParser.objectClass`.
      * @param ctx the parse tree
@@ -97,6 +144,16 @@ export class MapIniListener implements ParseTreeListener {
      * @param ctx the parse tree
      */
     exitObjectClass?: (ctx: ObjectClassContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.object_identifier`.
+     * @param ctx the parse tree
+     */
+    enterObject_identifier?: (ctx: Object_identifierContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.object_identifier`.
+     * @param ctx the parse tree
+     */
+    exitObject_identifier?: (ctx: Object_identifierContext) => void;
     /**
      * Enter a parse tree produced by `MapIniParser.module_modifier`.
      * @param ctx the parse tree
@@ -348,6 +405,26 @@ export class MapIniListener implements ParseTreeListener {
      */
     exitBehaviorModuleProperty?: (ctx: BehaviorModulePropertyContext) => void;
     /**
+     * Enter a parse tree produced by `MapIniParser.turretBlock`.
+     * @param ctx the parse tree
+     */
+    enterTurretBlock?: (ctx: TurretBlockContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.turretBlock`.
+     * @param ctx the parse tree
+     */
+    exitTurretBlock?: (ctx: TurretBlockContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.turretProperty`.
+     * @param ctx the parse tree
+     */
+    enterTurretProperty?: (ctx: TurretPropertyContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.turretProperty`.
+     * @param ctx the parse tree
+     */
+    exitTurretProperty?: (ctx: TurretPropertyContext) => void;
+    /**
      * Enter a parse tree produced by `MapIniParser.clientModule`.
      * @param ctx the parse tree
      */
@@ -498,16 +575,6 @@ export class MapIniListener implements ParseTreeListener {
      */
     exitLocomotor_modifier?: (ctx: Locomotor_modifierContext) => void;
     /**
-     * Enter a parse tree produced by `MapIniParser.property_value`.
-     * @param ctx the parse tree
-     */
-    enterProperty_value?: (ctx: Property_valueContext) => void;
-    /**
-     * Exit a parse tree produced by `MapIniParser.property_value`.
-     * @param ctx the parse tree
-     */
-    exitProperty_value?: (ctx: Property_valueContext) => void;
-    /**
      * Enter a parse tree produced by `MapIniParser.property_values`.
      * @param ctx the parse tree
      */
@@ -517,6 +584,16 @@ export class MapIniListener implements ParseTreeListener {
      * @param ctx the parse tree
      */
     exitProperty_values?: (ctx: Property_valuesContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.property_value`.
+     * @param ctx the parse tree
+     */
+    enterProperty_value?: (ctx: Property_valueContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.property_value`.
+     * @param ctx the parse tree
+     */
+    exitProperty_value?: (ctx: Property_valueContext) => void;
     /**
      * Enter a parse tree produced by `MapIniParser.end`.
      * @param ctx the parse tree

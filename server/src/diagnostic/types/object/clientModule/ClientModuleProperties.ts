@@ -1,7 +1,7 @@
 import { RBTree } from 'bintrees';
 import { ClientModule_t } from './ClientModule_t';
-import { PropertyDefinition } from '../properties';
-import { IniTypes_t } from './IniType_t';
+import { PropertyDefinition } from '../../../properties';
+import { IniTypes_t } from '../../IniType_t';
 
 
 export const ClientModuleTrees: {[key in ClientModule_t]: RBTree<string>} = {

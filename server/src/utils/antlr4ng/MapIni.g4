@@ -3,17 +3,22 @@ grammar MapIni;
 // Parser Rules
 program: (class | NEWLINE)* EOF;
 
-class: mappedImageClass
+class: simpleClass
      | objectClass
-//     | upgradeClass
+     | objectReskinClass
      ;
 
-// MappedImage Class
-mappedImageClass: 'MappedImage' mappedImage_value NEWLINE (property)* end;
+// Classes that doesn't have sub blocks
+simpleClass: class_identifier class_value NEWLINE (property | NEWLINE)* end;
+class_identifier: 'Animation' | 'Armor' | 'AudioEvent' | 'CommandButton' | 'CommandSet' | 'DamageFX' | 'DialogEvent' | 'FXList' | 'InGameUI' | 'Locomotor' | 'ParticleSystem' | 'Rank' | 'Science' | 'SpecialPower' | 'Upgrade' | 'WaterTransparency' | 'Weapon' | 'Weather' ;
+class_value: ID;
 
+objectReskinClass: objectReskin_identifier object_value object_value NEWLINE (module_modifier | module | objectProperty | objectSets | objectUnitSpecificSounds | objectUnitSpecificFX | NEWLINE)* end;
+objectReskin_identifier: 'ObjectReskin';
 
 // Object Class
-objectClass: 'Object' object_value NEWLINE (module_modifier | module | objectProperty | objectSets | objectUnitSpecificSounds | objectUnitSpecificFX | NEWLINE)* end;
+objectClass: object_identifier object_value NEWLINE (module_modifier | module | objectProperty | objectSets | objectUnitSpecificSounds | objectUnitSpecificFX | NEWLINE)* end;
+object_identifier: 'Object';
 
 module_modifier:  (addModule
                      | removeModule
@@ -34,15 +39,15 @@ objectSets: (objectWeaponSet | objectArmorSet | objectPrerequisite);
 
 // WeaponSet
 objectWeaponSet: 'WeaponSet' NEWLINE (objectWeaponSetProperty | NEWLINE)* end;
-objectWeaponSetProperty: ID EQ property_values NEWLINE;
+objectWeaponSetProperty: (ID | class_identifier) EQ property_values NEWLINE;
 
 // ArmorSet
 objectArmorSet: 'ArmorSet' NEWLINE (objectArmorSetProperty | NEWLINE)* end;
-objectArmorSetProperty: ID EQ property_values NEWLINE;
+objectArmorSetProperty: (ID | class_identifier) EQ property_values NEWLINE;
 
 // Prerequisite
 objectPrerequisite: 'Prerequisites' NEWLINE (objectPrerequisiteProperty | NEWLINE)* end;
-objectPrerequisiteProperty: ID EQ property_values NEWLINE;
+objectPrerequisiteProperty: (ID | class_identifier | object_identifier) EQ property_values NEWLINE;
 
 // UnitSpecificSounds
 objectUnitSpecificSounds: 'UnitSpecificSounds' NEWLINE (objectUnitSpecificSoundsProperty | NEWLINE)* end;
@@ -55,7 +60,7 @@ objectUnitSpecificFXProperty: ID EQ property_values NEWLINE;
 // Draw Modules
 drawModule: 'Draw' EQ drawModule_type moduleTag_value NEWLINE (conditionState | aliasCondition | drawModuleProperty | NEWLINE)* end;
 conditionState: defaultConditionStateBlock | conditionStateBlock | transitionStateBlock;
-defaultConditionStateBlock: 'DefaultConditionState' NEWLINE (conditionStateProperty | NEWLINE)* 	;
+defaultConditionStateBlock: 'DefaultConditionState' NEWLINE (conditionStateProperty | NEWLINE)* end;
 conditionStateBlock: 'ConditionState' EQ conditionState_values NEWLINE (conditionStateProperty | NEWLINE)* end;
 transitionStateBlock: 'TransitionState' EQ conditionState_values NEWLINE (conditionStateProperty | NEWLINE)* end;
 aliasCondition:  'AliasConditionState' EQ conditionState_values NEWLINE;
@@ -65,17 +70,20 @@ bodyModule: 'Body' EQ bodyModule_type moduleTag_value NEWLINE (bodyModulePropert
 bodyModuleProperty: ID EQ property_values NEWLINE;
 
 // Behavior Module
-behaviorModule: 'Behavior' EQ behaviorModule_type moduleTag_value NEWLINE (behaviorModuleProperty | NEWLINE)* end;
-behaviorModuleProperty: ID EQ property_values NEWLINE;
+behaviorModule: 'Behavior' EQ behaviorModule_type moduleTag_value NEWLINE (behaviorModuleProperty | turretBlock | NEWLINE)* end;
+behaviorModuleProperty: (ID | class_identifier) EQ property_values NEWLINE;
+turretBlock: TURRET NEWLINE (turretProperty | NEWLINE)* end;
+turretProperty: (ID | class_identifier | object_identifier) EQ property_values NEWLINE;
+TURRET: ('Turret' | 'AltTurret');
 
 // Client Module
 clientModule: 'ClientUpdate' EQ clientModule_type moduleTag_value NEWLINE (clientModuleProperty | NEWLINE)* end;
 clientModuleProperty: ID EQ property_values NEWLINE;
 
-objectProperty: ID EQ property_values NEWLINE;
+objectProperty: (ID | class_identifier) EQ property_values NEWLINE;
 drawModuleProperty: ID EQ property_values NEWLINE;
-conditionStateProperty: ID EQ property_values NEWLINE;
-property:  ID EQ property_values NEWLINE;
+conditionStateProperty: (ID | class_identifier | TURRET) EQ property_values NEWLINE;
+property:  property_value EQ property_values NEWLINE;
 
 // Module values
 drawModule_type: ID;
@@ -93,8 +101,8 @@ object_value: ID;
 locomotor_modifier: ID;
 
 // Property values
-property_value: ID;
-property_values: ID ( ID)*;
+property_values: property_value ( property_value)*;
+property_value: ID | class_identifier | object_value;
 
 // General
 EQ: '=' ;

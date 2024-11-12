@@ -1,7 +1,5 @@
-import { RBTree } from 'bintrees';
 import * as list from '../utils/lists';
 import { IniTypes_t } from './types/IniType_t';
-import { AnimationMode_t, BuildCompletion_t, ConditionStateFlags_t, EditorSorting_t, Locomotor_types_t, LOD_t, MaxSimultaneousLinkKey_t, RadarPriority_t, Side_t, WeaponSlot_t } from './types/PropertyTypes';
 
 
 /**
@@ -14,14 +12,16 @@ import { AnimationMode_t, BuildCompletion_t, ConditionStateFlags_t, EditorSortin
  * @property `allowMultipleDefinitions` - Whether the property allows multiple definitions
  * @property `numberOfValues` - How many values the property can have `(-1 for infinite)`
  * @property `validValues` - List of valid values for the property
+ * @property `ignoreCase` - Whether the property values should be converted to uppercase
  */
 export interface PropertyDefinition {
 	name: string;
-	type: string | string[] | IniTypes_t | (string | IniTypes_t)[];
+	type: string | IniTypes_t | (string | IniTypes_t)[];
 	description: string;
 	numberOfValues?: number[];
 	validValues?: (string[] | null)[] | string[];
 	modifier?: string[];
+	ignoreCase?: boolean;
 }
 
 function propertyComparator(a: string, b: string): number {
@@ -30,6 +30,13 @@ function propertyComparator(a: string, b: string): number {
 	return 0;
 }
 
+/**
+ * Returns whether the value is valid for the property at the given position
+ * 
+ * @param value - Text of the value to validate
+ * @param propertyDefinition - PropertyDefinition for the property being validated
+ * @param position - The index position in the property currently being validated
+ */
 export function isValidPropertyValue(value: string, propertyDefinition: PropertyDefinition, position: number): boolean {
 	
 	// If the property type is an array, get the type at the given position else get the type
@@ -39,16 +46,14 @@ export function isValidPropertyValue(value: string, propertyDefinition: Property
 
 
 	if (type === 'integer') {
-		return !isNaN(Number(value)) && !value.includes('.')
+		return !isNaN(Number(value)) && !value.includes('.');
 	} else if (type === 'float') {
-		return !isNaN(Number(value))
+		return !isNaN(Number(value));
 	} else if (type === 'boolean') {
-		return ['YES', 'NO'].includes(value.toUpperCase())
+		return ['YES', 'NO'].includes(value.toUpperCase());
+	} else if (type === 'percent') {
+		return handlePercentageValidation(value);
 	} else { // string
-		
-		if (!isNaN(Number(value))) return false;
-
-		if (['YES', 'NO'].includes(value.toUpperCase())) return false;
 
 		switch (propertyDefinition?.type) {
 			case IniTypes_t.ARMOR:
@@ -57,8 +62,12 @@ export function isValidPropertyValue(value: string, propertyDefinition: Property
 				}
 				return false;
 			case IniTypes_t.AUDIO_EVENT:
-			case IniTypes_t.DIALOG_EVENT:
 				if(list.audioEvent.find(value) || list.customAudioEvent.find(value)) {
+					return true;
+				}
+				return false;
+			case IniTypes_t.DIALOG_EVENT:
+				if(list.dialogEvent.find(value) || list.customDialogEvent.find(value)) {
 					return true;
 				}
 				return false;
@@ -118,16 +127,40 @@ export function isValidPropertyValue(value: string, propertyDefinition: Property
 				}
 				return false;
 			default:
+				if (propertyDefinition?.ignoreCase) {
+					value = value.toUpperCase();
+				}
 				return handleStringValidation(value, propertyDefinition, position);
 		}
 	}
 }
 
+function handlePercentageValidation(value: string): boolean {
+	// Must end with %
+    if (!value.endsWith('%')) {
+        return false;
+    }
+
+    // Remove the % and check the number part
+    const numberPart = value.slice(0, -1);
+    
+    // Allow negative numbers but no decimals
+    const regex = /^-?\d+$/;
+    return regex.test(numberPart);
+}
+
+/**
+ * Handles the validation of a string property
+ * 
+ * @param value - Text of the value to validate
+ * @param propertyDefinition - PropertyDefinition for the property being validated
+ * @param position - The index position in the property currently being validated
+ */
 export function handleStringValidation(value: string, propertyDefinition: PropertyDefinition, position: number): boolean {
 	if (propertyDefinition?.modifier) {
 		for (const modifier of propertyDefinition.modifier) {
 			if (value.startsWith(modifier)) {
-				value = value.substring(modifier.length)
+				value = value.substring(modifier.length);
 			}
 		}
 	}
@@ -150,223 +183,4 @@ export function handleStringValidation(value: string, propertyDefinition: Proper
 		}
 	}
 	return true;
-}
-
-// ================================
-// ============= TREE =============
-// ================================
-
-export const objectPropertyNameTree = new RBTree(propertyComparator);
-
-const objectProperties: PropertyDefinition[] = [
-	{
-		name: "Buildable",
-		type: "boolean",
-		description: "Whether the object can be built",
-	},
-	{
-		name: 'CrusherLevel',
-		type: 'integer',
-		description: 'The crusher level of the object',
-		validValues: ["0", "1", "2", "3"]
-	},
-	{
-		name: 'CrushableLevel',
-		type: 'integer',
-		description: 'The crushable level of the object',
-		validValues: ["0", "1", "2", "3"]
-	},
-	{
-		name: "BuildCompletion",
-		type: "string",
-		description: "Where the object is spawned when the build is completed",
-		validValues: Object.values(BuildCompletion_t)
-	},
-	{
-		name: "BuildCost",
-		type: "integer",
-		description: "The build cost of the object",
-	},
-	{
-		name: "BuildVariations",
-		type: IniTypes_t.OBJECT,
-		description: "The variations of the object",
-		numberOfValues: [-1]
-	},
-	{
-		name: "BuildTime",
-		type: "float",
-		description: "The build time of the object",
-	},
-	{
-		name: 'ButtonImage',
-		type: IniTypes_t.MAPPED_IMAGE,
-		description: 'The button image of the object'
-	},
-	{
-		name: 'CommandSet',
-		type: IniTypes_t.COMMAND_SET,
-		description: 'The command set of the object'
-	},
-	{
-		name: 'DisplayColor',
-		type: ['string', 'string', 'string'],
-		description: 'The display color of the object',
-		numberOfValues: [3],
-	},
-	{
-		name: "DisplayName",
-		type: "string",
-		description: "The display name of the object",
-	},
-	{
-		name: 'EditorSorting',
-		type: 'string',
-		description: 'The sorting of the object in the editor',
-		validValues: Object.values(EditorSorting_t)
-	},
-	{
-		name: 'ExperienceValue',
-		type: 'integer',
-		description: 'The experience value of the object',
-		numberOfValues: [1, 2, 3]
-	},
-	{
-		name: 'ExperienceRequired',
-		type: 'integer',
-		description: 'The experience required to build the object',
-		numberOfValues: [1, 2, 3, 4]
-	},
-	{
-		name: 'EnterGuard',
-		type: [IniTypes_t.AUDIO_EVENT, IniTypes_t.DIALOG_EVENT],
-		description: 'Sound played when the object begins guarding',
-	},
-	{
-		name: 'EnergyProduction',
-		type: 'integer',
-		description: 'The energy production of the object',
-	},
-	{
-		name: 'EnergyBonus',
-		type: 'integer',
-		description: 'The energy bonus of the object',
-	},
-	{
-		name: 'FenceWidth',
-		type: 'float',
-		description: 'The fence width of the object',
-	},
-	{
-		name: 'FenceXOffset',
-		type: 'float',
-		description: 'The fence x offset of the object',
-	},
-	{
-		name: 'FactoryExitWidth',
-		type: 'float',
-		description: 'The factory exit width of the object',
-	},
-	{
-		name: 'FactoryExtraBibWidth',
-		type: 'float',
-		description: 'The factory extra bib width of the object',
-	},
-	{
-		name: 'Geometry',
-		type: 'string',
-		description: 'The geometry of the object',
-		validValues: ["Point", "Line", "Box", "Sphere", "Cylinder"]
-	},
-	{
-		name: 'GeometryMajorRadius',
-		type: 'float',
-		description: 'The major radius of the object',
-	},
-	{
-		name: 'GeometryMinorRadius',
-		type: 'float',
-		description: 'The minor radius of the object',
-	},
-	{
-		name: 'GeometryHeight',
-		type: 'float',
-		description: 'The height of the object',
-	},
-	{
-		name: 'GeometryIsSmall',
-		type: 'boolean',
-		description: 'Whether the object is small',
-	},
-	{
-		name: 'IsBridge',
-		type: 'boolean',
-		description: 'Whether the object is a bridge',
-	},
-	{
-		name: 'IsTrainable',
-		type: 'boolean',
-		description: 'Whether the object is trainable',
-	},
-	{
-		name: 'IsForbidden',
-		type: 'boolean',
-		description: 'Whether the object is forbidden',
-	},
-	{
-		name: 'IsPrerequisite',
-		type: 'boolean',
-		description: 'Whether the object is a prerequisite',
-	},
-	{
-		name: 'KindOf',
-		type: 'string',
-		description: 'The kind of the object',
-		validValues: list.allowedKindOfs,
-		numberOfValues: [-1],
-		modifier: ['+', '-']
-	},
-	{
-		name: 'Locomotor',
-		type: ['string', IniTypes_t.LOCOMOTOR],
-		description: 'The locomotor of the object',
-		numberOfValues: [2],
-		validValues: [Object.values(Locomotor_types_t), list.locomotors]
-	},
-	{
-		name: "RadarPriority",
-		type: "string",
-		description: "The radar priority of the object",
-		validValues: Object.values(RadarPriority_t)
-	},
-	{
-		name: 'Side',
-		type: Object.values(Side_t),
-		description: 'The side of the object'
-	},
-	{
-		name: 'MaxSimultaneousLinkKey',
-		type: "string",
-		description: 'The maximum number of simultaneous links for the object',
-		validValues: Object.values(MaxSimultaneousLinkKey_t)
-	},
-	{
-		name: 'TransportSlotCount',
-		type: 'integer',
-		description: 'The number of transport slots the object occupies',
-	}
-]
-
-// Create a map to store properties by name
-const objectPropertyDefinitionMap = new Map<string, PropertyDefinition>();
-
-// Update how properties are inserted
-objectProperties.forEach(property => {
-	objectPropertyDefinitionMap.set(property.name, property);
-	objectPropertyNameTree.insert(property.name);
-});
-
-// Add a helper function to get property definition
-export function getObjectPropertyDefinition(name: string): PropertyDefinition | undefined {
-	return objectPropertyDefinitionMap.get(name);
 }

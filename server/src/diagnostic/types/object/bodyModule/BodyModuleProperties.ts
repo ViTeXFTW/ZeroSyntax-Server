@@ -1,6 +1,6 @@
 import { RBTree } from 'bintrees';
 import { BodyModule_t } from './BodyModule_t';
-import { PropertyDefinition } from '../properties';
+import { PropertyDefinition } from '../../../properties';
 
 
 export const BodyModuleTrees: { [key in BodyModule_t]: RBTree<string> } = {

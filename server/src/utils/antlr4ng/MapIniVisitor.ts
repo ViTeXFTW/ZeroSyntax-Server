@@ -5,8 +5,13 @@ import { AbstractParseTreeVisitor } from "antlr4ng";
 
 import { ProgramContext } from "./MapIniParser.js";
 import { ClassContext } from "./MapIniParser.js";
-import { MappedImageClassContext } from "./MapIniParser.js";
+import { SimpleClassContext } from "./MapIniParser.js";
+import { Class_identifierContext } from "./MapIniParser.js";
+import { Class_valueContext } from "./MapIniParser.js";
+import { ObjectReskinClassContext } from "./MapIniParser.js";
+import { ObjectReskin_identifierContext } from "./MapIniParser.js";
 import { ObjectClassContext } from "./MapIniParser.js";
+import { Object_identifierContext } from "./MapIniParser.js";
 import { Module_modifierContext } from "./MapIniParser.js";
 import { AddModuleContext } from "./MapIniParser.js";
 import { RemoveModuleContext } from "./MapIniParser.js";
@@ -32,6 +37,8 @@ import { BodyModuleContext } from "./MapIniParser.js";
 import { BodyModulePropertyContext } from "./MapIniParser.js";
 import { BehaviorModuleContext } from "./MapIniParser.js";
 import { BehaviorModulePropertyContext } from "./MapIniParser.js";
+import { TurretBlockContext } from "./MapIniParser.js";
+import { TurretPropertyContext } from "./MapIniParser.js";
 import { ClientModuleContext } from "./MapIniParser.js";
 import { ClientModulePropertyContext } from "./MapIniParser.js";
 import { ObjectPropertyContext } from "./MapIniParser.js";
@@ -47,8 +54,8 @@ import { ModuleTag_valueContext } from "./MapIniParser.js";
 import { MappedImage_valueContext } from "./MapIniParser.js";
 import { Object_valueContext } from "./MapIniParser.js";
 import { Locomotor_modifierContext } from "./MapIniParser.js";
-import { Property_valueContext } from "./MapIniParser.js";
 import { Property_valuesContext } from "./MapIniParser.js";
+import { Property_valueContext } from "./MapIniParser.js";
 import { EndContext } from "./MapIniParser.js";
 
 
@@ -73,17 +80,47 @@ export class MapIniVisitor<Result> extends AbstractParseTreeVisitor<Result> {
      */
     visitClass?: (ctx: ClassContext) => Result;
     /**
-     * Visit a parse tree produced by `MapIniParser.mappedImageClass`.
+     * Visit a parse tree produced by `MapIniParser.simpleClass`.
      * @param ctx the parse tree
      * @return the visitor result
      */
-    visitMappedImageClass?: (ctx: MappedImageClassContext) => Result;
+    visitSimpleClass?: (ctx: SimpleClassContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.class_identifier`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitClass_identifier?: (ctx: Class_identifierContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.class_value`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitClass_value?: (ctx: Class_valueContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.objectReskinClass`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitObjectReskinClass?: (ctx: ObjectReskinClassContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.objectReskin_identifier`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitObjectReskin_identifier?: (ctx: ObjectReskin_identifierContext) => Result;
     /**
      * Visit a parse tree produced by `MapIniParser.objectClass`.
      * @param ctx the parse tree
      * @return the visitor result
      */
     visitObjectClass?: (ctx: ObjectClassContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.object_identifier`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitObject_identifier?: (ctx: Object_identifierContext) => Result;
     /**
      * Visit a parse tree produced by `MapIniParser.module_modifier`.
      * @param ctx the parse tree
@@ -235,6 +272,18 @@ export class MapIniVisitor<Result> extends AbstractParseTreeVisitor<Result> {
      */
     visitBehaviorModuleProperty?: (ctx: BehaviorModulePropertyContext) => Result;
     /**
+     * Visit a parse tree produced by `MapIniParser.turretBlock`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitTurretBlock?: (ctx: TurretBlockContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.turretProperty`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitTurretProperty?: (ctx: TurretPropertyContext) => Result;
+    /**
      * Visit a parse tree produced by `MapIniParser.clientModule`.
      * @param ctx the parse tree
      * @return the visitor result
@@ -325,17 +374,17 @@ export class MapIniVisitor<Result> extends AbstractParseTreeVisitor<Result> {
      */
     visitLocomotor_modifier?: (ctx: Locomotor_modifierContext) => Result;
     /**
-     * Visit a parse tree produced by `MapIniParser.property_value`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitProperty_value?: (ctx: Property_valueContext) => Result;
-    /**
      * Visit a parse tree produced by `MapIniParser.property_values`.
      * @param ctx the parse tree
      * @return the visitor result
      */
     visitProperty_values?: (ctx: Property_valuesContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.property_value`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitProperty_value?: (ctx: Property_valueContext) => Result;
     /**
      * Visit a parse tree produced by `MapIniParser.end`.
      * @param ctx the parse tree

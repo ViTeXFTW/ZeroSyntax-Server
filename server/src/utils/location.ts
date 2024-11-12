@@ -1,12 +1,12 @@
-import { Position } from "vscode-languageserver-types"
+import { Position } from "vscode-languageserver-types";
 
 export class Location {
-	line: number
-	column: number
+	line: number;
+	column: number;
 
 	constructor(line: number, column: number) {
-		this.line = line
-		this.column = column
+		this.line = line;
+		this.column = column;
 	}
 
 	/**
@@ -24,11 +24,11 @@ export class Location {
 	
 	addColumns(value: Location | number): Location | null {
 		if(value instanceof Location) {
-			return new Location(this.line, this.column + value.column)
+			return new Location(this.line, this.column + value.column);
 		} else if(typeof value === 'number') {
-			return new Location(this.line, this.column + value)
+			return new Location(this.line, this.column + value);
 		} else {
-			return null
+			return null;
 		}
 	}
 
@@ -36,6 +36,6 @@ export class Location {
 		return {
 			line: this.line - 1,
 			character: this.column
-		}
+		};
 	}
 }

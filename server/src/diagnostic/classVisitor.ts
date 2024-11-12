@@ -1,78 +1,124 @@
 import { AbstractParseTreeVisitor } from "antlr4ng";
 import { MapIniVisitor } from "../utils/antlr4ng/MapIniVisitor";
-import { MappedImageClassContext, ObjectClassContext, ProgramContext } from "../utils/antlr4ng/MapIniParser";
-import * as list from '../utils/lists'
+import { ProgramContext, ClassContext } from "../utils/antlr4ng/MapIniParser";
+import { IniTypes_t } from './types/IniType_t';
+import { Location } from '../utils/location';
+import { DiagnosticSeverity } from 'vscode-languageserver';
+import { customAnimationClassList, customArmorClassList, customAudioEventClassList, customCommandButtonClassList, customCommandSetClassList, customDialogEventClassList, customFXClassList, customLocomotorClassList, customMappedImageClassList, customObjectClassList, customParticleSystemClassList, customScienceClassList, customSpecialPowerClassList, customUpgradeClassList, customWeaponClassList, originalAnimationClassList, originalArmorClassList, originalAudioEventClassList, originalCommandButtonClassList, originalCommandSetClassList, originalDialogEventList, originalFXClassList, originalLocomotorClassList, originalMappedImageClassList, originalObjectClassList, originalParticleSystemClassList, originalScienceClassList, originalSpecialPowerClassList, originalUpgradeClassList, originalWeaponClassList } from './data/ClassLists';
 
 export class ClassVisitor extends AbstractParseTreeVisitor<void> implements MapIniVisitor<void> {
 
+	defaultResult(): void {
+		return;
+	}
 
-  visitProgram(ctx: ProgramContext): void {
-    this.visitChildren(ctx)
-  }
+	visitProgram(ctx: ProgramContext): void {
+		this.visitChildren(ctx);
+	}
 
+	visitClass(ctx: ClassContext): void {
+		
+		if (ctx.objectClass()) {
+			const className = ctx.objectClass()!.object_value()!.getText();
+			if (!originalObjectClassList.includes(className) || !customObjectClassList.includes(className)) {
+				customObjectClassList.push(className);
+			}
+		} else if (ctx.simpleClass()) {
+			const classType = ctx.simpleClass()!.class_identifier()!.getText();
+			const className = ctx.simpleClass()!.class_value()!.getText();
 
-  // visitClasses(ctx: ClassesContext): void {
-  //   const child = ctx.getChild(0)
+			switch (classType as IniTypes_t) {
+				case IniTypes_t.ANIMATION:
+					if (!originalAnimationClassList.includes(className) || !customAnimationClassList.includes(className)) {
+						customAnimationClassList.push(className);
+						console.log(`Added ${className} to ${classType}`);
+					}
+					break;
+				case IniTypes_t.ARMOR:
+					if (!originalArmorClassList.includes(className) || !customArmorClassList.includes(className)) {
+						customArmorClassList.push(className);
+						console.log(`Added ${className} to ${classType}`);
+					}
+					break;
+				case IniTypes_t.AUDIO_EVENT:
+					if (!originalAudioEventClassList.includes(className) || !customAudioEventClassList.includes(className)) {
+						customAudioEventClassList.push(className);
+						console.log(`Added ${className} to ${classType}`);
+					}
 
-  //   // if (child instanceof MappedImageClassContext && child.mappedimage_value()) {
-  //   //   list.customMappedImages.remove(child.mappedimage_value()!.getText())
-  //   //   list.customMappedImages.insert(child.mappedimage_value()!.getText())
-  //   // } else if (child instanceof Animation2DClassContext && child.animation2d_value()) {
-  //   //   //TODO: Add Animation2D List
-  //   // } else if (child instanceof ArmorClassContext && child.armor_value()) {
-  //   //   list.definedArmor.remove(child.armor_value()!.getText())
-  //   //   list.definedArmor.insert(child.armor_value()!.getText())
-  //   // } else if (child instanceof CommandButtonClassContext && child.commandbutton_value()) {
-  //   //   list.customCommandButtons.remove(child.commandbutton_value()!.getText())
-  //   //   list.customCommandButtons.insert(child.commandbutton_value()!.getText())
-  //   // } else if (child instanceof CommandSetClassContext && child.commandSet_value()) {
-  //   //   list.customCommandSets.remove(child.commandSet_value()!.getText())
-  //   //   list.customCommandSets.insert(child.commandSet_value()!.getText())
-  //   // } else if (child instanceof DamageFXClassContext && child.damageFX_value()) {
-  //   //   list.customDamageFX.remove(child.damageFX_value()!.getText())
-  //   //   list.customDamageFX.insert(child.damageFX_value()!.getText())
-  //   // } else if (child instanceof FxListClassContext && child.fxlist_value()) {
-  //   //   list.customFXLists.remove(child.fxlist_value()!.getText())
-  //   //   list.customFXLists.insert(child.fxlist_value()!.getText())
-  //   // } else if (child instanceof LocomotorClassContext && child.locomotor_value()) {
-  //   //   list.customLocomotor.remove(child.locomotor_value()!.getText())
-  //   //   list.customLocomotor.insert(child.locomotor_value()!.getText())
-  //   // } else if (child instanceof ObjectClassContext && child.object_value()) {
-  //   //   list.customObjects.remove(child.object_value()!.getText())
-  //   //   list.customObjects.insert(child.object_value()!.getText())
-  //   // } else if (child instanceof ObjectReskinClassContext) {
-  //   //   // console.log(`"${child.object_value()[0]!.getText()}",`)
-  //   //   list.customObjects.remove(child.object_value()[0]!.getText())
-  //   //   list.customObjects.insert(child.object_value()[0]!.getText())
-  //   // } else if (child instanceof ObjectCreationListClassContext && child.ocl_value()) {
-  //   //   list.customOCLs.remove(child.ocl_value()!.getText())
-  //   //   list.customOCLs.insert(child.ocl_value()!.getText())
-  //   // } else if (child instanceof ParticleSystemClassContext && child.particlesystem_value()) {
-  //   //   list.customParticleSystem.remove(child.particlesystem_value()!.getText())
-  //   //   list.customParticleSystem.insert(child.particlesystem_value()!.getText())
-  //   // } else if (child instanceof PlayerTemplateClassContext) {
-  //   //   //TODO: Add PlayerTemplate List
-  //   // } else if (child instanceof RankClassContext) {
-  //   //   //TODO: Add Rank List
-  //   // } else if (child instanceof ScienceClassContext && child.science_value()) {
-  //   //   list.customScience.remove(child.science_value()!.getText())
-  //   //   list.customScience.insert(child.science_value()!.getText())
-  //   // } else if (child instanceof SoundEffectClassesContext) {
-  //   //   //TODO: Add SoundEffect Classes List
-  //   // } else if (child instanceof SpecialPowerClassContext && child.specialpower_value()) {
-  //   //   console.log(`Added ${child.specialpower_value()!.getText()} to customSpecialPower`)
-  //   //   list.customSpecialPower.remove(child.specialpower_value()!.getText())
-  //   //   list.customSpecialPower.insert(child.specialpower_value()!.getText())
-  //   // } else if (child instanceof UpgradeClassContext && child.upgrade_value()) {
-  //   //   list.customUpgrades.remove(child.upgrade_value()!.getText())
-  //   //   list.customUpgrades.insert(child.upgrade_value()!.getText())
-  //   // } else if (child instanceof WeaponClassContext && child.weapon_value()) {
-  //   //   list.customWeapons.remove(child.weapon_value()!.getText())
-  //   //   list.customWeapons.insert(child.weapon_value()!.getText())
-  //   // } else if (child instanceof WeatherClassContext) {
-  //   //   //TODO: Add Weather List
-  //   // }
-  // }
+					break;
+				case IniTypes_t.COMMAND_BUTTON:
+					if (!originalCommandButtonClassList.includes(className) || !customCommandButtonClassList.includes(className)) {
+						customCommandButtonClassList.push(className);
+						console.log(`Added ${className} to ${classType}`);
+					}
+					break;
+				case IniTypes_t.COMMAND_SET:
+					if (!originalCommandSetClassList.includes(className) || !customCommandSetClassList.includes(className)) {
+						customCommandSetClassList.push(className);
+						console.log(`Added ${className} to ${classType}`);
+					}
+					break;
+				case IniTypes_t.DIALOG_EVENT:
+					if (!originalDialogEventList.includes(className) || !customDialogEventClassList.includes(className)) {
+						customDialogEventClassList.push(className);
+						console.log(`Added ${className} to ${classType}`);
+					}
+					break;
+				case IniTypes_t.FXLIST:
+					if (!originalFXClassList.includes(className) || !customFXClassList.includes(className)) {
+						customFXClassList.push(className);
+						console.log(`Added ${className} to ${classType}`);
+					}
+					break;
+				case IniTypes_t.LOCOMOTOR:
+					if (!originalLocomotorClassList.includes(className) || !customLocomotorClassList.includes(className)) {
+						customLocomotorClassList.push(className);
+						console.log(`Added ${className} to ${classType}`);
+					}
+					break;
+				case IniTypes_t.MAPPED_IMAGE:
+					if (!originalMappedImageClassList.includes(className) || !customMappedImageClassList.includes(className)) {
+						customMappedImageClassList.push(className);
+						console.log(`Added ${className} to ${classType}`);
+					}
+					break;
+				case IniTypes_t.PARTICLE_SYSTEM:
+					if (!originalParticleSystemClassList.includes(className) || !customParticleSystemClassList.includes(className)) {
+						customParticleSystemClassList.push(className);
+						console.log(`Added ${className} to ${classType}`);
+					}
+					break;
+				case IniTypes_t.SCIENCE:
+					if (!originalScienceClassList.includes(className) || !customScienceClassList.includes(className)) {
+						customScienceClassList.push(className);
+						console.log(`Added ${className} to ${classType}`);
+					}
+					break;
+				case IniTypes_t.SPECIAL_POWER:
+					if (!originalSpecialPowerClassList.includes(className) || !customSpecialPowerClassList.includes(className)) {
+						customSpecialPowerClassList.push(className);
+						console.log(`Added ${className} to ${classType}`);
+					}
+					break;
+				case IniTypes_t.UPGRADE:
+					if (!originalUpgradeClassList.includes(className) || !customUpgradeClassList.includes(className)) {
+						customUpgradeClassList.push(className);
+						console.log(`Added ${className} to ${classType}`);
+					}
+					break;
+				case IniTypes_t.WEAPON:
+					if (!originalWeaponClassList.includes(className) || !customWeaponClassList.includes(className)) {
+						customWeaponClassList.push(className);
+						console.log(`Added ${className} to ${classType}`);
+					}
+					break;
+				default:
+					break;
+			}
+		}
 
+		this.visitChildren(ctx);
+	}
 
 }

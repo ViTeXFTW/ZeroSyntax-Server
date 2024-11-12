@@ -1,8 +1,9 @@
-import { PropertyDefinition } from '../properties';
-import { ConditionStateFlags_t } from './PropertyTypes';
-import { AnimationMode_t } from './PropertyTypes';
-import * as list from '../../utils/lists';
 import { RBTree } from 'bintrees';
+import * as list from '../../../utils/lists';
+import { PropertyDefinition } from '../../properties';
+import { IniTypes_t } from '../IniType_t';
+import { ConditionStateFlags_t, WeaponSlot_t } from '../PropertyTypes';
+import { AnimationMode_t } from '../simple/AnimationProperties';
 
 export const conditionStateTree = new RBTree<string>((a, b) => a.localeCompare(b));
 
@@ -61,24 +62,31 @@ const conditionStatePropertyDefinitions: { [key: string]: PropertyDefinition } =
 	},
 	'WeaponFireFXBone': {
 		name: 'WeaponFireFXBone',
-		type: 'string',
-		description: 'Bone to attach the weapon fire FX to'
+		type: ['string', 'string'],
+		description: 'Bone to attach the weapon fire FX to',
+		validValues: [Object.values(WeaponSlot_t), null],
+		numberOfValues: [2]
 	},
 	'WeaponRecoilBone': {
 		name: 'WeaponRecoilBone',
-		type: 'string',
-		description: 'Bone to attach the weapon recoil FX to'
+		type: ['string', 'string'],
+		description: 'Bone to attach the weapon recoil FX to',
+		validValues: [Object.values(WeaponSlot_t), null],
+		numberOfValues: [2]
 	},
 	'WeaponMuzzleFlash': {
 		name: 'WeaponMuzzleFlash',
-		type: 'string',
+		type: ['string', IniTypes_t.FXLIST],
 		description: 'Whether to show the weapon muzzle flash',
-		validValues: list.definedFXLists
+		validValues: [Object.values(WeaponSlot_t), null],
+		numberOfValues: [2]
 	},
 	'WeaponLaunchBone': {
 		name: 'WeaponLaunchBone',
-		type: 'string',
-		description: 'Bone to attach the weapon launch FX to'
+		type: ['string', 'string'],
+		description: 'Bone to attach the weapon launch FX to',
+		validValues: [Object.values(WeaponSlot_t), null],
+		numberOfValues: [2]
 	},
 	'WeaponHideShowBone': {
 		name: 'WeaponHideShowBone',
@@ -123,7 +131,7 @@ const conditionStatePropertyDefinitions: { [key: string]: PropertyDefinition } =
 		type: ['string', 'string'],
 		description: 'Bone to attach the particle system to',
 		numberOfValues: [2],
-		validValues: [null, list.definedFXLists]
+		validValues: [null, list.definedParticleSystems]
 	},
 	'AnimationSpeedFactorRange': {
 		name: 'AnimationSpeedFactorRange',
@@ -131,7 +139,7 @@ const conditionStatePropertyDefinitions: { [key: string]: PropertyDefinition } =
 		description: 'The animation speed factor range',
 		numberOfValues: [1, 2]
 	}
-}
+};
 
 Object.entries(conditionStatePropertyDefinitions).forEach(([key, property]) => {
 	conditionStateTree.insert(key);

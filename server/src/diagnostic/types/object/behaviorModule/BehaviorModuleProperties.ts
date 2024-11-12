@@ -1,8 +1,8 @@
 import { RBTree } from 'bintrees';
 import { BehaviorModule_t } from './BehaviorModule_t';
-import { PropertyDefinition } from '../properties';
-import { IniTypes_t } from './IniType_t';
-import { AutoAcquireEnemiesWhenIdle_t, ChangeType_t, DeathType_t, kindOfs_t, Status_t, TimeStamp_t, WeaponSlot_t } from './PropertyTypes';
+import { PropertyDefinition } from '../../../properties';
+import { IniTypes_t } from '../../IniType_t';
+import { AutoAcquireEnemiesWhenIdle_t, ChangeType_t, DeathType_t, kindOfs_t, Status_t, TimeStamp_t, WeaponSlot_t } from '../../PropertyTypes';
 
 
 export const BehaviorModuleTrees: {[key in BehaviorModule_t]: RBTree<string>} = {

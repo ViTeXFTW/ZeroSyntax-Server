@@ -1,10 +1,10 @@
-import { PropertyDefinition } from '../properties';
+import { PropertyDefinition } from '../../../properties';
 import { DrawModule_t } from './DrawModule_t';
 import { RBTree } from 'bintrees';
-import { WeaponSlot_t } from './PropertyTypes';
-import { LOD_t } from './PropertyTypes';
-import * as list from '../../utils/lists';
-import { IniTypes_t } from './IniType_t';
+import { WeaponSlot_t } from '../../PropertyTypes';
+import { LOD_t } from '../../PropertyTypes';
+import * as list from '../../../../utils/lists';
+import { IniTypes_t } from '../../IniType_t';
 
 
 export const W3DDrawModuleTrees: { [key in DrawModule_t]: RBTree<string> } = {
@@ -16,7 +16,7 @@ export const W3DDrawModuleTrees: { [key in DrawModule_t]: RBTree<string> } = {
 	[DrawModule_t.W3DOverlordAIRCRAFTDRAW]: new RBTree<string>((a, b) => a.localeCompare(b)),
 	[DrawModule_t.W3DOverlordTRUCKDRAW]: new RBTree<string>((a, b) => a.localeCompare(b)),
 	[DrawModule_t.W3DLLASERDRAW]: new RBTree<string>((a, b) => a.localeCompare(b)),
-	[DrawModule_t.W3DPOLICECARDDRAW]: new RBTree<string>((a, b) => a.localeCompare(b)),
+	[DrawModule_t.W3DPOLICECARDRAW]: new RBTree<string>((a, b) => a.localeCompare(b)),
 	[DrawModule_t.W3DTREEDRAW]: new RBTree<string>((a, b) => a.localeCompare(b)),
 	[DrawModule_t.W3DPROPDRAW]: new RBTree<string>((a, b) => a.localeCompare(b)),
 	[DrawModule_t.W3DPROJECTILESTREAMDRAW]: new RBTree<string>((a, b) => a.localeCompare(b)),
@@ -27,7 +27,7 @@ export const W3DDrawModuleTrees: { [key in DrawModule_t]: RBTree<string> } = {
 	[DrawModule_t.W3DTANKTRUCKDRAW]: new RBTree<string>((a, b) => a.localeCompare(b)),
 	[DrawModule_t.W3DTRACERDRAW]: new RBTree<string>((a, b) => a.localeCompare(b)),
 	[DrawModule_t.W3DTRUCKDRAW]: new RBTree<string>((a, b) => a.localeCompare(b))
-}
+};
 
 const baseW3DModelProperties: { [key: string]: PropertyDefinition } = {
 	'ConditionState': {	// Used to define that this DrawModule needs a CondtionState block.
@@ -115,7 +115,7 @@ const baseW3DModelProperties: { [key: string]: PropertyDefinition } = {
 		type: 'string',
 		description: 'The type of track marks the object leaves',
 	}
-}
+};
 
 const baseW3DTankProperties: {[key: string]: PropertyDefinition} = {
 	'TreadDebrisLeft': {
@@ -143,7 +143,7 @@ const baseW3DTankProperties: {[key: string]: PropertyDefinition} = {
 		type: 'float',
 		description: 'The drive speed fraction of the treads',
 	}
-}
+};
 
 const baseW3DTruckProperties: {[key: string]: PropertyDefinition} = {
 	'Dust': {
@@ -246,7 +246,7 @@ const baseW3DTruckProperties: {[key: string]: PropertyDefinition} = {
 		type: 'float',
 		description: 'The damping of the rotation',
 	}
-}
+};
 
 const baseW3DOverlordProperty: {[key: string]: PropertyDefinition} = {
 	'AttachToBoneInContainer': {
@@ -254,7 +254,7 @@ const baseW3DOverlordProperty: {[key: string]: PropertyDefinition} = {
 		type: 'string',
 		description: 'The bone to attach the object to in a container',
 	}
-}
+};
 
 const W3DModelDrawPropertyDefinitions: { [key in DrawModule_t]: { [key: string]: PropertyDefinition } } = {
 	[DrawModule_t.W3DMODELDRAW]: baseW3DModelProperties,
@@ -365,7 +365,7 @@ const W3DModelDrawPropertyDefinitions: { [key in DrawModule_t]: { [key: string]:
 		...baseW3DOverlordProperty,
 		...baseW3DTruckProperties,
 	},
-	[DrawModule_t.W3DPOLICECARDDRAW]: {
+	[DrawModule_t.W3DPOLICECARDRAW]: {
 		...baseW3DModelProperties,
 		...baseW3DTruckProperties
 	},
@@ -507,7 +507,7 @@ const W3DModelDrawPropertyDefinitions: { [key in DrawModule_t]: { [key: string]:
 		}
 	},
 	[DrawModule_t.W3DPROPDRAW]: {},
-}
+};
 
 // Populate the trees with definition keys
 Object.entries(W3DModelDrawPropertyDefinitions).forEach(([key, value]) => {

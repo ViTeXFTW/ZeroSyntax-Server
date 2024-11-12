@@ -1,4 +1,4 @@
-import { RBTree } from 'bintrees'
+import { RBTree } from 'bintrees';
 
 const allowedAnimationProperties: string[] = [
 	"ANIMATIONDELAY",
@@ -7,13 +7,13 @@ const allowedAnimationProperties: string[] = [
 	"IMAGE_SEQUENCE",
 	"NUMBERIMAGES",
 	"RANDOMIZESTARTFRAME"
-]
+];
 
 const allowedAnimationModes: string[] = [
 	"LOOP",
 	"PING_PONG",
 	"ONCE"
-]
+];
 
 const armor: string[] = [
 	"NoArmor",
@@ -69,7 +69,7 @@ const armor: string[] = [
 	"StructureArmorInternetCenter",
 	"AssaultCrawlerArmor",
 	"InvulnerableArmor"
-]
+];
 
 const allowedArmorTypes: string[] = [
 	"DEFAULT",
@@ -109,7 +109,7 @@ const allowedArmorTypes: string[] = [
 	"MICROWAVE",
 	"SURRENDER",
 	"TOPPLING"
-]
+];
 
 const damageFx: string[] = [
 	"DefaultDamageFX",
@@ -123,9 +123,9 @@ const damageFx: string[] = [
     "LimoDamageFX",
     "InfantryDamageFX",
     "EmptyDamageFX"
-]
+];
 
-let definedAudioEvent: string[] = [
+const definedAudioEvent: string[] = [
     "RangerVoiceSelect",
 "RangerVoiceCreate",
 "RangerVoiceMove",
@@ -792,9 +792,9 @@ let definedAudioEvent: string[] = [
 "BossGenTankHunterVoiceSelect",
 "EmperorTankVoiceSelect",
 "EmperorTankVoiceMove",
-]
+];
 
-let definedDialogEvent: string[] = [
+const definedDialogEvent: string[] = [
     "EvaGLA_AllyUnderAttack",
 "EvaGLA_BaseDefensesOffLine",
 "EvaGLA_BeaconDetected",
@@ -3363,9 +3363,9 @@ let definedDialogEvent: string[] = [
 "Cinx_PlaneTakeOffStereo",
 "Cinx_PlaneTakeOff2Stereo",
 "Cinx_PlaneLandStereo",
-]
+];
 
-let definedCommandButtons: string[] = [
+const definedCommandButtons: string[] = [
 	"Command_PlaceBeacon",
 	"Command_DaisyCutter",
 	"Command_DaisyCutterFromShortcut",
@@ -4297,7 +4297,7 @@ let definedCommandButtons: string[] = [
 	"Boss_Command_ConstructChinaTankGattling",
 	"Boss_Command_ConstructGLAVehicleRocketBuggy",
 	"Boss_Command_ConstructGLAVehicleCombatBikeTerrorist",
-]
+];
 
 export const definedCommandSets: string[] = [
 	"GenericCommandSet",
@@ -4772,9 +4772,9 @@ export const definedCommandSets: string[] = [
 	"Boss_GLAScudStormCommandSetUpgrade",
 	"Boss_ChinaNuclearMissileCommandSet",
 	"Boss_ChinaNuclearMissileCommandSetUpgrade",
-]
+];
 
-export let definedFXLists: string[] = [
+export const definedFXLists: string[] = [
 	"WeaponFX_GenericTankFire",
 	"WeaponFX_ToxinShellWeapon",
 	"FX_CarOverlappedByCrusher",
@@ -5207,9 +5207,9 @@ export let definedFXLists: string[] = [
 	"FX_DEMOBuggyNewDeathExplosion",
 	"WeaponFX_DemoSuicideDynamitePackDetonation",
 	"WeaponFX_DemoSuicideDynamitePackDetonationPlusFire",
-]
+];
 
-let definedOCLs: string[] = [
+const definedOCLs: string[] = [
 	"OCL_CreateDamagedBarrel",
 	"OCL_FireWallSegment",
 	"OCL_FireWallSegmentUpgraded",
@@ -5505,9 +5505,9 @@ let definedOCLs: string[] = [
 	"Nuke_SUPERWEAPON_ChinaCarpetBomb",
 	"SupW_OCL_AmericanPointDefenseDrone",
 	"SupW_SUPERWEAPON_NeutronMissile",
-]
+];
 
-let definedParticleSystems: string[] = [
+export const definedParticleSystems: string[] = [
 	"FireFieldSmall",
 	"BlackFireFieldSmall",
 	"MicrowaveEmitter",
@@ -6603,7 +6603,7 @@ let definedParticleSystems: string[] = [
 "SpectreHotPillarArms",
 "SteamBurst",
 "SonicRange1",
-]
+];
 
 export const definedObjects: string[] = [
 	"SalvageCrate",
@@ -8585,7 +8585,7 @@ export const definedObjects: string[] = [
 	"USSBenderGunShell",
 	"MiGFirestorm",
 	"DefaultThingTemplate"
-]
+];
 
 export const locomotors: string[] = [
 	"BasicHumanLocomotor",
@@ -8770,9 +8770,9 @@ export const locomotors: string[] = [
 	"ListeningOutpostLocomotor",
 	"Nuke_FusionBattleMasterLocomotor",
 	"Nuke_FusionOverlordLocomotor",
-]
+];
 
-let definedUpgrades: string[] = [
+const definedUpgrades: string[] = [
 	"None",
 	"NONE",
 	"Upgrade_Veterancy_VETERAN",
@@ -8860,9 +8860,9 @@ let definedUpgrades: string[] = [
 	"AirF_Upgrade_StealthComanche",
 	"SupW_Upgrade_AmericaPointDefenseDrone",
 	"RocketBuggyToxinUpgrade",
-]
+];
 
-let definedWeapons: string[] = [
+const definedWeapons: string[] = [
 	"MarauderTankGun",
 	"MarauderTankGunUpgradeOne",
 	"MarauderTankGunUpgradeTwo",
@@ -9226,7 +9226,7 @@ let definedWeapons: string[] = [
 	"DemoScorpionTankGunFXWeapon",
 	"AvengerAirLaserDummy",
 	"BattleBusDummyWeapon",
-]
+];
 
 const allowedObjectProperties: string[] = [
 	"Buildable",
@@ -9304,11 +9304,11 @@ const allowedObjectProperties: string[] = [
 	"ShadowTexture",
 	"FactoryExtraBibWidth",
 	"ShadowSizeY"
-]
+];
 
 const allowedAddModuleProperties: string[] = [
 	"Locomotor",
-]
+];
 
 
 export const allowedLocomotorTypes: string[] = [
@@ -9320,7 +9320,7 @@ export const allowedLocomotorTypes: string[] = [
 	"SET_TAXIING",
 	"SET_FREEFALL",
 	"SET_WANDER"
-]
+];
 
 export const allowedKindOfs: string[] = [
 	"NONE",
@@ -9443,7 +9443,7 @@ export const allowedKindOfs: string[] = [
     "CAN_ATTACK",
     "CAN_CAST_REFLECTIONS",
     "CAN_SEE_THROUGH_STRUCTURE"
-]
+];
 
 const allowedModelDrawsString: string[] = [
 	"W3DDebrisDraw",
@@ -9454,7 +9454,7 @@ const allowedModelDrawsString: string[] = [
     "W3DOverlordAircraftDraw",
     "W3DOverlordTruckDraw",
     "W3DLaserDraw",
-	"W3DPoliceCardDraw",
+	"W3DPoliceCarDraw",
     "W3DTreeDraw",
     "W3DPropDraw",
     "W3DProjectileStreamDraw",
@@ -9465,7 +9465,7 @@ const allowedModelDrawsString: string[] = [
     "W3DTankTruckDraw",
     "W3DTracerDraw",
     "W3DTruckDraw"
-]
+];
 
 const allowedSingleModelDrawProperties: string[] = [
 	"TrackMarks",
@@ -9487,11 +9487,11 @@ const allowedSingleModelDrawProperties: string[] = [
 	"RecoilSettleSpeed",
 	"RecoilDamping",
 	"AnimationsRequirePower"
-]
+];
 
 const allowedMultiModelDrawProperties: string[] = [
 	"ExtraPublicBone"
-]
+];
 
 const allowedTankDrawProperties: string[] = [
 	"TreadDriveSpeedFraction",
@@ -9499,7 +9499,7 @@ const allowedTankDrawProperties: string[] = [
 	"TreadAnimationRate",
 	"TreadDebrisLeft",
 	"TreadDebrisRight"
-]
+];
 
 const allowedTruckDrawProperties: string[] = [
 	"RotationDamping",
@@ -9541,7 +9541,7 @@ const allowedTruckDrawProperties: string[] = [
 	"RecoilSettleSpeed",
 	"RecoilDamping",
 	"AnimationsRequirePower"
-]
+];
 
 const allowedTankTruckDrawProperties = [
 	"RotationDamping",
@@ -9588,11 +9588,11 @@ const allowedTankTruckDrawProperties = [
 	"TreadAnimationRate",
 	"TreadDebrisLeft",
 	"TreadDebrisRight"
-]
+];
 
 const allowedDependencyDrawProperties: string[] = [
 	"AttachToBoneInContainer"
-]
+];
 
 const allowedScienceDrawProperties: string[] = [
 	"InitialRecoilSpeed",
@@ -9610,7 +9610,7 @@ const allowedScienceDrawProperties: string[] = [
     "IgnoreConditionStates",
     "ReceivesDynamicLights",
     "RequiredScience"
-]
+];
 
 const allowedSupplyDrawProperties: string[] = [
 	"InitialRecoilSpeed",
@@ -9628,7 +9628,7 @@ const allowedSupplyDrawProperties: string[] = [
     "IgnoreConditionStates",
     "ReceivesDynamicLights",
     "SupplyBonePrefix"
-]
+];
 
 const allowedTreeDrawProperties: string[] = [
 	"ModelName",
@@ -9645,7 +9645,7 @@ const allowedTreeDrawProperties: string[] = [
 	"MoveInwardTime",
 	"MoveOutwardTime",
 	"MoveOutwardDistanceFactor"
-]
+];
 
 const allowedProjectileStreamDrawProperties: string[] = [
 	"Texture",
@@ -9653,7 +9653,7 @@ const allowedProjectileStreamDrawProperties: string[] = [
 	"TileFactor",
 	"ScrollRate",
 	"MaxSegments"
-]
+];
 
 const allowedLaserDrawProperties: string[] = [
 	"Texture",
@@ -9670,7 +9670,7 @@ const allowedLaserDrawProperties: string[] = [
 	"ArcHeight",
 	"TilingScalar",
 	"ScrollRate"
-]
+];
 
 const allowedSingleConditionProperties: string[] = [
 	"Model",
@@ -9690,7 +9690,7 @@ const allowedSingleConditionProperties: string[] = [
 	"AltTurretArtPitch",
 	"ShowSubObject",
 	"HideSubObject",
-]
+];
 
 const allowedMultiConditionProperties: string[] = [
 	"WeaponRecoilBone",
@@ -9700,7 +9700,7 @@ const allowedMultiConditionProperties: string[] = [
 	"Animation",
 	"IdleAnimation",
 	"ParticleSysBone"
-]
+];
 
 export const allowedConditionStates: string[] = [
 	"NONE",
@@ -9832,7 +9832,7 @@ export const allowedConditionStates: string[] = [
 	"UP_SNOWNIGHT",
 	"RADAR_EXTENDING",
 	"GARRISONED"
-]
+];
 
 export const definedMappedImages: string[] = [
 	"SUQuadCannon",
@@ -11206,7 +11206,7 @@ export const definedMappedImages: string[] = [
 	"SSTerroristCarBomb",
 	"SUScudLauncher",
 	"SSToxinShells",
-]
+];
 
 const definedScience: string[] = [
 	"SCIENCE_AMERICA",
@@ -11305,7 +11305,7 @@ const definedScience: string[] = [
 "AirF_SCIENCE_A10ThunderboltMissileStrike1",
 "AirF_SCIENCE_A10ThunderboltMissileStrike2",
 "AirF_SCIENCE_A10ThunderboltMissileStrike3",
-]
+];
 
 const definedSpecialPower: string[] = [
 	"SuperweaponDaisyCutter",
@@ -11387,203 +11387,203 @@ const definedSpecialPower: string[] = [
 "SupW_CruiseMissile",
 "Lazr_LaserCannon",
 "SupW_SuperweaponNeutronMissile",
-]
+];
 
 
 const stringComparator = (a: string, b: string) => a.localeCompare(b);
 
-export let animationProperties: RBTree<string> = new RBTree(stringComparator)
-allowedAnimationProperties.forEach(item => animationProperties.insert(item))
+export const animationProperties: RBTree<string> = new RBTree(stringComparator);
+allowedAnimationProperties.forEach(item => animationProperties.insert(item));
 
-export let animationModes: RBTree<string> = new RBTree(stringComparator)
-allowedAnimationModes.forEach(item => animationModes.insert(item))
+export const animationModes: RBTree<string> = new RBTree(stringComparator);
+allowedAnimationModes.forEach(item => animationModes.insert(item));
 
-export let armorTypes: RBTree<string> = new RBTree(stringComparator)
-allowedArmorTypes.forEach(item => armorTypes.insert(item))
+export const armorTypes: RBTree<string> = new RBTree(stringComparator);
+allowedArmorTypes.forEach(item => armorTypes.insert(item));
 
-export const commandButtons: RBTree<string> = new RBTree(stringComparator)
-definedCommandButtons.forEach(item => commandButtons.insert(item))
-export let customCommandButtons: RBTree<string> = new RBTree(stringComparator)
+export const commandButtons: RBTree<string> = new RBTree(stringComparator);
+definedCommandButtons.forEach(item => commandButtons.insert(item));
+export const customCommandButtons: RBTree<string> = new RBTree(stringComparator);
 
-export const commandSets: RBTree<string> = new RBTree(stringComparator)
-definedCommandSets.forEach(item => commandSets.insert(item))
-export let customCommandSets: RBTree<string> = new RBTree(stringComparator)
+export const commandSets: RBTree<string> = new RBTree(stringComparator);
+definedCommandSets.forEach(item => commandSets.insert(item));
+export const customCommandSets: RBTree<string> = new RBTree(stringComparator);
 
-export const objects: RBTree<string> = new RBTree(stringComparator)
-definedObjects.forEach(item => objects.insert(item))
-export let customObjects: RBTree<string> = new RBTree(stringComparator)
+export const objects: RBTree<string> = new RBTree(stringComparator);
+definedObjects.forEach(item => objects.insert(item));
+export const customObjects: RBTree<string> = new RBTree(stringComparator);
 
-export let objectProperties: RBTree<string> = new RBTree(stringComparator)
-allowedObjectProperties.forEach(item => objectProperties.insert(item))
+export const objectProperties: RBTree<string> = new RBTree(stringComparator);
+allowedObjectProperties.forEach(item => objectProperties.insert(item));
 
-export let addModuleProperties: RBTree<string> = new RBTree(stringComparator)
-allowedAddModuleProperties.forEach(item => addModuleProperties.insert(item))
+export const addModuleProperties: RBTree<string> = new RBTree(stringComparator);
+allowedAddModuleProperties.forEach(item => addModuleProperties.insert(item));
 
-export let locomotorTypes: RBTree<string> = new RBTree(stringComparator)
-allowedLocomotorTypes.forEach(item => locomotorTypes.insert(item))
+export const locomotorTypes: RBTree<string> = new RBTree(stringComparator);
+allowedLocomotorTypes.forEach(item => locomotorTypes.insert(item));
 
-export let kindOfs: RBTree<string> = new RBTree(stringComparator)
-allowedKindOfs.forEach(item => kindOfs.insert(item))
+export const kindOfs: RBTree<string> = new RBTree(stringComparator);
+allowedKindOfs.forEach(item => kindOfs.insert(item));
 
-export let modelDraws: RBTree<string> = new RBTree(stringComparator)
-allowedModelDrawsString.forEach(item => modelDraws.insert(item))
+export const modelDraws: RBTree<string> = new RBTree(stringComparator);
+allowedModelDrawsString.forEach(item => modelDraws.insert(item));
 
-export let singleModelDrawProperties: RBTree<string> = new RBTree(stringComparator)
-allowedSingleModelDrawProperties.forEach(item => singleModelDrawProperties.insert(item))
+export const singleModelDrawProperties: RBTree<string> = new RBTree(stringComparator);
+allowedSingleModelDrawProperties.forEach(item => singleModelDrawProperties.insert(item));
 
-export let multiModelDrawProperties: RBTree<string> = new RBTree(stringComparator)
-allowedMultiModelDrawProperties.forEach(item => multiModelDrawProperties.insert(item))
+export const multiModelDrawProperties: RBTree<string> = new RBTree(stringComparator);
+allowedMultiModelDrawProperties.forEach(item => multiModelDrawProperties.insert(item));
 
-export let tankDrawProperties: RBTree<string> = new RBTree(stringComparator)
-allowedTankDrawProperties.forEach(item => tankDrawProperties.insert(item))
+export const tankDrawProperties: RBTree<string> = new RBTree(stringComparator);
+allowedTankDrawProperties.forEach(item => tankDrawProperties.insert(item));
 
-export let truckDrawProperties: RBTree<string> = new RBTree(stringComparator)
-allowedTruckDrawProperties.forEach(item => truckDrawProperties.insert(item))
+export const truckDrawProperties: RBTree<string> = new RBTree(stringComparator);
+allowedTruckDrawProperties.forEach(item => truckDrawProperties.insert(item));
 
-export let tankTruckDrawProperties: RBTree<string> = new RBTree(stringComparator)
-allowedTankTruckDrawProperties.forEach(item => tankDrawProperties.insert(item))
+export const tankTruckDrawProperties: RBTree<string> = new RBTree(stringComparator);
+allowedTankTruckDrawProperties.forEach(item => tankDrawProperties.insert(item));
 
-export let dependencyDrawProperties: RBTree<string> = new RBTree(stringComparator)
-allowedDependencyDrawProperties.forEach(item => dependencyDrawProperties.insert(item))
+export const dependencyDrawProperties: RBTree<string> = new RBTree(stringComparator);
+allowedDependencyDrawProperties.forEach(item => dependencyDrawProperties.insert(item));
 
-export let scienceDrawProperties: RBTree<string> = new RBTree(stringComparator)
-allowedScienceDrawProperties.forEach(item => scienceDrawProperties.insert(item))
+export const scienceDrawProperties: RBTree<string> = new RBTree(stringComparator);
+allowedScienceDrawProperties.forEach(item => scienceDrawProperties.insert(item));
 
-export let supplyDrawProperties: RBTree<string> = new RBTree(stringComparator)
-allowedSupplyDrawProperties.forEach(item => supplyDrawProperties.insert(item))
+export const supplyDrawProperties: RBTree<string> = new RBTree(stringComparator);
+allowedSupplyDrawProperties.forEach(item => supplyDrawProperties.insert(item));
 
-export let treeDrawPropeties: RBTree<string> = new RBTree(stringComparator)
-allowedTreeDrawProperties.forEach(item => treeDrawPropeties.insert(item))
+export const treeDrawPropeties: RBTree<string> = new RBTree(stringComparator);
+allowedTreeDrawProperties.forEach(item => treeDrawPropeties.insert(item));
 
-export let projectileStreamDrawProperties: RBTree<string> = new RBTree(stringComparator)
-allowedProjectileStreamDrawProperties.forEach(item => projectileStreamDrawProperties.insert(item))
+export const projectileStreamDrawProperties: RBTree<string> = new RBTree(stringComparator);
+allowedProjectileStreamDrawProperties.forEach(item => projectileStreamDrawProperties.insert(item));
 
-export let laserDrawProperties: RBTree<string> = new RBTree(stringComparator)
-allowedLaserDrawProperties.forEach(item => laserDrawProperties.insert(item))
+export const laserDrawProperties: RBTree<string> = new RBTree(stringComparator);
+allowedLaserDrawProperties.forEach(item => laserDrawProperties.insert(item));
 
-export let singleConditionProperties: RBTree<string> = new RBTree(stringComparator)
-allowedSingleConditionProperties.forEach(item => singleConditionProperties.insert(item))
+export const singleConditionProperties: RBTree<string> = new RBTree(stringComparator);
+allowedSingleConditionProperties.forEach(item => singleConditionProperties.insert(item));
 
-export let multiConditionProperties: RBTree<string> = new RBTree(stringComparator)
-allowedMultiConditionProperties.forEach(item => multiConditionProperties.insert(item))
+export const multiConditionProperties: RBTree<string> = new RBTree(stringComparator);
+allowedMultiConditionProperties.forEach(item => multiConditionProperties.insert(item));
 
-export const conditionStates: RBTree<string> = new RBTree(stringComparator)
-allowedConditionStates.forEach(item => conditionStates.insert(item))
-export let customConditionStates: RBTree<string> = new RBTree(stringComparator)
+export const conditionStates: RBTree<string> = new RBTree(stringComparator);
+allowedConditionStates.forEach(item => conditionStates.insert(item));
+export const customConditionStates: RBTree<string> = new RBTree(stringComparator);
 
-export const fxLists: RBTree<string> = new RBTree(stringComparator)
-definedFXLists.forEach(item => fxLists.insert(item))
-export let customFXLists: RBTree<string> = new RBTree(stringComparator)
+export const fxLists: RBTree<string> = new RBTree(stringComparator);
+definedFXLists.forEach(item => fxLists.insert(item));
+export const customFXLists: RBTree<string> = new RBTree(stringComparator);
 
-export const ocls: RBTree<string> = new RBTree(stringComparator)
-definedOCLs.forEach(item => ocls.insert(item))
-export let customOCLs: RBTree<string> = new RBTree(stringComparator)
+export const ocls: RBTree<string> = new RBTree(stringComparator);
+definedOCLs.forEach(item => ocls.insert(item));
+export const customOCLs: RBTree<string> = new RBTree(stringComparator);
 
-export const upgrades: RBTree<string> = new RBTree(stringComparator)
-definedUpgrades.forEach(item => upgrades.insert(item))
-export let customUpgrades: RBTree<string> = new RBTree(stringComparator)
+export const upgrades: RBTree<string> = new RBTree(stringComparator);
+definedUpgrades.forEach(item => upgrades.insert(item));
+export const customUpgrades: RBTree<string> = new RBTree(stringComparator);
 
-export const weapons: RBTree<string> = new RBTree(stringComparator)
-definedWeapons.forEach(item => weapons.insert(item))
-export let customWeapons: RBTree<string> = new RBTree(stringComparator)
+export const weapons: RBTree<string> = new RBTree(stringComparator);
+definedWeapons.forEach(item => weapons.insert(item));
+export const customWeapons: RBTree<string> = new RBTree(stringComparator);
 
-export const science: RBTree<string> = new RBTree(stringComparator)
-definedScience.forEach(item => science.insert(item))
-export let customScience: RBTree<string> = new RBTree(stringComparator)
+export const science: RBTree<string> = new RBTree(stringComparator);
+definedScience.forEach(item => science.insert(item));
+export const customScience: RBTree<string> = new RBTree(stringComparator);
 
-export const mappedImages: RBTree<string> = new RBTree(stringComparator)
-definedMappedImages.forEach(item => mappedImages.insert(item))
-export let customMappedImages: RBTree<string> = new RBTree(stringComparator)
+export const mappedImages: RBTree<string> = new RBTree(stringComparator);
+definedMappedImages.forEach(item => mappedImages.insert(item));
+export const customMappedImages: RBTree<string> = new RBTree(stringComparator);
 
-export const specialPower: RBTree<string> = new RBTree(stringComparator)
-definedSpecialPower.forEach(item => specialPower.insert(item))
-export let customSpecialPower: RBTree<string> = new RBTree(stringComparator)
+export const specialPower: RBTree<string> = new RBTree(stringComparator);
+definedSpecialPower.forEach(item => specialPower.insert(item));
+export const customSpecialPower: RBTree<string> = new RBTree(stringComparator);
 
-export const audioEvent: RBTree<string> = new RBTree(stringComparator)
-definedAudioEvent.forEach(item => audioEvent.insert(item))
-export let customAudioEvent: RBTree<string> = new RBTree(stringComparator)
+export const audioEvent: RBTree<string> = new RBTree(stringComparator);
+definedAudioEvent.forEach(item => audioEvent.insert(item));
+export const customAudioEvent: RBTree<string> = new RBTree(stringComparator);
 
-export const dialogEvent: RBTree<string> = new RBTree(stringComparator)
-definedDialogEvent.forEach(item => dialogEvent.insert(item))
-export let customDialogEvent: RBTree<string> = new RBTree(stringComparator)
+export const dialogEvent: RBTree<string> = new RBTree(stringComparator);
+definedDialogEvent.forEach(item => dialogEvent.insert(item));
+export const customDialogEvent: RBTree<string> = new RBTree(stringComparator);
 
-export const particleSystem: RBTree<string> = new RBTree(stringComparator)
-definedParticleSystems.forEach(item => particleSystem.insert(item))
-export let customParticleSystem: RBTree<string> = new RBTree(stringComparator)
+export const particleSystem: RBTree<string> = new RBTree(stringComparator);
+definedParticleSystems.forEach(item => particleSystem.insert(item));
+export const customParticleSystem: RBTree<string> = new RBTree(stringComparator);
 
-export const definedArmor: RBTree<string> = new RBTree(stringComparator)
-armor.forEach(item => definedArmor.insert(item))
-export let customArmor: RBTree<string> = new RBTree(stringComparator)
+export const definedArmor: RBTree<string> = new RBTree(stringComparator);
+armor.forEach(item => definedArmor.insert(item));
+export const customArmor: RBTree<string> = new RBTree(stringComparator);
 
-export const definedDamageFX: RBTree<string> = new RBTree(stringComparator)
-damageFx.forEach(item => definedDamageFX.insert(item))
-export let customDamageFX: RBTree<string> = new RBTree(stringComparator)
+export const definedDamageFX: RBTree<string> = new RBTree(stringComparator);
+damageFx.forEach(item => definedDamageFX.insert(item));
+export const customDamageFX: RBTree<string> = new RBTree(stringComparator);
 
-export const definedLocomotors: RBTree<string> = new RBTree(stringComparator)
-locomotors.forEach(item => definedLocomotors.insert(item))
-export let customLocomotor: RBTree<string> = new RBTree(stringComparator)
+export const definedLocomotors: RBTree<string> = new RBTree(stringComparator);
+locomotors.forEach(item => definedLocomotors.insert(item));
+export const customLocomotor: RBTree<string> = new RBTree(stringComparator);
 
 export const CommandButtonCommandValues: string[] = [
 	'NONE','PLAYER_UPGRADE','PLACE_BEACON','SPECIAL_POWER','SPECIAL_POWER_FROM_SHORTCUT','PURCHASE_SCIENCE','FIRE_WEAPON','OBJECT_UPGRADE','SWITCH_WEAPON','SET_RALLY_POINT','SELL','TOGGLE_OVERCHARGE','CANCEL_UPGRADE','EXIT_CONTAINER','EVACUATE','EXECUTE_RAILED_TRANSPORT','COMBATDROP','GUARD','GUARD_WITHOUT_PURSUIT','GUARD_FLYING_UNITS_ONLY','ATTACK_MOVE','STOP','CONVERT_TO_CARBOMB','SABOTAGE_BUILDING','HIJACK_VEHICLE','HACK_INTERNET','DOZER_CONSTRUCT_CANCEL','DOZER_CONSTRUCT','UNIT_BUILD','CANCEL_UNIT_BUILD','SELECT_ALL_UNITS_OF_TYPE','SPECIAL_POWER_CONSTRUCT','SPECIAL_POWER_CONSTRUCT_FROM_SHORTCUT'
-]
+];
 
 export const CommandButtonOptionValues: string[] = [
 	'NONE','NEED_TARGET_POS','NEED_SPECIAL_POWER_SCIENCE','CONTEXTMODE_COMMAND','SCRIPT_ONLY','CAN_USE_WAYPOINTS','NEED_TARGET_NEUTRAL_OBJECT','NEED_TARGET_ENEMY_OBJECT','OK_FOR_MULTI_SELECT','NEED_UPGRADE','CHECK_LIKE','OPTION_ONE','OPTION_TWO','OPTION_THREE','NOT_QUEUEABLE','IGNORES_UNDERPOWERED','MUST_BE_STOPPED','USES_MINE_CLEARING_WEAPONSET','NEED_TARGET_ALLY_OBJECT'
-]
+];
 
 export const CommandButtonBorderTypeValues: string[] = [
 	'NONE','ACTION','UPGRADE','SYSTEM','BUILD'
-]
+];
 
 export const Faction: string[] = [
 	'AMERICA','CHINA','GLA','AMERICAAIRFORCEGENERAL','AMERICALASERGENERAL','AMERICASUPERWEAPONGENERAL','CHINATANKGENERAL','CHINAINFANTRYGENERAL','CHINANUKEGENERAL','GLADEMOLITIONGENERAL','GLASTEALTHGENERAL','GLATOXINGENERAL'
-]
+];
 
 export const DamageType: string[] = [
 	'DEFAULT','EXPLOSION','CRUSH','ARMOR_PIERCING','SMALL_ARMS','GATTLING','RADIATION','FLAME','LASER','SNIPER','POISON','HEALING','UNRESISTABLE','DEPLOY','SURRENDER','HACK','KILL_PILOT','PENALTY','FALLING','MELEE','DISARM','HAZARD_CLEANUP','INFANTRY_MISSILE','AURORA_BOMB','LAND_MINE','JET_MISSILES','STEALTHJET_MISSILES','MOLOTOV_COCKTAIL','COMANCHE_VULCAN','SUBDUAL_MISSILE','SUBDUAL_VEHICLE','SUBDUAL_BUILDING','PARTICLE_BEAM','MICROWAVE','TOPPLING','STATUS'
-]
+];
 
 export const FXListViewShakeType: string[] = [
 	'SUBTLE','STRONG','SEVERE','CINE_EXTREME','CINE_INSANE'
-]
+];
 
 export const FXListScorchType: string[] = [
 	'SCORCH_1','SCORCH_2','SCORCH_3','SCORCH_4','SHADOW_SCORCH','RANDOM'
-]
+];
 
 export const LocomotorMovePriority: string[] = [
 	'MOVES_BACK','MOVES_FRONT','MOVES_MIDDLE'
-]
+];
 
 export const LocomotorAppearence: string[] = [
 	'TWO_LEGS','FOUR_WHEELS','TREADS','HOVER','THRUST','WINGS','CLIMBER','OTHER','MOTORCYCLE'
-]
+];
 
 export const LocomotorZBehavior: string[] = [
 	'NO_Z_MOTIVE_FORCE','SEA_LEVEL','SURFACE_RELATIVE_HEIGHT','ABSOLUTE_HEIGHT','FIXED_SURFACE_RELATIVE_HEIGHT','FIXED_ABSOLUTE_HEIGHT','FIXED_RELATIVE_TO_GROUND_AND_BUILDINGS','RELATIVE_TO_HIGHEST_LAYER'
-]
+];
 
 export const LocomotorSurface: string[] = [
 	'GROUND','CLIFF','AIR','RUBBLE','WATER'
-]
+];
 
 export const WeaponBonuses: string[] = [
 	'DAMAGE','RADIUS','RANGE','RATE_OF_FIRE',' PRE_ATTACK','COUNT'
-]
+];
 
 export const WeaponBonusConditions: string[] = [
 	'GARRISONED','HORDE','CONTINUOUS_FIRE_MEAN','CONTINUOUS_FIRE_FAST','NATIONALISM','DRONE_SPOTTING','DEMORALIZED_OBSOLETE','ENTHUSIASTIC','VETERAN','ELITE','HERO','BATTLEPLAN_BOMBARDMENT','BATTLEPLAN_HOLDTHELINE','BATTLEPLAN_SEARCHANDDESTROY','SUBLIMINAL','SOLO_HUMAN_EASY','SOLO_HUMAN_MEDIUM','SOLO_HUMAN_HARD','SOLO_AI_EASY','SOLO_AI_MEDIUM','SOLO_AI_HARD','TARGET_FAERIE_FIRE','FANATISCISM','FRENZY_ONE','FRENZY_TWO','FRENZY_THREE','COUNT'
-]
+];
 
 export const WeaponAffects: string[] = [
 	'SELF','ALLIES','ENEMIES','NEUTRALS','SUICIDE','NOT_SIMILAR','NOT_AIRBORNE'
-]
+];
 
 export const DeathTypes: string[] = [
 	'CRUSHED','BURNED','EXPLODED','POISONED','TOPPLED','FLOODED','SUICIDED','LASERED','DETONATED','SPLATTED','POISONED_BETA','DEATH_EXTRA_2','DEATH_EXTRA_3','DEATH_EXTRA_4','DEATH_EXTRA_5','DEATH_EXTRA_6','DEATH_EXTRA_7','DEATH_EXTRA_8','POISONED_GAMMA'
-]
+];
 
 export const CursorNames: string[] = [
 	"NONE", "None","Normal","Arrow","Scroll","Target","Move","AttackMove","ATTACKOBJ","FORCEATTACKOBJ","FORCEATTACKGROUND","Build","InvalidBuild","GenericInvalid","Select","ENTERFRIENDLY","EnterAggressive","SetRallyPoint","GETREPAIRED","GETHEALED","DOREPAIR","RESUMECONSTRUCTION","CaptureBuilding","SnipeVehicle","LaserGuidedMissiles","TankHunterTNTAttack","StabAttack","PlaceRemoteCharge","PlaceTimedCharge","DEFECTOR","DOCK","FireFlame","FireBomb","PlaceBeacon","DisguiseAsVehicle","Waypoint","OUTRANGE","STABATTACKINVALID","PLACECHARGEINVALID","Hack","ParticleUplinkCannon","DaisyCutter",
-]
+];
 
