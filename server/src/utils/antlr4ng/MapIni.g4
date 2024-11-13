@@ -4,21 +4,17 @@ grammar MapIni;
 program: (class | NEWLINE)* EOF;
 
 class: simpleClass
-     | objectClass
-     | objectReskinClass
+     | complexClass
      ;
 
 // Classes that doesn't have sub blocks
 simpleClass: class_identifier class_value NEWLINE (property | NEWLINE)* end;
-class_identifier: 'Animation' | 'Armor' | 'AudioEvent' | 'CommandButton' | 'CommandSet' | 'DamageFX' | 'DialogEvent' | 'FXList' | 'InGameUI' | 'Locomotor' | 'ParticleSystem' | 'Rank' | 'Science' | 'SpecialPower' | 'Upgrade' | 'WaterTransparency' | 'Weapon' | 'Weather' ;
+
+// Classes that have sub blocks
+complexClass: class_identifier class_value* NEWLINE (module_modifier | objectModules | propertyBlock | property | NEWLINE)* end;
+
+class_identifier: ID;
 class_value: ID;
-
-objectReskinClass: objectReskin_identifier object_value object_value NEWLINE (module_modifier | module | objectProperty | objectSets | objectUnitSpecificSounds | objectUnitSpecificFX | NEWLINE)* end;
-objectReskin_identifier: 'ObjectReskin';
-
-// Object Class
-objectClass: object_identifier object_value NEWLINE (module_modifier | module | objectProperty | objectSets | objectUnitSpecificSounds | objectUnitSpecificFX | NEWLINE)* end;
-object_identifier: 'Object';
 
 module_modifier:  (addModule
                      | removeModule
@@ -26,91 +22,33 @@ module_modifier:  (addModule
                      )
                      ;
 
-addModule: 'AddModule' NEWLINE (module | objectProperty | NEWLINE)* end;
-removeModule: 'RemoveModule'  moduleTag_value;
+addModule: ADDMODULE NEWLINE (objectModules | property | NEWLINE)* end;
+removeModule: REMOVEMODULE moduleTag_value;
 
-module: (drawModule
-        | bodyModule
-        | behaviorModule
-        | clientModule)
-        ;
 
-objectSets: (objectWeaponSet | objectArmorSet | objectPrerequisite);
+// Object Modules
+objectModules: module_type EQ module_name moduleTag_value NEWLINE (property | propertyBlock | conditionBlock | NEWLINE)* end;
 
-// WeaponSet
-objectWeaponSet: 'WeaponSet' NEWLINE (objectWeaponSetProperty | NEWLINE)* end;
-objectWeaponSetProperty: (ID | class_identifier) EQ property_values NEWLINE;
-
-// ArmorSet
-objectArmorSet: 'ArmorSet' NEWLINE (objectArmorSetProperty | NEWLINE)* end;
-objectArmorSetProperty: (ID | class_identifier) EQ property_values NEWLINE;
-
-// Prerequisite
-objectPrerequisite: 'Prerequisites' NEWLINE (objectPrerequisiteProperty | NEWLINE)* end;
-objectPrerequisiteProperty: (ID | class_identifier | object_identifier) EQ property_values NEWLINE;
-
-// UnitSpecificSounds
-objectUnitSpecificSounds: 'UnitSpecificSounds' NEWLINE (objectUnitSpecificSoundsProperty | NEWLINE)* end;
-objectUnitSpecificSoundsProperty: ID EQ property_values NEWLINE;
-
-// UnitSpecificFX
-objectUnitSpecificFX: 'UnitSpecificFX' NEWLINE (objectUnitSpecificFXProperty | NEWLINE)* end;
-objectUnitSpecificFXProperty: ID EQ property_values NEWLINE;
-
-// Draw Modules
-drawModule: 'Draw' EQ drawModule_type moduleTag_value NEWLINE (conditionState | aliasCondition | drawModuleProperty | NEWLINE)* end;
-conditionState: defaultConditionStateBlock | conditionStateBlock | transitionStateBlock;
-defaultConditionStateBlock: 'DefaultConditionState' NEWLINE (conditionStateProperty | NEWLINE)* end;
-conditionStateBlock: 'ConditionState' EQ conditionState_values NEWLINE (conditionStateProperty | NEWLINE)* end;
-transitionStateBlock: 'TransitionState' EQ conditionState_values NEWLINE (conditionStateProperty | NEWLINE)* end;
-aliasCondition:  'AliasConditionState' EQ conditionState_values NEWLINE;
-
-// Body Module
-bodyModule: 'Body' EQ bodyModule_type moduleTag_value NEWLINE (bodyModuleProperty | NEWLINE)* end;
-bodyModuleProperty: ID EQ property_values NEWLINE;
-
-// Behavior Module
-behaviorModule: 'Behavior' EQ behaviorModule_type moduleTag_value NEWLINE (behaviorModuleProperty | turretBlock | NEWLINE)* end;
-behaviorModuleProperty: (ID | class_identifier) EQ property_values NEWLINE;
-turretBlock: TURRET NEWLINE (turretProperty | NEWLINE)* end;
-turretProperty: (ID | class_identifier | object_identifier) EQ property_values NEWLINE;
-TURRET: ('Turret' | 'AltTurret');
-
-// Client Module
-clientModule: 'ClientUpdate' EQ clientModule_type moduleTag_value NEWLINE (clientModuleProperty | NEWLINE)* end;
-clientModuleProperty: ID EQ property_values NEWLINE;
-
-objectProperty: (ID | class_identifier) EQ property_values NEWLINE;
-drawModuleProperty: ID EQ property_values NEWLINE;
-conditionStateProperty: (ID | class_identifier | TURRET) EQ property_values NEWLINE;
-property:  property_value EQ property_values NEWLINE;
-
-// Module values
-drawModule_type: ID;
-conditionState_values: ID (ID)*;
-bodyModule_type: ID;
-behaviorModule_type: ID;
-clientModule_type: ID;
+// Object Module values
+module_type: ID;
+module_name: ID;
 moduleTag_value: ID;
 
-// Class values
-mappedImage_value: ID;
-object_value: ID;
-
-// Object Special Values
-locomotor_modifier: ID;
+// Object Blocks
+propertyBlock: ID NEWLINE (property | NEWLINE)* end;
+conditionBlock: CONDITIONSTATE EQ property_values NEWLINE (property | NEWLINE)* end;
 
 // Property values
-property_values: property_value ( property_value)*;
-property_value: ID | class_identifier | object_value;
+property:  value EQ property_values NEWLINE;
+property_values: value+;
+value: ID | STRING;
 
 // General
+CONDITIONSTATE: ('ConditionState' | 'TransitionState');
+ADDMODULE: ('AddModule' | 'addmodule' | 'ADDMODULE' | 'Addmodule');
+REMOVEMODULE: ('RemoveModule');
 EQ: '=' ;
-
-// Map.ini
-end: 'End' | 'end' | 'END';
-
-// General
+end: 'end' | 'End' | 'END';
 STRING: '"' ( ~[\\"\n\r] | '\\' [\\"] )* '"'  ;
 ID: [a-zA-Z_0-9+\-.][a-zA-Z_0-9%:.]*;
 

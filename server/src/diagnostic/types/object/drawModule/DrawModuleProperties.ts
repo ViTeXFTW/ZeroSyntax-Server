@@ -78,6 +78,14 @@ const baseW3DModelProperties: { [key: string]: PropertyDefinition } = {
 		description: 'The minimum LOD required to display the object',
 		validValues: Object.values(LOD_t)
 	},
+	'AliasConditionState': {
+		name: 'AliasConditionState',
+		type: 'string',
+		description: 'The condition state to alias to',
+		validValues: list.allowedConditionStates,
+		numberOfValues: [-1],
+		ignoreCase: true
+	},
 	'OkToChangeModelColor': {
 		name: 'OkToChangeModelColor',
 		type: 'boolean',

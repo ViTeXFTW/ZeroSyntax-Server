@@ -1,12 +1,216 @@
 import { RBTree } from 'bintrees';
 import { PropertyDefinition } from '../../properties';
-import { BuildCompletion_t, EditorSorting_t, Locomotor_types_t, MaxSimultaneousLinkKey_t, RadarPriority_t, Shadow_t, Side_t } from '../PropertyTypes';
+import { BuildCompletion_t, EditorSorting_t, kindOfs_t, Locomotor_types_t, MaxSimultaneousLinkKey_t, RadarPriority_t, Shadow_t, Side_t } from '../PropertyTypes';
 import { IniTypes_t } from '../IniType_t';
 import * as list from '../../../utils/lists';
 
 const objectPropertyTree: RBTree<string> = new RBTree<string>((a, b) => a.localeCompare(b));
 
+export const ObjectSoundProperties: PropertyDefinition[] = [
+	{
+		name: 'VoiceSelect',
+		type: IniTypes_t.AUDIO_EVENT,
+		description: 'The voice select of the object',
+	},
+	{
+		name: 'VoiceGroupSelect',
+		type: IniTypes_t.AUDIO_EVENT,
+		description: 'The voice group select of the object',
+	},
+	{
+		name: 'VoiceMovement',
+		type: IniTypes_t.AUDIO_EVENT,
+		description: 'The voice movement of the object',
+	},
+	{
+		name: 'VoiceAttack',
+		type: IniTypes_t.AUDIO_EVENT,
+		description: 'The voice attack of the object',
+	},
+	{
+		name: 'VoiceEnter',
+		type: IniTypes_t.AUDIO_EVENT,
+		description: 'The voice enter of the object',
+	},
+	{
+		name: 'VoiceFear',
+		type: IniTypes_t.AUDIO_EVENT,
+		description: 'The voice fear of the object',
+	},
+	{
+		name: 'VoiceSelectElite',
+		type: IniTypes_t.AUDIO_EVENT,
+		description: 'The voice select elite of the object',
+	},
+	{
+		name: 'VoiceCreated',
+		type: IniTypes_t.AUDIO_EVENT,
+		description: 'The voice created of the object',
+	},
+	{
+		name: 'VoiceNearEnemy',
+		type: IniTypes_t.AUDIO_EVENT,
+		description: 'The voice near enemy of the object',
+	},
+	{
+		name: 'VoiceTaskUnable',
+		type: IniTypes_t.AUDIO_EVENT,
+		description: 'The voice task unable of the object',
+	},
+	{
+		name: 'VoiceTaskComplete',
+		type: IniTypes_t.AUDIO_EVENT,
+		description: 'The voice task complete of the object',
+	},
+	{
+		name: 'VoiceMeetEnemy',
+		type: IniTypes_t.AUDIO_EVENT,
+		description: 'The voice meet enemy of the object',
+	},
+	{
+		name: 'VoiceGarrison',
+		type: IniTypes_t.AUDIO_EVENT,
+		description: 'The voice garrison of the object',
+	},
+	{
+		name: 'VoiceDefeat',
+		type: IniTypes_t.AUDIO_EVENT,
+		description: 'The voice defeat of the object',
+	},
+	{
+		name: 'VoiceAttackSpecial',
+		type: IniTypes_t.AUDIO_EVENT,
+		description: 'The voice attack special of the object',
+	},
+	{
+		name: 'VoiceAttackAir',
+		type: IniTypes_t.AUDIO_EVENT,
+		description: 'The voice attack air of the object',
+	},
+	{
+		name: 'VoiceMove',
+		type: IniTypes_t.AUDIO_EVENT,
+		description: 'The voice move of the object',
+	},
+	{
+		name: 'VoiceDefect',
+		type: IniTypes_t.AUDIO_EVENT,
+		description: 'The voice defect of the object',
+	},
+	{
+		name: 'VoiceGuard',
+		type: IniTypes_t.AUDIO_EVENT,
+		description: 'The voice guard of the object',
+	},
+	{
+		name: 'SoundMoveStartDamaged',
+		type: IniTypes_t.AUDIO_EVENT,
+		description: 'The sound move start damaged of the object',
+	},
+	{
+		name: 'SoundMoveLoop',
+		type: IniTypes_t.AUDIO_EVENT,
+		description: 'The sound move loop of the object',
+	},
+	{
+		name: 'SoundMoveLoopDamaged',
+		type: IniTypes_t.AUDIO_EVENT,
+		description: 'The sound move loop damaged of the object',
+	},
+	{
+		name: 'SoundAmbient',
+		type: IniTypes_t.AUDIO_EVENT,
+		description: 'The ambient sound of the object',
+	},
+	{
+		name: 'SoundAmbientDamaged',
+		type: IniTypes_t.AUDIO_EVENT,
+		description: 'The ambient sound when the object is damaged',
+	},
+	{
+		name: 'SoundAmbientRubble',
+		type: IniTypes_t.AUDIO_EVENT,
+		description: 'The ambient sound when the object is in rubble state',
+	},
+	{
+		name: 'SoundFallingFromPlane',
+		type: IniTypes_t.AUDIO_EVENT,
+		description: 'The sound when the object is falling from a plane',
+	},
+	{
+		name: 'SoundMoveStart',
+		type: IniTypes_t.AUDIO_EVENT,
+		description: 'The sound move start of the object',
+	},
+	{
+		name: 'SoundAmbientDamage',
+		type: IniTypes_t.AUDIO_EVENT,
+		description: 'The sound ambient damage of the object',
+	},
+	{
+		name: 'SoundAmbientReallyDamaged',
+		type: IniTypes_t.AUDIO_EVENT,
+		description: 'The sound ambient really damaged of the object',
+	},
+	{
+		name: 'SoundAmbientRubbled',
+		type: IniTypes_t.AUDIO_EVENT,
+		description: 'The sound ambient rubbled of the object',
+	},
+	{
+		name: 'SoundStealthOn',
+		type: IniTypes_t.AUDIO_EVENT,
+		description: 'The sound stealth on of the object',
+	},
+	{
+		name: 'SoundStealthOff',
+		type: IniTypes_t.AUDIO_EVENT,
+		description: 'The sound stealth off of the object',
+	},
+	{
+		name: 'SoundCreated',
+		type: IniTypes_t.AUDIO_EVENT,
+		description: 'The sound created of the object',
+	},
+	{
+		name: 'SoundOnDamaged',
+		type: IniTypes_t.AUDIO_EVENT,
+		description: 'The sound on damage of the object',
+	},
+	{
+		name: 'SoundOnReallyDamaged',
+		type: IniTypes_t.AUDIO_EVENT,
+		description: 'The sound on really damaged of the object',
+	},
+	{
+		name: 'SoundEnter',
+		type: IniTypes_t.AUDIO_EVENT,
+		description: 'The sound enter of the object',
+	},
+	{
+		name: 'SoundExit',
+		type: IniTypes_t.AUDIO_EVENT,
+		description: 'The sound exit of the object',
+	},
+	{
+		name: 'SoundPromotedVeteran',
+		type: IniTypes_t.AUDIO_EVENT,
+		description: 'The sound promoted veteran of the object',
+	},
+	{
+		name: 'SoundPromotedElite',
+		type: IniTypes_t.AUDIO_EVENT,
+		description: 'The sound promoted elite of the object',
+	},
+	{
+		name: 'SoundPromotedHero',
+		type: IniTypes_t.AUDIO_EVENT,
+		description: 'The sound promoted hero of the object',
+	},
+];
+
 export const objectProperties: PropertyDefinition[] = [
+	...ObjectSoundProperties,
 	{
 		name: "Buildable",
 		type: "boolean",
@@ -124,7 +328,8 @@ export const objectProperties: PropertyDefinition[] = [
 		name: 'Geometry',
 		type: 'string',
 		description: 'The geometry of the object',
-		validValues: ["Point", "Line", "Box", "Sphere", "Cylinder"]
+		validValues: ["POINT", "LINE", "BOX", "SPHERE", "CYLINDER"],
+		ignoreCase: true
 	},
 	{
 		name: 'GeometryMajorRadius',
@@ -175,7 +380,7 @@ export const objectProperties: PropertyDefinition[] = [
 		name: 'KindOf',
 		type: 'string',
 		description: 'The kind of the object',
-		validValues: list.allowedKindOfs,
+		validValues: Object.values(kindOfs_t),
 		numberOfValues: [-1],
 		modifier: ['+', '-']
 	},
@@ -202,6 +407,11 @@ export const objectProperties: PropertyDefinition[] = [
 		name: 'OcclusionDelay',
 		type: 'float',
 		description: 'The occlusion delay of the object',
+	},
+	{
+		name: 'PlacementViewAngle',
+		type: 'float',
+		description: 'The placement view angle of the object',
 	},
 	{
 		name: "RadarPriority",
@@ -296,154 +506,9 @@ export const objectProperties: PropertyDefinition[] = [
 		description: 'The fifth upgrade cameo of the object',
 	},
 	{
-		name: 'VoiceSelect',
-		type: IniTypes_t.AUDIO_EVENT,
-		description: 'The voice select of the object',
-	},
-	{
-		name: 'VoiceGroupSelect',
-		type: IniTypes_t.AUDIO_EVENT,
-		description: 'The voice group select of the object',
-	},
-	{
-		name: 'VoiceMovement',
-		type: IniTypes_t.AUDIO_EVENT,
-		description: 'The voice movement of the object',
-	},
-	{
-		name: 'VoiceAttack',
-		type: IniTypes_t.AUDIO_EVENT,
-		description: 'The voice attack of the object',
-	},
-	{
-		name: 'VoiceEnter',
-		type: IniTypes_t.AUDIO_EVENT,
-		description: 'The voice enter of the object',
-	},
-	{
-		name: 'VoiceFear',
-		type: IniTypes_t.AUDIO_EVENT,
-		description: 'The voice fear of the object',
-	},
-	{
-		name: 'VoiceSelectElite',
-		type: IniTypes_t.AUDIO_EVENT,
-		description: 'The voice select elite of the object',
-	},
-	{
-		name: 'VoiceCreated',
-		type: IniTypes_t.AUDIO_EVENT,
-		description: 'The voice created of the object',
-	},
-	{
-		name: 'VoiceNearEnemy',
-		type: IniTypes_t.AUDIO_EVENT,
-		description: 'The voice near enemy of the object',
-	},
-	{
-		name: 'VoiceTaskUnable',
-		type: IniTypes_t.AUDIO_EVENT,
-		description: 'The voice task unable of the object',
-	},
-	{
-		name: 'VoiceTaskComplete',
-		type: IniTypes_t.AUDIO_EVENT,
-		description: 'The voice task complete of the object',
-	},
-	{
-		name: 'VoiceMeetEnemy',
-		type: IniTypes_t.AUDIO_EVENT,
-		description: 'The voice meet enemy of the object',
-	},
-	{
-		name: 'VoiceGarrison',
-		type: IniTypes_t.AUDIO_EVENT,
-		description: 'The voice garrison of the object',
-	},
-	{
-		name: 'VoiceDefeat',
-		type: IniTypes_t.AUDIO_EVENT,
-		description: 'The voice defeat of the object',
-	},
-	{
-		name: 'VoiceAttackSpecial',
-		type: IniTypes_t.AUDIO_EVENT,
-		description: 'The voice attack special of the object',
-	},
-	{
-		name: 'VoiceAttackAir',
-		type: IniTypes_t.AUDIO_EVENT,
-		description: 'The voice attack air of the object',
-	},
-	{
-		name: 'SoundMoveStart',
-		type: IniTypes_t.AUDIO_EVENT,
-		description: 'The sound move start of the object',
-	},
-	{
-		name: 'SoundAmbientDamage',
-		type: IniTypes_t.AUDIO_EVENT,
-		description: 'The sound ambient damage of the object',
-	},
-	{
-		name: 'SoundAmbientReallyDamaged',
-		type: IniTypes_t.AUDIO_EVENT,
-		description: 'The sound ambient really damaged of the object',
-	},
-	{
-		name: 'SoundAmbientRubbled',
-		type: IniTypes_t.AUDIO_EVENT,
-		description: 'The sound ambient rubbled of the object',
-	},
-	{
-		name: 'SoundStealthOn',
-		type: IniTypes_t.AUDIO_EVENT,
-		description: 'The sound stealth on of the object',
-	},
-	{
-		name: 'SoundStealthOff',
-		type: IniTypes_t.AUDIO_EVENT,
-		description: 'The sound stealth off of the object',
-	},
-	{
-		name: 'SoundCreated',
-		type: IniTypes_t.AUDIO_EVENT,
-		description: 'The sound created of the object',
-	},
-	{
-		name: 'SoundOnDamaged',
-		type: IniTypes_t.AUDIO_EVENT,
-		description: 'The sound on damage of the object',
-	},
-	{
-		name: 'SoundOnReallyDamaged',
-		type: IniTypes_t.AUDIO_EVENT,
-		description: 'The sound on really damaged of the object',
-	},
-	{
-		name: 'SoundEnter',
-		type: IniTypes_t.AUDIO_EVENT,
-		description: 'The sound enter of the object',
-	},
-	{
-		name: 'SoundExit',
-		type: IniTypes_t.AUDIO_EVENT,
-		description: 'The sound exit of the object',
-	},
-	{
-		name: 'SoundPromotedVeteran',
-		type: IniTypes_t.AUDIO_EVENT,
-		description: 'The sound promoted veteran of the object',
-	},
-	{
-		name: 'SoundPromotedElite',
-		type: IniTypes_t.AUDIO_EVENT,
-		description: 'The sound promoted elite of the object',
-	},
-	{
-		name: 'SoundPromotedHero',
-		type: IniTypes_t.AUDIO_EVENT,
-		description: 'The sound promoted hero of the object',
+		name: 'VisionRange',
+		type: 'float',
+		description: 'The vision range of the object',
 	},
 ];
 

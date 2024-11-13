@@ -1,4 +1,6 @@
 
+//TODO: Add an interface to be used instead of enum, with fields for adding SoundProperties and ConditionStates
+
 export enum BehaviorModule_t {
 	ANIMATION_STEERING_UPDATE = 'AnimationSteeringUpdate',
 	ACTIVE_SHROUD_UPGRADE = 'ActiveShroudUpgrade',
@@ -25,9 +27,10 @@ export enum BehaviorModule_t {
 	COUNTERMEASURES_BEHAVIOR = 'CountermeasuresBehavior',
 	CHECKPOINT_UPDATE = 'CheckpointUpdate',
 	CHINOOK_AI_UPDATE = 'ChinookAIUpdate',
+	CLEANUP_AREA_POWER = 'CleanupAreaPower',
 	CLEANUP_HAZARD_UPDATE = 'CleanupHazardUpdate',
 	COMMAND_BUTTON_HUNT_UPDATE = 'CommandButtonHuntUpdate',
-	COMMAND_BUTTON_UPDATE = 'CommandButtonUpdate',
+	COMMAND_SET_UPGRADE = 'CommandSetUpgrade',
 	CONVERT_TO_CAR_BOMB_CRATE_COLLIDE = 'ConvertToCarBombCrateCollide',
 	CONVERT_TO_HIJACKED_VEHICLE_CRATE_COLLIDE = 'ConvertToHijackedVehicleCrateCollide',
 	COST_MODIFIER_UPGRADE = 'CostModifierUpgrade',

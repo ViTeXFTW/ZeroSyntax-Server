@@ -1,9 +1,9 @@
 import { CandidatesCollection } from "antlr4-c3";
-import { ParserRuleContext, TerminalNode, Token } from "antlr4ng";
-import { MapIniParser, ObjectPropertyContext } from "../utils/antlr4ng/MapIniParser";
-import { CompletionItem, CompletionItemKind, InsertTextFormat } from "vscode-languageserver";
-import * as list from '../utils/lists'
+import { ParserRuleContext, Token } from "antlr4ng";
 import { RBTree } from "bintrees";
+import { CompletionItem, CompletionItemKind } from "vscode-languageserver";
+import { MapIniParser } from "../utils/antlr4ng/MapIniParser";
+import * as list from '../utils/lists';
 
 
 
@@ -27,11 +27,11 @@ export function generateCompletionItems(candidates: CandidatesCollection, parser
         const tokenName = parser.vocabulary.getDisplayName(tokenType);
 
         if (!tokenName) {
-            continue
+            continue;
         }
 
         // Clean up the token name
-        let label = tokenName.startsWith("'") && tokenName.endsWith("'")
+        const label = tokenName.startsWith("'") && tokenName.endsWith("'")
             ? tokenName.substring(1, tokenName.length - 1)
             : tokenName;
 
@@ -46,12 +46,12 @@ export function generateCompletionItems(candidates: CandidatesCollection, parser
                 break;
 
             case 'End':
-                completionItems.push(createCompletionItem(label, CompletionItemKind.Keyword, tokenType, `Rule: ${label}`))
+                completionItems.push(createCompletionItem(label, CompletionItemKind.Keyword, tokenType, `Rule: ${label}`));
                 break;
 
 
             default:
-                completionItems.push(createCompletionItem(label, CompletionItemKind.Field, tokenType, `Rule: ${label}`))
+                completionItems.push(createCompletionItem(label, CompletionItemKind.Field, tokenType, `Rule: ${label}`));
                 break;
         }
     }
@@ -77,7 +77,7 @@ function createCompletionItem(label: string, kind: CompletionItemKind, data: any
         kind: kind,
         data: data,
         documentation: documentation
-    }
+    };
 }
 
 export function findContextAtPosition(tree: ParserRuleContext, position: number): ParserRuleContext | null {
@@ -114,7 +114,7 @@ export function findContextAtPosition(tree: ParserRuleContext, position: number)
 export function getContextSpecificCompletions(ruleName: string): CompletionItem[] {
     const completionItems: CompletionItem[] = [];
 
-    console.log(`Rules: ${ruleName}`)
+    console.log(`Rules: ${ruleName}`);
 
     switch (ruleName) {
 
@@ -125,7 +125,7 @@ export function getContextSpecificCompletions(ruleName: string): CompletionItem[
             break;
         
         case 'drawModule_type':
-            completionItems.push(...getCompletionItemsFromRBTree(list.modelDraws))
+            completionItems.push(...getCompletionItemsFromRBTree(list.modelDraws));
             break;
 
         // Add more cases for different contexts

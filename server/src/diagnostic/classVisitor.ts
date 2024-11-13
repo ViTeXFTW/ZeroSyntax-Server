@@ -1,10 +1,8 @@
 import { AbstractParseTreeVisitor } from "antlr4ng";
+import { ClassContext, ProgramContext } from "../utils/antlr4ng/MapIniParser";
 import { MapIniVisitor } from "../utils/antlr4ng/MapIniVisitor";
-import { ProgramContext, ClassContext } from "../utils/antlr4ng/MapIniParser";
-import { IniTypes_t } from './types/IniType_t';
-import { Location } from '../utils/location';
-import { DiagnosticSeverity } from 'vscode-languageserver';
 import { customAnimationClassList, customArmorClassList, customAudioEventClassList, customCommandButtonClassList, customCommandSetClassList, customDialogEventClassList, customFXClassList, customLocomotorClassList, customMappedImageClassList, customObjectClassList, customParticleSystemClassList, customScienceClassList, customSpecialPowerClassList, customUpgradeClassList, customWeaponClassList, originalAnimationClassList, originalArmorClassList, originalAudioEventClassList, originalCommandButtonClassList, originalCommandSetClassList, originalDialogEventList, originalFXClassList, originalLocomotorClassList, originalMappedImageClassList, originalObjectClassList, originalParticleSystemClassList, originalScienceClassList, originalSpecialPowerClassList, originalUpgradeClassList, originalWeaponClassList } from './data/ClassLists';
+import { IniTypes_t } from './types/IniType_t';
 
 export class ClassVisitor extends AbstractParseTreeVisitor<void> implements MapIniVisitor<void> {
 
@@ -18,8 +16,8 @@ export class ClassVisitor extends AbstractParseTreeVisitor<void> implements MapI
 
 	visitClass(ctx: ClassContext): void {
 		
-		if (ctx.objectClass()) {
-			const className = ctx.objectClass()!.object_value()!.getText();
+		if (ctx.complexClass()) {
+			const className = ctx.complexClass()!.class_identifier()!.getText();
 			if (!originalObjectClassList.includes(className) || !customObjectClassList.includes(className)) {
 				customObjectClassList.push(className);
 			}
