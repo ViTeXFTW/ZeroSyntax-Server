@@ -1,6 +1,5 @@
-import { PropertyDefinition } from '../../properties';
+import { PropertyDefinition } from '../../handlers/interfaces/IPropertyDefinition';
 import { IniTypes_t } from '../IniType_t';
-import { RBTree } from 'bintrees';
 
 export const CommandSetPropertyMap: Map<string, PropertyDefinition> = new Map();
 export const CommandSetProperties: PropertyDefinition[] = [
@@ -94,8 +93,8 @@ export const CommandSetProperties: PropertyDefinition[] = [
 		type: IniTypes_t.COMMAND_BUTTON,
 		description: 'The eighteenth command button of the command set',
 	},
-]
+];
 
 CommandSetProperties.forEach(property => {
-	CommandSetPropertyMap.set(property.name, property)
-})
+	CommandSetPropertyMap.set(property.name, property);
+});

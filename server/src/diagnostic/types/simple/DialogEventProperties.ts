@@ -1,4 +1,4 @@
-import { PropertyDefinition } from '../../properties';
+import { PropertyDefinition } from '../../handlers/interfaces/IPropertyDefinition';
 import { AudioEventPriority_t, AudioEventType_t } from './AudioEventProperties';
 
 // ==================

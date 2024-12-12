@@ -37,12 +37,13 @@ export class MapIniParser extends antlr.Parser {
     public static readonly RULE_module_type = 10;
     public static readonly RULE_module_name = 11;
     public static readonly RULE_moduleTag_value = 12;
-    public static readonly RULE_propertyBlock = 13;
-    public static readonly RULE_conditionBlock = 14;
-    public static readonly RULE_property = 15;
-    public static readonly RULE_property_values = 16;
-    public static readonly RULE_value = 17;
-    public static readonly RULE_end = 18;
+    public static readonly RULE_salvage_value = 13;
+    public static readonly RULE_propertyBlock = 14;
+    public static readonly RULE_conditionBlock = 15;
+    public static readonly RULE_property = 16;
+    public static readonly RULE_property_values = 17;
+    public static readonly RULE_value = 18;
+    public static readonly RULE_end = 19;
 
     public static readonly literalNames = [
         null, "'end'", "'End'", "'END'", null, null, null, "'='"
@@ -55,8 +56,9 @@ export class MapIniParser extends antlr.Parser {
     public static readonly ruleNames = [
         "program", "class", "simpleClass", "complexClass", "class_identifier", 
         "class_value", "module_modifier", "addModule", "removeModule", "objectModules", 
-        "module_type", "module_name", "moduleTag_value", "propertyBlock", 
-        "conditionBlock", "property", "property_values", "value", "end",
+        "module_type", "module_name", "moduleTag_value", "salvage_value", 
+        "propertyBlock", "conditionBlock", "property", "property_values", 
+        "value", "end",
     ];
 
     public get grammarFileName(): string { return "MapIni.g4"; }
@@ -80,23 +82,23 @@ export class MapIniParser extends antlr.Parser {
         try {
             this.enterOuterAlt(localContext, 1);
             {
-            this.state = 42;
+            this.state = 44;
             this.errorHandler.sync(this);
             _la = this.tokenStream.LA(1);
             while (_la === 9 || _la === 10) {
                 {
-                this.state = 40;
+                this.state = 42;
                 this.errorHandler.sync(this);
                 switch (this.tokenStream.LA(1)) {
                 case MapIniParser.ID:
                     {
-                    this.state = 38;
+                    this.state = 40;
                     this.class_();
                     }
                     break;
                 case MapIniParser.NEWLINE:
                     {
-                    this.state = 39;
+                    this.state = 41;
                     this.match(MapIniParser.NEWLINE);
                     }
                     break;
@@ -104,11 +106,11 @@ export class MapIniParser extends antlr.Parser {
                     throw new antlr.NoViableAltException(this);
                 }
                 }
-                this.state = 44;
+                this.state = 46;
                 this.errorHandler.sync(this);
                 _la = this.tokenStream.LA(1);
             }
-            this.state = 45;
+            this.state = 47;
             this.match(MapIniParser.EOF);
             }
         }
@@ -129,20 +131,20 @@ export class MapIniParser extends antlr.Parser {
         let localContext = new ClassContext(this.context, this.state);
         this.enterRule(localContext, 2, MapIniParser.RULE_class);
         try {
-            this.state = 49;
+            this.state = 51;
             this.errorHandler.sync(this);
             switch (this.interpreter.adaptivePredict(this.tokenStream, 2, this.context) ) {
             case 1:
                 this.enterOuterAlt(localContext, 1);
                 {
-                this.state = 47;
+                this.state = 49;
                 this.simpleClass();
                 }
                 break;
             case 2:
                 this.enterOuterAlt(localContext, 2);
                 {
-                this.state = 48;
+                this.state = 50;
                 this.complexClass();
                 }
                 break;
@@ -168,30 +170,30 @@ export class MapIniParser extends antlr.Parser {
         try {
             this.enterOuterAlt(localContext, 1);
             {
-            this.state = 51;
-            this.class_identifier();
-            this.state = 52;
-            this.class_value();
             this.state = 53;
+            this.class_identifier();
+            this.state = 54;
+            this.class_value();
+            this.state = 55;
             this.match(MapIniParser.NEWLINE);
-            this.state = 58;
+            this.state = 60;
             this.errorHandler.sync(this);
             _la = this.tokenStream.LA(1);
             while ((((_la) & ~0x1F) === 0 && ((1 << _la) & 1792) !== 0)) {
                 {
-                this.state = 56;
+                this.state = 58;
                 this.errorHandler.sync(this);
                 switch (this.tokenStream.LA(1)) {
                 case MapIniParser.STRING:
                 case MapIniParser.ID:
                     {
-                    this.state = 54;
+                    this.state = 56;
                     this.property();
                     }
                     break;
                 case MapIniParser.NEWLINE:
                     {
-                    this.state = 55;
+                    this.state = 57;
                     this.match(MapIniParser.NEWLINE);
                     }
                     break;
@@ -199,11 +201,11 @@ export class MapIniParser extends antlr.Parser {
                     throw new antlr.NoViableAltException(this);
                 }
                 }
-                this.state = 60;
+                this.state = 62;
                 this.errorHandler.sync(this);
                 _la = this.tokenStream.LA(1);
             }
-            this.state = 61;
+            this.state = 63;
             this.end();
             }
         }
@@ -227,69 +229,69 @@ export class MapIniParser extends antlr.Parser {
         try {
             this.enterOuterAlt(localContext, 1);
             {
-            this.state = 63;
+            this.state = 65;
             this.class_identifier();
-            this.state = 67;
+            this.state = 69;
             this.errorHandler.sync(this);
             _la = this.tokenStream.LA(1);
             while (_la === 9) {
                 {
                 {
-                this.state = 64;
+                this.state = 66;
                 this.class_value();
                 }
                 }
-                this.state = 69;
+                this.state = 71;
                 this.errorHandler.sync(this);
                 _la = this.tokenStream.LA(1);
             }
-            this.state = 70;
+            this.state = 72;
             this.match(MapIniParser.NEWLINE);
-            this.state = 78;
+            this.state = 80;
             this.errorHandler.sync(this);
             _la = this.tokenStream.LA(1);
             while ((((_la) & ~0x1F) === 0 && ((1 << _la) & 1888) !== 0)) {
                 {
-                this.state = 76;
+                this.state = 78;
                 this.errorHandler.sync(this);
                 switch (this.interpreter.adaptivePredict(this.tokenStream, 6, this.context) ) {
                 case 1:
                     {
-                    this.state = 71;
+                    this.state = 73;
                     this.module_modifier();
                     }
                     break;
                 case 2:
                     {
-                    this.state = 72;
+                    this.state = 74;
                     this.objectModules();
                     }
                     break;
                 case 3:
                     {
-                    this.state = 73;
+                    this.state = 75;
                     this.propertyBlock();
                     }
                     break;
                 case 4:
                     {
-                    this.state = 74;
+                    this.state = 76;
                     this.property();
                     }
                     break;
                 case 5:
                     {
-                    this.state = 75;
+                    this.state = 77;
                     this.match(MapIniParser.NEWLINE);
                     }
                     break;
                 }
                 }
-                this.state = 80;
+                this.state = 82;
                 this.errorHandler.sync(this);
                 _la = this.tokenStream.LA(1);
             }
-            this.state = 81;
+            this.state = 83;
             this.end();
             }
         }
@@ -312,7 +314,7 @@ export class MapIniParser extends antlr.Parser {
         try {
             this.enterOuterAlt(localContext, 1);
             {
-            this.state = 83;
+            this.state = 85;
             this.match(MapIniParser.ID);
             }
         }
@@ -335,7 +337,7 @@ export class MapIniParser extends antlr.Parser {
         try {
             this.enterOuterAlt(localContext, 1);
             {
-            this.state = 85;
+            this.state = 87;
             this.match(MapIniParser.ID);
             }
         }
@@ -358,18 +360,18 @@ export class MapIniParser extends antlr.Parser {
         try {
             this.enterOuterAlt(localContext, 1);
             {
-            this.state = 89;
+            this.state = 91;
             this.errorHandler.sync(this);
             switch (this.tokenStream.LA(1)) {
             case MapIniParser.ADDMODULE:
                 {
-                this.state = 87;
+                this.state = 89;
                 this.addModule();
                 }
                 break;
             case MapIniParser.REMOVEMODULE:
                 {
-                this.state = 88;
+                this.state = 90;
                 this.removeModule();
                 }
                 break;
@@ -398,43 +400,43 @@ export class MapIniParser extends antlr.Parser {
         try {
             this.enterOuterAlt(localContext, 1);
             {
-            this.state = 91;
+            this.state = 93;
             this.match(MapIniParser.ADDMODULE);
-            this.state = 92;
+            this.state = 94;
             this.match(MapIniParser.NEWLINE);
-            this.state = 98;
+            this.state = 100;
             this.errorHandler.sync(this);
             _la = this.tokenStream.LA(1);
             while ((((_la) & ~0x1F) === 0 && ((1 << _la) & 1792) !== 0)) {
                 {
-                this.state = 96;
+                this.state = 98;
                 this.errorHandler.sync(this);
                 switch (this.interpreter.adaptivePredict(this.tokenStream, 9, this.context) ) {
                 case 1:
                     {
-                    this.state = 93;
+                    this.state = 95;
                     this.objectModules();
                     }
                     break;
                 case 2:
                     {
-                    this.state = 94;
+                    this.state = 96;
                     this.property();
                     }
                     break;
                 case 3:
                     {
-                    this.state = 95;
+                    this.state = 97;
                     this.match(MapIniParser.NEWLINE);
                     }
                     break;
                 }
                 }
-                this.state = 100;
+                this.state = 102;
                 this.errorHandler.sync(this);
                 _la = this.tokenStream.LA(1);
             }
-            this.state = 101;
+            this.state = 103;
             this.end();
             }
         }
@@ -457,9 +459,9 @@ export class MapIniParser extends antlr.Parser {
         try {
             this.enterOuterAlt(localContext, 1);
             {
-            this.state = 103;
+            this.state = 105;
             this.match(MapIniParser.REMOVEMODULE);
-            this.state = 104;
+            this.state = 106;
             this.moduleTag_value();
             }
         }
@@ -483,55 +485,65 @@ export class MapIniParser extends antlr.Parser {
         try {
             this.enterOuterAlt(localContext, 1);
             {
-            this.state = 106;
-            this.module_type();
-            this.state = 107;
-            this.match(MapIniParser.EQ);
             this.state = 108;
-            this.module_name();
+            this.module_type();
             this.state = 109;
-            this.moduleTag_value();
+            this.match(MapIniParser.EQ);
             this.state = 110;
+            this.module_name();
+            this.state = 111;
+            this.moduleTag_value();
+            this.state = 113;
+            this.errorHandler.sync(this);
+            _la = this.tokenStream.LA(1);
+            if (_la === 9) {
+                {
+                this.state = 112;
+                this.salvage_value();
+                }
+            }
+
+            this.state = 115;
             this.match(MapIniParser.NEWLINE);
-            this.state = 117;
+            this.state = 122;
             this.errorHandler.sync(this);
             _la = this.tokenStream.LA(1);
             while ((((_la) & ~0x1F) === 0 && ((1 << _la) & 1808) !== 0)) {
                 {
-                this.state = 115;
+                this.state = 120;
                 this.errorHandler.sync(this);
-                switch (this.interpreter.adaptivePredict(this.tokenStream, 11, this.context) ) {
+                switch (this.interpreter.adaptivePredict(this.tokenStream, 12, this.context) ) {
                 case 1:
                     {
-                    this.state = 111;
+                    this.state = 116;
                     this.property();
                     }
                     break;
                 case 2:
                     {
-                    this.state = 112;
+                    this.state = 117;
                     this.propertyBlock();
                     }
                     break;
                 case 3:
                     {
-                    this.state = 113;
+                    this.state = 118;
                     this.conditionBlock();
                     }
                     break;
                 case 4:
                     {
-                    this.state = 114;
+                    this.state = 119;
                     this.match(MapIniParser.NEWLINE);
                     }
                     break;
                 }
                 }
-                this.state = 119;
+                this.state = 124;
                 this.errorHandler.sync(this);
                 _la = this.tokenStream.LA(1);
             }
-            this.state = 120;
+            this.state = 125;
             this.end();
             }
         }
@@ -554,7 +566,7 @@ export class MapIniParser extends antlr.Parser {
         try {
             this.enterOuterAlt(localContext, 1);
             {
-            this.state = 122;
+            this.state = 127;
             this.match(MapIniParser.ID);
             }
         }
@@ -577,7 +589,7 @@ export class MapIniParser extends antlr.Parser {
         try {
             this.enterOuterAlt(localContext, 1);
             {
-            this.state = 124;
+            this.state = 129;
             this.match(MapIniParser.ID);
             }
         }
@@ -600,7 +612,30 @@ export class MapIniParser extends antlr.Parser {
         try {
             this.enterOuterAlt(localContext, 1);
             {
-            this.state = 126;
+            this.state = 131;
+            this.match(MapIniParser.ID);
+            }
+        }
+        catch (re) {
+            if (re instanceof antlr.RecognitionException) {
+                this.errorHandler.reportError(this, re);
+                this.errorHandler.recover(this, re);
+            } else {
+                throw re;
+            }
+        }
+        finally {
+            this.exitRule();
+        }
+        return localContext;
+    }
+    public salvage_value(): Salvage_valueContext {
+        let localContext = new Salvage_valueContext(this.context, this.state);
+        this.enterRule(localContext, 26, MapIniParser.RULE_salvage_value);
+        try {
+            this.enterOuterAlt(localContext, 1);
+            {
+            this.state = 133;
             this.match(MapIniParser.ID);
             }
         }
@@ -619,45 +654,58 @@ export class MapIniParser extends antlr.Parser {
     }
     public propertyBlock(): PropertyBlockContext {
         let localContext = new PropertyBlockContext(this.context, this.state);
-        this.enterRule(localContext, 26, MapIniParser.RULE_propertyBlock);
+        this.enterRule(localContext, 28, MapIniParser.RULE_propertyBlock);
         let _la: number;
         try {
             this.enterOuterAlt(localContext, 1);
             {
-            this.state = 128;
+            this.state = 135;
             this.match(MapIniParser.ID);
-            this.state = 129;
+            this.state = 137;
+            this.errorHandler.sync(this);
+            _la = this.tokenStream.LA(1);
+            if (_la === 9) {
+                {
+                this.state = 136;
+                this.match(MapIniParser.ID);
+                }
+            }
+
+            this.state = 139;
             this.match(MapIniParser.NEWLINE);
-            this.state = 134;
+            this.state = 145;
             this.errorHandler.sync(this);
             _la = this.tokenStream.LA(1);
             while ((((_la) & ~0x1F) === 0 && ((1 << _la) & 1792) !== 0)) {
                 {
-                this.state = 132;
+                this.state = 143;
                 this.errorHandler.sync(this);
-                switch (this.tokenStream.LA(1)) {
-                case MapIniParser.STRING:
-                case MapIniParser.ID:
+                switch (this.interpreter.adaptivePredict(this.tokenStream, 15, this.context) ) {
+                case 1:
                     {
-                    this.state = 130;
+                    this.state = 140;
                     this.property();
                     }
                     break;
-                case MapIniParser.NEWLINE:
+                case 2:
                     {
-                    this.state = 131;
+                    this.state = 141;
+                    this.propertyBlock();
+                    }
+                    break;
+                case 3:
+                    {
+                    this.state = 142;
                     this.match(MapIniParser.NEWLINE);
                     }
                     break;
-                default:
-                    throw new antlr.NoViableAltException(this);
                 }
                 }
-                this.state = 136;
+                this.state = 147;
                 this.errorHandler.sync(this);
                 _la = this.tokenStream.LA(1);
             }
-            this.state = 137;
+            this.state = 148;
             this.end();
             }
         }
@@ -676,37 +724,37 @@ export class MapIniParser extends antlr.Parser {
     }
     public conditionBlock(): ConditionBlockContext {
         let localContext = new ConditionBlockContext(this.context, this.state);
-        this.enterRule(localContext, 28, MapIniParser.RULE_conditionBlock);
+        this.enterRule(localContext, 30, MapIniParser.RULE_conditionBlock);
         let _la: number;
         try {
             this.enterOuterAlt(localContext, 1);
             {
-            this.state = 139;
+            this.state = 150;
             this.match(MapIniParser.CONDITIONSTATE);
-            this.state = 140;
+            this.state = 151;
             this.match(MapIniParser.EQ);
-            this.state = 141;
+            this.state = 152;
             this.property_values();
-            this.state = 142;
+            this.state = 153;
             this.match(MapIniParser.NEWLINE);
-            this.state = 147;
+            this.state = 158;
             this.errorHandler.sync(this);
             _la = this.tokenStream.LA(1);
             while ((((_la) & ~0x1F) === 0 && ((1 << _la) & 1792) !== 0)) {
                 {
-                this.state = 145;
+                this.state = 156;
                 this.errorHandler.sync(this);
                 switch (this.tokenStream.LA(1)) {
                 case MapIniParser.STRING:
                 case MapIniParser.ID:
                     {
-                    this.state = 143;
+                    this.state = 154;
                     this.property();
                     }
                     break;
                 case MapIniParser.NEWLINE:
                     {
-                    this.state = 144;
+                    this.state = 155;
                     this.match(MapIniParser.NEWLINE);
                     }
                     break;
@@ -714,11 +762,11 @@ export class MapIniParser extends antlr.Parser {
                     throw new antlr.NoViableAltException(this);
                 }
                 }
-                this.state = 149;
+                this.state = 160;
                 this.errorHandler.sync(this);
                 _la = this.tokenStream.LA(1);
             }
-            this.state = 150;
+            this.state = 161;
             this.end();
             }
         }
@@ -737,17 +785,17 @@ export class MapIniParser extends antlr.Parser {
     }
     public property(): PropertyContext {
         let localContext = new PropertyContext(this.context, this.state);
-        this.enterRule(localContext, 30, MapIniParser.RULE_property);
+        this.enterRule(localContext, 32, MapIniParser.RULE_property);
         try {
             this.enterOuterAlt(localContext, 1);
             {
-            this.state = 152;
+            this.state = 163;
             this.value();
-            this.state = 153;
+            this.state = 164;
             this.match(MapIniParser.EQ);
-            this.state = 154;
+            this.state = 165;
             this.property_values();
-            this.state = 155;
+            this.state = 166;
             this.match(MapIniParser.NEWLINE);
             }
         }
@@ -766,22 +814,22 @@ export class MapIniParser extends antlr.Parser {
     }
     public property_values(): Property_valuesContext {
         let localContext = new Property_valuesContext(this.context, this.state);
-        this.enterRule(localContext, 32, MapIniParser.RULE_property_values);
+        this.enterRule(localContext, 34, MapIniParser.RULE_property_values);
         let _la: number;
         try {
             this.enterOuterAlt(localContext, 1);
             {
-            this.state = 158;
+            this.state = 169;
             this.errorHandler.sync(this);
             _la = this.tokenStream.LA(1);
             do {
                 {
                 {
-                this.state = 157;
+                this.state = 168;
                 this.value();
                 }
                 }
-                this.state = 160;
+                this.state = 171;
                 this.errorHandler.sync(this);
                 _la = this.tokenStream.LA(1);
             } while (_la === 8 || _la === 9);
@@ -802,12 +850,12 @@ export class MapIniParser extends antlr.Parser {
     }
     public value(): ValueContext {
         let localContext = new ValueContext(this.context, this.state);
-        this.enterRule(localContext, 34, MapIniParser.RULE_value);
+        this.enterRule(localContext, 36, MapIniParser.RULE_value);
         let _la: number;
         try {
             this.enterOuterAlt(localContext, 1);
             {
-            this.state = 162;
+            this.state = 173;
             _la = this.tokenStream.LA(1);
             if(!(_la === 8 || _la === 9)) {
             this.errorHandler.recoverInline(this);
@@ -833,12 +881,12 @@ export class MapIniParser extends antlr.Parser {
     }
     public end(): EndContext {
         let localContext = new EndContext(this.context, this.state);
-        this.enterRule(localContext, 36, MapIniParser.RULE_end);
+        this.enterRule(localContext, 38, MapIniParser.RULE_end);
         let _la: number;
         try {
             this.enterOuterAlt(localContext, 1);
             {
-            this.state = 164;
+            this.state = 175;
             _la = this.tokenStream.LA(1);
             if(!((((_la) & ~0x1F) === 0 && ((1 << _la) & 14) !== 0))) {
             this.errorHandler.recoverInline(this);
@@ -864,62 +912,66 @@ export class MapIniParser extends antlr.Parser {
     }
 
     public static readonly _serializedATN: number[] = [
-        4,1,12,167,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
+        4,1,12,178,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
         6,2,7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,
-        2,14,7,14,2,15,7,15,2,16,7,16,2,17,7,17,2,18,7,18,1,0,1,0,5,0,41,
-        8,0,10,0,12,0,44,9,0,1,0,1,0,1,1,1,1,3,1,50,8,1,1,2,1,2,1,2,1,2,
-        1,2,5,2,57,8,2,10,2,12,2,60,9,2,1,2,1,2,1,3,1,3,5,3,66,8,3,10,3,
-        12,3,69,9,3,1,3,1,3,1,3,1,3,1,3,1,3,5,3,77,8,3,10,3,12,3,80,9,3,
-        1,3,1,3,1,4,1,4,1,5,1,5,1,6,1,6,3,6,90,8,6,1,7,1,7,1,7,1,7,1,7,5,
-        7,97,8,7,10,7,12,7,100,9,7,1,7,1,7,1,8,1,8,1,8,1,9,1,9,1,9,1,9,1,
-        9,1,9,1,9,1,9,1,9,5,9,116,8,9,10,9,12,9,119,9,9,1,9,1,9,1,10,1,10,
-        1,11,1,11,1,12,1,12,1,13,1,13,1,13,1,13,5,13,133,8,13,10,13,12,13,
-        136,9,13,1,13,1,13,1,14,1,14,1,14,1,14,1,14,1,14,5,14,146,8,14,10,
-        14,12,14,149,9,14,1,14,1,14,1,15,1,15,1,15,1,15,1,15,1,16,4,16,159,
-        8,16,11,16,12,16,160,1,17,1,17,1,18,1,18,1,18,0,0,19,0,2,4,6,8,10,
-        12,14,16,18,20,22,24,26,28,30,32,34,36,0,2,1,0,8,9,1,0,1,3,171,0,
-        42,1,0,0,0,2,49,1,0,0,0,4,51,1,0,0,0,6,63,1,0,0,0,8,83,1,0,0,0,10,
-        85,1,0,0,0,12,89,1,0,0,0,14,91,1,0,0,0,16,103,1,0,0,0,18,106,1,0,
-        0,0,20,122,1,0,0,0,22,124,1,0,0,0,24,126,1,0,0,0,26,128,1,0,0,0,
-        28,139,1,0,0,0,30,152,1,0,0,0,32,158,1,0,0,0,34,162,1,0,0,0,36,164,
-        1,0,0,0,38,41,3,2,1,0,39,41,5,10,0,0,40,38,1,0,0,0,40,39,1,0,0,0,
-        41,44,1,0,0,0,42,40,1,0,0,0,42,43,1,0,0,0,43,45,1,0,0,0,44,42,1,
-        0,0,0,45,46,5,0,0,1,46,1,1,0,0,0,47,50,3,4,2,0,48,50,3,6,3,0,49,
-        47,1,0,0,0,49,48,1,0,0,0,50,3,1,0,0,0,51,52,3,8,4,0,52,53,3,10,5,
-        0,53,58,5,10,0,0,54,57,3,30,15,0,55,57,5,10,0,0,56,54,1,0,0,0,56,
-        55,1,0,0,0,57,60,1,0,0,0,58,56,1,0,0,0,58,59,1,0,0,0,59,61,1,0,0,
-        0,60,58,1,0,0,0,61,62,3,36,18,0,62,5,1,0,0,0,63,67,3,8,4,0,64,66,
-        3,10,5,0,65,64,1,0,0,0,66,69,1,0,0,0,67,65,1,0,0,0,67,68,1,0,0,0,
-        68,70,1,0,0,0,69,67,1,0,0,0,70,78,5,10,0,0,71,77,3,12,6,0,72,77,
-        3,18,9,0,73,77,3,26,13,0,74,77,3,30,15,0,75,77,5,10,0,0,76,71,1,
-        0,0,0,76,72,1,0,0,0,76,73,1,0,0,0,76,74,1,0,0,0,76,75,1,0,0,0,77,
-        80,1,0,0,0,78,76,1,0,0,0,78,79,1,0,0,0,79,81,1,0,0,0,80,78,1,0,0,
-        0,81,82,3,36,18,0,82,7,1,0,0,0,83,84,5,9,0,0,84,9,1,0,0,0,85,86,
-        5,9,0,0,86,11,1,0,0,0,87,90,3,14,7,0,88,90,3,16,8,0,89,87,1,0,0,
-        0,89,88,1,0,0,0,90,13,1,0,0,0,91,92,5,5,0,0,92,98,5,10,0,0,93,97,
-        3,18,9,0,94,97,3,30,15,0,95,97,5,10,0,0,96,93,1,0,0,0,96,94,1,0,
-        0,0,96,95,1,0,0,0,97,100,1,0,0,0,98,96,1,0,0,0,98,99,1,0,0,0,99,
-        101,1,0,0,0,100,98,1,0,0,0,101,102,3,36,18,0,102,15,1,0,0,0,103,
-        104,5,6,0,0,104,105,3,24,12,0,105,17,1,0,0,0,106,107,3,20,10,0,107,
-        108,5,7,0,0,108,109,3,22,11,0,109,110,3,24,12,0,110,117,5,10,0,0,
-        111,116,3,30,15,0,112,116,3,26,13,0,113,116,3,28,14,0,114,116,5,
-        10,0,0,115,111,1,0,0,0,115,112,1,0,0,0,115,113,1,0,0,0,115,114,1,
-        0,0,0,116,119,1,0,0,0,117,115,1,0,0,0,117,118,1,0,0,0,118,120,1,
-        0,0,0,119,117,1,0,0,0,120,121,3,36,18,0,121,19,1,0,0,0,122,123,5,
-        9,0,0,123,21,1,0,0,0,124,125,5,9,0,0,125,23,1,0,0,0,126,127,5,9,
-        0,0,127,25,1,0,0,0,128,129,5,9,0,0,129,134,5,10,0,0,130,133,3,30,
-        15,0,131,133,5,10,0,0,132,130,1,0,0,0,132,131,1,0,0,0,133,136,1,
-        0,0,0,134,132,1,0,0,0,134,135,1,0,0,0,135,137,1,0,0,0,136,134,1,
-        0,0,0,137,138,3,36,18,0,138,27,1,0,0,0,139,140,5,4,0,0,140,141,5,
-        7,0,0,141,142,3,32,16,0,142,147,5,10,0,0,143,146,3,30,15,0,144,146,
-        5,10,0,0,145,143,1,0,0,0,145,144,1,0,0,0,146,149,1,0,0,0,147,145,
-        1,0,0,0,147,148,1,0,0,0,148,150,1,0,0,0,149,147,1,0,0,0,150,151,
-        3,36,18,0,151,29,1,0,0,0,152,153,3,34,17,0,153,154,5,7,0,0,154,155,
-        3,32,16,0,155,156,5,10,0,0,156,31,1,0,0,0,157,159,3,34,17,0,158,
-        157,1,0,0,0,159,160,1,0,0,0,160,158,1,0,0,0,160,161,1,0,0,0,161,
-        33,1,0,0,0,162,163,7,0,0,0,163,35,1,0,0,0,164,165,7,1,0,0,165,37,
-        1,0,0,0,18,40,42,49,56,58,67,76,78,89,96,98,115,117,132,134,145,
-        147,160
+        2,14,7,14,2,15,7,15,2,16,7,16,2,17,7,17,2,18,7,18,2,19,7,19,1,0,
+        1,0,5,0,43,8,0,10,0,12,0,46,9,0,1,0,1,0,1,1,1,1,3,1,52,8,1,1,2,1,
+        2,1,2,1,2,1,2,5,2,59,8,2,10,2,12,2,62,9,2,1,2,1,2,1,3,1,3,5,3,68,
+        8,3,10,3,12,3,71,9,3,1,3,1,3,1,3,1,3,1,3,1,3,5,3,79,8,3,10,3,12,
+        3,82,9,3,1,3,1,3,1,4,1,4,1,5,1,5,1,6,1,6,3,6,92,8,6,1,7,1,7,1,7,
+        1,7,1,7,5,7,99,8,7,10,7,12,7,102,9,7,1,7,1,7,1,8,1,8,1,8,1,9,1,9,
+        1,9,1,9,1,9,3,9,114,8,9,1,9,1,9,1,9,1,9,1,9,5,9,121,8,9,10,9,12,
+        9,124,9,9,1,9,1,9,1,10,1,10,1,11,1,11,1,12,1,12,1,13,1,13,1,14,1,
+        14,3,14,138,8,14,1,14,1,14,1,14,1,14,5,14,144,8,14,10,14,12,14,147,
+        9,14,1,14,1,14,1,15,1,15,1,15,1,15,1,15,1,15,5,15,157,8,15,10,15,
+        12,15,160,9,15,1,15,1,15,1,16,1,16,1,16,1,16,1,16,1,17,4,17,170,
+        8,17,11,17,12,17,171,1,18,1,18,1,19,1,19,1,19,0,0,20,0,2,4,6,8,10,
+        12,14,16,18,20,22,24,26,28,30,32,34,36,38,0,2,1,0,8,9,1,0,1,3,184,
+        0,44,1,0,0,0,2,51,1,0,0,0,4,53,1,0,0,0,6,65,1,0,0,0,8,85,1,0,0,0,
+        10,87,1,0,0,0,12,91,1,0,0,0,14,93,1,0,0,0,16,105,1,0,0,0,18,108,
+        1,0,0,0,20,127,1,0,0,0,22,129,1,0,0,0,24,131,1,0,0,0,26,133,1,0,
+        0,0,28,135,1,0,0,0,30,150,1,0,0,0,32,163,1,0,0,0,34,169,1,0,0,0,
+        36,173,1,0,0,0,38,175,1,0,0,0,40,43,3,2,1,0,41,43,5,10,0,0,42,40,
+        1,0,0,0,42,41,1,0,0,0,43,46,1,0,0,0,44,42,1,0,0,0,44,45,1,0,0,0,
+        45,47,1,0,0,0,46,44,1,0,0,0,47,48,5,0,0,1,48,1,1,0,0,0,49,52,3,4,
+        2,0,50,52,3,6,3,0,51,49,1,0,0,0,51,50,1,0,0,0,52,3,1,0,0,0,53,54,
+        3,8,4,0,54,55,3,10,5,0,55,60,5,10,0,0,56,59,3,32,16,0,57,59,5,10,
+        0,0,58,56,1,0,0,0,58,57,1,0,0,0,59,62,1,0,0,0,60,58,1,0,0,0,60,61,
+        1,0,0,0,61,63,1,0,0,0,62,60,1,0,0,0,63,64,3,38,19,0,64,5,1,0,0,0,
+        65,69,3,8,4,0,66,68,3,10,5,0,67,66,1,0,0,0,68,71,1,0,0,0,69,67,1,
+        0,0,0,69,70,1,0,0,0,70,72,1,0,0,0,71,69,1,0,0,0,72,80,5,10,0,0,73,
+        79,3,12,6,0,74,79,3,18,9,0,75,79,3,28,14,0,76,79,3,32,16,0,77,79,
+        5,10,0,0,78,73,1,0,0,0,78,74,1,0,0,0,78,75,1,0,0,0,78,76,1,0,0,0,
+        78,77,1,0,0,0,79,82,1,0,0,0,80,78,1,0,0,0,80,81,1,0,0,0,81,83,1,
+        0,0,0,82,80,1,0,0,0,83,84,3,38,19,0,84,7,1,0,0,0,85,86,5,9,0,0,86,
+        9,1,0,0,0,87,88,5,9,0,0,88,11,1,0,0,0,89,92,3,14,7,0,90,92,3,16,
+        8,0,91,89,1,0,0,0,91,90,1,0,0,0,92,13,1,0,0,0,93,94,5,5,0,0,94,100,
+        5,10,0,0,95,99,3,18,9,0,96,99,3,32,16,0,97,99,5,10,0,0,98,95,1,0,
+        0,0,98,96,1,0,0,0,98,97,1,0,0,0,99,102,1,0,0,0,100,98,1,0,0,0,100,
+        101,1,0,0,0,101,103,1,0,0,0,102,100,1,0,0,0,103,104,3,38,19,0,104,
+        15,1,0,0,0,105,106,5,6,0,0,106,107,3,24,12,0,107,17,1,0,0,0,108,
+        109,3,20,10,0,109,110,5,7,0,0,110,111,3,22,11,0,111,113,3,24,12,
+        0,112,114,3,26,13,0,113,112,1,0,0,0,113,114,1,0,0,0,114,115,1,0,
+        0,0,115,122,5,10,0,0,116,121,3,32,16,0,117,121,3,28,14,0,118,121,
+        3,30,15,0,119,121,5,10,0,0,120,116,1,0,0,0,120,117,1,0,0,0,120,118,
+        1,0,0,0,120,119,1,0,0,0,121,124,1,0,0,0,122,120,1,0,0,0,122,123,
+        1,0,0,0,123,125,1,0,0,0,124,122,1,0,0,0,125,126,3,38,19,0,126,19,
+        1,0,0,0,127,128,5,9,0,0,128,21,1,0,0,0,129,130,5,9,0,0,130,23,1,
+        0,0,0,131,132,5,9,0,0,132,25,1,0,0,0,133,134,5,9,0,0,134,27,1,0,
+        0,0,135,137,5,9,0,0,136,138,5,9,0,0,137,136,1,0,0,0,137,138,1,0,
+        0,0,138,139,1,0,0,0,139,145,5,10,0,0,140,144,3,32,16,0,141,144,3,
+        28,14,0,142,144,5,10,0,0,143,140,1,0,0,0,143,141,1,0,0,0,143,142,
+        1,0,0,0,144,147,1,0,0,0,145,143,1,0,0,0,145,146,1,0,0,0,146,148,
+        1,0,0,0,147,145,1,0,0,0,148,149,3,38,19,0,149,29,1,0,0,0,150,151,
+        5,4,0,0,151,152,5,7,0,0,152,153,3,34,17,0,153,158,5,10,0,0,154,157,
+        3,32,16,0,155,157,5,10,0,0,156,154,1,0,0,0,156,155,1,0,0,0,157,160,
+        1,0,0,0,158,156,1,0,0,0,158,159,1,0,0,0,159,161,1,0,0,0,160,158,
+        1,0,0,0,161,162,3,38,19,0,162,31,1,0,0,0,163,164,3,36,18,0,164,165,
+        5,7,0,0,165,166,3,34,17,0,166,167,5,10,0,0,167,33,1,0,0,0,168,170,
+        3,36,18,0,169,168,1,0,0,0,170,171,1,0,0,0,171,169,1,0,0,0,171,172,
+        1,0,0,0,172,35,1,0,0,0,173,174,7,0,0,0,174,37,1,0,0,0,175,176,7,
+        1,0,0,176,39,1,0,0,0,20,42,44,51,58,60,69,78,80,91,98,100,113,120,
+        122,137,143,145,156,158,171
     ];
 
     private static __ATN: antlr.ATN;
@@ -1377,6 +1429,9 @@ export class ObjectModulesContext extends antlr.ParserRuleContext {
     public end(): EndContext {
         return this.getRuleContext(0, EndContext)!;
     }
+    public salvage_value(): Salvage_valueContext | null {
+        return this.getRuleContext(0, Salvage_valueContext);
+    }
     public property(): PropertyContext[];
     public property(i: number): PropertyContext | null;
     public property(i?: number): PropertyContext[] | PropertyContext | null {
@@ -1517,12 +1572,48 @@ export class ModuleTag_valueContext extends antlr.ParserRuleContext {
 }
 
 
-export class PropertyBlockContext extends antlr.ParserRuleContext {
+export class Salvage_valueContext extends antlr.ParserRuleContext {
     public constructor(parent: antlr.ParserRuleContext | null, invokingState: number) {
         super(parent, invokingState);
     }
     public ID(): antlr.TerminalNode {
         return this.getToken(MapIniParser.ID, 0)!;
+    }
+    public override get ruleIndex(): number {
+        return MapIniParser.RULE_salvage_value;
+    }
+    public override enterRule(listener: MapIniListener): void {
+        if(listener.enterSalvage_value) {
+             listener.enterSalvage_value(this);
+        }
+    }
+    public override exitRule(listener: MapIniListener): void {
+        if(listener.exitSalvage_value) {
+             listener.exitSalvage_value(this);
+        }
+    }
+    public override accept<Result>(visitor: MapIniVisitor<Result>): Result | null {
+        if (visitor.visitSalvage_value) {
+            return visitor.visitSalvage_value(this);
+        } else {
+            return visitor.visitChildren(this);
+        }
+    }
+}
+
+
+export class PropertyBlockContext extends antlr.ParserRuleContext {
+    public constructor(parent: antlr.ParserRuleContext | null, invokingState: number) {
+        super(parent, invokingState);
+    }
+    public ID(): antlr.TerminalNode[];
+    public ID(i: number): antlr.TerminalNode | null;
+    public ID(i?: number): antlr.TerminalNode | null | antlr.TerminalNode[] {
+    	if (i === undefined) {
+    		return this.getTokens(MapIniParser.ID);
+    	} else {
+    		return this.getToken(MapIniParser.ID, i);
+    	}
     }
     public NEWLINE(): antlr.TerminalNode[];
     public NEWLINE(i: number): antlr.TerminalNode | null;
@@ -1544,6 +1635,15 @@ export class PropertyBlockContext extends antlr.ParserRuleContext {
         }
 
         return this.getRuleContext(i, PropertyContext);
+    }
+    public propertyBlock(): PropertyBlockContext[];
+    public propertyBlock(i: number): PropertyBlockContext | null;
+    public propertyBlock(i?: number): PropertyBlockContext[] | PropertyBlockContext | null {
+        if (i === undefined) {
+            return this.getRuleContexts(PropertyBlockContext);
+        }
+
+        return this.getRuleContext(i, PropertyBlockContext);
     }
     public override get ruleIndex(): number {
         return MapIniParser.RULE_propertyBlock;

@@ -16,6 +16,7 @@ import { ObjectModulesContext } from "./MapIniParser.js";
 import { Module_typeContext } from "./MapIniParser.js";
 import { Module_nameContext } from "./MapIniParser.js";
 import { ModuleTag_valueContext } from "./MapIniParser.js";
+import { Salvage_valueContext } from "./MapIniParser.js";
 import { PropertyBlockContext } from "./MapIniParser.js";
 import { ConditionBlockContext } from "./MapIniParser.js";
 import { PropertyContext } from "./MapIniParser.js";
@@ -159,6 +160,16 @@ export class MapIniListener implements ParseTreeListener {
      * @param ctx the parse tree
      */
     exitModuleTag_value?: (ctx: ModuleTag_valueContext) => void;
+    /**
+     * Enter a parse tree produced by `MapIniParser.salvage_value`.
+     * @param ctx the parse tree
+     */
+    enterSalvage_value?: (ctx: Salvage_valueContext) => void;
+    /**
+     * Exit a parse tree produced by `MapIniParser.salvage_value`.
+     * @param ctx the parse tree
+     */
+    exitSalvage_value?: (ctx: Salvage_valueContext) => void;
     /**
      * Enter a parse tree produced by `MapIniParser.propertyBlock`.
      * @param ctx the parse tree

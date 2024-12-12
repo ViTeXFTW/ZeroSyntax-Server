@@ -1,5 +1,7 @@
-import { PropertyDefinition } from '../../properties';
+import { DiagnosticSeverity } from 'vscode-languageserver';
+import { PropertyDefinition } from '../../handlers/interfaces/IPropertyDefinition';
 import { IniTypes_t } from '../IniType_t';
+import { WeaponSlot_t } from '../PropertyTypes';
 
 // =============
 // === LISTS ===
@@ -68,6 +70,7 @@ export enum CommandButtonOptions_t {
 }
 
 export enum CommandButtonBorderTypes_t {
+	NONE = 'NONE',
 	BUILD = 'BUILD',
 	UPGRADE = 'UPGRADE',
 	ACTION = 'ACTION',
@@ -95,73 +98,97 @@ export const CommandButtonProperties: PropertyDefinition[] = [
 		numberOfValues: [-1]
 	},
 	{
-		name: 'Special Power',
+		name: 'SpecialPower',
 		type: IniTypes_t.SPECIAL_POWER,
+		ignoreCase: true,
+		customWarningType: DiagnosticSeverity.Warning,
 		description: 'The special power of the command button'
 	},
 	{
 		name: 'Science',
 		type: IniTypes_t.SCIENCE,
+		ignoreCase: true,
 		description: 'The science of the command button',
 		numberOfValues: [-1]
 	},
 	{
-		name: 'Button Image',
+		name: 'ButtonImage',
 		type: IniTypes_t.MAPPED_IMAGE,
+		ignoreCase: true,
 		description: 'The image of the command button',
 	},
 	{
-		name: 'Button Border Type',
+		name: 'ButtonBorderType',
 		type: 'string',
 		description: 'The border type of the command button',
 		validValues: Object.values(CommandButtonBorderTypes_t),
 	},
 	{
-		name: 'Text Label',
+		name: 'TextLabel',
 		type: 'string',
 		description: 'The text label of the command button',
 	},
 	{
-		name: 'Description Label',
+		name: 'DescriptLabel',
 		type: 'string',
 		description: 'The description label of the command button',
 	},
 	{
-		name: 'Conflicting Label',
+		name: 'ConflictingLabel',
 		type: 'string',
 		description: 'The conflicting label of the command button',
 	},
 	{
-		name: 'Cursor Name',
+		name: 'CursorName',
 		type: 'string',
 		description: 'The cursor name of the command button', //TODO: Add valid values
 	},
 	{
-		name: 'Radius Cursor Type',
+		name: 'RadiusCursorType',
 		type: 'string',
 		description: 'The radius cursor type of the command button',
 	},
 	{
-		name: 'Invalid Cursor Name',
+		name: 'InvalidCursorName',
 		type: 'string',
 		description: 'The invalid cursor name of the command button',
 	},
 	{
-		name: 'Unit Specific Sound',
+		name: 'UnitSpecificSound',
 		type: IniTypes_t.AUDIO_EVENT,
+		ignoreCase: true,
 		description: 'The unit specific sound of the command button',
 	},
 	{
-		name: 'Max Shots To Fire',
+		name: 'MaxShotsToFire',
 		type: 'integer',
 		description: 'The max shots to fire of the command button',
 	},
 	{
-		name: 'Purchase Label',
+		name: 'PurchaseLabel',
 		type: 'string',
 		description: 'The purchase label of the command button',
 	},
-]
+	{
+		name: 'WeaponSlot',
+		type: 'string',
+		description: 'The weapon slot of the command button',
+		validValues: Object.values(WeaponSlot_t),
+		numberOfValues: [-1]
+	},
+	{
+		name: 'Upgrade',
+		type: IniTypes_t.UPGRADE,
+		ignoreCase: true,
+		description: 'The upgrade of the command button',
+	},
+	{
+		name: 'Object',
+		type: IniTypes_t.OBJECT,
+		ignoreCase: true,
+		description: 'The object of the command button',
+	}
+];
 
 CommandButtonProperties.forEach(property => {
 	CommandButtonPropertyMap.set(property.name, property);

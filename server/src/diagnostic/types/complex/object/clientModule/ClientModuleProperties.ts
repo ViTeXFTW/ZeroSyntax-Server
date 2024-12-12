@@ -1,7 +1,7 @@
 import { RBTree } from 'bintrees';
 import { ClientModule_t } from './ClientModule_t';
-import { PropertyDefinition } from '../../../properties';
-import { IniTypes_t } from '../../IniType_t';
+import { IniTypes_t } from '../../../IniType_t';
+import { PropertyDefinition } from '../../../../handlers/interfaces/IPropertyDefinition';
 
 
 export const ClientModuleTrees: {[key in ClientModule_t]: RBTree<string>} = {
@@ -9,7 +9,7 @@ export const ClientModuleTrees: {[key in ClientModule_t]: RBTree<string>} = {
 	[ClientModule_t.BEACON_CLIENT_UPDATE]: new RBTree<string>((a, b) => a.localeCompare(b)),
 	[ClientModule_t.LASER_UPDATE]: new RBTree<string>((a, b) => a.localeCompare(b)),
 	[ClientModule_t.SWAY_CLIENT_UPDATE]: new RBTree<string>((a, b) => a.localeCompare(b)),
-}
+};
 
 export const ClientModuleProperties: {[key in ClientModule_t]: {[key: string]: PropertyDefinition}} = {
 	[ClientModule_t.ANIMATED_PARTICLE_SYS_BONE_CLIENT_UPDATE]: {},
@@ -27,16 +27,16 @@ export const ClientModuleProperties: {[key in ClientModule_t]: {[key: string]: P
 		}
 	},
 	[ClientModule_t.SWAY_CLIENT_UPDATE]: {},
-}
+};
 
 Object.entries(ClientModuleProperties).forEach(([key, value]) => {
 	Object.keys(value).forEach(propKey => ClientModuleTrees[key as ClientModule_t].insert(propKey));
 });
 
 export function getClientModulePropertyTree(clientModule: ClientModule_t): RBTree<string> {
-	return ClientModuleTrees[clientModule]
+	return ClientModuleTrees[clientModule];
 }
 
 export function getClientModulePropertyDefinition(clientModule: ClientModule_t, propertyName: string): PropertyDefinition | undefined {
-	return ClientModuleProperties[clientModule][propertyName]
+	return ClientModuleProperties[clientModule][propertyName];
 }

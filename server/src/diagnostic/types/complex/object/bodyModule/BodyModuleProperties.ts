@@ -1,6 +1,7 @@
 import { RBTree } from 'bintrees';
+import { PropertyDefinition } from '../../../../handlers/interfaces/IPropertyDefinition';
+import { DamageTypes_t } from '../../../simple/DamageFXProperties';
 import { BodyModule_t } from './BodyModule_t';
-import { PropertyDefinition } from '../../../properties';
 
 
 export const BodyModuleTrees: { [key in BodyModule_t]: RBTree<string> } = {
@@ -11,7 +12,7 @@ export const BodyModuleTrees: { [key in BodyModule_t]: RBTree<string> } = {
 	[BodyModule_t.INACTIVEBODY]: new RBTree<string>((a, b) => a.localeCompare(b)),
 	[BodyModule_t.STRUCTUREBODY]: new RBTree<string>((a, b) => a.localeCompare(b)),
 	[BodyModule_t.UNDEADBODY]: new RBTree<string>((a, b) => a.localeCompare(b)),
-}
+};
 
 const baseBodyProperties: {[key: string]: PropertyDefinition} = {
 	'MaxHealth': {
@@ -39,7 +40,7 @@ const baseBodyProperties: {[key: string]: PropertyDefinition} = {
 		type: 'float',
 		description: 'Amount of health healed per tick when taking subdual damage'
 	}
-}
+};
 
 export const BodyModulesDefinitions: { [key in BodyModule_t]: { [key: string]: PropertyDefinition } } = {
 	[BodyModule_t.ACTIVEBODY]: {
@@ -52,13 +53,19 @@ export const BodyModulesDefinitions: { [key in BodyModule_t]: { [key: string]: P
 		...baseBodyProperties,
 		'PropagateDamageTypesToSlavesWhenExisting': {
 			name: 'PropagateDamageTypesToSlavesWhenExisting',
-			type: 'boolean',
-			description: 'If true, the damage types will be propagated to the slaves when the slaves exist'
+			type: 'string',
+			description: 'If true, the damage types will be propagated to the slaves when the slaves exist',
+			validValues: Object.values(DamageTypes_t),
+			numberOfValues: [-1],
+			modifier: ['+', '-']
 		},
 		'SwallowDamageTypesIfSlavesNotExisting': {
 			name: 'SwallowDamageTypesIfSlavesNotExisting',
-			type: 'boolean',
-			description: 'If true, the damage types will be swallowed if the slaves do not exist'
+			type: 'string',
+			description: 'If true, the damage types will be swallowed if the slaves do not exist',
+			validValues: Object.values(DamageTypes_t),
+			numberOfValues: [-1],
+			modifier: ['+', '-']
 		}
 	},
 	[BodyModule_t.IMMORTALBODY]: {
@@ -76,7 +83,7 @@ export const BodyModulesDefinitions: { [key in BodyModule_t]: { [key: string]: P
 			description: 'Health of the object when it is in second life'
 		}
 	}
-}
+};
 
 Object.entries(BodyModulesDefinitions).forEach(([key, value]) => {
 	Object.keys(value).forEach(propKey => BodyModuleTrees[key as BodyModule_t].insert(propKey));

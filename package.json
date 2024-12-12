@@ -69,12 +69,21 @@
 			{
 				"command": "ZeroSyntax.startLanguageServer",
 				"title": "ZeroSyntax: Turn On Language Server"
+			},
+			{
+				"command": "ZeroSyntax.createIniNames",
+				"title": "ZeroSyntax: Create INI list from files"
 			}
 		],
 		"configuration": {
 			"type": "object",
 			"title": "ZeroSyntax Settings",
 			"properties": {
+				"ZeroSyntax.IniPath": {
+					"type": "string",
+					"default": "",
+					"description": "Controls the path to the folder containing the INI files."
+				},
 				"ZeroSyntax.indentNumber": {
 					"type": "number",
 					"default": 2,
@@ -142,6 +151,7 @@
 	"devDependencies": {
 		"@types/mocha": "^9.1.0",
 		"@types/node": "^16.18.34",
+		"@types/vscode": "^1.95.0",
 		"@typescript-eslint/eslint-plugin": "^6.7.0",
 		"@typescript-eslint/parser": "^6.7.0",
 		"@vscode/test-cli": "^0.0.10",
@@ -151,11 +161,12 @@
 		"antlr4ts-cli": "^0.5.0-alpha.4",
 		"eslint": "^8.35.0",
 		"typescript": "^5.5.4",
-		"vscode": "^1.1.37",
+		"vscode-languageclient": "^9.0.1",
 		"vscode-test": "^1.6.1"
 	},
 	"dependencies": {
 		"antlr4-c3": "^3.4.1",
-		"antlr4ng": "^3.0.5"
+		"antlr4ng": "^3.0.5",
+		"glob": "^11.0.0"
 	}
 }

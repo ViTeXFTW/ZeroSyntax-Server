@@ -27,15 +27,15 @@ removeModule: REMOVEMODULE moduleTag_value;
 
 
 // Object Modules
-objectModules: module_type EQ module_name moduleTag_value NEWLINE (property | propertyBlock | conditionBlock | NEWLINE)* end;
+objectModules: module_type EQ module_name moduleTag_value salvage_value? NEWLINE (property | propertyBlock | conditionBlock | NEWLINE)* end;
 
 // Object Module values
 module_type: ID;
 module_name: ID;
 moduleTag_value: ID;
-
+salvage_value: ID;
 // Object Blocks
-propertyBlock: ID NEWLINE (property | NEWLINE)* end;
+propertyBlock: ID ID? NEWLINE (property | propertyBlock | NEWLINE)* end;
 conditionBlock: CONDITIONSTATE EQ property_values NEWLINE (property | NEWLINE)* end;
 
 // Property values
@@ -50,7 +50,7 @@ REMOVEMODULE: ('RemoveModule');
 EQ: '=' ;
 end: 'end' | 'End' | 'END';
 STRING: '"' ( ~[\\"\n\r] | '\\' [\\"] )* '"'  ;
-ID: [a-zA-Z_0-9+\-.][a-zA-Z_0-9%:.]*;
+ID: [a-zA-Z_0-9+\-.][a-zA-Z_0-9%:.\-\\]*;
 
 NEWLINE: ([\r]?[\n]);
 

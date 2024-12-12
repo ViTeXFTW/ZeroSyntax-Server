@@ -1,9 +1,10 @@
 import { RBTree } from 'bintrees';
-import * as list from '../../../utils/lists';
-import { PropertyDefinition } from '../../properties';
-import { IniTypes_t } from '../IniType_t';
-import { ConditionStateFlags_t, WeaponSlot_t } from '../PropertyTypes';
-import { AnimationMode_t } from '../simple/AnimationProperties';
+import * as list from '../../../../utils/lists';
+import { PropertyDefinition } from '../../../handlers/interfaces/IPropertyDefinition';
+import { IniTypes_t } from '../../IniType_t';
+import { ConditionStateFlags_t, WeaponSlot_t } from '../../PropertyTypes';
+import { AnimationMode_t } from '../../simple/AnimationProperties';
+import { DiagnosticSeverity } from 'vscode-languageserver';
 
 export const conditionStateTree = new RBTree<string>((a, b) => a.localeCompare(b));
 
@@ -25,8 +26,8 @@ const conditionStatePropertyDefinitions: { [key: string]: PropertyDefinition } =
 	},
 	'TurretPitch': {
 		name: 'TurretPitch',
-		type: 'float',
-		description: 'The pitch of the turret'
+		type: 'string',
+		description: 'The bone for which to pitch the turret'
 	},
 	'TurretArtPitch': {
 		name: 'TurretArtPitch',
@@ -90,18 +91,22 @@ const conditionStatePropertyDefinitions: { [key: string]: PropertyDefinition } =
 	},
 	'WeaponHideShowBone': {
 		name: 'WeaponHideShowBone',
-		type: 'string',
-		description: 'Bone to hide or show'
+		type: ['string', 'string'],
+		description: 'Bone to hide or show',
+		numberOfValues: [-1],
+		validValues: [Object.values(WeaponSlot_t), null]
 	},
 	'Animation': {
 		name: 'Animation',
-		type: 'string',
-		description: 'Animation to play'
+		type: ['string', 'float', 'float'],
+		description: 'Animation to play',
+		numberOfValues: [1, 2, 3]
 	},
 	'IdleAnimation': {
 		name: 'IdleAnimation',
-		type: 'string',
-		description: 'Idle animation to play'
+		type: ['string', 'float', 'float'],
+		description: 'Idle animation to play',
+		numberOfValues: [1, 2, 3]
 	},
 	'AnimationMode': {
 		name: 'AnimationMode',
@@ -116,8 +121,26 @@ const conditionStatePropertyDefinitions: { [key: string]: PropertyDefinition } =
 	},
 	'WaitForStateToFinishIfPossible': {
 		name: 'WaitForStateToFinishIfPossible',
-		type: 'boolean',
-		description: 'Whether to wait for the state to finish if possible'
+		type: 'string',
+		description: 'Whether to wait for the state to finish if possible',
+		ignoreCase: true,
+		customWarningType: DiagnosticSeverity.Warning,
+		customValueHandler(value, propertyDefinition, position) {
+			switch (value) {
+				case 'YES':
+					return true;
+				case 'NO':
+					return false;
+				case 'TRANSITIONFINISHBEFORESWITCH':
+					return true;
+				default:
+					if (list.transitionKeys.includes(value.toUpperCase())) {
+						return true;
+					}
+				return false;
+			}
+
+		},
 	},
 	'Flags': {
 		name: 'Flags',
@@ -131,11 +154,11 @@ const conditionStatePropertyDefinitions: { [key: string]: PropertyDefinition } =
 		type: ['string', 'string'],
 		description: 'Bone to attach the particle system to',
 		numberOfValues: [2],
-		validValues: [null, list.definedParticleSystems]
+		validValues: [null, [...list.particleSystem, ...list.customParticleSystem]]
 	},
 	'AnimationSpeedFactorRange': {
 		name: 'AnimationSpeedFactorRange',
-		type: 'integer',
+		type: 'float',
 		description: 'The animation speed factor range',
 		numberOfValues: [1, 2]
 	}

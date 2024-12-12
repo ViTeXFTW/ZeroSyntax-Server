@@ -7,13 +7,9 @@ import * as path from 'path';
 import * as vscode from 'vscode';
 
 import {
-	DidChangeTextDocumentParams,
 	LanguageClient,
 	LanguageClientOptions,
-	SemanticTokenModifiers,
-	SemanticTokenTypes,
 	ServerOptions,
-	TextDocumentContentChangeEvent,
 	TransportKind
 } from 'vscode-languageclient/node';
 
@@ -21,9 +17,9 @@ let client: LanguageClient;
 let languageServerRunning = false;
 
 const ZSconfig = vscode.workspace.getConfiguration('ZeroSyntax');
-const EditorConfig = vscode.workspace.getConfiguration('editor')
+const EditorConfig = vscode.workspace.getConfiguration('editor');
 
-let forceAddModule = ZSconfig.get<boolean>('forceAddModule', false)
+const forceAddModule = ZSconfig.get<boolean>('forceAddModule', false);
 
 export function activate(context: vscode.ExtensionContext) {
 
@@ -32,12 +28,13 @@ export function activate(context: vscode.ExtensionContext) {
 	// context.subscriptions.push(vscode.commands.registerCommand(command, formatDocument));
 
 	let languageServerRunning = ZSconfig.get<boolean>('serverStartupSetting', false); // Default to 2 if not set
-	let displayAlphaWarning = ZSconfig.get<boolean>('displayAlphaWarning', true);
-	let precompileTransitionKeys = ZSconfig.get<boolean>('precompileTransitionKeys', false);
+	const displayAlphaWarning = ZSconfig.get<boolean>('displayAlphaWarning', true);
+	const precompileTransitionKeys = ZSconfig.get<boolean>('precompileTransitionKeys', false);
+	const iniPath = ZSconfig.get<string>('IniPath', '');
 
 	context.subscriptions.push(vscode.commands.registerCommand('ZeroSyntax.stopLanguageServer', () => {
 		if (languageServerRunning) {
-			console.log(`Stopping LS...`)
+			console.log(`Stopping LS...`);
 			client.stop();
 			languageServerRunning = false;
 		}
@@ -45,10 +42,21 @@ export function activate(context: vscode.ExtensionContext) {
 
 	context.subscriptions.push(vscode.commands.registerCommand('ZeroSyntax.startLanguageServer', () => {
 		if (!languageServerRunning) {
-			console.log(`Starting LS...`)
+			console.log(`Starting LS...`);
 			client.start();
 			languageServerRunning = true;
 		}
+	}));
+
+	context.subscriptions.push(vscode.commands.registerCommand('ZeroSyntax.createIniNames', () => {
+
+		if (client) {
+			vscode.window.showInformationMessage('Creating INI names...');
+			client.sendRequest('custom/createIniNames', {document: vscode.window.activeTextEditor?.document});
+		} else {
+			vscode.window.showErrorMessage('Language server is not running!');
+		}
+
 	}));
 
 	// The server is implemented in node
@@ -75,6 +83,8 @@ export function activate(context: vscode.ExtensionContext) {
 			fileEvents: vscode.workspace.createFileSystemWatcher('**/.clientrc')
 		},
 		initializationOptions: {
+			extensionPath: context.extensionPath,
+			iniPath: iniPath,
 			precompileTransitionKeys: precompileTransitionKeys,
 			forceAddModule: forceAddModule
 		// 	SemanticTokenTypes,

@@ -1,12 +1,12 @@
 import { RBTree } from 'bintrees';
 import { BehaviorModule_t } from './BehaviorModule_t';
-import { PropertyDefinition } from '../../../properties';
-import { IniTypes_t } from '../../IniType_t';
-import { AutoAcquireEnemiesWhenIdle_t, ChangeType_t, ConditionStateFlags_t, CreateLocation_t, DeathType_t, kindOfs_t, Locomotor_types_t, Status_t, TimeStamp_t, VeterancyTypes_t, WeaponSetCondition_t, WeaponSlot_t } from '../../PropertyTypes';
-import { DamageTypes_t } from '../../simple/DamageFXProperties';
+import { IniTypes_t } from '../../../IniType_t';
+import { AutoAcquireEnemiesWhenIdle_t, ChangeType_t, ConditionStateFlags_t, CreateLocation_t, DeathType_t, kindOfs_t, Locomotor_types_t, Status_t, TimeStamp_t, VeterancyTypes_t, WeaponSetCondition_t, WeaponSlot_t } from '../../../PropertyTypes';
+import { DamageTypes_t } from '../../../simple/DamageFXProperties';
 import { BodyModule_t } from '../bodyModule/BodyModule_t';
-import { allowedConditionStates, conditionStates, WeaponBonuses } from '../../../../utils/lists';
-
+import { conditionStates, customConditionStates, WeaponBonuses } from '../../../../../utils/lists';
+import { ObjectConditionTypes_t } from '../ObjectTypes';
+import { PropertyDefinition } from '../../../../handlers/interfaces/IPropertyDefinition';
 
 export const BehaviorModuleTrees: {[key in BehaviorModule_t]: RBTree<string>} = {
 	[BehaviorModule_t.ANIMATION_STEERING_UPDATE]: new RBTree<string>((a, b) => a.localeCompare(b)),
@@ -209,7 +209,8 @@ const baseUpgradeProperties: {[key: string]: PropertyDefinition} = {
 	'ConflictsWith': {
 		name: 'ConflictsWith',
 		type: IniTypes_t.UPGRADE,
-		description: 'The upgrade that conflicts with this upgrade'
+		description: 'The upgrade that conflicts with this upgrade',
+		numberOfValues: [-1]
 	},
 	'RequiresAllTriggers': {
 		name: 'RequiresAllTriggers',
@@ -227,7 +228,8 @@ const baseAiUpdateProperties: {[key: string]: PropertyDefinition} = {
 	'AutoAcquireEnemiesWhenIdle': {
 		name: 'AutoAcquireEnemiesWhenIdle',
 		type: Object.values(AutoAcquireEnemiesWhenIdle_t),
-		description: 'Whether the AI should automatically acquire enemies when it is idle'
+		description: 'Whether the AI should automatically acquire enemies when it is idle',
+		numberOfValues: [-1]
 	},
 	'MoodAttackCheckRate': {
 		name: 'MoodAttackCheckRate',
@@ -251,7 +253,8 @@ export const baseTurretProperties: {[key: string]: PropertyDefinition} = {
 		name: 'ControlledWeaponSlots',
 		type: 'string',
 		description: 'The weapon slots that the turret controls',
-		validValues: Object.values(WeaponSlot_t)
+		validValues: Object.values(WeaponSlot_t),
+		numberOfValues: [-1]
 	},
 	'TurretTurnRate': {
 		name: 'TurretTurnRate',
@@ -292,13 +295,15 @@ export const baseTurretProperties: {[key: string]: PropertyDefinition} = {
 		name: 'TurretFireAngleSweep',
 		type: ['string', 'integer'],
 		description: 'The angle sweep of the turret when it is firing',
-		validValues: [Object.values(WeaponSlot_t), null]
+		validValues: [Object.values(WeaponSlot_t), null],
+		numberOfValues: [2]
 	},
 	'TurretSweepSpeedModifier': {
 		name: 'TurretSweepSpeedModifier',
 		type: ['string', 'float'],
 		description: 'The speed modifier of the turret when it is sweeping',
-		validValues: [Object.values(WeaponSlot_t), null]
+		validValues: [Object.values(WeaponSlot_t), null],
+		numberOfValues: [2]
 	},
 	'AllowsPitch': {
 		name: 'AllowsPitch',
@@ -339,6 +344,47 @@ export const baseTurretProperties: {[key: string]: PropertyDefinition} = {
 		name: 'FiresWhileTurning',
 		type: 'boolean',
 		description: 'Whether the turret fires while turning'
+	}
+};
+
+export const baseDecalProperties: {[key: string]: PropertyDefinition} = {
+	'Texture': {
+		name: 'Texture',
+		type: 'string',
+		description: 'The texture of the decal'
+	},
+	'Style': {
+		name: 'Style',
+		type: 'string',
+		description: 'The style of the decal'
+	},
+	'OpacityMin': {
+		name: 'OpacityMin',
+		type: 'percent',
+		description: 'The minimum opacity of the decal'
+	},
+	'OpacityMax': {
+		name: 'OpacityMax',
+		type: 'percent',
+		description: 'The maximum opacity of the decal'
+	},
+	'OpacityThrobTime': {
+		name: 'OpacityThrobTime',
+		type: 'integer',
+		description: 'The time it takes for the decal to throb'
+	},
+	'Color': {
+		name: 'Color',
+		type: ['integer', 'integer', 'integer', 'integer'],
+		description: 'The color of the decal',
+		numberOfValues: [4],
+		prefix: ['R:', 'G:', 'B:', 'A:'],
+		ignoreCase: true
+	},
+	'OnlyVisibleToOwningPlayer': {
+		name: 'OnlyVisibleToOwningPlayer',
+		type: 'boolean',
+		description: 'Whether the decal is only visible to the owning player'
 	}
 };
 
@@ -576,8 +622,11 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 	[BehaviorModule_t.BATTLE_BUS_SLOW_DEATH_BEHAVIOR]: {
 		'DeathTypes': {
 			name: 'DeathTypes',
-			type: Object.values(DeathType_t),
-			description: 'The types of death that trigger this behavior'
+			type: 'string',
+			description: 'The death types',
+			validValues: Object.values(DeathType_t),
+			modifier: ['-', '+'],
+			numberOfValues: [-1]
 		},
 		'SinkRate': {
 			name: 'SinkRate',
@@ -714,7 +763,7 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 	[BehaviorModule_t.BUNKER_BUSTER_BEHAVIOR]: {
 		'UpgradeRequired': {
 			name: 'UpgradeRequired',
-			type: [IniTypes_t.UPGRADE],
+			type: IniTypes_t.UPGRADE,
 			description: 'The upgrade required'
 		},
 		'DetonationFX': {
@@ -1385,6 +1434,7 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 			type: ['string', 'boolean', 'integer', 'integer', IniTypes_t.PARTICLE_SYSTEM],
 			description: 'The particle system to use for the really damaged bone FX',
 			numberOfValues: [5],
+			ignoreCase: true,
 			prefix: ['bone:', 'OnlyOnce:', null, null, 'PSys:']
 		},
 		'ReallyDamagedParticleSystem2': {
@@ -1666,8 +1716,9 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 		},
 		'UpgradeMoneyAmount': {
 			name: 'UpgradeMoneyAmount',
-			type: IniTypes_t.SCIENCE,
-			description: 'The amount of money to hack for each upgrade'
+			type: [IniTypes_t.SCIENCE, 'integer'],
+			description: 'The amount of money to hack for each upgrade',
+			numberOfValues: [2]
 		},
 		'StartsPaused': {
 			name: 'StartsPaused',
@@ -1718,12 +1769,12 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 		},
 		'VolleyArcAngle': {
 			name: 'VolleyArcAngle',
-			type: 'integer',
+			type: 'float',
 			description: 'The arc angle of the volley'
 		},
 		'VolleyVelocityFactor': {
 			name: 'VolleyVelocityFactor',
-			type: 'integer',
+			type: 'float',
 			description: 'The velocity factor of the volley'
 		},
 		'DelayBetweenVolleys': {
@@ -2065,8 +2116,9 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 		'DeathTypes': {
 			name: 'DeathTypes',
 			type: 'string',
-			description: 'The death types to create crates',
+			description: 'The death types',
 			validValues: Object.values(DeathType_t),
+			modifier: ['-', '+'],
 			numberOfValues: [-1]
 		},
 		'RequiredStatus': {
@@ -2093,8 +2145,9 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 		'DeathTypes': {
 			name: 'DeathTypes',
 			type: 'string',
-			description: 'The death types to create crates',
+			description: 'The death types',
 			validValues: Object.values(DeathType_t),
+			modifier: ['-', '+'],
 			numberOfValues: [-1]
 		},
 		'RequiredStatus': {
@@ -2126,8 +2179,9 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 		'DeathTypes': {
 			name: 'DeathTypes',
 			type: 'string',
-			description: 'The death types to create crates',
+			description: 'The death types',
 			validValues: Object.values(DeathType_t),
+			modifier: ['-', '+'],
 			numberOfValues: [-1]
 		},
 		'RequiredStatus': {
@@ -2201,13 +2255,43 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 			name: 'UnitCreatePoint',
 			type: ['float', 'float', 'float'],
 			description: 'The point to create the unit',
-			prefix: ['x:', 'y:', 'z:']
+			numberOfValues: [-1],
+			ignoreCase: true,
+			customValueHandler: (value: string, propertyDefinition: PropertyDefinition, position: number) => {
+				if (value.startsWith('X:') && position === 0) {
+					return true;
+				} else if (value.startsWith('Y:') && position >= 1) {
+					return true;
+				} else if (value.startsWith('Z:') && position >= 2) {
+					return true;
+				} else if (value.trim().length === 0) {
+					return true;
+				} else if (!isNaN(parseFloat(value))) {
+					return true;
+				}
+				return false;
+			}
 		},
 		'NaturalRallyPoint': {
 			name: 'NaturalRallyPoint',
 			type: ['float', 'float', 'float'],
 			description: 'The rally point to use',
-			prefix: ['x:', 'y:', 'z:']
+			numberOfValues: [-1],
+			ignoreCase: true,
+			customValueHandler: (value: string, propertyDefinition: PropertyDefinition, position: number) => {
+				if (value.startsWith('X:') && position === 0) {
+					return true;
+				} else if (value.startsWith('Y:') && position >= 1) {
+					return true;
+				} else if (value.startsWith('Z:') && position >= 2) {
+					return true;
+				} else if (value.trim().length === 0) {
+					return true;
+				} else if (!isNaN(parseFloat(value))) {
+					return true;
+				}
+				return false;
+			}
 		},
 		'UseSpawnRallyPoint': {
 			name: 'UseSpawnRallyPoint',
@@ -2261,7 +2345,22 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 			name: 'DropOffset',
 			type: ['float', 'float', 'float'],
 			description: 'The offset to drop the payload',
-			prefix: ['x:', 'y:', 'z:']
+			numberOfValues: [-1],
+			ignoreCase: true,
+			customValueHandler: (value: string, propertyDefinition: PropertyDefinition, position: number) => {
+				if (value.startsWith('X:') && position === 0) {
+					return true;
+				} else if (value.startsWith('Y:') && position >= 1) {
+					return true;
+				} else if (value.startsWith('Z:') && position >= 2) {
+					return true;
+				} else if (value.trim().length === 0) {
+					return true;
+				} else if (!isNaN(parseFloat(value))) {
+					return true;
+				}
+				return false;
+			}
 		},
 		'DropVariance': {
 			name: 'DropVariance',
@@ -2364,8 +2463,9 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 		'DeathTypes': {
 			name: 'DeathTypes',
 			type: 'string',
-			description: 'The death types to create crates',
+			description: 'The death types',
 			validValues: Object.values(DeathType_t),
+			modifier: ['-', '+'],
 			numberOfValues: [-1]
 		},
 		'RequiredStatus': {
@@ -2383,7 +2483,24 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 			numberOfValues: [-1]
 		}
 	},
-	[BehaviorModule_t.DOZER_AI_UPDATE]: {},
+	[BehaviorModule_t.DOZER_AI_UPDATE]: {
+		'RepairHealthPercentPerSecond': {
+			name: 'RepairHealthPercentPerSecond',
+			type: 'percent',
+			description: 'The repair health percent per second'
+		},
+		'BoredTime': {
+			name: 'BoredTime',
+			type: 'integer',
+			description: 'The bored time'
+		},
+		'BoredRange': {
+			name: 'BoredRange',
+			type: 'integer',
+			description: 'The bored range'
+		},
+		...baseAiUpdateProperties
+	},
 	[BehaviorModule_t.DUMB_PROJECTILE_BEHAVIOR]: {
 		'MaxLifespan': {
 			name: 'MaxLifespan',
@@ -2492,7 +2609,7 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 			requiredValues: [{
 				type: kindOfs_t.PROJECTILE
 			}]
-		}
+		},
 	},
 	[BehaviorModule_t.DYNAMIC_GEOMETRY_INFO_UPDATE]: {
 		'InitialDelay': {
@@ -2546,8 +2663,9 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 		'DeathTypes': {
 			name: 'DeathTypes',
 			type: 'string',
-			description: 'The death types to create crates',
+			description: 'The death types',
 			validValues: Object.values(DeathType_t),
+			modifier: ['-', '+'],
 			numberOfValues: [-1]
 		},
 		'ExemptStatus': {
@@ -2572,6 +2690,7 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 			type: 'string',
 			description: 'The veterancy levels to use',
 			validValues: Object.values(VeterancyTypes_t),
+			modifier: ['-', '+'],
 			numberOfValues: [-1]
 		}
 	},
@@ -2664,10 +2783,10 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 	[BehaviorModule_t.ENEMY_NEAR_UPDATE]: {},
 	[BehaviorModule_t.EXPERIENCE_SCALAR_UPGRADE]: {
 		...baseUpgradeProperties,
-		'AdXPScalar': {
-			name: 'AdXPScalar',
+		'AddXPScalar': {
+			name: 'AddXPScalar',
 			type: 'float',
-			description: 'The XP scalar, 0.5 means 50% increase, 1.0 means 100% increase in bonus. So, if you specify the number \'0.25\', it would mean a 25% increase in EXP bonus.'
+			description: 'The XP scalar, 0.5 means 50% increase, 1.0 means 100% increase in bonus. So, if you specify the number \'0.25\', it would mean a 25% increase in EXP bonus.',
 		}
 	},
 	[BehaviorModule_t.FIRE_SPREAD_UPDATE]: {
@@ -2980,7 +3099,9 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 			name: 'DeathTypes',
 			type: 'string',
 			description: 'The death types',
-			validValues: Object.values(DeathType_t)
+			validValues: Object.values(DeathType_t),
+			modifier: ['-', '+'],
+			numberOfValues: [-1]
 		},
 		'RequiredStatus': {
 			name: 'RequiredStatus',
@@ -3048,27 +3169,32 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 		'Runway1Spaces': {
 			name: 'Runway1Spaces',
 			type: 'string',
-			description: 'The spaces for runway 1'
+			description: 'The spaces for runway 1',
+			numberOfValues: [-1]
 		},
 		'Runway1Takeoff': {
 			name: 'Runway1Takeoff',
 			type: 'string',
-			description: 'The takeoff for runway 1'
+			description: 'The takeoff for runway 1',
+			numberOfValues: [-1]
 		},
 		'Runway1Landing': {
 			name: 'Runway1Landing',
 			type: 'string',
-			description: 'The landing for runway 1'
+			description: 'The landing for runway 1',
+			numberOfValues: [-1]
 		},
 		'Runway1Taxi': {
 			name: 'Runway1Taxi',
 			type: 'string',
-			description: 'The taxi for runway 1'
+			description: 'The taxi for runway 1',
+			numberOfValues: [-1]
 		},
 		'Runway1Creation': {
 			name: 'Runway1Creation',
 			type: 'string',
-			description: 'The creation for runway 1'
+			description: 'The creation for runway 1',
+			numberOfValues: [-1]
 		},
 		'Runway1CatapultSystem': {
 			name: 'Runway1CatapultSystem',
@@ -3078,27 +3204,32 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 		'Runway2Spaces': {
 			name: 'Runway2Spaces',
 			type: 'string',
-			description: 'The spaces for runway 2'
+			description: 'The spaces for runway 2',
+			numberOfValues: [-1]
 		},
 		'Runway2Takeoff': {
 			name: 'Runway2Takeoff',
 			type: 'string',
-			description: 'The takeoff for runway 2'
+			description: 'The takeoff for runway 2',
+			numberOfValues: [-1]
 		},
 		'Runway2Landing': {
 			name: 'Runway2Landing',
 			type: 'string',
-			description: 'The landing for runway 2'
+			description: 'The landing for runway 2',
+			numberOfValues: [-1]
 		},
 		'Runway2Taxi': {
 			name: 'Runway2Taxi',
 			type: 'string',
-			description: 'The taxi for runway 2'
+			description: 'The taxi for runway 2',
+			numberOfValues: [-1]
 		},
 		'Runway2Creation': {
 			name: 'Runway2Creation',
 			type: 'string',
-			description: 'The creation for runway 2'
+			description: 'The creation for runway 2',
+			numberOfValues: [-1]
 		},
 		'Runway2CatapultSystem': {
 			name: 'Runway2CatapultSystem',
@@ -3117,7 +3248,7 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 		},
 		'LandingDeckHeightOffset': {
 			name: 'LandingDeckHeightOffset',
-			type: 'integer',
+			type: 'float',
 			description: 'The landing deck height offset'
 		},
 		'ParkingCleanupPeriod': {
@@ -3215,7 +3346,9 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 			name: 'DeathTypes',
 			type: 'string',
 			description: 'The death types',
-			validValues: Object.values(DeathType_t)
+			validValues: Object.values(DeathType_t),
+			modifier: ['-', '+'],
+			numberOfValues: [-1]
 		},
 		'DeathFX': {
 			name: 'DeathFX',
@@ -3323,13 +3456,15 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 			name: 'AllowInsideKindOf',
 			type: 'string',
 			description: 'The allow inside kind of',
-			validValues: Object.values(kindOfs_t)
+			validValues: Object.values(kindOfs_t),
+			numberOfValues: [-1]
 		},
 		'ForbidInsideKindOf': {
 			name: 'ForbidInsideKindOf',
 			type: 'string',
 			description: 'The forbid inside kind of',
-			validValues: Object.values(kindOfs_t)
+			validValues: Object.values(kindOfs_t),
+			numberOfValues: [-1]
 		},
 		'AllowAlliesInside': {
 			name: 'AllowAlliesInside',
@@ -3387,6 +3522,7 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 		}
 	},
 	[BehaviorModule_t.GENERATE_MINEFIELD_BEHAVIOR]: {
+		...baseUpgradeProperties,
 		'MineName': {
 			name: 'MineName',
 			type: IniTypes_t.OBJECT,
@@ -3483,7 +3619,55 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 			description: 'The triggered by'
 		}
 	},
-	[BehaviorModule_t.INTERNET_HACK_CONTAIN]: {},
+	[BehaviorModule_t.INTERNET_HACK_CONTAIN]: {
+		'PassengersAllowedToFire': {
+			name: 'PassengersAllowedToFire',
+			type: 'boolean',
+			description: 'Whether passengers are allowed to fire'
+		},
+		'Slots': {
+			name: 'Slots',
+			type: 'integer',
+			description: 'The slot'
+		},
+		'ScatterNearbyOnExit': {
+			name: 'ScatterNearbyOnExit',
+			type: 'boolean',
+			description: 'Whether to scatter nearby on exit'
+		},
+		'HealthRegen%PerSec': {
+			name: 'HealthRegen%PerSec',
+			type: 'percent',
+			description: 'The health regen percent per sec'
+		},
+		'DamagePercentToUnits': {
+			name: 'DamagePercentToUnits',
+			type: 'percent',
+			description: 'The damage percent to units'
+		},
+		'AllowInsideKindOf': {
+			name: 'AllowInsideKindOf',
+			type: 'string',
+			description: 'The allow inside kind of',
+			validValues: Object.values(kindOfs_t),
+			numberOfValues: [-1]
+		},
+		'ExitDelay': {
+			name: 'ExitDelay',
+			type: 'integer',
+			description: 'The exit delay'
+		},
+		'NumberOfExitPaths': {
+			name: 'NumberOfExitPaths',
+			type: 'integer',
+			description: 'The number of exit paths'
+		},
+		'GoAggressiveOnExit': {
+			name: 'GoAggressiveOnExit',
+			type: 'boolean',
+			description: 'Whether to go aggressive on exit'
+		}
+	},
 	[BehaviorModule_t.HACK_INTERNET_AI_UPDATE]: {
 		'UnpackTime': {
 			name: 'UnpackTime',
@@ -3620,13 +3804,15 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 			name: 'AllowInsideKindOf',
 			type: 'string',
 			description: 'The allow inside kind of',
-			validValues: Object.values(kindOfs_t)
+			validValues: Object.values(kindOfs_t),
+			numberOfValues: [-1]
 		},
 		'ForbidInsideKindOf': {
 			name: 'ForbidInsideKindOf',
 			type: 'string',
 			description: 'The forbid inside kind of',
-			validValues: Object.values(kindOfs_t)
+			validValues: Object.values(kindOfs_t),
+			numberOfValues: [-1]
 		},
 		'AllowAlliesInside': {
 			name: 'AllowAlliesInside',
@@ -3729,7 +3915,7 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 		},
 		'FallHowFast': {
 			name: 'FallHowFast',
-			type: 'float',
+			type: 'percent',
 			description: 'The fall how fast'
 		},
 		'MinBladeFlyOffDelay': {
@@ -3906,13 +4092,15 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 			name: 'AllowInsideKindOf',
 			type: 'string',
 			description: 'The allow inside kind of',
-			validValues: Object.values(kindOfs_t)
+			validValues: Object.values(kindOfs_t),
+			numberOfValues: [-1]
 		},
 		'ForbidInsideKindOf': {
 			name: 'ForbidInsideKindOf',
 			type: 'string',
 			description: 'The forbid inside kind of',
-			validValues: Object.values(kindOfs_t)
+			validValues: Object.values(kindOfs_t),
+			numberOfValues: [-1]
 		},
 		'AllowAlliesInside': {
 			name: 'AllowAlliesInside',
@@ -4045,7 +4233,9 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 			name: 'DeathTypes',
 			type: 'string',
 			description: 'The death types',
-			validValues: Object.values(DeathType_t)
+			validValues: Object.values(DeathType_t),
+			modifier: ['-', '+'],
+			numberOfValues: [-1]
 		},
 		'FX': {
 			name: 'FX',
@@ -4113,7 +4303,7 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 		},
 		'SneakyOffsetWhenAttacking': {
 			name: 'SneakyOffsetWhenAttacking',
-			type: 'integer',
+			type: 'float',
 			description: 'The sneaky offset when attacking'
 		},
 		'AttackLocomotorType': {
@@ -4175,9 +4365,9 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 		},
 		'AutoAcquireEnemiesWhenIdle': {
 			name: 'AutoAcquireEnemiesWhenIdle',
-			type: 'string',
-			description: 'The auto acquire enemies when idle',
-			validValues: ['Yes', 'No', 'NOTWHILEATTACKING', 'ATTACK_BUILDINGS', 'STEALTHED']
+			type: Object.values(AutoAcquireEnemiesWhenIdle_t),
+			description: 'Whether the AI should automatically acquire enemies when it is idle',
+			numberOfValues: [-1]
 		},
 		'MoodAttackCheckRate': {
 			name: 'MoodAttackCheckRate',
@@ -4297,15 +4487,19 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 			name: 'DeathTypes',
 			type: 'string',
 			description: 'The death types',
-			validValues: Object.values(DeathType_t)
-		}
+			validValues: Object.values(DeathType_t),
+			modifier: ['-', '+'],
+			numberOfValues: [-1]
+		},
 	},
 	[BehaviorModule_t.KEEP_OBJECT_DIE]: {
 		'DeathTypes': {
 			name: 'DeathTypes',
 			type: 'string',
 			description: 'The death types',
-			validValues: Object.values(DeathType_t)
+			validValues: Object.values(DeathType_t),
+			modifier: ['-', '+'],
+			numberOfValues: [-1]
 		},
 		'RequiredStatus': {
 			name: 'RequiredStatus',
@@ -4732,8 +4926,7 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 		'ConditionFlag': {
 			name: 'ConditionFlag',
 			type: 'string',
-			description: 'The condition flag',
-			validValues: allowedConditionStates
+			description: 'ConditionState to add to the object when the upgrade is active'
 		}
 	},
 	[BehaviorModule_t.NEUTRON_MISSILE_SLOW_DEATH_BEHAVIOR]: {
@@ -4741,7 +4934,9 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 			name: 'DeathTypes',
 			type: 'string',
 			description: 'The death types',
-			validValues: Object.values(DeathType_t)
+			validValues: Object.values(DeathType_t),
+			modifier: ['-', '+'],
+			numberOfValues: [-1]
 		},
 		'DestructionDelay': {
 			name: 'DestructionDelay',
@@ -5308,8 +5503,9 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 		},
 		'UpgradeOCL': {
 			name: 'UpgradeOCL',
-			type: IniTypes_t.OBJECT_CREATION_LIST,
-			description: 'The upgrade OCL'
+			type: [IniTypes_t.SCIENCE, IniTypes_t.OBJECT_CREATION_LIST],
+			description: 'The upgrade OCL',
+			numberOfValues: [2]
 		},
 		'OCLAdjustPositionToPassable': {
 			name: 'OCLAdjustPositionToPassable',
@@ -5394,13 +5590,15 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 			name: 'AllowInsideKindOf',
 			type: 'string',
 			description: 'The allow inside kind of',
-			validValues: Object.values(kindOfs_t)
+			validValues: Object.values(kindOfs_t),
+			numberOfValues: [-1]
 		},
 		'ForbidInsideKindOf': {
 			name: 'ForbidInsideKindOf',
 			type: 'string',
 			description: 'The forbid inside kind of',
-			validValues: Object.values(kindOfs_t)
+			validValues: Object.values(kindOfs_t),
+			numberOfValues: [-1]
 		},
 		'PassengersAllowedToFire': {
 			name: 'PassengersAllowedToFire',
@@ -5465,7 +5663,8 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 			name: 'AllowInsideKindOf',
 			type: 'string',
 			description: 'The allow inside kind of',
-			validValues: Object.values(kindOfs_t)
+			validValues: Object.values(kindOfs_t),
+			numberOfValues: [-1]
 		},
 		'PassengersAllowedToFire': {
 			name: 'PassengersAllowedToFire',
@@ -5486,6 +5685,16 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 			name: 'InitialPayload',
 			type: IniTypes_t.OBJECT_CREATION_LIST,
 			description: 'The initial payload'
+		},
+		'PassengersInTurret': {
+			name: 'PassengersInTurret',
+			type: 'boolean',
+			description: 'The passengers in turret'
+		},
+		'ExperienceSinkForRider': {
+			name: 'ExperienceSinkForRider',
+			type: 'boolean',
+			description: 'The experience sink for rider'
 		}
 	},
 	[BehaviorModule_t.PARKING_PLACE_BEHAVIOR]: {
@@ -5558,7 +5767,8 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 			name: 'AllowInsideKindOf',
 			type: 'string',
 			description: 'The allow inside kind of',
-			validValues: Object.values(kindOfs_t)
+			validValues: Object.values(kindOfs_t),
+			numberOfValues: [-1]
 		},
 		'ForbidInsideKindOf': {
 			name: 'ForbidInsideKindOf',
@@ -5610,7 +5820,7 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 		},
 		'RevealRange': {
 			name: 'RevealRange',
-			type: 'integer',
+			type: 'float',
 			description: 'The reveal range'
 		},
 		'OuterEffectBoneName': {
@@ -5645,12 +5855,12 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 		},
 		'ConnectorMediumLaserName': {
 			name: 'ConnectorMediumLaserName',
-			type: IniTypes_t.PARTICLE_SYSTEM,
+			type: 'string',
 			description: 'The connector medium laser name'
 		},
 		'ConnectorIntenseLaserName': {
 			name: 'ConnectorIntenseLaserName',
-			type: IniTypes_t.PARTICLE_SYSTEM,
+			type: 'string',
 			description: 'The connector intense laser name'
 		},
 		'ConnectorMediumFlare': {
@@ -5685,7 +5895,7 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 		},
 		'ParticleBeamLaserName': {
 			name: 'ParticleBeamLaserName',
-			type: IniTypes_t.PARTICLE_SYSTEM,
+			type: 'string',
 			description: 'The particle beam laser name'
 		},
 		'SwathOfDeathDistance': {
@@ -5715,7 +5925,7 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 		},
 		'DelayBetweenLaunchFX': {
 			name: 'DelayBetweenLaunchFX',
-			type: IniTypes_t.FXLIST,
+			type: 'integer',
 			description: 'The delay between launch fx'
 		},
 		'GroundHitFX': {
@@ -5738,6 +5948,11 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 			type: 'string',
 			description: 'The damage type',
 			validValues: Object.values(DamageTypes_t)
+		},
+		'DamageRadiusScalar': {
+			name: 'DamageRadiusScalar',
+			type: 'float',
+			description: 'The damage radius scalar'
 		},
 		'DamageRadius': {
 			name: 'DamageRadius',
@@ -5798,7 +6013,7 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 		},
 		'Mass': {
 			name: 'Mass',
-			type: 'integer',
+			type: 'float',
 			description: 'The mass'
 		},
 		'ForwardFriction': {
@@ -5905,7 +6120,8 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 			name: 'PrimaryTargetTypes',
 			type: 'string',
 			description: 'The primary target types',
-			validValues: Object.values(kindOfs_t)
+			validValues: Object.values(kindOfs_t),
+			numberOfValues: [-1]
 		},
 		'SecondaryTargetTypes': {
 			name: 'SecondaryTargetTypes',
@@ -5920,7 +6136,7 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 		},
 		'ScanRange': {
 			name: 'ScanRange',
-			type: 'integer',
+			type: 'float',
 			description: 'The scan range'
 		},
 		'PredictTargetVelocityFactor': {
@@ -5972,7 +6188,8 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 		'DisabledTypesToProcess': {
 			name: 'DisabledTypesToProcess',
 			type: 'string',
-			description: 'The disabled types to process'
+			description: 'The disabled types to process',
+			numberOfValues: [-1]
 		},
 		'NumDoorAnimations': {
 			name: 'NumDoorAnimations',
@@ -6049,17 +6266,45 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 	[BehaviorModule_t.QUEUE_PRODUCTION_EXIT_UPDATE]: {
 		'UnitCreatePoint': {
 			name: 'UnitCreatePoint',
-			type: ['string', 'string', 'string'],
-			description: 'The unit create point',
-			prefix: ['X:', 'Y:', 'Z:'],
-			ignoreCase: true
+			type: ['float', 'float', 'float'],
+			description: 'The point to create the unit',
+			numberOfValues: [-1],
+			ignoreCase: true,
+			customValueHandler: (value: string, propertyDefinition: PropertyDefinition, position: number) => {
+				if (value.startsWith('X:') && position === 0) {
+					return true;
+				} else if (value.startsWith('Y:') && position >= 1) {
+					return true;
+				} else if (value.startsWith('Z:') && position >= 2) {
+					return true;
+				} else if (value.trim().length === 0) {
+					return true;
+				} else if (!isNaN(parseFloat(value))) {
+					return true;
+				}
+				return false;
+			}
 		},
 		'NaturalRallyPoint': {
 			name: 'NaturalRallyPoint',
-			type: ['string', 'string', 'string'],
-			description: 'The natural rally point',
-			prefix: ['X:', 'Y:', 'Z:'],
-			ignoreCase: true
+			type: ['float', 'float', 'float'],
+			description: 'The rally point to use',
+			numberOfValues: [-1],
+			ignoreCase: true,
+			customValueHandler: (value: string, propertyDefinition: PropertyDefinition, position: number) => {
+				if (value.startsWith('X:') && position === 0) {
+					return true;
+				} else if (value.startsWith('Y:') && position >= 1) {
+					return true;
+				} else if (value.startsWith('Z:') && position >= 2) {
+					return true;
+				} else if (value.trim().length === 0) {
+					return true;
+				} else if (!isNaN(parseFloat(value))) {
+					return true;
+				}
+				return false;
+			}
 		},
 		'ExitDelay': {
 			name: 'ExitDelay',
@@ -6072,6 +6317,7 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 			description: 'The initial burst'
 		}
 	},
+	// TODO: Add RADAR_EXTENDING to customConditionStates when this upgrade is active
 	[BehaviorModule_t.RADAR_UPGRADE]: {
 		...baseUpgradeProperties,
 		'DisableProof': {
@@ -6110,7 +6356,8 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 			name: 'AllowInsideKindOf',
 			type: 'string',
 			description: 'The allow inside kind of',
-			validValues: Object.values(kindOfs_t)
+			validValues: Object.values(kindOfs_t),
+			numberOfValues: [-1]
 		},
 		'ForbidInsideKindOf': {
 			name: 'ForbidInsideKindOf',
@@ -6293,7 +6540,9 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 			name: 'DeathTypes',
 			type: 'string',
 			description: 'The death types',
-			validValues: Object.values(DeathType_t)
+			validValues: Object.values(DeathType_t),
+			modifier: ['-', '+'],
+			numberOfValues: [-1]
 		},
 		'RequiredStatus': {
 			name: 'RequiredStatus',
@@ -6319,7 +6568,7 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 			type: 'boolean',
 			description: 'The allows passthrough'
 		},
-		'NumberOfApproachPositions': {
+		'NumberApproachPositions': {
 			name: 'NumberOfApproachPositions',
 			type: 'integer',
 			description: 'The number of approach positions'
@@ -6330,49 +6579,65 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 			name: 'Rider1',
 			type: [IniTypes_t.OBJECT, 'string', 'string', 'string', IniTypes_t.COMMAND_SET, IniTypes_t.LOCOMOTOR],
 			description: 'The rider 1',
-			validValues: [null, allowedConditionStates, Object.values(WeaponSetCondition_t), Object.values(Status_t), null, null]
+			get validValues() {
+				return [null, [...conditionStates, ...customConditionStates], Object.values(WeaponSetCondition_t), Object.values(Status_t), null, null];
+			}
 		},
 		'Rider2': {
 			name: 'Rider2',
 			type: [IniTypes_t.OBJECT, 'string', 'string', 'string', IniTypes_t.COMMAND_SET, IniTypes_t.LOCOMOTOR],
 			description: 'The rider 1',
-			validValues: [null, allowedConditionStates, Object.values(WeaponSetCondition_t), Object.values(Status_t), null, null]
+			get validValues() {
+				return [null, [...conditionStates, ...customConditionStates], Object.values(WeaponSetCondition_t), Object.values(Status_t), null, null];
+			}
 		},
 		'Rider3': {
 			name: 'Rider3',
 			type: [IniTypes_t.OBJECT, 'string', 'string', 'string', IniTypes_t.COMMAND_SET, IniTypes_t.LOCOMOTOR],
 			description: 'The rider 3',
-			validValues: [null, allowedConditionStates, Object.values(WeaponSetCondition_t), Object.values(Status_t), null, null]
+			get validValues() {
+				return [null, [...conditionStates, ...customConditionStates], Object.values(WeaponSetCondition_t), Object.values(Status_t), null, null];
+			}
 		},
 		'Rider4': {
 			name: 'Rider4',
 			type: [IniTypes_t.OBJECT, 'string', 'string', 'string', IniTypes_t.COMMAND_SET, IniTypes_t.LOCOMOTOR],
 			description: 'The rider 4',
-			validValues: [null, allowedConditionStates, Object.values(WeaponSetCondition_t), Object.values(Status_t), null, null]
+			get validValues() {
+				return [null, [...conditionStates, ...customConditionStates], Object.values(WeaponSetCondition_t), Object.values(Status_t), null, null];
+			}
 		},
 		'Rider5': {
 			name: 'Rider5',
 			type: [IniTypes_t.OBJECT, 'string', 'string', 'string', IniTypes_t.COMMAND_SET, IniTypes_t.LOCOMOTOR],
 			description: 'The rider 5',
-			validValues: [null, allowedConditionStates, Object.values(WeaponSetCondition_t), Object.values(Status_t), null, null]
+			get validValues() {
+				return [null, [...conditionStates, ...customConditionStates], Object.values(WeaponSetCondition_t), Object.values(Status_t), null, null];
+			}
 		},
 		'Rider6': {
 			name: 'Rider6',
 			type: [IniTypes_t.OBJECT, 'string', 'string', 'string', IniTypes_t.COMMAND_SET, IniTypes_t.LOCOMOTOR],
 			description: 'The rider 6',
-			validValues: [null, allowedConditionStates, Object.values(WeaponSetCondition_t), Object.values(Status_t), null, null]
+			get validValues() {
+				return [null, [...conditionStates, ...customConditionStates], Object.values(WeaponSetCondition_t), Object.values(Status_t), null, null];
+			}
 		},
 		'Rider7': {
 			name: 'Rider7',
 			type: [IniTypes_t.OBJECT, 'string', 'string', 'string', IniTypes_t.COMMAND_SET, IniTypes_t.LOCOMOTOR],
 			description: 'The rider 7',
-			validValues: [null, allowedConditionStates, Object.values(WeaponSetCondition_t), Object.values(Status_t), null, null]
+			get validValues() {
+				return [null, [...conditionStates, ...customConditionStates], Object.values(WeaponSetCondition_t), Object.values(Status_t), null, null];
+			}
 		},
 		'Rider8': {
 			name: 'Rider8',
 			type: [IniTypes_t.OBJECT, 'string', 'string', 'string', IniTypes_t.COMMAND_SET, IniTypes_t.LOCOMOTOR],
 			description: 'The rider 8',
-			validValues: [null, allowedConditionStates, Object.values(WeaponSetCondition_t), Object.values(Status_t), null, null]
+			get validValues() {
+				return [null, [...conditionStates, ...customConditionStates], Object.values(WeaponSetCondition_t), Object.values(Status_t), null, null];
+			}
 		},
 		'ScuttleDelay': {
 			name: 'ScuttleDelay',
@@ -6399,13 +6664,15 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 			name: 'AllowInsideKindOf',
 			type: 'string',
 			description: 'The allow inside kind of',
-			validValues: Object.values(kindOfs_t)
+			validValues: Object.values(kindOfs_t),
+			numberOfValues: [-1]
 		},
 		'ForbidInsideKindOf': {
 			name: 'ForbidInsideKindOf',
 			type: 'string',
 			description: 'The forbid inside kind of',
-			validValues: Object.values(kindOfs_t)
+			validValues: Object.values(kindOfs_t),
+			numberOfValues: [-1]
 		},
 		'ExitDelay': {
 			name: 'ExitDelay',
@@ -6682,7 +6949,7 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 		},
 		'RepairRatePerSecond': {
 			name: 'RepairRatePerSecond',
-			type: 'integer',
+			type: 'float',
 			description: 'The repair rate per second'
 		},
 		'RepairWhenBelowHealth%': {
@@ -6726,7 +6993,9 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 			name: 'DeathTypes',
 			type: 'string',
 			description: 'The death types',
-			validValues: Object.values(DeathType_t)
+			validValues: Object.values(DeathType_t),
+			modifier: ['-', '+'],
+			numberOfValues: [-1]
 		},
 		'SinkRate': {
 			name: 'SinkRate',
@@ -7224,6 +7493,16 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 			requiredValues: [{
 				type: BehaviorModule_t.UNPAUSE_SPECIAL_POWER_UPGRADE
 			}]
+		},
+		'BonusDurationPerCaptured': {
+			name: 'BonusDurationPerCaptured',
+			type: 'integer',
+			description: 'The bonus duration per captured'
+		},
+		'MaxDuration': {
+			name: 'MaxDuration',
+			type: 'integer',
+			description: 'The max duration'
 		}
 	},
 	[BehaviorModule_t.SQUISH_COLLIDE]: {},
@@ -7343,7 +7622,9 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 			name: 'StealthForbiddenConditions',
 			type: 'string',
 			description: 'The stealth forbidden conditions',
-			validValues: allowedConditionStates
+			validValues: Object.values(ObjectConditionTypes_t),
+			numberOfValues: [-1],
+			ignoreCase: true
 		},
 		'HintDetectableConditions': {
 			name: 'HintDetectableConditions',
@@ -7525,7 +7806,77 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 		}
 	},
 	[BehaviorModule_t.STRUCTURE_TOPPLE_UPDATE]: {
-		// TODO: add properties
+		'MinToppleDelay': {
+			name: 'MinToppleDelay',
+			type: 'integer',
+			description: 'The min topple delay'
+		},
+		'MaxToppleDelay': {
+			name: 'MaxToppleDelay',
+			type: 'integer',
+			description: 'The max topple delay'
+		},
+		'MinToppleBurstDelay': {
+			name: 'MinToppleBurstDelay',
+			type: 'integer',
+			description: 'The min topple burst delay'
+		},
+		'MaxToppleBurstDelay': {
+			name: 'MaxToppleBurstDelay',
+			type: 'integer',
+			description: 'The max topple burst delay'
+		},
+		'StructuralIntegrity': {
+			name: 'StructuralIntegrity',
+			type: 'float',
+			description: 'The structural integrity'
+		},
+		'StructuralDecay': {
+			name: 'StructuralDecay',
+			type: 'float',
+			description: 'The structural decay'
+		},
+		'TopplingFX': {
+			name: 'TopplingFX',
+			type: IniTypes_t.FXLIST,
+			description: 'The toppling fx'
+		},
+		'ToppleDelayFX': {
+			name: 'ToppleDelayFX',
+			type: IniTypes_t.FXLIST,
+			description: 'The topple delay fx'
+		},
+		'ToppleStartFX': {
+			name: 'ToppleStartFX',
+			type: IniTypes_t.FXLIST,
+			description: 'The topple start fx'
+		},
+		'ToppleDoneFX': {
+			name: 'ToppleDoneFX',
+			type: IniTypes_t.FXLIST,
+			description: 'The topple done fx'
+		},
+		'CrushingFX': {
+			name: 'CrushingFX',
+			type: IniTypes_t.FXLIST,
+			description: 'The crushing fx'
+		},
+		'CrushingWeaponName': {
+			name: 'CrushingWeaponName',
+			type: IniTypes_t.WEAPON,
+			description: 'The crushing weapon name'
+		},
+		'DamageFXTypes': {
+			name: 'DamageFXTypes',
+			type: 'string',
+			description: 'The damage fx types',
+			validValues: Object.values(DamageTypes_t)
+		},
+		'AngleFX': {
+			name: 'AngleFX',
+			type: ['float',IniTypes_t.FXLIST],
+			description: 'The angle fx'
+		}
 	},
 	[BehaviorModule_t.SUB_OBJECTS_UPGRADE]: {
 		...baseUpgradeProperties,
@@ -7561,15 +7912,45 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 	[BehaviorModule_t.SUPPLY_CENTER_PRODUCTION_EXIT_UPDATE]: {
 		'UnitCreatePoint': {
 			name: 'UnitCreatePoint',
-			type: ['string', 'string', 'string'],
-			description: 'The unit create point',
-			prefix: ['X:', 'Y:', 'Z:']
+			type: ['float', 'float', 'float'],
+			description: 'The point to create the unit',
+			numberOfValues: [-1],
+			ignoreCase: true,
+			customValueHandler: (value: string, propertyDefinition: PropertyDefinition, position: number) => {
+				if (value.startsWith('X:') && position === 0) {
+					return true;
+				} else if (value.startsWith('Y:') && position >= 1) {
+					return true;
+				} else if (value.startsWith('Z:') && position >= 2) {
+					return true;
+				} else if (value.trim().length === 0) {
+					return true;
+				} else if (!isNaN(parseFloat(value))) {
+					return true;
+				}
+				return false;
+			}
 		},
 		'NaturalRallyPoint': {
 			name: 'NaturalRallyPoint',
-			type: ['string', 'string', 'string'],
-			description: 'The natural rally point',
-			prefix: ['X:', 'Y:', 'Z:']
+			type: ['float', 'float', 'float'],
+			description: 'The rally point to use',
+			numberOfValues: [-1],
+			ignoreCase: true,
+			customValueHandler: (value: string, propertyDefinition: PropertyDefinition, position: number) => {
+				if (value.startsWith('X:') && position === 0) {
+					return true;
+				} else if (value.startsWith('Y:') && position >= 1) {
+					return true;
+				} else if (value.startsWith('Z:') && position >= 2) {
+					return true;
+				} else if (value.trim().length === 0) {
+					return true;
+				} else if (!isNaN(parseFloat(value))) {
+					return true;
+				}
+				return false;
+			}
 		},
 		'GrantTemporaryStealth': {
 			name: 'GrantTemporaryStealth',
@@ -7577,7 +7958,37 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 			description: 'The grant temporary stealth'
 		}
 	},
-	[BehaviorModule_t.SUPPLY_TRUCK_AI_UPDATE]: {},
+	[BehaviorModule_t.SUPPLY_TRUCK_AI_UPDATE]: {
+		'MaxBoxes': {
+			name: 'MaxBoxes',
+			type: 'integer',
+			description: 'The max boxes',
+			requiredValues: [{
+				type: kindOfs_t.HARVESTER
+			}]
+		},
+		'SupplyCenterActionDelay': {
+			name: 'SupplyCenterActionDelay',
+			type: 'integer',
+			description: 'The supply center action delay'
+		},
+		'SupplyWarehouseActionDelay': {
+			name: 'SupplyWarehouseActionDelay',
+			type: 'integer',
+			description: 'The supply warehouse action delay'
+		},
+		'SupplyWarehouseScanDistance': {
+			name: 'SupplyWarehouseScanDistance',
+			type: 'integer',
+			description: 'The supply warehouse scan distance'
+		},
+		'SuppliesDepletedVoice': {
+			name: 'SuppliesDepletedVoice',
+			type: IniTypes_t.AUDIO_EVENT,
+			description: 'The supplies depleted voice'
+		},
+		...baseAiUpdateProperties
+	},
 	[BehaviorModule_t.SUPPLY_WAREHOUSE_CREATE]: {},
 	[BehaviorModule_t.SUPPLY_WAREHOUSE_CRIPPLE_BEHAVIOR]: {
 		'SelfHealingSupression': {
@@ -7644,9 +8055,874 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 	},
 	[BehaviorModule_t.TOPPLE_UPDATE]: {},
 	[BehaviorModule_t.TRANSITION_DAMAGE_FX]: {
-		// TODO: add properties
+		'DamagedFXList1': {
+			name: 'DamagedFXList1',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.FXLIST],
+			description: 'The damaged fx list 1',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'FXList:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'DamagedFXList2': {
+			name: 'DamagedFXList2',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.FXLIST],
+			description: 'The damaged fx list 2',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'FXList:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'DamagedFXList3': {
+			name: 'DamagedFXList3',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.FXLIST],
+			description: 'The damaged fx list 3',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'FXList:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'DamagedFXList4': {
+			name: 'DamagedFXList4',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.FXLIST],
+			description: 'The damaged fx list 4',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'FXList:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'DamagedFXList5': {
+			name: 'DamagedFXList5',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.FXLIST],
+			description: 'The damaged fx list 5',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'FXList:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'DamagedFXList6': {
+			name: 'DamagedFXList6',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.FXLIST],
+			description: 'The damaged fx list 6',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'FXList:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'DamagedFXList7': {
+			name: 'DamagedFXList7',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.FXLIST],
+			description: 'The damaged fx list 7',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'FXList:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'DamagedFXList8': {
+			name: 'DamagedFXList8',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.FXLIST],
+			description: 'The damaged fx list 8',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'FXList:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'DamagedFXList9': {
+			name: 'DamagedFXList9',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.FXLIST],
+			description: 'The damaged fx list 9',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'FXList:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'DamagedFXList10': {
+			name: 'DamagedFXList10',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.FXLIST],
+			description: 'The damaged fx list 10',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'FXList:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'DamagedFXList11': {
+			name: 'DamagedFXList11',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.FXLIST],
+			description: 'The damaged fx list 11',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'FXList:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'DamagedFXList12': {
+			name: 'DamagedFXList12',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.FXLIST],
+			description: 'The damaged fx list 12',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'FXList:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'DamagedParticleSystem1': {
+			name: 'DamagedParticleSystem1',
+			type: ['string', 'string', IniTypes_t.PARTICLE_SYSTEM],
+			description: 'The damaged particle system 1',
+			prefix: ['Bone:', 'RandomBone:', 'PSys:'],
+			numberOfValues: [3],
+			ignoreCase: true
+		},
+		'DamagedParticleSystem2': {
+			name: 'DamagedParticleSystem2',
+			type: ['string', 'string', IniTypes_t.PARTICLE_SYSTEM], 
+			description: 'The damaged particle system 2',
+			prefix: ['Bone:', 'RandomBone:', 'PSys:'],
+			numberOfValues: [3],
+			ignoreCase: true
+		},
+		'DamagedParticleSystem3': {
+			name: 'DamagedParticleSystem3',
+			type: ['string', 'string', IniTypes_t.PARTICLE_SYSTEM],
+			description: 'The damaged particle system 3',
+			prefix: ['Bone:', 'RandomBone:', 'PSys:'],
+			numberOfValues: [3],
+			ignoreCase: true
+		},
+		'DamagedParticleSystem4': {
+			name: 'DamagedParticleSystem4',
+			type: ['string', 'string', IniTypes_t.PARTICLE_SYSTEM],
+			description: 'The damaged particle system 4',
+			prefix: ['Bone:', 'RandomBone:', 'PSys:'],
+			numberOfValues: [3],
+			ignoreCase: true
+		},
+		'DamagedParticleSystem5': {
+			name: 'DamagedParticleSystem5',
+			type: ['string', 'string', IniTypes_t.PARTICLE_SYSTEM],
+			description: 'The damaged particle system 5',
+			prefix: ['Bone:', 'RandomBone:', 'PSys:'],
+			numberOfValues: [3],
+			ignoreCase: true
+		},
+		'DamagedParticleSystem6': {
+			name: 'DamagedParticleSystem6',
+			type: ['string', 'string', IniTypes_t.PARTICLE_SYSTEM],
+			description: 'The damaged particle system 6',
+			prefix: ['Bone:', 'RandomBone:', 'PSys:'],
+			numberOfValues: [3],
+			ignoreCase: true
+		},
+		'DamagedParticleSystem7': {
+			name: 'DamagedParticleSystem7',
+			type: ['string', 'string', IniTypes_t.PARTICLE_SYSTEM],
+			description: 'The damaged particle system 7',
+			prefix: ['Bone:', 'RandomBone:', 'PSys:'],
+			numberOfValues: [3],
+			ignoreCase: true
+		},
+		'DamagedParticleSystem8': {
+			name: 'DamagedParticleSystem8',
+			type: ['string', 'string', IniTypes_t.PARTICLE_SYSTEM],
+			description: 'The damaged particle system 8',
+			prefix: ['Bone:', 'RandomBone:', 'PSys:'],
+			numberOfValues: [3],
+			ignoreCase: true
+		},
+		'DamagedParticleSystem9': {
+			name: 'DamagedParticleSystem9',
+			type: ['string', 'string', IniTypes_t.PARTICLE_SYSTEM],
+			description: 'The damaged particle system 9',
+			prefix: ['Bone:', 'RandomBone:', 'PSys:'],
+			numberOfValues: [3],
+			ignoreCase: true
+		},
+		'DamagedParticleSystem10': {
+			name: 'DamagedParticleSystem10',
+			type: ['string', 'string', IniTypes_t.PARTICLE_SYSTEM],
+			description: 'The damaged particle system 10',
+			prefix: ['Bone:', 'RandomBone:', 'PSys:'],
+			numberOfValues: [3],
+			ignoreCase: true
+		},
+		'DamagedParticleSystem11': {
+			name: 'DamagedParticleSystem11',
+			type: ['string', 'string', IniTypes_t.PARTICLE_SYSTEM],
+			description: 'The damaged particle system 11',
+			prefix: ['Bone:', 'RandomBone:', 'PSys:'],
+			numberOfValues: [3],
+			ignoreCase: true
+		},
+		'DamagedParticleSystem12': {
+			name: 'DamagedParticleSystem12',
+			type: ['string', 'string', IniTypes_t.PARTICLE_SYSTEM],
+			description: 'The damaged particle system 12',
+			prefix: ['Bone:', 'RandomBone:', 'PSys:'],
+			numberOfValues: [3],
+			ignoreCase: true
+		},
+		'DamagedOCL1': {
+			name: 'DamagedOCL1',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.OBJECT_CREATION_LIST],
+			description: 'The damaged ocl 1',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'OCL:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'DamagedOCL2': {
+			name: 'DamagedOCL2',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.OBJECT_CREATION_LIST],
+			description: 'The damaged ocl 2',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'OCL:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'DamagedOCL3': {
+			name: 'DamagedOCL3',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.OBJECT_CREATION_LIST],
+			description: 'The damaged ocl 3',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'OCL:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'DamagedOCL4': {
+			name: 'DamagedOCL4',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.OBJECT_CREATION_LIST],
+			description: 'The damaged ocl 4',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'OCL:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'DamagedOCL5': {
+			name: 'DamagedOCL5',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.OBJECT_CREATION_LIST],
+			description: 'The damaged ocl 5',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'OCL:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'DamagedOCL6': {
+			name: 'DamagedOCL6',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.OBJECT_CREATION_LIST],
+			description: 'The damaged ocl 6',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'OCL:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'DamagedOCL7': {
+			name: 'DamagedOCL7',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.OBJECT_CREATION_LIST],
+			description: 'The damaged ocl 7',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'OCL:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'DamagedOCL8': {
+			name: 'DamagedOCL8',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.OBJECT_CREATION_LIST],
+			description: 'The damaged ocl 8',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'OCL:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'DamagedOCL9': {
+			name: 'DamagedOCL9',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.OBJECT_CREATION_LIST],
+			description: 'The damaged ocl 9',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'OCL:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'DamagedOCL10': {
+			name: 'DamagedOCL10',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.OBJECT_CREATION_LIST],
+			description: 'The damaged ocl 10',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'OCL:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'DamagedOCL11': {
+			name: 'DamagedOCL11',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.OBJECT_CREATION_LIST],
+			description: 'The damaged ocl 11',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'OCL:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'DamagedOCL12': {
+			name: 'DamagedOCL12',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.OBJECT_CREATION_LIST],
+			description: 'The damaged ocl 12',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'OCL:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'ReallyDamagedFXList1': {
+			name: 'ReallyDamagedFXList1',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.FXLIST],
+			description: 'The really damaged fx list 1',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'FXList:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'ReallyDamagedFXList2': {
+			name: 'ReallyDamagedFXList2',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.FXLIST],
+			description: 'The really damaged fx list 2',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'FXList:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'ReallyDamagedFXList3': {
+			name: 'ReallyDamagedFXList3',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.FXLIST],
+			description: 'The really damaged fx list 3',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'FXList:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'ReallyDamagedFXList4': {
+			name: 'ReallyDamagedFXList4',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.FXLIST],
+			description: 'The really damaged fx list 4',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'FXList:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'ReallyDamagedFXList5': {
+			name: 'ReallyDamagedFXList5',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.FXLIST],
+			description: 'The really damaged fx list 5',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'FXList:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'ReallyDamagedFXList6': {
+			name: 'ReallyDamagedFXList6',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.FXLIST],
+			description: 'The really damaged fx list 6',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'FXList:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'ReallyDamagedFXList7': {
+			name: 'ReallyDamagedFXList7',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.FXLIST],
+			description: 'The really damaged fx list 7',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'FXList:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'ReallyDamagedFXList8': {
+			name: 'ReallyDamagedFXList8',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.FXLIST],
+			description: 'The really damaged fx list 8',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'FXList:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'ReallyDamagedFXList9': {
+			name: 'ReallyDamagedFXList9',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.FXLIST],
+			description: 'The really damaged fx list 9',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'FXList:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'ReallyDamagedFXList10': {
+			name: 'ReallyDamagedFXList10',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.FXLIST],
+			description: 'The really damaged fx list 10',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'FXList:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'ReallyDamagedFXList11': {
+			name: 'ReallyDamagedFXList11',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.FXLIST],
+			description: 'The really damaged fx list 11',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'FXList:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'ReallyDamagedFXList12': {
+			name: 'ReallyDamagedFXList12',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.FXLIST],
+			description: 'The really damaged fx list 12',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'FXList:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'ReallyDamagedOCL1': {
+			name: 'ReallyDamagedOCL1',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.OBJECT_CREATION_LIST],
+			description: 'The really damaged ocl 1',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'OCL:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'ReallyDamagedOCL2': {
+			name: 'ReallyDamagedOCL2',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.OBJECT_CREATION_LIST],
+			description: 'The really damaged ocl 2',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'OCL:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'ReallyDamagedOCL3': {
+			name: 'ReallyDamagedOCL3',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.OBJECT_CREATION_LIST],
+			description: 'The really damaged ocl 3',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'OCL:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'ReallyDamagedOCL4': {
+			name: 'ReallyDamagedOCL4',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.OBJECT_CREATION_LIST],
+			description: 'The really damaged ocl 4',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'OCL:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'ReallyDamagedOCL5': {
+			name: 'ReallyDamagedOCL5',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.OBJECT_CREATION_LIST],
+			description: 'The really damaged ocl 5',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'OCL:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'ReallyDamagedOCL6': {
+			name: 'ReallyDamagedOCL6',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.OBJECT_CREATION_LIST],
+			description: 'The really damaged ocl 6',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'OCL:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'ReallyDamagedOCL7': {
+			name: 'ReallyDamagedOCL7',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.OBJECT_CREATION_LIST],
+			description: 'The really damaged ocl 7',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'OCL:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'ReallyDamagedOCL8': {
+			name: 'ReallyDamagedOCL8',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.OBJECT_CREATION_LIST],
+			description: 'The really damaged ocl 8',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'OCL:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'ReallyDamagedOCL9': {
+			name: 'ReallyDamagedOCL9',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.OBJECT_CREATION_LIST],
+			description: 'The really damaged ocl 9',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'OCL:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'ReallyDamagedOCL10': {
+			name: 'ReallyDamagedOCL10',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.OBJECT_CREATION_LIST],
+			description: 'The really damaged ocl 10',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'OCL:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'ReallyDamagedOCL11': {
+			name: 'ReallyDamagedOCL11',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.OBJECT_CREATION_LIST],
+			description: 'The really damaged ocl 11',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'OCL:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'ReallyDamagedOCL12': {
+			name: 'ReallyDamagedOCL12',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.OBJECT_CREATION_LIST],
+			description: 'The really damaged ocl 12',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'OCL:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'ReallyDamagedParticleSystem1': {
+			name: 'ReallyDamagedParticleSystem1',
+			type: ['string', 'string', IniTypes_t.PARTICLE_SYSTEM],
+			description: 'The really damaged particle system 1',
+			prefix: ['Bone:', 'RandomBone:', 'PSys:'],
+			numberOfValues: [3],
+			ignoreCase: true
+		},
+		'ReallyDamagedParticleSystem2': {
+			name: 'ReallyDamagedParticleSystem2',
+			type: ['string', 'string', IniTypes_t.PARTICLE_SYSTEM],
+			description: 'The really damaged particle system 2',
+			prefix: ['Bone:', 'RandomBone:', 'PSys:'],
+			numberOfValues: [3],
+			ignoreCase: true
+		},
+		'ReallyDamagedParticleSystem3': {
+			name: 'ReallyDamagedParticleSystem3',
+			type: ['string', 'string', IniTypes_t.PARTICLE_SYSTEM],
+			description: 'The really damaged particle system 3',
+			prefix: ['Bone:', 'RandomBone:', 'PSys:'],
+			numberOfValues: [3],
+			ignoreCase: true
+		},
+		'ReallyDamagedParticleSystem4': {
+			name: 'ReallyDamagedParticleSystem4',
+			type: ['string', 'string', IniTypes_t.PARTICLE_SYSTEM],
+			description: 'The really damaged particle system 4',
+			prefix: ['Bone:', 'RandomBone:', 'PSys:'],
+			numberOfValues: [3],
+			ignoreCase: true
+		},
+		'ReallyDamagedParticleSystem5': {
+			name: 'ReallyDamagedParticleSystem5',
+			type: ['string', 'string', IniTypes_t.PARTICLE_SYSTEM],
+			description: 'The really damaged particle system 5',
+			prefix: ['Bone:', 'RandomBone:', 'PSys:'],
+			numberOfValues: [3],
+			ignoreCase: true
+		},
+		'ReallyDamagedParticleSystem6': {
+			name: 'ReallyDamagedParticleSystem6',
+			type: ['string', 'string', IniTypes_t.PARTICLE_SYSTEM],
+			description: 'The really damaged particle system 6',
+			prefix: ['Bone:', 'RandomBone:', 'PSys:'],
+			numberOfValues: [3],
+			ignoreCase: true
+		},
+		'ReallyDamagedParticleSystem7': {
+			name: 'ReallyDamagedParticleSystem7',
+			type: ['string', 'string', IniTypes_t.PARTICLE_SYSTEM],
+			description: 'The really damaged particle system 7',
+			prefix: ['Bone:', 'RandomBone:', 'PSys:'],
+			numberOfValues: [3],
+			ignoreCase: true
+		},
+		'ReallyDamagedParticleSystem8': {
+			name: 'ReallyDamagedParticleSystem8',
+			type: ['string', 'string', IniTypes_t.PARTICLE_SYSTEM],
+			description: 'The really damaged particle system 8',
+			prefix: ['Bone:', 'RandomBone:', 'PSys:'],
+			numberOfValues: [3],
+			ignoreCase: true
+		},
+		'ReallyDamagedParticleSystem9': {
+			name: 'ReallyDamagedParticleSystem9',
+			type: ['string', 'string', IniTypes_t.PARTICLE_SYSTEM],
+			description: 'The really damaged particle system 9',
+			prefix: ['Bone:', 'RandomBone:', 'PSys:'],
+			numberOfValues: [3],
+			ignoreCase: true
+		},
+		'ReallyDamagedParticleSystem10': {
+			name: 'ReallyDamagedParticleSystem10',
+			type: ['string', 'string', IniTypes_t.PARTICLE_SYSTEM],
+			description: 'The really damaged particle system 10',
+			prefix: ['Bone:', 'RandomBone:', 'PSys:'],
+			numberOfValues: [3],
+			ignoreCase: true
+		},
+		'ReallyDamagedParticleSystem11': {
+			name: 'ReallyDamagedParticleSystem11',
+			type: ['string', 'string', IniTypes_t.PARTICLE_SYSTEM],
+			description: 'The really damaged particle system 11',
+			prefix: ['Bone:', 'RandomBone:', 'PSys:'],
+			numberOfValues: [3],
+			ignoreCase: true
+		},
+		'ReallyDamagedParticleSystem12': {
+			name: 'ReallyDamagedParticleSystem12',
+			type: ['string', 'string', IniTypes_t.PARTICLE_SYSTEM],
+			description: 'The really damaged particle system 12',
+			prefix: ['Bone:', 'RandomBone:', 'PSys:'],
+			numberOfValues: [3],
+			ignoreCase: true
+		},
+		'RubbleFXList1': {
+			name: 'RubbleFXList1',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.FXLIST],
+			description: 'The rubble fx list 1',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'FXList:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'RubbleFXList2': {
+			name: 'RubbleFXList2',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.FXLIST],
+			description: 'The rubble fx list 2',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'FXList:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'RubbleFXList3': {
+			name: 'RubbleFXList3',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.FXLIST],
+			description: 'The rubble fx list 3',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'FXList:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'RubbleFXList4': {
+			name: 'RubbleFXList4',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.FXLIST],
+			description: 'The rubble fx list 4',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'FXList:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'RubbleFXList5': {
+			name: 'RubbleFXList5',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.FXLIST],
+			description: 'The rubble fx list 5',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'FXList:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'RubbleFXList6': {
+			name: 'RubbleFXList6',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.FXLIST],
+			description: 'The rubble fx list 6',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'FXList:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'RubbleFXList7': {
+			name: 'RubbleFXList7',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.FXLIST],
+			description: 'The rubble fx list 7',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'FXList:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'RubbleFXList8': {
+			name: 'RubbleFXList8',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.FXLIST],
+			description: 'The rubble fx list 8',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'FXList:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'RubbleFXList9': {
+			name: 'RubbleFXList9',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.FXLIST],
+			description: 'The rubble fx list 9',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'FXList:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'RubbleFXList10': {
+			name: 'RubbleFXList10',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.FXLIST],
+			description: 'The rubble fx list 10',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'FXList:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'RubbleFXList11': {
+			name: 'RubbleFXList11',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.FXLIST],
+			description: 'The rubble fx list 11',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'FXList:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'RubbleFXList12': {
+			name: 'RubbleFXList12',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.FXLIST],
+			description: 'The rubble fx list 12',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'FXList:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'RubbleOCL1': {
+			name: 'RubbleOCL1',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.OBJECT_CREATION_LIST],
+			description: 'The rubble ocl 1',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'OCL:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'RubbleOCL2': {
+			name: 'RubbleOCL2',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.OBJECT_CREATION_LIST],
+			description: 'The rubble ocl 2',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'OCL:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'RubbleOCL3': {
+			name: 'RubbleOCL3',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.OBJECT_CREATION_LIST],
+			description: 'The rubble ocl 3',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'OCL:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'RubbleOCL4': {
+			name: 'RubbleOCL4',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.OBJECT_CREATION_LIST],
+			description: 'The rubble ocl 4',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'OCL:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'RubbleOCL5': {
+			name: 'RubbleOCL5',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.OBJECT_CREATION_LIST],
+			description: 'The rubble ocl 5',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'OCL:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'RubbleOCL6': {
+			name: 'RubbleOCL6',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.OBJECT_CREATION_LIST],
+			description: 'The rubble ocl 6',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'OCL:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'RubbleOCL7': {
+			name: 'RubbleOCL7',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.OBJECT_CREATION_LIST],
+			description: 'The rubble ocl 7',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'OCL:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'RubbleOCL8': {
+			name: 'RubbleOCL8',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.OBJECT_CREATION_LIST],
+			description: 'The rubble ocl 8',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'OCL:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'RubbleOCL9': {
+			name: 'RubbleOCL9',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.OBJECT_CREATION_LIST],
+			description: 'The rubble ocl 9',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'OCL:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'RubbleOCL10': {
+			name: 'RubbleOCL10',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.OBJECT_CREATION_LIST],
+			description: 'The rubble ocl 10',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'OCL:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'RubbleOCL11': {
+			name: 'RubbleOCL11',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.OBJECT_CREATION_LIST],
+			description: 'The rubble ocl 11',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'OCL:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'RubbleOCL12': {
+			name: 'RubbleOCL12',
+			type: ['string', 'string', 'string', 'string', IniTypes_t.OBJECT_CREATION_LIST],
+			description: 'The rubble ocl 12',
+			prefix: ['Loc:', 'X:', 'Y:', 'Z:', 'OCL:'],
+			numberOfValues: [5],
+			ignoreCase: true
+		},
+		'RubbleParticleSystem1': {
+			name: 'RubbleParticleSystem1',
+			type: ['string', 'string', IniTypes_t.PARTICLE_SYSTEM],
+			description: 'The rubble particle system 1',
+			prefix: ['Bone:', 'RandomBone:', 'PSys:'],
+			numberOfValues: [3],
+			ignoreCase: true
+		},
+		'RubbleParticleSystem2': {
+			name: 'RubbleParticleSystem2', 
+			type: ['string', 'string', IniTypes_t.PARTICLE_SYSTEM],
+			description: 'The rubble particle system 2',
+			prefix: ['Bone:', 'RandomBone:', 'PSys:'],
+			numberOfValues: [3],
+			ignoreCase: true
+		},
+		'RubbleParticleSystem3': {
+			name: 'RubbleParticleSystem3',
+			type: ['string', 'string', IniTypes_t.PARTICLE_SYSTEM],
+			description: 'The rubble particle system 3',
+			prefix: ['Bone:', 'RandomBone:', 'PSys:'],
+			numberOfValues: [3],
+			ignoreCase: true
+		},
+		'RubbleParticleSystem4': {
+			name: 'RubbleParticleSystem4',
+			type: ['string', 'string', IniTypes_t.PARTICLE_SYSTEM],
+			description: 'The rubble particle system 4',
+			prefix: ['Bone:', 'RandomBone:', 'PSys:'],
+			numberOfValues: [3],
+			ignoreCase: true
+		},
+		'RubbleParticleSystem5': {
+			name: 'RubbleParticleSystem5',
+			type: ['string', 'string', IniTypes_t.PARTICLE_SYSTEM],
+			description: 'The rubble particle system 5',
+			prefix: ['Bone:', 'RandomBone:', 'PSys:'],
+			numberOfValues: [3],
+			ignoreCase: true
+		},
+		'RubbleParticleSystem6': {
+			name: 'RubbleParticleSystem6',
+			type: ['string', 'string', IniTypes_t.PARTICLE_SYSTEM],
+			description: 'The rubble particle system 6',
+			prefix: ['Bone:', 'RandomBone:', 'PSys:'],
+			numberOfValues: [3],
+			ignoreCase: true
+		},
+		'RubbleParticleSystem7': {
+			name: 'RubbleParticleSystem7',
+			type: ['string', 'string', IniTypes_t.PARTICLE_SYSTEM],
+			description: 'The rubble particle system 7',
+			prefix: ['Bone:', 'RandomBone:', 'PSys:'],
+			numberOfValues: [3],
+			ignoreCase: true
+		},
+		'RubbleParticleSystem8': {
+			name: 'RubbleParticleSystem8',
+			type: ['string', 'string', IniTypes_t.PARTICLE_SYSTEM],
+			description: 'The rubble particle system 8',
+			prefix: ['Bone:', 'RandomBone:', 'PSys:'],
+			numberOfValues: [3],
+			ignoreCase: true
+		},
+		'RubbleParticleSystem9': {
+			name: 'RubbleParticleSystem9',
+			type: ['string', 'string', IniTypes_t.PARTICLE_SYSTEM],
+			description: 'The rubble particle system 9',
+			prefix: ['Bone:', 'RandomBone:', 'PSys:'],
+			numberOfValues: [3],
+			ignoreCase: true
+		},
+		'RubbleParticleSystem10': {
+			name: 'RubbleParticleSystem10',
+			type: ['string', 'string', IniTypes_t.PARTICLE_SYSTEM],
+			description: 'The rubble particle system 10',
+			prefix: ['Bone:', 'RandomBone:', 'PSys:'],
+			numberOfValues: [3],
+			ignoreCase: true
+		},
+		'RubbleParticleSystem11': {
+			name: 'RubbleParticleSystem11',
+			type: ['string', 'string', IniTypes_t.PARTICLE_SYSTEM],
+			description: 'The rubble particle system 11',
+			prefix: ['Bone:', 'RandomBone:', 'PSys:'],
+			numberOfValues: [3],
+			ignoreCase: true
+		},
+		'RubbleParticleSystem12': {
+			name: 'RubbleParticleSystem12',
+			type: ['string', 'string', IniTypes_t.PARTICLE_SYSTEM],
+			description: 'The rubble particle system 12',
+			prefix: ['Bone:', 'RandomBone:', 'PSys:'],
+			numberOfValues: [3],
+			ignoreCase: true
+		}
 	},
-	[BehaviorModule_t.TRANSPORT_AI_UPDATE]: {},
+	[BehaviorModule_t.TRANSPORT_AI_UPDATE]: {
+		...baseAiUpdateProperties
+	},
 	[BehaviorModule_t.TRANSPORT_CONTAIN]: {
 		'Slots': {
 			name: 'Slots',
@@ -7662,13 +8938,15 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 			name: 'AllowInsideKindOf',
 			type: 'string',
 			description: 'The allow inside kind of',
-			validValues: Object.values(kindOfs_t)
+			validValues: Object.values(kindOfs_t),
+			numberOfValues: [-1]
 		},
 		'ForbidInsideKindOf': {
 			name: 'ForbidInsideKindOf',
 			type: 'string',
 			description: 'The forbid inside kind of',
-			validValues: Object.values(kindOfs_t)
+			validValues: Object.values(kindOfs_t),
+			numberOfValues: [-1]
 		},
 		'AllowAlliesInside': {
 			name: 'AllowAlliesInside',
@@ -7753,7 +9031,8 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 		'InitialPayload': {
 			name: 'InitialPayload',
 			type: [IniTypes_t.OBJECT, 'integer'],
-			description: 'The initial payload'
+			description: 'The initial payload',
+			numberOfValues: [2]
 		},
 		'ArmedRidersUpgradeMyWeaponSet': {
 			name: 'ArmedRidersUpgradeMyWeaponSet',
@@ -7855,12 +9134,15 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 			name: 'DeathTypes',
 			type: 'string',
 			description: 'The death types',
-			validValues: Object.values(DeathType_t)
+			validValues: Object.values(DeathType_t),
+			modifier: ['-', '+'],
+			numberOfValues: [-1]
 		},
 		'UpgradeToRemove': {
 			name: 'UpgradeToRemove',
-			type: IniTypes_t.UPGRADE,
-			description: 'The upgrade to remove'
+			type: [IniTypes_t.UPGRADE, 'string'],
+			description: 'The upgrade to remove',
+			numberOfValues: [2]
 		},
 		'RequiredStatus': {
 			name: 'RequiredStatus',
@@ -8044,12 +9326,16 @@ export const BehaviorModuleProperties: {[key in BehaviorModule_t]: {[key: string
 		'MaxBoxes': {
 			name: 'MaxBoxes',
 			type: 'integer',
-			description: 'The max boxes'
+			description: 'The max boxes',
+			requiredValues: [{
+				type: kindOfs_t.HARVESTER
+			}]
 		},
 		'AutoAcquireEnemiesWhenIdle': {
 			name: 'AutoAcquireEnemiesWhenIdle',
-			type: 'boolean',
-			description: 'The auto acquire enemies when idle'
+			type: Object.values(AutoAcquireEnemiesWhenIdle_t),
+			description: 'Whether the AI should automatically acquire enemies when it is idle',
+			numberOfValues: [-1]
 		},
 		'UpgradedSupplyBoost': {
 			name: 'UpgradedSupplyBoost',

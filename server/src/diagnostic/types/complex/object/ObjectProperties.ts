@@ -1,8 +1,8 @@
 import { RBTree } from 'bintrees';
-import { PropertyDefinition } from '../../properties';
-import { BuildCompletion_t, EditorSorting_t, kindOfs_t, Locomotor_types_t, MaxSimultaneousLinkKey_t, RadarPriority_t, Shadow_t, Side_t } from '../PropertyTypes';
-import { IniTypes_t } from '../IniType_t';
-import * as list from '../../../utils/lists';
+import { customLocomotorClassList, originalLocomotorClassList } from '../../../data/ClassLists';
+import { PropertyDefinition } from '../../../handlers/interfaces/IPropertyDefinition';
+import { IniTypes_t } from '../../IniType_t';
+import { BuildCompletion_t, EditorSorting_t, kindOfs_t, Locomotor_types_t, RadarPriority_t, Shadow_t, Side_t } from '../../PropertyTypes';
 
 const objectPropertyTree: RBTree<string> = new RBTree<string>((a, b) => a.localeCompare(b));
 
@@ -253,7 +253,8 @@ export const objectProperties: PropertyDefinition[] = [
 	{
 		name: 'ButtonImage',
 		type: IniTypes_t.MAPPED_IMAGE,
-		description: 'The button image of the object'
+		description: 'The button image of the object',
+		ignoreCase: true
 	},
 	{
 		name: 'CommandSet',
@@ -281,13 +282,13 @@ export const objectProperties: PropertyDefinition[] = [
 		name: 'ExperienceValue',
 		type: 'integer',
 		description: 'The experience value of the object',
-		numberOfValues: [1, 2, 3]
+		numberOfValues: [1, 2, 3, 4]
 	},
 	{
 		name: 'ExperienceRequired',
 		type: 'integer',
 		description: 'The experience required to build the object',
-		numberOfValues: [1, 2, 3, 4]
+		numberOfValues: [1, 2, 3, 4, 5]
 	},
 	{
 		name: 'EnterGuard',
@@ -388,20 +389,50 @@ export const objectProperties: PropertyDefinition[] = [
 		name: 'Locomotor',
 		type: ['string', IniTypes_t.LOCOMOTOR],
 		description: 'The locomotor of the object',
-		numberOfValues: [2],
-		validValues: [Object.values(Locomotor_types_t), list.locomotors]
+		numberOfValues: [-1],
+		customValueHandler(value, propertyDefinition, position) {
+		
+			if (position === 0) {
+				if (!Object.values(Locomotor_types_t).includes(value as Locomotor_types_t)) {
+					return false;
+				}
+			} else {
+				if (!originalLocomotorClassList.includes(value) && !customLocomotorClassList.includes(value)) {
+					return false;
+				}
+			}
+
+			return true;
+		}
 	},
 	{
 		name: 'MaxSimultaneousLinkKey',
-		type: "string",
+		type: ['string'],
 		description: 'The maximum number of simultaneous links for the object',
-		validValues: Object.values(MaxSimultaneousLinkKey_t)
+		customValueHandler(value, propertyDefinition, position) {
+			if (!isNaN(Number(value))) {
+				return true;
+			} else if (value.toUpperCase() === 'SUPERWEAPON') {
+				return true;
+			} else {
+				return false;
+			}
+		},
 	},
 	{
 		name: 'MaxSimultaneousOfType',
-		type: 'string',
+		type: ['string'],
 		description: 'The maximum number of objects of the same type that can be linked to the object',
-		validValues: ['DeterminedBySuperweaponRestriction', 'Unlimited']
+		customValueHandler(value, propertyDefinition, position) {
+			
+			// Parse integers or 'DeterminedBySuperweaponRestriction'
+			if (!isNaN(Number(value)) && !value.includes('.')) {
+				return true;
+			} else {
+				return value === 'DeterminedBySuperweaponRestriction';
+			}	
+
+		}		
 	},
 	{
 		name: 'OcclusionDelay',
@@ -420,6 +451,11 @@ export const objectProperties: PropertyDefinition[] = [
 		validValues: Object.values(RadarPriority_t)
 	},
 	{
+		name: 'RefundValue',
+		type: 'integer',
+		description: 'The refund value of the object'
+	},
+	{
 		name: 'Scale',
 		type: 'float',
 		description: 'The scale of the object',
@@ -428,12 +464,14 @@ export const objectProperties: PropertyDefinition[] = [
 		name: 'SelectPortrait',
 		type: IniTypes_t.MAPPED_IMAGE,
 		description: 'The select portrait of the object',
+		ignoreCase: true
 	},
 	{
 		name: 'Shadow',
 		type: 'string',
 		description: 'Whether the object casts a shadow',
-		validValues: Object.values(Shadow_t)
+		validValues: Object.values(Shadow_t),
+		ignoreCase: true
 	},
 	{
 		name: 'ShadowSizeX',
@@ -469,6 +507,11 @@ export const objectProperties: PropertyDefinition[] = [
 		name: 'ShroudRevealingRange',
 		type: 'float',
 		description: 'The shroud revealing range of the object',
+	},
+	{
+		name: 'ShroudRevealToAllRange',
+		type: 'float',
+		description: 'The shroud reveal to all range of the object',
 	},
 	{
 		name: 'Side',
@@ -523,3 +566,4 @@ export function getObjectPropertyTree(): RBTree<string> {
 export function getObjectPropertyDefinition(propertyName: string): PropertyDefinition | undefined {
 	return objectProperties.find(property => property.name === propertyName);
 }
+

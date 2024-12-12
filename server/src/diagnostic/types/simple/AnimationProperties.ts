@@ -1,4 +1,4 @@
-import { PropertyDefinition } from '../../properties';
+import { PropertyDefinition } from '../../handlers/interfaces/IPropertyDefinition';
 import { IniTypes_t } from '../IniType_t';
 
 // =============
@@ -10,7 +10,8 @@ export enum AnimationMode_t {
 	ONCE = 'ONCE',
 	ONCE_BACKWARDS = 'ONCE_BACKWARDS',
 	LOOP = 'LOOP',
-	PING_PONG = 'PING_PONG'
+	PING_PONG = 'PING_PONG',
+	LOOP_BACKWARDS = 'LOOP_BACKWARDS'
 }
 
 // ==================
@@ -45,7 +46,7 @@ export const AnimationProperties: PropertyDefinition[] = [
 		type: IniTypes_t.MAPPED_IMAGE,
 		description: 'The image of the animation',
 	}
-]
+];
 
 AnimationProperties.forEach(property => {
 	AnimationPropertyMap.set(property.name, property);

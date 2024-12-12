@@ -1,5 +1,5 @@
 export function findClosestMatches(word: string, validIdentifiers: string[] | null, threshold = 2): string[] {
-	if (validIdentifiers === null) return []
+	if (validIdentifiers === null) return [];
 
     return validIdentifiers
         .map(identifier => ({ identifier, distance: levenshtein(word, identifier) }))

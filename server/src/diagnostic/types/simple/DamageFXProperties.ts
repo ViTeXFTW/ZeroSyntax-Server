@@ -1,4 +1,4 @@
-import { PropertyDefinition } from '../../properties';
+import { PropertyDefinition } from '../../handlers/interfaces/IPropertyDefinition';
 import { IniTypes_t } from '../IniType_t';
 import { VeterancyTypes_t } from '../PropertyTypes';
 
@@ -7,6 +7,8 @@ import { VeterancyTypes_t } from '../PropertyTypes';
 // ==================
 
 export enum DamageTypes_t {
+	NONE = 'NONE',
+	ALL = 'ALL',
 	DEFAULT = 'DEFAULT',
 	HEALING = 'HEALING',
 	EXPLOSION = 'EXPLOSION',

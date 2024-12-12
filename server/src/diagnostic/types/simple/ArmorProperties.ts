@@ -1,4 +1,4 @@
-import { PropertyDefinition } from '../../properties';
+import { PropertyDefinition } from '../../handlers/interfaces/IPropertyDefinition';
 
 // =============
 // === LISTS ===
@@ -56,7 +56,7 @@ export const ArmorProperties: PropertyDefinition[] = [
 		validValues: [Object.values(ArmorTypes_t), null],
 		numberOfValues: [2]
 	}
-]
+];
 
 ArmorProperties.forEach(property => {
 	ArmorPropertyMap.set(property.name, property);

@@ -3,42 +3,39 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 import {
-	createConnection,
-	TextDocuments,
-	ProposedFeatures,
-	InitializeParams,
-	DidChangeConfigurationNotification,
-	CompletionItem,
-	CompletionItemKind,
-	TextDocumentPositionParams,
-	TextDocumentSyncKind,
-	InitializeResult,
-	DidChangeConfigurationParams,
-	DocumentFormattingRequest,
-	DidOpenTextDocumentParams,
-	CodeActionParams,
 	CodeAction,
-	Diagnostic,
 	CodeActionKind,
-	TextEdit,
+	CodeActionParams,
+	CompletionItem,
+	createConnection,
+	Diagnostic,
+	DidChangeConfigurationNotification,
+	DidChangeConfigurationParams,
+	DidOpenTextDocumentParams,
+	DocumentFormattingRequest,
+	InitializeParams,
+	InitializeResult,
+	ProposedFeatures,
+	TextDocumentPositionParams,
+	TextDocuments,
+	TextDocumentSyncKind,
+	TextEdit
 } from 'vscode-languageserver/node';
 
 import {
 	TextDocument,
 } from 'vscode-languageserver-textdocument';
 
-import { formatDocument } from './formatter/formatter';
 import { computeDiagnostics } from './diagnostic/diagnosticsVisitor';
+import { PropertyDefinition } from './diagnostic/handlers/interfaces/IPropertyDefinition';
+import { ForceAddModule_t } from './diagnostic/types/complex/object/ForceAddModule_t';
+import { formatDocument } from './formatter/formatter';
 import { Parser } from './parser';
-import { CodeCompletionCore } from 'antlr4-c3';
 import { MapIniParser } from './utils/antlr4ng/MapIniParser';
-import { MapIniLexer } from './utils/antlr4ng/MapIniLexer';
-import { CharStream, CommonTokenStream, DefaultErrorStrategy } from 'antlr4ng';
-import { findContextAtPosition, findTokenIndex, generateCompletionItems, getContextSpecificCompletions } from './completion/helpers';
-import { CompletionVisitor } from './completion/completionVisitor';
-import { ForceAddModule_t } from './diagnostic/types/object/ForceAddModule_t';
-import { PropertyDefinition } from './diagnostic/properties';
+import { extractNames, loadIniNames } from './utils/nameExtractor/NameExtractor';
 import { findClosestMatches } from './utils/quickfix/Algorithms';
+import fs from 'fs';
+import path from 'path';
 
 // Create a connection for the server, using Node's IPC as a transport.
 // Also include all preview / proposed LSP features.
@@ -66,9 +63,15 @@ let precompileTransitionKeys: boolean = false;
 let lastCodeActions: CodeAction[] = [];
 let lastDiagnostics: Diagnostic[] = [];
 
+let extensionPath: string;
+let iniPath: string;
+
 connection.onInitialize((params: InitializeParams) => {
 	const capabilities = params.capabilities;
 	const options = params.initializationOptions;
+
+	extensionPath = options.extensionPath;
+	console.log(`Extension path: ${extensionPath}`);
 
 	// Does the client support the `workspace/configuration` request?
 	// If not, we fall back using global settings.
@@ -110,6 +113,7 @@ connection.onInitialize((params: InitializeParams) => {
 
 	forceAddModule = options.forceAddModule !== undefined ? options.forceAddModule : true;
 	precompileTransitionKeys = options.precompileTransitionKeys !== undefined ? options.precompileTransitionKeys : false;
+	iniPath = options.iniPath;
 
 	if (hasWorkspaceFolderCapability) {
 		result.capabilities.workspace = {
@@ -147,9 +151,52 @@ connection.onInitialized(() => {
 			if (settings.forceAddModule !== null) {
 				forceAddModule = settings.forceAddModule as ForceAddModule_t;
 			}
+
+			if (settings.iniPath !== null) {
+				iniPath = settings.iniPath;
+			}
 		});
 	}
+
+
+	const toPath = path.join(extensionPath, "server", "out", "src", "utils", "nameExtractor", "IniNames.json");
+	// Check if file already exists
+	if (!fs.existsSync(toPath) && toPath !== '') {
+		createFiles();
+	} else {
+		console.log('Names already extracted from INI directory!');
+	}
 });
+
+connection.onRequest('custom/createIniNames', (params: {document: TextDocument}) => {
+	console.log(`Request to create INI names received!, ${iniPath}`);
+	createFiles();
+	loadFiles();
+	computeDiagnostics(params.document, currentParser, forceAddModule, precompileTransitionKeys);
+});
+
+function createFiles() {
+	if (iniPath === '') {
+		return;
+	}
+
+	const toPath = path.join(extensionPath, "server", "out", "src", "utils", "nameExtractor", "IniNames.json");
+	const extraPath = path.join(extensionPath, "server", "src", "utils", "nameExtractor", "IniNames.json");
+
+	console.log(`Extracting names from INI directory...`);
+	extractNames(iniPath, toPath, extraPath);
+	console.log(`Names extracted from INI directory!`);
+}
+
+function loadFiles() {
+	if (iniPath === '') {
+		return;
+	}
+
+	console.log(`Loading INI names...`);
+	loadIniNames(iniPath);
+	console.log(`INI names loaded!`);
+}
 
 connection.onDocumentFormatting((_edits) => {
 	const document = documents.get(_edits.textDocument.uri);
@@ -248,7 +295,7 @@ connection.onCodeAction((params: CodeActionParams): CodeAction[] => {
 					}
 				}
 			});
-		} else if (diagnostic.source === 'ZeroSyntax-Server_missing_property') {
+		} else if (diagnostic.source === 'missing_property') {
 			const data = diagnostic.data as { propertyName: string, propertyDefinition: PropertyDefinition[] };
 			if (!data) {
 				console.log(`No data found for diagnostic!`);
@@ -280,7 +327,7 @@ connection.onCodeAction((params: CodeActionParams): CodeAction[] => {
 					}
 				}
 			});
-		} else if (diagnostic.source === 'ZeroSyntax-Server_incorrect_value') {
+		} else if (diagnostic.source === 'incorrect_value') {
 			const data = diagnostic.data as {
 				propertyName: string,
 				propertyDefinition: PropertyDefinition,

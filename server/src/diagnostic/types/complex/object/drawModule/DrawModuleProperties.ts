@@ -1,10 +1,12 @@
-import { PropertyDefinition } from '../../../properties';
-import { DrawModule_t } from './DrawModule_t';
 import { RBTree } from 'bintrees';
-import { WeaponSlot_t } from '../../PropertyTypes';
-import { LOD_t } from '../../PropertyTypes';
-import * as list from '../../../../utils/lists';
-import { IniTypes_t } from '../../IniType_t';
+import { WeaponSlot_t } from '../../../PropertyTypes';
+import { LOD_t } from '../../../PropertyTypes';
+import * as list from '../../../../../utils/lists';
+import { IniTypes_t } from '../../../IniType_t';
+import { DiagnosticSeverity } from 'vscode-languageserver';
+import { additionalConditionStates } from '../../../../../utils/lists';
+import { DrawModule_t } from './DrawModule_t';
+import { PropertyDefinition } from '../../../../handlers/interfaces/IPropertyDefinition';
 
 
 export const W3DDrawModuleTrees: { [key in DrawModule_t]: RBTree<string> } = {
@@ -59,7 +61,9 @@ const baseW3DModelProperties: { [key: string]: PropertyDefinition } = {
 		name: 'IgnoreConditionStates',
 		type: 'string',
 		description: 'Condition states to ignore',
-		validValues: list.allowedConditionStates,
+		get validValues() {
+			return [...list.conditionStates, ...list.customConditionStates, ...list.transitionKeys];
+		},
 		numberOfValues: [-1]
 	},
 	'InitialRecoilSpeed': {
@@ -82,9 +86,12 @@ const baseW3DModelProperties: { [key: string]: PropertyDefinition } = {
 		name: 'AliasConditionState',
 		type: 'string',
 		description: 'The condition state to alias to',
-		validValues: list.allowedConditionStates,
+		get validValues() {
+			return [...list.conditionStates, ...list.customConditionStates, ...list.transitionKeys];
+		},
 		numberOfValues: [-1],
-		ignoreCase: true
+		ignoreCase: true,
+		customWarningType: DiagnosticSeverity.Warning
 	},
 	'OkToChangeModelColor': {
 		name: 'OkToChangeModelColor',
@@ -164,8 +171,8 @@ const baseW3DTruckProperties: {[key: string]: PropertyDefinition} = {
 		type: 'string',
 		description: 'The type of dirt spray the truck leaves',
 	},
-	'PowerSlideSpray': {
-		name: 'PowerSlideSpray',
+	'PowerslideSpray': {
+		name: 'PowerslideSpray',
 		type: 'string',
 		description: 'The type of power slide spray the truck leaves',
 	},
@@ -224,8 +231,8 @@ const baseW3DTruckProperties: {[key: string]: PropertyDefinition} = {
 		type: 'float',
 		description: 'The rotation multiplier of the tires',
 	},
-	'PowerSlideRotationAdditional': {
-		name: 'PowerSlideRotationAdditional',
+	'PowerslideRotationAddition': {
+		name: 'PowerslideRotationAddition',
 		type: 'float',
 		description: 'The additional rotation of the tires',
 	},

@@ -11,7 +11,9 @@
 		"downlevelIteration": true,
 		"noEmitOnError": true,
 		"noEmit": false,
-		"sourceRoot": "./src"
+		"sourceRoot": "./src",
+		"resolveJsonModule": true,
+		"esModuleInterop": true
 	},
 	"include": ["src/**/*", "test/**/*", "src/utils/quickfix/Algorithms.ts"],
 	"exclude": ["node_modules", ".vscode-test", "out"]

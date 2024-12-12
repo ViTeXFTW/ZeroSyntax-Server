@@ -3,7 +3,6 @@ import { ParserRuleContext, Token } from "antlr4ng";
 import { RBTree } from "bintrees";
 import { CompletionItem, CompletionItemKind } from "vscode-languageserver";
 import { MapIniParser } from "../utils/antlr4ng/MapIniParser";
-import * as list from '../utils/lists';
 
 
 
@@ -122,10 +121,6 @@ export function getContextSpecificCompletions(ruleName: string): CompletionItem[
             break;
 
         case 'objectProperty':
-            break;
-        
-        case 'drawModule_type':
-            completionItems.push(...getCompletionItemsFromRBTree(list.modelDraws));
             break;
 
         // Add more cases for different contexts

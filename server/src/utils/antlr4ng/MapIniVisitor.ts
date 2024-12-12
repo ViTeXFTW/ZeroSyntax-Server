@@ -16,6 +16,7 @@ import { ObjectModulesContext } from "./MapIniParser.js";
 import { Module_typeContext } from "./MapIniParser.js";
 import { Module_nameContext } from "./MapIniParser.js";
 import { ModuleTag_valueContext } from "./MapIniParser.js";
+import { Salvage_valueContext } from "./MapIniParser.js";
 import { PropertyBlockContext } from "./MapIniParser.js";
 import { ConditionBlockContext } from "./MapIniParser.js";
 import { PropertyContext } from "./MapIniParser.js";
@@ -110,6 +111,12 @@ export class MapIniVisitor<Result> extends AbstractParseTreeVisitor<Result> {
      * @return the visitor result
      */
     visitModuleTag_value?: (ctx: ModuleTag_valueContext) => Result;
+    /**
+     * Visit a parse tree produced by `MapIniParser.salvage_value`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitSalvage_value?: (ctx: Salvage_valueContext) => Result;
     /**
      * Visit a parse tree produced by `MapIniParser.propertyBlock`.
      * @param ctx the parse tree
