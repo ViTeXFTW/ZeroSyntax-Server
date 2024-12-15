@@ -34,6 +34,7 @@ export function activate(context: vscode.ExtensionContext) {
 	let languageServerRunning = ZSconfig.get<boolean>('serverStartupSetting', false); // Default to 2 if not set
 	let displayAlphaWarning = ZSconfig.get<boolean>('displayAlphaWarning', true);
 	let precompileTransitionKeys = ZSconfig.get<boolean>('precompileTransitionKeys', false);
+	let doAutocompletions = ZSconfig.get<boolean>('enableAutocomplete', false);
 
 	context.subscriptions.push(vscode.commands.registerCommand('ZeroSyntax.stopLanguageServer', () => {
 		if (languageServerRunning) {
@@ -76,7 +77,8 @@ export function activate(context: vscode.ExtensionContext) {
 		},
 		initializationOptions: {
 			precompileTransitionKeys: precompileTransitionKeys,
-			forceAddModule: forceAddModule
+			forceAddModule: forceAddModule,
+			doAutocompletions: doAutocompletions
 		// 	SemanticTokenTypes,
 		// 	SemanticTokenModifiers
 		},
@@ -118,10 +120,23 @@ export function activate(context: vscode.ExtensionContext) {
 	}
 }
 
-vscode.workspace.onDidChangeConfiguration((e) => {
+vscode.workspace.onDidChangeConfiguration(async (e) => {
 	if (e.affectsConfiguration('ZeroSyntax.serverStartupSetting')) {
 		languageServerRunning = ZSconfig.get<boolean>('serverStartupSetting', false);
 		toggleLanguageServer();
+	}
+
+	if(e.affectsConfiguration('ZeroSyntax.enableAutocomplete')) {
+		// Optionally, prompt the user before reloading
+		const answer = await vscode.window.showInformationMessage(
+			'Autocompletion setting changed. Do you want to reload the window to apply changes?',
+			'Reload',
+			'Cancel'
+		);
+
+		if (answer === 'Reload') {
+			await vscode.commands.executeCommand('workbench.action.reloadWindow');
+		}
 	}
 });
 
