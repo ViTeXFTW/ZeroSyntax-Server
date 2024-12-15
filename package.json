@@ -3,7 +3,7 @@
 	"displayName": "ZeroSyntax-Server",
 	"description": "Language server for Generals Zero Hour INI files",
 	"icon": "images/icon.png",
-	"version": "0.1.9",
+	"version": "0.1.9-hotfix1",
 	"publisher": "ViTeXFTW",
 	"author": {
 		"name": "ViTeXFTW",
@@ -72,6 +72,11 @@
 			"type": "object",
 			"title": "ZeroSyntax Settings",
 			"properties": {
+				"ZeroSyntax.enableAutocomplete": {
+					"type": "boolean",
+					"default": true,
+					"description": "Constrols if the extension should provide autocompletion."
+				},
 				"ZeroSyntax.indentNumber": {
 					"type": "number",
 					"default": 2,

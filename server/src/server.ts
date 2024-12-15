@@ -30,6 +30,7 @@ import { MapIniParser } from './utils/antlr4ng/MapIniParser';
 import { MapIniLexer } from './utils/antlr4ng/MapIniLexer';
 import { CharStream, CommonTokenStream, DefaultErrorStrategy } from 'antlr4ng';
 import { findContextAtPosition, findTokenIndex, generateCompletionItems, getContextSpecificCompletions } from './completion/helpers';
+import { read } from 'fs';
 
 // Create a connection for the server, using Node's IPC as a transport.
 // Also include all preview / proposed LSP features.
@@ -51,8 +52,9 @@ const documents: TextDocuments<TextDocument> = new TextDocuments(TextDocument);
 let parser: Parser = new Parser();
 let currentParser: MapIniParser;
 
-let forceAddModule: boolean = true
-let precompileTransitionKeys: boolean = false
+let forceAddModule: boolean = true;
+let precompileTransitionKeys: boolean = false;
+let doAutocompletions: boolean = false;
 
 connection.onInitialize((params: InitializeParams) => {
 	const capabilities = params.capabilities;
@@ -72,6 +74,8 @@ connection.onInitialize((params: InitializeParams) => {
 		capabilities.textDocument.publishDiagnostics.relatedInformation
 	);
 
+	doAutocompletions = options.doAutocompletions !== undefined ? options.doAutocompletions : false;
+
 	const result: InitializeResult = {
 		capabilities: {
 			textDocumentSync: TextDocumentSyncKind.Full,
@@ -79,9 +83,16 @@ connection.onInitialize((params: InitializeParams) => {
 			// Tell the client that this server supports code completion.
 			// definitionProvider: false, //true
 			// hoverProvider: false, //true
-			completionProvider: {
-				resolveProvider: false
-			},
+
+			...(doAutocompletions && {
+				completionProvider: {
+					resolveProvider: false
+				}
+			})
+
+			// completionProvider: {
+			// 	resolveProvider: false
+			// }
 			// semanticTokensProvider: {
 			// 	legend: {
 			// 		tokenTypes,
@@ -191,9 +202,11 @@ documents.onDidChangeContent((change) => {
 	}, diagnosticParserDelay)
 });
 
-
 connection.onCompletion((_textDocumentPosition: TextDocumentPositionParams): CompletionItem[] => {
 	// console.log(`Requesting completions!`)
+	if (!doAutocompletions) {
+		return [];
+	}
 
 	// Retrieve the document
 	const document = documents.get(_textDocumentPosition.textDocument.uri)!;
