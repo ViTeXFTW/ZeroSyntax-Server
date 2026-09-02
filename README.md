@@ -1,3 +1,5 @@
+# Depricated This extension is depricated in favour of [ZeroSyntaxV2](https://github.com/ViTeXFTW/ZeroSyntaxV2)
+
 <div align="center">
     <h1>ZeroSyntax-Server</h1>
     <img src="https://github.com/ViTeXFTW/ZeroSyntax/blob/main/ZeroSyntaxLogo128.png?raw=true">
